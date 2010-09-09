@@ -2,5 +2,5 @@ Working directory for scripting of species modeling and threat assessment. To co
 
 Administrators
 
-Johannes M. Signer
+Johannes M. Signer (j.m.signer@gmail.com)
 Julian Ramirez
