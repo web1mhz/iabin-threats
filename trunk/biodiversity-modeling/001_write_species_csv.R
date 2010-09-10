@@ -43,21 +43,21 @@ for (i in unique(records$specie_id))
     # create file
    dir.create(paste(i))
    dir.create(paste(i,"/training",sep=""))
-   write(paste("species id : ",i,
-              "\nspecie : ",this.sp.u[1,'specie'],"\t#files are handeled with this id", 
+   write(paste("species id : ",i,"\t#files are handeled with this id", 
+              "\nspecie : ",this.sp.u[1,'specie'],
               "\nfamily_id : ",this.sp.u[1,'family_id'], 
               "\nfamily : ", this.sp.u[1,'family'],
               "\nclass : ",class,
               "\nfile created : ",date(), sep=""), paste(i,"info.txt", sep="/"))
   
-    write.table(c("species","lat","lon"), paste(i,"/training/species.csv", sep=""), row.names=F, col.names=F, quote=F, sep=",", append=T)
-    write.table(this.sp.u[,c("specie_id","lat","lon")], paste(i,"/training/species.csv", sep=""), row.names=F, col.names=F, quote=F, sep=",", append=F)
+    write.table("species,lon,lat", paste(i,"/training/species.csv", sep=""), row.names=F, col.names=F, quote=F, sep=",", append=F)
+    write.table(this.sp.u[,c("specie_id","lon","lat")], paste(i,"/training/species.csv", sep=""), row.names=F, col.names=F, quote=F, sep=",", append=T)
 
     # write to the log file
     write(paste(date(),i,nrow(this.sp.u),"yes", sep=","), log.file, append=T)
   } else write(paste(date(),i,nrow(this.sp.u),"no", sep=","), log.file, append=T)
 
 }
-print(paste("completed", class, sep=""))
+print(paste("completed ", class, sep=""))
 }
    

@@ -31,7 +31,7 @@ model.typ <- NA				                                              # model type, 2
 
 # Env. variables
 env.reduced <- paste(dir.env,"/bio1.asc ", dir.env,"/bio12.asc ", dir.env,"/bio4.asc ", dir.env,"/bio15.asc ", sep="")
-env.full <- c(env.reduced, paste(dir.env,"/bio5.asc ", dir.env,"/bio6.asc ", dir.env,"/bio16.asc ", dir.env,"/bio17.asc ", sep=""))
+env.full <- paste(env.reduced, paste(dir.env,"/bio5.asc ", dir.env,"/bio6.asc ", dir.env,"/bio16.asc ", dir.env,"/bio17.asc ", sep=""), sep="")
 
 # maxent parameters
 max.ram <- 1024
@@ -41,8 +41,9 @@ no.background <- 10000 # number of background points
 
 ### sourcing functions
 
-source(paste(dir.scripts, "/001_write_species_csv.R", sep="")
-source(paste(dir.scripts, "/002_make_swd.R", sep="")
+source(paste(dir.scripts, "/001_write_species_csv.R", sep=""))
+source(paste(dir.scripts, "/002_make_swd.R", sep=""))
+source(paste(dir.scripts, "/003_run_maxent.R", sep=""))
 
 ###########################################
 # Read fils and create for each species with 10 or more occurences a csv file (Task 9)
@@ -59,22 +60,27 @@ for (file in list.files(pattern="sa.*.csv")) # adjust the name if need be
  tmp.count <- tmp.count + 1
 }
 
+# create log file 
+write("Log file created automatically to track progress of script task9.R \n\ndate,species_id,number_of_unique_points,create_files_for_maxent", "log.txt", append=F)
+
+
 sapply(sp, function(x) write.species.csv(records=x$records, class=x$class, req.points=pts.min, log="log.txt"))
 
 ###########################################
-# Create SWD files (Task 10)
+# Create SWD files (Task 10,11,12 and 13) 
 ###########################################
 
 files <- list.files(pattern="^[0-9]")
 eco <- raster(ecoregions)
-eco.values <- get.values(eco)
+eco.values <- getValues(eco)
 
 for (i in files)
 {
- this.sp <- read.csv(paste(i,"/training/species.csv"))
+ this.sp <- read.csv(paste(i,"/training/species.csv", sep=""))
  if (nrow(this.sp) > 40) {env.var <- env.full  
   } else env.var <- env.reduced
- make.swd(sp_id=i, points=this.sp, v.all=eco.values, n.background=n.background, dir.maxent=dir.maxent, env.var=env.var
+ make.swd(sp_id=i, points=this.sp, ecoregions=eco, v.all=eco.values, no.background=no.background, dir.maxent=dir.maxent, env.var=env.var)
+ run.maxent(sp_id=i,max.ram=max.ram, dir.maxent=dir.maxent, no.repclicates=no.repclicates, replicate.type=replicate.type)
 }
 
 
