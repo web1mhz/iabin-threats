@@ -22,23 +22,21 @@
 # Script: no changes should be made below #
 ###########################################
 
-make.swd <- function(sp_id,points, ecoregions, v.all=NA, n.background=10000, dir.maxent, env.var)
-
-)
+make.swd <- function(sp_id,points, ecoregions, v.all="NA", no.background=10000, dir.maxent, env.var)
 {
-  if (ecoregions.values==NA) v.all <- getValues(ecoregions) # save time, when doing it only once, so better to pass as argument
+  if (v.all=="NA") v.all <- getValues(ecoregions) # save time, when doing it only once, so better to pass as argument
 
   v.ok <- unique(xyValues(ecoregions, points[,2:3]))
   v.all <- getValues(ecoregions)
   v.new <- ifelse(match(v.all, v.ok),1,NA)
   rr <- setValues(ecoregions, v.new)
   rr.df <- as.data.frame(as(rr,"SpatialPointsDataFrame"))
-  background <- rr.df[sample(1:nrow(rr.df), n.background, replace=T),1:2]
+  background <- rr.df[sample(1:nrow(rr.df), no.background, replace=T),1:2]
   write.table("species,longitude,latitude",paste(sp_id,"/training/background.csv", sep=""),col.names=F, row.names=F,append=F, quote=F)
   write.table(c("background", background), paste(sp_id,"/training/background.csv",sep=""), col.names=F, row.names=F, sep=",", append=T, quote=F)
 
   # make swd.species
   system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ./",sp_id,"/training/species.csv ",env.var, ">",sp_id,"/training/species_swd.csv", sep=""))
   # make swd background
-  system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ./",i,"/training/background.csv ",env.mode, ">",sp_id,"/training/background_swd.csv", sep=""))
+  system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ./",sp_id,"/training/background.csv ",env.var, ">",sp_id,"/training/background_swd.csv", sep=""))
 }
