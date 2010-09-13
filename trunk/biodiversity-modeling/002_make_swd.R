@@ -27,7 +27,8 @@ make.swd <- function(sp_id,points, ecoregions, v.all="NA", no.background=10000, 
   if (v.all=="NA") v.all <- getValues(ecoregions) # save time, when doing it only once, so better to pass as argument
 
   v.ok <- unique(xyValues(ecoregions, points[,2:3]))
-  v.all <- getValues(ecoregions)
+  #v.all <- getValues(ecoregions)
+  v.ok <- v.ok[!is.na(v.ok)]
   v.new <- ifelse(match(v.all, v.ok),1,NA)
   rr <- setValues(ecoregions, v.new)
   rr.df <- as.data.frame(as(rr,"SpatialPointsDataFrame"))
