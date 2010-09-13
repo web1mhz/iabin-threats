@@ -1,10 +1,13 @@
+# author:johannes signer
+# date: 13.9.2010
+
+buffer_distance=2 # in degree
+
+# initizialise
 g.mapset mapset=make_clip -c
 g.region sa@PERMANENT
-buffer_distance=2 # in degree
 count=1
 total=`ls | grep ^[0-9].* | wc -l` > info.txt
-ls | grep ^[0-9].* | wc -l > info.txt
-date >> info.txt
 
 for i in `ls | grep ^[0-9].*`
 do
@@ -22,7 +25,5 @@ do
   echo "finished $count of $total!!"
   count=$(( count+1 ))
 done
-
-date >> info.txt
 
 
