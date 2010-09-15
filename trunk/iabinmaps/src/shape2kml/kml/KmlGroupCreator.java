@@ -2,6 +2,7 @@ package shape2kml.kml;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import utils.PropertiesManager;
 
 import de.micromata.opengis.kml.v_2_2_0.Folder;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
@@ -17,6 +18,7 @@ public class KmlGroupCreator {
 		kml= new Kml();
 		folder=kml.createAndSetFolder();
 		this.url=url;
+		//PropertiesManager.getInstance().getPropertiesAsString("blabla");
 	}
 	
 	public void addElement(String nombre){
