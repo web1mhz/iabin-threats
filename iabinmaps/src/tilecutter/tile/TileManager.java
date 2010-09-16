@@ -65,8 +65,6 @@ public class TileManager {
 	public void cutRaster(Raster raster, int zoom) {
 		Header h = new Header(getNumTileX(zoom),getNumTileY(zoom),NO_DATA,new Mercator(zoom,0,0,1));
 		
-		imageManager.setColorReference(raster);
-		
 		int xStart = h.lon2x(raster.getHeader().rasterSupIzqLon());
 		int xEnd = h.lon2x(raster.getHeader().rasterInfDerLon());
 		System.out.println(raster.getHeader().rasterSupIzqLat());
