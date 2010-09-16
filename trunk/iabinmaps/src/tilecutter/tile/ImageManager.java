@@ -9,22 +9,18 @@ import javax.imageio.ImageIO;
 import tilecutter.raster.Raster;
 
 public class ImageManager {
-	//private float[] rgbMin = new float[] {0,0,255};
-	//private float[] rgbMax = new float[] {255,255,0}; 
-	private float[] rgbMin = new float[] {255,255,0};
-	private float[] rgbMax = new float[] {255,0,0}; 
+
 	
 	private String rootPath = "";
-	private Raster colorReference;
+	private ColorManager colorManager;
 	
-	//rgbMin = new float[] {255,255,0}; amarillo
-	//rgbMax = new float[] {255,0,0};   rojo
+
 	public ImageManager(String rootPath) {
 		this.rootPath = rootPath;
 	}
 	
-	public void setColorReference(Raster colorReference) {
-		this.colorReference = colorReference;
+	public void setColorManager(ColorManager colorManager) {
+		this.colorManager = colorManager;
 	}
 	
 	/**
@@ -64,7 +60,7 @@ public class ImageManager {
 		
 		for(int x = 0; x<raster.getHeader().getWidth(); x++)
 			for(int y = 0; y < raster.getHeader().getHeight(); y++)
-				bufferedImage.setRGB(x,y,getRGB(raster,raster.getValue(x, y)));
+				bufferedImage.setRGB(x,y,getRGB(raster.getValue(x, y)));
 		
 		return bufferedImage;
 	}
@@ -74,34 +70,7 @@ public class ImageManager {
 	 * @param value : El valor del pixel
 	 * @return el color codificado 0xAARRGGBB
 	 */
-	private int getRGB(Raster raster, float value) {
-		int rgb = 0;
-		float delta;
-		
-		/*
-		 * Los colores estan en la memoria en un int, cada byte del int corresponde a una capa
-		 * 	 A (transparencia) R (rojo) G (verde) B (azul)
-		 *   0xAARRGGBB
-		 *   
-		 * Si quiero un rojo de 3, tengo que poner el byte 00000011 (o 0x03 en exadecimal) en el byte del rojo.
-		 * El rojo es en el tercer byte, voy entonces a mover todos los bit de 2*8 
-		 * 
-		 * 0x03 << 16 = 0x030000
-		 * 
-		 */
-		
-		if(value == raster.getHeader().getNoData())//se modifica esta linea, se cambia noData por cero 0
-			return 0x00000000; //Los bit de la transparencia deben ser 0 (transparente)
-		
-		for(int i = 0; i<3; i++)
-		{
-			delta = ((value-colorReference.getMin())/(colorReference.getMax()-colorReference.getMin()))*(rgbMax[i]-rgbMin[i]);
-			int val = (int)(rgbMin[i]+delta);
-			
-			rgb = rgb | (val << ((2-i)*8));
-		}
-		
-		
-		return rgb | 0xff000000; //Los bit de la transparencia deben ser 1 (opaco)
+	private int getRGB(float value) {
+		return colorManager.getRGB(value);
 	}
 }

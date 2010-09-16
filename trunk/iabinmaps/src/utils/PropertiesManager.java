@@ -13,7 +13,7 @@ public class PropertiesManager {
 	public static PropertiesManager getInstance() {
 		if (instance == null)
 			throw new RuntimeException("Instance has not been initialized");
-
+		
 		return instance;
 	}
 
@@ -32,6 +32,10 @@ public class PropertiesManager {
 			e.printStackTrace();
 			System.exit(-1);
 		}
+	}
+	
+	public boolean existProperty(String name) {
+		return properties.get(name) != null;
 	}
 	
 	public String getPropertiesAsString(String name) {
@@ -54,12 +58,26 @@ public class PropertiesManager {
 		
 		return array;
 	}
-	public int[] getPropertiesAsRGB(String name) {
-		int[] rgb = getPropertiesAsIntArray(name);
+	
+	public float[] getPropertiesAsFloatArray(String name) {
+		String[] str = getPropertiesAsString(name).split(";");
+		float[] array = new float[str.length];
+		for(int i = 0; i<str.length;i++)
+			array[i] = Float.parseFloat(str[i]);
+		
+		return array;
+	}
+	
+	public float[] getPropertiesAsRGB(String name) {
+		float[] rgb = getPropertiesAsFloatArray(name);
 		
 		if(rgb.length != 3)
 			throw new RuntimeException("Invalid RGB values in variable "+name);
 		
 		return rgb;
+	}
+
+	public float getPropertiesAsFloat(String name) {
+		return Float.parseFloat(getPropertiesAsString(name));
 	}
 }
