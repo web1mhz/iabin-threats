@@ -17,7 +17,6 @@ import utils.PropertiesManager;
 public class TileCutter {
 
 	public static void main(String arg[]) throws IOException {
-		// int zoom = Integer.parseInt(arg[0]);
 		PropertiesManager.register(arg[0]);
 		
 		String[] rastersID = PropertiesManager.getInstance().getPropertiesAsStringArray("rasters");
@@ -28,8 +27,7 @@ public class TileCutter {
 		String sourcePath = PropertiesManager.getInstance().getPropertiesAsString("path.source");
 		
 		for (String rasterID : rastersID) {
-			// raster.loadRaster(arg[1]);
-			// ImageManager iManager = new ImageManager(arg[2]);
+			
 			raster = new Raster();
 			
 			String group = PropertiesManager.getInstance().getPropertiesAsString(rasterID+".group");
@@ -43,12 +41,9 @@ public class TileCutter {
 
 			raster.loadRaster(sourcePath+pathGroup+fileName);
 			
-			/*System.out.println(rasterID+" "+raster.getMin()+" "+raster.getMax());
-			System.exit(0);*/
 			iManager.setColorManager(ColorManagerFactory.createColorManager(rasterID, raster));
 			
-			
-			
+						
 			int zoomMin = PropertiesManager.getInstance().getPropertiesAsInt("zoom.min");
 			int zoomMax = PropertiesManager.getInstance().getPropertiesAsInt("zoom.max");
 			while (zoomMin <= zoomMax) {

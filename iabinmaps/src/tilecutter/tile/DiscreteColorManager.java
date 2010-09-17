@@ -54,6 +54,10 @@ public abstract class DiscreteColorManager extends ColorManager{
 
 	}
 	
+	/**
+	 * Funcion que crea la lista de umbrales
+	 * @return lista de umbrales
+	 */
 	public abstract float [] createThresholds ();
 	
 

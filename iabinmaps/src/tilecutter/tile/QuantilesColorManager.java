@@ -9,7 +9,16 @@ public class QuantilesColorManager extends DiscreteColorManager {
 
 	private float quantil;
 	Raster raster;
-
+/**
+ * Constructor de la clase QuantilesColorManager
+ * @param raster los valores del archivo raster
+ * @param rgbMin valor de color minimo
+ * @param rgbMax valor de color maximo
+ * @param min  valor minimo
+ * @param max valor maximo
+ * @param NoData valor de noData
+ * @param quantil valor del quantil
+ */
 	public QuantilesColorManager(Raster raster, float[] rgbMin, float[] rgbMax,
 			float min, float max, float NoData, float quantil) {
 		super(rgbMin, rgbMax, min, max, NoData);

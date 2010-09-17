@@ -3,7 +3,15 @@ package tilecutter.tile;
 public class FixedThresholdColorManager extends DiscreteColorManager {
 
 	private float umbral;
-	
+	/**
+	 * Constructor de la clase FixedThresholdColorManager
+	 * @param rgbMin valor de color minimo
+	 * @param rgbMax valor de color maximo
+	 * @param min valor minimo
+	 * @param max valor maximo
+	 * @param NoData valor de noData
+	 * @param umbral para el color discreto fijo
+	 */
 	public FixedThresholdColorManager(float[] rgbMin, float[] rgbMax, float min, float max,
 			float NoData, float umbral) {
 		super(rgbMin, rgbMax, min, max, NoData);
