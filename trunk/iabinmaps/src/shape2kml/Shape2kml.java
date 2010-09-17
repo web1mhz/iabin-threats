@@ -10,35 +10,67 @@ import org.opengis.feature.simple.SimpleFeature;
 import shape2kml.kml.KmlGroupCreator;
 import shape2kml.kml.KmlPolygonCreator;
 import shape2kml.shape.Shapefile;
+import tilecutter.raster.Raster;
+import utils.PropertiesManager;
 
 public class Shape2kml {
 
 	private Shapefile shp;
+	public static Shape2kml s2k;
 
 	public static void main(String[] args) {
-		Shape2kml s2k = new Shape2kml();
-		s2k.execute();
-
+		s2k = new Shape2kml();
+		s2k.executeFromProperties(args[0]);
 	}
+	
+	public void executeFromProperties(String propertiesFile){
+		PropertiesManager.register(propertiesFile);
+		
+		
+		
+		String[] shapesID = PropertiesManager.getInstance().getPropertiesAsStringArray("shapes");
+		String sourcePath = PropertiesManager.getInstance().getPropertiesAsString("path.source");
+		String targetPath = PropertiesManager.getInstance().getPropertiesAsString("path.target");
+		
+		
+		for (String shapeID : shapesID) {	
+			String group = PropertiesManager.getInstance().getPropertiesAsString(shapeID+".group");
+			String pathGroup = PropertiesManager.getInstance().getPropertiesAsString(group+".path");
+			String fileName = PropertiesManager.getInstance().getPropertiesAsString(shapeID+".shapefile");
+			String urlServer= PropertiesManager.getInstance().getPropertiesAsString(shapeID+".server.url");
+			String mainKml = PropertiesManager.getInstance().getPropertiesAsString(shapeID+".kml.main");
+			int []columnIndexes = PropertiesManager.getInstance().getPropertiesAsIntArray(shapeID+".shape.column.indexes");
+			String[] columnName = PropertiesManager.getInstance().getPropertiesAsStringArray(shapeID+".shape.column.names");
+			
+			String sourceFile =sourcePath+pathGroup+fileName;
+			String targetFile= targetPath+pathGroup+shapeID;
+			HashMap<Integer, String> atributos = new HashMap<Integer, String>();
+			for (int i = 0; i < columnIndexes.length; i++) {
+				atributos.put(columnIndexes[i], columnName[i]);
+			}
+			
+			s2k.execute(sourceFile, targetFile,urlServer,mainKml,atributos);
+		}
+		
+		
+	}
+	
 
-	private void execute() {
-		File file = new File("C:/shapefiles/suramerica/SurAmerica.shp");
+	public void execute(String sourceFile,String targetFile,
+			String urlServer,String mainKml,HashMap<Integer,String> atributos) {
+		
+		
+		
+		File file = new File(sourceFile);
+		
 		shp = new Shapefile(file);
 		SimpleFeature sf = null;
-		KmlGroupCreator grupo = new KmlGroupCreator(
-				"http://wikipedia.agilityhoster.com/");
+		KmlGroupCreator grupo = new KmlGroupCreator(urlServer);
 
 		FeatureIterator<SimpleFeature> fi = shp.getFeatures();
-		int count = 20;
+		int count = 5;
 
-		HashMap<Integer, String> atributos = new HashMap<Integer, String>(); // =
-																				// atributos;
-		atributos.put(2, "Name");
-		atributos.put(4, "Country");
-		atributos.put(5, "Departamento");
-		atributos.put(20, "Categoria de las naciones unidas");
-
-		KmlPolygonCreator kml = new KmlPolygonCreator("c:/", atributos);
+		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile,atributos);
 
 		while (fi.hasNext() && count-- > 0) {
 			sf = fi.next();
@@ -56,7 +88,7 @@ public class Shape2kml {
 		}
 
 		try {
-			grupo.writeKml("mainKml.kml");
+			grupo.writeKml(mainKml);
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();

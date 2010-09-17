@@ -14,25 +14,49 @@ public abstract class ColorManager {
 		this.noData = NoData;
 	}
 	
+	/**
+	 * Retorna el color minimo
+	 * @return rgbMin
+	 */
 	public float[] getRgbMin() {
 		return rgbMin;
 	}
-
+	
+	/**
+	 * Retorna el color maximo
+	 * @return rgbMax
+	 */
 	public float[] getRgbMax() {
 		return rgbMax;
 	}
-
+	/**
+	 * Retorna el valor minimo
+	 * @return
+	 */
 	public float getMin() {
 		return min;
 	}
-
+	
+	/**
+	 * Retorna el valor maximo
+	 * @return
+	 */
 	public float getMax() {
 		return max;
 	}
-
+	/**
+	 * Retorna el valor de noData
+	 * @return NoData
+	 */
 	public float getNoData() {
 		return noData;
 	}
+	
+	/**
+	 * Calcular el color del pixel 
+	 * @param value : El valor del pixel
+	 * @return el color codificado 0xAARRGGBB
+	 */
 	
 	public abstract int getRGB(float value);
 }

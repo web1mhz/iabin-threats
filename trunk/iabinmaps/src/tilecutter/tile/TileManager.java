@@ -51,7 +51,7 @@ public class TileManager {
 	 * @param zoom
 	 * @return El tamaño del cellSize en Y.
 	 */
-	public double getCellSizeY(int zoom) {//Devuelve el cellSize de los tiles  en Y.
+	public double getCellSizeY(int zoom) {
 		return TOTAL_DEGREE_Y/(getNumTileY(zoom)*TILE_SIZE);
 	}
 	
@@ -67,21 +67,20 @@ public class TileManager {
 		
 		int xStart = h.lon2x(raster.getHeader().rasterSupIzqLon());
 		int xEnd = h.lon2x(raster.getHeader().rasterInfDerLon());
-		System.out.println(raster.getHeader().rasterSupIzqLat());
 		int yStart = h.lat2y(raster.getHeader().rasterSupIzqLat()-0.5);
 		int yEnd = h.lat2y(raster.getHeader().rasterInfDerLat());
 		
-		System.out.println("From tile ("+xStart+" "+yStart+") to tile ("+xEnd+" "+yEnd+")");
+		//System.out.println("From tile ("+xStart+" "+yStart+") to tile ("+xEnd+" "+yEnd+")");
 		Raster tile;
 		
 		for (int x = xStart; x <= xEnd; x++) {
 			for (int y = yStart; y <= yEnd; y++) {
-				System.out.println("Start tile "+x+" "+y);
+				//System.out.println("Start tile "+x+" "+y);
 				tile = createRaster(x,y,zoom);
 				tile.loadRaster(raster);
 				if(!tile.isEmpty())
 					imageManager.saveTile(tile, x, y, zoom);
-				System.out.println("Finished tile "+x+" "+y);
+				//System.out.println("Finished tile "+x+" "+y);
 			}
 		}
 		

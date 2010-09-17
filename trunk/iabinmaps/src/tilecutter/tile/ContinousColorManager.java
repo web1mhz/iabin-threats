@@ -2,13 +2,21 @@ package tilecutter.tile;
 
 public class ContinousColorManager extends ColorManager{
 
+	/**
+	 * Constructor de la clase ContinousColorManager
+	 * @param rgbMin valor de color minimo
+	 * @param rgbMax valor de color maximo
+	 * @param min valor minimo
+	 * @param max valor maximo
+	 * @param NoData valor de noData
+	 */
 	public ContinousColorManager(float[] rgbMin, float[] rgbMax, float min,
 			float max, float NoData) {
 		super(rgbMin, rgbMax, min, max, NoData);
 	}
 
 	@Override
-	public int getRGB(float value) {
+	   public int getRGB(float value) {
 		int rgb = 0;
 		float delta;
 		/*

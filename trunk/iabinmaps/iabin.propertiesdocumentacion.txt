@@ -1,5 +1,5 @@
 #######################
-# PATH
+# PATH  Ruta de origen y destino de los archivos
 #######################
 path.source=c:/data/
 path.target=c:/iabinmaps/
@@ -11,7 +11,7 @@ summaries.path=summaries/
 summaries.kmloutputpath=protectedArea/
 
 #######################
-# RASTERS
+# RASTERS Nombre de los archivos raster que se van a convertir a PNG
 #######################
 rasters=P1;P2;P3
 P1.group=bioclim
@@ -20,26 +20,28 @@ P2.group=bioclim
 P2.filename=P2.asc
 
 #######################
-# SHAPEFILES
+# SHAPEFILES Nombre de los archivos Shape que se van a convertir a KML
 #######################
 shapes= PA
 PA.group= summaries
 PA.shapefile=SurAmerica.shp
 
 #######################
-# ZOOM
+# ZOOM  zoom minimo y zoom maximo que va a ser aplicado a los archivos raster de bioclima,threats o riqueza
 #######################
 zoom.min=0
 zoom.max=1
 
 #######################
-# KML
+# KML Style ruta del estilo que va a ser aplicado a los archivos KML
 #######################
 
 style.url=http://wikipedia.agilityhoster.com/estilo.kml
 
 #######################
-# PROTECTED AREA
+# PROTECTED AREA Contiene la direccion del servidor donde se alojaran los archivos Kml y Caracteristicas de los archivos shape de areas protegidas que se quieren mostrar incluye el numero de columna,
+#el nombre que se le quiere dar a cada columna,y el nombre del archivo KML principal 
+# 
 #######################
 PA.server.url=http://wikipedia.agilityhoster.com/
 PA.shape.column.indexes=2;4;5;20
@@ -47,7 +49,7 @@ PA.shape.column.names=Name;Country;State;UNCAT
 PA.kml.main=mainKML.kml
 
 #######################
-# COLORS
+# COLORS Colores que van a ser aplicados a los archivos raster incluye el tipo, la escala, el color minimo y el color maximo.
 #######################
 P1.color.type=temperature
 P2.color.type=precipitation
