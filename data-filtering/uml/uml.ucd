@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="3828,2027" id="uml" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledX="515" scrolledY="618" tag="1000" key="32303037303533312D3130303020474249462F64616D6172696C6573">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="3828,2027" id="uml" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledX="59" scrolledY="16" tag="1000" key="32303037303533312D3130303020474249462F64616D6172696C6573">
   <children xsi:type="editmodel:PackageEditModel" name="iservermanager" location="774,906" size="755,1055" id="iservermanager">
     <children xsi:type="editmodel:PackageEditModel" name="iservermanager.rmi" location="47,72" size="489,305" id="iservermanager.rmi">
-      <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.5/@children.2/@children.1/@sourceConnections.0 //@children.1/@children.4/@children.0/@children.0/@sourceConnections.1" name="IWorkServerRMI" location="189,44" size="284,117" id="iservermanager.rmi/IWorkServerRMI" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;),getZippedWork(Ljava.lang.String;I)">
+      <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.5/@children.2/@children.1/@sourceConnections.0 //@children.1/@children.4/@children.0/@children.0/@sourceConnections.1" name="IWorkServerRMI" location="166,44" size="284,117" id="iservermanager.rmi/IWorkServerRMI" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;),getZippedWork(Ljava.lang.String;I)">
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <children xsi:type="editmodel:CompartmentEditModel" size="261,54">
           <children xsi:type="editmodel:MethodEditModel" name="getCountriesISO" location="39,53" id="iservermanager.rmi/IWorkServerRMI#getCountriesISO(Ljava.util.Set;)"/>
@@ -11,12 +11,12 @@
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="iservermanager/IWorkServer&lt;-iservermanager.rmi/IWorkServerRMI" source="//@children.0/@children.0/@children.0" target="//@children.0/@children.1" targetEnd="//@children.0/@children.0/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@children.0/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-          <children xsi:type="editmodel:AssociationEndEditModel" location="225,117" attachSource="true"/>
-          <children xsi:type="editmodel:AssociationEndEditModel" location="57,0"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="237,117" attachSource="true"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="46,0"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
-      <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.1/@children.4/@children.0/@children.1/@sourceConnections.1 //@children.5/@children.2/@children.0/@sourceConnections.1" name="IResultServerRMI" location="14,183" size="252,99" id="iservermanager.rmi/IResultServerRMI" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;),insertZippedResult(Ljava.lang.String;[B)">
+      <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.1/@children.4/@children.0/@children.1/@sourceConnections.1 //@children.5/@children.2/@children.0/@sourceConnections.1" name="IResultServerRMI" location="26,188" size="252,99" id="iservermanager.rmi/IResultServerRMI" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;),insertZippedResult(Ljava.lang.String;[B)">
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <children xsi:type="editmodel:CompartmentEditModel" size="229,36">
           <children xsi:type="editmodel:MethodEditModel" name="insertResult" id="iservermanager.rmi/IResultServerRMI#insertResult(Ljava.lang.String;Ljava.util.List;)"/>
@@ -461,8 +461,8 @@
         <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
         <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="0,165" id="iclientmanager/IResultManager@resulter+client/Client@base|client/Client#base" attachSource="true"/>
         <children xsi:type="editmodel:AssociationEndEditModel" name="resulter" location="242,0" id="iclientmanager/IResultManager@resulter+client/Client@base|iclientmanager/IResultManager#resulter" multiplicityLabel="//@children.4/@children.0/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.0/@children.2/@children.0" navigable="true" orderingKind="1">
-          <children xsi:type="editmodel:LabelEditModel" name=" - resulter" location="1554,307" size="47,14" anchorKind="LastPart"/>
-          <children xsi:type="editmodel:LabelEditModel" name="1" location="1615,307" size="6,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name=" - resulter" location="1655,303" size="47,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="1716,303" size="6,14" anchorKind="LastPart"/>
         </children>
       </sourceConnections>
       <sourceConnections xsi:type="editmodel:AssociationEditModel" id="model/Record@records+client/Client@base" source="//@children.4/@children.0" target="//@children.2/@children.0" targetEnd="//@children.4/@children.0/@sourceConnections.1/@children.2" label="//@children.4/@children.0/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@children.0/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
@@ -475,42 +475,42 @@
       </sourceConnections>
       <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="client.correctormanager/WorldMaskManager@worldmask+client/Client@base" source="//@children.4/@children.0" target="//@children.4/@children.2/@children.1" targetEnd="//@children.4/@children.0/@sourceConnections.2/@children.2" label="//@children.4/@children.0/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@children.0/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
         <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-        <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="146,159" id="client.correctormanager/WorldMaskManager@worldmask+client/Client@base|client/Client#base" attachSource="true"/>
-        <children xsi:type="editmodel:AssociationEndEditModel" name="worldmask" location="0,16" id="client.correctormanager/WorldMaskManager@worldmask+client/Client@base|client.correctormanager/WorldMaskManager#worldmask" multiplicityLabel="//@children.4/@children.0/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.2/@children.2/@children.0" navigable="true" orderingKind="1">
-          <children xsi:type="editmodel:LabelEditModel" name=" - worldmask" location="2558,275" size="63,14" anchorKind="LastPart"/>
-          <children xsi:type="editmodel:LabelEditModel" name="1" location="2615,303" size="6,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="146,158" id="client.correctormanager/WorldMaskManager@worldmask+client/Client@base|client/Client#base" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="worldmask" location="0,15" id="client.correctormanager/WorldMaskManager@worldmask+client/Client@base|client.correctormanager/WorldMaskManager#worldmask" multiplicityLabel="//@children.4/@children.0/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.2/@children.2/@children.0" navigable="true" orderingKind="1">
+          <children xsi:type="editmodel:LabelEditModel" name=" - worldmask" location="2670,273" size="63,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="2727,301" size="6,14" anchorKind="LastPart"/>
         </children>
       </sourceConnections>
       <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="iclientmanager/ClientFactory@factory+client/Client@base" source="//@children.4/@children.0" target="//@children.6/@children.2" targetEnd="//@children.4/@children.0/@sourceConnections.3/@children.2" label="//@children.4/@children.0/@sourceConnections.3/@children.0" sourceEnd="//@children.4/@children.0/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
         <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-        <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="0,16" id="iclientmanager/ClientFactory@factory+client/Client@base|client/Client#base" attachSource="true"/>
-        <children xsi:type="editmodel:AssociationEndEditModel" name="factory" location="236,68" id="iclientmanager/ClientFactory@factory+client/Client@base|iclientmanager/ClientFactory#factory" multiplicityLabel="//@children.4/@children.0/@sourceConnections.3/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.3/@children.2/@children.0" navigable="true" orderingKind="1">
-          <children xsi:type="editmodel:LabelEditModel" name=" - factory" location="1235,131" size="45,14" anchorKind="LastPart"/>
-          <children xsi:type="editmodel:LabelEditModel" name="1" location="1235,159" size="6,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="0,11" id="iclientmanager/ClientFactory@factory+client/Client@base|client/Client#base" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="factory" location="236,73" id="iclientmanager/ClientFactory@factory+client/Client@base|iclientmanager/ClientFactory#factory" multiplicityLabel="//@children.4/@children.0/@sourceConnections.3/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.3/@children.2/@children.0" navigable="true" orderingKind="1">
+          <children xsi:type="editmodel:LabelEditModel" name=" - factory" location="1391,127" size="45,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="1391,155" size="6,14" anchorKind="LastPart"/>
         </children>
       </sourceConnections>
       <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="client.correctormanager/EnvironmentMaskManager@enviromentMask+client/Client@base" source="//@children.4/@children.0" target="//@children.4/@children.2/@children.0" targetEnd="//@children.4/@children.0/@sourceConnections.4/@children.2" label="//@children.4/@children.0/@sourceConnections.4/@children.0" sourceEnd="//@children.4/@children.0/@sourceConnections.4/@children.1" connectionRouterKind="Manhattan">
         <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
         <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="146,108" id="client.correctormanager/EnvironmentMaskManager@enviromentMask+client/Client@base|client/Client#base" attachSource="true"/>
         <children xsi:type="editmodel:AssociationEndEditModel" name="enviromentMask" location="0,65" id="client.correctormanager/EnvironmentMaskManager@enviromentMask+client/Client@base|client.correctormanager/EnvironmentMaskManager#enviromentMask" multiplicityLabel="//@children.4/@children.0/@sourceConnections.4/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.4/@children.2/@children.0" navigable="true" orderingKind="1">
-          <children xsi:type="editmodel:LabelEditModel" name=" - enviromentMask" location="2787,223" size="88,14" anchorKind="LastPart"/>
-          <children xsi:type="editmodel:LabelEditModel" name="1" location="2869,251" size="6,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name=" - enviromentMask" location="2898,223" size="88,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="2980,251" size="6,14" anchorKind="LastPart"/>
         </children>
       </sourceConnections>
       <sourceConnections xsi:type="editmodel:AssociationEditModel" id="iclientmanager/IWorkManager@worker+client/Client@base" source="//@children.4/@children.0" target="//@children.6/@children.1" targetEnd="//@children.4/@children.0/@sourceConnections.5/@children.2" label="//@children.4/@children.0/@sourceConnections.5/@children.0" sourceEnd="//@children.4/@children.0/@sourceConnections.5/@children.1" connectionRouterKind="Manhattan">
         <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
         <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="-2,72" id="iclientmanager/IWorkManager@worker+client/Client@base|client/Client#base" attachSource="true"/>
         <children xsi:type="editmodel:AssociationEndEditModel" name="worker" location="284,48" id="iclientmanager/IWorkManager@worker+client/Client@base|iclientmanager/IWorkManager#worker" multiplicityLabel="//@children.4/@children.0/@sourceConnections.5/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.5/@children.2/@children.0" navigable="true" orderingKind="1">
-          <children xsi:type="editmodel:LabelEditModel" name=" - worker" location="1463,255" size="45,14" anchorKind="LastPart"/>
-          <children xsi:type="editmodel:LabelEditModel" name="1" location="1463,227" size="6,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name=" - worker" location="1619,244" size="45,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="1619,216" size="6,14" anchorKind="LastPart"/>
         </children>
       </sourceConnections>
       <sourceConnections xsi:type="editmodel:AssociationEditModel" id="client.correctormanager/ShapeFileManager@shapeFileManager+client/Client@base" source="//@children.4/@children.0" target="//@children.4/@children.2/@children.2" targetEnd="//@children.4/@children.0/@sourceConnections.6/@children.2" label="//@children.4/@children.0/@sourceConnections.6/@children.0" sourceEnd="//@children.4/@children.0/@sourceConnections.6/@children.1" connectionRouterKind="Manhattan">
         <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
         <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="146,77" id="client.correctormanager/ShapeFileManager@shapeFileManager+client/Client@base|client/Client#base" attachSource="true"/>
         <children xsi:type="editmodel:AssociationEndEditModel" name="shapeFileManager" location="0,22" id="client.correctormanager/ShapeFileManager@shapeFileManager+client/Client@base|client.correctormanager/ShapeFileManager#shapeFileManager" multiplicityLabel="//@children.4/@children.0/@sourceConnections.6/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.6/@children.2/@children.0" navigable="true" orderingKind="1">
-          <children xsi:type="editmodel:LabelEditModel" name=" - shapeFileManager" location="2175,348" size="98,14" anchorKind="LastPart"/>
-          <children xsi:type="editmodel:LabelEditModel" name="1" location="2267,320" size="6,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name=" - shapeFileManager" location="2285,348" size="98,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="2377,320" size="6,14" anchorKind="LastPart"/>
         </children>
       </sourceConnections>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
@@ -586,7 +586,7 @@
           <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="169,319" id="model/WorldMask@worldMask+client.correctormanager/WorldMaskManager@base|client.correctormanager/WorldMaskManager#base" attachSource="true"/>
           <children xsi:type="editmodel:AssociationEndEditModel" name="worldMask" location="0,33" id="model/WorldMask@worldMask+client.correctormanager/WorldMaskManager@base|model/WorldMask#worldMask" multiplicityLabel="//@children.4/@children.2/@children.1/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.4/@children.2/@children.1/@sourceConnections.0/@children.2/@children.0" navigable="true" orderingKind="1">
             <children xsi:type="editmodel:LabelEditModel" name=" - worldMask" location="3378,977" size="63,14" anchorKind="LastPart"/>
-            <children xsi:type="editmodel:LabelEditModel" name="1" location="3435,949" size="6,14" anchorKind="LastPart"/>
+            <children xsi:type="editmodel:LabelEditModel" name="1" location="3435,942" size="6,14" anchorKind="LastPart"/>
           </children>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
@@ -608,7 +608,7 @@
         <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="model/ShapeFile@shapefile+client.correctormanager/ShapeFileManager@base" source="//@children.4/@children.2/@children.2" target="//@children.2/@children.5" targetEnd="//@children.4/@children.2/@children.2/@sourceConnections.0/@children.2" label="//@children.4/@children.2/@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@children.2/@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
           <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
           <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="312,193" id="model/ShapeFile@shapefile+client.correctormanager/ShapeFileManager@base|client.correctormanager/ShapeFileManager#base" attachSource="true" roleLabel="//@children.4/@children.2/@children.2/@sourceConnections.0/@children.1/@children.0">
-            <children xsi:type="editmodel:LabelEditModel" name="- base" location="2554,519" size="31,14" anchorKind="FirstPart"/>
+            <children xsi:type="editmodel:LabelEditModel" name="- base" location="2664,519" size="31,14" anchorKind="FirstPart"/>
           </children>
           <children xsi:type="editmodel:AssociationEndEditModel" name="shapefile" location="0,10" id="model/ShapeFile@shapefile+client.correctormanager/ShapeFileManager@base|model/ShapeFile#shapefile" multiplicityLabel="//@children.4/@children.2/@children.2/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.4/@children.2/@children.2/@sourceConnections.0/@children.2/@children.0" navigable="true" orderingKind="1">
             <children xsi:type="editmodel:LabelEditModel" name="- shapefile" location="3050,931" size="51,14" anchorKind="LastPart"/>
@@ -631,24 +631,16 @@
   </children>
   <children xsi:type="editmodel:PackageEditModel" name="proxy" location="120,14" size="615,1391" id="proxy">
     <children xsi:type="editmodel:PackageEditModel" name="proxy.object" location="78,47" size="507,364" id="proxy.object">
-      <children xsi:type="editmodel:ClassEditModel" name="ResultManagerObject" location="174,240" size="252,67" id="proxy.object/ResultManagerObject" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;)">
-        <children xsi:type="editmodel:CompartmentEditModel"/>
-        <children xsi:type="editmodel:CompartmentEditModel" size="229,18">
-          <children xsi:type="editmodel:MethodEditModel" name="insertResult" id="proxy.object/ResultManagerObject#insertResult(Ljava.lang.String;Ljava.util.List;)"/>
-        </children>
-        <children xsi:type="editmodel:CompartmentEditModel"/>
-        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
-      </children>
-      <children xsi:type="editmodel:ClassEditModel" name="ClientFactoryObject" location="99,143" size="236,85" id="proxy.object/ClientFactoryObject" runTimeClassModel="createWorkManager(),createResultManager()">
+      <children xsi:type="editmodel:ClassEditModel" name="ClientFactoryObject" location="111,148" size="236,85" id="proxy.object/ClientFactoryObject" runTimeClassModel="createWorkManager(),createResultManager()">
         <children xsi:type="editmodel:CompartmentEditModel"/>
         <children xsi:type="editmodel:CompartmentEditModel" size="213,36">
           <children xsi:type="editmodel:MethodEditModel" name="createResultManager" location="149,201" id="proxy.object/ClientFactoryObject#createResultManager()"/>
           <children xsi:type="editmodel:MethodEditModel" name="createWorkManager" id="proxy.object/ClientFactoryObject#createWorkManager()"/>
         </children>
         <children xsi:type="editmodel:CompartmentEditModel"/>
-        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="iclientmanager/ClientFactory&lt;-proxy.object/ClientFactoryObject" source="//@children.5/@children.0/@children.1" target="//@children.6/@children.2" targetEnd="//@children.5/@children.0/@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-          <children xsi:type="editmodel:AssociationEndEditModel" location="236,19" anchorKind="FixedAtEdge" attachSource="true"/>
-          <children xsi:type="editmodel:AssociationEndEditModel" location="0,65"/>
+        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="iclientmanager/ClientFactory&lt;-proxy.object/ClientFactoryObject" source="//@children.5/@children.0/@children.0" target="//@children.6/@children.2" targetEnd="//@children.5/@children.0/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+          <children xsi:type="editmodel:AssociationEndEditModel" location="236,23" anchorKind="FixedAtEdge" attachSource="true"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="0,61"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
@@ -659,23 +651,35 @@
           <children xsi:type="editmodel:MethodEditModel" name="getWork" id="proxy.object/WorkManagerObject#getWork(Ljava.lang.String;I)"/>
         </children>
         <children xsi:type="editmodel:CompartmentEditModel"/>
-        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="iclientmanager/IWorkManager&lt;-proxy.object/WorkManagerObject" source="//@children.5/@children.0/@children.2" target="//@children.6/@children.1" targetEnd="//@children.5/@children.0/@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="iclientmanager/IWorkManager&lt;-proxy.object/WorkManagerObject" source="//@children.5/@children.0/@children.1" target="//@children.6/@children.1" targetEnd="//@children.5/@children.0/@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
           <children xsi:type="editmodel:AssociationEndEditModel" location="284,42" anchorKind="FixedAtEdge" attachSource="true"/>
           <children xsi:type="editmodel:AssociationEndEditModel" location="-1,45"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
+      <children xsi:type="editmodel:ClassEditModel" name="ResultManagerObject" location="171,250" size="252,67" id="proxy.object/ResultManagerObject" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;)">
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <children xsi:type="editmodel:CompartmentEditModel" size="229,18">
+          <children xsi:type="editmodel:MethodEditModel" name="insertResult" id="proxy.object/ResultManagerObject#insertResult(Ljava.lang.String;Ljava.util.List;)"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="iclientmanager/IResultManager&lt;-proxy.object/ResultManagerObject" source="//@children.5/@children.0/@children.2" target="//@children.6/@children.0" targetEnd="//@children.5/@children.0/@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+          <children xsi:type="editmodel:AssociationEndEditModel" location="252,40" anchorKind="FixedAtEdge" attachSource="true"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="0,27"/>
+        </sourceConnections>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
+      </children>
     </children>
     <children xsi:type="editmodel:PackageEditModel" name="proxy.tcp" location="76,440" size="508,347" id="proxy.tcp">
-      <children xsi:type="editmodel:ClassEditModel" name="ResultManagerTCP" location="195,259" size="252,67" id="proxy.tcp/ResultManagerTCP" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;)">
+      <children xsi:type="editmodel:ClassEditModel" name="ResultManagerTCP" location="196,263" size="252,67" id="proxy.tcp/ResultManagerTCP" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;)">
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <children xsi:type="editmodel:CompartmentEditModel" size="229,18">
           <children xsi:type="editmodel:MethodEditModel" name="insertResult" id="proxy.tcp/ResultManagerTCP#insertResult(Ljava.lang.String;Ljava.util.List;)"/>
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="iclientmanager/IResultManager&lt;-proxy.tcp/ResultManagerTCP" source="//@children.5/@children.1/@children.0" target="//@children.6/@children.0" targetEnd="//@children.5/@children.1/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.1/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-          <children xsi:type="editmodel:AssociationEndEditModel" location="203,-2" anchorKind="FixedAtEdge" attachSource="true"/>
-          <children xsi:type="editmodel:AssociationEndEditModel" location="16,79"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="252,23" anchorKind="FixedAtEdge" attachSource="true"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="0,64" anchorKind="FixedAtEdge"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
@@ -687,8 +691,8 @@
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="iclientmanager/IWorkManager&lt;-proxy.tcp/WorkManagerTCP" source="//@children.5/@children.1/@children.1" target="//@children.6/@children.1" targetEnd="//@children.5/@children.1/@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.1/@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-          <children xsi:type="editmodel:AssociationEndEditModel" location="142,0" anchorKind="FixedAtEdge" attachSource="true"/>
-          <children xsi:type="editmodel:AssociationEndEditModel" location="49,98" anchorKind="FixedAtEdge"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="284,39" anchorKind="FixedAtEdge" attachSource="true"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="-1,82" anchorKind="FixedAtEdge"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
@@ -700,14 +704,14 @@
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="iclientmanager/ClientFactory&lt;-proxy.tcp/ClientFactoryTCP" source="//@children.5/@children.1/@children.2" target="//@children.6/@children.2" targetEnd="//@children.5/@children.1/@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.1/@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-          <children xsi:type="editmodel:AssociationEndEditModel" location="118,0" anchorKind="FixedAtEdge" attachSource="true"/>
-          <children xsi:type="editmodel:AssociationEndEditModel" location="58,84" anchorKind="FixedAtEdge"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="235,36" anchorKind="FixedAtEdge" attachSource="true"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="24,85" anchorKind="FixedAtEdge"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
     </children>
     <children xsi:type="editmodel:PackageEditModel" name="proxy.rmi" location="73,820" size="519,385" id="proxy.rmi">
-      <children xsi:type="editmodel:ClassEditModel" name="ResultManagerRMI" location="245,273" size="252,85" id="proxy.rmi/ResultManagerRMI" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;),ResultManagerRMI()">
+      <children xsi:type="editmodel:ClassEditModel" name="ResultManagerRMI" location="477,390" size="252,85" id="proxy.rmi/ResultManagerRMI" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;),ResultManagerRMI()">
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <children xsi:type="editmodel:CompartmentEditModel" size="229,36">
           <children xsi:type="editmodel:MethodEditModel" name="ResultManagerRMI" id="proxy.rmi/ResultManagerRMI#ResultManagerRMI()"/>
@@ -715,15 +719,15 @@
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="iclientmanager/IResultManager&lt;-proxy.rmi/ResultManagerRMI" source="//@children.5/@children.2/@children.0" target="//@children.6/@children.0" targetEnd="//@children.5/@children.2/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.2/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-          <children xsi:type="editmodel:AssociationEndEditModel" location="165,-2" anchorKind="FixedAtEdge" attachSource="true"/>
-          <children xsi:type="editmodel:AssociationEndEditModel" location="132,80" anchorKind="FixedAtEdge"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="126,0" anchorKind="FixedAtEdge" attachSource="true"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="61,80" anchorKind="FixedAtEdge"/>
         </sourceConnections>
         <sourceConnections xsi:type="editmodel:AssociationEditModel" id="iservermanager.rmi/IResultServerRMI@rsrmi+proxy.rmi/ResultManagerRMI@base" source="//@children.5/@children.2/@children.0" target="//@children.0/@children.0/@children.1" targetEnd="//@children.5/@children.2/@children.0/@sourceConnections.1/@children.2" label="//@children.5/@children.2/@children.0/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@children.2/@children.0/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
           <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
           <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="250,51" id="iservermanager.rmi/IResultServerRMI@rsrmi+proxy.rmi/ResultManagerRMI@base|proxy.rmi/ResultManagerRMI#base" attachSource="true"/>
           <children xsi:type="editmodel:AssociationEndEditModel" name="rsrmi" location="116,-4" id="iservermanager.rmi/IResultServerRMI@rsrmi+proxy.rmi/ResultManagerRMI@base|iservermanager.rmi/IResultServerRMI#rsrmi" multiplicityLabel="//@children.5/@children.2/@children.0/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.5/@children.2/@children.0/@sourceConnections.1/@children.2/@children.0" navigable="true" orderingKind="1">
-            <children xsi:type="editmodel:LabelEditModel" name=" ~ rsrmi" location="957,1139" size="36,14" anchorKind="LastPart"/>
-            <children xsi:type="editmodel:LabelEditModel" name="1" location="937,1139" size="6,14" anchorKind="LastPart"/>
+            <children xsi:type="editmodel:LabelEditModel" name=" ~ rsrmi" location="969,1144" size="36,14" anchorKind="LastPart"/>
+            <children xsi:type="editmodel:LabelEditModel" name="1" location="949,1144" size="6,14" anchorKind="LastPart"/>
           </children>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
@@ -740,17 +744,17 @@
           <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
           <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="284,68" id="iservermanager.rmi/IWorkServerRMI@wsrmi+proxy.rmi/WorkManagerRMI@base|proxy.rmi/WorkManagerRMI#base" attachSource="true"/>
           <children xsi:type="editmodel:AssociationEndEditModel" name="wsrmi" location="0,34" id="iservermanager.rmi/IWorkServerRMI@wsrmi+proxy.rmi/WorkManagerRMI@base|iservermanager.rmi/IWorkServerRMI#wsrmi" multiplicityLabel="//@children.5/@children.2/@children.1/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.5/@children.2/@children.1/@sourceConnections.0/@children.2/@children.0" navigable="true" orderingKind="1">
-            <children xsi:type="editmodel:LabelEditModel" name=" ~ wsrmi" location="960,1035" size="42,14" anchorKind="LastPart"/>
-            <children xsi:type="editmodel:LabelEditModel" name="1" location="996,1063" size="6,14" anchorKind="LastPart"/>
+            <children xsi:type="editmodel:LabelEditModel" name=" ~ wsrmi" location="937,1035" size="42,14" anchorKind="LastPart"/>
+            <children xsi:type="editmodel:LabelEditModel" name="1" location="973,1063" size="6,14" anchorKind="LastPart"/>
           </children>
         </sourceConnections>
         <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="iclientmanager/IWorkManager&lt;-proxy.rmi/WorkManagerRMI" source="//@children.5/@children.2/@children.1" target="//@children.6/@children.1" targetEnd="//@children.5/@children.2/@children.1/@sourceConnections.1/@children.1" sourceEnd="//@children.5/@children.2/@children.1/@sourceConnections.1/@children.0" connectionRouterKind="Manual">
           <children xsi:type="editmodel:AssociationEndEditModel" location="190,-1" anchorKind="FixedAtEdge" attachSource="true"/>
-          <children xsi:type="editmodel:AssociationEndEditModel" location="102,98" anchorKind="FixedAtEdge"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="40,98" anchorKind="FixedAtEdge"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
-      <children xsi:type="editmodel:ClassEditModel" name="ClientFactoryRMI" location="13,40" size="236,103" id="proxy.rmi/ClientFactoryRMI" runTimeClassModel="createWorkManager(),createResultManager(),ClientFactoryRMI()">
+      <children xsi:type="editmodel:ClassEditModel" name="ClientFactoryRMI" location="56,39" size="236,103" id="proxy.rmi/ClientFactoryRMI" runTimeClassModel="createWorkManager(),createResultManager(),ClientFactoryRMI()">
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <children xsi:type="editmodel:CompartmentEditModel" size="213,54">
           <children xsi:type="editmodel:MethodEditModel" name="ClientFactoryRMI" id="proxy.rmi/ClientFactoryRMI#ClientFactoryRMI()"/>
@@ -760,14 +764,14 @@
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="iclientmanager/ClientFactory&lt;-proxy.rmi/ClientFactoryRMI" source="//@children.5/@children.2/@children.2" target="//@children.6/@children.2" targetEnd="//@children.5/@children.2/@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.2/@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
           <children xsi:type="editmodel:AssociationEndEditModel" location="118,0" anchorKind="FixedAtEdge" attachSource="true"/>
-          <children xsi:type="editmodel:AssociationEndEditModel" location="118,85" anchorKind="FixedAtEdge"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="72,85" anchorKind="FixedAtEdge"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
     </children>
   </children>
-  <children xsi:type="editmodel:PackageEditModel" name="iclientmanager" location="775,37" size="844,407" id="iclientmanager">
-    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.4/@children.0/@sourceConnections.0 //@children.5/@children.1/@children.0/@sourceConnections.0 //@children.5/@children.2/@children.0/@sourceConnections.0" name="IResultManager" location="509,292" size="252,81" id="iclientmanager/IResultManager" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;)">
+  <children xsi:type="editmodel:PackageEditModel" name="iclientmanager" location="1013,27" size="844,433" id="iclientmanager">
+    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.4/@children.0/@sourceConnections.0 //@children.5/@children.0/@children.2/@sourceConnections.0 //@children.5/@children.1/@children.0/@sourceConnections.0 //@children.5/@children.2/@children.0/@sourceConnections.0" name="IResultManager" location="455,297" size="252,81" id="iclientmanager/IResultManager" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;)">
       <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
       <children xsi:type="editmodel:CompartmentEditModel" size="229,18">
         <children xsi:type="editmodel:MethodEditModel" name="insertResult" id="iclientmanager/IResultManager#insertResult(Ljava.lang.String;Ljava.util.List;)"/>
@@ -775,7 +779,7 @@
       <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
     </children>
-    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.4/@children.0/@sourceConnections.5 //@children.5/@children.2/@children.1/@sourceConnections.1 //@children.5/@children.1/@children.1/@sourceConnections.0 //@children.5/@children.0/@children.2/@sourceConnections.0" name="IWorkManager" location="316,163" size="284,99" id="iclientmanager/IWorkManager" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;)">
+    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.4/@children.0/@sourceConnections.5 //@children.5/@children.0/@children.1/@sourceConnections.0 //@children.5/@children.1/@children.1/@sourceConnections.0 //@children.5/@children.2/@children.1/@sourceConnections.1" name="IWorkManager" location="316,163" size="284,99" id="iclientmanager/IWorkManager" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;)">
       <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
       <children xsi:type="editmodel:CompartmentEditModel" size="261,36">
         <children xsi:type="editmodel:MethodEditModel" name="getCountriesISO" id="iclientmanager/IWorkManager#getCountriesISO(Ljava.util.Set;)"/>
@@ -784,7 +788,7 @@
       <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
     </children>
-    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@children.2/@children.2/@sourceConnections.0 //@children.4/@children.0/@sourceConnections.3 //@children.5/@children.0/@children.1/@sourceConnections.0 //@children.5/@children.1/@children.2/@sourceConnections.0" name="ClientFactory" location="135,48" size="236,85" id="iclientmanager/ClientFactory" runTimeClassModel="createWorkManager(),createResultManager()">
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@children.0/@sourceConnections.3 //@children.5/@children.0/@children.0/@sourceConnections.0 //@children.5/@children.1/@children.2/@sourceConnections.0 //@children.5/@children.2/@children.2/@sourceConnections.0" name="ClientFactory" location="135,48" size="236,85" id="iclientmanager/ClientFactory" runTimeClassModel="createWorkManager(),createResultManager()">
       <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
       <children xsi:type="editmodel:CompartmentEditModel" size="213,36">
         <children xsi:type="editmodel:MethodEditModel" name="createResultManager" id="iclientmanager/ClientFactory#createResultManager()"/>
