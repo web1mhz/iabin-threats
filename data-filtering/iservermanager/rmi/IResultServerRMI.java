@@ -1,4 +1,6 @@
-package iservermanager;
+package iservermanager.rmi;
+
+import iservermanager.IResultServer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -6,7 +8,7 @@ import java.util.List;
 
 import model.Record;
 
-public interface IResultServerRMI extends Remote{
+public interface IResultServerRMI extends Remote, IResultServer{
 
 	/**
 	 * 

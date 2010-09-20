@@ -19,7 +19,7 @@ import java.util.zip.GZIPOutputStream;
 
 import model.WorldMask;
 import server.ServerConfig;
-import server.portal.DataBaseManager;
+import server.database.DataBaseManager;
 import client.ClientConfig;
 
 public class WorldMaskManager {

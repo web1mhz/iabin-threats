@@ -1,4 +1,4 @@
-package server.portal;
+package server.database;
 
 import iservermanager.IResultServer;
 import iservermanager.IWorkServer;
@@ -22,7 +22,7 @@ public class PortalInterface implements IWorkServer, IResultServer {
 
 	/**
 	 * @uml.property   name="portal"
-	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:server.portal.PortalManager"
+	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:server.database.PortalManager"
 	 */
 	private PortalManager portal;
 

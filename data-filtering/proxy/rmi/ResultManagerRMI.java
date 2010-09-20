@@ -13,14 +13,14 @@ import client.ClientConfig;
 import model.CompressorManager;
 import model.Record;
 import iclientmanager.IResultManager;
-import iservermanager.IResultServerRMI;
+import iservermanager.rmi.IResultServerRMI;
 
 @SuppressWarnings("serial")
 public class ResultManagerRMI extends UnicastRemoteObject implements
 		IResultManager {
 	/**
 	 * @uml.property   name="rsrmi"
-	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:iservermanager.IResultServerRMI"
+	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:iservermanager.rmi.IResultServerRMI"
 	 */
 	IResultServerRMI rsrmi;
 //

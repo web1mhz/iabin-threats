@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import server.connection.rmi.ResultServerRMI;
 import server.connection.rmi.WorkServerRMI;
-import server.portal.DataBaseManager;
+import server.database.DataBaseManager;
 
 public class Server {
 
