@@ -16,8 +16,7 @@ public interface IResultServer {
 	 * @return false if there were problems during the insertion, and true otherwise.
 	 * @throws RemoteException
 	 */
-	public boolean insertZippedResult(String clientName, byte[] zippedData)
-			throws RemoteException;
+	public boolean insertZippedResult(String clientName, byte[] zippedData);
 	
 	/**
 	 * 
@@ -28,7 +27,6 @@ public interface IResultServer {
 	 * @return false if there were problems during the insertion, and true otherwise.
 	 * @throws RemoteException
 	 */
-	public boolean insertResult(String clientName, List<Record> data)
-			throws RemoteException;
+	public boolean insertResult(String clientName, List<Record> data);
 
 }

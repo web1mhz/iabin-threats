@@ -1,4 +1,4 @@
-package server;
+package server.portal;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,6 +13,8 @@ import org.jdom.Element;
 import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+
+import server.ServerConfig;
 
 import client.correctormanager.WorldMaskManager;
 

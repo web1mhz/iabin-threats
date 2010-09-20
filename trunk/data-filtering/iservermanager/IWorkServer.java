@@ -17,8 +17,7 @@ public interface IWorkServer {
 	 * @return zippedData of records to work instance of List<Record>
 	 * @throws RemoteException
 	 */
-	public byte[] getZippedWork(String clientName, int quantity)
-			throws RemoteException;
+	public byte[] getZippedWork(String clientName, int quantity);
 	
 	/**
 	 * 
@@ -29,8 +28,7 @@ public interface IWorkServer {
 	 * @return Records of records to work
 	 * @throws RemoteException
 	 */
-	public List<Record> getWork(String clientName, int quantity)
-			throws RemoteException;
+	public List<Record> getWork(String clientName, int quantity);
 
 	/**
 	 * 
@@ -40,6 +38,5 @@ public interface IWorkServer {
 	 *         value
 	 * @throws RemoteException
 	 */
-	public Map<String, String> getCountriesISO(Set<String> countries)
-			throws RemoteException;
+	public Map<String, String> getCountriesISO(Set<String> countries);
 }

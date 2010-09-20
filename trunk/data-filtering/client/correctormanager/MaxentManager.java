@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
-import server.DataBaseManager;
 import server.ServerConfig;
+import server.portal.DataBaseManager;
 import client.ClientConfig;
 
 public class MaxentManager {

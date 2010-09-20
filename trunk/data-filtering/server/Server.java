@@ -7,9 +7,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
 
-import server.rmi.ResultServerRMI;
-import server.rmi.WorkServerRMI;
-import server.DataBaseManager;
+import server.connection.rmi.ResultServerRMI;
+import server.connection.rmi.WorkServerRMI;
+import server.portal.DataBaseManager;
 
 public class Server {
 

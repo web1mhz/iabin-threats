@@ -2,7 +2,6 @@ package proxy.object;
 
 import java.util.List;
 
-import server.object.ResultServerObject;
 
 import model.Record;
 import iclientmanager.IResultManager;

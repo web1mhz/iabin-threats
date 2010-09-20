@@ -1,11 +1,12 @@
 package server;
 
-import java.awt.Shape;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
+
+import server.portal.DataBaseManager;
+import server.portal.PortalManager;
 
 import model.Record;
 import model.ShapeFile;
