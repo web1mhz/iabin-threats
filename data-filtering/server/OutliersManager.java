@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import server.portal.DataBaseManager;
+
 /***
  * Services to update the value of the outlier count in the table of goods For
  * each specie and for each environmental variable calculate variables to mark

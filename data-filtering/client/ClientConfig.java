@@ -27,6 +27,7 @@ public class ClientConfig {
 	private static final String XML_COMMUNICATION_TYPE = "communication_type";
 	public static final String RMI_COMMUNICATION = "RMI";
 	public static final String TCP_COMMUNICATION = "TCP";
+	public static final String OBJECT_COMMUNICATION = "OBJECT";
 
 	/**
 	 * IP address of the server to connect

@@ -13,6 +13,7 @@ import client.correctormanager.ShapeFileManager;
 import client.correctormanager.WorldMaskManager;
 import model.Record;
 import model.ShapeFile;
+import proxy.object.ClientFactoryObject;
 import proxy.rmi.ClientFactoryRMI;
 import proxy.tcp.ClientFactoryTCP;
 import iclientmanager.ClientFactory;
@@ -50,7 +51,7 @@ public class Client {
 	 *                     inverse="base:model.Record"
 	 */
 	private List<Record> records;
-	
+
 	/**
 	 * @uml.property name="shapeFileManager"
 	 * @uml.associationEnd multiplicity="(1 1)" ordering="true"
@@ -86,7 +87,7 @@ public class Client {
 		try {
 			worked = 0;
 			running = false;
-			
+
 			shapeFileManager = new ShapeFileManager();
 			// shapefile = new Shape(new File(ClientConfig.shapeFile));
 			worldmask = new WorldMaskManager(ClientConfig.maskFile);
@@ -101,9 +102,20 @@ public class Client {
 					.equalsIgnoreCase(ClientConfig.RMI_COMMUNICATION)) {
 				factory = new ClientFactoryRMI();
 			} else {
-				assert ClientConfig.communication_type
-						.equalsIgnoreCase(ClientConfig.TCP_COMMUNICATION);
-				factory = new ClientFactoryTCP();
+				if (ClientConfig.communication_type
+						.equalsIgnoreCase(ClientConfig.TCP_COMMUNICATION)) {
+					factory = new ClientFactoryTCP();
+				} else {
+					if (ClientConfig.communication_type
+							.equalsIgnoreCase(ClientConfig.OBJECT_COMMUNICATION)) {
+						factory = new ClientFactoryObject();
+					} else {
+						System.out
+								.println("Not implemented communication type: "
+										+ ClientConfig.communication_type);
+
+					}
+				}
 			}
 
 		} catch (UnknownHostException e) {
@@ -151,6 +163,7 @@ public class Client {
 
 	/**
 	 * creates the worker and the resulter from the client factory
+	 * 
 	 * @throws RemoteException
 	 */
 	private void initComunication() throws RemoteException {
@@ -161,8 +174,10 @@ public class Client {
 
 	/**
 	 * 
-	 * inserts the results 
-	 * @param parts the number of parts in which the results will be send
+	 * inserts the results
+	 * 
+	 * @param parts
+	 *            the number of parts in which the results will be send
 	 * @throws RemoteException
 	 */
 	private void insertResults(int parts) throws RemoteException {
@@ -254,11 +269,13 @@ public class Client {
 				/*
 				 * Make the comparison with the shape file data
 				 */
-				shapeComparison = shapeFileManager.compareCountriesISO(rec.getLatitude(), rec
-						.getLongitude(), rec.getIso_country_code());
+				shapeComparison = shapeFileManager.compareCountriesISO(rec
+						.getLatitude(), rec.getLongitude(), rec
+						.getIso_country_code());
 				tiempoCountries += System.currentTimeMillis() - antes;
 				if (shapeComparison == null
-						|| shapeComparison.equals(ShapeFile.E_NOT_FOUND_COUNTRY)) {
+						|| shapeComparison
+								.equals(ShapeFile.E_NOT_FOUND_COUNTRY)) {
 
 					antes = System.currentTimeMillis();
 					/*
@@ -291,7 +308,7 @@ public class Client {
 			System.out.println("Total time :"
 					+ (System.currentTimeMillis() - tiempoTotal)
 					+ "ms FreeMem:" + Runtime.getRuntime().freeMemory());
-			
+
 			try {
 				insertResults(1);
 			} catch (RemoteException e) {
