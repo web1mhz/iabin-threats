@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import server.portal.DataBaseManager;
+import server.database.DataBaseManager;
 
 /***
  * Services to update the value of the outlier count in the table of goods For

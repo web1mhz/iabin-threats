@@ -2,7 +2,7 @@ package server.connection.object;
 
 import java.util.List;
 
-import server.portal.PortalInterface;
+import server.database.PortalInterface;
 
 import model.Record;
 import iservermanager.IResultServer;

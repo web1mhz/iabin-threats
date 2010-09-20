@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import server.portal.DataBaseManager;
-import server.portal.PortalManager;
+import server.database.DataBaseManager;
+import server.database.PortalManager;
 
 import model.Record;
 import model.ShapeFile;

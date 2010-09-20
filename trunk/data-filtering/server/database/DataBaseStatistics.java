@@ -1,4 +1,4 @@
-package server.portal;
+package server.database;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

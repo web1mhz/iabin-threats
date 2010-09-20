@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import server.portal.PortalInterface;
+import server.database.PortalInterface;
 
 import model.Record;
 import iservermanager.IWorkServer;

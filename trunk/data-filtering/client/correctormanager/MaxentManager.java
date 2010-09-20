@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import server.ServerConfig;
-import server.portal.DataBaseManager;
+import server.database.DataBaseManager;
 import client.ClientConfig;
 
 public class MaxentManager {

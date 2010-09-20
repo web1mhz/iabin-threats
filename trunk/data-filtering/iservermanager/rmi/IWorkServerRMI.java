@@ -1,4 +1,6 @@
-package iservermanager;
+package iservermanager.rmi;
+
+import iservermanager.IWorkServer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -8,7 +10,7 @@ import java.util.Set;
 
 import model.Record;
 
-public interface IWorkServerRMI extends Remote {
+public interface IWorkServerRMI extends Remote, IWorkServer {
 	/**
 	 * 
 	 * @param clientName

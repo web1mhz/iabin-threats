@@ -1,10 +1,10 @@
 package server.connection.rmi;
 
-import iservermanager.IWorkServerRMI;
+import iservermanager.rmi.IWorkServerRMI;
 import server.ServerConfig;
-import server.portal.DataBaseManager;
-import server.portal.PortalInterface;
-import server.portal.PortalManager;
+import server.database.DataBaseManager;
+import server.database.PortalInterface;
+import server.database.PortalManager;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

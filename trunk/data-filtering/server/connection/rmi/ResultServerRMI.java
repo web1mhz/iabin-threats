@@ -1,13 +1,13 @@
 package server.connection.rmi;
 
-import iservermanager.IResultServerRMI;
+import iservermanager.rmi.IResultServerRMI;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 
-import server.portal.PortalInterface;
+import server.database.PortalInterface;
 
 import model.Record;
 

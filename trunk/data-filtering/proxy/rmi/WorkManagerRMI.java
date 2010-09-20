@@ -15,13 +15,13 @@ import client.ClientConfig;
 import model.CompressorManager;
 import model.Record;
 import iclientmanager.IWorkManager;
-import iservermanager.IWorkServerRMI;
+import iservermanager.rmi.IWorkServerRMI;
 
 @SuppressWarnings("serial")
 public class WorkManagerRMI extends UnicastRemoteObject implements IWorkManager {
 	/**
 	 * @uml.property   name="wsrmi"
-	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:iservermanager.IWorkServerRMI"
+	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:iservermanager.rmi.IWorkServerRMI"
 	 */
 	IWorkServerRMI wsrmi;
 //
