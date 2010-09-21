@@ -14,10 +14,5 @@ public class ResultServerObject implements IResultServer {
 		return PortalInterface.getInstance().insertResult(clientName, data);
 	}
 
-	@Override
-	public boolean insertZippedResult(String clientName, byte[] zippedData) {
-		return PortalInterface.getInstance().insertZippedResult(clientName,
-				zippedData);
-	}
 
 }

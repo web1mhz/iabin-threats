@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="3828,2027" id="uml" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledX="528" scrolledY="694" tag="1000" key="32303037303533312D3130303020474249462F64616D6172696C6573">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="3828,2027" id="uml" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledX="808" scrolledY="976" tag="1000" key="32303037303533312D3130303020474249462F64616D6172696C6573">
   <children xsi:type="editmodel:PackageEditModel" name="iservermanager" location="789,896" size="739,744" id="iservermanager">
     <children xsi:type="editmodel:PackageEditModel" name="iservermanager.rmi" location="119,53" size="592,318" id="iservermanager.rmi">
       <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.5/@children.2/@children.1/@sourceConnections.1 //@children.1/@children.4/@children.0/@children.0/@sourceConnections.0" name="IWorkServerRMI" location="277,178" size="284,117" id="iservermanager.rmi/IWorkServerRMI" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;),getZippedWork(Ljava.lang.String;I)">
@@ -38,16 +38,15 @@
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
     </children>
-    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.0/@children.0/@children.1/@sourceConnections.1 //@children.1/@children.4/@children.2/@children.0/@sourceConnections.0 //@children.1/@children.4/@children.1/@children.0/@sourceConnections.0" name="IResultServer" location="364,401" size="252,99" id="iservermanager/IResultServer" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;),insertZippedResult(Ljava.lang.String;[B)">
+    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.0/@children.0/@children.1/@sourceConnections.1 //@children.1/@children.4/@children.2/@children.0/@sourceConnections.0 //@children.1/@children.4/@children.1/@children.0/@sourceConnections.0" name="IResultServer" location="364,401" size="252,99" id="iservermanager/IResultServer" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;)">
       <children xsi:type="editmodel:CompartmentEditModel"/>
       <children xsi:type="editmodel:CompartmentEditModel" size="229,36">
         <children xsi:type="editmodel:MethodEditModel" name="insertResult" location="359,473" id="iservermanager/IResultServer#insertResult(Ljava.lang.String;Ljava.util.List;)"/>
-        <children xsi:type="editmodel:MethodEditModel" name="insertZippedResult" id="iservermanager/IResultServer#insertZippedResult(Ljava.lang.String;[B)"/>
       </children>
       <children xsi:type="editmodel:CompartmentEditModel"/>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
     </children>
-    <children xsi:type="editmodel:PackageEditModel" name="iservermanager.zip" location="22,390" size="303,322" id="iservermanager.zip">
+    <children xsi:type="editmodel:PackageEditModel" name="iservermanager.zip" location="22,390" size="305,322" id="iservermanager.zip">
       <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.0/@children.0/@children.1/@sourceConnections.0" name="IZipResultServer" location="13,47" size="248,81" id="iservermanager.zip/IZipResultServer" runTimeClassModel="insertZippedResult(Ljava.lang.String;[B)">
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <children xsi:type="editmodel:CompartmentEditModel" size="225,18">
@@ -65,12 +64,11 @@
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
     </children>
-    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.0/@children.0/@children.0/@sourceConnections.1 //@children.1/@children.4/@children.2/@children.1/@sourceConnections.0 //@children.1/@children.4/@children.1/@children.1/@sourceConnections.0" name="IWorkServer" location="359,602" size="284,117" id="iservermanager/IWorkServer" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;),getZippedWork(Ljava.lang.String;I)">
+    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.0/@children.0/@children.0/@sourceConnections.1 //@children.1/@children.4/@children.2/@children.1/@sourceConnections.0 //@children.1/@children.4/@children.1/@children.1/@sourceConnections.0" name="IWorkServer" location="359,602" size="284,117" id="iservermanager/IWorkServer" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;)">
       <children xsi:type="editmodel:CompartmentEditModel"/>
       <children xsi:type="editmodel:CompartmentEditModel" size="261,54">
         <children xsi:type="editmodel:MethodEditModel" name="getCountriesISO" id="iservermanager/IWorkServer#getCountriesISO(Ljava.util.Set;)"/>
         <children xsi:type="editmodel:MethodEditModel" name="getWork" id="iservermanager/IWorkServer#getWork(Ljava.lang.String;I)"/>
-        <children xsi:type="editmodel:MethodEditModel" name="getZippedWork" id="iservermanager/IWorkServer#getZippedWork(Ljava.lang.String;I)"/>
       </children>
       <children xsi:type="editmodel:CompartmentEditModel"/>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
@@ -197,7 +195,7 @@
       <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
     </children>
-    <children xsi:type="editmodel:PackageEditModel" name="server.connection" location="9,42" size="495,997" id="server.connection">
+    <children xsi:type="editmodel:PackageEditModel" name="server.connection" location="9,42" size="495,998" id="server.connection">
       <children xsi:type="editmodel:PackageEditModel" name="server.connection.rmi" location="16,37" size="447,357" id="server.connection.rmi">
         <children xsi:type="editmodel:ClassEditModel" name="WorkServerRMI" location="120,190" size="284,139" id="server.connection.rmi/WorkServerRMI" runTimeClassModel="getWork(Ljava.lang.String;I),serialVersionUID,WorkServerRMI(),getCountriesISO(Ljava.util.Set;),getZippedWork(Ljava.lang.String;I)">
           <children xsi:type="editmodel:CompartmentEditModel" size="124,18">
@@ -233,7 +231,7 @@
           <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
         </children>
       </children>
-      <children xsi:type="editmodel:PackageEditModel" name="server.connection.tcp" location="15,388" size="453,278" id="server.connection.tcp">
+      <children xsi:type="editmodel:PackageEditModel" name="server.connection.tcp" location="15,388" size="458,280" id="server.connection.tcp">
         <children xsi:type="editmodel:ClassEditModel" name="ResultServerTCP" location="25,51" size="252,85" id="server.connection.tcp/ResultServerTCP" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;),insertZippedResult(Ljava.lang.String;[B)">
           <children xsi:type="editmodel:CompartmentEditModel"/>
           <children xsi:type="editmodel:CompartmentEditModel" size="229,36">
@@ -263,29 +261,27 @@
         </children>
       </children>
       <children xsi:type="editmodel:PackageEditModel" name="server.connection.object" location="17,696" size="457,281" id="server.connection.object">
-        <children xsi:type="editmodel:ClassEditModel" name="ResultServerObject" location="125,52" size="252,85" id="server.connection.object/ResultServerObject" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;),insertZippedResult(Ljava.lang.String;[B)">
+        <children xsi:type="editmodel:ClassEditModel" name="ResultServerObject" location="148,69" size="252,67" id="server.connection.object/ResultServerObject" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;)">
           <children xsi:type="editmodel:CompartmentEditModel"/>
           <children xsi:type="editmodel:CompartmentEditModel" size="229,36">
             <children xsi:type="editmodel:MethodEditModel" name="insertResult" id="server.connection.object/ResultServerObject#insertResult(Ljava.lang.String;Ljava.util.List;)"/>
-            <children xsi:type="editmodel:MethodEditModel" name="insertZippedResult" id="server.connection.object/ResultServerObject#insertZippedResult(Ljava.lang.String;[B)"/>
           </children>
           <children xsi:type="editmodel:CompartmentEditModel"/>
           <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="iservermanager/IResultServer&lt;-server.connection.object/ResultServerObject" source="//@children.1/@children.4/@children.2/@children.0" target="//@children.0/@children.1" targetEnd="//@children.1/@children.4/@children.2/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.4/@children.2/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-            <children xsi:type="editmodel:AssociationEndEditModel" location="80,0" anchorKind="FixedAtEdge" attachSource="true"/>
-            <children xsi:type="editmodel:AssociationEndEditModel" location="181,99"/>
+            <children xsi:type="editmodel:AssociationEndEditModel" location="89,0" anchorKind="FixedAtEdge" attachSource="true"/>
+            <children xsi:type="editmodel:AssociationEndEditModel" location="182,99"/>
           </sourceConnections>
           <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
         </children>
-        <children xsi:type="editmodel:ClassEditModel" name="WorkServerObject" location="71,156" size="284,103" id="server.connection.object/WorkServerObject" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;),getZippedWork(Ljava.lang.String;I)">
+        <children xsi:type="editmodel:ClassEditModel" name="WorkServerObject" location="59,156" size="284,85" id="server.connection.object/WorkServerObject" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;)">
           <children xsi:type="editmodel:CompartmentEditModel"/>
           <children xsi:type="editmodel:CompartmentEditModel" size="261,54">
             <children xsi:type="editmodel:MethodEditModel" name="getCountriesISO" id="server.connection.object/WorkServerObject#getCountriesISO(Ljava.util.Set;)"/>
             <children xsi:type="editmodel:MethodEditModel" name="getWork" location="205,910" id="server.connection.object/WorkServerObject#getWork(Ljava.lang.String;I)"/>
-            <children xsi:type="editmodel:MethodEditModel" name="getZippedWork" id="server.connection.object/WorkServerObject#getZippedWork(Ljava.lang.String;I)"/>
           </children>
           <children xsi:type="editmodel:CompartmentEditModel"/>
           <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="iservermanager/IWorkServer&lt;-server.connection.object/WorkServerObject" source="//@children.1/@children.4/@children.2/@children.1" target="//@children.0/@children.3" targetEnd="//@children.1/@children.4/@children.2/@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.4/@children.2/@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-            <children xsi:type="editmodel:AssociationEndEditModel" location="-1,61" anchorKind="FixedAtEdge" attachSource="true"/>
+            <children xsi:type="editmodel:AssociationEndEditModel" location="-1,50" anchorKind="FixedAtEdge" attachSource="true"/>
             <children xsi:type="editmodel:AssociationEndEditModel" location="142,117" anchorKind="FixedAtEdge"/>
           </sourceConnections>
           <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>

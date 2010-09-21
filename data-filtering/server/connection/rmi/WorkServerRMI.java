@@ -1,21 +1,14 @@
 package server.connection.rmi;
 
 import iservermanager.rmi.IWorkServerRMI;
-import server.ServerConfig;
-import server.database.DataBaseManager;
 import server.database.PortalInterface;
-import server.database.PortalManager;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
-import model.CompressorManager;
 import model.Record;
 
 public class WorkServerRMI extends UnicastRemoteObject implements
