@@ -17,44 +17,42 @@ public class Place {
 		super();
 		this.id = id;
 		this.country = country;
-		this.stateProvince = stateProvince;
-		this.county = county;
+		this.stateProvince = decodeString(stateProvince);
+		this.county = decodeString(county);
 		this.locality = decodeString(locality);
-
-		// decodingProcess();
 	}
 
 	private String decodeString(String str) {
 		if (str != null && str.length() > 0) {
 			String charset = "";
-			try { 
-				charset = new CharsetToolkit(str.getBytes()).guessEncoding().name();
-			} catch(ArrayIndexOutOfBoundsException e) {
-				System.out.println("********************************");
-				System.out.println(str);
-			}
+			charset = new CharsetToolkit(str.getBytes()).guessEncoding().name();
 			try {
 				if (!charset.contains("ASCII")) {
 					if (charset.equals("UTF-8")) {
-						//System.out.println(charset+" [UTF-8]: " + str + " --> "
-								//+ new String(str.getBytes("ISO-8859-1"), "UTF-8"));
+						// System.out.println(charset+" [UTF-8]: " + str +
+						// " --> "
+						// + new String(str.getBytes("ISO-8859-1"), "UTF-8"));
 						return new String(str.getBytes("ISO-8859-1"), "UTF-8");
 					} else if (str.contains("?")) {
 						String newStr = new String(str.getBytes("ISO-8859-1"), "UTF-8");
 						if (countSimbols(newStr, '?') < countSimbols(str, '?')) {
-							System.out.println("CHANGED! [Cont. (?)]: " + str + " --> " + newStr);
+							// System.out.println("CHANGED! [Cont. (?)]: " + str
+							// + " --> " + newStr);
 							return newStr;
-						} else {
-							System.out.println("NOT CHANGED! [Cont. (?)]: " + str + " --> " + newStr);							
-						}
+						} /*
+						 * else {
+						 * System.out.println("NOT CHANGED! [Cont. (?)]: " + str
+						 * + " --> " + newStr); }
+						 */
 					} else if (str.contains("¤")) {
 						String newStr = new String(str.getBytes("ISO-8859-1"), "UTF-8");
 						if (countSimbols(newStr, '¤') < countSimbols(str, '¤')) {
-							System.out.println(charset+" [Cont. (¤)]: " + str + " --> " + newStr);
+							// System.out.println(charset+" [Cont. (¤)]: " + str
+							// + " --> " + newStr);
 							return newStr;
 						}
 					}
-				} //else System.out.println(charset+" [is Ok!]: " + str);
+				} // else System.out.println(charset+" [is Ok!]: " + str);
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -118,9 +116,9 @@ public class Place {
 	 */
 	private int countSimbols(String str, char simbol) {
 		int n = 0;
-		for(char c : str.toCharArray()) {
+		for (char c : str.toCharArray()) {
 			if (c == simbol)
-				n++;		
+				n++;
 		}
 		return n;
 	}
