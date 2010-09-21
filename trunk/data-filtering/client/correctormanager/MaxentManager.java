@@ -25,7 +25,7 @@ public class MaxentManager {
 			String tempFile = "last_nub.txt";
 			DataBaseManager.registerDriver();
 			Connection con = DataBaseManager.openConnection(
-					ServerConfig.database_user, ServerConfig.database_password);
+					ServerConfig.getInstance().database_user, ServerConfig.getInstance().database_password);
 			boolean hasMoreRecords = true;
 			File arch = new File(tempFile);
 			int lastNubId = 0;
@@ -344,8 +344,7 @@ public class MaxentManager {
 						System.out.println(number + " " + dir);
 						if (number != -1 && dir != null) {
 							ClientConfig.init();
-							ServerConfig.init();
-							String tableName = ServerConfig.dbTableFinalRecords;
+							String tableName = ServerConfig.getInstance().dbTableFinalRecords;
 							MaxentManager mm = new MaxentManager();
 							mm.exportSpeciesIntoCsv(tableName, number, dir);
 							System.out.println("\nOk!");
@@ -364,7 +363,6 @@ public class MaxentManager {
 					if (args[1].equalsIgnoreCase("-i")) {
 						try {
 							ClientConfig.init();
-							ServerConfig.init();
 
 							int threadSize = Integer.parseInt(args[2]);// Could
 							// be

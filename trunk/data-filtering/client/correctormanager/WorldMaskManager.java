@@ -837,7 +837,7 @@ public class WorldMaskManager {
 
 			DataBaseManager.registerDriver();
 			Connection con = DataBaseManager.openConnection(
-					ServerConfig.database_user, ServerConfig.database_password);
+					ServerConfig.getInstance().database_user, ServerConfig.getInstance().database_password);
 			int lastID = 0;
 			boolean hasMoreRecords = true;
 			int cont;
@@ -910,7 +910,7 @@ public class WorldMaskManager {
 			String newTableName) {
 		try {
 			DataBaseManager.registerDriver();
-			Connection con = DataBaseManager.openConnection(ServerConfig.database_user, ServerConfig.database_password);
+			Connection con = DataBaseManager.openConnection(ServerConfig.getInstance().database_user, ServerConfig.getInstance().database_password);
 
 			boolean hasMoreRecords = true;
 			int lastNubId = 0;
@@ -998,7 +998,6 @@ public class WorldMaskManager {
 				if (args.length == 3) {
 					if (args[1].equals("-n")) {
 						try {
-							ServerConfig.init();
 							ClientConfig.init();
 							int number = Integer.parseInt(args[2]);
 							evaluateLand_DirectSQL("temp_land_4A", number);

@@ -32,10 +32,9 @@ public class IABINManager {
 	public void init() {
 
 		ClientConfig.init();
-		ServerConfig.init();
 		DataBaseManager.registerDriver();
 		portal = new PortalManager(DataBaseManager.openConnection(
-				ServerConfig.database_user, ServerConfig.database_password));
+				ServerConfig.getInstance().database_user, ServerConfig.getInstance().database_password));
 
 		records = portal
 				.getRecordsWithCountyLevelInfo(ClientConfig.quantityRecords);

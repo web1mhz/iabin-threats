@@ -47,13 +47,12 @@ public class OutliersManager {
 
 	public static void main(String[] args) {
 
-		ServerConfig.init();
 		try {
 			DataBaseManager.registerDriver();
 			conx = DataBaseManager.openConnection(
-					server.ServerConfig.database_user,
-					ServerConfig.database_password);
-			n = ServerConfig.dbVariablesName.size();
+					ServerConfig.getInstance().database_user,
+					ServerConfig.getInstance().database_password);
+			n = ServerConfig.getInstance().dbVariablesName.size();
 			evaluateOutliers();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -138,7 +137,7 @@ public class OutliersManager {
 		}
 
 		rs = DataBaseManager.makeQuery("select " + NUB_CONCEPT_ID + " from "
-				+ ServerConfig.dbTableGoods + " group by " + NUB_CONCEPT_ID,
+				+ ServerConfig.getInstance().dbTableGoods + " group by " + NUB_CONCEPT_ID,
 				conx);
 		nub_concepts = new LinkedHashSet<Integer>();
 		while (rs.next()) {
@@ -157,7 +156,7 @@ public class OutliersManager {
 			throws SQLException {
 		int nRecords = 0;
 		rs = DataBaseManager.makeQuery("select count(*) \"c\" from "
-				+ ServerConfig.dbTableGoods + " where " + NUB_CONCEPT_ID + "="
+				+ ServerConfig.getInstance().dbTableGoods + " where " + NUB_CONCEPT_ID + "="
 				+ nub_concept, conx);
 		if (rs.next())
 			nRecords = rs.getInt("c");
@@ -168,8 +167,8 @@ public class OutliersManager {
 	}
 
 	private static int insertOutlierValueForRecord(int recordID, byte value) {
-		return DataBaseManager.makeChange("update " + ServerConfig.dbTableGoods
-				+ " set " + ServerConfig.dbOutlierCount + "=" + value
+		return DataBaseManager.makeChange("update " + ServerConfig.getInstance().dbTableGoods
+				+ " set " + ServerConfig.getInstance().dbOutlierCount + "=" + value
 				+ " where id=" + recordID, conx);
 
 	}
@@ -215,7 +214,7 @@ public class OutliersManager {
 		 * Get records for specie
 		 */
 		ResultSet rs = DataBaseManager.makeQuery("select * from "
-				+ ServerConfig.dbTableGoods + " where " + NUB_CONCEPT_ID + "="
+				+ ServerConfig.getInstance().dbTableGoods + " where " + NUB_CONCEPT_ID + "="
 				+ nub_concept, conx);
 		double Q1 = 0, Q3 = 0, IQR = 0, LB[] = new double[n], UB[] = new double[n];
 		int p1 = 0, p3 = 0;
@@ -240,7 +239,7 @@ public class OutliersManager {
 			/*
 			 * Save each varible value in arraylist
 			 */
-			for (String varColumn : ServerConfig.dbVariablesName) {
+			for (String varColumn : ServerConfig.getInstance().dbVariablesName) {
 				v++;
 				recordValues.add(rs.getDouble(varColumn));
 				variableValues[v].add(rs.getDouble(varColumn));
@@ -257,7 +256,7 @@ public class OutliersManager {
 		/*
 		 * for each variable
 		 */
-		for (@SuppressWarnings("unused") String varColumn : ServerConfig.dbVariablesName) {
+		for (@SuppressWarnings("unused") String varColumn : ServerConfig.getInstance().dbVariablesName) {
 			v++;
 
 			/*
@@ -282,7 +281,7 @@ public class OutliersManager {
 		}
 
 		v = -1;
-		for (@SuppressWarnings("unused") String varColumn : ServerConfig.dbVariablesName) {
+		for (@SuppressWarnings("unused") String varColumn : ServerConfig.getInstance().dbVariablesName) {
 
 			v++;
 			for (Integer id : recordsValues.keySet()) {

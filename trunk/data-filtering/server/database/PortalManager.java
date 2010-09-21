@@ -48,7 +48,7 @@ public class PortalManager {
 
 		StringBuffer query = new StringBuffer();
 
-		query.append("INSERT INTO " + ServerConfig.dbTableGoods);
+		query.append("INSERT INTO " + ServerConfig.getInstance().dbTableGoods);
 		query
 				.append("(id, nub_concept_id, longitude, latitude, iso_country_code, canonical");
 		for (String var : rec.getVariables().keySet()) {
@@ -87,7 +87,7 @@ public class PortalManager {
 
 		StringBuffer query = new StringBuffer();
 
-		query.append("INSERT INTO " + ServerConfig.dbTableGoods);
+		query.append("INSERT INTO " + ServerConfig.getInstance().dbTableGoods);
 		query
 				.append("(id, nub_concept_id, longitude, latitude, iso_country_code, canonical");
 		for (String var : rec.getVariables().keySet()) {
@@ -116,7 +116,7 @@ public class PortalManager {
 
 		if (rec.getNote().equals(ShapeFile.E_NULL_COUNTRY)) {
 			return DataBaseManager.makeChange("Insert into "
-					+ ServerConfig.dbTableUnreliable
+					+ ServerConfig.getInstance().dbTableUnreliable
 					+ " values("
 					+ rec.getId()
 					+ ","
@@ -133,7 +133,7 @@ public class PortalManager {
 					+ "');", conx);
 		} else {
 			return DataBaseManager.makeChange("Insert into "
-					+ ServerConfig.dbTableUnreliable
+					+ ServerConfig.getInstance().dbTableUnreliable
 					+ "  values("
 					+ rec.getId()
 					+ ","
@@ -162,7 +162,7 @@ public class PortalManager {
 
 		if (rec.getNote().equals(ShapeFile.E_NULL_COUNTRY)) {
 			return DataBaseManager.makeChange(
-					"Insert into " + ServerConfig.dbTableUnreliable
+					"Insert into " + ServerConfig.getInstance().dbTableUnreliable
 							+ " values(" + rec.getId() + ","
 							+ rec.getNub_concept_id() + ","
 							+ rec.getLongitude() + "," + rec.getLatitude()
@@ -171,7 +171,7 @@ public class PortalManager {
 							+ "');", conx);
 		} else {
 			return DataBaseManager.makeChange("Insert into "
-					+ ServerConfig.dbTableUnreliable + "  values("
+					+ ServerConfig.getInstance().dbTableUnreliable + "  values("
 					+ rec.getId() + "," + rec.getNub_concept_id() + ","
 					+ rec.getLongitude() + "," + rec.getLatitude() + ",'"
 					+ rec.getIso_country_code() + "','" + DataBaseManager.correctStringToQuery(rec.getCanonical())
@@ -188,10 +188,10 @@ public class PortalManager {
 	 */
 	public synchronized List<Record> getRecords(int numRecords) {
 		rs = DataBaseManager.makeQuery("select * from "
-				+ ServerConfig.dbTableRecords + " where id > " + lastID
+				+ ServerConfig.getInstance().dbTableRecords + " where id > " + lastID
 				+ " and id not in " + "(select id from "
-				+ ServerConfig.dbTableGoods + ")" + " and id not in "
-				+ "(select id from " + ServerConfig.dbTableUnreliable + ")"
+				+ ServerConfig.getInstance().dbTableGoods + ")" + " and id not in "
+				+ "(select id from " + ServerConfig.getInstance().dbTableUnreliable + ")"
 				+ " order by id limit " + numRecords, conx);
 
 		endRecords = false;
@@ -240,10 +240,10 @@ public class PortalManager {
 	public synchronized List<Record> getRecordsWithCountyLevelInfo(
 			int numRecords) {
 		rs = DataBaseManager.makeQuery("select * from "
-				+ ServerConfig.dbTableRecords + " where id > " + lastID
+				+ ServerConfig.getInstance().dbTableRecords + " where id > " + lastID
 				+ " and id not in " + "(select id from "
-				+ ServerConfig.dbTableGoods + ")" + " and id not in "
-				+ "(select id from " + ServerConfig.dbTableUnreliable + ")"
+				+ ServerConfig.getInstance().dbTableGoods + ")" + " and id not in "
+				+ "(select id from " + ServerConfig.getInstance().dbTableUnreliable + ")"
 				+ " order by id limit " + numRecords, conx);
 
 		endRecords = false;

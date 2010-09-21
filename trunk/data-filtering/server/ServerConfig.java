@@ -14,73 +14,88 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import server.database.PortalInterface;
+
 public class ServerConfig {
 
-	private static final String XML_FILE = "server_config.xml";
-	private static final String XML_UNVERIFIED_RECORDS = "unverified_records";
-	private static final String XML_UNRELIBLE_RECORDS = "unrelible_records";
-	private static final String XML_GOOD_RECORDS = "good_records";
-	private static final String XML_FINAL_RECORDS = "final_records";
-	private static final String XML_IP_ADDR = "ip_addr";
-	private static final String XML_PORT = "port";
-	private static final String XML_NAME = "name";
-	private static final String XML_COLUMN = "column";
-	private static final String XML_CONTENT = "content";
+	private static ServerConfig instance;
+
+	private ServerConfig() {
+		init();
+	}
+
+	public static ServerConfig getInstance() {
+		if (instance == null) {
+			instance = new ServerConfig();
+		}
+		return instance;
+	}
+
+	private final String XML_FILE = "server_config.xml";
+	private final String XML_UNVERIFIED_RECORDS = "unverified_records";
+	private final String XML_UNRELIBLE_RECORDS = "unrelible_records";
+	private final String XML_GOOD_RECORDS = "good_records";
+	private final String XML_FINAL_RECORDS = "final_records";
+	private final String XML_IP_ADDR = "ip_addr";
+	private final String XML_PORT = "port";
+	private final String XML_NAME = "name";
+	private final String XML_COLUMN = "column";
+	private final String XML_CONTENT = "content";
 
 	/**
 	 * login of the user of th database
 	 */
-	public static String database_user;
+	public String database_user;
 	/**
 	 * password for the user login of the database
 	 */
-	public static String database_password;
+	public String database_password;
 	/**
 	 * name of the table in which the good records are inserted
 	 */
-	public static String dbTableGoods;
+	public String dbTableGoods;
 	/**
 	 * name of the table in which the unreliable records are inserted
 	 */
-	public static String dbTableUnreliable;
+	public String dbTableUnreliable;
 	/**
 	 * name of the table of the totally filtered records
 	 */
-	public static String dbTableFinalRecords;
+	public String dbTableFinalRecords;
 	/**
-	 * name of the table of the records to work 
+	 * name of the table of the records to work
 	 */
-	public static String dbTableRecords;
+	public String dbTableRecords;
 	/**
 	 * ip address of the database host
 	 */
-	public static String dbIPAddress;
+	public String dbIPAddress;
 	/**
 	 * network port to connect to the database
 	 */
-	public static String database_port;
+	public String database_port;
 	/**
 	 * name of the database
 	 */
-	public static String database_name;
+	public String database_name;
 	/**
 	 * names of the columns of the environmental variables data
 	 */
-	public static Set<String> dbVariablesName;
+	public Set<String> dbVariablesName;
 	/**
 	 * name of the of the counter of outlier
 	 */
-	public static String dbOutlierCount;
+	public String dbOutlierCount;
 	/**
 	 * network port to connect through RMI
 	 */
-	public static int rmi_port;
+	public int rmi_port;
 
 	/**
 	 * Initialize the variables of the server configuration. It must be called
 	 * at the beginning otherwise there will be a error if they are used
 	 */
-	public static void init() {
+	public void init() {
 		try {
 			File file = new File(XML_FILE);
 			/**
@@ -99,7 +114,7 @@ public class ServerConfig {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static void readFromXML() throws JDOMException, IOException {
+	private void readFromXML() throws JDOMException, IOException {
 		SAXBuilder builder = new SAXBuilder(false);
 		Document doc = builder.build(new File(XML_FILE));
 		Element config = doc.getRootElement();
@@ -155,10 +170,10 @@ public class ServerConfig {
 	}
 
 	public static void main(String[] args) {
-		init();
+		ServerConfig.getInstance();
 	}
 
-	private static void createDeafaultXML() throws JDOMException, IOException {
+	private void createDeafaultXML() throws JDOMException, IOException {
 
 		Element config = new Element("config");
 
@@ -185,8 +200,8 @@ public class ServerConfig {
 		good.setAttribute("content", XML_GOOD_RECORDS);
 		good.setText("temp_good_records");
 		Element finalrecords = new Element("table");
-		finalrecords .setAttribute("content", XML_FINAL_RECORDS);
-		finalrecords .setText("filtered_records");
+		finalrecords.setAttribute("content", XML_FINAL_RECORDS);
+		finalrecords.setText("filtered_records");
 		Element unreliable = new Element("table");
 		unreliable.setAttribute("content", XML_UNRELIBLE_RECORDS);
 		unreliable.setText("temp_bad_records");
