@@ -61,5 +61,5 @@ public abstract class ColorManager {
 	 */
 	public abstract int getRGB(float value);
 	
-	public abstract BufferedImage getScaleImage();
+	public abstract BufferedImage getScaleImage(String descripcion);
 }

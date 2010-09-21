@@ -34,7 +34,7 @@ public class TileCutter {
 		for (String rasterID : rastersID) {
 			
 			raster = new Raster();
-			
+			String descripcion= PropertiesManager.getInstance().getPropertiesAsString(rasterID+".descripcion");
 			String group = PropertiesManager.getInstance().getPropertiesAsString(rasterID+".group");
 			String pathGroup = PropertiesManager.getInstance().getPropertiesAsString(group+".path");
 			String fileName = PropertiesManager.getInstance().getPropertiesAsString(rasterID+".filename");
@@ -51,10 +51,10 @@ public class TileCutter {
 			iManager.setColorManager(cManager);
 			
 			
-			BufferedImage scaleImage = cManager.getScaleImage();
+			BufferedImage scaleImage = cManager.getScaleImage(descripcion);
 					
 			try {
-				ImageIO.write(scaleImage, "png", new File("scaleTestImage.png"));
+				ImageIO.write(scaleImage, "png", new File(targetPath+pathGroup+rasterID+"scaleTestImage.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
