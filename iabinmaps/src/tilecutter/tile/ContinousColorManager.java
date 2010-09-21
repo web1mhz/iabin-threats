@@ -49,7 +49,7 @@ public class ContinousColorManager extends ColorManager{
 	}
 
 	@Override
-	public BufferedImage getScaleImage() {
+	public BufferedImage getScaleImage(String descripcion) {
 		return null;
 	}
 
