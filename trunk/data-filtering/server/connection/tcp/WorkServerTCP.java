@@ -8,8 +8,13 @@ import server.database.PortalInterface;
 
 import model.Record;
 import iservermanager.IWorkServer;
+import iservermanager.zip.IZipWorkServer;
 
-public class WorkServerTCP implements IWorkServer {
+public class WorkServerTCP implements IWorkServer, IZipWorkServer {
+	
+	/*
+	 * It must be a method to send the records to work through the TCP connection
+	 */
 
 	@Override
 	public Map<String, String> getCountriesISO(Set<String> countries) {

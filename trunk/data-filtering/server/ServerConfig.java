@@ -14,8 +14,6 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import server.database.PortalInterface;
-
 public class ServerConfig {
 
 	private static ServerConfig instance;

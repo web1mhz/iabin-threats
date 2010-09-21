@@ -21,9 +21,4 @@ public class WorkServerObject implements IWorkServer {
 		return PortalInterface.getInstance().getWork(clientName, quantity);
 	}
 
-	@Override
-	public byte[] getZippedWork(String clientName, int quantity) {
-		return PortalInterface.getInstance()
-				.getZippedWork(clientName, quantity);
-	}
 }

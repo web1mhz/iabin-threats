@@ -7,7 +7,6 @@ import server.connection.object.ResultServerObject;
 
 import model.Record;
 import iclientmanager.IResultManager;
-import iservermanager.IResultServer;
 
 public class ResultManagerObject implements IResultManager {
 

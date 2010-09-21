@@ -2,6 +2,8 @@ package server.database;
 
 import iservermanager.IResultServer;
 import iservermanager.IWorkServer;
+import iservermanager.zip.IZipResultServer;
+import iservermanager.zip.IZipWorkServer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import server.ServerConfig;
 import model.CompressorManager;
 import model.Record;
 
-public class PortalInterface implements IWorkServer, IResultServer {
+public class PortalInterface implements IWorkServer, IResultServer, IZipWorkServer, IZipResultServer {
 
 	private static PortalInterface instance;
 

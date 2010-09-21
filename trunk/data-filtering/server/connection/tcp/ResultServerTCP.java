@@ -6,8 +6,14 @@ import server.database.PortalInterface;
 
 import model.Record;
 import iservermanager.IResultServer;
+import iservermanager.zip.IZipResultServer;
 
-public class ResultServerTCP implements IResultServer {
+public class ResultServerTCP implements IResultServer, IZipResultServer {
+	
+	/*
+	 * It must be a method to gather the data from the TCP connection
+	 * an then use the inserts methods to insert the data. 
+	 */
 
 	@Override
 	public boolean insertResult(String clientName, List<Record> data) {
