@@ -23,12 +23,12 @@ public class WorkManagerRMI extends UnicastRemoteObject implements IWorkManager 
 	 * @uml.property   name="wsrmi"
 	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:iservermanager.rmi.IWorkServerRMI"
 	 */
-	IWorkServerRMI wsrmi;
+	private IWorkServerRMI wserver;
 //
 	public WorkManagerRMI() throws RemoteException {
 		super();
 		try {
-			wsrmi = (IWorkServerRMI) Naming.lookup("//"
+			wserver = (IWorkServerRMI) Naming.lookup("//"
 					+ ClientConfig.server_ipaddr + "/WorkServerRMI");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class WorkManagerRMI extends UnicastRemoteObject implements IWorkManager 
 	@Override
 	public Map<String, String> getCountriesISO(Set<String> countries)
 			throws RemoteException {
-		return wsrmi.getCountriesISO(countries);
+		return wserver.getCountriesISO(countries);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -48,10 +48,10 @@ public class WorkManagerRMI extends UnicastRemoteObject implements IWorkManager 
 	public List<Record> getWork(String clientName, int quantity)
 			throws RemoteException {
 		try {
-			/**
+			/*
 			 * decompress the data got by RMI communication object
 			 */
-			return (List<Record>) CompressorManager.toObject(wsrmi.getZippedWork(clientName, quantity));
+			return (List<Record>) CompressorManager.toObject(wserver.getZippedWork(clientName, quantity));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}

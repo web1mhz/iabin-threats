@@ -14,7 +14,6 @@ import server.database.DataBaseManager;
 public class Server {
 
 	public static void main(String[] args) {
-		ServerConfig.init();
 		Server s = new Server();
 		s.start();
 		try {
@@ -30,7 +29,6 @@ public class Server {
 	 * and the database.
 	 */
 	public void start() {
-		initDataBase();
 		initServerRMI();
 		initServerTCP();
 		System.out.println("# Ready to serve. To exit press 'q' and enter anytime");
@@ -44,10 +42,6 @@ public class Server {
 		
 	}
 
-	private void initDataBase() {
-		DataBaseManager.registerDriver();
-
-	}
 
 	private void initServerTCP() {
 		// TODO iniciar el servidor TCP
@@ -69,11 +63,11 @@ public class Server {
 		}
 
 		try {
-			LocateRegistry.createRegistry(ServerConfig.rmi_port);
+			LocateRegistry.createRegistry(ServerConfig.getInstance().rmi_port);
 		} catch (RemoteException e) {
 			System.err
 					.println("Problem running server on port "
-							+ ServerConfig.rmi_port
+							+ ServerConfig.getInstance().rmi_port
 							+ ", please change the port from server configuration file");
 
 			System.exit(0);

@@ -22,12 +22,12 @@ public class ResultManagerRMI extends UnicastRemoteObject implements
 	 * @uml.property   name="rsrmi"
 	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:iservermanager.rmi.IResultServerRMI"
 	 */
-	IResultServerRMI rsrmi;
+	private IResultServerRMI rserver;
 //
 	public ResultManagerRMI() throws RemoteException {
 		super();
 		try {
-			rsrmi = (IResultServerRMI) Naming.lookup("//"
+			rserver = (IResultServerRMI) Naming.lookup("//"
 					+ ClientConfig.server_ipaddr + "/ResultServerRMI");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -41,10 +41,10 @@ public class ResultManagerRMI extends UnicastRemoteObject implements
 			throws RemoteException {
 		
 		try {
-			/**
+			/*
 			 * compress the data and insert it by RMI communication object
 			 */
-			return rsrmi.insertZippedResult(clientName,CompressorManager
+			return rserver.insertZippedResult(clientName,CompressorManager
 					.toZipArray(data) );
 		} catch (IOException e) {
 			System.out.println(e.getMessage());

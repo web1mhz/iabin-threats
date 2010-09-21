@@ -34,7 +34,7 @@ public class DataBaseStatistics {
 
 	public static void main(String[] args) {
 
-		ServerConfig.init();
+
 		try {
 			generateXMLStatistics();
 		} catch (IOException e) {
@@ -48,8 +48,8 @@ public class DataBaseStatistics {
 			SQLException {
 		DataBaseManager.registerDriver();
 		generateXMLStatistics(DataBaseManager.openConnection(
-				server.ServerConfig.database_user,
-				ServerConfig.database_password));
+				ServerConfig.getInstance().database_user,
+				ServerConfig.getInstance().database_password));
 	}
 
 	/**
@@ -66,24 +66,24 @@ public class DataBaseStatistics {
 		String rPercent = "";
 
 		ResultSet rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.dbTableGoods, conx);
+				+ ServerConfig.getInstance().dbTableGoods, conx);
 		if (rs.next())
 			nGGoods = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.dbTableGoods + " where outlier>"
-				+ ((int) (ServerConfig.dbVariablesName.size() * 0.8)), conx);
+				+ ServerConfig.getInstance().dbTableGoods + " where outlier>"
+				+ ((int) (ServerConfig.getInstance().dbVariablesName.size() * 0.8)), conx);
 		if (rs.next())
 			nOutliers = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ ShapeFile.E_WRONG_COUNTRY + "'", conx);
 		if (rs.next())
 			nWrongCountry = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ ShapeFile.E_NULL_COUNTRY + "'", conx);
 		if (rs.next())
 			nNullCountry = rs.getInt("c");
@@ -91,19 +91,19 @@ public class DataBaseStatistics {
 		nUnreliableByShape = nWrongCountry + nNullCountry;
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ WorldMaskManager.E_NEAR_LAND + "'", conx);
 		if (rs.next())
 			nNearLand = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ WorldMaskManager.E_NOT_IN_LAND + "'", conx);
 		if (rs.next())
 			nNotInLand = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ WorldMaskManager.E_NOT_IN_MASK + "'", conx);
 		if (rs.next())
 			nNotInMask = rs.getInt("c");

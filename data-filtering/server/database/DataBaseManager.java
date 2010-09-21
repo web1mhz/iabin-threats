@@ -40,9 +40,9 @@ public class DataBaseManager {
 	public static Connection openConnection(String user, String password) {
 		try {
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://"
-					+ ServerConfig.dbIPAddress + ":"
-					+ ServerConfig.database_port + "/"
-					+ ServerConfig.database_name, user, password);
+					+ ServerConfig.getInstance().dbIPAddress + ":"
+					+ ServerConfig.getInstance().database_port + "/"
+					+ ServerConfig.getInstance().database_name, user, password);
 			return conexion;
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -27,8 +27,9 @@ public class PortalInterface implements IWorkServer, IResultServer {
 	private PortalManager portal;
 
 	private PortalInterface() {
+		DataBaseManager.registerDriver();
 		portal = new PortalManager(DataBaseManager.openConnection(
-				ServerConfig.database_user, ServerConfig.database_password));
+				ServerConfig.getInstance().database_user, ServerConfig.getInstance().database_password));
 	}
 
 	public static PortalInterface getInstance() {

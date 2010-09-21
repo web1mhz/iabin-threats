@@ -1,6 +1,7 @@
 package iservermanager.rmi;
 
 import iservermanager.IWorkServer;
+import iservermanager.zip.IZipWorkServer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -10,18 +11,7 @@ import java.util.Set;
 
 import model.Record;
 
-public interface IWorkServerRMI extends Remote, IWorkServer {
-	/**
-	 * 
-	 * @param clientName
-	 *            to identify from where the request came
-	 * @param quantity
-	 *            of requesting records
-	 * @return zippedData of records to work instance of List<Record>
-	 * @throws RemoteException
-	 */
-	public byte[] getZippedWork(String clientName, int quantity)
-			throws RemoteException;
+public interface IWorkServerRMI extends Remote, IWorkServer, IZipWorkServer {
 	
 	/**
 	 * 
@@ -44,5 +34,17 @@ public interface IWorkServerRMI extends Remote, IWorkServer {
 	 * @throws RemoteException
 	 */
 	public Map<String, String> getCountriesISO(Set<String> countries)
+			throws RemoteException;
+	
+	/**
+	 * 
+	 * @param clientName
+	 *            to identify from where the request came
+	 * @param quantity
+	 *            of requesting records
+	 * @return zippedData of records to work instance of List<Record>
+	 * @throws Exception
+	 */
+	public byte[] getZippedWork(String clientName, int quantity)
 			throws RemoteException;
 }
