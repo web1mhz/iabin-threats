@@ -59,8 +59,8 @@ public class Tester {
 				.makeQuery(
 						"select  b.id, r.country, r.state_province, r.county, r.locality "
 								+ "from raw_occurrence_record r, temp_bad_records b "
-								+ "where b.id=r.id and b.error='WC' and r.country='SWEDEN' "
-								+ "limit 10000", conx); // and r.country='SWEDEN'
+								+ "where b.id=r.id and b.error='WC' "//+ "and r.country='SWEDEN'"
+								+ "limit 200000", conx); // and r.country='SWEDEN'
 		Set<Place> query = new HashSet<Place>();
 
 		try {

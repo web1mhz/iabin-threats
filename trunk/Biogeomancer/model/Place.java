@@ -12,25 +12,55 @@ public class Place {
 	private double latitude;
 	private double longitude;
 
-	public Place(int id, String country, String stateProvince, String county,
-			String locality) throws UnsupportedEncodingException {
+	public Place(int id, String country, String stateProvince, String county, String locality)
+			throws UnsupportedEncodingException {
 		super();
 		this.id = id;
 		this.country = country;
 		this.stateProvince = stateProvince;
 		this.county = county;
-		this.locality = locality;
+		this.locality = decodeString(locality);
 
-		decodingProcess();
+		// decodingProcess();
+	}
 
-		// this.country = country == null ? null : new
-		// String(country.getBytes("ISO-8859-1"), "UTF-8");
-		// this.stateProvince = stateProvince == null ? null : new
-		// String(stateProvince.getBytes("ISO-8859-1"), "UTF-8");
-		// this.county = county == null ? null : new
-		// String(county.getBytes("ISO-8859-1"), "UTF-8");
-		// this.locality = locality == null ? null : new
-		// String(locality.getBytes("ISO-8859-1"), "UTF-8");
+	private String decodeString(String str) {
+		if (str != null && str.length() > 0) {
+			String charset = "";
+			try { 
+				charset = new CharsetToolkit(str.getBytes()).guessEncoding().name();
+			} catch(ArrayIndexOutOfBoundsException e) {
+				System.out.println("********************************");
+				System.out.println(str);
+			}
+			try {
+				if (!charset.contains("ASCII")) {
+					if (charset.equals("UTF-8")) {
+						//System.out.println(charset+" [UTF-8]: " + str + " --> "
+								//+ new String(str.getBytes("ISO-8859-1"), "UTF-8"));
+						return new String(str.getBytes("ISO-8859-1"), "UTF-8");
+					} else if (str.contains("?")) {
+						String newStr = new String(str.getBytes("ISO-8859-1"), "UTF-8");
+						if (countSimbols(newStr, '?') < countSimbols(str, '?')) {
+							System.out.println("CHANGED! [Cont. (?)]: " + str + " --> " + newStr);
+							return newStr;
+						} else {
+							System.out.println("NOT CHANGED! [Cont. (?)]: " + str + " --> " + newStr);							
+						}
+					} else if (str.contains("¤")) {
+						String newStr = new String(str.getBytes("ISO-8859-1"), "UTF-8");
+						if (countSimbols(newStr, '¤') < countSimbols(str, '¤')) {
+							System.out.println(charset+" [Cont. (¤)]: " + str + " --> " + newStr);
+							return newStr;
+						}
+					}
+				} //else System.out.println(charset+" [is Ok!]: " + str);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return str;
 	}
 
 	private void decodingProcess() {
@@ -45,43 +75,31 @@ public class Place {
 			str += locality;
 
 		// Guess the encoding type of the place. Is not 100% reliable.
-		String charset = new CharsetToolkit(str.getBytes()).guessEncoding()
-				.name();
-		try {			
-			if(id == 222653701) {
-				System.out.println(this);
-				for(char c : locality.toCharArray()) {
-					System.out.println(c+" - "+(int) c);
-				}
-			}
+		String charset = new CharsetToolkit(str.getBytes()).guessEncoding().name();
+		try {
 			if (!charset.equals("US-ASCII")) {
 				if (charset.equals("UTF-8")) {
-					country = country == null ? null : new String(country
+					country = country == null ? null : new String(country.getBytes("ISO-8859-1"), "UTF-8");
+					stateProvince = stateProvince == null ? null : new String(stateProvince
 							.getBytes("ISO-8859-1"), "UTF-8");
-					stateProvince = stateProvince == null ? null : new String(
-							stateProvince.getBytes("ISO-8859-1"), "UTF-8");
-					county = county == null ? null : new String(county
+					county = county == null ? null : new String(county.getBytes("ISO-8859-1"), "UTF-8");
+					locality = locality == null ? null : new String(locality.getBytes("ISO-8859-1"), "UTF-8");
+				} else if (str.contains("" + (char) 150)) {
+					int n = countSimbols(str, (char) 150);
+					String countryTemp = country == null ? null : new String(country.getBytes("ISO-8859-1"),
+							"UTF-8");
+					String stateProvinceTemp = stateProvince == null ? null : new String(stateProvince
 							.getBytes("ISO-8859-1"), "UTF-8");
-					locality = locality == null ? null : new String(locality
+					String countyTemp = county == null ? null : new String(county.getBytes("ISO-8859-1"),
+							"UTF-8");
+					String localityTemp = locality == null ? null : new String(locality
 							.getBytes("ISO-8859-1"), "UTF-8");
-				} else if (str.contains(""+(char)150)) {
-					int n = countSimbols(str);
-					String countryTemp = country == null ? null : new String(
-							country.getBytes("ISO-8859-1"), "UTF-8");
-					String stateProvinceTemp = stateProvince == null ? null
-							: new String(stateProvince.getBytes("ISO-8859-1"),
-									"UTF-8");
-					String countyTemp = county == null ? null : new String(
-							county.getBytes("ISO-8859-1"), "UTF-8");
-					String localityTemp = locality == null ? null : new String(
-							locality.getBytes("ISO-8859-1"), "UTF-8");
-					if (countSimbols(countryTemp + stateProvinceTemp
-							+ countyTemp + localityTemp) < n) {
+					if (countSimbols(countryTemp + stateProvinceTemp + countyTemp + localityTemp, (char) 150) < n) {
 						country = countryTemp;
 						stateProvince = stateProvinceTemp;
 						county = countyTemp;
 						locality = localityTemp;
-					}					
+					}
 				}
 				System.out.println(this);
 			}
@@ -92,17 +110,17 @@ public class Place {
 	}
 
 	/**
-	 * Count how many question character exist in a specific string.
+	 * Count how many simbols exist in a specific string.
 	 * 
 	 * @param str
 	 *            - the specified string
-	 * @return the number of question characters.
+	 * @return the number of simbols.
 	 */
-	private int countSimbols(String str) {
+	private int countSimbols(String str, char simbol) {
 		int n = 0;
-		for (int c = 0; c < str.length(); c++) {
-			if (str.charAt(c) == 150)
-				n++;
+		for(char c : str.toCharArray()) {
+			if (c == simbol)
+				n++;		
 		}
 		return n;
 	}
@@ -114,12 +132,9 @@ public class Place {
 	@Override
 	public String toString() {
 		String s = country + stateProvince + county + locality;
-		String o = "["
-				+ new CharsetToolkit(s.getBytes()).guessEncoding().name()
-				+ "] ";
-		return o + "Place ["+id+" - country=" + country + ", stateProvince="
-				+ stateProvince + ", county=" + county + ", locality="
-				+ locality + ", latitude=" + latitude + ", longitude="
+		String o = "[" + new CharsetToolkit(s.getBytes()).guessEncoding().name() + "] ";
+		return o + "Place [" + id + " - country=" + country + ", stateProvince=" + stateProvince
+				+ ", county=" + county + ", locality=" + locality + ", latitude=" + latitude + ", longitude="
 				+ longitude + "]";
 	}
 
