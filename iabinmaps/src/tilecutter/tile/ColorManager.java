@@ -1,5 +1,7 @@
 package tilecutter.tile;
 
+import java.awt.image.BufferedImage;
+
 public abstract class ColorManager {
 	
 	private float[] rgbMin = new float[] {255,255,0};
@@ -57,6 +59,7 @@ public abstract class ColorManager {
 	 * @param value : El valor del pixel
 	 * @return el color codificado 0xAARRGGBB
 	 */
-	
 	public abstract int getRGB(float value);
+	
+	public abstract BufferedImage getScaleImage();
 }

@@ -1,8 +1,13 @@
 package tilecutter;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
 import tilecutter.raster.Raster;
+import tilecutter.tile.ColorManager;
 import tilecutter.tile.ColorManagerFactory;
 import tilecutter.tile.ImageManager;
 import tilecutter.tile.TileManager;
@@ -41,8 +46,18 @@ public class TileCutter {
 
 			raster.loadRaster(sourcePath+pathGroup+fileName);
 			
-			iManager.setColorManager(ColorManagerFactory.createColorManager(rasterID, raster));
+			ColorManager cManager = ColorManagerFactory.createColorManager(rasterID, raster);
 			
+			iManager.setColorManager(cManager);
+			
+			
+			BufferedImage scaleImage = cManager.getScaleImage();
+					
+			try {
+				ImageIO.write(scaleImage, "png", new File("scaleTestImage.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 						
 			int zoomMin = PropertiesManager.getInstance().getPropertiesAsInt("zoom.min");
 			int zoomMax = PropertiesManager.getInstance().getPropertiesAsInt("zoom.max");

@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 
 import org.opengis.feature.simple.SimpleFeature;
 
+import utils.PropertiesManager;
+
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.MultiPolygon;
 
@@ -53,8 +55,7 @@ public class KmlPolygonCreator {
 		String filename = path+File.separator+ sf.getAttribute(1)+".kml";
 
 		final Placemark p = kml.createAndSetPlacemark().withName(atributos.get("Name"))
-				.withDescription(descripcion).withStyleUrl(
-						"http://wikipedia.agilityhoster.com/estilo.kml#estilo");
+			.withDescription(descripcion).withStyleUrl(PropertiesManager.getInstance().getPropertiesAsString("style.url"));
 		final Boundary bound = new Boundary();
 		final LinearRing lin = bound.createAndSetLinearRing();
 		Polygon pol = p.createAndSetPolygon();

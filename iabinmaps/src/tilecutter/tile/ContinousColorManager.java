@@ -1,5 +1,7 @@
 package tilecutter.tile;
 
+import java.awt.image.BufferedImage;
+
 public class ContinousColorManager extends ColorManager{
 
 	/**
@@ -44,6 +46,11 @@ public class ContinousColorManager extends ColorManager{
 		
 		
 		return rgb | 0xff000000; //Los bit de la transparencia deben ser 1 (opaco)
+	}
+
+	@Override
+	public BufferedImage getScaleImage() {
+		return null;
 	}
 
 }

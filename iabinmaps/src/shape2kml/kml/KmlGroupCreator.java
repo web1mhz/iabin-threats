@@ -18,7 +18,7 @@ public class KmlGroupCreator {
 		kml= new Kml();
 		folder=kml.createAndSetFolder();
 		this.url=url;
-		//PropertiesManager.getInstance().getPropertiesAsString("blabla");
+		
 	}
 	
 	public void addElement(String nombre){
