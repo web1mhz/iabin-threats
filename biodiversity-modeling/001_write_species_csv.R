@@ -41,14 +41,17 @@ for (i in unique(records$specie_id))
   if(nrow(this.sp.u)>=req.points)
   {
     # create file
-   dir.create(paste(i))
-   dir.create(paste(i,"/training",sep=""))
+   if(!file.exists(paste(i))) dir.create(paste(i))
+   if(!file.exists(paste(i,"/training",sep=""))) dir.create(paste(i,"/training",sep=""))
    write(paste("species id : ",i,"\t#files are handeled with this id", 
               "\nspecie : ",this.sp.u[1,'specie'],
+              "\ngenus : ",this.sp.u[1,'genus'],
+              "\ngenus_id : ",this.sp.u[1,'genus_id'],
               "\nfamily_id : ",this.sp.u[1,'family_id'], 
               "\nfamily : ", this.sp.u[1,'family'],
               "\nclass : ",class,
-              "\nfile created : ",date(), sep=""), paste(i,"info.txt", sep="/"))
+              "\nfile.created : ",date(), 
+              "\nnumber.of.points : ",nrow(this.sp.u), sep=""), paste(i,"info.txt", sep="/"))
   
     write.table("species,lon,lat", paste(i,"/training/species.csv", sep=""), row.names=F, col.names=F, quote=F, sep=",", append=F)
     write.table(this.sp.u[,c("specie_id","lon","lat")], paste(i,"/training/species.csv", sep=""), row.names=F, col.names=F, quote=F, sep=",", append=T)
