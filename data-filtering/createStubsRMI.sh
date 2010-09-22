@@ -1,3 +1,2 @@
-/usr/java/jdk1.6.0_16/bin/rmic -keep server.rmi.ResultServerRMI
-/usr/java/jdk1.6.0_16/bin/rmic -keep server.rmi.WorkServerRMI
-echo stub classes created
+$JAVA_HOME/bin/rmic -keep server.connection.rmi.ResultServerRMI
+$JAVA_HOME/bin/rmic -keep server.connection.rmi.WorkServerRMI
