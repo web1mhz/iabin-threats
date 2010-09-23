@@ -44,7 +44,7 @@ public class QuantilesColorManager extends DiscreteColorManager {
 		int index;
 		System.out.println("umbrales size : "+umbrales.length);
 		for (int i = 0; i < umbrales.length; i++) {
-			double fIndex = (values.size() * ((i + 1) / quantil));
+			double fIndex = (values.size() * ((i+1) / quantil));
 			double rIndex = Math.floor(fIndex);
 
 			index = (int) rIndex;
