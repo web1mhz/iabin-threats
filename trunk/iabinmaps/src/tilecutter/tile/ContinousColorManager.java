@@ -1,9 +1,15 @@
 package tilecutter.tile;
 
+import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import tilecutter.raster.Raster;
 
 public class ContinousColorManager extends ColorManager{
 
+	Raster raster;
 	/**
 	 * Constructor de la clase ContinousColorManager
 	 * @param rgbMin valor de color minimo
@@ -15,6 +21,7 @@ public class ContinousColorManager extends ColorManager{
 	public ContinousColorManager(float[] rgbMin, float[] rgbMax, float min,
 			float max, float NoData) {
 		super(rgbMin, rgbMax, min, max, NoData);
+				
 	}
 
 	@Override
@@ -50,7 +57,39 @@ public class ContinousColorManager extends ColorManager{
 
 	@Override
 	public BufferedImage getScaleImage(String descripcion) {
-		return null;
+	  
+		int line = 35;
+		
+		int recWidth = 40;
+		int recHeight = 250;
+		
+		int width = 200;
+		int height = 300;
+		
+		
+		BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
+		
+		Graphics2D graphics = (Graphics2D) image.getGraphics();
+		
+		graphics.setColor(Color.WHITE);
+		graphics.fillRect(0, 0, width, height);
+						
+		graphics.setColor(Color.BLACK);
+		graphics.drawString(descripcion,5,(line-recHeight)/2+recHeight/2);
+		
+		Color colorMin = new Color(getRGB(getMin()));
+		Color colorMax = new Color(getRGB(getMax()));
+		graphics.setPaint(new GradientPaint(5, 0, colorMin,0, recHeight, colorMax ));
+		//graphics.setColor(color);
+		graphics.fillRect(5,(line-recHeight)/2+line+100, recWidth, recHeight);
+		
+		
+		graphics.setColor(Color.BLACK);
+		graphics.drawRect(5,(line-recHeight)/2+line+100, recWidth, recHeight);
+		graphics.drawString("Low: "+Float.toString(this.getMin()), recWidth+10,(line-recHeight)/2+recHeight/2+20);
+		graphics.drawString("High: "+Float.toString(this.getMax()), recWidth+10,recHeight+30);
+		
+		return image;
 	}
 
 }
