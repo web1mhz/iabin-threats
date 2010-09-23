@@ -26,9 +26,9 @@ public class KmlGroupCreator {
 		nLink.createAndSetLink().withHref(url+nombre);
 	}
 	
-	public void writeKml(String nombreGrupo) throws FileNotFoundException{
+	public void writeKml(String targetFile,String nombreGrupo) throws FileNotFoundException{
 		kml.marshal();
-		kml.marshal(new File(nombreGrupo));
+		kml.marshal(new File(targetFile+File.separator+nombreGrupo));
 	}
 	
 	

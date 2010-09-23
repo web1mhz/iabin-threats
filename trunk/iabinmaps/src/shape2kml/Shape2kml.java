@@ -10,7 +10,6 @@ import org.opengis.feature.simple.SimpleFeature;
 import shape2kml.kml.KmlGroupCreator;
 import shape2kml.kml.KmlPolygonCreator;
 import shape2kml.shape.Shapefile;
-import tilecutter.raster.Raster;
 import utils.PropertiesManager;
 
 public class Shape2kml {
@@ -88,7 +87,7 @@ public class Shape2kml {
 		}
 
 		try {
-			grupo.writeKml(mainKml);
+			grupo.writeKml(targetFile,mainKml);
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
