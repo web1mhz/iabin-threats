@@ -2,8 +2,6 @@ package tilecutter.tile;
 
 import java.awt.image.BufferedImage;
 
-import tilecutter.raster.Raster;
-
 public abstract class ColorManager {
 	
 	private float[] rgbMin = new float[] {255,255,0};
@@ -63,10 +61,11 @@ public abstract class ColorManager {
 	 */
 	public abstract int getRGB(float value);
 	
+	/**
+	 * Obtiene la imagen de escala del raster
+	 * @param descripcion de cada raster
+	 * @return imagen de escala con la descripcion y rangos discretos o continuos del raster
+	 */
 	public abstract BufferedImage getScaleImage(String descripcion);
-
-	public BufferedImage getScaleImage(String descripcion, Raster raster) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

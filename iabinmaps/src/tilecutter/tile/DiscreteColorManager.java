@@ -15,6 +15,14 @@ public abstract class DiscreteColorManager extends ColorManager {
 		this.umbrales = thresholds;
 	}
 
+	/**
+	 * Constructor de la clase DiscreteColorManager
+	 * @param rgbMin color minimo
+	 * @param rgbMax color maximo
+	 * @param min valor minimo
+	 * @param max valor maximo
+	 * @param NoData  valor de noData
+	 */
 	public DiscreteColorManager(float[] rgbMin, float[] rgbMax, float min,
 			float max, float NoData) {
 		super(rgbMin, rgbMax, min, max, NoData);
@@ -25,8 +33,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 	public int getRGB(float value) {
 
 		if (value == getNoData())
-			return 0x00000000; // Los bit de la transparencia deben ser 0
-		// (transparente)
+			return 0x00000000; // Los bit de la transparencia deben ser 0 (transparente)
 
 		float min =0;
 		float max = umbrales.length - 1;
@@ -111,6 +118,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 		}
 
 		return image;
+		
 
 	}
 

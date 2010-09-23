@@ -61,10 +61,10 @@ public class ContinousColorManager extends ColorManager{
 		int line = 35;
 		
 		int recWidth = 40;
-		int recHeight = 250;
+		int recHeight = 100;
 		
 		int width = 200;
-		int height = 300;
+		int height = 200;
 		
 		
 		BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
@@ -79,15 +79,14 @@ public class ContinousColorManager extends ColorManager{
 		
 		Color colorMin = new Color(getRGB(getMin()));
 		Color colorMax = new Color(getRGB(getMax()));
-		graphics.setPaint(new GradientPaint(5, 0, colorMin,0, recHeight, colorMax ));
-		//graphics.setColor(color);
-		graphics.fillRect(5,(line-recHeight)/2+line+100, recWidth, recHeight);
+		graphics.setPaint(new GradientPaint(5, (line-recHeight)/2+line*2, colorMin,0, recHeight, colorMax ));
+		graphics.fillRect(5,(line-recHeight)/2+line*2, recWidth, recHeight);
 		
 		
 		graphics.setColor(Color.BLACK);
-		graphics.drawRect(5,(line-recHeight)/2+line+100, recWidth, recHeight);
-		graphics.drawString("Low: "+Float.toString(this.getMin()), recWidth+10,(line-recHeight)/2+recHeight/2+20);
-		graphics.drawString("High: "+Float.toString(this.getMax()), recWidth+10,recHeight+30);
+		graphics.drawRect(5,(line-recHeight)/2+line*2, recWidth, recHeight);
+		graphics.drawString("Low: "+Float.toString(this.getMin()), recWidth+10,(line-recHeight)/2+recHeight/2+30);
+		graphics.drawString("High: "+Float.toString(this.getMax()), recWidth+10,recHeight+40);
 		
 		return image;
 	}
