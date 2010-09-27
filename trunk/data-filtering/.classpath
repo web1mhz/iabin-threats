@@ -152,5 +152,6 @@
 	<classpathentry kind="lib" path="libs/geotools/xsd-2.2.2.jar"/>
 	<classpathentry kind="lib" path="libs/mysql/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="con" path="com.soyatec.uml.CONTAINER"/>
+	<classpathentry kind="lib" path="libs/bg/biogeomancer-core-1.1.5.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

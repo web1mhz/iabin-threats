@@ -3,34 +3,16 @@ package model;
 import java.io.Serializable;
 import java.util.Map;
 
-@SuppressWarnings("serial")
-public class Record implements Serializable{
+import client.correctormanager.DecodeManager;
 
-	
+@SuppressWarnings("serial")
+public class Record implements Serializable {
+
 	private String iso_country_code;
 	private String country;
 	private String state;
 	private String county;
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public String getCounty() {
-		return county;
-	}
-	public void setCounty(String county) {
-		this.county = county;
-	}
-
-
+	private String locality;
 	private double latitude;
 	private double longitude;
 	private String canonical;
@@ -38,9 +20,8 @@ public class Record implements Serializable{
 	private int id;
 	private String note;
 	private Map<String, Short> variables;
-	
-	public Record(String isoCountryCode, double latitude, double longitude,
-			int nudConceptId, int id) {
+
+	public Record(String isoCountryCode, double latitude, double longitude, int nudConceptId, int id) {
 		super();
 		this.variables = null;
 		this.iso_country_code = isoCountryCode;
@@ -48,12 +29,38 @@ public class Record implements Serializable{
 		this.longitude = longitude;
 		this.nub_concept_id = nudConceptId;
 		this.id = id;
-		this.note=null;
-		this.canonical=null;
+		this.note = null;
+		this.canonical = null;
 	}
-	public Record(String isoCountryCode, String country, String state,
-			String county, double latitude, double longitude, int nudConceptId,String canonical,
-			int id) {
+
+	public Record(String isoCountryCode, String country, String state, String county, String locality,
+			double latitude, double longitude, int nudConceptId, String canonical, int id, boolean decode) {
+		super();
+		iso_country_code = isoCountryCode;
+		this.country = country;
+		if (decode) {
+			this.state = DecodeManager.decodeString(state);
+			this.county = DecodeManager.decodeString(county);
+			this.locality = DecodeManager.decodeString(locality);
+		} else {
+			this.state = state;
+			this.county = county;
+			this.locality = locality;
+		}
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.nub_concept_id = nudConceptId;
+		this.canonical = canonical;
+		this.id = id;
+	}
+
+	/**
+	 * Use the new constructor that use the locality attribute.
+	 * 
+	 * @deprecated
+	 */
+	public Record(String isoCountryCode, String country, String state, String county, double latitude,
+			double longitude, int nudConceptId, String canonical, int id) {
 		super();
 		iso_country_code = isoCountryCode;
 		this.country = country;
@@ -62,9 +69,34 @@ public class Record implements Serializable{
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.nub_concept_id = nudConceptId;
-		this.canonical= canonical;
+		this.canonical = canonical;
 		this.id = id;
 	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCounty() {
+		return county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
+	}
+
 	public String getNote() {
 		return note;
 	}
@@ -72,15 +104,15 @@ public class Record implements Serializable{
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
+
 	public Map<String, Short> getVariables() {
 		return variables;
 	}
-	
+
 	public void setVariables(Map<String, Short> variables) {
 		this.variables = variables;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -100,7 +132,6 @@ public class Record implements Serializable{
 	public int getNub_concept_id() {
 		return nub_concept_id;
 	}
-	
 
 	public String getCanonical() {
 		return canonical;
@@ -130,6 +161,14 @@ public class Record implements Serializable{
 		this.id = id;
 	}
 
+	public String getLocality() {
+		return locality;
+	}
+
+	public void setLocality(String locality) {
+		this.locality = locality;
+	}
+
 	public int hashCode() {
 		return id;
 	}
@@ -138,10 +177,8 @@ public class Record implements Serializable{
 		return this.hashCode() == o.hashCode();
 	}
 
-	
 	public String toString() {
-		return id + "," + nub_concept_id + "," + iso_country_code + ","
-				+ latitude + "," + longitude;
+		return id + "," + nub_concept_id + "," + iso_country_code + "," + latitude + "," + longitude;
 	}
 
 }
