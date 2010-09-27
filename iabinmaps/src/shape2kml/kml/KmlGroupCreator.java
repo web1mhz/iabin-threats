@@ -2,8 +2,6 @@ package shape2kml.kml;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import utils.PropertiesManager;
-
 import de.micromata.opengis.kml.v_2_2_0.Folder;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.NetworkLink;

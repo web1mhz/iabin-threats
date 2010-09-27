@@ -7,10 +7,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import tilecutter.raster.Raster;
-import tilecutter.tile.ColorManager;
-import tilecutter.tile.ColorManagerFactory;
 import tilecutter.tile.ImageManager;
 import tilecutter.tile.TileManager;
+import tilecutter.tile.colormanager.ColorManager;
+import tilecutter.tile.colormanager.ColorManagerFactory;
 import utils.PropertiesManager;
 
 /**

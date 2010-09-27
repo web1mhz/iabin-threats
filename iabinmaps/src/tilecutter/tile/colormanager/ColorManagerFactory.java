@@ -1,4 +1,4 @@
-package tilecutter.tile;
+package tilecutter.tile.colormanager;
 
 import tilecutter.raster.Raster;
 import utils.PropertiesManager;
@@ -26,24 +26,31 @@ public class ColorManagerFactory {
 		float min, max;
 
 		if (PropertiesManager.getInstance().existProperty(colorType + ".value.max"))
-			max = PropertiesManager.getInstance().getPropertiesAsFloat(colorType + ".value.max");
+			max = PropertiesManager.getInstance().getPropertiesAsFloat(
+					colorType + ".value.max");
 		else
 			max = raster.getMax();
 
-		if (PropertiesManager.getInstance().existProperty(colorType + ".value.min"))
-			min = PropertiesManager.getInstance().getPropertiesAsFloat(colorType + ".value.min");
+		if (PropertiesManager.getInstance().existProperty(
+				colorType + ".value.min"))
+			min = PropertiesManager.getInstance().getPropertiesAsFloat(
+					colorType + ".value.min");
 		else
 			min = raster.getMin();
 
-		String scaleType = PropertiesManager.getInstance().getPropertiesAsString(colorType + ".scale");
+		String scaleType = PropertiesManager.getInstance()
+				.getPropertiesAsString(colorType + ".scale");
 
 		if (scaleType.equals(CONTINUOUS))
-			return new ContinousColorManager(rgbMin, rgbMax, min, max, raster.getHeader().getNoData());
+			return new ContinousColorManager(rgbMin, rgbMax, min, max, raster
+					.getHeader().getNoData(), raster);
 
 		if (scaleType.equals(FIXED)) {
-			float umbral = PropertiesManager.getInstance().getPropertiesAsFloat(colorType + ".scale.threshold");
-			FixedThresholdColorManager cm = new FixedThresholdColorManager(rgbMin, rgbMax, min, max, raster.getHeader().getNoData(),
-					umbral);
+			float umbral = PropertiesManager.getInstance()
+					.getPropertiesAsFloat(colorType + ".scale.threshold");
+			FixedThresholdColorManager cm = new FixedThresholdColorManager(
+					rgbMin, rgbMax, min, max, raster.getHeader().getNoData(),
+					umbral, raster);
 			cm.setThresholds(cm.createThresholds());
 			return cm;
 		}
@@ -51,7 +58,8 @@ public class ColorManagerFactory {
 		if (scaleType.equals(QUANTILE)) {
 			float quantiles = PropertiesManager.getInstance()
 					.getPropertiesAsFloat(colorType + ".scale.quantiles");
-			QuantilesColorManager cm = new QuantilesColorManager(raster,rgbMin, rgbMax, min, max, raster.getHeader().getNoData(),
+			QuantilesColorManager cm = new QuantilesColorManager(raster,
+					rgbMin, rgbMax, min, max, raster.getHeader().getNoData(),
 					quantiles);
 			cm.setThresholds(cm.createThresholds());
 			return cm;

@@ -1,15 +1,13 @@
-package tilecutter.tile;
+package tilecutter.tile.colormanager;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
 import tilecutter.raster.Raster;
 
 public abstract class DiscreteColorManager extends ColorManager {
 
 	private float[] umbrales;
-	Raster raster;
 
 	public void setThresholds(float[] thresholds) {
 		this.umbrales = thresholds;
@@ -17,25 +15,32 @@ public abstract class DiscreteColorManager extends ColorManager {
 
 	/**
 	 * Constructor de la clase DiscreteColorManager
-	 * @param rgbMin color minimo
-	 * @param rgbMax color maximo
-	 * @param min valor minimo
-	 * @param max valor maximo
-	 * @param NoData  valor de noData
+	 * 
+	 * @param rgbMin
+	 *            color minimo
+	 * @param rgbMax
+	 *            color maximo
+	 * @param min
+	 *            valor minimo
+	 * @param max
+	 *            valor maximo
+	 * @param NoData
+	 *            valor de noData
 	 */
 	public DiscreteColorManager(float[] rgbMin, float[] rgbMax, float min,
-			float max, float NoData) {
-		super(rgbMin, rgbMax, min, max, NoData);
-			
+			float max, float NoData, Raster raster) {
+		super(rgbMin, rgbMax, min, max, NoData, raster);
+
 	}
 
 	@Override
 	public int getRGB(float value) {
 
 		if (value == getNoData())
-			return 0x00000000; // Los bit de la transparencia deben ser 0 (transparente)
+			return 0x00000000; // Los bit de la transparencia deben ser 0
+		// (transparente)
 
-		float min =0;
+		float min = 0;
 		float max = umbrales.length - 1;
 
 		int classe = 0;
@@ -45,9 +50,6 @@ public abstract class DiscreteColorManager extends ColorManager {
 
 		for (classe = 0; classe < umbrales.length && value > umbrales[classe]; classe++) {
 		}
-		// for (classe = 0; classe < umbrales.length && value
-		// >=umbrales[classe]; classe++) {
-		// }
 		/*
 		 * Los colores estan en la memoria en un int, cada byte del int
 		 * corresponde a una capa A (transparencia) R (rojo) G (verde) B (azul)
@@ -68,17 +70,16 @@ public abstract class DiscreteColorManager extends ColorManager {
 		}
 
 		return rgb | 0xff000000; // Los bit de la transparencia deben ser 1
-									// (opaco)
+		// (opaco)
 
 	}
 
 	@Override
 	public BufferedImage getScaleImage(String descripcion) {
-				
-		int line = 35;
+		int line = 30;
 
-		int recWidth = 40;
-		int recHeight = 30;
+		int recWidth = 30;
+		int recHeight = line - 10;
 
 		int width = 200;
 		int height = umbrales.length * line + line;
@@ -94,31 +95,23 @@ public abstract class DiscreteColorManager extends ColorManager {
 		int cont = line;
 
 		graphics.setColor(Color.BLACK);
-		graphics.drawString(descripcion, 5, (line - recHeight)/2+ recHeight);
+		graphics.drawString(descripcion, 5, (line - recHeight) / 2 + recHeight);
 
-		int valorMinimo=(int) this.getMin();
+		int valorMinimo = (int) this.getMin();
 		for (int i = 0; i < umbrales.length; i++) {
-			
-			
-			// Color color = new Color(getRGB(umbrales[i]));
 			Color color = new Color(getRGB(umbrales[i]
 					- (float) Math.pow(10, -8)));
 			graphics.setColor(color);
-			graphics.fillRect(5, (line - recHeight) / 2 + cont, recWidth,
-					recHeight);
-
+			graphics.fillRect(5, (line - recHeight) / 2 + cont, recWidth,recHeight);
 			graphics.setColor(Color.BLACK);
-			graphics.drawRect(5, (line - recHeight) / 2 + cont, recWidth,
-					recHeight);
-			graphics.drawString("[ "+valorMinimo+" "+Float.toString(umbrales[i])+" ]" , recWidth + 10,
-					(line - recHeight) / 2 + recHeight / 2 + cont);
+			graphics.drawRect(5, (line - recHeight) / 2 + cont, recWidth,recHeight);
+			ColorManager.drawYCenteredString(5, (line -6)+ cont, graphics,"[ " + valorMinimo + " " + Float.toString(umbrales[i])+ " ]");
 			cont += line;
-			valorMinimo=(int) umbrales[i];
+			valorMinimo = (int) umbrales[i];
 
 		}
 
 		return image;
-		
 
 	}
 
