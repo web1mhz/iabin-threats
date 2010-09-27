@@ -1,9 +1,16 @@
 package csv2kml;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 import org.opengis.feature.simple.SimpleFeature;
@@ -14,7 +21,11 @@ import com.vividsolutions.jts.geom.MultiPolygon;
 
 import de.micromata.opengis.kml.v_2_2_0.Boundary;
 
+import de.micromata.opengis.kml.v_2_2_0.Document;
+import de.micromata.opengis.kml.v_2_2_0.Feature;
+import de.micromata.opengis.kml.v_2_2_0.Folder;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
+import de.micromata.opengis.kml.v_2_2_0.KmlFactory;
 import de.micromata.opengis.kml.v_2_2_0.LinearRing;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
 import de.micromata.opengis.kml.v_2_2_0.Point;
@@ -25,7 +36,7 @@ public class Csv2Point {
 	private LinkedList<String[]> lista;
 
 	public Csv2Point(LinkedList<String[]> lista) {
-		this.lista=lista;
+		this.lista = lista;
 	}
 
 	public void createKML(String path) throws FileNotFoundException {
@@ -37,58 +48,27 @@ public class Csv2Point {
 		path = "d:";// este viene de properties
 
 		String filename = path + File.separator + "csv2punto.kml";
-		filename = "d:/csv2punto.kml";	
+		filename = "d:/csv2punto.kml";
 
+		System.out.println("empieza a mostrar");
+
+		Placemark placemark = KmlFactory.createPlacemark();
+		Folder folder = kml.createAndSetFolder().withStyleUrl("http://wikipedia.agilityhoster.com/estilo.kml#estilo");
+/**
+ * se recorre la lista generando las coordenadas y agregando al folder
+ */
 		for (String[] s : lista) {
-			// try{
-			Placemark p = kml
-					.createAndSetPlacemark()
-					.withName("Name")
-					.withDescription(descripcion)
-					.withStyleUrl(
-							"http://wikipedia.agilityhoster.com/estilo.kml#estilo");
-			// p.createAndSetPoint().addToCoordinates(Double.parseDouble(longitude[i]),Double.parseDouble(latitude[i]));
-			// }catch(Exception e){ System.out.println(i +" "+longitude[i]);}
-			Point pun = p.createAndSetPoint();
-			pun.addToCoordinates(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
-			
-			List<de.micromata.opengis.kml.v_2_2_0.Coordinate> kmlCoords = pun.createAndSetCoordinates();
-										
-				Coordinate coord=new Coordinate(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
-					kmlCoords.add(new de.micromata.opengis.kml.v_2_2_0.Coordinate(coord.x, coord.y));
-					
-			}
-			
-			
-			// System.out.println(i);
 
-		
+			placemark = folder.createAndAddPlacemark();//se crea el placemark y se naade al folder
+			placemark.createAndSetPoint().addToCoordinates(
+					Double.parseDouble(s[0]), Double.parseDouble(s[1]));//se crean las coordenadas y se registran al placemark
 
-		System.out.println("estoy enfermo!!");
-		kml.marshal();
-		kml.marshal(new File(filename));
+		}
+		kml.setFeature(folder);//se registra el folder al kml
 
-		/*
-		 * final Boundary bound = new Boundary(); final LinearRing lin =
-		 * bound.createAndSetLinearRing(); Polygon pol =
-		 * p.createAndSetPolygon();
-		 * 
-		 * List<Coordinate> kmlCoords = lin.createAndSetCoordinates();
-		 * 
-		 * MultiPolygon polygons = (MultiPolygon) sf.getAttribute(0); for (int i
-		 * = 0; i < polygons.getNumGeometries(); i++) { Geometry geo =
-		 * polygons.getGeometryN(i); com.vividsolutions.jts.geom.Coordinate[]
-		 * shapeCoords = geo .getCoordinates();
-		 * 
-		 * for (com.vividsolutions.jts.geom.Coordinate coord : shapeCoords)
-		 * 
-		 * kmlCoords.add(new Coordinate(coord.x, coord.y)); }
-		 * 
-		 * 
-		 * pol.setOuterBoundaryIs(bound);
-		 * 
-		 * kml.marshal(); kml.marshal(new File(filename));
-		 */
+		kml.marshal();//se imprime kml en consola
+		kml.marshal(new File(filename));//se guarda kml en archivo
+
 	}
 
 }
