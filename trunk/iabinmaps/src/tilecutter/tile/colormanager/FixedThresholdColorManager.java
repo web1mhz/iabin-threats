@@ -1,4 +1,6 @@
-package tilecutter.tile;
+package tilecutter.tile.colormanager;
+
+import tilecutter.raster.Raster;
 
 public class FixedThresholdColorManager extends DiscreteColorManager {
 
@@ -13,8 +15,8 @@ public class FixedThresholdColorManager extends DiscreteColorManager {
 	 * @param umbral para el color discreto fijo
 	 */
 	public FixedThresholdColorManager(float[] rgbMin, float[] rgbMax, float min, float max,
-			float NoData, float umbral) {
-		super(rgbMin, rgbMax, min, max, NoData);
+			float NoData, float umbral,Raster raster) {
+		super(rgbMin, rgbMax, min, max, NoData, raster);
 		
 		this.umbral = umbral;
 	}

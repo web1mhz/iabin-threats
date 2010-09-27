@@ -1,15 +1,11 @@
-package tilecutter.tile;
+package tilecutter.tile.colormanager;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
 import tilecutter.raster.Raster;
-
 public class ContinousColorManager extends ColorManager{
-
-	Raster raster;
 	/**
 	 * Constructor de la clase ContinousColorManager
 	 * @param rgbMin valor de color minimo
@@ -19,9 +15,9 @@ public class ContinousColorManager extends ColorManager{
 	 * @param NoData valor de noData
 	 */
 	public ContinousColorManager(float[] rgbMin, float[] rgbMax, float min,
-			float max, float NoData) {
-		super(rgbMin, rgbMax, min, max, NoData);
-				
+			float max, float NoData, Raster raster) {
+		super(rgbMin, rgbMax, min, max, NoData, raster);
+					
 	}
 
 	@Override
@@ -61,10 +57,10 @@ public class ContinousColorManager extends ColorManager{
 		int line = 35;
 		
 		int recWidth = 40;
-		int recHeight = 100;
+		int recHeight = line*4-recWidth;
 		
-		int width = 200;
-		int height = 200;
+		int width = recWidth*5;
+		int height = line*4+10;
 		
 		
 		BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
@@ -79,14 +75,15 @@ public class ContinousColorManager extends ColorManager{
 		
 		Color colorMin = new Color(getRGB(getMin()));
 		Color colorMax = new Color(getRGB(getMax()));
-		graphics.setPaint(new GradientPaint(5, (line-recHeight)/2+line*2, colorMin,0, recHeight, colorMax ));
+		graphics.setPaint(new GradientPaint(5, (line-recHeight)/2+line*2, colorMax,0, recHeight+line, colorMin ));
 		graphics.fillRect(5,(line-recHeight)/2+line*2, recWidth, recHeight);
 		
 		
 		graphics.setColor(Color.BLACK);
 		graphics.drawRect(5,(line-recHeight)/2+line*2, recWidth, recHeight);
-		graphics.drawString("Low: "+Float.toString(this.getMin()), recWidth+10,(line-recHeight)/2+recHeight/2+30);
-		graphics.drawString("High: "+Float.toString(this.getMax()), recWidth+10,recHeight+40);
+		graphics.drawString("High: "+Float.toString(this.getMax()), recWidth+10,(line-recHeight)/2+recHeight/2+30);
+		graphics.drawString("Low: "+Float.toString(this.getMin()), recWidth+10,recHeight+40);
+		
 		
 		return image;
 	}

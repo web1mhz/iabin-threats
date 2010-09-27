@@ -1,4 +1,4 @@
-package tilecutter.tile;
+package tilecutter.tile.colormanager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +21,7 @@ public class QuantilesColorManager extends DiscreteColorManager {
  */
 	public QuantilesColorManager(Raster raster, float[] rgbMin, float[] rgbMax,
 			float min, float max, float NoData, float quantil) {
-		super(rgbMin, rgbMax, min, max, NoData);
+		super(rgbMin, rgbMax, min, max, NoData, raster);
 		this.quantil = quantil;
 		this.raster = raster;
 

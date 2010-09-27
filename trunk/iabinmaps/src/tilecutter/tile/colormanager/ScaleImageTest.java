@@ -1,4 +1,4 @@
-package tilecutter;
+package tilecutter.tile.colormanager;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

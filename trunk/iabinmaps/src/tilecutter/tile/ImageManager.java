@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import tilecutter.raster.Raster;
+import tilecutter.tile.colormanager.ColorManager;
 
 public class ImageManager {
 
