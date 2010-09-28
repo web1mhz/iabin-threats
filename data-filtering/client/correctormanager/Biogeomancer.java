@@ -1,4 +1,4 @@
-package model;
+package client.correctormanager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,14 +8,20 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Set;
+
+import model.Record;
+
+import client.ClientConfig;
 
 public class Biogeomancer {
 
 	private static final String BgServer = "http://bg.berkeley.edu:8080/ws-test/batch";
 
-	/** 
-	 * @param places - A Set of places (Records) that have not been georreferenced.
+	/**
+	 * @param places
+	 *            - A Set of places (Records) that have not been georreferenced.
 	 * @return The same Set of places but re-georreferenced.
 	 */
 	public static Set<Record> startGeorref(Set<Record> places) {
@@ -59,7 +65,8 @@ public class Biogeomancer {
 	}
 
 	/**
-	 * @param places - A Set of places (Records) that have not been georreferenced.
+	 * @param places
+	 *            - A Set of places (Records) that have not been georreferenced.
 	 * @return A XML-String formatted with the parameters needed for the
 	 *         Biogeomancer Server to the understanding of the information.
 	 */
@@ -95,9 +102,11 @@ public class Biogeomancer {
 		HttpURLConnection connection;
 		try {
 			// START PROXY CODE CONFIGURATION IN CIAT PLACE
-			System.getProperties().put("proxySet", "true");
-			System.getProperties().put("proxyHost", "proxy4.ciat.cgiar.org");
-			System.getProperties().put("proxyPort", "8080");
+			if (ClientConfig.httpProxyServer != null) {
+				System.getProperties().put("proxySet", "true");
+				System.getProperties().put("proxyHost", ClientConfig.httpProxyServer);
+				System.getProperties().put("proxyPort", ClientConfig.httpProxyPort);
+			}
 			// END PROXY CODE CONFIGURATION
 
 			connection = (HttpURLConnection) serviceUrl.openConnection();
@@ -151,5 +160,14 @@ public class Biogeomancer {
 			}
 		}
 		return outputBuilder.toString();
+	}
+	
+	/**
+	 * This main is made only for tests.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		HashSet<Record> places = new HashSet<Record>();
+		
 	}
 }
