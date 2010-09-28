@@ -1,0 +1,32 @@
+package org.ciat.ita.iservermanager;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.ciat.ita.model.Record;
+
+
+public interface IWorkServer {
+	
+	/**
+	 * 
+	 * @param clientName
+	 *            to identify from where the request came
+	 * @param quantity
+	 *            of requesting records
+	 * @return Records of records to work
+	 * @throws Exception
+	 */
+	public List<Record> getWork(String clientName, int quantity) throws Exception;
+
+	/**
+	 * 
+	 * @param countries
+	 *            names
+	 * @return a dictionary of countries names as key an the respective ISO as
+	 *         value
+	 * @throws Exception
+	 */
+	public Map<String, String> getCountriesISO(Set<String> countries) throws Exception;
+}
