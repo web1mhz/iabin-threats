@@ -1,0 +1,13 @@
+grant
+{
+    permission java.net.SocketPermission
+        "*:0-65535", "accept,listen,connect,resolve";
+    permission java.io.FilePermission 
+    	"E://parasid/data/-", "read,write,execute,delete";
+    permission java.io.FilePermission 
+    	"Z://-", "read,write,execute";
+    permission java.io.FilePermission 
+    	"C://-", "read,write,execute";
+    permission java.io.FilePermission 
+    	"<<ALL FILES>>", "execute";
+};
