@@ -1,4 +1,4 @@
-package org.ciat.ita.model;
+package org.ciat.ita.client.correctormanager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Set;
+
+import org.ciat.ita.model.Record;
 
 public class Biogeomancer {
 

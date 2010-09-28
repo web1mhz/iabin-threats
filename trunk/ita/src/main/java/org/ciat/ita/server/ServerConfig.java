@@ -16,6 +16,16 @@ import org.jdom.output.XMLOutputter;
 
 public class ServerConfig {
 
+	private final String XML_FILE = "server_config.xml";
+	private final String XML_UNVERIFIED_RECORDS = "unverified_records";
+	private final String XML_UNRELIBLE_RECORDS = "unrelible_records";
+	private final String XML_GOOD_RECORDS = "good_records";
+	private final String XML_FINAL_RECORDS = "final_records";
+	private final String XML_IP_ADDR = "ip_addr";
+	private final String XML_PORT = "port";
+	private final String XML_NAME = "name";
+	private final String XML_COLUMN = "column";
+	private final String XML_CONTENT = "content";
 	private static ServerConfig instance;
 
 	private ServerConfig() {
@@ -29,19 +39,8 @@ public class ServerConfig {
 		return instance;
 	}
 
-	private final String XML_FILE = "server_config.xml";
-	private final String XML_UNVERIFIED_RECORDS = "unverified_records";
-	private final String XML_UNRELIBLE_RECORDS = "unrelible_records";
-	private final String XML_GOOD_RECORDS = "good_records";
-	private final String XML_FINAL_RECORDS = "final_records";
-	private final String XML_IP_ADDR = "ip_addr";
-	private final String XML_PORT = "port";
-	private final String XML_NAME = "name";
-	private final String XML_COLUMN = "column";
-	private final String XML_CONTENT = "content";
-
 	/**
-	 * login of the user of th database
+	 * login of the user of the database
 	 */
 	public String database_user;
 	/**
