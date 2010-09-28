@@ -28,7 +28,17 @@ public class ClientConfig {
 	public static final String RMI_COMMUNICATION = "RMI";
 	public static final String TCP_COMMUNICATION = "TCP";
 	public static final String OBJECT_COMMUNICATION = "OBJECT";
+	public static final String HTTP_PROXY_SERVER = "server";
+	public static final String HTTP_PROXY_PORT = "port";
 
+	/**
+	 * IP/Domain address of the Http-Proxy for connection to Biogeomancer service.
+	 */
+	public static String httpProxyServer;	
+	/**
+	 * Port of the Http-Proxy for connection to Biogeomancer service. 
+	 */
+	public static String httpProxyPort;	
 	/**
 	 * IP address of the server to connect
 	 */
@@ -204,6 +214,15 @@ public class ClientConfig {
 		for (Element variable : vars) {
 			variablesName.add(variable.getTextTrim());
 		}
+		
+		Element proxy = config.getChild("Proxy");
+		if(proxy != null) {
+			Element httpProxy = proxy.getChild("HttpProxy");
+			if(httpProxy != null) {
+				httpProxyServer = httpProxy.getAttributeValue(HTTP_PROXY_SERVER);
+				httpProxyPort = httpProxy.getAttributeValue(HTTP_PROXY_PORT);
+			}
+		}
 	}
 
 	private static void createDeafaultXML() throws IOException {
@@ -310,13 +329,20 @@ public class ClientConfig {
 
 		Element work = new Element("work");
 		work.setAttribute(XML_RECORDS, "10000");
-
+		
+		Element proxy = new Element("Proxy");
+		Element httpProxy = new Element("HttpProxy");
+		proxy.addContent(httpProxy);
+		httpProxy.setAttribute(HTTP_PROXY_SERVER, "proxy4.ciat.cgiar.org");
+		httpProxy.setAttribute(HTTP_PROXY_PORT, "8080");
+		
 		config.addContent(server);
 		config.addContent(work);
 		config.addContent(shape);
 		config.addContent(mask);
 		config.addContent(maxent);
 		config.addContent(variables);
+		config.addContent(proxy);
 
 		Document doc = new Document(config);
 
