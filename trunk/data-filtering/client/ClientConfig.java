@@ -36,7 +36,7 @@ public class ClientConfig {
 	 */
 	public static String httpProxyServer;	
 	/**
-	 * Port of the Http-Proxy for connection to Biogeomancer service. 
+	 * Http-Proxy port for connection to Biogeomancer service. 
 	 */
 	public static String httpProxyPort;	
 	/**
@@ -299,7 +299,7 @@ public class ClientConfig {
 
 		Element server = new Element("server");
 		server.setAttribute(XML_IP_ADDR, "localhost");
-		server.setAttribute(XML_COMMUNICATION_TYPE, RMI_COMMUNICATION);
+		server.setAttribute(XML_COMMUNICATION_TYPE, OBJECT_COMMUNICATION);
 
 		Element shape = new Element("shape");
 		// /home/danipilze/shapes/Global_high_level/GADM_v0-6.shp
@@ -328,7 +328,7 @@ public class ClientConfig {
 		mask.setAttribute(XML_PATH, "/inland_msk.jgm");
 
 		Element work = new Element("work");
-		work.setAttribute(XML_RECORDS, "10000");
+		work.setAttribute(XML_RECORDS, "10000");	
 		
 		Element proxy = new Element("Proxy");
 		Element httpProxy = new Element("HttpProxy");
@@ -337,12 +337,12 @@ public class ClientConfig {
 		httpProxy.setAttribute(HTTP_PROXY_PORT, "8080");
 		
 		config.addContent(server);
+		config.addContent(proxy);
 		config.addContent(work);
 		config.addContent(shape);
 		config.addContent(mask);
 		config.addContent(maxent);
 		config.addContent(variables);
-		config.addContent(proxy);
 
 		Document doc = new Document(config);
 
