@@ -53,13 +53,13 @@ public class Csv2Point {
 		System.out.println("empieza a mostrar");
 
 		Placemark placemark = KmlFactory.createPlacemark();
-		Folder folder = kml.createAndSetFolder().withStyleUrl("http://wikipedia.agilityhoster.com/estilo.kml#estilo");
+		Folder folder = kml.createAndSetFolder();
 /**
  * se recorre la lista generando las coordenadas y agregando al folder
  */
 		for (String[] s : lista) {
 
-			placemark = folder.createAndAddPlacemark();//se crea el placemark y se naade al folder
+			placemark = folder.createAndAddPlacemark().withStyleUrl("http://wikipedia.agilityhoster.com/estilo.kml#estilo");//se crea el placemark y se naade al folder
 			placemark.createAndSetPoint().addToCoordinates(
 					Double.parseDouble(s[0]), Double.parseDouble(s[1]));//se crean las coordenadas y se registran al placemark
 
