@@ -43,7 +43,7 @@ for (i in unique(records$specie_id))
     # create file
    if(!file.exists(paste(i))) dir.create(paste(i))
    if(!file.exists(paste(i,"/training",sep=""))) dir.create(paste(i,"/training",sep=""))
-   write(paste("species id : ",i,"\t#files are handeled with this id", 
+   write(paste("species id : ",i,
               "\nspecie : ",this.sp.u[1,'specie'],
               "\ngenus : ",this.sp.u[1,'genus'],
               "\ngenus_id : ",this.sp.u[1,'genus_id'],

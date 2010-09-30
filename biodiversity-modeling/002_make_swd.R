@@ -21,7 +21,7 @@
 ###########################################
 
 
-get.background <- function(sp_id, ecoregions, v.all, no.background=10000)
+get.background <- function(sp_id, ecoregions, v.all, no.background=10000, make.swd=FALSE)
 {
   points <- read.csv(paste(sp_id,"/training/species.csv", sep=""))
 
@@ -40,8 +40,11 @@ get.background <- function(sp_id, ecoregions, v.all, no.background=10000)
 
   # write env variables
    write(paste("env.var : ",env.var, sep=""), paste(sp_id,"info.txt", sep="/"), append=T)
-  # make swd.species
-  system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",sp_id,"/training/species.csv ",env.var, ">",sp_id,"/training/species_swd.csv", sep=""))
-  # make swd background
-  system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",sp_id,"/training/background.csv ",env.var, ">",sp_id,"/training/background_swd.csv", sep=""))
+  if (make.swd==TRUE)
+  {  
+    # make swd.species
+    system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",sp_id,"/training/species.csv ",env.var, ">",sp_id,"/training/species_swd.csv", sep=""),wait=T)
+    # make swd background
+    system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",sp_id,"/training/background.csv ",env.var, ">",sp_id,"/training/background_swd.csv", sep=""),wait=T)
+  }
 }
