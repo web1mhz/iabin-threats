@@ -833,7 +833,7 @@ public class WorldMaskManager {
 			// double LON = 166.83, LAT = 9.33;
 			// double LON = 166.82, LAT = 9.33;
 
-			WorldMaskManager wmm = new WorldMaskManager(ClientConfig.maskFile);
+			WorldMaskManager wmm = new WorldMaskManager(ClientConfig.getInstance().maskFile);
 			// System.out.println(wmm.isEarth(LAT, LON));
 
 			DataBaseManager.registerDriver();
@@ -999,7 +999,6 @@ public class WorldMaskManager {
 				if (args.length == 3) {
 					if (args[1].equals("-n")) {
 						try {
-							ClientConfig.init();
 							int number = Integer.parseInt(args[2]);
 							evaluateLand_DirectSQL("temp_land_4A", number);
 							calculate_species("temp_land_4A", number, "temp_land_5A");

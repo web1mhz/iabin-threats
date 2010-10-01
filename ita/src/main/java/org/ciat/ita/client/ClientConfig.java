@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.ciat.ita.server.ServerConfig;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -14,6 +16,19 @@ import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 public class ClientConfig {
+
+	private static ClientConfig instance;
+
+	private ClientConfig() {
+		init();
+	}
+
+	public static ClientConfig getInstance() {
+		if (instance == null) {
+			instance = new ClientConfig();
+		}
+		return instance;
+	}
 
 	private static final String XML_FILE = "client_config.xml";
 	private static final String XML_IP_ADDR = "ip_addr";
@@ -42,77 +57,77 @@ public class ClientConfig {
 	/**
 	 * IP address of the server to connect
 	 */
-	public static String server_ipaddr;
+	public String server_ipaddr;
 	/**
 	 * full path of the shape file in .SHP extension
 	 */
-	public static String shapeFile;
+	public String shapeFile;
 	/**
 	 * full path of the mask file in .JGM extension
 	 */
-	public static String maskFile;
+	public String maskFile;
 	/**
 	 * Amount of records to work by round
 	 */
-	public static int quantityRecords = 10000;
+	public int quantityRecords = 10000;
 	/**
 	 * Names of the bioclimatic variables
 	 */
-	public static Set<String> variablesName;
+	public Set<String> variablesName;
 	/**
 	 * bioclimatic varibles directory path
 	 */
-	public static String dirBioclimaticFiles;
+	public String dirBioclimaticFiles;
 	/**
 	 * maxent jar file path
 	 */
-	public static String maxent_file;
+	public String maxent_file;
 	/**
 	 * bioclimatic variables for maxent directory path
 	 */
-	public static String maxent_variables_dir;
+	public String maxent_variables_dir;
 	/**
 	 * background csv file path
 	 */
-	public static String backgroung_file;
+	public String backgroung_file;
 	/**
 	 * lambda output directory path
 	 */
-	public static String lambda_output_dir;
+	public String lambda_output_dir;
 	/**
 	 * species csv data directory path
 	 */
-	public static String sample_dir;
+	public String sample_dir;
 	/**
 	 * final output directory path
 	 */
-	public static String final_output_dir;
+	public String final_output_dir;
 	/**
 	 * Name of the shape file column of the ISO country value
 	 */
-	public static String nameColumnISO;
+	public String nameColumnISO;
 	/**
 	 * Name of the shape file column of the country name value
 	 */
-	public static String nameColumnCountry;
+	public String nameColumnCountry;
 	/**
 	 * Name of the shape file column of the state value
 	 */
-	public static String nameColumnState;
+	public String nameColumnState;
 	/**
 	 * Name of the shape file column of the county value
 	 */
-	public static String nameColumnCounty;
+	public String nameColumnCounty;
 	/**
 	 * The way how it connects to the server. RMI or TCP
 	 */
-	public static String communication_type;
+	public String communication_type;
 
 	/**
 	 * Initialize the variables of the client configuration. It must be called
 	 * at the beginning otherwise there will be a error if they are used
 	 */
-	public static void init() {
+	private void init() {
 		try {
 			File file = new File(XML_FILE);
 			/**
@@ -131,11 +146,11 @@ public class ClientConfig {
 	}
 
 	public static void main(String[] args) {
-		init();
+		ClientConfig.getInstance();
 	}
 
 	@SuppressWarnings("unchecked")
-	private static void readFromXML() throws JDOMException, IOException {
+	private void readFromXML() throws JDOMException, IOException {
 		SAXBuilder builder = new SAXBuilder(false);
 		Document doc = builder.build(new File(XML_FILE));
 		Element config = doc.getRootElement();
@@ -184,10 +199,12 @@ public class ClientConfig {
 				if (fi.getAttributeValue("name").equals("backgroung_file")) {
 					backgroung_file = fi.getAttributeValue("path");
 				} else {
-					if (fi.getAttributeValue("name").equals("lambda_output_dir")) {
+					if (fi.getAttributeValue("name")
+							.equals("lambda_output_dir")) {
 						lambda_output_dir = fi.getAttributeValue("path");
 					} else {
-						if (fi.getAttributeValue("name").equals("final_output_dir")) {
+						if (fi.getAttributeValue("name").equals(
+								"final_output_dir")) {
 							final_output_dir = fi.getAttributeValue("path");
 						} else {
 							if (fi.getAttributeValue("name").equals(
@@ -195,8 +212,8 @@ public class ClientConfig {
 								maxent_variables_dir = fi
 										.getAttributeValue("path");
 							} else {
-								if (fi.getAttributeValue("name")
-										.equals("sample_dir")) {
+								if (fi.getAttributeValue("name").equals(
+										"sample_dir")) {
 									sample_dir = fi.getAttributeValue("path");
 
 								}
@@ -225,7 +242,7 @@ public class ClientConfig {
 		}
 	}
 
-	private static void createDeafaultXML() throws IOException {
+	private void createDeafaultXML() throws IOException {
 		Element config = new Element("config");
 		Element variables = new Element("variables");
 		variables.setAttribute("type", "bioclimatic");

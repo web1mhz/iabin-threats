@@ -226,7 +226,7 @@ public class ShapeFile {
 					geometryLoad = (Geometry) feature.getDefaultGeometry();
 
 					geometryLoadName = feature
-							.getAttribute(ClientConfig.nameColumnCountry)
+							.getAttribute(ClientConfig.getInstance().nameColumnCountry)
 							+ "";
 
 					tree.insert(geometryLoad.getEnvelopeInternal(),
@@ -279,7 +279,7 @@ public class ShapeFile {
 					geometryLoad = (Geometry) feature.getDefaultGeometry();
 
 					geometryLoadName = feature
-							.getAttribute(ClientConfig.nameColumnState)
+							.getAttribute(ClientConfig.getInstance().nameColumnState)
 							+ "";
 
 					tree.insert(geometryLoad.getEnvelopeInternal(),

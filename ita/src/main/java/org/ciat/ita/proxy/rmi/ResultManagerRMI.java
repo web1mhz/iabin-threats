@@ -29,7 +29,7 @@ public class ResultManagerRMI extends UnicastRemoteObject implements
 		super();
 		try {
 			rserver = (IResultServerRMI) Naming.lookup("//"
-					+ ClientConfig.server_ipaddr + "/ResultServerRMI");
+					+ ClientConfig.getInstance().server_ipaddr + "/ResultServerRMI");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (NotBoundException e) {

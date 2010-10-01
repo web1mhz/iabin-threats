@@ -32,18 +32,18 @@ public class IABINManager {
 
 	public void init() {
 
-		ClientConfig.init();
+		ClientConfig.getInstance();
 		DataBaseManager.registerDriver();
 		portal = new PortalManager(DataBaseManager.openConnection(
 				ServerConfig.getInstance().database_user, ServerConfig.getInstance().database_password));
 
 		records = portal
-				.getRecordsWithCountyLevelInfo(ClientConfig.quantityRecords);
+				.getRecordsWithCountyLevelInfo(ClientConfig.getInstance().quantityRecords);
 		shapeFileManager = new ShapeFileManager(2);
-		worldmask = new WorldMaskManager(ClientConfig.maskFile);
+		worldmask = new WorldMaskManager(ClientConfig.getInstance().maskFile);
 		try {
 			environmentMask = new EnvironmentMaskManager(
-					ClientConfig.dirBioclimaticFiles, worldmask.getWorldMask());
+					ClientConfig.getInstance().dirBioclimaticFiles, worldmask.getWorldMask());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -54,7 +54,7 @@ public class IABINManager {
 		while (records.size() > 0) {
 			work();
 			records = portal
-					.getRecordsWithCountyLevelInfo(ClientConfig.quantityRecords);
+					.getRecordsWithCountyLevelInfo(ClientConfig.getInstance().quantityRecords);
 		}
 		System.out.println("Work finished");
 	}

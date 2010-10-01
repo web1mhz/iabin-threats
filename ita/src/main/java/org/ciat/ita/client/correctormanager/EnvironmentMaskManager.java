@@ -58,8 +58,8 @@ public class EnvironmentMaskManager {
 	public EnvironmentMaskManager(String directoryFiles, WorldMask worldMask)
 			throws FileNotFoundException, IOException {
 
-		variablesName = ClientConfig.variablesName
-				.toArray(new String[ClientConfig.variablesName.size()]);
+		variablesName = ClientConfig.getInstance().variablesName
+				.toArray(new String[ClientConfig.getInstance().variablesName.size()]);
 		readers = new RandomAccessFile[variablesName.length];
 		listEMMFiles = new File[variablesName.length];
 		this.directoryFiles = directoryFiles;
@@ -157,7 +157,7 @@ public class EnvironmentMaskManager {
 
 				boolean allASCIIFiles = true;
 				for (File asciiFile : listASCII) {
-					if (!ClientConfig.variablesName.contains(asciiFile
+					if (!ClientConfig.getInstance().variablesName.contains(asciiFile
 							.getName().substring(0,
 									asciiFile.getName().length() - 4))) {
 						allASCIIFiles = false;
@@ -449,9 +449,8 @@ public class EnvironmentMaskManager {
 								return false;
 							}
 						});
-						ClientConfig.init();
 						WorldMaskManager wmm = new WorldMaskManager(
-								ClientConfig.maskFile);
+								ClientConfig.getInstance().maskFile);
 						try {
 							EnvironmentMaskManager emm = new EnvironmentMaskManager(
 									args[1], wmm.getWorldMask());
