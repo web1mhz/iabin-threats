@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 
-import org.ciat.ita.iclientmanager.*;
+import org.ciat.ita.iclient.*;
 
 
 public class ClientFactoryRMI extends ClientFactory {

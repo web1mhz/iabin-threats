@@ -1,11 +1,11 @@
-package org.ciat.ita.proxy.object;
+package org.ciat.ita.proxy.local;
 
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Set;
 import java.util.Map;
 
-import org.ciat.ita.iclientmanager.IWorkManager;
+import org.ciat.ita.iclient.IWorkManager;
 import org.ciat.ita.model.Record;
 import org.ciat.ita.server.connection.object.WorkServerObject;
 

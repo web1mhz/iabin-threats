@@ -1,4 +1,4 @@
-package org.ciat.ita.iservermanager;
+package org.ciat.ita.iserver;
 
 import java.util.List;
 import java.util.Map;

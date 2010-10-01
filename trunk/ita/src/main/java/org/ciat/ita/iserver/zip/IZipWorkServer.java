@@ -1,4 +1,4 @@
-package org.ciat.ita.iservermanager.zip;
+package org.ciat.ita.iserver.zip;
 
 
 public interface IZipWorkServer {

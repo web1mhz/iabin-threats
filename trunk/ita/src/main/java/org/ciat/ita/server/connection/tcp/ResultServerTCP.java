@@ -2,8 +2,8 @@ package org.ciat.ita.server.connection.tcp;
 
 import java.util.List;
 
-import org.ciat.ita.iservermanager.IResultServer;
-import org.ciat.ita.iservermanager.zip.IZipResultServer;
+import org.ciat.ita.iserver.IResultServer;
+import org.ciat.ita.iserver.zip.IZipResultServer;
 import org.ciat.ita.model.Record;
 import org.ciat.ita.server.database.PortalInterface;
 
