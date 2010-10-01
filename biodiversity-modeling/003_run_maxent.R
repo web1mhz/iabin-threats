@@ -21,7 +21,7 @@
 # Script: no changes should be made below #
 ###########################################
 
-run.maxent <- function(sp_id,max.ram, dir.maxent, no.repclicates, replicate.type)
+run.maxent <- function(sp_id,max.ram, dir.maxent, no.repclicates, replicate.type, dir.proj)
 { 
 dir.create(paste(sp_id,"/results", sep=""))
 dir.create(paste(sp_id,"/cross", sep=""))
@@ -39,7 +39,7 @@ system(paste("java -mx",max.ram,"m -cp ", dir.maxent, "/maxent.jar density.Proje
 
 ## zipWrite fails with snowfall, hence use the unix commands
 system(paste("tar -zcvf ",sp_id,".tar.gz ", sp_id,sep=""))
-system(paste("rm -rv",sp_id))
+system(paste("rm -r",sp_id))
 
 ## write *.gz, function provided by J. Ramirez
 #for (raster in list.files(paste(sp_id,"proj/", sep="/"))) zipWrite(raster(paste(sp_id,"proj",raster, sep="/")), paste(sp_id,"proj", sep="/"), paste(strsplit(raster, "\\.")[[1]][1],"gz", sep="."))
