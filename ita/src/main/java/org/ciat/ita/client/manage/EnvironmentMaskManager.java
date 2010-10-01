@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import org.ciat.ita.client.ClientConfig;
-import org.ciat.ita.model.BufferedDataOutputStream;
+import org.ciat.ita.io.BufferedDataOutputStream;
 import org.ciat.ita.model.WorldMask;
 
 
