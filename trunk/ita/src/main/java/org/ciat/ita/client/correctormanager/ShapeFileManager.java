@@ -34,11 +34,11 @@ public class ShapeFileManager {
 	}
 
 	public ShapeFileManager() {
-		shapefile = new ShapeFile(new File(ClientConfig.shapeFile));
+		shapefile = new ShapeFile(new File(ClientConfig.getInstance().shapeFile));
 	}
 
 	public ShapeFileManager(int level) {
-		shapefile = new ShapeFile(new File(ClientConfig.shapeFile), level);
+		shapefile = new ShapeFile(new File(ClientConfig.getInstance().shapeFile), level);
 	}
 
 	/***

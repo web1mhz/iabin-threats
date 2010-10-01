@@ -76,7 +76,6 @@ public class Client {
 	private int worked;
 
 	public static void main(String[] args) {
-		ClientConfig.init();
 		Client client = new Client();
 		client.start();
 	}
@@ -91,29 +90,29 @@ public class Client {
 
 			shapeFileManager = new ShapeFileManager();
 			// shapefile = new Shape(new File(ClientConfig.shapeFile));
-			worldmask = new WorldMaskManager(ClientConfig.maskFile);
+			worldmask = new WorldMaskManager(ClientConfig.getInstance().maskFile);
 			environmentMask = new EnvironmentMaskManager(
-					ClientConfig.dirBioclimaticFiles, worldmask.getWorldMask());
+					ClientConfig.getInstance().dirBioclimaticFiles, worldmask.getWorldMask());
 			clientName = InetAddress.getLocalHost().getHostName() + " "
 					+ System.getProperty("user.name") + " "
 					+ InetAddress.getLocalHost().getHostAddress();
 			initTime = System.currentTimeMillis();
 
-			if (ClientConfig.communication_type
+			if (ClientConfig.getInstance().communication_type
 					.equalsIgnoreCase(ClientConfig.RMI_COMMUNICATION)) {
 				factory = new ClientFactoryRMI();
 			} else {
-				if (ClientConfig.communication_type
+				if (ClientConfig.getInstance().communication_type
 						.equalsIgnoreCase(ClientConfig.TCP_COMMUNICATION)) {
 					factory = new ClientFactoryTCP();
 				} else {
-					if (ClientConfig.communication_type
+					if (ClientConfig.getInstance().communication_type
 							.equalsIgnoreCase(ClientConfig.OBJECT_COMMUNICATION)) {
 						factory = new ClientFactoryObject();
 					} else {
 						System.out
 								.println("Not implemented communication type: "
-										+ ClientConfig.communication_type);
+										+ ClientConfig.getInstance().communication_type);
 
 					}
 				}
@@ -138,10 +137,10 @@ public class Client {
 			running = true;
 			initTime = System.currentTimeMillis();
 			System.out.println("< Asking work to the server ["
-					+ ClientConfig.server_ipaddr + "] " + new Date());
+					+ ClientConfig.getInstance().server_ipaddr + "] " + new Date());
 			while (running) {
 				records = worker.getWork(clientName,
-						ClientConfig.quantityRecords);
+						ClientConfig.getInstance().quantityRecords);
 				if (running = records.size() > 0) {
 					work();
 				}

@@ -30,7 +30,7 @@ public class WorkManagerRMI extends UnicastRemoteObject implements IWorkManager 
 		super();
 		try {
 			wserver = (IWorkServerRMI) Naming.lookup("//"
-					+ ClientConfig.server_ipaddr + "/WorkServerRMI");
+					+ ClientConfig.getInstance().server_ipaddr + "/WorkServerRMI");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (NotBoundException e) {

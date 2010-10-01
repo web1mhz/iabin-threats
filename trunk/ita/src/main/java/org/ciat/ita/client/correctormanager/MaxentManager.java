@@ -344,7 +344,6 @@ public class MaxentManager {
 						}
 						System.out.println(number + " " + dir);
 						if (number != -1 && dir != null) {
-							ClientConfig.init();
 							String tableName = ServerConfig.getInstance().dbTableFinalRecords;
 							MaxentManager mm = new MaxentManager();
 							mm.exportSpeciesIntoCsv(tableName, number, dir);
@@ -363,8 +362,6 @@ public class MaxentManager {
 				if (args.length == 3) {
 					if (args[1].equalsIgnoreCase("-i")) {
 						try {
-							ClientConfig.init();
-
 							int threadSize = Integer.parseInt(args[2]);// Could
 							// be
 							// the
@@ -372,12 +369,12 @@ public class MaxentManager {
 							// of
 							// Processors
 							int poolSize = threadSize * 10; // Pool Size
-							String maxentFile = ClientConfig.maxent_file;
-							String sampleDirectory = ClientConfig.sample_dir;
-							String backgroundFile = ClientConfig.backgroung_file;
-							String outputLambdaDirectory = ClientConfig.lambda_output_dir;
-							String bioclimaticDir = ClientConfig.maxent_variables_dir;
-							String finalOutput = ClientConfig.final_output_dir;
+							String maxentFile = ClientConfig.getInstance().maxent_file;
+							String sampleDirectory = ClientConfig.getInstance().sample_dir;
+							String backgroundFile = ClientConfig.getInstance().backgroung_file;
+							String outputLambdaDirectory = ClientConfig.getInstance().lambda_output_dir;
+							String bioclimaticDir = ClientConfig.getInstance().maxent_variables_dir;
+							String finalOutput = ClientConfig.getInstance().final_output_dir;
 							MaxentManager mm = new MaxentManager();
 							mm.executeMaxent(maxentFile, sampleDirectory,
 									backgroundFile, outputLambdaDirectory,

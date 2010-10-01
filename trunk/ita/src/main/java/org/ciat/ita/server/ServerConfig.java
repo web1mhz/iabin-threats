@@ -92,7 +92,7 @@ public class ServerConfig {
 	 * Initialize the variables of the server configuration. It must be called
 	 * at the beginning otherwise there will be a error if they are used
 	 */
-	public void init() {
+	private void init() {
 		try {
 			File file = new File(XML_FILE);
 			/**
