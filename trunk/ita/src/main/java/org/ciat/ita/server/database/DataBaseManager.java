@@ -95,6 +95,7 @@ public class DataBaseManager {
 			}
 		} catch (Exception e) {
 			System.out.println("QUERY ERROR: "+updateQuery);
+			System.out.println(e.getMessage());
 			return -1;
 
 		}

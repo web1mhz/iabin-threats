@@ -4,6 +4,7 @@ package org.ciat.ita.server.database;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -62,16 +63,34 @@ public class PortalInterface implements IWorkServer, IResultServer, IZipWorkServ
 
 	@Override
 	public boolean insertResult(String clientName, List<Record> data) {
+		LinkedList<Record> goodRecords = new LinkedList<Record>();
+		LinkedList<Record> badRecords = new LinkedList<Record>();
 		for (Record r : data) {
 			/*
 			 * if record note is null then insert it as good otherwise insert it
 			 * as unreliable
 			 */
 			if (r.getNote() == null) {
-				portal.insertGoodRecord(r);
+				goodRecords.add(r);
 			} else {
-				portal.insertUnreliableRecord(r);
+				badRecords.add(r);
 			}
+			if(goodRecords.size() > 5000) {
+				portal.insertGoodRecords(goodRecords);
+				goodRecords.clear();
+			}
+			if(badRecords.size() > 5000) {
+				portal.insertUnreliableRecords(badRecords);
+				badRecords.clear();
+			}
+		}
+		if(goodRecords.size() > 0) {
+			portal.insertGoodRecords(goodRecords);
+			goodRecords.clear();
+		}
+		if(badRecords.size() > 0) {
+			portal.insertGoodRecords(goodRecords);
+			badRecords.clear();
 		}
 		System.out.println("< Inserted " + data.size() + " ["
 				+ data.get(0).getId() + "-" + data.get(data.size() - 1).getId()
