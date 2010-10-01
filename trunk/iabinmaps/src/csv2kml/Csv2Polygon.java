@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import de.micromata.opengis.kml.v_2_2_0.Boundary;
 import de.micromata.opengis.kml.v_2_2_0.Coordinate;
+import de.micromata.opengis.kml.v_2_2_0.Folder;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.KmlFactory;
 import de.micromata.opengis.kml.v_2_2_0.LinearRing;
@@ -30,10 +31,11 @@ public class Csv2Polygon {
 	public void createKML(String path) throws FileNotFoundException {
 
 		String filename = "d:/poligono.kml";
-		Placemark placemark = KmlFactory.createPlacemark().withName(("Name"))
-				.withDescription("descripcion").withStyleUrl(estilo);
 
 		Kml kml = new Kml();
+		Folder folder =kml.createAndSetFolder();
+		Placemark placemark=folder.createAndAddPlacemark().withName(("Name"))
+		.withDescription("descripcion").withStyleUrl(estilo);
 
 		Polygon pol = placemark.createAndSetPolygon();
 		final Boundary bound = new Boundary();
@@ -46,14 +48,29 @@ public class Csv2Polygon {
 		}
 		pol.setOuterBoundaryIs(bound);
 
-		kmlCoords = lin.createAndSetCoordinates();
+		//*****************************************************************
+	
+		Placemark placemark2=folder.createAndAddPlacemark().withName(("Name"))
+		.withDescription("descripcion").withStyleUrl("http://wikipedia.agilityhoster.com/estilo.kml#estilo1");
+		Polygon pol2 = placemark2.createAndSetPolygon();
+		final Boundary bound2 = new Boundary();
+		final LinearRing lin2 = bound2.createAndSetLinearRing();
+		List<Coordinate> kmlCoords2 = lin2.createAndSetCoordinates();
+		for (String[] s : listaChullBuff) {
+			Coordinate coord = new Coordinate(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+			kmlCoords2.add(coord);
+		}
+		pol2.setOuterBoundaryIs(bound2);
+		//********************************************************************
+		
+	/*	kmlCoords = lin.createAndSetCoordinates();
 		for (String[] s : listaChullBuff) {
 			Coordinate coord = new Coordinate(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
 			kmlCoords.add(coord);
 		}
-		pol.addToInnerBoundaryIs(bound);
-
-		kml.setFeature(placemark);// se registra el folder al kml
+		pol.addToInnerBoundaryIs(bound);*/
+	
+		kml.setFeature(folder);// se registra el folder al kml
 
 		kml.marshal();// se imprime kml en consola
 		kml.marshal(new File(filename));// se guarda kml en archivo
