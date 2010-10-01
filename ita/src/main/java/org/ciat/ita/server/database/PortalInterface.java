@@ -9,10 +9,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.ciat.ita.iservermanager.IResultServer;
-import org.ciat.ita.iservermanager.IWorkServer;
-import org.ciat.ita.iservermanager.zip.IZipResultServer;
-import org.ciat.ita.iservermanager.zip.IZipWorkServer;
+import org.ciat.ita.iserver.IResultServer;
+import org.ciat.ita.iserver.IWorkServer;
+import org.ciat.ita.iserver.zip.IZipResultServer;
+import org.ciat.ita.iserver.zip.IZipWorkServer;
 import org.ciat.ita.model.CompressorManager;
 import org.ciat.ita.model.Record;
 import org.ciat.ita.server.ServerConfig;

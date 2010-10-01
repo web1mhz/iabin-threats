@@ -6,9 +6,9 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import org.ciat.ita.client.ClientConfig;
-import org.ciat.ita.client.correctormanager.EnvironmentMaskManager;
-import org.ciat.ita.client.correctormanager.ShapeFileManager;
-import org.ciat.ita.client.correctormanager.WorldMaskManager;
+import org.ciat.ita.client.manage.EnvironmentMaskManager;
+import org.ciat.ita.client.manage.ShapeFileManager;
+import org.ciat.ita.client.manage.WorldMaskManager;
 import org.ciat.ita.model.Record;
 import org.ciat.ita.model.ShapeFile;
 import org.ciat.ita.server.database.DataBaseManager;

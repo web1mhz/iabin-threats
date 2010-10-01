@@ -1,6 +1,6 @@
-package org.ciat.ita.proxy.object;
+package org.ciat.ita.proxy.local;
 
-import org.ciat.ita.iclientmanager.*;
+import org.ciat.ita.iclient.*;
 
 public class ClientFactoryObject extends ClientFactory {
 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.ciat.ita.iservermanager.rmi.IWorkServerRMI;
+import org.ciat.ita.iserver.rmi.IWorkServerRMI;
 import org.ciat.ita.model.Record;
 import org.ciat.ita.server.database.PortalInterface;
 

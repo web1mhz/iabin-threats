@@ -11,8 +11,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.ciat.ita.client.ClientConfig;
-import org.ciat.ita.iclientmanager.IWorkManager;
-import org.ciat.ita.iservermanager.rmi.IWorkServerRMI;
+import org.ciat.ita.iclient.IWorkManager;
+import org.ciat.ita.iserver.rmi.IWorkServerRMI;
 import org.ciat.ita.model.CompressorManager;
 import org.ciat.ita.model.Record;
 

@@ -2,7 +2,7 @@ package org.ciat.ita.proxy.tcp;
 
 import java.util.List;
 
-import org.ciat.ita.iclientmanager.IResultManager;
+import org.ciat.ita.iclient.IResultManager;
 import org.ciat.ita.model.Record;
 
 

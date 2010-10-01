@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Map;
 
-import org.ciat.ita.iclientmanager.IWorkManager;
+import org.ciat.ita.iclient.IWorkManager;
 import org.ciat.ita.model.Record;
 
 

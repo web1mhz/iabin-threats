@@ -3,7 +3,7 @@ package org.ciat.ita.model;
 import java.io.Serializable;
 import java.util.Map;
 
-import org.ciat.ita.client.correctormanager.DecodeManager;
+import org.ciat.ita.client.manage.DecodeManager;
 
 
 @SuppressWarnings("serial")

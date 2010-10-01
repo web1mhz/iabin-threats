@@ -1,12 +1,12 @@
-package org.ciat.ita.iservermanager.rmi;
+package org.ciat.ita.iserver.rmi;
 
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import org.ciat.ita.iservermanager.IResultServer;
-import org.ciat.ita.iservermanager.zip.IZipResultServer;
+import org.ciat.ita.iserver.IResultServer;
+import org.ciat.ita.iserver.zip.IZipResultServer;
 import org.ciat.ita.model.Record;
 
 

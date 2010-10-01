@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-import org.ciat.ita.iservermanager.rmi.IResultServerRMI;
+import org.ciat.ita.iserver.rmi.IResultServerRMI;
 import org.ciat.ita.model.Record;
 import org.ciat.ita.server.database.PortalInterface;
 

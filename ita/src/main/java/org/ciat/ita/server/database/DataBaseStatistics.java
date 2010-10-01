@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 
 
-import org.ciat.ita.client.correctormanager.WorldMaskManager;
+import org.ciat.ita.client.manage.WorldMaskManager;
 import org.ciat.ita.model.ShapeFile;
 import org.ciat.ita.server.ServerConfig;
 import org.jdom.Element;

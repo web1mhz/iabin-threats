@@ -9,15 +9,15 @@ import java.util.List;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.ciat.ita.client.correctormanager.EnvironmentMaskManager;
-import org.ciat.ita.client.correctormanager.ShapeFileManager;
-import org.ciat.ita.client.correctormanager.WorldMaskManager;
-import org.ciat.ita.iclientmanager.ClientFactory;
-import org.ciat.ita.iclientmanager.IResultManager;
-import org.ciat.ita.iclientmanager.IWorkManager;
+import org.ciat.ita.client.manage.EnvironmentMaskManager;
+import org.ciat.ita.client.manage.ShapeFileManager;
+import org.ciat.ita.client.manage.WorldMaskManager;
+import org.ciat.ita.iclient.ClientFactory;
+import org.ciat.ita.iclient.IResultManager;
+import org.ciat.ita.iclient.IWorkManager;
 import org.ciat.ita.model.Record;
 import org.ciat.ita.model.ShapeFile;
-import org.ciat.ita.proxy.object.ClientFactoryObject;
+import org.ciat.ita.proxy.local.ClientFactoryObject;
 import org.ciat.ita.proxy.rmi.ClientFactoryRMI;
 import org.ciat.ita.proxy.tcp.ClientFactoryTCP;
 

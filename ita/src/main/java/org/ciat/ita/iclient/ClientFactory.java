@@ -1,4 +1,4 @@
-package org.ciat.ita.iclientmanager;
+package org.ciat.ita.iclient;
 
 /**
  * 

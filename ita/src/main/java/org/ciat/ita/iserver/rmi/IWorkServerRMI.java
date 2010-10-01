@@ -1,4 +1,4 @@
-package org.ciat.ita.iservermanager.rmi;
+package org.ciat.ita.iserver.rmi;
 
 
 import java.rmi.Remote;
@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.ciat.ita.iservermanager.IWorkServer;
-import org.ciat.ita.iservermanager.zip.IZipWorkServer;
+import org.ciat.ita.iserver.IWorkServer;
+import org.ciat.ita.iserver.zip.IZipWorkServer;
 import org.ciat.ita.model.Record;
 
 

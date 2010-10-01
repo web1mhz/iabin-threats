@@ -9,8 +9,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 import org.ciat.ita.client.ClientConfig;
-import org.ciat.ita.iclientmanager.IResultManager;
-import org.ciat.ita.iservermanager.rmi.IResultServerRMI;
+import org.ciat.ita.iclient.IResultManager;
+import org.ciat.ita.iserver.rmi.IResultServerRMI;
 import org.ciat.ita.model.CompressorManager;
 import org.ciat.ita.model.Record;
 

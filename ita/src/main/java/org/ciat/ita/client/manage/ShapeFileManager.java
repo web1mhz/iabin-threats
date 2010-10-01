@@ -1,4 +1,4 @@
-package org.ciat.ita.client.correctormanager;
+package org.ciat.ita.client.manage;
 
 import java.io.File;
 import java.rmi.RemoteException;
