@@ -75,11 +75,11 @@ public class PortalInterface implements IWorkServer, IResultServer, IZipWorkServ
 			} else {
 				badRecords.add(r);
 			}
-			if(goodRecords.size() > 5000) {
+			if(goodRecords.size() > 100000) {
 				portal.insertGoodRecords(goodRecords);
 				goodRecords.clear();
 			}
-			if(badRecords.size() > 5000) {
+			if(badRecords.size() > 100000) {
 				portal.insertUnreliableRecords(badRecords);
 				badRecords.clear();
 			}
