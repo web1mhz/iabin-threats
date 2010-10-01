@@ -1,4 +1,4 @@
-package org.ciat.ita.model;
+package org.ciat.ita.io;
 
 /* Copyright: Thomas McGlynn 1997-1998.
  * This code may be used for any purpose, non-commercial
