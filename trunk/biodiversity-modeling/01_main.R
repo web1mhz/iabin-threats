@@ -5,7 +5,6 @@
 # Purpose: Organise the whole workflow
 # Comments: 
 ###########################################
-#task20-b
 ############ Preliminaries ################
 ### Required packages
 library(raster)
@@ -13,7 +12,7 @@ library(snowfall)
 
 ### Set pathes
 # main working directory
-dir.wd <- "/home/johannes/tmp/trial_p"
+dir.wd <- "/home/johannes/tmp/trial.v3"
 # directory where species located, should be in ./wd/species and than for each species a folder labeled with species id  
 dir.sp <- paste(dir.wd, sep="")  
 # directory containing the env-rasters in 30 sec.                                       
@@ -56,6 +55,10 @@ source(paste(dir.scripts, "/003_run_maxent.R", sep=""))
 source(paste(dir.scripts, "/000.zipWrite.R", sep=""))
 source(paste(dir.scripts, "/000.zipRead.R", sep=""))
 
+## server config
+servers <- c("genomix1","genomix2")
+cores <- c(4,4)
+
 ### config snowfall
 # init snowfall
 sfInit(parallel=TRUE, cpus=2, type="SOCK")
@@ -66,13 +69,6 @@ sfExport("no.background")
 sfExport("get.background")
 sfExport("env.reduced")
 sfExport("env.full")
-sfExport("dir.maxent")
-sfExport("run.maxent")
-sfExport("max.ram")
-sfExport("no.replicates")
-sfExport("replicate.type")
-sfExport("dir.proj")
-sfExport("zipWrite")
 sfLibrary(raster)
 
 
@@ -128,7 +124,7 @@ system("cat [0-9]*/training/species.csv | awk -F, '!/species/ {print $2\":\"$3\"
 system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ssp_sort_u.csv ",env.full, "> species_swd.csv", sep=""),wait=T) # get swd
 
 # get for every species the points required
-swd.info <- read.csv("ssp_swd.csv")
+swd.info <- read.csv("species_swd.csv")
 for (i in list.files(pattern="^[0-9]"))
 {
   this.sp.no.points <- system(paste("cat ",i,"/info.txt | awk -F: '/number.of.points/{print $2}'",sep=""), intern=T)
@@ -136,6 +132,8 @@ for (i in list.files(pattern="^[0-9]"))
   file <- read.csv(paste(i,"/training/species.csv",sep=""))
   write.table(cbind(file[,1:3],swd.info[match(paste(file[,2],":",file[,3],sep=""), swd.info[,1]),4:until]),paste(i,"/training/species_swd.csv", sep=""), row.names=F, quote=F, sep=",")
   print(i)
+}
+
 
 # make for background
 system("echo key,lon,lat > bg_sort_u.csv")
@@ -149,9 +147,50 @@ for (i in list.files(pattern="^[0-9]"))
   this.sp.no.points <- system(paste("cat ",i,"/info.txt | awk -F: '/number.of.points/{print $2}'",sep=""), intern=T)
   if (this.sp.no.points < pts.full) {until <- ncol(swd.info) - 4} else {until <- ncol(swd.info)}
   file <- read.csv(paste(i,"/training/background.csv",sep=""))
-  write.table(cbind(file[,1:3],swd.info[match(paste(file[,2],":",file[,3],sep=""), swd.info[,1]),4:until]),paste(i,"/training/background_swd.csv", sep=""), row.names=F, quote=F, sep=",")
+  file.to.write <- cbind(file[,1:3],swd.info[match(paste(file[,2],":",file[,3],sep=""), swd.info[,1]),4:until])
+  write.table(file.to.write[!is.na(file.to.write[,4]),],paste(i,"/training/background_swd.csv", sep=""), row.names=F, quote=F, sep=",")
   print(i)
+}
 
+
+### create the batch files for the servers (genomix1, genomix2)
+files <- list.files(pattern="^[0-9]")
+split.list <- rep(1:sum(cores),each=ceiling(length(files)/sum(cores)), length.out=length(files))
+per.core <- split(files, split.list)
+save(max.ram, dir.maxent, no.replicates, replicate.type, dir.proj, file=".maxent_run.Rdata")
+t.count <- 1 # tmp count
+for (server in 1:length(servers))
+{
+  # save paramters
+  
+  if(!file.exists(servers[server])) dir.create(servers[server])
+  for (core in 1:cores[server])
+  {
+    if(length(per.core)>=t.count)
+    {
+      # write species list    
+      write.table(per.core[[t.count]], paste(severs[server],"/species_list_core",core,".txt",sep=""), row.names=F, col.names=F, quote=F)
+      # write R batch file for each core
+      write(paste("# load params\n",
+        "load(.maxent_run.Rdata)\n",
+        "# load the maxent function\n",
+        "source(003_run_manxent.R\n",
+        "# load data\n",
+        "files <- read.table(",servers[server],"/species_list_core",core,".txt)\n",
+        "# run maxent\n",
+        "sapply(files, function(i) run.maxent(sp_id=i,max.ram=max.ram, dir.maxent=dir.maxent, dir.proj=dir.proj, no.repclicates=no.repclicates, replicate.type=replicate.type)",sep=""),
+        paste(servers[server],"/runmaxent_core",core,".R",sep=""))
+       t.count <- t.count+1
+    }
+  }
+}
+
+me=`hostname`
+
+for f in $me/*.R
+do
+  screen -S $f -d -m R CMD BATCH $f
+done
 
 ## run maxent task 
 st <- proc.time()[3]
@@ -159,7 +198,8 @@ sfSapply(files, function(i) run.maxent(sp_id=i,max.ram=max.ram, dir.maxent=dir.m
 
 et <- proc.time()[3] - st
 print(paste("it took",et,"sec"))	
-#task21-e
+
+
 
 ###########################################
 # Extract metrics from the model and 
