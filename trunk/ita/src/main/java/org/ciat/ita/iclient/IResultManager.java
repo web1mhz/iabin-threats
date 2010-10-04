@@ -12,7 +12,7 @@ import org.ciat.ita.model.Record;
  * A communication interface for deliver data worked
  *
  */
-public interface IResultManager extends Remote{
+public interface IResultManager {
 	/**
 	 * 
 	 * @param clientName
@@ -20,7 +20,7 @@ public interface IResultManager extends Remote{
 	 * @param data
 	 *            worked to insert
 	 * @return false if there were problems during the insertion
-	 * @throws RemoteException
+	 * @throws Exception
 	 */
-	public boolean insertResult(String clientName,List<Record> data) throws RemoteException;
+	public boolean insertResult(String clientName,List<Record> data) throws Exception;
 }
