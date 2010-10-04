@@ -150,7 +150,7 @@ public class Client {
 					+ new Date());
 			System.exit(0);
 
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			System.out
 					.println("There was a problem with the server connection.");
 			System.out.println("Restarting work!....");
@@ -316,7 +316,7 @@ public class Client {
 				System.out.println("ERROR: ");
 				System.out.println(e.getMessage());
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			System.out
 					.println("There was a problem trying to get the countries codes (ISOs)");
 			System.out.println("ERROR: ");

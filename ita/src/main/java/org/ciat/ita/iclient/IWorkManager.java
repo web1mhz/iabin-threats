@@ -1,7 +1,5 @@
 package org.ciat.ita.iclient;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.util.Set;
 import java.util.List;
 import java.util.Map;
@@ -24,14 +22,14 @@ public interface IWorkManager {
 	 * @throws Exception
 	 */
 	public List<Record> getWork(String clientName, int quantity)
-			throws RemoteException;
+			throws Exception;
 
 	/**
 	 * 
 	 * @param countries names
 	 * @return a dictionary of countries names as key an the respective ISO as value
-	 * @throws RemoteException
+	 * @throws Exception
 	 */
 	public Map<String, String> getCountriesISO(Set<String> countries)
-			throws RemoteException;
+			throws Exception;
 }
