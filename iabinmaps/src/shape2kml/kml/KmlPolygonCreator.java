@@ -38,17 +38,21 @@ public class KmlPolygonCreator {
 		File dir=new File(path);
 		dir.mkdirs();
 		this.atributos  = atributos;
-
 	}
 
 	public void createKML(SimpleFeature sf) throws FileNotFoundException {
 
 		Set<Integer> keySet = atributos.keySet();
-		String descripcion = "";
+		String descripcion = "<table border=\"1\" padding=\"3\" width=\"300\"><tr bgcolor= \"#D2D2D2\">";
 
-		for (Integer i : keySet) {
-			descripcion += atributos.get(i) + " " + sf.getAttribute(i) + "<br>";
+		for (Integer i : keySet) {//se crean los titulos de la tabla de la informacion del poligono
+			descripcion+= "<td>"+atributos.get(i)+"</td>";
 		}
+		descripcion+="</tr><tr>";
+		for (Integer i : keySet) {//se crean los contenidos de la tabla de la informacion del poligono
+			descripcion+= "<td>"+sf.getAttribute(i)+"</td>";
+		}
+		descripcion+="</tr></table>";
 
 		final Kml kml = new Kml();
 	
