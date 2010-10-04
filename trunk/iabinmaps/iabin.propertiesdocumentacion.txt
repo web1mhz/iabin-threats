@@ -1,18 +1,20 @@
 #######################
-# PATH  Ruta de origen y destino de los archivos
+# PATH  
+# Ruta de origen y destino de los archivos
 #######################
 path.source=c:/data/
 path.target=c:/iabinmaps/
 
+#esta es la carpeta dentro de path.source y path.target de donde se leen y en donde se escriben los archivos
 bioclim.path=bioclim/
 threat.path=threat/
 species.path=species/
-#summaries es la carpeta dentro de path.source y path.target de donde se leen y se escriben lso archivos
 summaries.path=summaries/
 summaries.kmloutputpath=protectedArea/
 
 #######################
-# RASTERS Nombre de los archivos raster que se van a convertir a PNG
+# RASTERS 
+# Nombre de los archivos raster que se van a convertir a PNG
 #######################
 rasters=P1;P2;P3
 P1.group=bioclim
@@ -21,36 +23,53 @@ P2.group=bioclim
 P2.filename=P2.asc
 
 #######################
-# SHAPEFILES Nombre de los archivos Shape que se van a convertir a KML
+# SHAPEFILES 
+# Nombre de los archivos Shape que se van a convertir a KML
 #######################
-shapes= PA
+shapes= PA  #PA es la carpeta que se crea dentro de summaries
 PA.group= summaries
 PA.shapefile=SurAmerica.shp
 
 #######################
-# ZOOM  zoom minimo y zoom maximo que va a ser aplicado a los archivos raster de bioclima,threats o riqueza
+# ZOOM  
+# zoom minimo y zoom maximo que va a ser aplicado a los archivos raster de bioclima,threats o riqueza
 #######################
 zoom.min=0
 zoom.max=1
 
 #######################
-# KML Style ruta del estilo que va a ser aplicado a los archivos KML
+# KML Style
+# style.url Contiene  ruta del estilo que va a ser aplicado a los archivos KML
 #######################
 
-style.url=http://wikipedia.agilityhoster.com/estilo.kml
+style.url=http://wikipedia.agilityhoster.com/estilo.kml#estilo
 
 #######################
-# PROTECTED AREA Contiene la direccion del servidor donde se alojaran los archivos Kml y Caracteristicas de los archivos shape de areas protegidas que se quieren mostrar incluye el numero de columna,
-#el nombre que se le quiere dar a cada columna,y el nombre del archivo KML principal 
+# PROTECTED AREA 
+# PA.server.url Contiene la direccion del servidor donde se alojaran los archivos Kml 
+# PA.shape.column.indexes Contiene caracteristicas de los archivos shape de areas protegidas que se quieren mostrar, incluye el numero de columna, 
+# PA.shape.column.names contiene el nombre que se le quiere dar a cada columna,y 
+# PA.kml.main contiene el nombre del archivo KML principal(desde el cual se llaman a los demas kmls de cada poligono)
 # 
 #######################
-PA.server.url=http://wikipedia.agilityhoster.com/
+PA.server.url=http://wikipedia.agilityhoster.com/         
 PA.shape.column.indexes=2;4;5;20
 PA.shape.column.names=Name;Country;State;UNCAT
 PA.kml.main=mainKML.kml
 
 #######################
-# COLORS Colores que van a ser aplicados a los archivos raster incluye el tipo, la escala, el color minimo y el color maximo.
+# COLORS 
+# Colores que van a ser aplicados a los archivos raster incluye el tipo, la escala, el color minimo y el color maximo.
+# P1.color.type "P1" es el nombre del archivo raster p1.asc - type los tipos que pueden existir son "temperature", "precipitation", "threats", "Species distribution"
+# "temperature", "precipitation" toman valores continuos
+# "threats" toma valores continuos
+# Species "distribution" toma valores discretos fixed o quantiles
+# current species "richness" toma valores discretos fixed o quantiles
+# temperature.color.min (max) el color de la temperatura minima (maxima) expresado en formato RGB en decimal(255;255;255)
+# temperature.scale= puede tomar los valores discretos "quantiles" o "fixed" o tomar valor continuo "continuous"
+# temperature.scale.quantiles el valor es un decimal que representa el numero de quantiles en lso que se desea fraccionar la escala - por defecto 5 ó 6 
+# temperature.scale.fixed recibe el valor del umbral, este toma el valor por defecto de 100
+# temperature.scale.continuous no recibe ningun valor pues hace la escala degradando los colores desde el minimo hasta el maximo
 #######################
 P1.color.type=temperature
 P2.color.type=precipitation
@@ -63,4 +82,5 @@ temperature.scale.quantiles=5
 
 precipitation.color.min= 255;255;255
 precipitation.color.max= 0;0;255
+
 precipitation.scale=continuous
