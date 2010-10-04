@@ -1,7 +1,5 @@
 package org.ciat.ita.iclient;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.util.List;
 
 import org.ciat.ita.model.Record;

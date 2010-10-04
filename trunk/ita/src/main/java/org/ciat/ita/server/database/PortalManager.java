@@ -9,7 +9,6 @@ import java.util.List;
 import org.ciat.ita.model.Record;
 import org.ciat.ita.model.ShapeFile;
 import org.ciat.ita.server.ServerConfig;
-import org.omg.PortableServer.LifespanPolicyOperations;
 
 public class PortalManager {
 
