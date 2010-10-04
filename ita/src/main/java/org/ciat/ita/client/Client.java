@@ -212,7 +212,7 @@ public class Client {
 			}
 			records.clear();
 			records = null;
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			System.out
 					.println("There was a problem trying send the results to the server.");
 			System.out.println("ERROR:");

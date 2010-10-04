@@ -13,7 +13,7 @@ import org.ciat.ita.model.Record;
  * A communication interface for requesting work 
  *
  */
-public interface IWorkManager extends Remote {
+public interface IWorkManager {
 
 	/**
 	 * @param clientName
@@ -21,7 +21,7 @@ public interface IWorkManager extends Remote {
 	 * @param quantity
 	 *            of requesting records
 	 * @return records to work
-	 * @throws RemoteException
+	 * @throws Exception
 	 */
 	public List<Record> getWork(String clientName, int quantity)
 			throws RemoteException;

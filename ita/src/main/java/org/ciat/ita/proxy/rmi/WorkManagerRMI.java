@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.ciat.ita.client.ClientConfig;
-import org.ciat.ita.iclient.IWorkManager;
+import org.ciat.ita.iclient.rmi.IWorkManagerRMI;
 import org.ciat.ita.iserver.rmi.IWorkServerRMI;
 import org.ciat.ita.model.CompressorManager;
 import org.ciat.ita.model.Record;
@@ -19,7 +19,7 @@ import org.ciat.ita.model.Record;
 
 
 @SuppressWarnings("serial")
-public class WorkManagerRMI extends UnicastRemoteObject implements IWorkManager {
+public class WorkManagerRMI extends UnicastRemoteObject implements IWorkManagerRMI {
 	/**
 	 * @uml.property   name="wsrmi"
 	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:iservermanager.rmi.IWorkServerRMI"

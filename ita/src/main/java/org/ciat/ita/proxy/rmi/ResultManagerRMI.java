@@ -9,7 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 import org.ciat.ita.client.ClientConfig;
-import org.ciat.ita.iclient.IResultManager;
+import org.ciat.ita.iclient.rmi.IResultManagerRMI;
 import org.ciat.ita.iserver.rmi.IResultServerRMI;
 import org.ciat.ita.model.CompressorManager;
 import org.ciat.ita.model.Record;
@@ -18,7 +18,7 @@ import org.ciat.ita.model.Record;
 
 @SuppressWarnings("serial")
 public class ResultManagerRMI extends UnicastRemoteObject implements
-		IResultManager {
+		IResultManagerRMI {
 	/**
 	 * @uml.property   name="rsrmi"
 	 * @uml.associationEnd   multiplicity="(1 1)" ordering="true" inverse="base:iservermanager.rmi.IResultServerRMI"
