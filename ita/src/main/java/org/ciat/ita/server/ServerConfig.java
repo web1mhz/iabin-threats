@@ -175,7 +175,7 @@ public class ServerConfig {
 		Element config = new Element("config");
 
 		Element rmi = new Element("rmi");
-		rmi.setAttribute(XML_PORT, "10999");
+		rmi.setAttribute(XML_PORT, "1099");
 
 		Element database = new Element("database");
 		// portal_gbif

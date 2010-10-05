@@ -43,9 +43,6 @@
 						<goals>
 							<goal>rmic</goal>
 						</goals>
-						<configuration>
-							<outputDirectory>${project.build.outputDirectory}</outputDirectory>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>

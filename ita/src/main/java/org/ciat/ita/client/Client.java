@@ -90,9 +90,11 @@ public class Client {
 
 			shapeFileManager = new ShapeFileManager();
 			// shapefile = new Shape(new File(ClientConfig.shapeFile));
-			worldmask = new WorldMaskManager(ClientConfig.getInstance().maskFile);
-			environmentMask = new EnvironmentMaskManager(
-					ClientConfig.getInstance().dirBioclimaticFiles, worldmask.getWorldMask());
+			worldmask = new WorldMaskManager(
+					ClientConfig.getInstance().maskFile);
+			environmentMask = new EnvironmentMaskManager(ClientConfig
+					.getInstance().dirBioclimaticFiles, worldmask
+					.getWorldMask());
 			clientName = InetAddress.getLocalHost().getHostName() + " "
 					+ System.getProperty("user.name") + " "
 					+ InetAddress.getLocalHost().getHostAddress();
@@ -137,10 +139,13 @@ public class Client {
 			running = true;
 			initTime = System.currentTimeMillis();
 			System.out.println("< Asking work to the server ["
-					+ ClientConfig.getInstance().server_ipaddr + "] " + new Date());
+					+ ClientConfig.getInstance().server_ipaddr + "] "
+					+ new Date());
 			while (running) {
+				System.out.println(running);
 				records = worker.getWork(clientName,
 						ClientConfig.getInstance().quantityRecords);
+				System.out.println("records obtained");
 				if (running = records.size() > 0) {
 					work();
 				}
@@ -150,13 +155,12 @@ public class Client {
 					+ new Date());
 			System.exit(0);
 
-		} catch (Exception e) {
-			System.out
-					.println("There was a problem with the server connection.");
-			System.out.println("Restarting work!....");
-			System.out.println("ERROR: ");
+		} catch (RemoteException e) {
+			System.out.println("There was a problem with the RMI connection.");
 			System.out.println(e.getMessage());
-			// startRMI();
+		} catch (Exception e) {
+			System.out.println("There was a problem asking for work.");
+			System.out.println(e.getMessage());
 		}
 
 	}
