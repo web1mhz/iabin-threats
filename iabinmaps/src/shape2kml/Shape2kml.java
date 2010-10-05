@@ -2,6 +2,7 @@ package shape2kml;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 
 import org.geotools.feature.FeatureIterator;
@@ -10,6 +11,7 @@ import org.opengis.feature.simple.SimpleFeature;
 import shape2kml.kml.KmlGroupCreator;
 import shape2kml.kml.KmlPolygonCreator;
 import shape2kml.shape.Shapefile;
+import utils.PropertiesGenerator;
 import utils.PropertiesManager;
 
 public class Shape2kml {
@@ -70,7 +72,17 @@ public class Shape2kml {
 		int count = 5;
 
 		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile,atributos);
-
+		
+		//*****************************************************************************
+		PropertiesGenerator hola=new PropertiesGenerator("d:/prueba.properties");
+		try {
+			hola.write();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//*****************************************************************************
+		
 		while (fi.hasNext() && count-- > 0) {
 			sf = fi.next();
 			try {
