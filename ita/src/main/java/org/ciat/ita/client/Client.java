@@ -17,7 +17,7 @@ import org.ciat.ita.iclient.IResultManager;
 import org.ciat.ita.iclient.IWorkManager;
 import org.ciat.ita.model.Record;
 import org.ciat.ita.model.ShapeFile;
-import org.ciat.ita.proxy.local.ClientFactoryObject;
+import org.ciat.ita.proxy.local.ClientFactoryLocal;
 import org.ciat.ita.proxy.rmi.ClientFactoryRMI;
 import org.ciat.ita.proxy.tcp.ClientFactoryTCP;
 
@@ -107,8 +107,8 @@ public class Client {
 					factory = new ClientFactoryTCP();
 				} else {
 					if (ClientConfig.getInstance().communication_type
-							.equalsIgnoreCase(ClientConfig.OBJECT_COMMUNICATION)) {
-						factory = new ClientFactoryObject();
+							.equalsIgnoreCase(ClientConfig.LOCAL_COMMUNICATION)) {
+						factory = new ClientFactoryLocal();
 					} else {
 						System.out
 								.println("Not implemented communication type: "

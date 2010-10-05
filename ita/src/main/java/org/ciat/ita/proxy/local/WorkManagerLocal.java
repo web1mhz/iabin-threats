@@ -11,11 +11,11 @@ import org.ciat.ita.server.connection.object.WorkServerObject;
 
 
 
-public class WorkManagerObject implements IWorkManager {
+public class WorkManagerLocal implements IWorkManager {
 	
 	private WorkServerObject wserver;
 	
-	public WorkManagerObject(){
+	public WorkManagerLocal(){
 		wserver=new WorkServerObject();
 	}
 
