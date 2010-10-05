@@ -142,10 +142,8 @@ public class Client {
 					+ ClientConfig.getInstance().server_ipaddr + "] "
 					+ new Date());
 			while (running) {
-				System.out.println(running);
 				records = worker.getWork(clientName,
 						ClientConfig.getInstance().quantityRecords);
-				System.out.println("records obtained");
 				if (running = records.size() > 0) {
 					work();
 				}
