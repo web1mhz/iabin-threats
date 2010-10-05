@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="uml" size="3874,2075" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledX="282" scrolledY="544" tag="1000" key="32303037303533312D31303030206974612F64616D6172696C6573">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="uml" size="3874,2075" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledX="394" tag="1000" key="32303037303533312D31303030206974612F64616D6172696C6573">
   <children xsi:type="editmodel:PackageEditModel" name="org.ciat.ita.iserver" location="795,876" size="727,746" id="org.ciat.ita.iserver">
     <children xsi:type="editmodel:PackageEditModel" name="org.ciat.ita.iserver.rmi" location="119,53" size="558,303" id="org.ciat.ita.iserver.rmi">
       <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.5/@children.2/@children.1/@sourceConnections.0" name="IWorkServerRMI" location="258,165" size="284,117" id="org.ciat.ita.iserver.rmi/IWorkServerRMI" runTimeClassModel="getWork(Ljava.lang.String;I),getCountriesISO(Ljava.util.Set;),getZippedWork(Ljava.lang.String;I)">
@@ -171,7 +171,7 @@
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
     </children>
-    <children xsi:type="editmodel:ClassEditModel" name="ServerConfig" location="918,682" size="188,373" runTimeClassModel="main([Ljava.lang.String;),xML_IP_ADDR,dbOutlierCount,init(),database_password,dbVariablesName,xML_COLUMN,xML_GOOD_RECORDS,xML_FILE,xML_NAME,instance,xML_UNRELIBLE_RECORDS,database_name,dbTableGoods,dbIPAddress,getInstance(),rmi_port,xML_UNVERIFIED_RECORDS,xML_FINAL_RECORDS,dbTableRecords,dbTableFinalRecords,xML_CONTENT,dbTableUnreliable,database_port,xML_PORT,database_user">
+    <children xsi:type="editmodel:ClassEditModel" name="ServerConfig" location="918,682" size="188,373" runTimeClassModel="main([Ljava.lang.String;),dbOutlierCount,xML_IP_ADDR,init(),database_password,dbVariablesName,xML_COLUMN,xML_GOOD_RECORDS,xML_NAME,xML_FILE,instance,xML_UNRELIBLE_RECORDS,database_name,dbTableGoods,dbIPAddress,getInstance(),rmi_port,xML_UNVERIFIED_RECORDS,xML_FINAL_RECORDS,dbTableRecords,dbTableFinalRecords,xML_CONTENT,dbTableUnreliable,database_port,database_user,xML_PORT">
       <children xsi:type="editmodel:CompartmentEditModel" size="165,252">
         <children xsi:type="editmodel:AttributeEditModel" name="database_user"/>
         <children xsi:type="editmodel:AttributeEditModel" name="database_password"/>
@@ -284,7 +284,7 @@
     </children>
   </children>
   <children xsi:type="editmodel:PackageEditModel" name="model" location="2663,736" size="1135,827">
-    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@children.0/@sourceConnections.1" name="Record" location="55,73" size="362,733" runTimeClassModel="getIso_country_code(),setIso_country_code(Ljava.lang.String;),Record(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;DDILjava.lang.String;I),state,getLongitude(),getLatitude(),setCountry(Ljava.lang.String;),toString(),iso_country_code,id,getVariables(),setCanonical(Ljava.lang.String;),getNub_concept_id(),equals(Ljava.lang.Object;),longitude,setLatitude(D),getNote(),setNub_concept_id(I),canonical,note,getState(),getCountry(),Record(Ljava.lang.String;DDII),nub_concept_id,setId(I),setNote(Ljava.lang.String;),country,variables,setLongitude(D),getCounty(),setState(Ljava.lang.String;),setCounty(Ljava.lang.String;),county,getId(),hashCode(),latitude,getCanonical(),setVariables(Ljava.util.Map;)">
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@children.0/@sourceConnections.1" name="Record" location="55,73" size="362,733" runTimeClassModel="getIso_country_code(),setIso_country_code(Ljava.lang.String;),state,Record(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;DDILjava.lang.String;I),getLongitude(),getLatitude(),toString(),setCountry(Ljava.lang.String;),id,iso_country_code,getVariables(),setCanonical(Ljava.lang.String;),getNub_concept_id(),equals(Ljava.lang.Object;),longitude,setLatitude(D),getNote(),setNub_concept_id(I),canonical,note,getState(),getCountry(),Record(Ljava.lang.String;DDII),nub_concept_id,setId(I),variables,country,setNote(Ljava.lang.String;),getCounty(),setLongitude(D),setState(Ljava.lang.String;),getId(),county,setCounty(Ljava.lang.String;),hashCode(),latitude,getCanonical(),setVariables(Ljava.util.Map;)">
       <children xsi:type="editmodel:CompartmentEditModel" size="158,198">
         <children xsi:type="editmodel:AttributeEditModel" name="canonical"/>
         <children xsi:type="editmodel:AttributeEditModel" name="id"/>
@@ -338,7 +338,7 @@
       </sourceConnections>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
     </children>
-    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.4/@sourceConnections.0" name="NamedGeometry" location="487,393" size="216,157" runTimeClassModel="getName(),getGeomtery(),name,NamedGeometry(Lcom.vividsolutions.jts.geom.Geometry;Ljava.lang.Object;),toString(),geometry">
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.4/@sourceConnections.0" name="NamedGeometry" location="487,393" size="216,157" runTimeClassModel="getName(),getGeomtery(),name,NamedGeometry(Lcom.vividsolutions.jts.geom.Geometry;Ljava.lang.Object;),geometry,toString()">
       <children xsi:type="editmodel:CompartmentEditModel" size="117,36">
         <children xsi:type="editmodel:AttributeEditModel" name="geometry"/>
         <children xsi:type="editmodel:AttributeEditModel" name="name"/>
@@ -361,7 +361,7 @@
       <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
     </children>
-    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@children.2/@children.1/@sourceConnections.0" name="WorldMask" location="659,61" size="331,337" runTimeClassModel="findBitASCMask(J),ascMask,getYllcorner(),getInfoMask(),ncols,yllcorner,getXllcorner(),nODATA_value,cellsize,getNrows(),getNODATA_value(),findBitInfoMask(J),num_column(D),nrows,num_raw(D),getNcols(),WorldMask(IIDDDI),getCellsize(),getAscMask(),infoMask,xllcorner,WorldMask(IIDDDI[B[B)">
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@children.2/@children.1/@sourceConnections.0" name="WorldMask" location="659,61" size="331,337" runTimeClassModel="findBitASCMask(J),ascMask,getYllcorner(),getInfoMask(),ncols,yllcorner,getXllcorner(),nODATA_value,cellsize,getNrows(),getNODATA_value(),findBitInfoMask(J),num_column(D),nrows,getNcols(),num_raw(D),getCellsize(),WorldMask(IIDDDI),WorldMask(IIDDDI[B[B),xllcorner,infoMask,getAscMask()">
       <children xsi:type="editmodel:CompartmentEditModel" size="110,108">
         <children xsi:type="editmodel:AttributeEditModel" name="ncols"/>
         <children xsi:type="editmodel:AttributeEditModel" name="nrows"/>
@@ -393,7 +393,7 @@
       </sourceConnections>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
     </children>
-    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@children.2/@children.2/@sourceConnections.0" name="ShapeFile" location="435,38" size="315,265" runTimeClassModel="connectParameters,e_NOT_FOUND_STATE,e_NULL_COUNTRY,collectionLimits(),ShapeFile(Ljava.io.File;I),e_NOT_FOUND_COUNTRY,e_NULL_STATE,collection,gf,polygonsForAPoint(DD),e_OTHER,typeName,ShapeFile(Ljava.io.File;),tree,dataStore,names,polygonsForAPoint(DDD),e_WRONG_STATE,e_WRONG_COUNTRY,featureSource,candidates">
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@children.2/@children.2/@sourceConnections.0" name="ShapeFile" location="435,38" size="315,265" runTimeClassModel="connectParameters,e_NOT_FOUND_STATE,e_NULL_COUNTRY,collectionLimits(),ShapeFile(Ljava.io.File;I),e_NOT_FOUND_COUNTRY,e_NULL_STATE,collection,gf,polygonsForAPoint(DD),e_OTHER,typeName,ShapeFile(Ljava.io.File;),dataStore,tree,names,polygonsForAPoint(DDD),e_WRONG_STATE,e_WRONG_COUNTRY,candidates,featureSource">
       <children xsi:type="editmodel:CompartmentEditModel" size="182,126">
         <children xsi:type="editmodel:AttributeEditModel" name="e_NOT_FOUND_COUNTRY"/>
         <children xsi:type="editmodel:AttributeEditModel" name="e_NULL_COUNTRY"/>
@@ -460,10 +460,10 @@
       </sourceConnections>
       <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.4/@children.0" target="//@children.4/@children.2/@children.1" targetEnd="//@children.4/@children.0/@sourceConnections.2/@children.2" label="//@children.4/@children.0/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@children.0/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
         <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-        <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="146,158" attachSource="true"/>
-        <children xsi:type="editmodel:AssociationEndEditModel" name="worldmask" location="0,15" multiplicityLabel="//@children.4/@children.0/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.2/@children.2/@children.0" navigable="true" orderingKind="1">
-          <children xsi:type="editmodel:LabelEditModel" name=" - worldmask" location="2558,273" size="63,14" anchorKind="LastPart"/>
-          <children xsi:type="editmodel:LabelEditModel" name="1" location="2615,301" size="6,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="base" location="146,159" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="worldmask" location="0,16" multiplicityLabel="//@children.4/@children.0/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.2/@children.2/@children.0" navigable="true" orderingKind="1">
+          <children xsi:type="editmodel:LabelEditModel" name=" - worldmask" location="2558,275" size="63,14" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="2615,303" size="6,14" anchorKind="LastPart"/>
         </children>
       </sourceConnections>
       <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.4/@children.0" target="//@children.6/@children.2" targetEnd="//@children.4/@children.0/@sourceConnections.3/@children.2" label="//@children.4/@children.0/@sourceConnections.3/@children.0" sourceEnd="//@children.4/@children.0/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
@@ -500,7 +500,7 @@
       </sourceConnections>
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
     </children>
-    <children xsi:type="editmodel:ClassEditModel" name="ClientConfig" location="105,334" size="205,445" runTimeClassModel="main([Ljava.lang.String;),xML_IP_ADDR,init(),server_ipaddr,xML_PATH,nameColumnISO,lambda_output_dir,shapeFile,xML_COUNTRY,dirBioclimaticFiles,xML_FILE,xML_NAME,variablesName,nameColumnCountry,xML_COMMUNICATION_TYPE,xML_RECORDS,xML_STATE,nameColumnCounty,maskFile,maxent_file,maxent_variables_dir,oBJECT_COMMUNICATION,rMI_COMMUNICATION,xML_ISO,communication_type,quantityRecords,xML_COUNTY,final_output_dir,tCP_COMMUNICATION,backgroung_file,nameColumnState,sample_dir">
+    <children xsi:type="editmodel:ClassEditModel" name="ClientConfig" location="105,334" size="205,445" runTimeClassModel="main([Ljava.lang.String;),xML_IP_ADDR,init(),server_ipaddr,xML_PATH,nameColumnISO,lambda_output_dir,xML_COUNTRY,shapeFile,dirBioclimaticFiles,xML_NAME,xML_FILE,variablesName,nameColumnCountry,xML_COMMUNICATION_TYPE,xML_RECORDS,xML_STATE,nameColumnCounty,maskFile,maxent_file,maxent_variables_dir,oBJECT_COMMUNICATION,rMI_COMMUNICATION,xML_ISO,quantityRecords,communication_type,xML_COUNTY,tCP_COMMUNICATION,final_output_dir,backgroung_file,nameColumnState,sample_dir">
       <children xsi:type="editmodel:CompartmentEditModel" size="182,378">
         <children xsi:type="editmodel:AttributeEditModel" name="rMI_COMMUNICATION"/>
         <children xsi:type="editmodel:AttributeEditModel" name="tCP_COMMUNICATION"/>
@@ -614,45 +614,45 @@
   </children>
   <children xsi:type="editmodel:PackageEditModel" name="proxy" location="120,14" size="672,1391">
     <children xsi:type="editmodel:PackageEditModel" name="org.ciat.ita.proxy.local" location="78,47" size="439,389" id="org.ciat.ita.proxy.local">
-      <children xsi:type="editmodel:ClassEditModel" name="ClientFactoryObject" location="111,148" size="236,85" id="org.ciat.ita.proxy.local/ClientFactoryObject" runTimeClassModel="createWorkManager(),createResultManager()">
+      <children xsi:type="editmodel:ClassEditModel" name="ClientFactoryLocal" location="111,148" size="236,85" id="org.ciat.ita.proxy.local/ClientFactoryLocal" runTimeClassModel="createWorkManager(),createResultManager()">
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <children xsi:type="editmodel:CompartmentEditModel" size="213,36">
-          <children xsi:type="editmodel:MethodEditModel" name="createResultManager" location="149,201" id="org.ciat.ita.proxy.local/ClientFactoryObject#createResultManager()"/>
-          <children xsi:type="editmodel:MethodEditModel" name="createWorkManager" id="org.ciat.ita.proxy.local/ClientFactoryObject#createWorkManager()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="createResultManager" location="149,201" id="org.ciat.ita.proxy.local/ClientFactoryLocal#createResultManager()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="createWorkManager" id="org.ciat.ita.proxy.local/ClientFactoryLocal#createWorkManager()"/>
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="org.ciat.ita.iclient/ClientFactory&lt;-org.ciat.ita.proxy.local/ClientFactoryObject" source="//@children.5/@children.0/@children.0" target="//@children.6/@children.2" targetEnd="//@children.5/@children.0/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="org.ciat.ita.iclient/ClientFactory&lt;-org.ciat.ita.proxy.local/ClientFactoryLocal" source="//@children.5/@children.0/@children.0" target="//@children.6/@children.2" targetEnd="//@children.5/@children.0/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
           <children xsi:type="editmodel:AssociationEndEditModel" location="236,21" anchorKind="FixedAtEdge" attachSource="true"/>
           <children xsi:type="editmodel:AssociationEndEditModel" location="0,63"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
-      <children xsi:type="editmodel:ClassEditModel" name="WorkManagerObject" location="45,45" size="284,121" id="org.ciat.ita.proxy.local/WorkManagerObject" runTimeClassModel="WorkManagerObject(),getWork(Ljava.lang.String;I),wserver,getCountriesISO(Ljava.util.Set;)">
+      <children xsi:type="editmodel:ClassEditModel" name="WorkManagerLocal" location="45,45" size="284,121" id="org.ciat.ita.proxy.local/WorkManagerLocal" runTimeClassModel="getWork(Ljava.lang.String;I),wserver,getCountriesISO(Ljava.util.Set;),WorkManagerLocal()">
         <children xsi:type="editmodel:CompartmentEditModel" size="156,18">
-          <children xsi:type="editmodel:AttributeEditModel" name="wserver" id="org.ciat.ita.proxy.local/WorkManagerObject#wserver"/>
+          <children xsi:type="editmodel:AttributeEditModel" name="wserver" id="org.ciat.ita.proxy.local/WorkManagerLocal#wserver"/>
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="261,54">
-          <children xsi:type="editmodel:MethodEditModel" name="getCountriesISO" id="org.ciat.ita.proxy.local/WorkManagerObject#getCountriesISO(Ljava.util.Set;)"/>
-          <children xsi:type="editmodel:MethodEditModel" name="getWork" id="org.ciat.ita.proxy.local/WorkManagerObject#getWork(Ljava.lang.String;I)"/>
-          <children xsi:type="editmodel:MethodEditModel" name="WorkManagerObject" id="org.ciat.ita.proxy.local/WorkManagerObject#WorkManagerObject()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="WorkManagerLocal" id="org.ciat.ita.proxy.local/WorkManagerLocal#WorkManagerLocal()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="getWork" id="org.ciat.ita.proxy.local/WorkManagerLocal#getWork(Ljava.lang.String;I)"/>
+          <children xsi:type="editmodel:MethodEditModel" name="getCountriesISO" id="org.ciat.ita.proxy.local/WorkManagerLocal#getCountriesISO(Ljava.util.Set;)"/>
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="org.ciat.ita.iclient/IWorkManager&lt;-org.ciat.ita.proxy.local/WorkManagerObject" source="//@children.5/@children.0/@children.1" target="//@children.6/@children.1" targetEnd="//@children.5/@children.0/@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="org.ciat.ita.iclient/IWorkManager&lt;-org.ciat.ita.proxy.local/WorkManagerLocal" source="//@children.5/@children.0/@children.1" target="//@children.6/@children.1" targetEnd="//@children.5/@children.0/@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
           <children xsi:type="editmodel:AssociationEndEditModel" location="284,59" anchorKind="FixedAtEdge" attachSource="true"/>
           <children xsi:type="editmodel:AssociationEndEditModel" location="-1,45"/>
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true" showAssociationMember="true"/>
       </children>
-      <children xsi:type="editmodel:ClassEditModel" name="ResultManagerObject" location="171,250" size="252,103" id="org.ciat.ita.proxy.local/ResultManagerObject" runTimeClassModel="ResultManagerObject(),insertResult(Ljava.lang.String;Ljava.util.List;),rserver">
+      <children xsi:type="editmodel:ClassEditModel" name="ResultManagerLocal" location="171,250" size="252,103" id="org.ciat.ita.proxy.local/ResultManagerLocal" runTimeClassModel="insertResult(Ljava.lang.String;Ljava.util.List;),rserver,ResultManagerLocal()">
         <children xsi:type="editmodel:CompartmentEditModel" size="155,18">
-          <children xsi:type="editmodel:AttributeEditModel" name="rserver" id="org.ciat.ita.proxy.local/ResultManagerObject#rserver"/>
+          <children xsi:type="editmodel:AttributeEditModel" name="rserver" id="org.ciat.ita.proxy.local/ResultManagerLocal#rserver"/>
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="229,36">
-          <children xsi:type="editmodel:MethodEditModel" name="insertResult" id="org.ciat.ita.proxy.local/ResultManagerObject#insertResult(Ljava.lang.String;Ljava.util.List;)"/>
-          <children xsi:type="editmodel:MethodEditModel" name="ResultManagerObject" id="org.ciat.ita.proxy.local/ResultManagerObject#ResultManagerObject()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="insertResult" id="org.ciat.ita.proxy.local/ResultManagerLocal#insertResult(Ljava.lang.String;Ljava.util.List;)"/>
+          <children xsi:type="editmodel:MethodEditModel" name="ResultManagerLocal" id="org.ciat.ita.proxy.local/ResultManagerLocal#ResultManagerLocal()"/>
         </children>
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="org.ciat.ita.iclient/IResultManager&lt;-org.ciat.ita.proxy.local/ResultManagerObject" source="//@children.5/@children.0/@children.2" target="//@children.6/@children.0" targetEnd="//@children.5/@children.0/@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="org.ciat.ita.iclient/IResultManager&lt;-org.ciat.ita.proxy.local/ResultManagerLocal" source="//@children.5/@children.0/@children.2" target="//@children.6/@children.0" targetEnd="//@children.5/@children.0/@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@children.0/@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
           <children xsi:type="editmodel:AssociationEndEditModel" location="252,37" anchorKind="FixedAtEdge" attachSource="true"/>
           <children xsi:type="editmodel:AssociationEndEditModel" location="0,43"/>
         </sourceConnections>

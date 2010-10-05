@@ -9,11 +9,11 @@ import org.ciat.ita.server.connection.object.ResultServerObject;
 
 
 
-public class ResultManagerObject implements IResultManager {
+public class ResultManagerLocal implements IResultManager {
 
 	private ResultServerObject rserver;
 	
-	public ResultManagerObject(){
+	public ResultManagerLocal(){
 		rserver=new ResultServerObject();
 	}
 	

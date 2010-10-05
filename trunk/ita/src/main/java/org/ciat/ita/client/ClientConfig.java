@@ -42,7 +42,7 @@ public class ClientConfig {
 	private static final String XML_COMMUNICATION_TYPE = "communication_type";
 	public static final String RMI_COMMUNICATION = "RMI";
 	public static final String TCP_COMMUNICATION = "TCP";
-	public static final String OBJECT_COMMUNICATION = "OBJECT";
+	public static final String LOCAL_COMMUNICATION = "LOCAL";
 	public static final String HTTP_PROXY_SERVER = "server";
 	public static final String HTTP_PROXY_PORT = "port";
 
@@ -316,7 +316,7 @@ public class ClientConfig {
 
 		Element server = new Element("server");
 		server.setAttribute(XML_IP_ADDR, "localhost");
-		server.setAttribute(XML_COMMUNICATION_TYPE, OBJECT_COMMUNICATION);
+		server.setAttribute(XML_COMMUNICATION_TYPE, LOCAL_COMMUNICATION);
 
 		Element shape = new Element("shape");
 		// /home/danipilze/shapes/Global_high_level/GADM_v0-6.shp
