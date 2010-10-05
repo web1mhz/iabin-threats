@@ -32,7 +32,7 @@ PA.shapefile=SurAmerica.shp
 
 #######################
 # ZOOM  
-# zoom minimo y zoom maximo que va a ser aplicado a los archivos raster de bioclima,threats o riqueza
+# zoom minimo y zoom maximo que va a ser aplicado a los archivos raster de bioclima(bioclim), amenazas(threats) o riqueza(richness)
 #######################
 zoom.min=0
 zoom.max=1
@@ -40,12 +40,17 @@ zoom.max=1
 #######################
 # KML Style
 # style.url Contiene  ruta del estilo que va a ser aplicado a los archivos KML
+# http://wikipedia.agilityhoster.com/estilo.kml esta parte es la ruta del archivo estilo y "#estilo" es el identificador del estilo que se quiere aplicar 
 #######################
 
 style.url=http://wikipedia.agilityhoster.com/estilo.kml#estilo
 
 #######################
 # PROTECTED AREA 
+# La conversion de estos poligonos en archivos kml se realiza leyendo un archivo shapefile que en este caso esta en la ruta "path.source"+ "summaries.path", y generando un kml principal, desde el cual
+# se llaman los demas archivos kml que forman los poligonos, cada poligono muestra una tabla la cual esta formada por los valores 
+# que se reciben en la variable "PA.shape.column.indexes" y se asigna como nombre de columna lo que se recibe en "PA.shape.column.names"
+# 
 # PA.server.url Contiene la direccion del servidor donde se alojaran los archivos Kml 
 # PA.shape.column.indexes Contiene caracteristicas de los archivos shape de areas protegidas que se quieren mostrar, incluye el numero de columna, 
 # PA.shape.column.names contiene el nombre que se le quiere dar a cada columna,y 
