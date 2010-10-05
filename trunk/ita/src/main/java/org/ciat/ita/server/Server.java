@@ -50,7 +50,7 @@ public class Server {
 	private Process p=null;
 	private void initServerRMI() {
 		
-		try {
+		/*try {
 			p = Runtime.getRuntime().exec("rmiregistry");
 			
 		} catch (IOException e1) {
@@ -60,7 +60,7 @@ public class Server {
 			if (p != null)
 				p.destroy();
 			System.exit(0);
-		}
+		}*/
 
 		try {
 			LocateRegistry.createRegistry(ServerConfig.getInstance().rmi_port);
