@@ -10,7 +10,6 @@ import java.util.Scanner;
 import org.ciat.ita.server.connection.rmi.ResultServerRMI;
 import org.ciat.ita.server.connection.rmi.WorkServerRMI;
 
-
 public class Server {
 
 	public static void main(String[] args) {
@@ -31,28 +30,33 @@ public class Server {
 	public void start() {
 		initServerRMI();
 		initServerTCP();
-		System.out.println("# Ready to serve. To exit press 'q' and enter anytime");
-		Scanner s=new Scanner(System.in);
-		while(s.hasNext()){
-			if(s.next().toLowerCase().contains("q")){
-				p.destroy();
+		System.out
+				.println("# Ready to serve. To exit press 'q' and enter anytime");
+		Scanner s = new Scanner(System.in);
+		while (s.hasNext()) {
+			if (s.next().toLowerCase().contains("q")) {
+				if (p != null) {
+					p.destroy();
+				}
 				System.exit(0);
 			}
 		}
-		
-	}
 
+	}
 
 	private void initServerTCP() {
 		// TODO iniciar el servidor TCP
 
 	}
-	private Process p=null;
+
+	private Process p = null;
+
 	private void initServerRMI() {
-		
+
+		/*
 		try {
 			p = Runtime.getRuntime().exec("rmiregistry");
-			
+
 		} catch (IOException e1) {
 			System.err
 					.println("Problem running rmiregistry, "
@@ -60,7 +64,7 @@ public class Server {
 			if (p != null)
 				p.destroy();
 			System.exit(0);
-		}
+		}*/
 
 		try {
 			LocateRegistry.createRegistry(ServerConfig.getInstance().rmi_port);
