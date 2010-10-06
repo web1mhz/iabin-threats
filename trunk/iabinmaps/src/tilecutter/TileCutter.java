@@ -59,6 +59,8 @@ public class TileCutter {
 
 			BufferedImage scaleImage = cManager.getScaleImage(descripcion);
 
+			File dir = new File(targetPath+ pathGroup + rasterID + File.separator + rasterID);
+			dir.mkdirs();
 			try {
 				ImageIO.write(scaleImage, "png", new File(targetPath
 						+ pathGroup + rasterID + File.separator + rasterID

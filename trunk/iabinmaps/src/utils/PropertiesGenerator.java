@@ -85,6 +85,7 @@ public class PropertiesGenerator {
 	+"precipitation.color.max= 0;0;255\n" 
 	+"\n" 
 	+"precipitation.scale=continuous\n" );
+    out.flush();
 	out.close();
 	
 	}
