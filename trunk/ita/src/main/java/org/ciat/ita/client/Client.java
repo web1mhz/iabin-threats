@@ -151,7 +151,6 @@ public class Client {
 			System.out.println("# Work finished " + worked + " in "
 					+ (System.currentTimeMillis() - initTime) + "ms "
 					+ new Date());
-			System.exit(0);
 
 		} catch (RemoteException e) {
 			System.out.println("There was a problem with the RMI connection.");
@@ -159,6 +158,8 @@ public class Client {
 		} catch (Exception e) {
 			System.out.println("There was a problem asking for work.");
 			System.out.println(e.getMessage());
+		}finally{
+			System.exit(0);
 		}
 
 	}
