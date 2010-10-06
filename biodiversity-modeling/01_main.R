@@ -10,54 +10,14 @@
 library(raster)
 library(snowfall)
 
-### Set pathes
-# main working directory
-dir.wd <- "/home/johannes/tmp/trial.v3"
-# directory where species located, should be in ./wd/species and than for each species a folder labeled with species id  
-dir.sp <- paste(dir.wd, sep="")  
-# directory containing the env-rasters in 30 sec.                                       
-dir.env <- paste(dir.wd, "/env", sep="") 
-# sub directory of dir.env, containing the 5 min rasters of whole sa for projecting                                           
-dir.proj <- paste(dir.env, "/proj_5min", sep="") 
-# directory containing maxent Software                   
-dir.maxent <- paste(dir.wd,"/maxent", sep="")                       
-dir.scripts <- paste("/home/johannes/ciag/svn.checkouts/iabin-threats/biodiversity-modeling", sep="")
-
-# path to the ecoregion raster
-ecoregions.path <- paste(dir.env, "/eco_5min.asc", sep="")               
-
-### Setup working directory
+### Load parameters and setup working directory assuming R session was onpend from iabin root directorg
+load("./parameters/parameters.RData")
 setwd(dir.wd)
-#task20-e
-#### Set varirables
-# model specific varibales
-# minmum number of training points
-pts.min <- 10 		
-# number of points required for a full model (i.e. 8 bioclim variables are included)		                                              
-pts.full <- 40	
-# model type, 2 (full model), 1 (model with reduced env var), 0 (unsufficient no of points)			                                              
-model.typ <- "NA"				                                              
 
-# Env. variables
-env.reduced <- paste(dir.env,"/bio1.asc ", dir.env,"/bio12.asc ", dir.env,"/bio4.asc ", dir.env,"/bio15.asc ", sep="")
-env.full <- paste(env.reduced, paste(dir.env,"/bio5.asc ", dir.env,"/bio6.asc ", dir.env,"/bio16.asc ", dir.env,"/bio17.asc ", sep=""), sep="")
-
-# maxent parameters
-max.ram <- 1024
-replicate.type <- "crossvalidate"
-no.replicates <- 10
-no.background <- 10000 # number of background points
-
-### sourcing functions
-source(paste(dir.scripts, "/001_write_species_csv.R", sep=""))
-source(paste(dir.scripts, "/002_make_swd.R", sep=""))
-source(paste(dir.scripts, "/003_run_maxent.R", sep=""))
-source(paste(dir.scripts, "/000.zipWrite.R", sep=""))
-source(paste(dir.scripts, "/000.zipRead.R", sep=""))
-
-## server config
-servers <- c("genomix1","genomix2")
-cores <- c(4,4)
+### Source additional functions
+source(write.species)
+source(make.background)
+source(run.maxent)
 
 ### config snowfall
 # init snowfall
@@ -71,31 +31,19 @@ sfExport("env.reduced")
 sfExport("env.full")
 sfLibrary(raster)
 
-
 ###########################################
 # Read fils and create for each species 
 # with 10 or more occurences a csv file 
 # (Task 9)
 ###########################################
 
-sp <- list()
-tmp.count <- 1
-for (file in list.files(pattern="sa.*.csv")) # adjust the name if need be
-{
- tmp.l <- list()
- tmp.l$class <- strsplit(strsplit(file, "_")[[1]][2],"\\.")[[1]][1] # depending on the name this may need to be adjusted
- tmp.l$records <- read.csv(file)
- sp[[tmp.count]] <- tmp.l
- tmp.count <- tmp.count + 1
-}
+sp <-sapply(species.files.raw,function(x) cbind(read.csv(x),class=strsplit(strsplit(x, "_")[[1]][2],"\\.")[[1]][1]), simplify=F)
 
 # create log file 
-write("Log file created automatically to track progress of script task9.R \n\ndate,species_id,number_of_unique_points,create_files_for_maxent", "log.txt", append=F)
+write("date,species_id,number_of_unique_points,create_files_for_maxent", log.make.species.csv, append=F)
 
-st <- proc.time()[3]
-sfSapply(sp, function(x) write.species.csv(records=x$records, class=x$class, req.points=pts.min, log="log.txt")) # the function write.species.csv is located in 001_write_species_csv.R
-et <- proc.time()[3] - st
-print(paste("it took",et,"sec"))	
+sfSapply(sp, function(x) write.species.csv(records=x, req.points=pts.min, log=log.make.species.csv)) # the function write.species.csv is located in 001_write_species_csv.R
+sfStop()
 
 ###########################################
 # Create SWD files and run maxent
