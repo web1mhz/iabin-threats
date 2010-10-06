@@ -26,7 +26,7 @@
 ###########################################
 
 
-write.species.csv <- function(records, class, req.points=10, log.file="log.txt")
+write.species.csv <- function(records, req.points=10, log.file="log.txt")
 {
 
 # create 'primary key' based on locations
@@ -49,7 +49,7 @@ for (i in unique(records$specie_id))
               "\ngenus_id : ",this.sp.u[1,'genus_id'],
               "\nfamily_id : ",this.sp.u[1,'family_id'], 
               "\nfamily : ", this.sp.u[1,'family'],
-              "\nclass : ",class,
+              "\nclass : ",this.sp.u[1,'class'],
               "\nfile.created : ",date(), 
               "\nnumber.of.points : ",nrow(this.sp.u), sep=""), paste(i,"info.txt", sep="/"))
   
@@ -61,6 +61,6 @@ for (i in unique(records$specie_id))
   } else write(paste(date(),i,nrow(this.sp.u),"no", sep=","), log.file, append=T)
 
 }
-print(paste("completed ", class, sep=""))
+print(paste("completed ", sep=""))
 }
    
