@@ -14,22 +14,9 @@ library(snowfall)
 load("./parameters/parameters.RData")
 setwd(dir.wd)
 
-### Source additional functions
-source(write.species)
-source(make.background)
-source(run.maxent)
-
-### config snowfall
-# init snowfall
-sfInit(parallel=TRUE, cpus=2, type="SOCK")
-# send data to workers
-sfExport("write.species.csv")
-sfExport("pts.min")
-sfExport("no.background")
-sfExport("get.background")
-sfExport("env.reduced")
-sfExport("env.full")
-sfLibrary(raster)
+source(script.write.species)
+source(script.make.background)
+source(script.run.maxent)
 
 ###########################################
 # Read fils and create for each species 
@@ -37,13 +24,8 @@ sfLibrary(raster)
 # (Task 9)
 ###########################################
 
-sp <-sapply(species.files.raw,function(x) cbind(read.csv(x),class=strsplit(strsplit(x, "_")[[1]][2],"\\.")[[1]][1]), simplify=F)
-
-# create log file 
-write("date,species_id,number_of_unique_points,create_files_for_maxent", log.make.species.csv, append=F)
-
-sfSapply(sp, function(x) write.species.csv(records=x, req.points=pts.min, log=log.make.species.csv)) # the function write.species.csv is located in 001_write_species_csv.R
-sfStop()
+sp <- apply(species.files.raw,1,write.species.csv,log.file=log.make.species.csv, req.points=pts.min,dir.out=dir.out)
+save(sp, file=species.id.to.pro
 
 ###########################################
 # Create SWD files and run maxent
