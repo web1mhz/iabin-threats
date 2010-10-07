@@ -36,6 +36,11 @@ write.species.csv <- function(x, req.points=10, log.file="log.txt", dir.out=dir.
    # create 'primary key' based on locations
    records$loc.key <- paste(records$lat,records$lon, sep="")
 
+   # for the progress bar
+   total <- length(unique(records$specie_id))
+   current <- 1
+   pb <- txtProgressBar(min=0, max=total, style=1)
+    
    for (i in unique(records$specie_id))
    {
       this.sp <- records[records$specie_id==i,]
@@ -64,8 +69,11 @@ write.species.csv <- function(x, req.points=10, log.file="log.txt", dir.out=dir.
       # species to the list of processed species
       sp.processed <- c(sp.processed,i)
    } else write(paste(date(),i,nrow(this.sp.u),"no", sep=","), log.file, append=T)
-
+   setTxtProgressBar(pb, current)
+   current  <- current + 1
+   # print(paste("processed ",current, " of ",total, sep=""))
 }  
+print(paste("######## just finished ", sp.class, "######## ", sep=""))
 return(sp.processed)
 }
    
