@@ -54,41 +54,14 @@ system.time(sfSapply(sp, function(i) get.background(sp_id=i, ecoregions=eco, v.a
 sfStop()
 
 ## Make swd files --- optimization and clean up is required task 11
-# species files
-# merge all location
-system(paste("echo key,lon,lat > ",dir.out,"ssp_sort_u.csv", sep="/"))
-system(paste("cat ",dir.out,"/[0-9]*/training/species.csv | awk -F, '!/species/ {print $2\":\"$3\",\"$2\",\"$3}'| sort -u >>",dir.out,"/ssp_sort_u.csv", sep="")) # get unique
-system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",dir.out,"/ssp_sort_u.csv ",env.full, "> ",dir.out,"/species_swd.csv", sep=""),wait=T) # get swd
 
-# get for every species the points required for each species
-swd.info <- read.csv("species_swd.csv")
-for (i in list.files(pattern="^[0-9]"))
-{
-  this.sp.no.points <- system(paste("cat ",i,"/info.txt | awk -F: '/number.of.points/{print $2}'",sep=""), intern=T)
-  if (this.sp.no.points < pts.full) {until <- ncol(swd.info) - 4} else {until <- ncol(swd.info)}
-  file <- read.csv(paste(i,"/training/species.csv",sep=""))
-  write.table(cbind(file[,1:3],swd.info[match(paste(file[,2],":",file[,3],sep=""), swd.info[,1]),4:until]),paste(i,"/training/species_swd.csv", sep=""), row.names=F, quote=F, sep=",")
-  print(i)
-}
+# extract all unique points
+get.full.swd(type="species", env.full=env.full, dir.out=dir.out)
+get.full.swd(type="background", env.full=env.full, dir.out=dir.out)
 
-
-# make for background
-system("echo key,lon,lat > bg_sort_u.csv")
-system("cat [0-9]*/training/background.csv | awk -F, '!/species/ {print $2\":\"$3\",\"$2\",\"$3}'| sort -u >> bg_sort_u.csv") # get unique
-system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval bg_sort_u.csv ",env.full, "> bg_swd.csv", sep=""),wait=T) # get swd
-
-# get for every species the points required
-swd.info <- read.csv("bg_swd.csv")
-for (i in list.files(pattern="^[0-9]"))
-{
-  this.sp.no.points <- system(paste("cat ",i,"/info.txt | awk -F: '/number.of.points/{print $2}'",sep=""), intern=T)
-  if (this.sp.no.points < pts.full) {until <- ncol(swd.info) - 4} else {until <- ncol(swd.info)}
-  file <- read.csv(paste(i,"/training/background.csv",sep=""))
-  file.to.write <- cbind(file[,1:3],swd.info[match(paste(file[,2],":",file[,3],sep=""), swd.info[,1]),4:until])
-  write.table(file.to.write[!is.na(file.to.write[,4]),],paste(i,"/training/background_swd.csv", sep=""), row.names=F, quote=F, sep=",")
-  print(i)
-}
-
+# get points for each species sp
+sapply(sp, function(x) get.sp.swd(sp_id=x, type="species", pts=pts.full, swd=read.csv(paste(dir.out, "/species_swd.csv", sep=""))))
+sapply(sp, function(x) get.sp.swd(sp_id=x, type="background", pts=pts.full, swd=read.csv(paste(dir.out, "/background_swd.csv", sep=""))))
 
 ### create the batch files for the servers (genomix1, genomix2)
 files <- list.files(pattern="^[0-9]")
