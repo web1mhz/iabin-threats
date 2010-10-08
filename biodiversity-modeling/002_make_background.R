@@ -48,3 +48,20 @@ get.background <- function(sp_id, ecoregions, v.all, no.background=10000, make.s
     system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",dir.out,"/",sp_id,"/training/background.csv ",env.var, ">",dir.out,"/",sp_id,"/training/background_swd.csv", sep=""),wait=T)
   }
 }
+
+### funciton to get swd files, not that this should only be run on a unix machine since it requires awk, and some shell tools
+
+get.full.swd <- function(type="species", env.full=env.full, dir.out=dir.out)
+{
+   system(paste("echo key,lon,lat > ",dir.out,"/",type,"_sort_u.csv", sep=""))
+   system(paste("cat ",dir.out,"/[0-9]*/training/",type,".csv | awk -F, '!/species/ {print $2\":\"$3\",\"$2\",\"$3}'| sort -u >>",dir.out,"/",type,"_sort_u.csv", sep="")) # get unique
+   system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",dir.out,"/",type,"_sort_u.csv ",env.full, "> ",dir.out,"/",type,"_swd.csv", sep=""),wait=T) # get swd
+}
+get.sp.swd <- function(sp_id, type="species",swd=read.csv(paste(dir.out,"/species_swd.csv", sep="") ), pts=pts.full)
+{
+# get for every species the points required for each species
+  this.sp.no.points <- system(paste("cat ",dir.out,"/",sp_id,"/info.txt | awk -F: '/number.of.points/{print $2}'",sep=""), intern=T)
+  if (this.sp.no.points < pts) {until <- ncol(swd) - 4} else {until <- ncol(swd)}
+  points <- read.csv(paste(dir.out,"/",sp_id,"/training/",type,".csv",sep=""))
+  write.table(cbind(points[,1:3],swd[match(paste(points[,2],":",points[,3],sep=""), swd[,1]),4:until]),paste(dir.out,"/", sp_id,"/training/",type,"_swd.csv", sep=""), row.names=F, quote=F, sep=",")
+}
