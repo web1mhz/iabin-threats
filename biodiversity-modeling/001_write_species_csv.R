@@ -73,7 +73,7 @@ write.species.csv <- function(x, req.points=10, log.file="log.txt", dir.out=dir.
    current  <- current + 1
    # print(paste("processed ",current, " of ",total, sep=""))
 }  
-print(paste("######## just finished ", sp.class, "######## ", sep=""))
+print(paste("######## just finished ", sp.class, " ### ", sep=""))
 return(sp.processed)
 }
    

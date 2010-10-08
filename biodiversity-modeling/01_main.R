@@ -10,13 +10,15 @@
 library(raster)
 library(snowfall)
 
-### Load parameters and setup working directory assuming R session was onpend from iabin root directorg
-load("./parameters/parameters.RData")
-setwd(dir.wd)
+# clean workspace
+rm(list=ls())
 
-source(script.write.species)
-source(script.make.background)
-source(script.run.maxent)
+### Load parameters and setup working directory assuming R session was onpend from iabin root directorg
+source("./parameters/parameters.R")
+# save parameters that were used in this run to the results directory
+save(list=ls(), file=paste(dir.out,"/parameters.RData",sep=""))
+# set working directory
+setwd(dir.wd)
 
 ###########################################
 # Read fils and create for each species 
@@ -25,35 +27,40 @@ source(script.run.maxent)
 ###########################################
 
 sp <- apply(species.files.raw,1,write.species.csv,log.file=log.make.species.csv, req.points=pts.min,dir.out=dir.out)
-save(sp, file=species.id.to.pro
+save(sp, file=species.id.to.process)
 
 ###########################################
 # Create SWD files and run maxent
 # (Task 10,11,12 and 13) 
 ###########################################
 
-files <- list.files(pattern="^[0-9]")
 eco <- raster(ecoregions.path)
 eco.values <- getValues(eco)
 
-# additional variables to workers
+# extract backgrounds from wwf biomes task 10
+### Export variables to workers
+sfInit(parallel=sf.parallel, cpus=sf.cpus, type=sf.type)
+sfExport("get.background")
+sfLibrary(raster)
 sfExport("eco")
 sfExport("eco.values")
+sfExport("me.no.background")
+sfExport("dir.out")
+sfExport("env.reduced")
+sfExport("env.full")
 
-st <- proc.time()[3]
-# extract backgrounds from wwf biomes task 10
-sfSapply(files, function(i) get.background(sp_id=i, ecoregions=eco, v.all=eco.values, no.background=no.background, make.swd=FALSE)) # make.swd is located in the file 002_make_swd.R
-et <- proc.time()[3] - st
-print(paste("it took",et,"sec"))	
+system.time(sfSapply(sp, function(i) get.background(sp_id=i, ecoregions=eco, v.all=eco.values, no.background=me.no.background, make.swd=FALSE)))
+ 
+sfStop()
 
 ## Make swd files --- optimization and clean up is required task 11
 # species files
-# mergee all location
-system("echo key,lon,lat > ssp_sort_u.csv")
-system("cat [0-9]*/training/species.csv | awk -F, '!/species/ {print $2\":\"$3\",\"$2\",\"$3}'| sort -u >> ssp_sort_u.csv") # get unique
-system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ssp_sort_u.csv ",env.full, "> species_swd.csv", sep=""),wait=T) # get swd
+# merge all location
+system(paste("echo key,lon,lat > ",dir.out,"ssp_sort_u.csv", sep="/"))
+system(paste("cat ",dir.out,"/[0-9]*/training/species.csv | awk -F, '!/species/ {print $2\":\"$3\",\"$2\",\"$3}'| sort -u >>",dir.out,"/ssp_sort_u.csv", sep="")) # get unique
+system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",dir.out,"/ssp_sort_u.csv ",env.full, "> ",dir.out,"/species_swd.csv", sep=""),wait=T) # get swd
 
-# get for every species the points required
+# get for every species the points required for each species
 swd.info <- read.csv("species_swd.csv")
 for (i in list.files(pattern="^[0-9]"))
 {
