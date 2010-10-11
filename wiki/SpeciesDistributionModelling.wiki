@@ -8,10 +8,10 @@ This page is intended to give a brief, not to technical summary about the specie
 = Details =
 == Software ==
 All work was done using:
-* R (in particular packages raster and snowfall)
-* MaxEnt 3.3.1
-* GRASS 6.4
-* Bash
+  * R (in particular packages raster and snowfall)
+  * MaxEnt 3.3.1
+  * GRASS 6.4
+  * Bash
 == Data preparation ==
 
 == SDM with MaxEnt ==
