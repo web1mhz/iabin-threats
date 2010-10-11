@@ -1,0 +1,19 @@
+#labels sdm,R
+# Documentation on how the Species Distribution Modelling (SDM) was done. 
+
+= Introduction =
+
+This page is intended to give a brief, not to technical summarz about the species distribution modelling (sdm) within the IABIN project. The species 
+
+
+= Details =
+== Data perparation ==
+
+
+
+
+= Syntax =
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
