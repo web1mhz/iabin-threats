@@ -56,11 +56,12 @@ sfStop()
 ## Make swd files --- optimization and clean up is required task 11
 
 # extract all unique points
-get.full.swd(type="species", env.full=env.full, dir.out=dir.out)
-get.full.swd(type="background", env.full=env.full, dir.out=dir.out)
+system.time(get.full.swd(type="species", env.full=env.full, dir.out=dir.out))
+system.time(get.full.swd(type="background", env.full=env.full, dir.out=dir.out))
 
 # get points for each species sp
-sapply_pb(sp, function(x) get.sp.swd(sp_id=x, type="species", pts=pts.full, swd=read.csv(paste(dir.out, "/species_swd.csv", sep=""))))
+system.time(sapply_pb(sp, function(x) get.sp.swd(sp_id=x, type="species", pts=pts.full, swd=read.csv(paste(dir.out, "/species_swd.csv", sep="")))))
+
 ## run in parallel, because its to slow
 sfInit(parallel=sf.parallel, cpus=sf.cpus, type=sf.type)
 sfExport("get.sp.swd")
@@ -68,6 +69,8 @@ sfExport("pts.full")
 sfExport("dir.out")
 system.time(sfSapply(sp, function(x) get.sp.swd(sp_id=x, type="background", pts=pts.full, swd=read.csv(paste(dir.out, "/background_swd.csv", sep="")))))
 sfStop()
+
+
 ##### Run Maxent #####
 ### create the batch files for the servers 
 split.list <- rep(1:sum(cores),each=ceiling(length(sp)/sum(cores)), length.out=length(sp))
@@ -76,7 +79,6 @@ t.count <- 1 # tmp count
 for (server in 1:length(servers))
 {
   # save paramters
-  
   if(!file.exists(paste(dir.out,servers[server],sep="/"))) dir.create(paste(dir.out,servers[server],sep="/"))
   for (core in 1:cores[server])
   {
@@ -86,11 +88,11 @@ for (server in 1:length(servers))
       write.table(per.core[[t.count]], paste(dir.out,"/",servers[server],"/species_list_core",core,".txt",sep=""), row.names=F, col.names=F, quote=F)
       # write R batch file for each core
       write(paste("# load params\n",
-        "load(parameters.RData)\n",
+        "load(\"",dir.out,"/parameters.RData\")\n",
         "# load data\n",
-        "files <- read.table(",servers[server],"/species_list_core",core,".txt)\n",
+        "files <- read.table(\"",dir.out,"/",servers[server],"/species_list_core",core,".txt\")\n",
         "# run maxent\n",
-        "sapply(files, function(i) run.maxent(sp_id=i,max.ram=me.max.ram, dir.maxent=dir.maxent, dir.proj=dir.proj, no.repclicates=me.no.repclicates, replicate.type=me.replicate.type)",sep=""),
+        "sapply(files[,1], function(i) run.maxent(sp_id=i,max.ram=me.max.ram, dir.maxent=dir.maxent, dir.proj=dir.proj, no.replicates=me.no.replicates, replicate.type=me.replicate.type))",sep=""),
         paste(dir.out,"/",servers[server],"/runmaxent_core",core,".R",sep=""))
        t.count <- t.count+1
     }
