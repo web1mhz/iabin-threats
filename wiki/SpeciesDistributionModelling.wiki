@@ -3,11 +3,21 @@
 
 = Introduction =
 
-This page is intended to give a brief, not to technical summarz about the species distribution modelling (sdm) within the IABIN project. The species 
-
+This page is intended to give a brief, not to technical summary about the species distribution modelling (sdm) within the IABIN project.
 
 = Details =
-== Data perparation ==
+== Software ==
+All work was done using:
+* R (in particular packages raster and snowfall)
+* MaxEnt 3.3.1
+* GRASS 6.4
+* Bash
+== Data preparation ==
+
+== SDM with MaxEnt ==
+
+== Threat Assessment ==
+
 
 
 
