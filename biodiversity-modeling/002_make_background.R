@@ -57,11 +57,25 @@ get.full.swd <- function(type="species", env.full=env.full, dir.out=dir.out)
    system(paste("cat ",dir.out,"/[0-9]*/training/",type,".csv | awk -F, '!/species/ {print $2\":\"$3\",\"$2\",\"$3}'| sort -u >>",dir.out,"/",type,"_sort_u.csv", sep="")) # get unique
    system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",dir.out,"/",type,"_sort_u.csv ",env.full, "> ",dir.out,"/",type,"_swd.csv", sep=""),wait=T) # get swd
 }
+
+# get for every species the points required for each species
 get.sp.swd <- function(sp_id, type="species",swd=read.csv(paste(dir.out,"/species_swd.csv", sep="") ), pts=pts.full)
 {
-# get for every species the points required for each species
+  # get the number of points for this sp, from the info.txt file
   this.sp.no.points <- system(paste("cat ",dir.out,"/",sp_id,"/info.txt | awk -F: '/number.of.points/{print $2}'",sep=""), intern=T)
+
+  # determine how many variables should be used
   if (this.sp.no.points < pts) {until <- ncol(swd) - 4} else {until <- ncol(swd)}
+
+  # read the file with the x,y coordinates
   points <- read.csv(paste(dir.out,"/",sp_id,"/training/",type,".csv",sep=""))
-  write.table(cbind(points[,1:3],swd[match(paste(points[,2],":",points[,3],sep=""), swd[,1]),4:until]),paste(dir.out,"/", sp_id,"/training/",type,"_swd.csv", sep=""), row.names=F, quote=F, sep=",")
+
+  # extract the values of the environmental data, by using the uniqe locaiton key x:y
+  data <- cbind(points[,1:3],swd[match(paste(points[,2],":",points[,3],sep=""), swd[,1]),4:until])
+  
+  # remove points with NA's
+  data <- data[!is.na(data[,4]),]
+
+  # write the file again
+  write.table(data,paste(dir.out,"/", sp_id,"/training/",type,"_swd.csv", sep=""), row.names=F, quote=F, sep=",")
 }
