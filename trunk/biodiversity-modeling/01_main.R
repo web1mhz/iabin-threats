@@ -91,8 +91,11 @@ for (server in 1:length(servers))
         "load(\"",dir.out,"/parameters.RData\")\n",
         "# load data\n",
         "files <- read.table(\"",dir.out,"/",servers[server],"/species_list_core",core,".txt\")\n",
+        "# prepare the log file\n",
+        "log.file <- \"",log.run.maxent.prefix,"_", servers[server], "_core", cores[core],".txt\"\n",
+        "write(\"sp_id;proc_time;finished_at\", log.file, append=F)\n",
         "# run maxent\n",
-        "sapply(files[,1], function(i) run.maxent(sp_id=i,max.ram=me.max.ram, dir.maxent=dir.maxent, dir.proj=dir.proj, no.replicates=me.no.replicates, replicate.type=me.replicate.type))",sep=""),
+        "sapply(files[,1], function(i) run.maxent(sp_id=i,max.ram=me.max.ram, dir.maxent=dir.maxent, dir.proj=dir.proj, no.replicates=me.no.replicates, replicate.type=me.replicate.type,log.file=log.file))",sep=""),
         paste(dir.out,"/",servers[server],"/runmaxent_core",core,".R",sep=""))
        t.count <- t.count+1
     }

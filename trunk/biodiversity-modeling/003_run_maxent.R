@@ -21,8 +21,9 @@
 # Script: no changes should be made below #
 ###########################################
 
-run.maxent <- function(sp_id,max.ram, dir.maxent, no.replicates, replicate.type, dir.proj)
+run.maxent <- function(sp_id,max.ram, dir.maxent, no.replicates, replicate.type, dir.proj,log.file="log.run.maxent")
 { 
+   t.start <- proc.time()[3]
 dir.create(paste(dir.out,"/",sp_id,"/results", sep=""))
 dir.create(paste(dir.out,"/",sp_id,"/cross", sep=""))
 dir.create(paste(dir.out,"/",sp_id,"/proj", sep=""))
@@ -47,5 +48,7 @@ system(paste("rm -r ",dir.out,"/",sp_id, sep=""))
 # rm original files
 #file.remove(paste(sp_id,"/proj/",list.files(paste(sp_id,"/proj/", sep=""), pattern="*.asc"), sep=""))
 
+tt <- proc.time()[3] - t.start
+write(paste(sp_id, tt, Sys.time(), sep=";"), log.file, append=T)
 }
 
