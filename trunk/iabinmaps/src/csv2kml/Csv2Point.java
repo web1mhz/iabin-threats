@@ -34,21 +34,22 @@ import de.micromata.opengis.kml.v_2_2_0.Polygon;
 public class Csv2Point {
 
 	private LinkedList<String[]> lista;
+	
 
 	public Csv2Point(LinkedList<String[]> lista) {
 		this.lista = lista;
 	}
 
-	public void createKML(String path) throws FileNotFoundException {
+	public void createKML(String path, String archivo) throws FileNotFoundException {
 
 		String descripcion = "descripcion";
 
 		final Kml kml = new Kml();
 
-		path = "d:";// este viene de properties
+		
 
-		String filename = path + File.separator + "csv2punto.kml";
-		filename = "d:/csv2punto.kml";
+		String ruta = path +archivo+ "-point.kml";
+		//filename = "d:/csv2punto.kml";
 
 		System.out.println("empieza a mostrar");
 
@@ -65,9 +66,12 @@ public class Csv2Point {
 
 		}
 		kml.setFeature(folder);//se registra el folder al kml
-
+		
+		File dir = new File(path);
+		dir.mkdirs();	
+		
 		kml.marshal();//se imprime kml en consola
-		kml.marshal(new File(filename));//se guarda kml en archivo
+		kml.marshal(new File(ruta));//se guarda kml en archivo
 
 	}
 

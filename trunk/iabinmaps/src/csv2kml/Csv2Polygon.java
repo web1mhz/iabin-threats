@@ -28,9 +28,11 @@ public class Csv2Polygon {
 
 	}
 
-	public void createKML(String path) throws FileNotFoundException {
+	public void createKML(String path, String archivo) throws FileNotFoundException {
 
-		String filename = "d:/poligono.kml";
+		
+		String ruta = path + archivo+"-pol.kml";
+		//filename = "d:/poligono.kml";
 
 		Kml kml = new Kml();
 		Folder folder =kml.createAndSetFolder();
@@ -72,8 +74,11 @@ public class Csv2Polygon {
 	
 		kml.setFeature(folder);// se registra el folder al kml
 
+		File dir = new File(path);
+		dir.mkdirs();
+		
 		kml.marshal();// se imprime kml en consola
-		kml.marshal(new File(filename));// se guarda kml en archivo
+		kml.marshal(new File(ruta));// se guarda kml en archivo
 
 	}
 

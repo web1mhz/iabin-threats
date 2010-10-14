@@ -19,9 +19,8 @@ public class Csv2Kml {
 		String estilo="http://wikipedia.agilityhoster.com/estilo.kml#estilo";//se debe agregar properties
 		
 		CsvFile file=new CsvFile("d:/csv/101616.csv");
-
 		lista=file.getLista();
-		System.out.println(lista.getFirst());
+		//System.out.println(lista.getFirst());
 		
 		CsvFile chull=new CsvFile("d:/csv/101616-chull.csv");
 		listaChull=chull.getLista();
@@ -32,14 +31,14 @@ public class Csv2Kml {
 		
 		Csv2Point point=new Csv2Point(lista);   
 		try {
-			point.createKML("d:");
+			point.createKML("d:","point");
 		} catch (FileNotFoundException e) {		e.printStackTrace();		}
 		
 		
 		
 		Csv2Polygon pol=new Csv2Polygon(listaChull,listaChullBuff, estilo);
 		try {
-			pol.createKML("d:");
+			pol.createKML("d:", "polig");
 		} catch (FileNotFoundException e) {		e.printStackTrace();		}
 
 	}
