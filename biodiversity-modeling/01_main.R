@@ -92,7 +92,7 @@ for (server in 1:length(servers))
         "# load data\n",
         "files <- read.table(\"",dir.out,"/",servers[server],"/species_list_core",core,".txt\")\n",
         "# prepare the log file\n",
-        "log.file <- \"",log.run.maxent.prefix,"_", servers[server], "_core", cores[core],".txt\"\n",
+        "log.file <- \"",log.run.maxent.prefix,"_", servers[server], "_core", core,".txt\"\n",
         "write(\"sp_id;proc_time;finished_at\", log.file, append=F)\n",
         "# run maxent\n",
         "sapply(files[,1], function(i) run.maxent(sp_id=i,max.ram=me.max.ram, dir.maxent=dir.maxent, dir.proj=dir.proj, no.replicates=me.no.replicates, replicate.type=me.replicate.type,log.file=log.file))",sep=""),
@@ -100,18 +100,16 @@ for (server in 1:length(servers))
        t.count <- t.count+1
     }
   }
+  # for each server make a shell script to start execute the R batches
+  # call the shell scripts from the iabin root directory
+  write(paste("for f in ",dir.out,"/", servers[server], "/ *.R\n",
+    "do\n",
+    "screen -S $f -m -d R CMD BATCH $f\n",
+    # -S gives a meaningful session names, in this caste genomix*/runmanxent_core*.R
+    # -d -m detach console
+    "done", sep=""), paste(dir.out,"/", servers[server], "/run_batches.sh", sep=""))
+  
 }
-
-# on the server change to the directory
-# /mnt/geodata/Threat-assessment/results/<folder.of.current.run> and rund the for loop 
-me=`hostname`
-
-for f in $me/*.R
-do
-   screen -S $f -d -m R CMD BATCH $f
-   # -S gives a meaningful session names, in this caste genomix*/runmanxent_core*.R
-   # -d -m detach console
-done
 
 
 ###########################################
@@ -119,26 +117,44 @@ done
 # import rasters to grass (task 15)
 ###########################################
 
-files <- list.files(pattern="^[0-9].*.tar.gz")
-eval.stats <- data.frame(id=rep(NA, length(files)), avg.auc_train=NA, avg.auc_test=NA, sd.auc=NA, prevalence=NA, ten.percentile=NA, roc=NA)
-
-# move species that havent been done to a folder redo 
-system("mkdir redo")
-system("mv ls -1 | grep ^[0-9]*[0-9]$ | xargs mv redo")
+# most likely this will be continued after some time and parameters will need to be reloaded
+# the name of the out.dir of the run that shall be continued need to be given here!
+# This R session needs to be started from a GRASS shell in the right mapset with the right region!
+parameters <- "results/20101012.2/parameters.RData"
+load(parameters)
+# load species ids
+load(species.id.to.process)
+files <- list.files(path=dir.out,pattern="^[0-9].*.tar.gz")
 
 # This script must be run within a grass shell
 # check mapset and region are right
 # setting up grass
-system("g.mapset mapset=trial.v2 -c")
+system(paste("g.mapset mapset=",mapset," -c", sep=""))
 system("g.region sa")
 system("g.region res=00:05")
 
-for (i in 1:length(files)){
-  system(paste("tar -zxf",files[i]))
-  this.id=strsplit(files[i],"\\.")[[1]][1]
-  for (j in 0:(no.replicates-1)){
+# remove where there were erros predicting, when size is to small
+files <- data.frame(files, stringsAsFactors=F)
+files <- data.frame(files, size=apply(files,1,function(x) file.info(paste(dir.out,"/",x,sep=""))$size))
+
+# only continue files with more than 1mb (1048576 bytes), write others to the redo file
+files.error <- files[files[,2]<1048576,]
+files <- files[files[,2]>=1048576,]
+
+# prep out file
+eval.stats <- data.frame(id=rep(NA, length(files[,1])), avg.auc_train=NA, avg.auc_test=NA, sd.auc=NA, prevalence=NA, ten.percentile=NA, roc=NA)
+
+write.table(files.error, paste(dir.out, "/species_where_maxent_failed.txt",sep=""))
+
+st <- proc.time()
+for (i in 1:length(files[,1])){
+  system(paste("tar -zxf ",dir.out,"/",files[i,1],sep=""))
+  this.id=strsplit(files[i,1],"\\.")[[1]][1]
+  
+  # calculate roc threshold
+  for (j in 0:(me.no.replicates-1)){
     roc <- c()
-    omission.rate <- read.csv(paste(this.id, "/cross/", this.id, "_",j,"_omission.csv", sep=""))
+    omission.rate <- read.csv(paste(dir.out,"/",this.id, "/cross/", this.id, "_",j,"_omission.csv", sep=""))
     spec <- omission.rate$Fractional.area
     sens <- 1-omission.rate$Training.omission
     log.vals <- omission.rate$Corresponding.logistic.value
@@ -150,7 +166,7 @@ for (i in 1:length(files)){
     } else roc <- c(roc, log.vals[which(abs.dif==min(abs.dif))])
   }
 
-  me.res <- read.csv(paste(this.id, "/cross/maxentResults.csv", sep=""))
+  me.res <- read.csv(paste(dir.out,"/",this.id, "/cross/maxentResults.csv", sep=""))
   eval.stats[i,'id'] <- this.id
   eval.stats[i,'avg.auc_train'] <- me.res[(no.replicates+1),'Training.AUC']
   eval.stats[i,'avg.auc_test'] <- me.res[(no.replicates+1),'Test.AUC']
@@ -158,23 +174,26 @@ for (i in 1:length(files)){
   eval.stats[i,'prevalence'] <- me.res[(no.replicates+1),'Prevalence..average.of.logistic.output.over.background.sites.']
   eval.stats[i,'ten.percentile'] <- me.res[(no.replicates+1),'X10.percentile.training.presence.logistic.threshold']
   eval.stats[i,'roc'] <- mean(roc)
-  print(paste("finished ", i, "of", length(files), "species."))
+  print(paste("finished ", i, "of", length(files[,1]), "species."))
   
-  system(paste("r.in.arc in=",this.id,"/proj/",this.id,".asc out=me.",this.id," --o  --q",sep=""),wait=T)
-  system(paste("cat ",this.id,"/training/species.csv | awk -F',' 'NR > 1 {print $2 \"|\" $3}' | v.in.ascii out=occ_",this.id," --o --q",sep=""),wait=T)
-  system(paste("ls ",this.id," | grep -v info.txt |awk '{print\"",this.id,"/\" $0}' | xargs rm -rf",sep=""),wait=T)
-  system(paste("mv",files[i],this.id))
+  system(paste("r.in.arc in=",dir.out,"/",this.id,"/proj/",this.id,".asc out=me.",this.id," --o  --q",sep=""),wait=T)
+  system(paste("cat ",dir.out,"/",this.id,"/training/species.csv | awk -F',' 'NR > 1 {print $2 \"|\" $3}' | v.in.ascii out=occ_",this.id," --o --q",sep=""),wait=T)
+  system(paste("ls ",dir.out,"/",this.id," | grep -v info.txt |awk '{print\"",this.id,"/\" $0}' | xargs rm -rf",sep=""),wait=T)
+  system(paste("mv ",dir.out,"/",files[i,1]," ", dir.out, "/", this.id,sep=""))
+  system(paste("rm -r ", dir.out,"/", this.id, "/cross ",dir.out,"/", this.id, "/proj ",dir.out,"/", this.id, "/results ",dir.out,"/", this.id, "/training",sep=""))
 }
+
+et <- proc.time()
 
 # check for errors
 missing.entries <- which(is.na(unlist(eval.stats)))
 missing.values <- gsub("[0-9]", "", names(missing.entries))
 missing.sp <- eval.stats[gsub("[^0-9]","",names(missing.entries)),1]
-write.table(c("sp_id,missing"), "error_report.txt", row.names=F, col.names=F, quote=F, append=F)
-write.table(cbind(missing.sp, missing.values), "error_report.txt",sep=",", row.names=F, col.names=F, quote=F, append=F)
+write.table(c("sp_id,missing"), log.extract.auc,row.names=F, col.names=F, quote=F, append=F)
+write.table(cbind(missing.sp, missing.values), log.extract.auc, row.names=F, col.names=F, quote=F, append=T)
 
 # write output
-write.table(eval.stats, "evaluation_statistics.csv", col.names=T, row.names=F, sep=",", append=F, quote=F)
+write.table(eval.stats, paste(dir.out, "/evaluation_statistics.csv",sep=""), col.names=T, row.names=F, sep=",", append=F, quote=F)
 
 # write it to the species file
 for (i in eval.stats[,1])
@@ -184,7 +203,7 @@ write(paste("avg.auc_train : ",eval.stats[eval.stats[,1]==i,'avg.auc_train'],
               "\nsd.auc : ",eval.stats[eval.stats[,1]==i,'sd.auc'],
               "\nprevalence : ",eval.stats[eval.stats[,1]==i,'prevalence'],
               "\nten.percentile : ",eval.stats[eval.stats[,1]==i,'ten.percentile'], 
-              "\nroc : ",  eval.stats[eval.stats[,1]==i,'roc'], sep=""), paste(i,"info.txt", sep="/"), append=T)
+              "\nroc : ",  eval.stats[eval.stats[,1]==i,'roc'], sep=""), paste(dir.out,i,"info.txt", sep="/"), append=T)
 }
 
 
@@ -195,13 +214,16 @@ write(paste("avg.auc_train : ",eval.stats[eval.stats[,1]==i,'avg.auc_train'],
 
 # description: cuts the predictions by a buffered convex hull of the occurence points and writes a *.csv with the coordinates of the convexhull and the buffered convex hull.
 
+#### Execute in GRASS shell
+#### cd into the working directory of this run eg. cd ./results/20101012.2
+
 buffer_distance=2 # in degree
 
 # initizialise
 count=1
-total=`ls | grep ^[0-9].* | wc -l` 
+total=`ls | grep ^[0-9].*.[0-9]$ | wc -l` 
 
-for i in `ls | grep ^[0-9].*`
+for i in `ls | grep ^[0-9].*.[0-9]$`
 do
   # chull
   v.hull in=occ_$i out=occ_$i\_hull --o --q
@@ -209,14 +231,14 @@ do
   v.buffer in=occ_$i\_hull out=occ_$i\_hull_buffer distance=$buffer_distance type=area --o --q
 
   # export chull
-  v.to.points -v in=occ_$i\_hull out=tmp --o --q
   echo "lon,lat" >  $i/chull.csv
-  v.out.ascii in=tmp format=point | awk -F'|' '{print $1","$2}' >> $i/chull.csv
+  v.out.ascii in=occ_$i\_hull format=standard | awk '/B/, /C/{if(!/B/ && !/C/) print $1","$2}' >> $i/chull.csv
+    # exports the coords of the polygon (B) and the centroid (C), awk is used to get extract only the points of the polyon. 
 
   # export buffered chull
-  v.to.points -v in=occ_$i\_hull_buffer out=tmp --o --q
   echo "lon,lat" > $i/chull_buffer.csv
-  v.out.ascii in=tmp format=point | awk -F'|' '{print $1","$2}' >> $i/chull_buffer.csv
+  v.out.ascii in=occ_$i\_hull_buffer format=standard | awk '/B/, /C/{if(!/B/ && !/C/) print $1","$2}' >> $i/chull_buffer.csv
+    # exports the coords of the polygon (B) and the centroid (C), awk is used to get extract only the points of the polyon. 
 
   # cut predicitoins buffer
   v.to.rast in=occ_${i}_hull_buffer out=tmp use=val value=1 --q
@@ -233,9 +255,11 @@ done
 # Species Richness per genus (task 16)
 ###########################################
 
+# make a file where for each species the class, family, genus and species is written
+
 echo "class,fam_id,gen_id,sp_id" > tax.txt
 
-for i in `ls | grep ^[0-9].*`
+for i in `ls | grep ^[0-9].*.[0-9]$`
 do
   class=`awk -F' : ' '/class/ {print $2}' $i/info.txt`
   fam=`awk -F' : ' '/family_id/ {print $2}' $i/info.txt`
@@ -248,8 +272,8 @@ done
 # species richness per genus
 # genus is the third column in the file tax.txt, hence take unique values
 
-auc_th=0.7
-occ_th=roc
+auc_th=0.7 # specify the the threshold to be used in order to determine presence and absence.
+occ_th=roc # specify here the method to be used for the thresholds
 
 for genus in `awk -F, 'NR>1 {print $3}' tax.txt | sort -u`  # for each unique genus
 do
@@ -284,7 +308,12 @@ do
   g.mremove rast="gen.sp.*" -f
 done
 
+# clean up
 g.mremove rast="gen.sp.*" -f
+g.remove rast=A,B
+rm tmp.sf
+
+
 
 ###########################################
 # Species Richness per class (task 17)
@@ -327,6 +356,10 @@ do
   g.copy rast=$tmp,cla.$class
 done
 
+# clean up
+g.mremove rast="cla.sp.*" -f
+g.remove rast=A,B
+rm tmp.sf
 
 ###########################################
 # Threat for each species (task 18)
