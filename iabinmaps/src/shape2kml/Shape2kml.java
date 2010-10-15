@@ -24,7 +24,7 @@ public class Shape2kml {
 		s2k.executeFromProperties(args[0]);
 	}
 	
-	public void executeFromProperties(String propertiesFile){
+	public void executeFromProperties(String propertiesFile) {
 		PropertiesManager.register(propertiesFile);
 		
 		

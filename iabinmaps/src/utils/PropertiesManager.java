@@ -29,7 +29,8 @@ public class PropertiesManager {
 		try {
 			properties.load(new FileInputStream(propertiesPath));
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("The indicated file has not been found, file needed: \"iabin.properties\"");
+			e.getLocalizedMessage();
 			System.exit(-1);
 		}
 	}
