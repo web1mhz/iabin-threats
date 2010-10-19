@@ -1,0 +1,11 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+This tools provide the ability to convert shape and csv files to kml files and to convert raster files to png images, so that these data can be shown through the web interface using google maps and tools.
+
+
+= Details =
+
+The first part is the shape file conversion, this reads the shapefile specified in the iabin.properties file, then processes it and the places the result kml files into the path specified in the iabin.properties file and the folder summaries 
+
