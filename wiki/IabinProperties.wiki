@@ -26,6 +26,7 @@ summaries.kmloutputpath=protectedArea/
 - RASTERS 
 - Name of raster files that are going to be converted into PNG format
 -----------------------------------------
+
 rasters=P1;P2;P3
 P1.group=bioclim
 P1.filename=P1.asc
@@ -36,7 +37,9 @@ P2.filename=P2.asc
 - SHAPEFILES 
 - Name of files that are going to be converted into KML format
 ----------------------------------------
-shapes= PA  #PA is the folder that is created inside summaries
+
+shapes= PA  
+PA is the folder that is created inside summaries
 PA.group= summaries
 PA.shapefile=SurAmerica.shp
 
@@ -44,6 +47,7 @@ PA.shapefile=SurAmerica.shp
 - ZOOM  
 - minimum and maximum zoom that is going to be applied to bioclim, threats and richness raster files
 ----------------------------------------
+
 zoom.min=0
 zoom.max=1
 
@@ -53,7 +57,9 @@ zoom.max=1
 - http://wikipedia.agilityhoster.com/estilo.kml this part is the host and folder of style file and "#estilo" is the ID of the style that wants to be applied 
 ----------------------------------------
 
+
 style.url=http://wikipedia.agilityhoster.com/estilo.kml#estilo
+
 
 ----------------------------------------
 - PROTECTED AREA 
@@ -65,26 +71,30 @@ style.url=http://wikipedia.agilityhoster.com/estilo.kml#estilo
 - PA.shape.column.indexes Holds the features of shapefiles of protected areas that is wanted to be shown , includes column name, 
 - PA.shape.column.names holds the name that is going to be given to each column, and 
 - PA.kml.main holds the name of main KML (from which the other polygon KMLs are called)
-- 
-#######################
+----------------------------------------
+
+
 PA.server.url=http://wikipedia.agilityhoster.com/         
 PA.shape.column.indexes=2;4;5;20
 PA.shape.column.names=Name;Country;State;UNCAT
 PA.kml.main=mainKML.kml
 
-#######################
-# COLORS 
-# The colors that are going to be applied to raster files include type, scale, minimum color and maximum one.
-# P1.color.type "P1" is the name of the raster file p1.asc - the types that may exist are "temperature", "precipitation", "threats", "Species distribution"
-# "temperature", "precipitation", "threats" always take continuous values
-# Species "distribution" take discrete values fixed or quantiles
-# current species "richness" take discrete values fixed or quantiles
-# temperature.color.min (max) the minimum (maximum) temperature color written in RGB format in decimal (255;255;255)
-# temperature.scale= may take discrete values "quantiles" or "fixed" or take continuous values "continuous"
-# temperature.scale.quantiles the value is decimal representing the number of quantiles in which the scale will be splitted  - by default 5 or 6 
-# temperature.scale.fixed gets the threshold value, this takes 100 as value by default
-# temperature.scale.continuous This does not get any value because the scale is degradated from minimum to maximum color
-#######################
+
+----------------------------------------
+- COLORS 
+- The colors that are going to be applied to raster files include type, scale, minimum color and maximum one.
+- P1.color.type "P1" is the name of the raster file p1.asc - the types that may exist are "temperature", "precipitation", "threats", "Species distribution"
+- "temperature", "precipitation", "threats" always take continuous values
+- Species "distribution" take discrete values fixed or quantiles
+- current species "richness" take discrete values fixed or quantiles
+- temperature.color.min (max) the minimum (maximum) temperature color written in RGB format in decimal (255;255;255)
+- temperature.scale= may take discrete values "quantiles" or "fixed" or take continuous values "continuous"
+- temperature.scale.quantiles the value is decimal representing the number of quantiles in which the scale will be splitted  - by default 5 or 6 
+- temperature.scale.fixed gets the threshold value, this takes 100 as value by default
+- temperature.scale.continuous This does not get any value because the scale is degradated from minimum to maximum color
+----------------------------------------
+
+
 P1.color.type=temperature
 P2.color.type=precipitation
 
