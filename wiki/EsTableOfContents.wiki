@@ -1,8 +1,8 @@
 #summary One-sentence summary of this page.
 #labels Not-Finished,Featured
 
-El veloz murci�lago hind� com�a feliz cardillo y kiwi.
-La cig�e�a tocaba el saxof�n detr�s del palenque de paja. 
+El veloz murciélago hindú comía feliz cardillo y kiwi.
+La cigueña tocaba el saxofón detrás del palenque de paja. 
 
  * Instalaci�n
    * [Especificaciones Generales]
