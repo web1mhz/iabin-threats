@@ -1,6 +1,8 @@
 #summary One-sentence summary of this page.
 #sidebar TableOfContents
 
+||[DataConversion English]|||[DataConversion_es Español]||
+
 = Introduction =
 
 This tools provide the ability to convert shape and csv files to kml files and to convert raster files to png images, so that these data can be shown through the web interface using google maps.

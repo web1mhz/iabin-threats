@@ -2,6 +2,8 @@
 #labels Phase-Implementation
 #sidebar TableOfContents
 
+||[HowToBuildITA English]|||[HowToBuildITA_es Español]||
+
 == Technical Requirements ==
 
  * Apache Subversion SVN Client. [http://subversion.apache.org/packages.html Get it].
