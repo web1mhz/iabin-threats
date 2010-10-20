@@ -1,5 +1,6 @@
 #summary How to build the ITA data filtering tool
 #labels Phase-Implementation
+#sidebar TableOfContents
 
 == Technical Requirements ==
 
