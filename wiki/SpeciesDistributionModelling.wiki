@@ -1,6 +1,6 @@
 #labels sdm,R
-# Documentation on how the Species Distribution Modelling (SDM) was done. 
 #sidebar TableOfContents
+# Documentation on how the Species Distribution Modelling (SDM) was done. 
 
 = Introduction =
 

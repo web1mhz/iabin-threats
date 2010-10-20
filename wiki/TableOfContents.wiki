@@ -3,13 +3,13 @@
 
  * Installation
    * [General specifications (Not Yet)]
-   * [How_To_Build_ITA How to build the project]
    * [Installation]
-   * [Configuration]
    * [Copyright]
    * [FAQ]
  * Data Filtering
-   * [Description] 
+   * [Description]
+   * [How_To_Build_ITA How to build the project]
+   * [Configuration] 
    * [API]
  * Re-Georreferencing
    * [Description]
