@@ -57,7 +57,7 @@ zoom.max=1
 - http://wikipedia.agilityhoster.com/estilo.kml this part is the host and folder of style file and "#estilo" is the ID of the style that wants to be applied _
 ----------------------------------------
 
-style.url=!http://wikipedia.agilityhoster.com/estilo.kml#estilo
+style.url=http://wikipedia.agilityhoster.com/estilo.kml#estilo
 
 
 ----------------------------------------
