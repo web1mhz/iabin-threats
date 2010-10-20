@@ -23,18 +23,22 @@ We invite you to read first the [Description] of the project.
 Check out the [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita ita project] of this repository.
 
  {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita ita}}}
+ 
+To update your local copy later, issue the command:
+ 
+ {{{svn update}}}
 
 The instructions for checking out from Google Code's SVN can be found [http://code.google.com/p/iabin-threats/source/checkout here]
 
 == 2. Organizing code for Eclipse IDE ==
 
-Once the source code has been checked out, if you want to organize it as a Eclipse IDE project, run the command:
+Once the source code has been checked out, if you want to organize it as a Eclipse IDE project, issue the command:
 
  {{{mvn eclipse:eclipse}}}
 
 == 3. Compiling project ==
 
-If you want to compile the project to get the binaries, run the command:
+If you want to compile the project to get the binaries, issue the command:
 
  {{{mvn compile}}}
 
@@ -43,7 +47,7 @@ and the /target/rmi-classes where you can find the Stub classes to run the proje
 
 == 4. Packaging project ==
 
-If you want to deploy the .jar file of the project, run the command:
+If you want to deploy the .jar file of the project, issue the command:
 
  {{{mvn package}}}
 
@@ -60,7 +64,7 @@ You can see the [API] page to know how to use the classes of the project or run 
 
 === 5.1 Running as stand alone ===
 
-If you have configured the project as stand alone you just need to run the jar directly:
+If you have configured the project as stand alone you just need to execute the jar directly:
 
  {{{java -Xmx1500m -jar ita-0.1-SNAPSHOT.jar}}}
 
