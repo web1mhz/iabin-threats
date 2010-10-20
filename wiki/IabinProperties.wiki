@@ -8,8 +8,8 @@ Here is the description of the iabin.properties file, this one holds the configu
 = Properties File Example =
 
 -----------------------------------------
-- *PATH*  
-- source and target path of files
+- _*PATH*  
+- source and target path of files_
 -----------------------------------------
 
 path.source=c:/data/
@@ -23,8 +23,8 @@ summaries.path=summaries/
 summaries.kmloutputpath=protectedArea/
 
 -----------------------------------------
-- *RASTERS* 
-- Name of raster files that are going to be converted into PNG format
+- _*RASTERS* 
+- Name of raster files that are going to be converted into PNG format_
 -----------------------------------------
 
 rasters=P1;P2;P3
@@ -34,8 +34,8 @@ P2.group=bioclim
 P2.filename=P2.asc
 
 ----------------------------------------
-- *SHAPEFILES* 
-- Name of files that are going to be converted into KML format
+- _*SHAPEFILES* 
+- Name of files that are going to be converted into KML format_
 ----------------------------------------
 
 shapes= pa  
@@ -44,24 +44,24 @@ pa.group= summaries
 pa.shapefile=SurAmerica.shp
 
 ----------------------------------------
-- *ZOOM*  
-- minimum and maximum zoom that is going to be applied to bioclim, threats and richness raster files
+- _*ZOOM*  
+- minimum and maximum zoom that is going to be applied to bioclim, threats and richness raster files_
 ----------------------------------------
 
 zoom.min=0
 zoom.max=1
 
 ----------------------------------------
-- *KML Style*
+- _*KML Style*
 - style.url holds the style url that is going to be applied to KML files
-- http://wikipedia.agilityhoster.com/estilo.kml this part is the host and folder of style file and "#estilo" is the ID of the style that wants to be applied 
+- http://wikipedia.agilityhoster.com/estilo.kml this part is the host and folder of style file and "#estilo" is the ID of the style that wants to be applied _
 ----------------------------------------
 
 style.url=!http://wikipedia.agilityhoster.com/estilo.kml#estilo
 
 
 ----------------------------------------
-- *PROTECTED AREA* 
+- _*PROTECTED AREA* 
 - The conversion of these polygons into KML is made by reading a shapefile that in this case is in path contained in "path.source"+ "summaries.path", and generating a main kml, from which
 - the other kml files, that form the polygons, are called, each polygon shows a table which is made with the values that are received in variable 
 - "PA.shape.column.indexes" and the values of "PA.shape.column.names" are settled as column names. 
@@ -69,7 +69,7 @@ style.url=!http://wikipedia.agilityhoster.com/estilo.kml#estilo
 - PA.server.url holds the server address where MKL files are going to be hosted 
 - PA.shape.column.indexes Holds the features of shapefiles of protected areas that is wanted to be shown , includes column name, 
 - PA.shape.column.names holds the name that is going to be given to each column, and 
-- PA.kml.main holds the name of main KML (from which the other polygon KMLs are called)
+- PA.kml.main holds the name of main KML (from which the other polygon KMLs are called)_
 ----------------------------------------
 
 
@@ -80,7 +80,7 @@ PA.kml.main=mainKML.kml
 
 
 ----------------------------------------
-- *COLORS* 
+- _*COLORS* 
 - The colors that are going to be applied to raster files include type, scale, minimum color and maximum one.
 - P1.color.type "P1" is the name of the raster file p1.asc - the types that may exist are "temperature", "precipitation", "threats", "Species distribution"
 - "temperature", "precipitation", "threats" always take continuous values
@@ -90,7 +90,7 @@ PA.kml.main=mainKML.kml
 - temperature.scale= may take discrete values "quantiles" or "fixed" or take continuous values "continuous"
 - temperature.scale.quantiles the value is decimal representing the number of quantiles in which the scale will be splitted  - by default 5 or 6 
 - temperature.scale.fixed gets the threshold value, this takes 100 as value by default
-- temperature.scale.continuous This does not get any value because the scale is degradated from minimum to maximum color
+- temperature.scale.continuous This does not get any value because the scale is degradated from minimum to maximum color_
 ----------------------------------------
 
 
