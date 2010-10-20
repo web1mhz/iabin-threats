@@ -8,7 +8,7 @@ Here is the description of the iabin.properties file, this one holds the configu
 = Properties File Example =
 
 -----------------------------------------
-- PATH  
+- *PATH*  
 - source and target path of files
 -----------------------------------------
 
@@ -23,7 +23,7 @@ summaries.path=summaries/
 summaries.kmloutputpath=protectedArea/
 
 -----------------------------------------
-- RASTERS 
+- *RASTERS* 
 - Name of raster files that are going to be converted into PNG format
 -----------------------------------------
 
@@ -34,17 +34,17 @@ P2.group=bioclim
 P2.filename=P2.asc
 
 ----------------------------------------
-- SHAPEFILES 
+- *SHAPEFILES* 
 - Name of files that are going to be converted into KML format
 ----------------------------------------
 
-shapes= PA  
-PA is the folder that is created inside summaries
-PA.group= summaries
-PA.shapefile=SurAmerica.shp
+shapes= pa  
+pa is the folder that is created inside summaries
+pa.group= summaries
+pa.shapefile=SurAmerica.shp
 
 ----------------------------------------
-- ZOOM  
+- *ZOOM*  
 - minimum and maximum zoom that is going to be applied to bioclim, threats and richness raster files
 ----------------------------------------
 
@@ -52,7 +52,7 @@ zoom.min=0
 zoom.max=1
 
 ----------------------------------------
-- KML Style
+- *KML Style*
 - style.url holds the style url that is going to be applied to KML files
 - http://wikipedia.agilityhoster.com/estilo.kml this part is the host and folder of style file and "#estilo" is the ID of the style that wants to be applied 
 ----------------------------------------
@@ -61,7 +61,7 @@ style.url=!http://wikipedia.agilityhoster.com/estilo.kml#estilo
 
 
 ----------------------------------------
-- PROTECTED AREA 
+- *PROTECTED AREA* 
 - The conversion of these polygons into KML is made by reading a shapefile that in this case is in path contained in "path.source"+ "summaries.path", and generating a main kml, from which
 - the other kml files, that form the polygons, are called, each polygon shows a table which is made with the values that are received in variable 
 - "PA.shape.column.indexes" and the values of "PA.shape.column.names" are settled as column names. 
@@ -80,7 +80,7 @@ PA.kml.main=mainKML.kml
 
 
 ----------------------------------------
-- COLORS 
+- *COLORS* 
 - The colors that are going to be applied to raster files include type, scale, minimum color and maximum one.
 - P1.color.type "P1" is the name of the raster file p1.asc - the types that may exist are "temperature", "precipitation", "threats", "Species distribution"
 - "temperature", "precipitation", "threats" always take continuous values
