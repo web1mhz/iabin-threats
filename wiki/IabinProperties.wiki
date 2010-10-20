@@ -7,10 +7,10 @@ Here is the description of the iabin.properties file, this one holds the configu
 
 = Properties File Example =
 
-############################################################################
-# PATH  
-# source and target path of files
-############################################################################
+-----------------------------------------
+- PATH  
+- source and target path of files
+-----------------------------------------
 
 path.source=c:/data/
 path.target=c:/iabinmaps/
