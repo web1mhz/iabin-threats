@@ -2,10 +2,18 @@
 
 = Introduction =
 
-This tools provide the ability to convert shape and csv files to kml files and to convert raster files to png images, so that these data can be shown through the web interface using google maps and tools.
+This tools provide the ability to convert shape and csv files to kml files and to convert raster files to png images, so that these data can be shown through the web interface using google maps.
 
 
 = Details =
 
-The first part is the shape file conversion, this reads the shapefile specified in the iabin.properties file, then processes it and the places the result kml files into the path specified in the iabin.properties file and the folder summaries 
+*ShapeFile*
 
+The first part is the shape file conversion, this reads the shapefile from the path specified in the iabin.properties file, then processes it and the places the result kml files into the path specified in the iabin.properties file and the folder summaries, the required files have the following extensions:  .shp .shx .dbf (these are mandatory)
+following files are optional : 
+.prj .sbn .sbx .fbn .fbx .ain .aih .ixs .mxs .atx .atx .shp .xml .cpg
+
+this is how the path is described in the iabin.properties file:
+shapes= PA       <<----- PA: protected Areas
+PA.group= summaries <<---- Summaries: is the folder where the files are going to be written
+PA.shapefile=SurAmerica.shp <<--- Source Filename
