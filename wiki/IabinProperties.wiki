@@ -56,11 +56,10 @@ zoom.max=1
 - style.url holds the style url that is going to be applied to KML files
 - http://wikipedia.agilityhoster.com/estilo.kml this part is the host and folder of style file and "#estilo" is the ID of the style that wants to be applied 
 ----------------------------------------
-p
-p
+
 style.url=!http://wikipedia.agilityhoster.com/estilo.kml#estilo
-p
-p
+
+
 ----------------------------------------
 - PROTECTED AREA 
 - The conversion of these polygons into KML is made by reading a shapefile that in this case is in path contained in "path.source"+ "summaries.path", and generating a main kml, from which
@@ -72,14 +71,14 @@ p
 - PA.shape.column.names holds the name that is going to be given to each column, and 
 - PA.kml.main holds the name of main KML (from which the other polygon KMLs are called)
 ----------------------------------------
-p
-p
+
+
 PA.server.url=http://wikipedia.agilityhoster.com/         
 PA.shape.column.indexes=2;4;5;20
 PA.shape.column.names=Name;Country;State;UNCAT
 PA.kml.main=mainKML.kml
-p
-p
+
+
 ----------------------------------------
 - COLORS 
 - The colors that are going to be applied to raster files include type, scale, minimum color and maximum one.
