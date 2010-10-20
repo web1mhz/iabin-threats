@@ -2,7 +2,7 @@
 #labels Phase-Implementation
 #sidebar TableOfContents
 
-||[HowToBuildITA English]|||[HowToBuildITA_es Español]||
+||[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es Spanish]|||[es/HowToBuildITA http://data.gbif.org/images/flags/es.gif]||
 
 == Introduction ==
 
