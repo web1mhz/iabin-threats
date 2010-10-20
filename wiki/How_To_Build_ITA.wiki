@@ -1,0 +1,41 @@
+#summary How to build the ITA data filtering tool
+#labels Phase-Implementation
+
+== Technical Requirements ==
+
+ * Apache Subversion SVN Client. [http://subversion.apache.org/packages.html Get it].
+ * Apache Maven. [http://maven.apache.org/download.html Get it]
+ * Java JRE version 6 or higher. [http://www.java.com/ Get it]
+
+== Administrative Requirements ==
+
+ * The portal database mounted in the MySQL server and runing
+ * Complete allowed access to the database, that means connection to the MySQL server, valid username and password.
+
+== 1. Checking out the source code ==
+
+Check out the [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita ita project] of this repository.
+
+ svn checkout https://iabin-threats.googlecode.com/svn/branches/ita ita
+
+The instructions for checking out from Google Code's SVN can be found [http://code.google.com/p/iabin-threats/source/checkout here]
+
+
+== 2. Organizing code for Eclipse IDE ==
+
+Once the source code has been checked out, if you want to organize it as a Eclipse IDE project, run the command:
+
+ mvn eclipse:eclipse
+
+== 3. Compiling project ==
+
+If you want to compile the project to get the binaries, run the command:
+
+ mvn compile
+
+== 4. Packaging project ==
+
+If you want to deploy the .jar file of the project
+
+
+Compiling step is not necessary since packaging includes the compiling process to create the jar
