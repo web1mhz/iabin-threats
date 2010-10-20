@@ -10,7 +10,7 @@ This tools provide the ability to convert shape and csv files to kml files and t
 
 *ShapeFile*
 
-The first part is the shape file conversion, this reads the shapefile from the path specified in the iabin.properties file, then processes it and the places the result kml files into the path specified in the iabin.properties file and the folder summaries, the required files have the following extensions:  .shp .shx .dbf (these are mandatory)
+The first part is the shape file conversion, this reads the shapefile from the path specified in the [WikySyntax iabin.properties file], then processes it and the places the result kml files into the path specified in the iabin.properties file and the folder summaries, the required files have the following extensions:  .shp .shx .dbf (these are mandatory)
 following files are optional : 
 .prj .sbn .sbx .fbn .fbx .ain .aih .ixs .mxs .atx .atx .shp .xml .cpg
 
