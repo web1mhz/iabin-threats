@@ -1,26 +1,26 @@
 #summary One-sentence summary of this page.
 #labels Not-Finished,Featured
 
-El veloz murciélago hindú comía feliz cardillo y kiwi.
-La cigüeña tocaba el saxofón detrás del palenque de paja.
+El veloz murciï¿½lago hindï¿½ comï¿½a feliz cardillo y kiwi.
+La cigï¿½eï¿½a tocaba el saxofï¿½n detrï¿½s del palenque de paja. 
 
- * Instalación
+ * Instalaciï¿½n
    * [Especificaciones Generales]
-   * [Instalación]
+   * [Instalaciï¿½n]
    * [Derechos de Autor]
    * [Preguntas Frecuentes]
  * Filtro de Datos
-   * [Descripción]
-   * [HowToBuildITA Cómo construir/compilar el proyecto]
-   * [Configuración] 
+   * [Descripciï¿½n]
+   * [HowToBuildITA Cï¿½mo construir/compilar el proyecto]
+   * [Configuraciï¿½n] 
    * [API]
- * Re-Georreferenciación
-   * [Descripción]
+ * Re-Georreferenciaciï¿½n
+   * [Descripciï¿½n]
    * [API]
- * Modelo de Distribución
-   * [SpeciesDistributionModelling Descripción]
+ * Modelo de Distribuciï¿½n
+   * [SpeciesDistributionModelling Descripciï¿½n]
    * [API]
- * Herramienta de Navegación
-   * [Descripción]
-   * [DataConversion Conversión de Datos]
+ * Herramienta de Navegaciï¿½n
+   * [Descripciï¿½n]
+   * [DataConversion Conversiï¿½n de Datos]
    * [WEB]
