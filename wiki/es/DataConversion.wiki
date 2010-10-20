@@ -1,0 +1,8 @@
+#summary One-sentence summary of this page.
+#sidebar TableOfContents
+
+||[DataConversion English]|||[DataConversion_es Español]||
+
+= Introducción =
+
+Estas herramientas ofrecen la posibilidad de convertir archivos en formato shp y csv a archivos KML a imagenes en formato PNG, para que estos datos se pueden mostrar a través de la interfaz web utilizando Google Maps.

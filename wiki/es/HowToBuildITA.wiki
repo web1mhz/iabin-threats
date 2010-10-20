@@ -1,7 +1,10 @@
 #summary How to build the ITA data filtering tool
 #labels Phase-Implementation
+#sidebar TableOfContents
 
-== Introduction ==
+||[HowToBuildITA English]|||[HowToBuildITA Español]||
+
+== Introducción ==
 
 This is a technical document and is intended to people who has relation with the technical implementation of the project.
 
