@@ -4,9 +4,7 @@
 
 [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://data.gbif.org/images/flags/us.gif]
 [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es http://data.gbif.org/images/flags/es.gif]
-[[es:HowToBuildITA]]
-[[es:HowToBuildITA] http://data.gbif.org/images/flags/es.gif]
-[[[es:HowToBuildITA]]] http://data.gbif.org/images/flags/es.gif]
+[es:HowToBuildITA]
 
 == Introduction ==
 
