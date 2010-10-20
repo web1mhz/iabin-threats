@@ -2,8 +2,8 @@
 #labels Phase-Implementation,Not-Finished
 #sidebar TableOfContents
 
-[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://data.gbif.org/images/flags/gb.gif]
-[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es http://data.gbif.org/images/flags/es.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://www.iabin.net/components/com_joomfish/images/flags/en.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es http://www.iabin.net/components/com_joomfish/images/flags/es.gif]
 
 == Introducción ==
 
