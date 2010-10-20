@@ -7,11 +7,6 @@
  * Apache Maven. [http://maven.apache.org/download.html Get it]
  * Java JRE version 6 or higher. [http://www.java.com/ Get it]
 
-== Administrative Requirements ==
-
- * The portal database mounted in the MySQL server and runing
- * Complete allowed access to the database, that means connection to the MySQL server, valid username and password.
-
 == 1. Checking out the source code ==
 
 Check out the [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita ita project] of this repository.
@@ -33,9 +28,15 @@ If you want to compile the project to get the binaries, run the command:
 
  mvn compile
 
+It creates the /target/classes directory where you can find the compiled classes
+and the /target/rmi-classes where you can find the Stub classes to run the project using Remote Method Invocation [http://en.wikipedia.org/wiki/Java_remote_method_invocation Java RMI]
+
 == 4. Packaging project ==
 
-If you want to deploy the .jar file of the project
+If you want to deploy the .jar file of the project, run the command:
 
+ mvn package
+
+Then you can find the .jar in the /target directory, named _ita_ with the current version of the project _e.g. ita-0.1-SNAPSHOT.jar_
 
 Compiling step is not necessary since packaging includes the compiling process to create the jar
