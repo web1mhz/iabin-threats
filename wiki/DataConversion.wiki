@@ -18,3 +18,4 @@ this is how the path is described in the iabin.properties file:
 shapes= PA       <<----- PA: protected Areas
 PA.group= summaries <<---- Summaries: is the folder where the files are going to be written
 PA.shapefile=SurAmerica.shp <<--- Source Filename
+The iabin.properties file must be fill with the variable name in upper case, and the value in lower case.
