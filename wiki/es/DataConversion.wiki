@@ -2,7 +2,7 @@
 #sidebar TableOfContents
 #labels Not-Finished
 
-||[DataConversion English]|||[DataConversion_es Espa�ol]||
+||[DataConversion English]|||[DataConversion Español]||
 
 = Introducción =
 
