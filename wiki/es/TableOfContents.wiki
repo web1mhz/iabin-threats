@@ -1,23 +1,23 @@
 #summary One-sentence summary of this page.
 #labels Not-Finished,Featured
 
- * Instalaci髇
+ * Instalaci贸n
    * [Especificaciones Generales]
-   * [Instalaci髇]
+   * [Instalaci贸n]
    * [Derechos de Autor]
    * [Preguntas Frecuentes]
  * Filtro de Datos
-   * [Descripci髇]
-   * [HowToBuildITA C髆o construir/compilar el proyecto]
-   * [Configuraci髇] 
+   * [Descripci贸n]
+   * [HowToBuildITA C贸mo construir el proyecto]
+   * [Configuraci贸n] 
    * [API]
- * Re-Georreferenciaci髇
-   * [Descripci髇]
+ * Re-Georreferenciaci贸n
+   * [Descripci贸n]
    * [API]
- * Modelo de Distribuci髇
-   * [SpeciesDistributionModelling Descripci髇]
+ * Modelo de Distribuci贸n
+   * [SpeciesDistributionModelling Descripci贸n]
    * [API]
- * Herramienta de Navegaci髇
-   * [Descripci髇]
-   * [DataConversion Conversi髇 de Datos]
+ * Herramienta de Navegaci贸n
+   * [Descripci贸n]
+   * [DataConversion Conversi贸n de Datos]
    * [WEB]

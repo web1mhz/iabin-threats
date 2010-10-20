@@ -1,36 +1,7 @@
-#labels sdm,R
+#summary ---
+#labels sdm,R,Not-Finished
 #sidebar TableOfContents
 
-||[SpeciesDistributionModelling English]|||[SpeciesDistributionModelling Espa�ol]||
+= Introducción =
 
-Documentation on how the Species Distribution Modelling (SDM) was done.
-
-= Introduction =
-
-This page is intended to give a brief, not to technical summary about the species distribution modelling (sdm) within the IABIN project.
-
-= Details =
-== Software ==
-All work was done using:
-  * R (in particular packages raster and snowfall)
-  * MaxEnt 3.3.1
-  * GRASS 6.4
-  * Bash
-== Data preparation and organisation ==
-  * *Organising species data:* The presence data was divided to the species level. For each species a subdirectory was created containing the presence points for that species and _info.txt_ file. In the _info.txt_ file the initial parameters of the species (i.e. kingdom, family, genus, number of presence points) are saved. During the modelling process results for the species are written in this file. 
-  * *Getting background points:* MaxEnt requires a random background sample. For each species it was determined in which which biomes (according to the wwf classification) the presence points fell. From these biomes a random sample of 10000 was drawn for the background points.
-  * *Extracting values of the climate variables:* The coordinates of all species and background points were merged. Using maxent the values for all 8 environmental variables were extracted. For each species for every presence and background point values of appropriate environmental variables were assigned.
-
-== SDM with MaxEnt ==
-
-== Threat Assessment ==
-
-
-
-
-
-= Syntax =
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+esta página está enfocada a.....
