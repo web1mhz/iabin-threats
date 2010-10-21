@@ -28,7 +28,7 @@ public class Csv2Polygon {
 
 	}
 
-	public void createKML(String path, String archivo) throws FileNotFoundException {
+	public void createKML(String path, String archivo, String estilo1) throws FileNotFoundException {
 
 		
 		String ruta = path + archivo+"-pol.kml";
@@ -53,7 +53,7 @@ public class Csv2Polygon {
 		//*****************************************************************
 	
 		Placemark placemark2=folder.createAndAddPlacemark().withName(("Name"))
-		.withDescription("descripcion").withStyleUrl("http://wikipedia.agilityhoster.com/estilo.kml#estilo1");
+		.withDescription("descripcion").withStyleUrl(estilo1);
 		Polygon pol2 = placemark2.createAndSetPolygon();
 		final Boundary bound2 = new Boundary();
 		final LinearRing lin2 = bound2.createAndSetLinearRing();

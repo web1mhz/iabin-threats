@@ -20,9 +20,24 @@ import utils.PropertiesManager;
  * 
  */
 public class TileCutter {
+	static boolean control=false;
 
-	public static void main(String arg[]) throws IOException {
-		PropertiesManager.register(arg[0]);
+	public static void main(String arg[]) {
+		
+		control=true;
+		try {
+			execute(arg[0]);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void execute(String arg) throws IOException{
+		
+
+		if(control==true) PropertiesManager.register(arg);
 
 		String[] rastersID = PropertiesManager.getInstance()
 				.getPropertiesAsStringArray("rasters");
@@ -79,5 +94,7 @@ public class TileCutter {
 			}
 		}
 
+	
 	}
+	
 }
