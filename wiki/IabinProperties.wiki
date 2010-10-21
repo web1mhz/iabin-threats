@@ -86,7 +86,8 @@ style.url=http://wikipedia.agilityhoster.com/estilo.kml#estilo
 ----------------------------------------
 
 
-PA.server.url=http://wikipedia.agilityhoster.com/   
+PA.server.url=http://wikipedia.agilityhoster.com/
+  
       
 PA.shape.column.indexes=2;4;5;20
 
