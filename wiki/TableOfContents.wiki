@@ -8,7 +8,7 @@
    * [FAQ]
  * Data Filtering
    * [Description]
-   * [How_To_Build_ITA How to build the project]
+   * [HowToBuildITA How to build the project]
    * [Configuration] 
    * [API]
  * Re-Georreferencing
