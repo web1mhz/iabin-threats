@@ -13,6 +13,7 @@ Here is the description of the iabin.properties file, this one holds the configu
 -----------------------------------------
 
 path.source=c:/data/
+
 path.target=c:/iabinmaps/
 
 -this is the folder inside path.source and path.target where files are written to and read from
@@ -44,9 +45,13 @@ P2.filename=P2.asc
 ----------------------------------------
 
 shapes= pa  
+
 pa is the folder that is created inside summaries
+
 pa.group= summaries
+
 pa.shapefile=SurAmerica.shp
+
 
 ----------------------------------------
 - _*ZOOM*  
@@ -54,13 +59,16 @@ pa.shapefile=SurAmerica.shp
 ----------------------------------------
 
 zoom.min=0
+
 zoom.max=1
+
 
 ----------------------------------------
 - _*KML Style*
 - style.url holds the style url that is going to be applied to KML files
 - http://wikipedia.agilityhoster.com/estilo.kml this part is the host and folder of style file and "#estilo" is the ID of the style that wants to be applied _
 ----------------------------------------
+
 
 style.url=http://wikipedia.agilityhoster.com/estilo.kml#estilo
 
@@ -78,10 +86,14 @@ style.url=http://wikipedia.agilityhoster.com/estilo.kml#estilo
 ----------------------------------------
 
 
-PA.server.url=http://wikipedia.agilityhoster.com/         
+PA.server.url=http://wikipedia.agilityhoster.com/   
+      
 PA.shape.column.indexes=2;4;5;20
+
 PA.shape.column.names=Name;Country;State;UNCAT
+
 PA.kml.main=mainKML.kml
+
 
 
 ----------------------------------------
@@ -100,15 +112,23 @@ PA.kml.main=mainKML.kml
 
 
 P1.color.type=temperature
+
 P2.color.type=precipitation
 
+
 temperature.color.min= 255;255;0
+
 temperature.color.max= 255;0;0
 
+
 temperature.scale=quantiles
+
 temperature.scale.quantiles=5
 
+
 precipitation.color.min= 255;255;255
+
 precipitation.color.max= 0;0;255
+
 
 precipitation.scale=continuous
