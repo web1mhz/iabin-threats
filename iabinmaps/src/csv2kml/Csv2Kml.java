@@ -17,6 +17,7 @@ public class Csv2Kml {
 	public static void main(String[] args) {
 		
 		String estilo="http://wikipedia.agilityhoster.com/estilo.kml#estilo";//se debe agregar properties
+		String estilo1="http://wikipedia.agilityhoster.com/estilo.kml#estilo1";//se debe agregar properties
 		
 		CsvFile file=new CsvFile("d:/csv/101616.csv");
 		lista=file.getLista();
@@ -38,7 +39,7 @@ public class Csv2Kml {
 		
 		Csv2Polygon pol=new Csv2Polygon(listaChull,listaChullBuff, estilo);
 		try {
-			pol.createKML("d:", "polig");
+			pol.createKML("d:", "polig", estilo1);
 		} catch (FileNotFoundException e) {		e.printStackTrace();		}
 
 	}

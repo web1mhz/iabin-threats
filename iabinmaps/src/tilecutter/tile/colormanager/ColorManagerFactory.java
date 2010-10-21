@@ -1,5 +1,7 @@
 package tilecutter.tile.colormanager;
 
+import java.util.Locale;
+
 import tilecutter.raster.Raster;
 import utils.PropertiesManager;
 
@@ -19,8 +21,8 @@ public class ColorManagerFactory {
 	 * @return null sino encuentra la propiedad
 	 */
 	public static ColorManager createColorManager(String rasterID, Raster raster) {
-		String colorType = PropertiesManager.getInstance()
-				.getPropertiesAsString(rasterID + ".color.type");
+		String colorType = PropertiesManager.getInstance().getPropertiesAsString(rasterID + ".color.type");
+		System.out.println("rasterid : ..... "+rasterID);
 		float[] rgbMin = PropertiesManager.getInstance().getPropertiesAsRGB(colorType + ".color.min");
 		float[] rgbMax = PropertiesManager.getInstance().getPropertiesAsRGB(colorType + ".color.max");
 		float min, max;

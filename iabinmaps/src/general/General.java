@@ -13,6 +13,7 @@ import shape2kml.Shape2kml;
 import shape2kml.kml.KmlGroupCreator;
 import shape2kml.kml.KmlPolygonCreator;
 import shape2kml.shape.Shapefile;
+import tilecutter.TileCutter;
 import utils.PropertiesGenerator;
 import utils.PropertiesManager;
 
@@ -31,6 +32,7 @@ public class General {
 	
 	
 	private Shapefile shp;
+	private String propertiesFile;
 	public static General s2k;
 
 	public static void main(String[] args) {
@@ -45,6 +47,7 @@ public class General {
 	}
 	
 		public void executeFromProperties(String propertiesFile) {
+			this.propertiesFile=propertiesFile;
 			PropertiesManager.register(propertiesFile);
 			
 			
@@ -80,8 +83,6 @@ public class General {
 			// TODO Auto-generated method stub
 
 		
-		
-		
 		File file = new File(sourceFile);
 		
 		shp = new Shapefile(file);
@@ -103,7 +104,7 @@ public class General {
 			e1.printStackTrace();
 		}
 		//*****************************************************************************
-		
+		//protected areas shape to kml
 		while (fi.hasNext() && count-- > 0) {
 			sf = fi.next();
 			try {
@@ -128,7 +129,10 @@ public class General {
 		//***  esta sección se encarga de recorrer la carpeta data y cargar los archivos csv para convertir a kml
 		// puntos y polígonos - ocurrencias y chull, chull-buff
 			
-			String estilo="http://wikipedia.agilityhoster.com/estilo.kml#estilo";//se debe agregar properties
+			//String estilo="http://wikipedia.agilityhoster.com/estilo.kml#estilo";//se debe agregar properties
+			String estilo=PropertiesManager.getInstance().getPropertiesAsString("style.url");
+			String style1=PropertiesManager.getInstance().getPropertiesAsString("style1.url");
+			
 		    //String nombreArchivo= "default"; //nombre de archivo
 		    //File folder = new File("c:/data/species/");//folder que contiene los archivos a leer "d:/csv/"
 			File folder = new File(sourcepath+species);
@@ -162,19 +166,26 @@ public class General {
 				
 				Csv2Polygon pol=new Csv2Polygon(listaChull,listaChullBuff, estilo);
 				try {
-					pol.createKML(targetpath+species+s.getName()+File.separator,s.getName());												//cambiar a properties file
+					pol.createKML(targetpath+species+s.getName()+File.separator,s.getName(), style1);												//cambiar a properties file
 				} catch (FileNotFoundException e) {		e.printStackTrace();		}
 		       
-		        //***************************
 		        
-		      } /*else if (s.isDirectory()) {
-		        System.out.println("Directory " + s.getName());
-		      }*/
+		      } 
 		    
 		    }
 			
 			//*************************************************************************************
-			//protected areas shape to kml
+			//bioclim variables
+		    
+		    try {
+				TileCutter.execute(propertiesFile);
+			} catch (IOException e) {
+				System.out.println("file not found" );
+				e.getMessage();
+				e.printStackTrace();
+			}
+		    
+		    
 		    
 		    
 		    
