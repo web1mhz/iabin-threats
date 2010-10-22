@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import org.geotools.feature.FeatureIterator;
 import org.opengis.feature.simple.SimpleFeature;
 
-import shape2kml.Shape2kml;
 import shape2kml.kml.KmlGroupCreator;
 import shape2kml.kml.KmlPolygonCreator;
 import shape2kml.shape.Shapefile;
@@ -95,8 +94,8 @@ public class General {
 		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile,atributos);
 		
 		//*****************************************************************************
-		// esta seccion crea el archivo properties con la configuracion por defecto
-		PropertiesGenerator hola=new PropertiesGenerator(targetpath+"prueba.properties");
+		// esta sección crea el archivo properties con la configuración por defecto
+		PropertiesGenerator hola=new PropertiesGenerator(targetpath+"default-iabin.properties");
 		try {
 			hola.write();
 		} catch (IOException e1) {
