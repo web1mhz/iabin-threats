@@ -5,6 +5,7 @@ create table temp_land_1A as
 select id,nub_concept_id,longitude,latitude, iso_country_code
 from occurrence_record
 where  geospatial_issue=0 
+and basis_of_record=2
 and latitude is not null and longitude is not null;
 
 alter table temp_land_1A add index(nub_concept_id,longitude, latitude);
