@@ -14,8 +14,8 @@ The first part is the shape file conversion, this reads the shapefile from the p
 following files are optional : 
 .prj .sbn .sbx .fbn .fbx .ain .aih .ixs .mxs .atx .atx .shp .xml .cpg
 
-this is how the path is described in the iabin.properties file:
+this is how the path is described in the iabin.properties file:<br>
 shapes= PA       <<----- PA: protected Areas<br>
-PA.group= summaries <<---- Summaries: is the folder where the files are going to be written
-PA.shapefile=SurAmerica.shp <<--- Source Filename
+PA.group= summaries <<---- Summaries: is the folder where the files are going to be written<br>
+PA.shapefile=SurAmerica.shp <<--- Source Filename<br>
 The iabin.properties file must be filled with the variable names and values in lower case.
