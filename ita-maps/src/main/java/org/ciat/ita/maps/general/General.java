@@ -41,18 +41,22 @@ public class General {
 			s2k.executeFromProperties(args[0]);
 		} catch (ArrayIndexOutOfBoundsException e1) {
 			System.out.println("Please provide the path to the iabin.properties file");
-			PropertiesGenerator hola = new PropertiesGenerator("default-iabin.properties");
+			PropertiesGenerator hola = new PropertiesGenerator(
+					"default-iabin.properties");
 			try {
 				hola.write();
-				System.out.println("el archivo \"default-iabin.properties\" se ha creado en la misma carpeta de este programa ");
+				System.out
+						.println("the file \"default-iabin.properties\" has been created on same folder as this program is ");
 			} catch (IOException e2) {
 				e2.printStackTrace();
 			}
 			e1.getMessage();
+		} catch (NullPointerException e3) {
+			System.out.println("add the line \"language=english\" to the iabin.properties file");
 		}
 	}
 
-	public void executeFromProperties(String propertiesFile) {
+	public void executeFromProperties(String propertiesFile) throws NullPointerException{
 		this.propertiesFile = propertiesFile;
 		PropertiesManager.register(propertiesFile);
 
@@ -64,6 +68,8 @@ public class General {
 				.getPropertiesAsString("path.target");
 		String species = PropertiesManager.getInstance().getPropertiesAsString(
 				"species.path");
+		String language = PropertiesManager.getInstance()
+				.getPropertiesAsString("language");
 
 		for (String shapeID : shapesID) {
 			String group = PropertiesManager.getInstance()
@@ -90,7 +96,7 @@ public class General {
 			}
 
 			s2k.execute(sourceFile, targetFile, urlServer, mainKml, atributos,
-					sourcePath, targetPath, species);
+					sourcePath, targetPath, species, language);
 		}
 
 	}
@@ -98,7 +104,7 @@ public class General {
 	private void execute(String sourceFile, String targetFile,
 			String urlServer, String mainKml,
 			HashMap<Integer, String> atributos, String sourcepath,
-			String targetpath, String species) {
+			String targetpath, String species, String language) throws NullPointerException {
 		// TODO Auto-generated method stub
 
 		File file = new File(sourceFile);
@@ -112,15 +118,24 @@ public class General {
 
 		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile, atributos);
 
-		System.out.println("bienvenido");
-		System.out.println("seleccione la opcion que desee");
-		System.out.println("1. crear el archivo properties");
-		System.out.println("2. convierte archivo .shp a kml, protected areas");
-		System.out.println("3. convierte archivo .csv a kml; puntos y polígonos - ocurrencias y chull, chull-buff");
-		System.out.println("4. convierte archivo .asc a png, variables bioclimaticas");
-		System.out.println("5. realiza todos los procesos anteriores");
-		System.out.println("para mas info consulta en la wiki del proyecto http://code.google.com/p/iabin-threats/wiki/DataConversion");
-
+		if (language.equals("espanol")||language.equals("español")) {
+			System.out.println("bienvenido \n seleccione la opcion que desee");
+			System.out.println("1. crear el archivo properties");
+			System.out.println("2. convierte archivo .shp a kml, protected areas");
+			System.out.println("3. convierte archivo .csv a kml; puntos y polígonos - ocurrencias y chull, chull-buff");
+			System.out.println("4. convierte archivo .asc a png, variables bioclimaticas");
+			System.out.println("5. realiza todos los procesos anteriores");
+			System.out.println("para mas info consulta en la wiki del proyecto http://code.google.com/p/iabin-threats/wiki/DataConversion");
+		}
+		if (language.equals("english")) {
+			System.out.println("welcome \n select the option");
+			System.out.println("1. create default properties file");
+			System.out.println("2. convert file .shp to kml, protected areas");
+			System.out.println("3. convert file .csv to kml; points and polygons - ocurrences and chull, chull-buff");
+			System.out.println("4. convert file .asc to png, variables bioclimaticas");
+			System.out.println("5. performs all the previous tasks");
+			System.out.println("for more info visit the project's wiki page at http://code.google.com/p/iabin-threats/wiki/DataConversion");
+		}
 		String option;
 		Scanner in = new Scanner(System.in);
 		option = in.nextLine();
@@ -223,8 +238,8 @@ public class General {
 					try {
 						point.createKML(targetpath + species + s.getName()
 								+ File.separator, s.getName()); // cambiar a
-																// properties
-																// file
+						// properties
+						// file
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					}
@@ -234,9 +249,9 @@ public class General {
 					try {
 						pol.createKML(targetpath + species + s.getName()
 								+ File.separator, s.getName(), style1); // cambiar
-																		// a
-																		// properties
-																		// file
+						// a
+						// properties
+						// file
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					}
