@@ -53,8 +53,7 @@ system.time(sfSapply(sp, function(i) get.background(sp_id=i, ecoregions=eco, v.a
  
 sfStop()
 
-## Make swd files --- optimization and clean up is required task 11
-
+## Make swd files 
 # extract all unique points
 system.time(get.full.swd(type="species", env.full=env.full, dir.out=dir.out))
 system.time(get.full.swd(type="background", env.full=env.full, dir.out=dir.out))
@@ -120,7 +119,7 @@ for (server in 1:length(servers))
 # most likely this will be continued after some time and parameters will need to be reloaded
 # the name of the out.dir of the run that shall be continued need to be given here!
 # This R session needs to be started from a GRASS shell in the right mapset with the right region!
-parameters <- "results/20101012.2/parameters.RData"
+parameters <- "results/20101025.2/parameters.RData"
 load(parameters)
 # load species ids
 load(species.id.to.process)
@@ -129,7 +128,7 @@ files <- list.files(path=dir.out,pattern="^[0-9].*.tar.gz")
 # This script must be run within a grass shell
 # check mapset and region are right
 # setting up grass
-system(paste("g.mapset mapset=",mapset," -c", sep=""))
+#system(paste("g.mapset mapset=",mapset," -c", sep=""))
 system("g.region sa")
 system("g.region res=00:05")
 
@@ -168,11 +167,11 @@ for (i in 1:length(files[,1])){
 
   me.res <- read.csv(paste(dir.out,"/",this.id, "/cross/maxentResults.csv", sep=""))
   eval.stats[i,'id'] <- this.id
-  eval.stats[i,'avg.auc_train'] <- me.res[(no.replicates+1),'Training.AUC']
-  eval.stats[i,'avg.auc_test'] <- me.res[(no.replicates+1),'Test.AUC']
-  eval.stats[i,'sd.auc'] <- me.res[(no.replicates+1),'AUC.Standard.Deviation']
-  eval.stats[i,'prevalence'] <- me.res[(no.replicates+1),'Prevalence..average.of.logistic.output.over.background.sites.']
-  eval.stats[i,'ten.percentile'] <- me.res[(no.replicates+1),'X10.percentile.training.presence.logistic.threshold']
+  eval.stats[i,'avg.auc_train'] <- me.res[(me.no.replicates+1),'Training.AUC']
+  eval.stats[i,'avg.auc_test'] <- me.res[(me.no.replicates+1),'Test.AUC']
+  eval.stats[i,'sd.auc'] <- me.res[(me.no.replicates+1),'AUC.Standard.Deviation']
+  eval.stats[i,'prevalence'] <- me.res[(me.no.replicates+1),'Prevalence..average.of.logistic.output.over.background.sites.']
+  eval.stats[i,'ten.percentile'] <- me.res[(me.no.replicates+1),'X10.percentile.training.presence.logistic.threshold']
   eval.stats[i,'roc'] <- mean(roc)
   print(paste("finished ", i, "of", length(files[,1]), "species."))
   
@@ -214,10 +213,11 @@ write(paste("avg.auc_train : ",eval.stats[eval.stats[,1]==i,'avg.auc_train'],
 
 # description: cuts the predictions by a buffered convex hull of the occurence points and writes a *.csv with the coordinates of the convexhull and the buffered convex hull.
 
-#### Execute in GRASS shell
+#### Execute in GRASS shell assuming the location and mapset are correct
 #### cd into the working directory of this run eg. cd ./results/20101012.2
 
-buffer_distance=2 # in degree
+# load parameters
+. ../../parameters/parameters.sh
 
 # initizialise
 count=1
@@ -232,13 +232,13 @@ do
 
   # export chull
   echo "lon,lat" >  $i/chull.csv
+   # exports the coords of the polygon (B) and the centroid (C), awk is used to get extract only the points of the polyon. 
   v.out.ascii in=occ_$i\_hull format=standard | awk '/B/, /C/{if(!/B/ && !/C/) print $1","$2}' >> $i/chull.csv
-    # exports the coords of the polygon (B) and the centroid (C), awk is used to get extract only the points of the polyon. 
 
   # export buffered chull
   echo "lon,lat" > $i/chull_buffer.csv
+  # exports the coords of the polygon (B) and the centroid (C), awk is used to get extract only the points of the polyon. 
   v.out.ascii in=occ_$i\_hull_buffer format=standard | awk '/B/, /C/{if(!/B/ && !/C/) print $1","$2}' >> $i/chull_buffer.csv
-    # exports the coords of the polygon (B) and the centroid (C), awk is used to get extract only the points of the polyon. 
 
   # cut predicitoins buffer
   v.to.rast in=occ_${i}_hull_buffer out=tmp use=val value=1 --q
@@ -246,7 +246,7 @@ do
   r.mapcalc "me.c.$i=me.$i"
   g.remove rast=tmp,MASK,me.$i --q
     
-  
+  # information on progress
   echo processed $count of $total
   count=$(( $count + 1 ))
 done
@@ -272,9 +272,6 @@ done
 # species richness per genus
 # genus is the third column in the file tax.txt, hence take unique values
 
-auc_th=0.7 # specify the the threshold to be used in order to determine presence and absence.
-occ_th=roc # specify here the method to be used for the thresholds
-
 for genus in `awk -F, 'NR>1 {print $3}' tax.txt | sort -u`  # for each unique genus
 do
   for species in `awk -F, '/'$genus'/{if(NR>1); print $4}' tax.txt` # for each species that belongs to the genus $genus
@@ -282,7 +279,7 @@ do
     auc_species=`awk -F" : " '/avg.auc_test/{print $2}' $species/info.txt`
     if [  $(echo "$auc_species > $auc_th" | bc) -gt 0 ] # check if the AUC is above the required threshold
     then
-      threshold=`awk -F" : " '/roc/{print $2}' $species/info.txt` # get the threshold from the species
+      threshold=`awk -F" : " '/^'$occ_th'/{print $2}' $species/info.txt` # get the threshold from the species
       r.mapcalc "gen.sp.$genus.$species=if(isnull(me.c.${species}) ||| me.c.${species} < $threshold,0,1)" # create map for this species
     fi
   done
@@ -320,8 +317,6 @@ rm tmp.sf
 ###########################################
 
 # species richness per class
-auc_th=0.7
-occ_th=roc
 
 for class in `awk -F, 'NR>1 {print $1}' tax.txt | sort -u`  # for all classes
 do
@@ -330,7 +325,7 @@ do
     auc_species=`awk -F" : " '/avg.auc_test/{print $2}' $species/info.txt` # get the species auc
     if [  $(echo "$auc_species > $auc_th" | bc) -gt 0 ] # treat a species only if its AUC ia above the critical threshold
     then
-      threshold=`awk -F" : " '/roc/{print $2}' $species/info.txt`
+      threshold=`awk -F" : " '/^'"$occ_th"'/{print $2}' $species/info.txt`
       r.mapcalc "cla.sp.$class.$species=if(isnull(me.c.${species}) ||| me.c.${species} < $threshold,0,1)" # only consider area above the threshold
     fi
   done
@@ -341,6 +336,9 @@ do
   r.mapcalc "B=0"
   out=A
   tmp=B
+  
+  # progress
+  # now adding all the rasters together
 
   while read line
   do
@@ -365,50 +363,59 @@ rm tmp.sf
 # Threat for each species (task 18)
 ###########################################
 
-auc_th=0.7
-occ_th=roc
+# average area under each threat threat
 
-
-# average threat
-
-for species in `ls | grep ^[0-9]`
+for species in `ls | grep ^[0-9].*.[0-9]$` # do for all species
 do
-auc_species=`awk -F" : " '/avg.auc_test/{print $2}' $species/info.txt`
+  auc_species=`awk -F" : " '/avg.auc_test/{print $2}' $species/info.txt` # get the average auc for this species
 
-if [ $(echo "$auc_species > $auc_th" | bc) -gt 0 ]
-then
-threshold=`awk -F" : " '/roc/{print $2}' $species/info.txt` # get species threshold
-r.mapcalc "tmp.$species=if(me.c.${species} >= $threshold,1,null())" # calculate temp grid only with the area above threshold
-r.mapcalc "MASK=tmp.$species" # mask to area above threshold
-area=`r.sum tmp.$species | awk -F= '{print $2}'` # sum the area
-echo "area.above.th.in.pixel : $area" >> $species/info.txt # write to file
-  for danger in `g.mlist type=rast mapset=threats pattern="ta.*"` # loop through all threats
-    do   
-    if [ $(echo "$area > 0" | bc) -gt 0 ]  # only treat species where the area above the threshold is > 0
-    then 
-      # mean threat
-      area_danger=`r.sum $danger@threats | awk -F= '{print $2}'` # sum up the danger for this species
-      mean=`echo "scale=2; $area_danger / $area" | bc`      # calculate the man danger
-      echo "$danger : $mean" >> $species/info.txt    # write mean danger to info file
-      
-      # % low, mid, high, no threat
-      for level in `g.mlist type=rast mapset=threats pattern="tac.$danger*"` # calculate the % area of each species under each low, mid, high and no thread
-      do
-        area_level=`r.sum $level@threats | awk -F= '{print $2}'` # calculate area of threat at no, low, mid, high
-        percent_level=`echo "scale=2; $area_level / $area * 100" | bc` # calculate the percentage
-        level_name=`echo $level | awk -F. '{print $3"."$4}'` # get the name of the threat and level (1=no, 2=low, 3=mid, 4=high)
-        echo "percent.under.threat.$level_name : $percent_level" >> $species/info.txt # write file
+  if [ $(echo "$auc_species > $auc_th" | bc) -gt 0 ] # only proces species where the auc is bigger than the specified auc
+  then
+    threshold=`awk -F" : " '/roc/{print $2}' $species/info.txt` # get species threshold
+    r.mapcalc "tmp.$species=if(me.c.${species} >= $threshold,1,null())" # calculate temp grid only with the area above threshold
+    r.mapcalc "MASK=tmp.$species" # mask to area above threshold
+    area=`r.sum tmp.$species | awk -F= '{print $2}'` # sum the area
+    echo "area.above.th.in.pixel : $area" >> $species/info.txt # write to file
+      for danger in `g.mlist type=rast mapset=threats pattern="ta.*"` # loop through all threats
+      do   
+        if [ $(echo "$area > 0" | bc) -gt 0 ]  # only treat species where the area above the threshold is > 0, this check might be obsolete
+        then 
+          # mean threat
+          area_danger=`r.sum $danger@threats | awk -F= '{print $2}'` # sum up the danger for this species
+          mean=`echo "scale=2; $area_danger / $area" | bc`      # calculate the man danger
+          echo "$danger : $mean" >> $species/info.txt    # write mean danger to info file
+          
+          # % low, mid, high, no threat
+          for level in `g.mlist type=rast mapset=threats pattern="tac.$danger*"` # calculate the % area of each species under each low, mid, high and no thread
+          do
+            area_level=`r.sum $level@threats | awk -F= '{print $2}'` # calculate area of threat at no, low, mid, high
+            percent_level=`echo "scale=2; $area_level / $area * 100" | bc` # calculate the percentage
+            level_name=`echo $level | awk -F. '{print $3"."$4}'` # get the name of the threat and level (1=no, 2=low, 3=mid, 4=high)
+            echo "percent.under.threat.$level_name : $percent_level" >> $species/info.txt # write file
+          done
+        else
+          echo "$danger : NA" >> $species/info.txt    
+        fi
       done
-     else
-      echo "$danger : missing.data.test" >> $species/info.txt    
-    fi
-  done
-fi
-g.remove rast=tmp.$species
-g.remove rast=MASK
+  fi
+  g.remove rast=tmp.$species
+  g.remove rast=MASK
 done
 
 
+## Create a threat index with R
+
+## read the data
+data <- list.files(pattern="^[0-9]")
+
+level <- c(1,2,3,4)
+threats <- c("access_pop","conv_ag","fires","grazing","infrastr","oil_gas", "rec_conv")
+
+for (i in data) {
+d <- readLines(paste(i,"/info.txt",sep=""))
+if(any(grepl("fire",d))==T) 
+write(paste("threat.index : ",mean(sapply(threats,function(ta) mean(sapply(level, function(lv) as.numeric(strsplit(d[grep(paste(ta,lv,sep="."),d)],":")[[1]][2])*lv)))),spe=""), paste(i,"/info.txt",sep=""), append=T)
+}
 
 
 ###########################################
@@ -418,8 +425,6 @@ done
 
 # For each species calculate the mean and sd occurence probability within and outside protected areas
 # For each species calcualte the % area within and outside protected areas
-
-
 
 for species in `ls | grep ^[0-9]`
 do
@@ -432,8 +437,9 @@ do
   percent_protected=`echo "scale=2; $area_protected / $area_total *100" | bc`  
   echo "occ.prob.mean.in.pa : $mean" >> $species/info.txt
   echo "occ.prob.sd.in.pa : $stddev" >> $species/info.txt
+  g.remove rast="MASK"  
   r.mask -r
-  r.mask -i protected_areas@PERMANENT
+  r.mask -i -o protected_areas@PERMANENT
   eval `r.univar me.c.${species} -g`
   echo "occ.prob.mean.outside.pa : $mean" >> $species/info.txt
   echo "occ.prob.sd.outside.pa : $stddev" >> $species/info.txt
@@ -476,30 +482,42 @@ do
 done
 g.remove rast=tmp
 
+## Join this values to the map of WDPA
+# add columns
+v.db.addcol map=pa columns="max_rep double precission"
+
+for i in parks/*
+do
+  value=`cat $i | awk -F: '/cla.reptilia.max/{print $2}'`
+  cat=`echo $i | cut -d/ -f2 | cut -d. -f1`
+  v.db.update map=pa column=max_rep value="$value" where="cat=$cat"
+  echo "done $i"
+done
+
 ###########################################
 # Species Richness per class (task 21)
 ###########################################
-mkdir classes
+mkdir summary
 
 for i in `g.mlist type=rast pattern="cla.*[a-z]$"`
 do
-  > classes/$i.txt 
+  > summary/$i.txt 
   r.mapcalc "tmp=if($i>0,1,null())"
   r.mapcalc "MASK=tmp"  
   for j in `g.mlist type=rast pattern="ta.*"`
   do
     eval `r.univar $j -g`
-    echo "$j.max : $max" >> classes/$i.txt
-    echo "$j.min : $min" >> classes/$i.txt
-    echo "$j.sd : $stddev" >> classes/$i.txt
-    echo "$j.mean : $mean" >> classes/$i.txt
+    echo "$j.max : $max" >> summary/$i.txt
+    echo "$j.min : $min" >> summary/$i.txt
+    echo "$j.sd : $stddev" >> summary/$i.txt
+    echo "$j.mean : $mean" >> summary/$i.txt
   done
   r.mask -r 
   area_total=`r.sum $i | awk -F= '{print $2}'`
   r.mask protected_areas
   area_protected=`r.sum $i | awk -F= '{print $2}'` # sum the area that is protected
   percent_protected=`echo "scale=2; $area_protected / $area_total *100" | bc` 
-  echo "percent.protected : $percent_protected" >> classes/$i.txt
+  echo "percent.protected : $percent_protected" >> summary/$i.txt
 done
 
 
