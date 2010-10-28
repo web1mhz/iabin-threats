@@ -105,7 +105,6 @@ public class General {
 			String urlServer, String mainKml,
 			HashMap<Integer, String> atributos, String sourcepath,
 			String targetpath, String species, String language) throws NullPointerException {
-		// TODO Auto-generated method stub
 
 		File file = new File(sourceFile);
 
