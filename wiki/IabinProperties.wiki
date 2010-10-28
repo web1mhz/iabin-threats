@@ -2,10 +2,17 @@
 
 Here is the description of the iabin.properties file, this one holds the configuration data needed for the project to run, mostly there are source and target paths, image colors , style url and more
 
-
+in case the file iabin.properties is not created, just run the executable without parameters and a default configuration properties file will be created
+in the same folder as from which the executable has been launched, then make the desired changes and enter the path to the file for the configuration to be loaded
 
 
 = Properties File Example =
+------------------
+- menu language
+  This option, permits to select in which language you prefer the menu to be shown, the options are english or spanish 
+------------------
+language=english
+
 
 -----------------------------------------
 - _*PATH*  
