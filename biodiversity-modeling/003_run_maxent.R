@@ -39,7 +39,7 @@ system(paste("java -mx",max.ram,"m -cp ", dir.maxent, "/maxent.jar density.Proje
 
 
 ## zipWrite fails with snowfall, hence use the unix commands
-system(paste("tar -zcf ",dir.out,"/",sp_id,".tar.gz ", dir.out,"/",sp_id,sep=""))
+system(paste("tar -zcf ",dir.out,"/",sp_id,".tar.gz -C", dir.out," ",sp_id,sep=""))
 system(paste("rm -r ",dir.out,"/",sp_id, sep=""))
 
 ## write *.gz, function provided by J. Ramirez

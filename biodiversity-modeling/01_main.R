@@ -119,7 +119,7 @@ for (server in 1:length(servers))
 # most likely this will be continued after some time and parameters will need to be reloaded
 # the name of the out.dir of the run that shall be continued need to be given here!
 # This R session needs to be started from a GRASS shell in the right mapset with the right region!
-parameters <- "results/20101025.2/parameters.RData"
+parameters <- "results/20101028.5/parameters.RData"
 load(parameters)
 # load species ids
 load(species.id.to.process)
@@ -147,8 +147,8 @@ write.table(files.error, paste(dir.out, "/species_where_maxent_failed.txt",sep="
 
 st <- proc.time()
 for (i in 1:length(files[,1])){
-  system(paste("tar -zxf ",dir.out,"/",files[i,1],sep=""))
-  this.id=strsplit(files[i,1],"\\.")[[1]][1]
+  system(paste("tar -zxf ",dir.out,"/",files[i,1]," -C ", dir.out,sep="")) # extract the archives
+  this.id=strsplit(files[i,1],"\\.")[[1]][1] # get the id of the species that is being procesed 
   
   # calculate roc threshold
   for (j in 0:(me.no.replicates-1)){
@@ -175,10 +175,15 @@ for (i in 1:length(files[,1])){
   eval.stats[i,'roc'] <- mean(roc)
   print(paste("finished ", i, "of", length(files[,1]), "species."))
   
+  # import projection to grass
   system(paste("r.in.arc in=",dir.out,"/",this.id,"/proj/",this.id,".asc out=me.",this.id," --o  --q",sep=""),wait=T)
+  # mport points to grass  
   system(paste("cat ",dir.out,"/",this.id,"/training/species.csv | awk -F',' 'NR > 1 {print $2 \"|\" $3}' | v.in.ascii out=occ_",this.id," --o --q",sep=""),wait=T)
+  # delete all files except the info file, that have been extracted from the archive  
   system(paste("ls ",dir.out,"/",this.id," | grep -v info.txt |awk '{print\"",this.id,"/\" $0}' | xargs rm -rf",sep=""),wait=T)
+  # move archive into the folder  
   system(paste("mv ",dir.out,"/",files[i,1]," ", dir.out, "/", this.id,sep=""))
+  # delete all other folders 
   system(paste("rm -r ", dir.out,"/", this.id, "/cross ",dir.out,"/", this.id, "/proj ",dir.out,"/", this.id, "/results ",dir.out,"/", this.id, "/training",sep=""))
 }
 
@@ -216,7 +221,7 @@ write(paste("avg.auc_train : ",eval.stats[eval.stats[,1]==i,'avg.auc_train'],
 #### Execute in GRASS shell assuming the location and mapset are correct
 #### cd into the working directory of this run eg. cd ./results/20101012.2
 
-# load parameters
+# load parameters - is not working yet, may need some refinement, copy parameters by hand
 . ../../parameters/parameters.sh
 
 # initizialise
@@ -325,9 +330,11 @@ do
     auc_species=`awk -F" : " '/avg.auc_test/{print $2}' $species/info.txt` # get the species auc
     if [  $(echo "$auc_species > $auc_th" | bc) -gt 0 ] # treat a species only if its AUC ia above the critical threshold
     then
+      sleep 1
       threshold=`awk -F" : " '/^'"$occ_th"'/{print $2}' $species/info.txt`
       r.mapcalc "cla.sp.$class.$species=if(isnull(me.c.${species}) ||| me.c.${species} < $threshold,0,1)" # only consider area above the threshold
     fi
+      
   done
   g.mlist type=rast pattern="cla.sp.$class.*" > tmp.sf
 
@@ -413,8 +420,8 @@ threats <- c("access_pop","conv_ag","fires","grazing","infrastr","oil_gas", "rec
 
 for (i in data) {
 d <- readLines(paste(i,"/info.txt",sep=""))
-if(any(grepl("fire",d))==T) 
-write(paste("threat.index : ",mean(sapply(threats,function(ta) mean(sapply(level, function(lv) as.numeric(strsplit(d[grep(paste(ta,lv,sep="."),d)],":")[[1]][2])*lv)))),spe=""), paste(i,"/info.txt",sep=""), append=T)
+if(any(grepl("percent.under.threat.access_pop.1",d))==T) { 
+write(paste("threat.index : ",mean(sapply(threats,function(ta) mean(sapply(level, function(lv) as.numeric(strsplit(d[grep(paste(ta,lv,sep="."),d)],":")[[1]][2])*lv)))),spe=""), paste(i,"/info.txt",sep=""), append=T)}
 }
 
 
@@ -448,7 +455,7 @@ done
 g.remove rast="MASK"
 
 ###########################################
-# Species Richness per class (task 20)
+# Calculate for each park, takes about 2hrs (task 20)
 ###########################################
 
 # for each protected area calculated the 
