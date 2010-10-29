@@ -37,6 +37,15 @@ after grabbing these data the program will merge them together to build one kml 
 
 These are the output files that google maps interprets to show the points, and polygons, these have the .kml extension.
 
+*project explanation*
+the whole project is composed by five packages, csv2kml, general, shape2kml, tilecutter and utils, 
+-the csv2kml classes function is to read the csv files and convert them into the kml files
+-the general file is where the main code resides and this one calls all the processes involved in the conversion
+-shape2kml contains the classes that permit to convert shapefiles to kml, this is only for the protected areas part
+-tilecutter contains the code necessary to create the png images from the raster files, this images are all tiled in little images that permit to reduce load to the page, these images depend on the zoom factor and bioclim variable
+-utils contains the classes which allow to create the properties file when there is no file, and also handles the properties file use.
+ 
+
 
 
 
