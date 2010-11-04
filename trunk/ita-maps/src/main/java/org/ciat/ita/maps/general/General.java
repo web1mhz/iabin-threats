@@ -44,7 +44,8 @@ public class General {
 		try {
 			s2k.executeFromProperties(args[0]);
 		} catch (ArrayIndexOutOfBoundsException e1) {
-			System.out.println("Please provide the path to the iabin.properties file");
+			System.out
+					.println("Please provide the path to the iabin.properties file");
 			PropertiesGenerator hola = new PropertiesGenerator(
 					"default-iabin.properties");
 			try {
@@ -56,41 +57,30 @@ public class General {
 			}
 			e1.getMessage();
 		} catch (NullPointerException e3) {
-			System.out.println("add the line \"language=english\" to the iabin.properties file");
+			System.out
+					.println("add the line \"language=english\" to the iabin.properties file");
 		}
 	}
 
-	public void executeFromProperties(String propertiesFile) throws NullPointerException{
+	public void executeFromProperties(String propertiesFile)
+			throws NullPointerException {
 		this.propertiesFile = propertiesFile;
 		PropertiesManager.register(propertiesFile);
 
-		String[] shapesID = PropertiesManager.getInstance()
-				.getPropertiesAsStringArray("shapes");
-		String sourcePath = PropertiesManager.getInstance()
-				.getPropertiesAsString("path.source");
-		String targetPath = PropertiesManager.getInstance()
-				.getPropertiesAsString("path.target");
-		String species = PropertiesManager.getInstance().getPropertiesAsString(
-				"species.path");
-		String language = PropertiesManager.getInstance()
-				.getPropertiesAsString("language");
+		String[] shapesID = PropertiesManager.getInstance().getPropertiesAsStringArray("shapes");
+		String sourcePath = PropertiesManager.getInstance().getPropertiesAsString("path.source");
+		String targetPath = PropertiesManager.getInstance().getPropertiesAsString("path.target");
+		String species = PropertiesManager.getInstance().getPropertiesAsString("species.path");
+		String language = PropertiesManager.getInstance().getPropertiesAsString("language");
 
 		for (String shapeID : shapesID) {
-			String group = PropertiesManager.getInstance()
-					.getPropertiesAsString(shapeID + ".group");
-			String pathGroup = PropertiesManager.getInstance()
-					.getPropertiesAsString(group + ".path");
-			String fileName = PropertiesManager.getInstance()
-					.getPropertiesAsString(shapeID + ".shapefile");
-			String urlServer = PropertiesManager.getInstance()
-					.getPropertiesAsString(shapeID + ".server.url");
-			String mainKml = PropertiesManager.getInstance()
-					.getPropertiesAsString(shapeID + ".kml.main");
-			int[] columnIndexes = PropertiesManager.getInstance()
-					.getPropertiesAsIntArray(shapeID + ".shape.column.indexes");
-			String[] columnName = PropertiesManager
-					.getInstance()
-					.getPropertiesAsStringArray(shapeID + ".shape.column.names");
+			String group = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".group");
+			String pathGroup = PropertiesManager.getInstance().getPropertiesAsString(group + ".path");
+			String fileName = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".shapefile");
+			String urlServer = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".server.url");
+			String mainKml = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".kml.main");
+			int[] columnIndexes = PropertiesManager.getInstance().getPropertiesAsIntArray(shapeID + ".shape.column.indexes");
+			String[] columnName = PropertiesManager.getInstance().getPropertiesAsStringArray(shapeID + ".shape.column.names");
 
 			String sourceFile = sourcePath + pathGroup + fileName;
 			String targetFile = targetPath + pathGroup + shapeID;
@@ -104,17 +94,18 @@ public class General {
 		}
 
 	}
-    private String getDateTime() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
-	
+
+	private String getDateTime() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
 
 	private void execute(String sourceFile, String targetFile,
 			String urlServer, String mainKml,
 			HashMap<Integer, String> atributos, String sourcepath,
-			String targetpath, String species, String language) throws NullPointerException {
+			String targetpath, String species, String language)
+			throws NullPointerException {
 
 		File file = new File(sourceFile);
 
@@ -127,7 +118,7 @@ public class General {
 
 		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile, atributos);
 
-		if (language.equals("espanol")||language.equals("español")) {
+		if (language.equals("espanol") || language.equals("español")) {
 			System.out.println("bienvenido \n seleccione la opcion que desee");
 			System.out.println("1. crear el archivo properties");
 			System.out.println("2. convierte archivo .shp a kml, protected areas");
@@ -146,10 +137,12 @@ public class General {
 			System.out.println("for more info visit the project's wiki page at http://code.google.com/p/iabin-threats/wiki/DataConversion");
 		}
 		String option;
-		String horaEmpieza=this.getDateTime();
-		System.out.println("empieza a las : "+horaEmpieza);
-		System.out.print("please select an option :");
-		
+		String horaEmpieza = this.getDateTime();
+		if (language.equals("english"))	System.out.println("started at : " + horaEmpieza);
+		if (language.equals("espanol") || language.equals("español"))System.out.println("empieza a las : " + horaEmpieza);
+		if (language.equals("english"))	System.out.print("please select an option :");
+		if (language.equals("espanol") || language.equals("español"))System.out.print("por favor seleccione una opción :");
+
 		Scanner in = new Scanner(System.in);
 		option = in.nextLine();
 
@@ -157,13 +150,13 @@ public class General {
 		if (opt == 1 || opt == 5)
 
 		{
-			System.out.println("you selected option :" + option);
+			if (language.equals("english"))	System.out.println("you selected option :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 
 			// *****************************************************************************
 			// esta sección crea el archivo properties con la configuración por
 			// defecto
-			PropertiesGenerator hola = new PropertiesGenerator(targetpath
-					+ "default-iabin.properties");
+			PropertiesGenerator hola = new PropertiesGenerator(targetpath+ "default-iabin.properties");
 			try {
 				hola.write();
 			} catch (IOException e1) {
@@ -177,9 +170,10 @@ public class General {
 		if (opt == 2 || opt == 5)
 
 		{
-			System.out.println("you selected option :" + option);
+			if (language.equals("english"))	System.out.println("you selected option :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 
-			while (fi.hasNext() ) {//&& count-- > 0) {
+			while (fi.hasNext()) {// && count-- > 0) {
 				sf = fi.next();
 				try {
 					kml.createKML(sf);
@@ -209,15 +203,14 @@ public class General {
 		if (opt == 3 || opt == 5)
 
 		{
-			System.out.println("you selected option :" + option);
+			if (language.equals("english"))	System.out.println("you selected option :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 
 			// String
 			// estilo="http://wikipedia.agilityhoster.com/estilo.kml#estilo";//se
 			// debe agregar properties
-			String estilo = PropertiesManager.getInstance()
-					.getPropertiesAsString("style.url");
-			String style1 = PropertiesManager.getInstance()
-					.getPropertiesAsString("style1.url");
+			String estilo = PropertiesManager.getInstance().getPropertiesAsString("style.url");
+			String style1 = PropertiesManager.getInstance().getPropertiesAsString("style1.url");
 
 			// String nombreArchivo= "default"; //nombre de archivo
 			// File folder = new File("c:/data/species/");//folder que contiene
@@ -232,8 +225,7 @@ public class General {
 				if (s.isDirectory()) {
 
 					// nombreArchivo= s.getName();
-					String ruta = folder.getPath() + File.separator
-							+ s.getName() + File.separator + s.getName();
+					String ruta = folder.getPath() + File.separator+ s.getName() + File.separator + s.getName();
 					System.out.println("File " + ruta);
 
 					// ****************************
@@ -249,19 +241,16 @@ public class General {
 
 					Csv2Point point = new Csv2Point(lista);
 					try {
-						point.createKML(targetpath + species + s.getName()
-								+ File.separator, s.getName()); // cambiar a
+						point.createKML(targetpath + species + s.getName()+ File.separator, s.getName()); // cambiar a
 						// properties
 						// file
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					}
 
-					Csv2Polygon pol = new Csv2Polygon(listaChull,
-							listaChullBuff, estilo);
+					Csv2Polygon pol = new Csv2Polygon(listaChull,listaChullBuff, estilo);
 					try {
-						pol.createKML(targetpath + species + s.getName()
-								+ File.separator, s.getName(), style1); // cambiar
+						pol.createKML(targetpath + species + s.getName()+ File.separator, s.getName(), style1); // cambiar
 						// a
 						// properties
 						// file
@@ -281,7 +270,8 @@ public class General {
 		if (opt == 4 || opt == 5)
 
 		{
-			System.out.println("you selected option :" + option);
+			if (language.equals("english"))	System.out.println("you selected option :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 
 			try {
 				TileCutter.execute(propertiesFile);
@@ -293,10 +283,10 @@ public class General {
 
 		} // fin case 4
 
-		String horaTermina=this.getDateTime();
-		System.out.println("empezó a las : "+horaEmpieza);
-		System.out.println("finalizó a las : "+horaTermina);
-	}// fin switch
+		String horaTermina = this.getDateTime();
+		if (language.equals("espanol") || language.equals("español"))System.out.println("empezó a las : " + horaEmpieza + "\r\n"+ " finalizó a las : " + horaTermina);
+		if (language.equals("english"))System.out.println("started at : " + horaEmpieza + "\r\n"+ " ended at : " + horaTermina);
 
+	}// fin switch
 
 }
