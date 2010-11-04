@@ -10,6 +10,7 @@ public class KmlGroupCreator {
 
 	private final Kml kml;
 	private final Folder folder;
+	private static int counter=0;
 	String url;
 	
 	public KmlGroupCreator(String url){
@@ -22,10 +23,13 @@ public class KmlGroupCreator {
 	public void addElement(String nombre){
 		NetworkLink nLink=folder.createAndAddNetworkLink();
 		nLink.createAndSetLink().withHref(url+nombre);
+		counter++;
+		System.out.print("files generated : "+counter+" " );
 	}
 	
 	public void writeKml(String targetFile,String nombreGrupo) throws FileNotFoundException{
-		kml.marshal();
+		//kml.marshal();
+		System.out.println("main kml generated");
 		kml.marshal(new File(targetFile+File.separator+nombreGrupo));
 	}
 	
