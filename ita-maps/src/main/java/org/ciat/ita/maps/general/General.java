@@ -3,6 +3,10 @@ package org.ciat.ita.maps.general;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -100,6 +104,12 @@ public class General {
 		}
 
 	}
+    private String getDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+	
 
 	private void execute(String sourceFile, String targetFile,
 			String urlServer, String mainKml,
@@ -136,6 +146,10 @@ public class General {
 			System.out.println("for more info visit the project's wiki page at http://code.google.com/p/iabin-threats/wiki/DataConversion");
 		}
 		String option;
+		String horaEmpieza=this.getDateTime();
+		System.out.println("empieza a las : "+horaEmpieza);
+		System.out.print("please select an option :");
+		
 		Scanner in = new Scanner(System.in);
 		option = in.nextLine();
 
@@ -165,7 +179,7 @@ public class General {
 		{
 			System.out.println("you selected option :" + option);
 
-			while (fi.hasNext() && count-- > 0) {
+			while (fi.hasNext() ) {//&& count-- > 0) {
 				sf = fi.next();
 				try {
 					kml.createKML(sf);
@@ -279,6 +293,10 @@ public class General {
 
 		} // fin case 4
 
+		String horaTermina=this.getDateTime();
+		System.out.println("empezó a las : "+horaEmpieza);
+		System.out.println("finalizó a las : "+horaTermina);
 	}// fin switch
+
 
 }

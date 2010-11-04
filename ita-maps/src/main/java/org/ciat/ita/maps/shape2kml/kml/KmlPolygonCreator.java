@@ -80,8 +80,10 @@ public class KmlPolygonCreator {
 		
 		pol.setOuterBoundaryIs(bound);
 
-		kml.marshal();
+		//kml.marshal();
+		System.out.println("...");
 		kml.marshal(new File(filename));
+		System.out.print("file done ");
 	
 
 	}
