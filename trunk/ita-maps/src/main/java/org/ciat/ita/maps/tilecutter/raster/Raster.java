@@ -111,10 +111,18 @@ public class Raster {
 		int y = 0;
 
 		while ((line = reader.readLine()) != null) {
+			//System.out.println(line);
+			try {
 			data = line.split(" ");
 			for (int x = 0; x < data.length; x++)
 				setValue(x,y,Float.parseFloat(data[x]));
 			y++;
+			//System.out.println(y);
+			}catch (NumberFormatException e){
+				e.printStackTrace();
+				System.out.println("raster line number: "+y);
+				System.out.println(line);
+			}
 		}
 		System.out.println("Raster loaded");
 	}
