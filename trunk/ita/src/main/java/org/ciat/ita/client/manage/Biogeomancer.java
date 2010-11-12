@@ -8,9 +8,12 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.ciat.ita.model.Record;
+import org.ciat.ita.server.database.PortalInterface;
 
 public class Biogeomancer {
 
@@ -23,7 +26,8 @@ public class Biogeomancer {
 	public static Set<Record> startGeorref(Set<Record> places) {
 		try {
 			String xmlData = dataToXML(places);
-
+			System.out.println(xmlData);
+			
 			// enviando a servidor biogeomancer y obteniendo respuesta.
 			URL urlBgServer;
 			urlBgServer = new URL(BgServer);
@@ -66,6 +70,8 @@ public class Biogeomancer {
 	 *         Biogeomancer Server to the understanding of the information.
 	 */
 	private static String dataToXML(Set<Record> places) {
+		System.out.println("private static String dataToXML(Set<Record> places) {");
+		//List<Record> listado= PortalInterface.getInstance().getWork("clientname", 1); 
 		StringBuffer data = new StringBuffer(
 				"<?xml version=\"1.0\" encoding=\"utf-8\"?><biogeomancer xmlns=\"http://bg.berkeley.edu\" xmlns:dwcore=\"http://rs.tdwg.org/dwc/dwcore\" xmlns:dwgeo=\"http://rs.tdwg.org/dwc/dwgeo\"><request type=\"batch\" interpreter=\"yale\" header=\"true\">");
 		for (Record p : places) {
@@ -94,6 +100,7 @@ public class Biogeomancer {
 	 */
 	private static String setServiceUrl(URL serviceUrl, String XMLdata) {
 
+		System.out.println("inicia setServiceUrl");
 		HttpURLConnection connection;
 		try {
 			// START PROXY CODE CONFIGURATION IN CIAT PLACE
@@ -120,6 +127,7 @@ public class Biogeomancer {
 			// Retrieve the output
 			int responseCode = connection.getResponseCode();
 			InputStream inputStream;
+			System.out.println("response code: "+responseCode);
 			if (responseCode == HttpURLConnection.HTTP_OK) {
 				inputStream = connection.getInputStream();
 				xmlText = toString(inputStream);
@@ -130,7 +138,9 @@ public class Biogeomancer {
 			}
 
 			// write the output to the console
-			// System.out.println(xmlText);
+			System.out.println("esto se recibe del servidor : \n");
+			
+			 System.out.println(xmlText);
 			// BgManager.recordToFile("autoGenerate.xml", xmlText);
 			connection.disconnect();
 			return xmlText;
@@ -153,5 +163,16 @@ public class Biogeomancer {
 			}
 		}
 		return outputBuilder.toString();
+	}
+	
+	public static void main(String[] args) {
+		Record rec=new Record("co", "colombia", "valle", "cali", "km 17", 0.0, 0.0, 0, null, 0, true);
+		HashSet<Record> grup=new HashSet<Record>();
+		grup.add(rec);
+		System.out.println("inicia startGeorref");
+		startGeorref(grup);
+		System.out.println("termina startGeorref");
+		
+		
 	}
 }
