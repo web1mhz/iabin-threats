@@ -2,17 +2,26 @@ package org.ciat.ita.maps.shape2kml;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.geotools.feature.FeatureIterator;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 import org.opengis.feature.simple.SimpleFeature;
 
 import org.ciat.ita.maps.shape2kml.kml.KmlGroupCreator;
 import org.ciat.ita.maps.shape2kml.kml.KmlPolygonCreator;
+import org.ciat.ita.maps.shape2kml.kml.XmlPolygonCreator;
 import org.ciat.ita.maps.shape2kml.shape.Shapefile;
 import org.ciat.ita.maps.utils.PropertiesGenerator;
 import org.ciat.ita.maps.utils.PropertiesManager;
+
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+import org.jdom.Document;
 
 public class Shape2kml {
 
@@ -50,15 +59,16 @@ public class Shape2kml {
 				atributos.put(columnIndexes[i], columnName[i]);
 			}
 			
-			s2k.execute(sourceFile, targetFile,urlServer,mainKml,atributos);
+			try {
+				s2k.execute(sourceFile, targetFile,urlServer,mainKml,atributos);
+			} catch (IOException e) { e.printStackTrace();}
 		}
 		
 		
 	}
 	
 
-	public void execute(String sourceFile,String targetFile,
-			String urlServer,String mainKml,HashMap<Integer,String> atributos) {
+	public void execute(String sourceFile,String targetFile,String urlServer,String mainKml,HashMap<Integer,String> atributos) throws IOException {
 		
 		
 		
@@ -72,6 +82,8 @@ public class Shape2kml {
 		int count = 5;
 
 		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile,atributos);
+		XmlPolygonCreator xml = new XmlPolygonCreator(targetFile+"XML", atributos);
+		
 		
 		//*****************************************************************************
 		PropertiesGenerator hola=new PropertiesGenerator("d:/prueba.properties");
@@ -86,11 +98,9 @@ public class Shape2kml {
 		while (fi.hasNext() && count-- > 0) {
 			sf = fi.next();
 			try {
-				kml.createKML(sf);
+				kml.createKML(sf);//writes the KML file
 				grupo.addElement(sf.getAttribute(1) + ".kml");
-			} catch (FileNotFoundException e) {
-
-				e.printStackTrace();
+			} catch (FileNotFoundException e) {	e.printStackTrace();
 			}
 
 			System.out.print(sf.getAttribute(4) + " ");
@@ -104,6 +114,40 @@ public class Shape2kml {
 
 			e.printStackTrace();
 		}
+	//*****************************************************************************	
+		//se crea el XML
+		
+		Document doc = null;
+		
+		
+		
+		while (fi.hasNext() && count-- > 0) {
+			sf = fi.next();
+			try {
+				doc=xml.createXML(sf);//writes the XML file
+				grupo.addElement(sf.getAttribute(1) + ".kml");
+			} catch (FileNotFoundException e) {	e.printStackTrace();
+			}
+
+			System.out.print(sf.getAttribute(4) + " ");
+			System.out.println(sf.getAttribute(5));
+
+		}
+				
+		XMLOutputter outp = new XMLOutputter();
+		outp.setFormat(Format.getPrettyFormat());
+		FileOutputStream file2;
+		
+		file2 = new FileOutputStream("file");
+		
+		outp.output(doc, file2);
+
+		file2.flush();
+		file2.close();
+		
+		System.out.println("...");
+		System.out.print("XML file done ");
+		
 	}
 
 }
