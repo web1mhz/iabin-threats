@@ -17,7 +17,8 @@ import org.ciat.ita.server.database.PortalInterface;
 
 public class Biogeomancer {
 
-	private static final String BgServer = "http://bg.berkeley.edu:8080/ws-test/batch";
+	//private static final String BgServer = "http://bg.berkeley.edu:8080/ws-test/batch";
+	private static final String BgServer = "http://bg.berkeley.edu/ws/batch";
 
 	/** 
 	 * @param places - A Set of places (Records) that have not been georreferenced.
@@ -73,18 +74,18 @@ public class Biogeomancer {
 		System.out.println("private static String dataToXML(Set<Record> places) {");
 		//List<Record> listado= PortalInterface.getInstance().getWork("clientname", 1); 
 		StringBuffer data = new StringBuffer(
-				"<?xml version=\"1.0\" encoding=\"utf-8\"?><biogeomancer xmlns=\"http://bg.berkeley.edu\" xmlns:dwcore=\"http://rs.tdwg.org/dwc/dwcore\" xmlns:dwgeo=\"http://rs.tdwg.org/dwc/dwgeo\"><request type=\"batch\" interpreter=\"yale\" header=\"true\">");
+				"<?xml version=\"1.0\" encoding=\"utf-8\"?><biogeomancer xmlns=\"http://bg.berkeley.edu\" xmlns:dwc=\"http://rs.tdwg.org/dwc/terms\" ><request type=\"batch\" interpreter=\"yale\" header=\"true\">");
 		for (Record p : places) {
-			data.append("<record> <dwcore:Country>");
+			data.append("<record> <dwc:country>");
 			data.append(p.getCountry());
-			data.append("</dwcore:Country>");
-			data.append("<dwcore:StateProvince>");
+			data.append("</dwc:country>");
+			data.append("<dwc:stateProvince>");
 			data.append(p.getState());
-			data.append("</dwcore:StateProvince><dwcore:County>");
+			data.append("</dwc:stateProvince><dwc:county>");
 			data.append(p.getCounty());
-			data.append("</dwcore:County><dwcore:Locality>");
+			data.append("</dwc:county><dwc:locality>");			
 			data.append(p.getLocality());
-			data.append("</dwcore:Locality></record>");
+			data.append("</dwc:locality></record>");
 		}
 		data.append("</request>" + "</biogeomancer>");
 		return data.toString();
@@ -166,7 +167,7 @@ public class Biogeomancer {
 	}
 	
 	public static void main(String[] args) {
-		Record rec=new Record("co", "colombia", "valle", "cali", "km 17", 0.0, 0.0, 0, null, 0, true);
+		Record rec=new Record("", "", "California", "", "Berkeley", 0.0, 0.0, 0, null, 0, true);
 		HashSet<Record> grup=new HashSet<Record>();
 		grup.add(rec);
 		System.out.println("inicia startGeorref");
