@@ -63,7 +63,7 @@ CREATE TABLE `temp_land_5A` (
   `nub_concept_id` int(10) unsigned default NULL,
   `longitude` float default NULL,
   `latitude` float default NULL,
-  `iso_country_code` char(2) character set utf8 default NULL,
+  `iso_country_code` char(2) character set utf8 default NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 ALTER TABLE temp_land_5A ADD PRIMARY KEY (id);
