@@ -81,11 +81,11 @@ public class Shape2kml {
 		FeatureIterator<SimpleFeature> fi = shp.getFeatures();
 		int count = 5;
 
-		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile,atributos);
+		//KmlPolygonCreator kml = new KmlPolygonCreator(targetFile,atributos);
 		XmlPolygonCreator xml = new XmlPolygonCreator(targetFile+"XML", atributos);
 		
 		
-		//*****************************************************************************
+	/*	//*****************************************************************************
 		PropertiesGenerator hola=new PropertiesGenerator("d:/prueba.properties");
 		try {
 			hola.write();
@@ -114,36 +114,19 @@ public class Shape2kml {
 
 			e.printStackTrace();
 		}
-	//*****************************************************************************	
+*/	//*****************************************************************************	
 		//se crea el XML
-		
-		Document doc = null;
-		
+		System.out.println("creating XML ... ");
 		
 		
-		while (fi.hasNext() && count-- > 0) {
-			sf = fi.next();
-			try {
-				doc=xml.createXML(sf);//writes the XML file
-				grupo.addElement(sf.getAttribute(1) + ".kml");
-			} catch (FileNotFoundException e) {	e.printStackTrace();
-			}
-
-			System.out.print(sf.getAttribute(4) + " ");
-			System.out.println(sf.getAttribute(5));
-
-		}
+		
+			
+				xml.createXML(fi);//writes the XML file
 				
-		XMLOutputter outp = new XMLOutputter();
-		outp.setFormat(Format.getPrettyFormat());
-		FileOutputStream file2;
-		
-		file2 = new FileOutputStream("file");
-		
-		outp.output(doc, file2);
+			
 
-		file2.flush();
-		file2.close();
+			
+
 		
 		System.out.println("...");
 		System.out.print("XML file done ");
