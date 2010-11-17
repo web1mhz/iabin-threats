@@ -527,4 +527,18 @@ do
   echo "percent.protected : $percent_protected" >> summary/$i.txt
 done
 
+###### Additional stuff
+## chck for env var correlation
+r.random sa vector_output=random_env n=5000 --o
 
+for i in $(seq 1 19)
+do
+v.db.addcol map=random_env columns="bio$i double precision"
+v.what.rast vect=random_env rast=bio$i.30sec col=bio$i
+
+done
+
+res <- data.frame(from=rep(NA,19*18/2), to=NA, cor=NA)
+count <- 1
+
+for (i in 1:19) for (j in 1:19) if(j>i) {res[count,] <- cbind(i,j,cor(bio[,i],bio[,j])); count <- count + 1}
