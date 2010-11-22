@@ -2,26 +2,16 @@ package org.ciat.ita.maps.shape2kml;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
-
 import org.geotools.feature.FeatureIterator;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
 import org.opengis.feature.simple.SimpleFeature;
 
 import org.ciat.ita.maps.shape2kml.kml.KmlGroupCreator;
 import org.ciat.ita.maps.shape2kml.kml.KmlPolygonCreator;
-import org.ciat.ita.maps.shape2kml.kml.XmlPolygonCreator;
 import org.ciat.ita.maps.shape2kml.shape.Shapefile;
 import org.ciat.ita.maps.utils.PropertiesGenerator;
 import org.ciat.ita.maps.utils.PropertiesManager;
-
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-import org.jdom.Document;
 
 public class Shape2kml {
 
@@ -81,11 +71,11 @@ public class Shape2kml {
 		FeatureIterator<SimpleFeature> fi = shp.getFeatures();
 		int count = 5;
 
-		//KmlPolygonCreator kml = new KmlPolygonCreator(targetFile,atributos);
-		XmlPolygonCreator xml = new XmlPolygonCreator(targetFile+"XML", atributos);
+		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile,atributos);
+		//XmlPolygonCreator xml = new XmlPolygonCreator(targetFile+"XML", atributos);
 		
 		
-	/*	//*****************************************************************************
+		//*****************************************************************************
 		PropertiesGenerator hola=new PropertiesGenerator("d:/prueba.properties");
 		try {
 			hola.write();
@@ -114,22 +104,15 @@ public class Shape2kml {
 
 			e.printStackTrace();
 		}
-*/	//*****************************************************************************	
+	//*****************************************************************************	
 		//se crea el XML
-		System.out.println("creating XML ... ");
+		//System.out.println("creating XML ... ");
 		
-		
-		
-			
-				xml.createXML(fi);//writes the XML file
+				//xml.createXML(fi);//writes the XML file
 				
-			
 
-			
-
-		
 		System.out.println("...");
-		System.out.print("XML file done ");
+		System.out.print("KML file done ");
 		
 	}
 
