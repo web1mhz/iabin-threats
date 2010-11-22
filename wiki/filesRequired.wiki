@@ -1,34 +1,34 @@
-<h1>Input Data </h2>
+<h1>Input Data <h1>
 
-<h2>Species</h2>
+<h2>Species<h2>
 
-The required files are:
+The required files are:<br>
 inside the folder named after the species code there are 4 files:
 
-           FILE NAME                           EXAMPLE                                      COLUMNS
+           FILE NAME                      EXAMPLE                          COLUMNS
 
-_{{{species_code_number}}}_.csv            e.g: 101616.csv	contains three columns: *{{{species_code}}}*, *longitude*, *latitude*
+_{{{species_code_number}}}_.csv       e.g: 101616.csv	contains three columns: *{{{species_code}}}*, *longitude*, *latitude* <br>
 	
-_{{species_code_number}}}_-chull.csv       e.g: 101616-chull.csv	contains two columns: *longitude*, *latitude*
+_{{species_code_number}}}_-chull.csv       e.g: 101616-chull.csv	contains two columns: *longitude*, *latitude*<br>
 	
-_{{species_code_number}}}_-chull-buff.csv  e.g: 101616-chull-buff.csv	contains two columns: *longitude*, *latitude*
+_{{species_code_number}}}_-chull-buff.csv  e.g: 101616-chull-buff.csv	contains two columns: *longitude*, *latitude*<br>
 
-_{{species_code_number}}}_-info.txt        e.g:  101616-info.txt    
+_{{species_code_number}}}_-info.txt        e.g:  101616-info.txt    <br>
 
+<br>
+<h2> Bioclim <h2><br>
+<br>
+This folder requires each of the variables to have a file named p1.asc , p2.asc, p3.asc, etc.<br>
 
-<h2> Bioclim </h2>
-
-This folder requires each of the variables to have a file named p1.asc , p2.asc, p3.asc, etc.
-
+ <br>
+ <h2>Summaries<h2><br>
  
- <h2>Summaries</h2>
- 
- This folder holds shape file, it doesn't matter the name of the file although all the files must have the same name
- example: 
-	SurAmerica.dbf
-	SurAmerica.prj
-	SurAmerica.qix
-	SurAmerica.sbn
-	SurAmerica.sbx
-	SurAmerica.shp
-	SurAmerica.shx 
+ This folder holds shape file, it doesn't matter the name of the file although all the files must have the same name<br>
+ example: <br>
+	SurAmerica.dbf<br>
+	SurAmerica.prj<br>
+	SurAmerica.qix<br>
+	SurAmerica.sbn<br>
+	SurAmerica.sbx<br>
+	SurAmerica.shp<br>
+	SurAmerica.shx <br>
