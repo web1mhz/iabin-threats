@@ -1,4 +1,4 @@
- *Input Data*
+ *Input Data
 
    Species
 
