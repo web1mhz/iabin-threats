@@ -23,8 +23,8 @@ This folder requires each of the variables to have a file named p1.asc , p2.asc,
  <br>
   * Summaries*<br>
  
- This folder holds shape file, it doesn't matter the name of the file although all the files must have the same name<br>
- example: <br>
+  This folder holds shape file, it doesn't matter the name of the file although all the files must have the same name<br>
+  example: <br>
 	SurAmerica.dbf<br>
 	SurAmerica.prj<br>
 	SurAmerica.qix<br>
