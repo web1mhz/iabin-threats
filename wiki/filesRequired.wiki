@@ -12,7 +12,7 @@ _species_code_number_.csv       e.g: 101616.csv	contains three columns: *species
 _species_code_number_-chull.csv       e.g: 101616-chull.csv	contains two columns: *longitude*, *latitude*<br>
 	<br>
 _species_code_number_-chull-buff.csv  e.g: 101616-chull-buff.csv	contains two columns: *longitude*, *latitude*<br>
-<br>
+
 _species_code_number_-info.txt        e.g:  101616-info.txt    <br>
 
 <br>
@@ -21,7 +21,7 @@ _species_code_number_-info.txt        e.g:  101616-info.txt    <br>
 This folder requires each of the variables to have a file named p1.asc , p2.asc, p3.asc, etc.<br>
 
  <br>
- *Summaries*<br>
+  * Summaries*<br>
  
  This folder holds shape file, it doesn't matter the name of the file although all the files must have the same name<br>
  example: <br>
