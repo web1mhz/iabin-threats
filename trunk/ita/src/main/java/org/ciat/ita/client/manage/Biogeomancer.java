@@ -1,6 +1,7 @@
 package org.ciat.ita.client.manage;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8,12 +9,21 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.ciat.ita.model.Record;
+import org.ciat.ita.server.ServerConfig;
+import org.ciat.ita.server.database.DataBaseManager;
 import org.ciat.ita.server.database.PortalInterface;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
 
 public class Biogeomancer {
 
@@ -23,8 +33,10 @@ public class Biogeomancer {
 	/** 
 	 * @param places - A Set of places (Records) that have not been georreferenced.
 	 * @return The same Set of places but re-georreferenced.
+	 * @throws IOException 
+	 * @throws JDOMException 
 	 */
-	public static Set<Record> startGeorref(Set<Record> places) {
+	public static Set<Record> startGeorref(Set<Record> places) throws JDOMException, IOException {
 		try {
 			String xmlData = dataToXML(places);
 			System.out.println(xmlData);
@@ -45,14 +57,16 @@ public class Biogeomancer {
 
 			// Working with XML
 			// try {
-			// SAXBuilder builder = new SAXBuilder(false);
-			// Document doc = builder.build(inputStream);
-			// Element httpXML = doc.getRootElement();
-			// Element records = httpXML.getChild("records");
-			//				
-			// List<Element> recordsArray = records.getChildren("record");
-			// System.out.println(recordsArray.size());
-			//				
+			 SAXBuilder builder = new SAXBuilder(false);
+			 Document doc = builder.build(xmlResult);
+			 Element httpXML = doc.getRootElement();
+			 Element records = httpXML.getChild("records");
+							
+			 List<Element> recordsArray = records.getChildren("record");
+			 
+			 
+			 System.out.println(recordsArray.size());
+							
 			// } catch (JDOMException e) {
 			// // TODO Auto-generated catch block
 			// e.printStackTrace();
@@ -167,13 +181,53 @@ public class Biogeomancer {
 	}
 	
 	public static void main(String[] args) {
-		Record rec=new Record("", "", "California", "", "Berkeley", 0.0, 0.0, 0, null, 0, true);
+		
+		Connection conx;
+		DataBaseManager.registerDriver();
+		conx= DataBaseManager.openConnection(ServerConfig.getInstance().database_user,	ServerConfig.getInstance().database_password);
+
+		/*aqui se hace la consulta a la base de datos y las respuestas se almacenan en un ResultSet*/
+		ResultSet rs = DataBaseManager.makeQuery("select " + "*" + " from "
+				+ "temp_georeferenced_records" + "limit 10", conx);
+		
+		/*se crea el HashSet en donde se almacenaran lso records creados con cada linea del Resultset*/
 		HashSet<Record> grup=new HashSet<Record>();
-		grup.add(rec);
+		
+		try {  /*se recorre el result set y se crean los records*/
+			while(rs.next()) {
+							
+				//isoCountryCode, country, state, county, locality, latitude, longitude, nudConceptId, canonical, id, decode
+				
+				Record rec=new Record(rs.getString("iso_country_code"), rs.getString("country"), rs.getString("state_province"), rs.getString("county"), rs.getString("locality"), 0.0, 0.0, 0, null, 0, true);
+			       
+			      // rec=new Record("", "", "", "", "Feuerland, Süd-Chile, Bucht von Puerto Arturo, Ostufer der Isla Dawson, Brackwassereinschlag", 0.0, 0.0, 0, null, 0, true);
+			       //rec=new Record("", "", "", "", "Bären-Insel, Wattenmeer-Sediment", 0.0, 0.0, 0, null, 0, true);
+			       //Feuerland, Süd-Chile, Bucht von Puerto Arturo, Ostufer der Isla Dawson, Brackwassereinschlag
+			//Germany, Sachsen
+			       //"Bären-Insel, Wattenmeer-Sediment, leg. J.M. Weslawski, Juli 1994."
+			
+			grup.add(rec);
+	
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		DataBaseManager.closeConnection(conx);
+		
 		System.out.println("inicia startGeorref");
-		startGeorref(grup);
+		/*se inicia la georreferenciacion*/
+		try {
+			
+			startGeorref(grup);
+			
+		} catch (JDOMException e) {	e.printStackTrace();
+		} catch (IOException e) {e.printStackTrace();
+		}
 		System.out.println("termina startGeorref");
-		
-		
+			
 	}
+	 
 }
