@@ -5,6 +5,9 @@
 
 This tools provide the ability to convert shape and csv files to kml files and to convert raster files to png images, so that these data can be shown through the web interface using google maps.
 
+Input Data
+
+[http://code.google.com/p/iabin-threats/wiki/filesRequired here] you can find the details about the input data needed for these tools to work
 
 = Details =
 
