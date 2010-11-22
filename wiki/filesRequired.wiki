@@ -1,6 +1,6 @@
-<h1>Input Data <h1>
+Input Data
 
-<h2>Species<h2>
+*Species*
 
 The required files are:<br>
 inside the folder named after the species code there are 4 files:
@@ -16,12 +16,12 @@ _{{species_code_number}}}_-chull-buff.csv  e.g: 101616-chull-buff.csv	contains t
 _{{species_code_number}}}_-info.txt        e.g:  101616-info.txt    <br>
 
 <br>
-<h2> Bioclim <h2><br>
+* Bioclim *<br>
 <br>
 This folder requires each of the variables to have a file named p1.asc , p2.asc, p3.asc, etc.<br>
 
  <br>
- <h2>Summaries<h2><br>
+ *Summaries*<br>
  
  This folder holds shape file, it doesn't matter the name of the file although all the files must have the same name<br>
  example: <br>
