@@ -241,7 +241,7 @@ public class General {
 
 					Csv2Point point = new Csv2Point(lista);
 					try {
-						point.createKML(targetpath + species + s.getName()+ File.separator, s.getName()); // cambiar a
+						point.createKML(targetpath + species + s.getName()+ File.separator, s.getName(), estilo); // cambiar a
 						// properties
 						// file
 					} catch (FileNotFoundException e) {

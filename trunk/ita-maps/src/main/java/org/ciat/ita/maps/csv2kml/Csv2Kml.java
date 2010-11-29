@@ -32,7 +32,7 @@ public class Csv2Kml {
 		
 		Csv2Point point=new Csv2Point(lista);   
 		try {
-			point.createKML("d:","point");
+			point.createKML("d:","point", estilo);
 		} catch (FileNotFoundException e) {		e.printStackTrace();		}
 		
 		
