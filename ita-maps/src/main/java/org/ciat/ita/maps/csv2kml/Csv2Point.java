@@ -34,14 +34,14 @@ import de.micromata.opengis.kml.v_2_2_0.Polygon;
 public class Csv2Point {
 
 	private LinkedList<String[]> lista;
-	
+	private String estilo;
 
 	public Csv2Point(LinkedList<String[]> lista) {
 		this.lista = lista;
 	}
 
-	public void createKML(String path, String archivo) throws FileNotFoundException {
-
+	public void createKML(String path, String archivo, String estilo) throws FileNotFoundException {
+		this.estilo=estilo;
 		String descripcion = "descripcion";
 
 		final Kml kml = new Kml();
@@ -60,7 +60,7 @@ public class Csv2Point {
  */
 		for (String[] s : lista) {
 
-			placemark = folder.createAndAddPlacemark().withStyleUrl("http://wikipedia.agilityhoster.com/estilo.kml#estilo");//se crea el placemark y se naade al folder
+			placemark = folder.createAndAddPlacemark().withStyleUrl(estilo);//se crea el placemark y se naade al folder
 			placemark.createAndSetPoint().addToCoordinates(
 					Double.parseDouble(s[0]), Double.parseDouble(s[1]));//se crean las coordenadas y se registran al placemark
 
