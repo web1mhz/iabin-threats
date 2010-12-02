@@ -181,5 +181,7 @@ public class Record implements Serializable {
 	public String toString() {
 		return id + "," + nub_concept_id + "," + iso_country_code + "," + latitude + "," + longitude;
 	}
+	
+
 
 }
