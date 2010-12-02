@@ -1,4 +1,4 @@
-package org.ciat.ita.gb;
+package org.ciat.ita.bg;
 
 /**
  * Hello world!
