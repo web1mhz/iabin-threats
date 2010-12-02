@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.ciat.ita.server.ServerConfig;
+import org.ciat.ita.bg.server.ServerConfig;
 
 
 public class DataBaseManager {

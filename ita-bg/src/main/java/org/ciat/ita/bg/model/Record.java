@@ -4,7 +4,7 @@ package org.ciat.ita.bg.model;
 import java.io.Serializable;
 import java.util.Map;
 
-import org.ciat.ita.client.manage.DecodeManager;
+import org.ciat.ita.bg.client.manage.DecodeManager;
 
 
 @SuppressWarnings("serial")
