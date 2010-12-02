@@ -2,6 +2,8 @@ package org.ciat.ita.client.manage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,14 +58,24 @@ public class Biogeomancer {
 	public static Set<Record> startGeorref(Set<Record> places)
 			throws IOException, DocumentException, JaxenException {
 		
+		
 		String outputFile="d:/out.txt";
+		String horaInicio=getDateTime();
+		String str;
 		
-		
-		FileWriter fstream = new FileWriter(outputFile);
-        BufferedWriter out = new BufferedWriter(fstream);
-        String horaInicio=getDateTime();
-        out.write("start time: "+getDateTime());
-        out.close();
+		File f=new File(outputFile);
+	      FileOutputStream fop=new FileOutputStream(f, true);
+
+	      if(f.exists()){
+	      str="\n\n*****************\nstart time : "+getDateTime();
+	          fop.write(str.getBytes());
+
+	          fop.flush();
+	          fop.close();
+	      }
+        
+        
+       
 		
 		try {
 			String xmlData = dataToXML(places);
@@ -173,19 +185,23 @@ public class Biogeomancer {
 			System.out.println("los registros que tienen >2 respuestas son :"+masde2respuestas);
 			System.out.println("el total de los registros es :"+nodes.size());
 			
-			fstream = new FileWriter(outputFile);
-			out = new BufferedWriter(fstream);
+			//writes the timing and results to d:/out.txt
+			fop=new FileOutputStream(f, true);
 			
-	        out.write("\nlos registros que no tienen respuesta son :"+sinrespuesta);
-	        out.write("\nlos registros que tienen 1 respuesta  son :"+unasolarespuesta);
-	        out.write("\nlos registros que tienen 2 respuestas son :"+dosrespuestas);
-	        out.write("\nlos registros que tienen >2 respuestas son :"+masde2respuestas);
-	        out.write("\nel total de los registros es :"+nodes.size());
-	        out.write("\n"+horaInicio);
-	        out.write("\nend time : "+getDateTime() );
-	        
-	        //Close the output stream
-	        out.close();
+			if(f.exists()){
+			      str="\nstart time"+getDateTime()
+			      +"\nlos registros que no tienen respuesta son :"+sinrespuesta
+			      +"\nlos registros que tienen 1 respuesta  son :"+unasolarespuesta
+			      +"\nlos registros que tienen 2 respuestas son :"+dosrespuestas
+			      +"\nlos registros que tienen >2 respuestas son :"+masde2respuestas
+			      +"\nel total de los registros es :"+nodes.size()
+			      +"\nstart time : "+horaInicio
+			      +"\nend time : "+getDateTime();
+			          fop.write(str.getBytes());
+
+			          fop.flush();
+			          fop.close();
+			}
 
 
 			System.out.println("*******************************************");
@@ -322,7 +338,7 @@ public class Biogeomancer {
 		System.out.println("hace la consulta y devuelve el result set");
 System.out.println("inicia query : "+getDateTime());
 		ResultSet rs = DataBaseManager.makeQuery("select " + "*" + " from "
-				+ "temp_georeferenced_records" +" group by RAND()"+ " limit 10", conx);
+				+ "temp_georeferenced_records" +" group by RAND()"+ " limit 50", conx);
 System.out.println("termina query : "+getDateTime());
 		/*
 		 * se crea el HashSet en donde se almacenaran los records creados con
