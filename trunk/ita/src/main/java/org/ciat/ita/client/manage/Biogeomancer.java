@@ -338,7 +338,7 @@ public class Biogeomancer {
 		System.out.println("hace la consulta y devuelve el result set");
 System.out.println("inicia query : "+getDateTime());
 		ResultSet rs = DataBaseManager.makeQuery("select " + "*" + " from "
-				+ "temp_georeferenced_records" +" group by RAND()"+ " limit 50", conx);
+				+ "temp_georeferenced_records" +" order by RAND()"+ " limit 50", conx);
 System.out.println("termina query : "+getDateTime());
 		/*
 		 * se crea el HashSet en donde se almacenaran los records creados con
