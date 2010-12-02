@@ -175,13 +175,14 @@ public class Biogeomancer {
 			
 			fstream = new FileWriter(outputFile);
 			out = new BufferedWriter(fstream);
-	        out.write("los registros que no tienen respuesta son :"+sinrespuesta);
-	        out.write("los registros que tienen 1 respuesta  son :"+unasolarespuesta);
-	        out.write("los registros que tienen 2 respuestas son :"+dosrespuestas);
-	        out.write("los registros que tienen >2 respuestas son :"+masde2respuestas);
-	        out.write("el total de los registros es :"+nodes.size());
-	        out.write(horaInicio);
-	        out.write("end time : "+getDateTime() );
+			
+	        out.write("\nlos registros que no tienen respuesta son :"+sinrespuesta);
+	        out.write("\nlos registros que tienen 1 respuesta  son :"+unasolarespuesta);
+	        out.write("\nlos registros que tienen 2 respuestas son :"+dosrespuestas);
+	        out.write("\nlos registros que tienen >2 respuestas son :"+masde2respuestas);
+	        out.write("\nel total de los registros es :"+nodes.size());
+	        out.write("\n"+horaInicio);
+	        out.write("\nend time : "+getDateTime() );
 	        
 	        //Close the output stream
 	        out.close();
@@ -319,10 +320,10 @@ public class Biogeomancer {
 		 * almacenan en un ResultSet
 		 */
 		System.out.println("hace la consulta y devuelve el result set");
-
+System.out.println("inicia query : "+getDateTime());
 		ResultSet rs = DataBaseManager.makeQuery("select " + "*" + " from "
-				+ "temp_georeferenced_records" +" group by RAND()"+ " limit 50", conx);
-
+				+ "temp_georeferenced_records" +" group by RAND()"+ " limit 10", conx);
+System.out.println("termina query : "+getDateTime());
 		/*
 		 * se crea el HashSet en donde se almacenaran los records creados con
 		 * cada linea del Resultset

@@ -96,6 +96,16 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.11</version>
 		</dependency>
+		<dependency>
+  		 	<groupId>dom4j</groupId>
+   			<artifactId>dom4j</artifactId>
+   			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+  		 	<groupId>jaxen</groupId>
+   			<artifactId>jaxen</artifactId>
+   			<version>1.1.1</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
@@ -120,6 +130,10 @@
 			<id>jboss-snapshot</id>
 			<url>http://snapshots.jboss.org/maven2</url>
 		</repository>
+		<repository>
+   			<id>The official Maven 2 repository</id>
+   			<url>http://repo1.maven.org/maven2</url>
+  		</repository>
 	</repositories>
 
 </project>
