@@ -59,7 +59,7 @@ public class Biogeomancer {
 			throws IOException, DocumentException, JaxenException {
 		
 		
-		String outputFile="d:/out.txt";
+		String outputFile="out.txt";
 		String horaInicio=getDateTime();
 		String str;
 		
