@@ -97,7 +97,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 		graphics.setColor(Color.BLACK);
 		graphics.drawString(descripcion, 5, (line - recHeight) / 2 + recHeight);
 
-		int valorMinimo = (int) this.getMin();
+		int valorMinimo = (int) this.getMin()/10;
 		for (int i = 0; i < umbrales.length; i++) {
 			Color color = new Color(getRGB(umbrales[i]
 					- (float) Math.pow(10, -8)));
