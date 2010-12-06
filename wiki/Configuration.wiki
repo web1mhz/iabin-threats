@@ -13,7 +13,57 @@ The purpose of this document is to illustrate how to build the project from the 
 
 == Technical Requirements ==
 
-To this point, the project must be imported, edited and packaged. (see How [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA How To Build ITA] section)
+* To this point, the project must be imported, edited and packaged. (see How [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA How To Build ITA] section)
+* 250GB-500GB of HD space available for database (while importing process), 30GB for shape files and bioclimatic variables files. 
+* Latest version of JRE, available for free at [http://www.java.com http://www.java.com] 
+* MySQL database server 
+  # GBIF database mounted and configured based on the attached file named my.cnf.  You should change the datadir and tmpdir parameters
+
+<td>
+	<tr>
+		[mysqld] 
+#datadir=/var/lib/mysql 
+datadir=/media/Lacie_Disk/mysql 
+tmpdir=/media/Lacie_Disk/mysql_temp 
+socket=/var/lib/mysql/mysql.sock 
+user=mysql 
+# Default to using old password format for compatibility with mysql 3.x 
+# clients (those using the mysqlclient10 compatibility package). 
+old_passwords=1 
+#bind-address=0.0.0.0 
+port=3306 
+max_allowed_packet = 1M 
+table_cache = 512 
+sort_buffer_size = 128M 
+read_buffer_size = 64M 
+read_rnd_buffer_size = 300M 
+thread_cache_size = 8 
+query_cache_type = 0 
+query_cache_size = 0 
+thread_concurrency = 16 
+myisam_max_sort_file_size = 250G 
+myisam_max_extra_sort_file_size = 250G 
+# this is used for repair by sorting 
+myisam_sort_buffer_size = 3990M 
+# maximum value for this is 4g for now! 
+key_buffer_size=3990M 
+tmp_table_size=512M 
+max_heap_table_size=512M 
+  
+[mysqld_safe] 
+log-error=/var/log/mysqld.log 
+pid-file=/var/run/mysqld/mysqld.pid
+		
+	</tr>
+</td>
+
+== Configuring MySQL Database ==
+
+
 
 == Configuring Files ==
+
+The project needs some extra XML files that should be configured before start to run it (*client_config.xml* and *server_config.xml*).
+
+As the _svn_ command doesn't import these files, ITA project can generate them assigning default values that you should change later, depending of your file system and your personal configuration.
 
