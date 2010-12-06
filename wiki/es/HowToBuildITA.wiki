@@ -7,3 +7,73 @@
 
 == Introducción ==
 
+Este es un documento técnico y está destinado a las personas que tiene relación con la ejecución técnica del proyecto.
+
+El propósito de este documento es ilustrar cómo construir el proyecto desde el código fuente de este repositorio.
+
+Le invitamos a leer primero la [Descripción] del proyecto.
+
+== Requerimientos Técnicos ==
+
+ * Apache Subversion SVN Client. [http://subversion.apache.org/packages.html Descargar].
+ * Apache Maven. [http://maven.apache.org/download.html Descargar]
+ * Java JRE version 6 or higher. [http://www.java.com/ Descargar]
+ 
+ == 1. Importando el código fuente ==
+ 
+ Importar [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita ita project] de este repositorio.
+
+ {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita ita}}}
+ 
+Para actualizar su copia, ejecute el comando:
+ 
+ {{{svn update}}}
+ 
+ Las instrucciones para importar de Google Code's SVN se pueden encontrar [http://code.google.com/p/iabin-threats/source/checkout Aquí]
+ 
+ == 2. Organizando el código para Eclipse IDE ==
+ 
+ Una vez se ha importado el codigo, si desea organizar un proyecto de Eclipse IDE, ejecute el comando:
+ 
+ {{{mvn eclipse:eclipse}}}
+ 
+ == 3. Compilando el proyecto ==
+ 
+ Si desea compilar el proyecto para obtener los archivos binarios, ejecute el comando:
+ 
+ {{{mvn compile}}}
+ 
+ Esto crea el directorio  /target/classes donde estan las clases compiladadas
+ y el directorio /target/rmi-classes donde estan las clases Stub para ejecutar el proyecto usando Remote Method Invocation [http://en.wikipedia.org/wiki/Java_remote_method_invocation Java RMI]
+ 
+ == 4. Empaquetando el proyecto ==
+ 
+ Si desea implementar el archivo .jar del proyecto, ejecute el comando:
+ 
+ {{{mvn package}}}
+ 
+ Entonces puede encontrar el .jar en el directorio /target , llamado _ita_ con la versión actual del proyecto _e.g. ita-0.1-SNAPSHOT.jar_
+ 
+ La compilación de este paso no es necesaria ya que el empaquetamiento incluye el proceso de compilación para crear el jar.
+ 
+ == 5. Usando el proyecto ==
+ 
+ Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con _java_ comandos
+ 
+Puede ver la pagina del [API] para saber como usar las clases del proyecto o ejecutar directamente cualquiera de las clases ejecutables.
+
+
+=== 5.1 Ejecución automática ===
+
+Si tiene configurado el proyecto de forma automática solo necesita ejecutar el jar directamente:
+
+{{{java -Xmx1500m -jar ita-0.1-SNAPSHOT.jar}}}
+
+=== 5.2 Ejecución como cliente-servidor ===
+
+Si la configuración no es automática, debe ejecutar primero una instancia como servidor llamando a la clase principal de _org.ciat.ita.server.Server_ class
+
+{{{java -cp ita-0.1-SNAPSHOT.jar org.ciat.ita.server.Server}}}
+
+Y a continuación, puede ejecutar varias instancias como clientes llamando a la clase principal _org.ciat.ita.client.Client_ o con el mismo comando de la ejecución automática.
+
