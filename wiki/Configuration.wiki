@@ -26,39 +26,40 @@ The purpose of this document is to illustrate how to build the project from the 
 		|| my.cnf ||
 	</tr>
 	<tr>		
-			{{{[mysqld]}}}<br>
-			{{{#datadir=/var/lib/mysql}}} <br>
-			{{{datadir=/media/Lacie_Disk/mysql}}}<br> 
-			{{{tmpdir=/media/Lacie_Disk/mysql_temp}}}<br> 
-			{{{socket=/var/lib/mysql/mysql.sock}}}<br>
-			{{{user=mysql}}}<br>
-			{{{# Default to using old password format for compatibility with mysql 3.x}}}<br> 
-			{{{# clients (those using the mysqlclient10 compatibility package).}}} <br>
-			{{{old_passwords=1}}} <br>
-			{{{#bind-address=0.0.0.0}}} <br>
-			{{{port=3306}}} <br>
-			{{{max_allowed_packet = 1M}}}<br> 
-			{{{table_cache = 512}}} <br>
-			{{{sort_buffer_size = 128M}}}<br> 
-			{{{read_buffer_size = 64M}}} <br>
-			{{{read_rnd_buffer_size = 300M}}}<br> 
-			{{{thread_cache_size = 8}}} <br>
-			{{{query_cache_type = 0}}} <br>
-			{{{query_cache_size = 0}}} <br>
-			{{{thread_concurrency = 16}}} <br>
-			{{{myisam_max_sort_file_size = 250G}}}<br> 
-			{{{myisam_max_extra_sort_file_size = 250G}}}<br> 
-			{{{# this is used for repair by sorting}}} <br>
-			{{{myisam_sort_buffer_size = 3990M}}} <br>
-			{{{# maximum value for this is 4g for now!}}} <br>
-			{{{key_buffer_size=3990M}}} <br>
-			{{{tmp_table_size=512M}}} <br>
-			{{{max_heap_table_size=512M}}}<br> 
-			<br>  
-			{{{[mysqld_safe]}}}<br> 
-			{{{log-error=/var/log/mysqld.log}}}<br> 
-			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br>		
-
+			{{{[mysqld]}}}<br />
+			{{{#datadir=/var/lib/mysql}}} <br />
+			{{{datadir=/media/Lacie_Disk/mysql}}}<br /> 
+			{{{tmpdir=/media/Lacie_Disk/mysql_temp}}}<br /> 
+			{{{socket=/var/lib/mysql/mysql.sock}}}<br />
+			{{{user=mysql}}}<br />
+			{{{# Default to using old password format for compatibility with mysql 3.x}}}<br /> 
+			{{{# clients (those using the mysqlclient10 compatibility package).}}} <br />
+			{{{old_passwords=1}}} <br />
+			{{{#bind-address=0.0.0.0}}} <br />
+			{{{port=3306}}} <br />
+			{{{max_allowed_packet = 1M}}}<br /> 
+			{{{table_cache = 512}}} <br />
+			{{{sort_buffer_size = 128M}}}<br /> 
+			{{{read_buffer_size = 64M}}} <br />
+			{{{read_rnd_buffer_size = 300M}}}<br /> 
+			{{{thread_cache_size = 8}}} <br />
+			{{{query_cache_type = 0}}} <br />
+			{{{query_cache_size = 0}}} <br />
+			{{{thread_concurrency = 16}}} <br />
+			{{{myisam_max_sort_file_size = 250G}}}<br /> 
+			{{{myisam_max_extra_sort_file_size = 250G}}}<br /> 
+			{{{# this is used for repair by sorting}}} <br />
+			{{{myisam_sort_buffer_size = 3990M}}} <br />
+			{{{# maximum value for this is 4g for now!}}} <br />
+			{{{key_buffer_size=3990M}}} <br />
+			{{{tmp_table_size=512M}}} <br />
+			{{{max_heap_table_size=512M}}}<br /> 
+			<br />  
+			{{{[mysqld_safe]}}}<br /> 
+			{{{log-error=/var/log/mysqld.log}}}<br /> 
+			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br />
+	</tr>		
+</table>
 
 
 == Configuring MySQL Database ==
