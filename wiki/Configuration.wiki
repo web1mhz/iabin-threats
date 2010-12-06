@@ -22,47 +22,43 @@ The purpose of this document is to illustrate how to build the project from the 
 == Configuring MySQL Database ==
 You can use any other configuration. However, we recomend the following configuration:
 
- 											|| my.cnf ||
 
-<table border="1">		
-		<tr>	
-			<td>
-			{{{[mysqld]}}}			
-			{{{#datadir=/var/lib/mysql}}}			 
-			{{{datadir=/media/Lacie_Disk/mysql}}}			
-			{{{tmpdir=/media/Lacie_Disk/mysql_temp}}}			
-			{{{socket=/var/lib/mysql/mysql.sock}}}<br />
-			{{{user=mysql}}}<br />
-			{{{# Default to using old password format for compatibility with mysql 3.x}}}<br /> 
-			{{{# clients (those using the mysqlclient10 compatibility package).}}} <br />
-			{{{old_passwords=1}}} <br />
-			{{{#bind-address=0.0.0.0}}} <br />
-			{{{port=3306}}} <br />
-			{{{max_allowed_packet = 1M}}}<br /> 
-			{{{table_cache = 512}}} <br />
-			{{{sort_buffer_size = 128M}}}<br /> 
-			{{{read_buffer_size = 64M}}} <br />
-			{{{read_rnd_buffer_size = 300M}}}<br /> 
-			{{{thread_cache_size = 8}}} <br />
-			{{{query_cache_type = 0}}} <br />
-			{{{query_cache_size = 0}}} <br />
-			{{{thread_concurrency = 16}}} <br />
-			{{{myisam_max_sort_file_size = 250G}}}<br /> 
-			{{{myisam_max_extra_sort_file_size = 250G}}}<br /> 
-			{{{# this is used for repair by sorting}}} <br />
-			{{{myisam_sort_buffer_size = 3990M}}} <br />
-			{{{# maximum value for this is 4g for now!}}} <br />
-			{{{key_buffer_size=3990M}}} <br />
-			{{{tmp_table_size=512M}}} <br />
-			{{{max_heap_table_size=512M}}}<br /> 
-			<br />  
-			{{{[mysqld_safe]}}}<br /> 
-			{{{log-error=/var/log/mysqld.log}}}<br /> 
-			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br />
-			</td>
-			</tr>
+{{{
+[mysqld]
+#datadir=/var/lib/mysql		 
+datadir=/media/Lacie_Disk/mysql			
+tmpdir=/media/Lacie_Disk/mysql_temp			
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+# Default to using old password format for compatibility with mysql 3.x
+# clients (those using the mysqlclient10 compatibility package). 
+old_passwords=1 
+#bind-address=0.0.0.0 
+port=3306
+max_allowed_packet = 1M
+table_cache = 512 
+sort_buffer_size = 128M 
+read_buffer_size = 64M 
+read_rnd_buffer_size = 300M 
+thread_cache_size = 8 
+query_cache_type = 0 
+query_cache_size = 0 
+thread_concurrency = 16 
+myisam_max_sort_file_size = 250G 
+myisam_max_extra_sort_file_size = 250G 
+# this is used for repair by sorting 
+myisam_sort_buffer_size = 3990M 
+# maximum value for this is 4g for now! 
+key_buffer_size=3990M 
+tmp_table_size=512M 
+max_heap_table_size=512M 
+ 
+[mysqld_safe] 
+log-error=/var/log/mysqld.log 
+pid-file=/var/run/mysqld/mysqld.pid
+}}}
 			
-</table>
+
 
 == Configuring Files ==
 
@@ -72,57 +68,58 @@ As the _svn_ command doesn't import these files, ITA project can generate them a
 
 run the following commands:
 
-     {{{java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig}}}
+     java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig
 
-     {{{java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.server.ServerConfig}}}
+     java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.server.ServerConfig
 
 Both XML should have been created.
 
 || client_config.xml ||
 
-{{{<?xml version="1.0" encoding="UTF-8"?>}}}<br />
-{{{<config>}}}<br />
-  {{{<server ip_addr="localhost" communication_type="LOCAL" />}}}<br />
-  {{{<Proxy>}}}<br />
-    {{{<HttpProxy server="proxy4.ciat.cgiar.org" port="8080" />}}}<br />
-  {{{</Proxy>}}}<br />
-  {{{<work records="10000" />}}}<br />
-  {{{<shape path="/GADM_v0-6.shp">}}}<br />
-    {{{<column name="ISO">ISO</column>}}}<br />
-    {{{<column name="country">ISOCOUNTRY</column>}}}<br />
-    {{{<column name="state">NAME_1</column>}}}<br />
-    {{{<column name="county">NAME_2</column>}}}<br />
-  {{{</shape>}}}<br />
-  {{{<mask path="/inland_msk.jgm" />}}}<br />
-  {{{<maxent>}}}<br />
-    {{{<file name="maxent_file" type="jar" path="/maxent.jar" />}}}<br />
-    {{{<file name="sample_dir" type="directory" path="/samples/" />}}}<br />
-    {{{<file name="backgroung_file" type="csv" path="/background_clm.csv" />}}}<br />
-    {{{<file name="lambda_output_dir" type="directory" path="/lambda_output/" />}}}<br />
-    {{{<file name="final_output_dir" type="directory" path="/final_output/" />}}}<br />
-    {{{<file name="bio_variables_dir" type="directory" path="/small_variables/" />}}}<br />
-  {{{</maxent>}}}<br />
-  {{{<variables type="bioclimatic" path="/variables/">}}}<br />
-    {{{<variable>alt</variable>}}}<br />
-    {{{<variable>bio_1</variable>}}}<br />
-    {{{<variable>bio_2</variable>}}}<br />
-    {{{<variable>bio_3</variable>}}}<br />
-    {{{<variable>bio_4</variable>}}}<br />
-    {{{<variable>bio_5</variable>}}}<br />
-    {{{<variable>bio_6</variable>}}}<br />
-    {{{<variable>bio_7</variable>}}}<br />
-    {{{<variable>bio_8</variable>}}}<br />
-    {{{<variable>bio_9</variable>}}}<br />
-    {{{<variable>bio_10</variable>}}}<br />
-    {{{<variable>bio_11</variable>}}}<br />
-    {{{<variable>bio_12</variable>}}}<br />
-    {{{<variable>bio_13</variable>}}}<br />
-    {{{<variable>bio_14</variable>}}}<br />
-    {{{<variable>bio_15</variable>}}}<br />
-    {{{<variable>bio_16</variable>}}}<br />
-    {{{<variable>bio_17</variable>}}}<br />
-    {{{<variable>bio_18</variable>}}}<br />
-    {{{<variable>bio_19</variable>}}}<br />
-  {{{</variables>}}}<br />
-{{{</config>}}}<br />
- 
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <server ip_addr="localhost" communication_type="LOCAL" />
+  <Proxy>
+    <HttpProxy server="proxy4.ciat.cgiar.org" port="8080" />
+  </Proxy>
+  <work records="10000" />
+  <shape path="/GADM_v0-6.shp">
+    <column name="ISO">ISO</column>
+    <column name="country">ISOCOUNTRY</column>
+    <column name="state">NAME_1</column>
+    <column name="county">NAME_2</column>
+  </shape>
+  <mask path="/inland_msk.jgm" />
+  <maxent>
+    <file name="maxent_file" type="jar" path="/maxent.jar" />
+    <file name="sample_dir" type="directory" path="/samples/" />
+    <file name="backgroung_file" type="csv" path="/background_clm.csv" />
+    <file name="lambda_output_dir" type="directory" path="/lambda_output/" />
+    <file name="final_output_dir" type="directory" path="/final_output/" />
+    <file name="bio_variables_dir" type="directory" path="/small_variables/" />
+  </maxent>
+  <variables type="bioclimatic" path="/variables/">
+    <variable>alt</variable>
+    <variable>bio_1</variable>
+    <variable>bio_2</variable>
+    <variable>bio_3</variable>
+    <variable>bio_4</variable>
+    <variable>bio_5</variable>
+    <variable>bio_6</variable>
+    <variable>bio_7</variable>
+    <variable>bio_8</variable>
+    <variable>bio_9</variable>
+    <variable>bio_10</variable>
+    <variable>bio_11</variable>
+    <variable>bio_12</variable>
+    <variable>bio_13</variable>
+    <variable>bio_14</variable>
+    <variable>bio_15</variable>
+    <variable>bio_16</variable>
+    <variable>bio_17</variable>
+    <variable>bio_18</variable>
+    <variable>bio_19</variable>
+  </variables>
+</config>
+}}}
