@@ -22,10 +22,10 @@ The purpose of this document is to illustrate how to build the project from the 
 
 
 <table border="1">
-	<td>
+	<tr>
 		|| my.cnf ||
-	</td>
-	<td>		
+	</tr>
+	<tr>		
 			{{{[mysqld]}}}<br>
 			{{{#datadir=/var/lib/mysql}}} <br>
 			{{{datadir=/media/Lacie_Disk/mysql}}}<br> 
@@ -58,8 +58,7 @@ The purpose of this document is to illustrate how to build the project from the 
 			{{{[mysqld_safe]}}}<br> 
 			{{{log-error=/var/log/mysqld.log}}}<br> 
 			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br>		
-	</td>
-</table>
+
 
 
 == Configuring MySQL Database ==
