@@ -58,7 +58,7 @@ Para actualizar su copia, ejecute el comando:
  
  == 5. Usando el proyecto ==
  
- Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con _java_ comandos
+ Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con comandos _java_ 
  
 Puede ver la pagina del [API] para saber como usar las clases del proyecto o ejecutar directamente cualquiera de las clases ejecutables.
 
@@ -75,5 +75,5 @@ Si la configuración no es automática, debe ejecutar primero una instancia como
 
 {{{java -cp ita-0.1-SNAPSHOT.jar org.ciat.ita.server.Server}}}
 
-Y a continuación, puede ejecutar varias instancias como clientes llamando a la clase principal _org.ciat.ita.client.Client_ o con el mismo comando de la ejecución automática.
+Y a continuación, puede ejecutar varias instancias como clientes llamando a la clase principal _org.ciat.ita.client.Client_  o con el mismo comando de la ejecución automática.
 
