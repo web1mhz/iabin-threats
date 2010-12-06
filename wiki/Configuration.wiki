@@ -1,5 +1,4 @@
 #summary How to build the ITA data filtering tool
-#labels Phase-Implementation
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/Configuration?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
@@ -23,11 +22,9 @@ The purpose of this document is to illustrate how to build the project from the 
 == Configuring MySQL Database ==
 You can use any other configuration. However, we recomend the following configuration:
 
-<table border="1">
-	<td>
-		<tr>
-		my.cnf
-		</tr>
+ 											|| my.cnf ||
+
+<table border="1">		
 		<tr>	
 			{{{[mysqld]}}}<br />
 			{{{#datadir=/var/lib/mysql}}} <br />
@@ -62,7 +59,7 @@ You can use any other configuration. However, we recomend the following configur
 			{{{log-error=/var/log/mysqld.log}}}<br /> 
 			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br />
 			</tr>
-	</td>		
+			
 </table>
 
 == Configuring Files ==
@@ -71,3 +68,6 @@ The project needs some extra XML files that should be configured before start to
 
 As the _svn_ command doesn't import these files, ITA project can generate them assigning default values that you should change later, depending of your file system and your personal configuration.
 
+run the following commands:
+{{{java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig}}}
+{{{java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.server.ServerConfig}}}
