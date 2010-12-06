@@ -27,14 +27,10 @@ You can use any other configuration. However, we recomend the following configur
 <table border="1">		
 		<tr>	
 			<td>
-			{{{[mysqld]}}}
-			
-			{{{#datadir=/var/lib/mysql}}}
-			 
-			{{{datadir=/media/Lacie_Disk/mysql}}}
-			
-			{{{tmpdir=/media/Lacie_Disk/mysql_temp}}}
-			
+			{{{[mysqld]}}}			
+			{{{#datadir=/var/lib/mysql}}}			 
+			{{{datadir=/media/Lacie_Disk/mysql}}}			
+			{{{tmpdir=/media/Lacie_Disk/mysql_temp}}}			
 			{{{socket=/var/lib/mysql/mysql.sock}}}<br />
 			{{{user=mysql}}}<br />
 			{{{# Default to using old password format for compatibility with mysql 3.x}}}<br /> 
