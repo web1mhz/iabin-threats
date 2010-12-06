@@ -24,15 +24,15 @@ The purpose of this document is to illustrate how to build the project from the 
 <table border="1">
 	<tr>
 		<td>
-			{{{[mysqld]}}}
+			{{{[mysqld]}}}<br>
 			{{{#datadir=/var/lib/mysql}}} 
 			{{{datadir=/media/Lacie_Disk/mysql}}} 
-tmpdir=/media/Lacie_Disk/mysql_temp 
-socket=/var/lib/mysql/mysql.sock 
-user=mysql 
-# Default to using old password format for compatibility with mysql 3.x 
-# clients (those using the mysqlclient10 compatibility package). 
-old_passwords=1 
+			{{{tmpdir=/media/Lacie_Disk/mysql_temp}}} 
+			{{{socket=/var/lib/mysql/mysql.sock}}}
+			{{{user=mysql}}}
+			{{{# Default to using old password format for compatibility with mysql 3.x}}} 
+			{{{# clients (those using the mysqlclient10 compatibility package).}}} 
+			{{{old_passwords=1}}} 
 #bind-address=0.0.0.0 
 port=3306 
 max_allowed_packet = 1M 
