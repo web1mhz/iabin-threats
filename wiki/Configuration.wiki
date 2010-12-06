@@ -22,8 +22,7 @@ The purpose of this document is to illustrate how to build the project from the 
 || my.cnf ||
 
 <table border="1">
-	<tr>
-		
+	<td>		
 			{{{[mysqld]}}}<br/>
 			{{{#datadir=/var/lib/mysql}}} <br/>
 			{{{datadir=/media/Lacie_Disk/mysql}}}<br/> 
@@ -56,7 +55,7 @@ The purpose of this document is to illustrate how to build the project from the 
 			{{{[mysqld_safe]}}}<br/> 
 			{{{log-error=/var/log/mysqld.log}}}<br/> 
 			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br/>		
-	</tr>
+	</td>
 </table>
 
 
