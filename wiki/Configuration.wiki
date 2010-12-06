@@ -19,43 +19,12 @@ The purpose of this document is to illustrate how to build the project from the 
 * MySQL database server 
   # GBIF database mounted and configured based on the attached file named my.cnf.  You should change the datadir and tmpdir parameters
 
-{{{<td>}}}
-	{{{<tr>}}}
-		[mysqld] 
-#datadir=/var/lib/mysql 
-datadir=/media/Lacie_Disk/mysql 
-tmpdir=/media/Lacie_Disk/mysql_temp 
-socket=/var/lib/mysql/mysql.sock 
-user=mysql 
-# Default to using old password format for compatibility with mysql 3.x 
-# clients (those using the mysqlclient10 compatibility package). 
-old_passwords=1 
-#bind-address=0.0.0.0 
-port=3306 
-max_allowed_packet = 1M 
-table_cache = 512 
-sort_buffer_size = 128M 
-read_buffer_size = 64M 
-read_rnd_buffer_size = 300M 
-thread_cache_size = 8 
-query_cache_type = 0 
-query_cache_size = 0 
-thread_concurrency = 16 
-myisam_max_sort_file_size = 250G 
-myisam_max_extra_sort_file_size = 250G 
-# this is used for repair by sorting 
-myisam_sort_buffer_size = 3990M 
-# maximum value for this is 4g for now! 
-key_buffer_size=3990M 
-tmp_table_size=512M 
-max_heap_table_size=512M 
-  
-[mysqld_safe] 
-log-error=/var/log/mysqld.log 
-pid-file=/var/run/mysqld/mysqld.pid
+<td>
+	<tr>
+		test
 		
-	{{{</tr>}}}
-{{{</td>}}}
+	</tr>
+</td>
 
 == Configuring MySQL Database ==
 
