@@ -19,12 +19,12 @@ The purpose of this document is to illustrate how to build the project from the 
 * MySQL database server 
   # GBIF database mounted and configured based on the attached file named my.cnf.  You should change the datadir and tmpdir parameters
 
-<td>
-	<tr>
+||
 		test
-		
-	</tr>
-</td>
+		test
+		test
+		test		
+||
 
 == Configuring MySQL Database ==
 
