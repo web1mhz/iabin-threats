@@ -1,0 +1,19 @@
+#summary How to build the ITA data filtering tool
+#labels Phase-Implementation
+#sidebar TableOfContents
+
+[http://code.google.com/p/iabin-threats/wiki/Configuration?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/Configuration?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+
+== Introduction ==
+
+This is a technical document and is intended to people who has relation with the technical implementation of the project.
+
+The purpose of this document is to illustrate how to build the project from the source code of this repository.
+
+== Technical Requirements ==
+
+To this point, the project must be imported, edited and packaged. (see How [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA How To Build ITA] section)
+
+== Configuring Files ==
+
