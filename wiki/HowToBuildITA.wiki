@@ -25,21 +25,20 @@ Check out the [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/i
 
  {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita ita}}}
  
-To update your local copy later, issue the command:
- 
+Once the project has been checked out, you can update your local copy via the command: 
  {{{svn update}}}
 
 The instructions for checking out from Google Code's SVN can be found [http://code.google.com/p/iabin-threats/source/checkout here]
 
 == 2. Organizing code for Eclipse IDE ==
 
-Once the source code has been checked out, if you want to organize it as a Eclipse IDE project, issue the command:
+Once the source code has been checked out, if you want to organize it as an Eclipse IDE project, run the command:
 
  {{{mvn eclipse:eclipse}}}
 
 == 3. Compiling project ==
 
-If you want to compile the project to get the binaries, issue the command:
+If you want to compile the project to get the binaries, run the command:
 
  {{{mvn compile}}}
 
@@ -48,17 +47,17 @@ and the /target/rmi-classes where you can find the Stub classes to run the proje
 
 == 4. Packaging project ==
 
-If you want to deploy the .jar file of the project, issue the command:
+If you want to deploy the .jar file of the project, run the command:
 
  {{{mvn package}}}
 
-Then you can find the .jar in the /target directory, named _ita_ with the current version of the project _e.g. ita-0.1-SNAPSHOT.jar_
+Then you can find the .jar in the /target directory, called _ita_ with the current version of the project _e.g. ita-0.1-SNAPSHOT.jar_
 
-Compiling step is not necessary since packaging includes the compiling process to create the jar
+The compiling step is not necessary since the packaging one includes the compiling process to create the jar
 
-== 5. Using project ==
+== 5. Using the project ==
 
-After packaging project now you can use the services provided by the project. And after [Configuring] the project you can run it with _java_ commands
+After packaging the project, you can use the services it provides. And after [Configuring] it you can run it with _java_ commands
 
 You can see the [API] page to know how to use the classes of the project or run directly any of the executable classes.
 
@@ -71,8 +70,8 @@ If you have configured the project as stand alone you just need to execute the j
 
 === 5.2 Running as client-server ===
 
-If the configuration is not stand alone case, you must run first an instance as server by calling the main of the _org.ciat.ita.server.Server_ class
+If you wish to run the project in a client-server configuration, you must first  run an instance as server by calling the main of the _org.ciat.ita.server.Server_ class
 
  {{{java -cp ita-0.1-SNAPSHOT.jar org.ciat.ita.server.Server}}}
 
-And then you can run several instances as clients by calling the main of the _org.ciat.ita.client.Client_ class or with just the same command of the stand alone running.
+And then run several instances as clients by calling the main of the _org.ciat.ita.client.Client_ class or with just the same command than the stand alone one.
