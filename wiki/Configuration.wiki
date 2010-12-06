@@ -13,20 +13,22 @@ The purpose of this document is to illustrate how to build the project from the 
 
 == Technical Requirements ==
 
-* To this point, the project must be imported, edited and packaged. (see How [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA How To Build ITA] section)
-* 250GB-500GB of HD space available for database (while importing process), 30GB for shape files and bioclimatic variables files. 
-* Latest version of JRE, available for free at [http://www.java.com http://www.java.com] 
-* MySQL database server 
-  # GBIF database mounted and configured based on the attached file named my.cnf.  You should change the datadir and tmpdir parameters
+	* To this point, the project must be imported, edited and packaged. (see How [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA How To Build ITA] section)
+	* 250GB-500GB of HD space available for database (while importing process), 30GB for shape files and bioclimatic variables files. 
+	* Latest version of JRE, available for free at [http://www.java.com http://www.java.com] 
+	* MySQL database server 
+  		# GBIF database mounted and configured based on the attached file named my.cnf.  You should change the datadir and tmpdir parameters
 
 
+== Configuring MySQL Database ==
+You can use any other configuration. However, we recomend the following configuration:
 
 <table border="1">
-	<tr>
-		<td>
+	<td>
+		<tr>
 		my.cnf
-		</td>
-		<td>	
+		</tr>
+		<tr>	
 			{{{[mysqld]}}}<br />
 			{{{#datadir=/var/lib/mysql}}} <br />
 			{{{datadir=/media/Lacie_Disk/mysql}}}<br /> 
@@ -59,14 +61,9 @@ The purpose of this document is to illustrate how to build the project from the 
 			{{{[mysqld_safe]}}}<br /> 
 			{{{log-error=/var/log/mysqld.log}}}<br /> 
 			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br />
-			</td>
-	</tr>		
+			</tr>
+	</td>		
 </table>
-
-
-== Configuring MySQL Database ==
-
-
 
 == Configuring Files ==
 
