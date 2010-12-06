@@ -23,7 +23,7 @@ The purpose of this document is to illustrate how to build the project from the 
 
 <table border="1">
 	<tr>
-		<td>
+		
 			{{{[mysqld]}}}<br/>
 			{{{#datadir=/var/lib/mysql}}} <br/>
 			{{{datadir=/media/Lacie_Disk/mysql}}}<br/> 
@@ -55,10 +55,8 @@ The purpose of this document is to illustrate how to build the project from the 
 			<br>  
 			{{{[mysqld_safe]}}}<br/> 
 			{{{log-error=/var/log/mysqld.log}}}<br/> 
-			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br/>
-		</td>
+			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br/>		
 	</tr>
-
 </table>
 
 
