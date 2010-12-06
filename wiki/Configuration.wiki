@@ -125,6 +125,16 @@ Both XML should have been created.
 }}}
 
 *ip_addr*:  IP address ofMmySQL server
-*communication_type*: 
-     _LOCAL_ to run the script as stand alone (Client and Server in the same machine) - _Recommended option_.
-     _RMI_ to run the script as remote configuration (1 Server - Many Clients).
+
+*communication_type*:
+ * _LOCAL_ to run the script as stand alone (Client and Server in the same machine) - _Recommended option_.
+ * _RMI_ to run the script as remote configuration (One Server - Many Clients).
+
+*HttpProy server and port*: In case your Internet connection pass throw a proxy. Otherwise you can delete all the {{{<Proxy>}}} tag.
+
+*work records*:  Number of records to be evaluated per batch.
+
+*shape*: 
+ * *path*: Global and detailed shape file. We recommend to download [http://gisweb.ciat.cgiar.org/ITA/public_downloads/GADM_v0-6.zip this file]
+ * *column*:  Each of the columns that have the shape file.
+ More information about Shapefile definition [http://en.wikipedia.org/wiki/Shapefile clic here].
