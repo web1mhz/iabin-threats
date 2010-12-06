@@ -19,8 +19,8 @@ The purpose of this document is to illustrate how to build the project from the 
 * MySQL database server 
   # GBIF database mounted and configured based on the attached file named my.cnf.  You should change the datadir and tmpdir parameters
 
-<td>
-	<tr>
+{{{<td>}}}
+	{{{<tr>}}}
 		[mysqld] 
 #datadir=/var/lib/mysql 
 datadir=/media/Lacie_Disk/mysql 
@@ -54,8 +54,8 @@ max_heap_table_size=512M
 log-error=/var/log/mysqld.log 
 pid-file=/var/run/mysqld/mysqld.pid
 		
-	</tr>
-</td>
+	{{{</tr>}}}
+{{{</td>}}}
 
 == Configuring MySQL Database ==
 
