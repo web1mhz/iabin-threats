@@ -26,6 +26,7 @@ You can use any other configuration. However, we recomend the following configur
 
 <table border="1">		
 		<tr>	
+			<td>
 			{{{[mysqld]}}}<br />
 			{{{#datadir=/var/lib/mysql}}} <br />
 			{{{datadir=/media/Lacie_Disk/mysql}}}<br /> 
@@ -58,6 +59,7 @@ You can use any other configuration. However, we recomend the following configur
 			{{{[mysqld_safe]}}}<br /> 
 			{{{log-error=/var/log/mysqld.log}}}<br /> 
 			{{{pid-file=/var/run/mysqld/mysqld.pid}}}<br />
+			</td>
 			</tr>
 			
 </table>
@@ -69,5 +71,58 @@ The project needs some extra XML files that should be configured before start to
 As the _svn_ command doesn't import these files, ITA project can generate them assigning default values that you should change later, depending of your file system and your personal configuration.
 
 run the following commands:
-{{{java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig}}}
-{{{java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.server.ServerConfig}}}
+
+     {{{java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig}}}
+
+     {{{java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.server.ServerConfig}}}
+
+Both XML should have been created.
+
+|| client_config.xml ||
+
+{{{<?xml version="1.0" encoding="UTF-8"?>}}}<br />
+{{{<config>}}}<br />
+  {{{<server ip_addr="localhost" communication_type="LOCAL" />}}}<br />
+  {{{<Proxy>}}}<br />
+    {{{<HttpProxy server="proxy4.ciat.cgiar.org" port="8080" />}}}<br />
+  {{{</Proxy>}}}<br />
+  {{{<work records="10000" />}}}<br />
+  {{{<shape path="/GADM_v0-6.shp">}}}<br />
+    {{{<column name="ISO">ISO</column>}}}<br />
+    {{{<column name="country">ISOCOUNTRY</column>}}}<br />
+    {{{<column name="state">NAME_1</column>}}}<br />
+    {{{<column name="county">NAME_2</column>}}}<br />
+  {{{</shape>}}}<br />
+  {{{<mask path="/inland_msk.jgm" />}}}<br />
+  {{{<maxent>}}}<br />
+    {{{<file name="maxent_file" type="jar" path="/maxent.jar" />}}}<br />
+    {{{<file name="sample_dir" type="directory" path="/samples/" />}}}<br />
+    {{{<file name="backgroung_file" type="csv" path="/background_clm.csv" />}}}<br />
+    {{{<file name="lambda_output_dir" type="directory" path="/lambda_output/" />}}}<br />
+    {{{<file name="final_output_dir" type="directory" path="/final_output/" />}}}<br />
+    {{{<file name="bio_variables_dir" type="directory" path="/small_variables/" />}}}<br />
+  {{{</maxent>}}}<br />
+  {{{<variables type="bioclimatic" path="/variables/">}}}<br />
+    {{{<variable>alt</variable>}}}<br />
+    {{{<variable>bio_1</variable>}}}<br />
+    {{{<variable>bio_2</variable>}}}<br />
+    {{{<variable>bio_3</variable>}}}<br />
+    {{{<variable>bio_4</variable>}}}<br />
+    {{{<variable>bio_5</variable>}}}<br />
+    {{{<variable>bio_6</variable>}}}<br />
+    {{{<variable>bio_7</variable>}}}<br />
+    {{{<variable>bio_8</variable>}}}<br />
+    {{{<variable>bio_9</variable>}}}<br />
+    {{{<variable>bio_10</variable>}}}<br />
+    {{{<variable>bio_11</variable>}}}<br />
+    {{{<variable>bio_12</variable>}}}<br />
+    {{{<variable>bio_13</variable>}}}<br />
+    {{{<variable>bio_14</variable>}}}<br />
+    {{{<variable>bio_15</variable>}}}<br />
+    {{{<variable>bio_16</variable>}}}<br />
+    {{{<variable>bio_17</variable>}}}<br />
+    {{{<variable>bio_18</variable>}}}<br />
+    {{{<variable>bio_19</variable>}}}<br />
+  {{{</variables>}}}<br />
+{{{</config>}}}<br />
+ 
