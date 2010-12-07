@@ -58,7 +58,7 @@ La compilación de este paso no es necesaria ya que el empaquetamiento incluye e
  
 == 5. Usando el proyecto ==
  
-Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con comandos _java_ 
+Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con comandos _java_.
  
 Puede ver la pagina del [API] para saber como usar las clases del proyecto o ejecutar directamente cualquiera de las clases ejecutables.
 
