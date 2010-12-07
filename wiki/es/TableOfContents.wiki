@@ -6,7 +6,7 @@
    * [Especificaciones Generales]
    * [Preguntas Frecuentes]
  * Filtro de Datos
-   * [Descripcion]
+   * [DescriptionFilter Descripción]
    * [HowToBuildITA Cómo construir el proyecto ITA]
    * [Configuration Configuración] 
    * [RunningProcedure Procedimiento de Ejecución]

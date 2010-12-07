@@ -262,52 +262,53 @@ ejemplo:
 
   
 ===11 Exportación de registros en un archivo separado por comas===
-====Description====
-Exporting the reliable records into a comma separated file to be run in Maxent 
+====Descripción====
+Exportación de los registros confiables en un archivo separado por comas, para que sean usados en Maxent
+ 
 
-*Inputs:* _filtered_records_ table filled with the reliable records 
+*Inputs:* _filtered_records_ tabla que contiene todos los registros confiables
 
-*Outputs:* A comma separated file _filtered_records.csv_ with the reliable records 
+*Outputs:* Un archivo separado por comas _filtered_records.csv_ con los registros confiables 
 
-====Technical procedure====
-Run the script using java with the following parameters: 
+====Procedimiento Técnico====
+Ejecute el script en java usando los siguientes parámetros: 
   
-*Parameters:* 
- {{{csv}}} To run the corresponding method to export a csv per specie. 
- {{{-Xmx<BYTES>}}} of Maximum java heap size 
- {{{-n <NUMBER>}}} of records that should be analized to show the time statistics 
- {{{-d <OUTPUT>}}} directory exactly location  
+*Parámetros:* 
+ {{{csv}}} Para ejecutar el método correspondiente para la exportación de un archivo csv por especie. 
+ {{{-Xmx<BYTES>}}}  Máximo tamaño de bytes de almacenamiento dinámico de Java
+ {{{-n <NUMBER>}}} de los registros que deben ser analizadas para mostrar las estadísticas de tiempo
+ {{{-d <OUTPUT>}}} Ubicación exacta del directorio. 
 
-*Command line:*
+*Línea de comando:*
 
  {{{java -XmxBYTES -cp ita.jar client.correctormanager.MaxentManager csv -n NUMBER -d OUTPUT}}}
 
-example: 
+ejemplo: 
 
  {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager csv -n 1000 -d /home/output }}}
   
 
-====12 Generate species projections with Maxent====
-===Description===
-This script generates the lambda files and immediately after generates the projections of the species data using maxent application and the environmental varibles. 
+====12 Generar proyecciones de las especies con Maxent====
+===Descripción===
+Este script genera los archivos lambda e inmediatamente despues genera las proyecciones de los datos de especies usando la aplicación maxent y las variables ambientales.
 
-*Inputs:* Environmental variables preferably with a low resolution. Maxent runnable jar.
+*Inputs:* Las variables ambientales preferiblemente con una resolución baja. jar ejecutable de Maxent.
 
-*Outputs:* Projection for species ascii files 
+*Outputs:* Archivos ascii de proyección de especies 
 
-====Technical procedure====
-Run the script in java with the following parameters: 
+====Procedimiento Técnico====
+Ejecute el script en java con los siguientes parámetros: 
 
-*Parameters:*
- {{{-Xmx<BYTES>}}} of Maximum java heap size 
- {{{maxent}}} to Run the corresponding script to generate species projections  
- {{{-i <INSTANCES>}}} of Maxent  that will be executed at same time 
+*Parámetros:*
+ {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
+ {{{maxent}}} Para ejecutar el script correspondiente para generar proyecciones de las especies 
+ {{{-i <INSTANCES>}}} de Maxent que se ejecutará al mismo tiempo.
 
-*Command line:*
+*Línea de comando:*
 
  {{{java -XmxBYTES  -cp ita.jar client.correctormanager.MaxentManager maxent -i INSTANCES }}}
 
-example: 
+ejemplo: 
 
  {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager maxent -i 4}}}   
  
