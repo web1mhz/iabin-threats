@@ -3,6 +3,11 @@
 
 Documentation on how the Species Distribution Modelling (SDM) was done.
 
+[http://code.google.com/p/iabin-threats/wiki/SpeciesDistributionModelling?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/SpeciesDistributionModelling?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+
+<wiki:toc />
+
 = Introduction =
 
 This page is intended to give a brief, not to technical summary about the species distribution modelling (sdm) within the IABIN project.

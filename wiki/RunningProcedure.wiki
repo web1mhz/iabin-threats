@@ -5,6 +5,8 @@
 [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
 [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
+<wiki:toc />
+
 = Introduction =
 
 This tutorial will describe the different procedure steps in order to have a fully functional installation of the data filtering tool.
