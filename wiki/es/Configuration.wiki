@@ -120,7 +120,7 @@ Ambos XML deberían haberse creado.
 
 *rmi port*: El puerto RMI Por defecto. Puede eliminar esta etiqueta si se va a ejecutar la aplicación con una configuración "LOCAL".
 
-*database*:
+*Base de datos*:
  * *name*: Nombre de la base de datos
  * *ip_addr*: Dirección IP de la base de datos
  * *port*: Puerto de la base de datos
@@ -129,11 +129,11 @@ Ambos XML deberían haberse creado.
 
 *password user*: Contraseña de la base de datos. (Cambie los asteriscos _******_).
 
-*tables*:
- * *unverified_records*: In case you have changed the name of the tables in the SQL scripts, change the default name table (temp_land_5A) by the correct ones.
- * *good_records*: Same as above,the default table name is _temp_good_records_.
- * *final_records*:  Same as above,the default table name is _filtered_records_
- * *unrelible_records*:  Same as above,the default table name is _temp_bad_records_
+*tablas*:
+ * *unverified_records*: En caso de que haya cambiado los nombres de las tablas en los scripts SQL, cambie los nombres de las tablas (temp_land_5A) por los correctos.
+ * *good_records*: Igual que el anterior el nombre por defecto es _temp_good_records_.
+ * *final_records*:  Igual que el anterior el nombre por defecto es _filtered_records_
+ * *unrelible_records*:  Igual que el anterior el nombre por defecto es _temp_bad_records_
 -----------------------------------------------------
 
 || client_config.xml ||
