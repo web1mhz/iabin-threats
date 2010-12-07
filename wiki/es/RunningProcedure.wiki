@@ -53,32 +53,32 @@ Una vez que la consulta se ha ejecutado, las tablas temp_land_1A, temp_land_2A a
 
 ===3 Obteniendo el archivo JGM===
 ====Descripción====
-If you don't have the JGM file for the filtering non terrestrial species step, You may  download it from: //TODO download URL
+Si no tiene el archivo jgm para el paso de filtrar las especies no terrestres, puede descargarlo de :: //TODO download URL
 
-Or you can create it using a mask ASCII file and the WorldMaskManager script. 
+O puede crearlo usando un archivo de máscara ASCII y el script WorldMaskManager. 
 
-====Technical procedure====
-Run the script in java with the following parameters: 
+====Procedimiento Técnico====
+Ejecute el script en java con los siguientes parámetros: 
 
-*Parameters:* 
- {{{jgm}}} To run the conversion algorithm 
+*Parámetros:
+ {{{jgm}}} Para ejecutar el algoritmo de conversión 
 
- {{{-Xmx<BYTES>}}} bytes of Maximum java heap size 
+ {{{-Xmx<BYTES>}}} Bytes de tamaño máximo de almacenamiento dinámico de Java
 
- {{{<MASK>}}} absolute path of the ascii mask file 
+ {{{<MASK>}}} Ruta de acceso absoluta del archivo de máscara ascii
 
- {{{-k <KILOMETERS>}}} from the coast considered as a "near land" distance
+ {{{-k <KILOMETERS>}}} de la costa considerados como una distancia "cerca de tierra"
 
-*Command line:*
+*Línea de comando:*
 
  {{{java -XmxBYTES -cp ita.jar org.ciat.ita.client.manage.WorldMaskManager jgm -m MASK -k KILOMETERS}}}
 
-Example, Creation of a JGM file in linux file system using a radius of 5 kilometers : 
+Por ejemplo, la creación de un archivo de JGM en sistema de archivos Linux con un radio de 5 kilómetros: 
 
  {{{java -Xmx1000m -cp ita.jar org.ciat.ita.client.manage.WorldMaskManager jgm -m /home/inland_mask/inland_msk.asc -k 5 }}}
 
   
-===4 Filtering non terrestrial species===
+===4 Filtrando especies no terrestres===
 ====Description====
 The records from non terrestrial species are not possible to evaluate. Consequently, the non terrestrial species should be discriminated and the terrestrial ones will be stored in the _temp_land_5A_ table.
 
