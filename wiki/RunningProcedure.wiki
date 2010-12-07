@@ -98,11 +98,11 @@ Run the script in java with the following parameters:
 
 Command line: 
 
-{{{java -XmxBYTES -cp ita.jar org.ciat.ita.client. manage.WorldMaskManager terreval -n NUMBER}}}
+ {{{java -XmxBYTES -cp ita.jar org.ciat.ita.client. manage.WorldMaskManager terreval -n NUMBER}}}
 
 example: 
 
-{{{java -Xmx1000m -cp ita.jar org.ciat.ita.client.manage.WorldMaskManager terreval -n 100000}}}
+ {{{java -Xmx1000m -cp ita.jar org.ciat.ita.client.manage.WorldMaskManager terreval -n 100000}}}
 
 *Finalize:* Once the script has been run, the table temp_land_4A is not needed anymore. It can therefore be dropped. 
    
@@ -232,7 +232,7 @@ Run the script with the following parameters:
   
 *Command line:*
 
-{{{java  -cp ita.jar org.ciat.ita.server.database.DataBaseStatistics}}}
+ {{{java  -cp ita.jar org.ciat.ita.server.database.DataBaseStatistics}}}
 
 	    
 ===10 Final filter for reliable data===
@@ -250,6 +250,7 @@ Run into the database the sql file named "QUERY_final_filter.sql"
 example: 
 
 {{{mysql -u User -p portal < QUERY_final_filter.sql}}}
+
   
 *Finalize:* The tables temp_good_records and temp_bad_records are not needed anymore. The temporal tables temp_good_1A, temp_good_2A, temp_good_3A are useless, they were just for the query, so they can be dropped. 
 
@@ -273,11 +274,11 @@ Run the script using java with the following parameters:
 
 *Command line:*
 
-{{{java -XmxBYTES -cp ita.jar client.correctormanager.MaxentManager csv -n NUMBER -d OUTPUT}}}
+ {{{java -XmxBYTES -cp ita.jar client.correctormanager.MaxentManager csv -n NUMBER -d OUTPUT}}}
 
 example: 
 
-{{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager csv -n 1000 -d /home/output }}}
+ {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager csv -n 1000 -d /home/output }}}
   
 
 ====12 Generate species projections with Maxent====
@@ -298,7 +299,7 @@ Run the script in java with the following parameters:
 
 *Command line:*
 
- {{{{java -XmxBYTES  -cp ita.jar client.correctormanager.MaxentManager maxent -i INSTANCES }}}}
+ {{{java -XmxBYTES  -cp ita.jar client.correctormanager.MaxentManager maxent -i INSTANCES }}}
 
 example: 
 
