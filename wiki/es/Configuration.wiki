@@ -186,10 +186,10 @@ Ambos XML deberían haberse creado.
 </config>
 }}}
 
-*ip_addr*:  IP address of the MySQL server
+*ip_addr*:  Dirección IP del servidor MySQL
 
 *communication_type*:
- * _LOCAL_ to run the script as stand alone (Client and Server in the same machine) - _Recommended option_.
+ * _LOCAL_ Para ejecutar el script de forma local (Client and Server in the same machine) - _Recommended option_.
  * _RMI_ to run the script as remote configuration (One Server - Many Clients).
 
 *HttpProxy server and port*: In case your Internet connection pass throw a proxy. Otherwise you can delete all the {{{<Proxy>}}} tag.
