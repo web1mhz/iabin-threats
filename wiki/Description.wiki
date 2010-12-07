@@ -7,5 +7,22 @@
 
 == Introduction ==
 
+Recent developments in Geographic Information Systems (GIS) and ecological niche modeling (ENM) applications have added value to data, and permit researchers to provide highly policy-relevant analyses to direct conservation interventions. Through the most recent ENM techniques, potential distributions of species can be analyzed using fairly limited or biased datasets containing primary data to determine current biodiversity hotspots (Phillips et al. 2006; Elith et al. 2006; Hijmans and Graham 2006), and likely threats from anthropogenic activities (Jarvis et al. 2009) and climate change (IPCC 2007) in order to deﬁne current and future in situ and ex situ conservation priorities (Walker et al. 2009; Bass et al. 2010).
+
+However, one of the most relevant issues regarding the analyses and latter conclusions derived from the usage of primary biodiversity data is the reliance on its quality. Poor quality biodiversity data could lead to incorrect and biased conclusions as well as cause ineﬃcient and/or wrong investment of the available resources and inadequate policy development. Checking of biodiversity data quality as well as adequate use is a key issue in order to aid decision-making processes. We intend to (1) assess and improve the quality of IABIN's terrestrial holdings using automated scripts, (2) use the primary biodiversity data to develop niche models, (3) couple those results to assess the extent at which South American biodiversity is both under threat and conserved by the current Protected Areas network, and (4) implement an interface through which all results can be accessed and viewed by policy-makers. We have automated algorithms developed in the Java programming language that allow a thorough coordinate veriﬁcation process, which have been used on the GBIF (The Global Biodiversity Information Facility) database, and through which the whole database was veriﬁed for consistency of location data. Some 85% of the data was found to be correct at three different levels (Fig. 2). The same assessment will be done for all IABIN holdings in the ﬁrst place. 
+
 http://iabin-threats.googlecode.com/svn/wiki/resources/script-process.PNG
+
+
+How to make the data reliable enough?
+ * Verify coordinates at different levels
+ * Are the records where they say they are?
+ * Are the records inside land areas (for terrestrial plant species only)
+ * Are all the records within the environmental niche of the taxon?
+ * Sea records: not verifiable
+ * Correct wrong references
+ * Add references to those that do not have
+ * Cross-check with curators and feedback the database
+
+
 
