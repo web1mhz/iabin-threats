@@ -63,17 +63,17 @@ Después de empaquetado el proyecto puede usar los servicios prestados por el pr
 Puede ver la pagina del [API] para saber como usar las clases del proyecto o ejecutar directamente cualquiera de las clases ejecutables.
 
 
-=== 5.1 Ejecución automática ===
+=== 5.1 Ejecución local ===
 
-Si tiene configurado el proyecto de forma automática solo necesita ejecutar el jar directamente:
+Si tiene configurado el proyecto de forma local solo necesita ejecutar el jar directamente:
 
  {{{java -Xmx1500m -jar ita-0.1-SNAPSHOT.jar}}}
 
 === 5.2 Ejecución como cliente-servidor ===
 
-Si la configuración no es automática, debe ejecutar primero una instancia como servidor llamando a la clase principal de _org.ciat.ita.server.Server_ class
+Si la configuración no es local, debe ejecutar primero una instancia como servidor llamando a la clase principal de _org.ciat.ita.server.Server_ class
 
  {{{java -cp ita-0.1-SNAPSHOT.jar org.ciat.ita.server.Server}}}
 
-Y a continuación, puede ejecutar varias instancias como clientes llamando a la clase principal _org.ciat.ita.client.Client_  o con el mismo comando de la ejecución automática.
+Y a continuación, puede ejecutar varias instancias como clientes llamando a la clase principal _org.ciat.ita.client.Client_  o con el mismo comando de la ejecución local.
 
