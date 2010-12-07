@@ -81,13 +81,13 @@ public class DataBaseStatistics {
 			nOutliers = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ ShapeFile.E_WRONG_COUNTRY + "'", conx);
 		if (rs.next())
 			nWrongCountry = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ ShapeFile.E_NULL_COUNTRY + "'", conx);
 		if (rs.next())
 			nNullCountry = rs.getInt("c");
@@ -95,25 +95,25 @@ public class DataBaseStatistics {
 		nUnreliableByShape = nWrongCountry + nNullCountry;
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ WorldMaskManager.E_NEAR_LAND + "'", conx);
 		if (rs.next())
 			nNearLand = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ WorldMaskManager.E_NOT_IN_LAND + "'", conx);
 		if (rs.next())
 			nNotInLand = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ WorldMaskManager.E_NOT_IN_MASK + "'", conx);
 		if (rs.next())
 			nNotInMask = rs.getInt("c");
 		
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
+				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
 				+ WorldMaskManager.E_NOT_IN_LAND + "'", conx);
 		if (rs.next())
 			nNotInLand = rs.getInt("c");
