@@ -66,13 +66,13 @@ El proyecto necesita configurar algunos archivos XML extra antes de comenzar a u
 
 como el comando _svn_ no importa estos archivos, el proyecto ITA puede generarlos asignando valores por defecto que se deben cambiar luego, dependiendo de su sistema y configuración personal.
 
-To generate the basic configuration files, run the following commands:
+Para generar los archivos basicos de configuración, ejecute los siguientes comandos:
 
      java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig
 
      java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.server.ServerConfig
 
-Both XML should have been created.
+Ambos XML deberían haberse creado.
 
 -----------------------------------------------------
 
@@ -118,16 +118,16 @@ Both XML should have been created.
 </config>
 }}}
 
-*rmi port*: The default RMI Port. You can delete this tag if you are going to run the application with a "LOCAL" configuration.
+*rmi port*: El puerto RMI Por defecto. Puede eliminar esta etiqueta si se va a ejecutar la aplicación con una configuración "LOCAL".
 
 *database*:
- * *name*: Database name
- * *ip_addr*: Database IP address
- * *port*: Database port
+ * *name*: Nombre de la base de datos
+ * *ip_addr*: Dirección IP de la base de datos
+ * *port*: Puerto de la base de datos
  
-*user name*: Database user. (You should change the default value _db_user_).
+*user name*: Usuario de la base de datos. (Debe cambiar el valor por defecto _db_user_).
 
-*password user*: Database password. (change the asterisks _******_).
+*password user*: Contraseña de la base de datos. (Cambie los asteriscos _******_).
 
 *tables*:
  * *unverified_records*: In case you have changed the name of the tables in the SQL scripts, change the default name table (temp_land_5A) by the correct ones.
