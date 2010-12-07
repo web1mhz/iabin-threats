@@ -8,7 +8,7 @@
    * [Preguntas Frecuentes]
  * Filtro de Datos
    * [Descripcion]
-   * [Cómo construir el proyecto ITA How to build the project]
+   * [HowToBuildITA Cómo construir el proyecto ITA]
    * [Configuration Configuración] 
    * [RunningProcedure Procedimiento de Ejecución]
    * [API]
