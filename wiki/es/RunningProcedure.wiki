@@ -7,13 +7,13 @@
 
 = Introducción =
 
-Procedure steps for using the data filtering tool.
+Pasos para utilizar la herramienta de filtrado de datos.
   
-===1 Configuring files===
-====Description====
-First of all, the values of parameters of the XML configuration files _server_config.xml_ and _client_config.xml_ should be set.
+===1 Configurando archivos===
+====Descripción====
+En primer lugar, se deben establecer los valores para los parámetros de los archivos de configuración XML _server_config.xml_ and _client_config.xml_.
  
-If there is no configuration files, you can generate them with default values using the script described in the Technical Procedure section. You can then edit them to set the corresponding values.  
+Si no hay archivos de configuración,los puede generar con los valores por defecto, mediante el script descrito en la sección de Configuración. You can then edit them to set the corresponding values.  
 
 Most of those parameters correspond to files paths and directories paths. The examples for the correct setting of this files are in the project source code. 
 
