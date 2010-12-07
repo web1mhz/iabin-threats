@@ -11,7 +11,7 @@
    * [RunningProcedure Running Procedure]
    * [API]
  * Re-Georreferencing
-   * [Description]
+   * [DescriptionGeo Description]
    * [API]
  * Distribution Modeling
    * [SpeciesDistributionModelling Description]

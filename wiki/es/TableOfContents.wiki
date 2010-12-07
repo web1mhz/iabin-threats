@@ -12,7 +12,7 @@
    * [RunningProcedure Procedimiento de Ejecución]
    * [API]
  * Re-Georreferenciación
-   * [Descripción]
+   * [DescriptionGeo Descripción]
    * [API]
  * Modelo de Distribución
    * [SpeciesDistributionModelling Descripción]
