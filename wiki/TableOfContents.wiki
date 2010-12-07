@@ -1,13 +1,11 @@
 #summary One-sentence summary of this page.
 #labels Not-Finished,Featured
 
- * Installation
+ * General Information
+   * [Description]
    * [General specifications (Not Yet)]
-   * [Installation]
-   * [Copyright]
    * [FAQ]
  * Data Filtering
-   * [Description]
    * [HowToBuildITA How to build the project]
    * [Configuration]
    * [RunningProcedure Running Procedure]

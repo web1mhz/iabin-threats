@@ -1,10 +1,9 @@
 #summary One-sentence summary of this page.
 #labels Not-Finished,Featured
 
- * Instalación
+ * Información General
+   * [Description Descripción]
    * [Especificaciones Generales]
-   * [Instalación]
-   * [Derechos de Autor]
    * [Preguntas Frecuentes]
  * Filtro de Datos
    * [Descripcion]
