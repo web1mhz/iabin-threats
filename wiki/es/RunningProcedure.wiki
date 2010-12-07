@@ -63,7 +63,7 @@ Ejecute el script en java con los siguientes parámetros:
 *Parámetros:
  {{{jgm}}} Para ejecutar el algoritmo de conversión 
 
- {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de dinámico de Java
+ {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
 
  {{{<MASK>}}} Ruta de acceso absoluta del archivo de máscara ascii
 
@@ -94,7 +94,7 @@ Se determina para cada registro, si es terrestre o no, utilizando una máscara t
 ====Procedimiento Técnico====
 Ejecute el script en java con los siguientes parámetros: 
 
- {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de dinámico de Java
+ {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
 
  {{{terreval}}} cadena de caracteres para filtrar especies no-terrestres
 
@@ -108,7 +108,7 @@ Ejemplo:
 
  {{{java -Xmx1000m -cp ita.jar org.ciat.ita.client.manage.WorldMaskManager terreval -n 100000}}}
 
-*Finalizar:* Una vez que el script se ha ejecutado, la tabla temp_land_4A no se necesita más. Por lo tanto se puede quitar. 
+*Finalizar:* Una vez que el script se ha ejecutado, la tabla temp_land_4A no se necesita más. Por lo tanto se puede borrar. 
    
 
 ===5 Obteniendo el archivo EMM ===
@@ -126,140 +126,140 @@ O puede crearlo usando el archivo ASCII original de las variables bioclimáticas
 
  {{{java -XmxBYTES -cp ita.jar org.ciar.ita.client. manage.EnvironmentMaskManager -d VARS_FOLDER}}}
 
-Example for Linux: 
+Ejemplo para Linux: 
 
  {{{java -Xmx1000m -cp ita.jar org.ciat.ita.client. manage.EnvironmentMaskManager -d /home/bio_asc}}}
 
-===6 Geospatial evaluation===
-====Description====
-Evaluates the records using geospatial resources.
+===6 Evaluación Geoespacial===
+====Descripción====
+Evalúa los registros usando recursos geoespaciales.
 
-*Inputs:* _temp_land_5A_ table filled with the records of terrestrial species. Shape file _GADM_v0-6.shp_, land mask file _inland_msk.jgm_ (jgm format is necesary) and environmental variables file _BioAIO.emm_ and the format file _BioAIO.format_ 
+*Inputs:* _temp_land_5A_ tabla Contiene los registros de especies terrestres. Archivo Shape _GADM_v0-6.shp_, archivo de máscara terrestre _inland_msk.jgm_ (el formato jgm es necesario) y el archivo de variables ambientales _BioAIO.emm_ y el archivo de formato _BioAIO.format_ 
 
-*Outputs:* Two tables temp_good_records and temp_bad_records filled with the data according to the evaluation results. If the record passed all the filters, its data with the corresponding environmental data should be in the temp_good_records table. On the contrary, if the records were recognized as unreliable its data should be in the temp_bad_records table with the corresponding type of error found. 
+*Outputs:* Las tablas temp_good_records y temp_bad_records contiene los datos de acuerdo a los resultados de evaluación. Si el registro pasó todos los filtros, estos datos con los correspondientes datos ambientales  deben estar en la tabla temp_good_records. Por el contrario, si los registros se reconocen como no confiables, sus datos deberian estar en la tabla bad_records con el tipo de error correspondiente encontrado. 
 
-Error possible values: 
-*M:* Out of Mask 
-*NC:* Null Country 
-*WC:* Wrong Country 
-*O:* In Ocean 
-*NL:* Near Land 
+Posibles valores de error: 
+*M:* Fuera de la máscara
+*NC:* País nulo
+*WC:* País errado
+*O:* En el Mar
+*NL:* Cerca de tierra 
 
-====Technical procedure====
-First, you should run  the sql file named “QUERY_create_GBtables.sql” into the database 
+====Procedimiento Técnico====
+Primero, debe ejecutar el archivo sql llamado “QUERY_create_GBtables.sql” en la base de datos 
 
-example: 
+ejemplo: 
 
  {{{mysql portal < QUERY_create_GBtables.sql }}}
 
-Once the tables are created, You have the choice to run the geospatial script in standalone mode or client-server mode.
+Una vez que se crean las tablas, tiene la opción de ejecutar el script geoespacial en modo local cliente-servidor.
 
 
-===Standalone===
+===Modo Local===
 
-In standalone mode you just need to run a single instance.
+En modo local sólo tiene que ejecutar una instancia.
 
-*Parameters:*
- {{{-Xmx<BYTES>}}} of Maximum java heap size 
+*Parámetros:*
+ {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
 
-*Command line:*
+*Línea de comando:*
 
  {{{java -XmxBYTES -cp ita.jar}}}
 
-example 
+Ejemplo: 
 
  {{{java -Xmx1500m -jar ita.jar}}}
 
-===Client-Server===
+===Cliente-Servidor===
 
-First of all you have to run one instance as a server, the you can run several client instances as you wish.
+En primer lugar hay que ejecutar una instancia como servidor, después, puede ejecutar varias instancias en el cliente.
 
-*Parameters:*
- {{{-Xmx<BYTES>}}} of Maximum java heap size 
+*Parámetros:*
+ {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
 
-*Server command line:*
+*Línea de comando del servidor:*
 
  {{{java -XmxBYTES -cp ita.jar org.ciat.ita.server.Server }}}
 
-example 
+ejemplo: 
 
  {{{java -Xmx20000m -cp ita.jar org.ciat.ita.server.Server }}}
 
-*Client command line:*
+*Línea de comando del cliente:*
 
  {{{java -XmxBYTES -cp ita.jar org.ciat.ita.client.Client }}}
 
-example 
+ejemplo: 
 
  {{{java -Xmx1500m -cp ita.jar org.ciat.ita.client.Client }}}
 
-*Finalize:* Once the script has been run, the table temp_land_5A is not needed anymore, so it can be dropped. 
+*Finalizar:* Una vez que el script se ha ejecutado, la tabla temp_land_5A no se necesita más, por lo que se puede borrar. 
   
   
   
-===7 Environmental evaluation ===
-====Description====
-Within each specie calculate the maximum value and the minimum value of each environmental variable to determinate when the record is an outlier for that variable.
+===7 Evaluación ambiental ===
+====Descripción====
+Dentro de cada especie calcular el valor máximo y el valor mínimo de cada variable ambiental para determinar si el registro es un caso atípico para esa variable.
  
-*Inputs:* _temp_good_records_ table filled with the geospatially reliable records data and the corresponding environmental data 
+*Inputs:* _temp_good_records_ tabla que contiene los registros geoespaciales confiables y los datos ambientales correspondientes
 
-*Outputs:* _temp_good_records_ table with the count of the outlier for all variables 
+*Outputs:* _temp_good_records_  tabla con el numero valores atípicos para todas las variables
 
-====Technical procedure====
-Run the script in java with the following parameters: 
+====Procedimiento Técnico====
+Ejecute el script en java con los siguientes parámetros: 
   
- {{{-Xmx<BYTES>}}} of Maximum java heap size 
+ {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
 
-Run the script in java : 
+Ejecute el escript en java 
 
-Command line: 
+Línea de comando: 
 
  {{{java -XmxBYTES -cp ita.jar org.ciat.ita.server.OutliersManager }}}
 
-example: 
+ejemplo: 
 
  {{{java -Xmx2000m -cp ita.jar org.ciat.ita.server.OutliersManager }}}
 
 	  
   
   
-===8 (Optional) Getting geospatial and environmental statistics===
+===8 (Opcional) Obteniendo estadisticas geoespaciales y ambientales===
 
-====Description==== 
-This is an optional step. Its aim is to extract some statistics of the filtering steps. how many records are reliable and how many are not, specifying the error type. 
+====Descripción==== 
+Este es un paso opcional. Su objetivo es extraer algunos datos estadísticos de los pasos de filtrado. cuántos registros son fiables y cuántos no, especificando el tipo de error. 
 
-*Inputs:* _temp_good_records_ table with the count of the outlier for all variables 
-*Outputs:* The XML file _statistics.xml_ is generated. It contains all the statistics of the set of records evaluated 
+*Inputs:* _temp_good_records_ tabla con el numero valores atípicos para todas las variables
+*Outputs:* El archivo XML _statistics.xml_ es generado. Contiene todas las estadísticas del conjunto de registros evaluados
 
-====Technical procedure====
-Run the script with the following parameters: 
+====Procedimiento Técnico====
+Ejecute el script con los siguientes parámetros: 
   
-*Command line:*
+*Línea de comando:*
 
  {{{java  -cp ita.jar org.ciat.ita.server.database.DataBaseStatistics}}}
 
 	    
-===10 Final filter for reliable data===
-====Description==== 
+===10 Filtro final de datos fiables===
+====Descripción==== 
 
-Discriminate the records that are  considerated as outlier in more than 16  environmental variable distributions and then those for which the specie has less than ten records. Only the reliable records are then stored into the final table called filtered_records 
+Discrimina los registros que tienen valor atípico en más de 16 distribuciones de variables ambientales y aquellos para los que la especie tiene menos de diez registros. Sólo los registros confiables se almacenan en la tabla final llamada filtered_records 
 
-*Inputs:* 	temp_good_records table with the count of the outlier for all variables 
+*Inputs:* 	temp_good_records tabla con el numero valores atípicos para todas las variables
 
-*Outputs:* 	filtered_records table filled with the totally reliable records 
+*Outputs:* 	filtered_records tabla que contiene la totalidad de registros confiables.
 
-====Technical procedure====
-Run into the database the sql file named "QUERY_final_filter.sql"  
+====Procedimiento Técnico====
+Ejecute en la base de datos el archivo sql llamado "QUERY_final_filter.sql"  
 
-example: 
+ejemplo: 
 
  {{{mysql -u User -p portal < QUERY_final_filter.sql}}}
 
   
-*Finalize:* The tables temp_good_records and temp_bad_records are not needed anymore. The temporal tables temp_good_1A, temp_good_2A, temp_good_3A are useless, they were just for the query, so they can be dropped. 
+*Finalizar:* Las tablas temp_good_records y temp_bad_records no se necesitan más. Las tablas temporales temp_good_1A, temp_good_2A, temp_good_3A ya no se usan, solo se usaron para la consulta, por lo que se pueden borrar. 
 
   
-===11 Exporting records into a comma separated file===
+===11 Exportación de registros en un archivo separado por comas===
 ====Description====
 Exporting the reliable records into a comma separated file to be run in Maxent 
 
