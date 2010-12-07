@@ -16,7 +16,7 @@ El objetivo de este documento es ilustrar cómo construir el proyecto desde el c
 	* 250GB-500GB de DD de espacio disponible para la base de datos (mientras se realiza el proceso de importación), 30GB para archivos shape y archivos de variables bioclimáticas. 
 	* La última versión de JRE, disponible de forma gratuita en [http://www.java.com http://www.java.com] 
 	* Servidor de base de datos de MySQL 
-  		#La base de datos de GBIF montada y configurada basada en el archivo adjunto llamado my.cnf. Debe cambiar los parametros de datadir and tmpdir.
+  		# La base de datos de GBIF montada y configurada basada en el archivo adjunto llamado my.cnf. Debe cambiar los parametros de datadir and tmpdir.
 
 
 == Configurando la base de datos de MySQL ==
