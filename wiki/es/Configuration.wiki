@@ -209,4 +209,4 @@ Ambos XML deberían haberse creado.
 
 -----------------------------------------------------
 
-Una vez que el archivo de configuración se ha hecho correctamente, usted puede empezar a correr cada uno de los scripts que se presenta en esta sección.
+Una vez que el archivo de configuración se ha hecho correctamente, puede empezar a correr cada uno de los scripts que se presenta en esta sección.
