@@ -55,6 +55,7 @@ public class OutliersManager {
 					ServerConfig.getInstance().database_password);
 			n = ServerConfig.getInstance().dbVariablesName.size();
 			evaluateOutliers();
+			DataBaseManager.closeConnection(conx);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {

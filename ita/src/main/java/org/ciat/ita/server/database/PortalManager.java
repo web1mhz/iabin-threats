@@ -113,7 +113,7 @@ public class PortalManager {
 			StringBuffer query = new StringBuffer();
 			query
 					.append("Insert into "
-							+ ServerConfig.getInstance().dbTableUnreliable
+							+ ServerConfig.getInstance().dbTableTerrestrial
 							+ " (id, nub_concept_id, longitude, latitude, iso_country_code, canonical, error) values ");
 
 			for (Record rec : recs) {
@@ -174,13 +174,13 @@ public class PortalManager {
 	public int insertUnreliableRecord(Record rec) {
 
 		if (rec.getNote().equals(ShapeFile.E_NULL_COUNTRY)) {
-			return DataBaseManager.makeChange("Insert into " + ServerConfig.getInstance().dbTableUnreliable
+			return DataBaseManager.makeChange("Insert into " + ServerConfig.getInstance().dbTableTerrestrial
 					+ " values(" + rec.getId() + "," + rec.getNub_concept_id() + "," + rec.getLongitude()
 					+ "," + rec.getLatitude() + "," + rec.getIso_country_code() + ",'"
 					+ DataBaseManager.correctStringToQuery(getCanonical(rec.getNub_concept_id())) + "','"
 					+ rec.getNote() + "');", conx);
 		} else {
-			return DataBaseManager.makeChange("Insert into " + ServerConfig.getInstance().dbTableUnreliable
+			return DataBaseManager.makeChange("Insert into " + ServerConfig.getInstance().dbTableTerrestrial
 					+ "  values(" + rec.getId() + "," + rec.getNub_concept_id() + "," + rec.getLongitude()
 					+ "," + rec.getLatitude() + ",'" + rec.getIso_country_code() + "','"
 					+ DataBaseManager.correctStringToQuery(getCanonical(rec.getNub_concept_id())) + "','"
@@ -198,13 +198,13 @@ public class PortalManager {
 	public int insertUnreliableRecordWithCanonical(Record rec) {
 
 		if (rec.getNote().equals(ShapeFile.E_NULL_COUNTRY)) {
-			return DataBaseManager.makeChange("Insert into " + ServerConfig.getInstance().dbTableUnreliable
+			return DataBaseManager.makeChange("Insert into " + ServerConfig.getInstance().dbTableTerrestrial
 					+ " values(" + rec.getId() + "," + rec.getNub_concept_id() + "," + rec.getLongitude()
 					+ "," + rec.getLatitude() + "," + rec.getIso_country_code() + ",'"
 					+ DataBaseManager.correctStringToQuery(rec.getCanonical()) + "','" + rec.getNote()
 					+ "');", conx);
 		} else {
-			return DataBaseManager.makeChange("Insert into " + ServerConfig.getInstance().dbTableUnreliable
+			return DataBaseManager.makeChange("Insert into " + ServerConfig.getInstance().dbTableTerrestrial
 					+ "  values(" + rec.getId() + "," + rec.getNub_concept_id() + "," + rec.getLongitude()
 					+ "," + rec.getLatitude() + ",'" + rec.getIso_country_code() + "','"
 					+ DataBaseManager.correctStringToQuery(rec.getCanonical()) + "','" + rec.getNote()
@@ -223,7 +223,7 @@ public class PortalManager {
 		rs = DataBaseManager.makeQuery("select * from " + ServerConfig.getInstance().dbTableRecords
 				+ " where id > " + lastID + " and id not in " + "(select id from "
 				+ ServerConfig.getInstance().dbTableGoods + ")" + " and id not in " + "(select id from "
-				+ ServerConfig.getInstance().dbTableUnreliable + ")" + " order by id limit " + numRecords,
+				+ ServerConfig.getInstance().dbTableTerrestrial + ")" + " order by id limit " + numRecords,
 				conx);
 
 		endRecords = false;
@@ -271,7 +271,7 @@ public class PortalManager {
 		rs = DataBaseManager.makeQuery("select * from " + ServerConfig.getInstance().dbTableRecords
 				+ " where id > " + lastID + " and id not in " + "(select id from "
 				+ ServerConfig.getInstance().dbTableGoods + ")" + " and id not in " + "(select id from "
-				+ ServerConfig.getInstance().dbTableUnreliable + ")" + " order by id limit " + numRecords,
+				+ ServerConfig.getInstance().dbTableTerrestrial + ")" + " order by id limit " + numRecords,
 				conx);
 
 		endRecords = false;
