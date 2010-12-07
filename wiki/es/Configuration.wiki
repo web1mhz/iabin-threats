@@ -189,24 +189,24 @@ Ambos XML deberían haberse creado.
 *ip_addr*:  Dirección IP del servidor MySQL
 
 *communication_type*:
- * _LOCAL_ Para ejecutar el script de forma local (Client and Server in the same machine) - _Recommended option_.
- * _RMI_ to run the script as remote configuration (One Server - Many Clients).
+ * _LOCAL_ Para ejecutar el script de forma local (Cliente y servidor en la misma máquina) - _Opción recomendada_.
+ * _RMI_ Para ejecutar el escript como configuración remota (Un Servidor - Muchos Clientes).
 
-*HttpProxy server and port*: In case your Internet connection pass throw a proxy. Otherwise you can delete all the {{{<Proxy>}}} tag.
+*HttpProxy server and port*: En caso de que su conexión a internet pase por un Proxy. De lo contrario, puede eliminar todos las etiquetas {{{<Proxy>}}}.
 
-*work records*:  Number of records to be evaluated per batch.
+*work records*:  Número de registros a ser evaluado por lote.
 
 *shape*: 
- * *path*: Global and detailed shape file. We recommend to download [http://gisweb.ciat.cgiar.org/ITA/public_downloads/GADM_v0-6.zip this file]
- * *column*:  Each of the columns that have the shape file.
- More information about Shape files [http://en.wikipedia.org/wiki/Shapefile clic here].
+ * *path*: Forma Global y detallada del archivo shape. Se recomienda descargar de [http://gisweb.ciat.cgiar.org/ITA/public_downloads/GADM_v0-6.zip este archivo]
+ * *column*:  Cada una de las columnas que tiene el archivo Shape.
+ Para más información a cerca de archivos Shape [http://en.wikipedia.org/wiki/Shapefile click aquí].
 
-*mask*: Mask file location containing information for any coordinate in the world, whether the land cover is land or water. The file can be downloaded [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.jgm here]
+*mask*: Ubicación del archivo de máscara que contiene información de cada coordenada, Si la cobertura es en la tierra o el agua. El archivo se puede descargar [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.jgm aquí]
 
-*maxent*: Maxent configuration can be omitted, this field will be used in futher implementation of the project.
+*maxent*: La configuración de Maxent puede omitirse, este campo se utilizará en la ejecución posterior del proyecto.
 
-*variables path*: Bioclimatic variables location. You can find the 20 variables [http://gisweb.ciat.cgiar.org/ITA/public_downloads/BioAIO.zip here].
+*variables path*: Localización de variables Bioclimáticas. Puede encontrar las 20 variables [http://gisweb.ciat.cgiar.org/ITA/public_downloads/BioAIO.zip aquí].
 
 -----------------------------------------------------
 
-Once the file configuration is correclty done, you can start to run each scripts as presented in this section.
+Una vez que el archivo de configuración se ha hecho correctamente, usted puede empezar a correr cada uno de los scripts que se presenta en esta sección.

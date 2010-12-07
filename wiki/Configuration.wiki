@@ -209,4 +209,4 @@ Both XML should have been created.
 
 -----------------------------------------------------
 
-Once the file configuration is correclty done, you can start to run each scripts as presented in this section.
+Once the file configuration is correctly done, you can start to run each scripts as presented in this section.
