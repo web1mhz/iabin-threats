@@ -1,4 +1,4 @@
-#summary How to build the ITA data filtering tool
+#summary Cómo contruir la herramienta de filtrado de datos ITA
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/Configuration?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]

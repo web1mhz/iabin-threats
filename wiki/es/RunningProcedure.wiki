@@ -1,0 +1,311 @@
+#summary Pasos para utilizar la herramienta de filtrado de datos.
+#labels Featured
+#sidebar TableOfContents
+
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+
+= Introduction =
+
+Procedure steps for using the data filtering tool.
+  
+===1 Configuring files===
+====Description====
+First of all, the values of parameters of the XML configuration files _server_config.xml_ and _client_config.xml_ should be set.
+ 
+If there is no configuration files, you can generate them with default values using the script described in the Technical Procedure section. You can then edit them to set the corresponding values.  
+
+Most of those parameters correspond to files paths and directories paths. The examples for the correct setting of this files are in the project source code. 
+
+Please configure both files even if you just want to run it in stand-alone mode.
+
+*Outputs:* Configuration files: _server_config.xml_ and _client_config.xml_.
+
+====Technical procedure====
+Run the script in java with the following parameters for the server part: 
+
+ {{{java -cp ita.jar org.ciat.ita.server.ServerConfig}}}
+
+and for the clients part: 
+
+ {{{java -cp ita.jar org.ciat.ita.client.ClientConfig}}}
+
+Then edit the files server_config.xml and client_config.xml 
+  
+   
+===2 Basic filtering===
+====Description====
+We first process a basic filtering of the records that excludes the ones which have no latitude or longitude values, geospatial issue is different to zero, the basis of record not specimen, and optionally those in which the specie has less than ten records. 
+
+*Inputs:* MySQL table with the occurrence records of the database 
+
+*Outputs:* Several temporal tables (temp_land_1A, temp_land_2A, temp_land_3A, temp_land_4A and temp_land_5A ). The temp_land_4A table contains all the records that passed the filters, and temp_land_5A table is empty and prepared to be filled during the next step. 
+
+====Technical procedure====
+Run into the database the sql query of the file named “QUERY_basic_filter.sql” 
+
+Command line example: 
+
+ {{{mysql –u User –p portal < QUERY_basic_filter.sql }}}
+
+====Finalize====
+Once the query has been run, the tables temp_land_1A, temp_land_2A and temp_land_3A are not needed anymore, so these can be drooped. The tables temp_land_4A and temp_land_5A will be used in the next step. 
+
+===3 Getting the JGM file===
+====Description====
+If you don't have the JGM file for the filtering non terrestrial species step, You may  download it from: //TODO download URL
+
+Or you can create it using a mask ASCII file and the WorldMaskManager script. 
+
+====Technical procedure====
+Run the script in java with the following parameters: 
+
+*Parameters:* 
+ {{{jgm}}} To run the conversion algorithm 
+
+ {{{-Xmx<BYTES>}}} bytes of Maximum java heap size 
+
+ {{{<MASK>}}} absolute path of the ascii mask file 
+
+ {{{-k <KILOMETERS>}}} from the coast considered as a "near land" distance
+
+*Command line:*
+
+ {{{java -XmxBYTES -cp ita.jar org.ciat.ita.client.manage.WorldMaskManager jgm -m MASK -k KILOMETERS}}}
+
+Example, Creation of a JGM file in linux file system using a radius of 5 kilometers : 
+
+ {{{java -Xmx1000m -cp ita.jar org.ciat.ita.client.manage.WorldMaskManager jgm -m /home/inland_mask/inland_msk.asc -k 5 }}}
+
+  
+===4 Filtering non terrestrial species===
+====Description====
+The records from non terrestrial species are not possible to evaluate. Consequently, the non terrestrial species should be discriminated and the terrestrial ones will be stored in the _temp_land_5A_ table.
+
+A reliable method to do this, would be to knowing the _nub_concept_id_ of all non terrestrial species and filter the records from _temp_land_4A_ and insert just  terrestrial ones in the _temp_land_5A_ table. But all these nub_concept_id are hard to know. So in this step, the non terrestrial species will be determinated as follow: 
+  
+It determinates for each record  if it is terrestrial or not. by using a land mask. Once all records has been evaluated,  it determinate the percent of non terrestrial records for that specie, if this percent is equal or upper than 90%, then the specie is consider as non terrestrial. Just the terrestrial species records are inserted in the temp_land_5A table.
+
+
+*Inputs:* _temp_land_4A_ table records,land mask file “inland_msk.jgm” 
+
+*Outputs:* _temp_land_5A_ table filled with the records of terrestrial species. 
+
+====Technical procedure====
+Run the script in java with the following parameters: 
+
+ {{{-Xmx<BYTES>}}} of Maximum java heap size
+
+ {{{terreval}}} string to filter non terrestrial species
+
+ {{{-n <NUMBER>}}} of records that should be analyzed to show the time statistics
+
+Command line: 
+
+ {{{java -XmxBYTES -cp ita.jar org.ciat.ita.client. manage.WorldMaskManager terreval -n NUMBER}}}
+
+example: 
+
+ {{{java -Xmx1000m -cp ita.jar org.ciat.ita.client.manage.WorldMaskManager terreval -n 100000}}}
+
+*Finalize:* Once the script has been run, the table temp_land_4A is not needed anymore. It can therefore be dropped. 
+   
+
+===5 Getting EMM file===
+
+If you don't have the EMM All in One file (BioAIO.emm) required for the Geospatial Evaluation step, you may download from //TODO download URI
+
+Or you can create it using the original ASCII files of the bioclimatic variables specified in the XML Client configuration and the EnvironmentMaskManger script.
+
+====Technical procedure====
+*Parameters:*
+
+ {{{-d <VARS>}}} absolute path of the environmental variables folder 
+
+*Command line:*
+
+ {{{java -XmxBYTES -cp ita.jar org.ciar.ita.client. manage.EnvironmentMaskManager -d VARS_FOLDER}}}
+
+Example for Linux: 
+
+ {{{java -Xmx1000m -cp ita.jar org.ciat.ita.client. manage.EnvironmentMaskManager -d /home/bio_asc}}}
+
+===6 Geospatial evaluation===
+====Description====
+Evaluates the records using geospatial resources.
+
+*Inputs:* _temp_land_5A_ table filled with the records of terrestrial species. Shape file _GADM_v0-6.shp_, land mask file _inland_msk.jgm_ (jgm format is necesary) and environmental variables file _BioAIO.emm_ and the format file _BioAIO.format_ 
+
+*Outputs:* Two tables temp_good_records and temp_bad_records filled with the data according to the evaluation results. If the record passed all the filters, its data with the corresponding environmental data should be in the temp_good_records table. On the contrary, if the records were recognized as unreliable its data should be in the temp_bad_records table with the corresponding type of error found. 
+
+Error possible values: 
+*M:* Out of Mask 
+*NC:* Null Country 
+*WC:* Wrong Country 
+*O:* In Ocean 
+*NL:* Near Land 
+
+====Technical procedure====
+First, you should run  the sql file named “QUERY_create_GBtables.sql” into the database 
+
+example: 
+
+ {{{mysql portal < QUERY_create_GBtables.sql }}}
+
+Once the tables are created, You have the choice to run the geospatial script in standalone mode or client-server mode.
+
+
+===Standalone===
+
+In standalone mode you just need to run a single instance.
+
+*Parameters:*
+ {{{-Xmx<BYTES>}}} of Maximum java heap size 
+
+*Command line:*
+
+ {{{java -XmxBYTES -cp ita.jar}}}
+
+example 
+
+ {{{java -Xmx1500m -jar ita.jar}}}
+
+===Client-Server===
+
+First of all you have to run one instance as a server, the you can run several client instances as you wish.
+
+*Parameters:*
+ {{{-Xmx<BYTES>}}} of Maximum java heap size 
+
+*Server command line:*
+
+ {{{java -XmxBYTES -cp ita.jar org.ciat.ita.server.Server }}}
+
+example 
+
+ {{{java -Xmx20000m -cp ita.jar org.ciat.ita.server.Server }}}
+
+*Client command line:*
+
+ {{{java -XmxBYTES -cp ita.jar org.ciat.ita.client.Client }}}
+
+example 
+
+ {{{java -Xmx1500m -cp ita.jar org.ciat.ita.client.Client }}}
+
+*Finalize:* Once the script has been run, the table temp_land_5A is not needed anymore, so it can be dropped. 
+  
+  
+  
+===7 Environmental evaluation ===
+====Description====
+Within each specie calculate the maximum value and the minimum value of each environmental variable to determinate when the record is an outlier for that variable.
+ 
+*Inputs:* _temp_good_records_ table filled with the geospatially reliable records data and the corresponding environmental data 
+
+*Outputs:* _temp_good_records_ table with the count of the outlier for all variables 
+
+====Technical procedure====
+Run the script in java with the following parameters: 
+  
+ {{{-Xmx<BYTES>}}} of Maximum java heap size 
+
+Run the script in java : 
+
+Command line: 
+
+ {{{java -XmxBYTES -cp ita.jar org.ciat.ita.server.OutliersManager }}}
+
+example: 
+
+ {{{java -Xmx2000m -cp ita.jar org.ciat.ita.server.OutliersManager }}}
+
+	  
+  
+  
+===8 (Optional) Getting geospatial and environmental statistics===
+
+====Description==== 
+This is an optional step. Its aim is to extract some statistics of the filtering steps. how many records are reliable and how many are not, specifying the error type. 
+
+*Inputs:* _temp_good_records_ table with the count of the outlier for all variables 
+*Outputs:* The XML file _statistics.xml_ is generated. It contains all the statistics of the set of records evaluated 
+
+====Technical procedure====
+Run the script with the following parameters: 
+  
+*Command line:*
+
+ {{{java  -cp ita.jar org.ciat.ita.server.database.DataBaseStatistics}}}
+
+	    
+===10 Final filter for reliable data===
+====Description==== 
+
+Discriminate the records that are  considerated as outlier in more than 16  environmental variable distributions and then those for which the specie has less than ten records. Only the reliable records are then stored into the final table called filtered_records 
+
+*Inputs:* 	temp_good_records table with the count of the outlier for all variables 
+
+*Outputs:* 	filtered_records table filled with the totally reliable records 
+
+====Technical procedure====
+Run into the database the sql file named "QUERY_final_filter.sql"  
+
+example: 
+
+ {{{mysql -u User -p portal < QUERY_final_filter.sql}}}
+
+  
+*Finalize:* The tables temp_good_records and temp_bad_records are not needed anymore. The temporal tables temp_good_1A, temp_good_2A, temp_good_3A are useless, they were just for the query, so they can be dropped. 
+
+  
+===11 Exporting records into a comma separated file===
+====Description====
+Exporting the reliable records into a comma separated file to be run in Maxent 
+
+*Inputs:* _filtered_records_ table filled with the reliable records 
+
+*Outputs:* A comma separated file _filtered_records.csv_ with the reliable records 
+
+====Technical procedure====
+Run the script using java with the following parameters: 
+  
+*Parameters:* 
+ {{{csv}}} To run the corresponding method to export a csv per specie. 
+ {{{-Xmx<BYTES>}}} of Maximum java heap size 
+ {{{-n <NUMBER>}}} of records that should be analized to show the time statistics 
+ {{{-d <OUTPUT>}}} directory exactly location  
+
+*Command line:*
+
+ {{{java -XmxBYTES -cp ita.jar client.correctormanager.MaxentManager csv -n NUMBER -d OUTPUT}}}
+
+example: 
+
+ {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager csv -n 1000 -d /home/output }}}
+  
+
+====12 Generate species projections with Maxent====
+===Description===
+This script generates the lambda files and immediately after generates the projections of the species data using maxent application and the environmental varibles. 
+
+*Inputs:* Environmental variables preferably with a low resolution. Maxent runnable jar.
+
+*Outputs:* Projection for species ascii files 
+
+====Technical procedure====
+Run the script in java with the following parameters: 
+
+*Parameters:*
+ {{{-Xmx<BYTES>}}} of Maximum java heap size 
+ {{{maxent}}} to Run the corresponding script to generate species projections  
+ {{{-i <INSTANCES>}}} of Maxent  that will be executed at same time 
+
+*Command line:*
+
+ {{{java -XmxBYTES  -cp ita.jar client.correctormanager.MaxentManager maxent -i INSTANCES }}}
+
+example: 
+
+ {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager maxent -i 4}}}   
+ 
