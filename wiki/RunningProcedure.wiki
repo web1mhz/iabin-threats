@@ -7,22 +7,22 @@
 
 = Introduction =
 
-Procedure steps for using the data filtering tool.
+This tutorial will describe the different procedure steps in order to have a fully functional installation of the data filtering tool.
   
-===1 Configuring files===
+===1 The configuration files===
 ====Description====
-First of all, the values of parameters of the XML configuration files _server_config.xml_ and _client_config.xml_ should be set.
+First of all, the values of the  XML configuration files parameters _server_config.xml_ and _client_config.xml_ should be set.
  
-If there is no configuration files, you can generate them with default values using the script described in the Technical Procedure section. You can then edit them to set the corresponding values.  
+If the configuration files have not been created yet, you can generate them with default values using the script described in the Technical Procedure section. You can then edit them to set the corresponding values.  
 
-Most of those parameters correspond to files paths and directories paths. The examples for the correct setting of this files are in the project source code. 
+Most of these parameters are files and directories  paths. Examples of default settings are in the project source code. 
 
-Please configure both files even if you just want to run it in stand-alone mode.
+Please configure both files even if you just want to run it in a stand-alone mode.
 
 *Outputs:* Configuration files: _server_config.xml_ and _client_config.xml_.
 
 ====Technical procedure====
-Run the script in java with the following parameters for the server part: 
+To generate the default configuration files, run the script with java using the following parameters for the server part: 
 
  {{{java -cp ita.jar org.ciat.ita.server.ServerConfig}}}
 
@@ -35,14 +35,14 @@ Then edit the files server_config.xml and client_config.xml
    
 ===2 Basic filtering===
 ====Description====
-We first process a basic filtering of the records that excludes the ones which have no latitude or longitude values, geospatial issue is different to zero, the basis of record not specimen, and optionally those in which the specie has less than ten records. 
+We first proceed to a basic filtering which excludes the records which have no latitude or longitude values, the ones which geospatial issue is different to zero, the ones which not stored as specimen, and optionally those which specie has less than ten records. 
 
 *Inputs:* MySQL table with the occurrence records of the database 
 
-*Outputs:* Several temporal tables (temp_land_1A, temp_land_2A, temp_land_3A, temp_land_4A and temp_land_5A ). The temp_land_4A table contains all the records that passed the filters, and temp_land_5A table is empty and prepared to be filled during the next step. 
+*Outputs:* Several temporal tables (temp_land_1A, temp_land_2A, temp_land_3A, temp_land_4A and temp_land_5A ). The temp_land_4A table contains all the records that passed the filters, and temp_land_5A table is empty and prepared to be filled during the next step.
 
 ====Technical procedure====
-Run into the database the sql query of the file named “QUERY_basic_filter.sql” 
+Run into the database the sql query file named “QUERY_basic_filter.sql” 
 
 Command line example: 
 
