@@ -13,46 +13,46 @@ Pasos para utilizar la herramienta de filtrado de datos.
 ====Descripción====
 En primer lugar, se deben establecer los valores para los parámetros de los archivos de configuración XML _server_config.xml_ and _client_config.xml_.
  
-Si no hay archivos de configuración,los puede generar con los valores por defecto, mediante el script descrito en la sección de Configuración. You can then edit them to set the corresponding values.  
+Si no hay archivos de configuración, los puede generar con los valores por defecto, mediante el script descrito en la sección de Procedimiento técnico. A continuación, puede editar los parámetros para establecer los valores correspondientes.  
 
-Most of those parameters correspond to files paths and directories paths. The examples for the correct setting of this files are in the project source code. 
+La mayoría de los parámetros corresponden a las rutas de archivos y rutas de directorios. Los ejemplos para la configuración correcta de estos archivos se encuentran en el código fuente del proyecto.
 
-Please configure both files even if you just want to run it in stand-alone mode.
+Por favor, configure los archivos, incluso si sólo quiere que se ejecute en modo local.
 
-*Outputs:* Configuration files: _server_config.xml_ and _client_config.xml_.
+*Outputs:* Configuración de archivos: _server_config.xml_ y _client_config.xml_.
 
-====Technical procedure====
-Run the script in java with the following parameters for the server part: 
+====Procedimiento Técnico====
+Ejecute el script en java con los siguientes parámetros para la parte del servidor: 
 
  {{{java -cp ita.jar org.ciat.ita.server.ServerConfig}}}
 
-and for the clients part: 
+y para la parte del cliente: 
 
  {{{java -cp ita.jar org.ciat.ita.client.ClientConfig}}}
 
-Then edit the files server_config.xml and client_config.xml 
+A continuación edite los archivos server_config.xml and client_config.xml 
   
    
-===2 Basic filtering===
-====Description====
-We first process a basic filtering of the records that excludes the ones which have no latitude or longitude values, geospatial issue is different to zero, the basis of record not specimen, and optionally those in which the specie has less than ten records. 
+===2 Filtrado Básico===
+====Descripción====
+Primero procesamos un filtrado basico de los registros lo cual excluye a los que no tienen valores latitud o longitud, la geospatial_issue es diferente de cero, la base de registro no especie y opcionalmente auqellos een los que la especie tiene menos de diez registros 
 
-*Inputs:* MySQL table with the occurrence records of the database 
+*Inputs:* Tabla MySQL con los registros de ocurrencias de la base de datos. 
 
-*Outputs:* Several temporal tables (temp_land_1A, temp_land_2A, temp_land_3A, temp_land_4A and temp_land_5A ). The temp_land_4A table contains all the records that passed the filters, and temp_land_5A table is empty and prepared to be filled during the next step. 
+*Outputs:* Varias tablas temporales (temp_land_1A, temp_land_2A, temp_land_3A, temp_land_4A y temp_land_5A ). La tabla temp_land_4A table contiene todos los registros que pasaron los filtros, y la tabla temp_land_5A está vacía y preparada para ser llenada en el siguiente paso.
 
-====Technical procedure====
-Run into the database the sql query of the file named “QUERY_basic_filter.sql” 
+====Procedimiento Técnico====
+Ejecute en la base de datos la consulta sql del arhivo llamado “QUERY_basic_filter.sql” 
 
-Command line example: 
+Ejemplo de la línea de comando: 
 
  {{{mysql –u User –p portal < QUERY_basic_filter.sql }}}
 
-====Finalize====
-Once the query has been run, the tables temp_land_1A, temp_land_2A and temp_land_3A are not needed anymore, so these can be drooped. The tables temp_land_4A and temp_land_5A will be used in the next step. 
+====Finalizar====
+Una vez que la consulta se ha ejecutado, las tablas temp_land_1A, temp_land_2A and temp_land_3A ya no se necesitan, por lo que pueden ser borradas. Las tablas temp_land_4A and temp_land_5A se utilizarán en el siguiente paso. 
 
-===3 Getting the JGM file===
-====Description====
+===3 Obteniendo el archivo JGM===
+====Descripción====
 If you don't have the JGM file for the filtering non terrestrial species step, You may  download it from: //TODO download URL
 
 Or you can create it using a mask ASCII file and the WorldMaskManager script. 
