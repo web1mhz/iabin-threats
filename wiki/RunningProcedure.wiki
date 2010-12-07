@@ -1,5 +1,9 @@
 #summary Procedure steps for using the data filtering tool.
 #labels Featured
+#sidebar TableOfContents
+
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 = Introduction =
 
