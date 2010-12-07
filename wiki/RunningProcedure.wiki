@@ -249,7 +249,7 @@ Run into the database the sql file named "QUERY_final_filter.sql"
 
 example: 
 
-{{{mysql -u User -p portal < QUERY_final_filter.sql}}}
+ {{{mysql -u User -p portal < QUERY_final_filter.sql}}}
 
   
 *Finalize:* The tables temp_good_records and temp_bad_records are not needed anymore. The temporal tables temp_good_1A, temp_good_2A, temp_good_3A are useless, they were just for the query, so they can be dropped. 
@@ -267,7 +267,7 @@ Exporting the reliable records into a comma separated file to be run in Maxent
 Run the script using java with the following parameters: 
   
 *Parameters:* 
- {{csv}}} To run the corresponding method to export a csv per specie. 
+ {{{csv}}} To run the corresponding method to export a csv per specie. 
  {{{-Xmx<BYTES>}}} of Maximum java heap size 
  {{{-n <NUMBER>}}} of records that should be analized to show the time statistics 
  {{{-d <OUTPUT>}}} directory exactly location  
