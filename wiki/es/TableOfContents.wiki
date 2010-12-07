@@ -7,8 +7,8 @@
    * [Derechos de Autor]
    * [Preguntas Frecuentes]
  * Filtro de Datos
-   * [Descripción]
-   * [Cómo construir el proyecto ITA]
+   * [Descripcion]
+   * [Cómo construir el proyecto ITA How to build the project]
    * [Configuration Configuración] 
    * [RunningProcedure Procedimiento de Ejecución]
    * [API]
