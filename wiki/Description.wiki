@@ -7,5 +7,5 @@
 
 == Introduction ==
 
-http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif
+http://iabin-threats.googlecode.com/svn/wiki/resources/script-process.PNG
 
