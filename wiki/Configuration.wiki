@@ -6,21 +6,21 @@
 
 == Introduction ==
 
-This is a technical document and is intended to people who has relation with the technical implementation of the project.
+This is a technical document and is intended to people who have good knowledges about the technologies implemented in this project.
 
-The purpose of this document is to illustrate how to build the project from the source code of this repository.
+The purpose of this document is to illustrate how to configure the project once built from the source code of this repository.
 
 == Technical Requirements ==
 
-	* To this point, the project must be imported, edited and packaged. (see How [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA How To Build ITA] section)
-	* 250GB-500GB of HD space available for database (while importing process), 30GB for shape files and bioclimatic variables files. 
-	* Latest version of JRE, available for free at [http://www.java.com http://www.java.com] 
+	* Before starting with this tutorial you should first import, edit and package the project as shown in the ([http://code.google.com/p/iabin-threats/wiki/HowToBuildITA How To Build ITA] section)
+	* 250GB-500GB of HD available space for the database (during the import process), 30GB for the shape files and bioclimatic variables files. 
+	* Latest version of the JRE, available for free at [http://www.java.com http://www.java.com] 
 	* MySQL database server 
-  		# GBIF database mounted and configured based on the attached file named my.cnf.  You should change the datadir and tmpdir parameters
+  		# GBIF like database mounted and configured based on the attached file named my.cnf.  You should change the datadir and tmpdir parameters
 
 
 == Configuring MySQL Database ==
-You can use any other configuration. However, we recomend the following configuration:
+You can use any other configuration. However, we recomend the following one:
 
 
 {{{
@@ -62,11 +62,11 @@ pid-file=/var/run/mysqld/mysqld.pid
 
 == Configuring Files ==
 
-The project needs some extra XML files that should be configured before start to run it (*client_config.xml* and *server_config.xml*).
+The project needs some extra XML files to be configured before starting to use it (*client_config.xml* and *server_config.xml*).
 
-As the _svn_ command doesn't import these files, ITA project can generate them assigning default values that you should change later, depending of your file system and your personal configuration.
+As the _svn_ command doesn't import these files, the ITA project can generate them assigning default values that you should change later, depending of your system and personal configuration.
 
-run the following commands:
+To generate the basic configuration files, run the following commands:
 
      java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig
 
@@ -118,7 +118,7 @@ Both XML should have been created.
 </config>
 }}}
 
-*rmi port*: The default RMI Port. You can delete this tag in case your application is going executed as "LOCAL" configuration.
+*rmi port*: The default RMI Port. You can delete this tag if you are going to run the application with a "LOCAL" configuration.
 
 *database*:
  * *name*: Database name
@@ -130,10 +130,10 @@ Both XML should have been created.
 *password user*: Database password. (change the asterisks _******_).
 
 *tables*:
- * *unverified_records*: In case you have changed the name of the table in SQL scripts, change the default name table (temp_land_5A) for the correct.
- * *good_records*: Same as above, but the default table name in this case is _temp_good_records_.
- * *final_records*:  Same as above, but the default table name in this case is _filtered_records_
- * *unrelible_records*:  Same as above, but the default table name in this case is _temp_bad_records_
+ * *unverified_records*: In case you have changed the name of the tables in the SQL scripts, change the default name table (temp_land_5A) by the correct ones.
+ * *good_records*: Same as above,the default table name is _temp_good_records_.
+ * *final_records*:  Same as above,the default table name is _filtered_records_
+ * *unrelible_records*:  Same as above,the default table name is _temp_bad_records_
 -----------------------------------------------------
 
 || client_config.xml ||
@@ -186,29 +186,27 @@ Both XML should have been created.
 </config>
 }}}
 
-*ip_addr*:  IP address ofMmySQL server
+*ip_addr*:  IP address of the MySQL server
 
 *communication_type*:
  * _LOCAL_ to run the script as stand alone (Client and Server in the same machine) - _Recommended option_.
  * _RMI_ to run the script as remote configuration (One Server - Many Clients).
 
-*HttpProy server and port*: In case your Internet connection pass throw a proxy. Otherwise you can delete all the {{{<Proxy>}}} tag.
+*HttpProxy server and port*: In case your Internet connection pass throw a proxy. Otherwise you can delete all the {{{<Proxy>}}} tag.
 
 *work records*:  Number of records to be evaluated per batch.
 
 *shape*: 
  * *path*: Global and detailed shape file. We recommend to download [http://gisweb.ciat.cgiar.org/ITA/public_downloads/GADM_v0-6.zip this file]
  * *column*:  Each of the columns that have the shape file.
- More information about Shape file [http://en.wikipedia.org/wiki/Shapefile clic here].
+ More information about Shape files [http://en.wikipedia.org/wiki/Shapefile clic here].
 
-*mask*: Mask file location containing information about every coordinate in the world, whether land or water. The file can be get it [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.jgm here]
+*mask*: Mask file location containing information for any coordinate in the world, whether the land cover is land or water. The file can be downloaded [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.jgm here]
 
-*maxent*: Maxent configuration can be omitted. If you prefer, you are allowed to delete it.
+*maxent*: Maxent configuration can be omitted, this field will be used in futher implementation of the project.
 
 *variables path*: Bioclimatic variables location. You can find the 20 variables [http://gisweb.ciat.cgiar.org/ITA/public_downloads/BioAIO.zip here].
 
 -----------------------------------------------------
 
-Once the file configuration is correclty done, you can start to run each of the scripts presented in 
-
-this section.
+Once the file configuration is correclty done, you can start to run each scripts as presented in this section.
