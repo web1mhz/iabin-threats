@@ -25,8 +25,7 @@ import java.util.Set;
 
 import org.ciat.ita.bg.database.DataBaseManager;
 import org.ciat.ita.bg.model.Record;
-import org.ciat.ita.bg.server.ServerConfig;
-//import org.jdom.Element;
+import org.ciat.ita.bg.server.ServerConfig; //import org.jdom.Element;
 //import org.jdom.JDOMException;
 //import org.jdom.input.SAXBuilder;
 import com.vividsolutions.jts.geom.Point;
@@ -53,30 +52,26 @@ public class Biogeomancer {
 	 * @throws IOException
 	 * @throws JDOMException
 	 * @throws DocumentException
-	 * @throws JaxenException 
+	 * @throws JaxenException
 	 */
 	public static Set<Record> startGeorref(Set<Record> places)
 			throws IOException, DocumentException, JaxenException {
-		
-		
-		String outputFile="out.txt";
-		String horaInicio=getDateTime();
+
+		String outputFile = "out.txt";
+		String horaInicio = getDateTime();
 		String str;
-		
-		File f=new File(outputFile);
-	      FileOutputStream fop=new FileOutputStream(f, true);
 
-	      if(f.exists()){
-	      str="\n\n*****************\nstart time : "+getDateTime();
-	          fop.write(str.getBytes());
+		File f = new File(outputFile);
+		FileOutputStream fop = new FileOutputStream(f, true);
 
-	          fop.flush();
-	          fop.close();
-	      }
-        
-        
-       
-		
+		if (f.exists()) {
+			str = "\n\n*****************\nstart time : " + getDateTime();
+			fop.write(str.getBytes());
+
+			fop.flush();
+			fop.close();
+		}
+
 		try {
 			String xmlData = dataToXML(places);
 			System.out.println("despues de datatoxml :" + xmlData);
@@ -85,7 +80,17 @@ public class Biogeomancer {
 			URL urlBgServer;
 			urlBgServer = new URL(BgServer);
 
+			// sigue solicitando informacion al servidor hasta que devuelva
+			// diferente de null
 			String xmlResult = setServiceUrl(urlBgServer, xmlData);
+			int intentos = 0;
+			while (xmlData == null || intentos < 1000) {
+				System.out.println("\ntiempo : " + getDateTime());
+				System.out.println("\nnumero de intentos de conexion: "
+						+ intentos);
+				xmlResult = setServiceUrl(urlBgServer, xmlData);
+				intentos++;
+			}
 
 			/*
 			 * TODO: Interpretar dicho String (xmlResult) como un xml y extraer
@@ -102,107 +107,144 @@ public class Biogeomancer {
 
 			System.out.println("*******************************************");
 
-			System.out.println("*****************shows xml values**************************");
-			
+			System.out
+					.println("*****************shows xml values**************************");
+
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("dwc", "http://rs.tdwg.org/dwc/terms/");
-			
+
 			XPath xpath = DocumentHelper.createXPath("//record");
 			xpath.setNamespaceContext(new SimpleNamespaceContext(map));
-			
+
 			List nodes = xpath.selectNodes(document);
-//***********
+			// ***********
 			String values = "";
 			String[] data;
 			String[] coordinates;
 			String longitude;
 			String latitude;
 			String uncertainty;
-			
-			int sinrespuesta=0,unasolarespuesta=0,dosrespuestas=0,masde2respuestas=0;
-	//*************		
+			Double minorUncertainty = 0.0;
+			String minorLongitude = "";
+			String minorLatitude = "";
+
+			int sinrespuesta = 0, unasolarespuesta = 0, dosrespuestas = 0, masde2respuestas = 0;
+			// *************
 			for (int i = 0; i < nodes.size(); i++) {
-				//System.out.println("contador :"+i);
-				System.out.println("\n"+((Node)nodes.get(i)).getName() +" numero "+i  );
-				//System.out.println("getText"+((Node)nodes.get(i)).getText() );
-				System.out.println("getStringValue"+((Node)nodes.get(i)).getStringValue());
-				values=((Node)nodes.get(i)).getStringValue();	
-			
-				
-				
+				// System.out.println("contador :"+i);
+				System.out.println("\n" + ((Node) nodes.get(i)).getName()
+						+ " numero " + i);
+				// System.out.println("getText"+((Node)nodes.get(i)).getText()
+				// );
+				System.out.println("getStringValue"
+						+ ((Node) nodes.get(i)).getStringValue());
+				values = ((Node) nodes.get(i)).getStringValue();
+
 				data = values.split("\n");
 				int x = data.length;
-				System.out.println("largo del arreglo split :"+x);
+				System.out.println("largo del arreglo split :" + x);
 
-				if(x==6)
-				{
+				if (x == 6) {
 					sinrespuesta++;
+					minorUncertainty = -1.0;
+					minorLongitude = "";
+					minorLatitude = "";
 				}
-				if(x==12)
-				{
+				if (x == 12) {
 					unasolarespuesta++;
 					uncertainty = data[data.length - 1];
 					latitude = data[data.length - 4];
 					longitude = data[data.length - 3];
-					
+
 					System.out.println("latitude : " + latitude);
 					System.out.println("longitude : " + longitude);
 					System.out.println("uncertainty : " + uncertainty);
 				}
-				if(x==19)
-				{
+				if (x == 19) {
 					dosrespuestas++;
 					uncertainty = data[data.length - 1];
 					latitude = data[data.length - 4];
 					longitude = data[data.length - 3];
-					
+
 					System.out.println("latitude : " + latitude);
 					System.out.println("longitude : " + longitude);
 					System.out.println("uncertainty : " + uncertainty);
-					
+
 					uncertainty = data[data.length - 8];
 					latitude = data[data.length - 11];
 					longitude = data[data.length - 10];
-					
+
 					System.out.println("latitude : " + latitude);
 					System.out.println("longitude : " + longitude);
 					System.out.println("uncertainty : " + uncertainty);
 				}
-				if(x>19)masde2respuestas++;	
+				if (x > 19)
+					masde2respuestas++;
 
-				//muestra cada valor del record en el arreglo despues del split
-			  for (int y = 0; y < x; y++) {
+				int z = x;
+				// muestra cada valor del record en el arreglo despues del split
+				for (int y = 0; y < x; y++) {
 					System.out.println("valor " + y + " : " + data[y]);
+
 				}
+				// se haya el punto con menor uncertainty
+				int j = 11;
 
-				System.out.println("largo del arreglo split :"+x);
+				if (x > 11) {
+					minorUncertainty = Double.parseDouble(data[j]);
+					minorLatitude = data[8];
+					minorLongitude = data[9];
+				}
+				while (j < x) {
 
-				
+					System.out
+							.println("minor uncertainty :" + minorUncertainty);
+					if (Double.parseDouble(data[j]) < minorUncertainty) {
+						minorUncertainty = Double.parseDouble(data[j]);
+						minorLatitude = data[j - 3];
+						minorLongitude = data[j - 2];
+
+					}
+					j = j + 7;
+				}
+				System.out.println("the minor uncertainty is : "
+						+ minorUncertainty);
+				System.out.println("minor Latitude is : " + minorLatitude);
+				System.out.println("minor Longitude is : " + minorLongitude);
+
+				System.out.println("largo del arreglo split :" + x);
+
 			}
-			System.out.println("los registros que no tienen respuesta son :"+sinrespuesta);
-			System.out.println("los registros que tienen 1 respuesta  son :"+unasolarespuesta);
-			System.out.println("los registros que tienen 2 respuestas son :"+dosrespuestas);
-			System.out.println("los registros que tienen >2 respuestas son :"+masde2respuestas);
-			System.out.println("el total de los registros es :"+nodes.size());
-			
-			//writes the timing and results to d:/out.txt
-			fop=new FileOutputStream(f, true);
-			
-			if(f.exists()){
-			      str="\nstart time"+getDateTime()
-			      +"\nlos registros que no tienen respuesta son :"+sinrespuesta
-			      +"\nlos registros que tienen 1 respuesta  son :"+unasolarespuesta
-			      +"\nlos registros que tienen 2 respuestas son :"+dosrespuestas
-			      +"\nlos registros que tienen >2 respuestas son :"+masde2respuestas
-			      +"\nel total de los registros es :"+nodes.size()
-			      +"\nstart time : "+horaInicio
-			      +"\nend time : "+getDateTime();
-			          fop.write(str.getBytes());
+			System.out.println("los registros que no tienen respuesta son :"
+					+ sinrespuesta);
+			System.out.println("los registros que tienen 1 respuesta  son :"
+					+ unasolarespuesta);
+			System.out.println("los registros que tienen 2 respuestas son :"
+					+ dosrespuestas);
+			System.out.println("los registros que tienen >2 respuestas son :"
+					+ masde2respuestas);
+			System.out.println("el total de los registros es :" + nodes.size());
 
-			          fop.flush();
-			          fop.close();
+			// writes the timing and results to d:/out.txt
+			fop = new FileOutputStream(f, true);
+
+			if (f.exists()) {
+				str = "\nstart time" + getDateTime()
+						+ "\nlos registros que no tienen respuesta son :"
+						+ sinrespuesta
+						+ "\nlos registros que tienen 1 respuesta  son :"
+						+ unasolarespuesta
+						+ "\nlos registros que tienen 2 respuestas son :"
+						+ dosrespuestas
+						+ "\nlos registros que tienen >2 respuestas son :"
+						+ masde2respuestas + "\nel total de los registros es :"
+						+ nodes.size() + "\nstart time : " + horaInicio
+						+ "\nend time : " + getDateTime();
+				fop.write(str.getBytes());
+
+				fop.flush();
+				fop.close();
 			}
-
 
 			System.out.println("*******************************************");
 
@@ -212,7 +254,6 @@ public class Biogeomancer {
 		}
 		return places;
 	}
-
 
 	/**
 	 * @param places
@@ -229,7 +270,8 @@ public class Biogeomancer {
 		for (Record p : places) {
 			data.append("<record> <dwc:country>");
 			data.append(p.getCountry());
-			//System.out.println("pais ---------------------> : "+ p.getCountry());
+			// System.out.println("pais ---------------------> : "+
+			// p.getCountry());
 			data.append("</dwc:country>");
 			data.append("<dwc:stateProvince>");
 			data.append(p.getState());
@@ -285,10 +327,31 @@ public class Biogeomancer {
 				inputStream = connection.getInputStream();
 				xmlText = toString(inputStream);
 
+				// aqui se escribe la informacion recibida del servidor de BG en
+				// un archivo xml
+				File f = new File("c:/outputBiogeomancer.xml");
+				FileOutputStream fop = new FileOutputStream(f, true);
+				String texto;
+
+				if (f.exists()) {
+					texto = xmlText;
+					fop.write(texto.getBytes());
+
+					fop.flush();
+					fop.close();
+				}
+
 			} else {
 				// TODO: Manejar el error en caso de que exista algún problema.
 				// (retornar null?).
-				inputStream = connection.getErrorStream();
+				if (responseCode == HttpURLConnection.HTTP_INTERNAL_ERROR) {
+					// inputStream = connection.getErrorStream();
+					System.out
+							.println("HTTP Status-Code 500: Internal Server Error.");
+
+				} else {
+					System.out.println("other error " + responseCode);
+				}
 			}
 
 			// write the output to the console
@@ -322,9 +385,7 @@ public class Biogeomancer {
 	}
 
 	public static void main(String[] args) {
-		
-		//for(int j=0;j<5;j++){
-//System.out.println("main"+j);
+
 		Connection conx;
 		DataBaseManager.registerDriver();
 		conx = DataBaseManager.openConnection(
@@ -336,10 +397,11 @@ public class Biogeomancer {
 		 * almacenan en un ResultSet
 		 */
 		System.out.println("hace la consulta y devuelve el result set");
-System.out.println("inicia query : "+getDateTime());
+		System.out.println("inicia query : " + getDateTime());
 		ResultSet rs = DataBaseManager.makeQuery("select " + "*" + " from "
-				+ "temp_georeferenced_records" +" order by RAND()"+ " limit 100", conx);
-System.out.println("termina query : "+getDateTime());
+				+ "temp_georeferenced_records" + " order by RAND()"
+				+ " limit 50", conx);
+		System.out.println("termina query : " + getDateTime());
 		/*
 		 * se crea el HashSet en donde se almacenaran los records creados con
 		 * cada linea del Resultset
@@ -350,7 +412,7 @@ System.out.println("termina query : "+getDateTime());
 			System.out.println("recorriendo el result set");
 
 			while (rs.next()) {
-				//System.out.println("recorriendo el result set");
+				// System.out.println("recorriendo el result set");
 
 				// isoCountryCode, country, state, county, locality, latitude,
 				// longitude, nudConceptId, canonical, id, decode
@@ -360,7 +422,8 @@ System.out.println("termina query : "+getDateTime());
 						rs.getString("county"), rs.getString("locality"), 0.0,
 						0.0, 0, null, rs.getInt("id"), true);
 
-				//System.out.println("tamaño del HashSet .........: "+ grup.size());
+				// System.out.println("tamaño del HashSet .........: "+
+				// grup.size());
 
 				grup.add(rec);
 
@@ -373,15 +436,12 @@ System.out.println("termina query : "+getDateTime());
 		DataBaseManager.closeConnection(conx);
 
 		String horaEmpieza = getDateTime();
-		System.out.println("inicia startGeorref a las "+horaEmpieza);
-		
-		
+		System.out.println("inicia startGeorref a las " + horaEmpieza);
+
 		/* se inicia la georreferenciacion */
 		try {
 
-
 			startGeorref(grup);
-		
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -393,17 +453,23 @@ System.out.println("termina query : "+getDateTime());
 			e.printStackTrace();
 		}
 		String horaTermina = getDateTime();
-		System.out.println("termina startGeorref a las "+horaTermina);
-		
-		
-		System.out.println("empezó a las : " + horaEmpieza + "\r\n"+ " finalizó a las : " + horaTermina);
-		System.out.println("started at : " + horaEmpieza + "\r\n"+ " ended at : " + horaTermina);
-		
+		System.out.println("termina startGeorref a las " + horaTermina);
+
+		System.out.println("empezó a las : " + horaEmpieza + "\r\n"
+				+ " finalizó a las : " + horaTermina);
+		System.out.println("started at : " + horaEmpieza + "\r\n"
+				+ " ended at : " + horaTermina);
+
 		DataBaseManager.closeConnection(conx);
-		
-		///}cierra el for
+
+		// /}cierra el for
 	}
 
+	/**
+	 * Finds the distance beetwen two given points
+	 * 
+	 * @return the number in meters
+	 */
 	public Double distancePoints() {
 		Double distance = 0.0;
 
@@ -411,13 +477,21 @@ System.out.println("termina query : "+getDateTime());
 		Point punto2 = null;
 		punto1.distance(punto2);
 		System.out.println("distance  from 1 to 2 : " + "");
-		//pendiente convertir de grados a metros
+		// pendiente convertir de grados a metros
 		/*
-		 * http://www.vividsolutions.com/jts/javadoc/com/vividsolutions/jts/geom/Geometry.html#distance(com.vividsolutions.jts.geom.Geometry)
+		 * http://www.vividsolutions.com/jts/javadoc/com/vividsolutions/jts/geom/
+		 * Geometry.html#distance(com.vividsolutions.jts.geom.Geometry)
 		 */
 
 		return distance;
 	}
+
+	/**
+	 * 
+	 * prints out the system's date and time
+	 * 
+	 * @return the date and time in string format
+	 */
 	private static String getDateTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
