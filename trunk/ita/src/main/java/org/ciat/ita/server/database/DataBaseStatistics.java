@@ -30,7 +30,7 @@ public class DataBaseStatistics {
 	private static final String XML_PERCENT_MASK = "MaskExlcuded";
 	private static final String XML_PERCENT_SHAPE = "ShapeExcluded";
 	private static final String XML_ERROR_TAG = "TAG";
-	private static final String XML_PERCENT_GGOODS = "GeographicallyReliables";
+	private static final String XML_PERCENT_GGOODS = "GeoReliables";
 
 	public static void main(String[] args) {
 
@@ -64,7 +64,9 @@ public class DataBaseStatistics {
 			throws IOException, SQLException {
 
 		
-		int nNullCountry = 0, nGGoods = 0, nOutliers = 0, nEGoods = 0, nUnreliable = 0, nUnreliableByMask = 0, nUnreliableByShape = 0, nWrongCountry = 0, nNotInLand = 0, nNearLand = 0, nNotInMask = 0, nEvaluated = 0;
+		int nNullCountry = 0, nGGoods = 0, nOutliers = 0, nEGoods = 0, nUnreliable = 0,
+		nUnreliableByMask = 0, nUnreliableByShape = 0, nWrongCountry = 0, nNotInLand = 0,
+		nNearLand = 0, nNotInMask = 0, nEvaluated = 0, nExcluded=0;
 		String rPercent = "";
 
 		ResultSet rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
@@ -79,13 +81,13 @@ public class DataBaseStatistics {
 			nOutliers = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
 				+ ShapeFile.E_WRONG_COUNTRY + "'", conx);
 		if (rs.next())
 			nWrongCountry = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
 				+ ShapeFile.E_NULL_COUNTRY + "'", conx);
 		if (rs.next())
 			nNullCountry = rs.getInt("c");
@@ -93,25 +95,25 @@ public class DataBaseStatistics {
 		nUnreliableByShape = nWrongCountry + nNullCountry;
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
 				+ WorldMaskManager.E_NEAR_LAND + "'", conx);
 		if (rs.next())
 			nNearLand = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
 				+ WorldMaskManager.E_NOT_IN_LAND + "'", conx);
 		if (rs.next())
 			nNotInLand = rs.getInt("c");
 
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
 				+ WorldMaskManager.E_NOT_IN_MASK + "'", conx);
 		if (rs.next())
 			nNotInMask = rs.getInt("c");
 		
 		rs = DataBaseManager.makeQuery("select count(*)\"c\" from "
-				+ ServerConfig.getInstance().dbTableUnreliable + " where error='"
+				+ ServerConfig.getInstance().dbTableTerrestrial + " where error='"
 				+ WorldMaskManager.E_NOT_IN_LAND + "'", conx);
 		if (rs.next())
 			nNotInLand = rs.getInt("c");
@@ -121,6 +123,7 @@ public class DataBaseStatistics {
 		nUnreliable = nUnreliableByMask + nUnreliableByShape;
 		nEvaluated = nUnreliable + nGGoods;
 		nEGoods = nGGoods - nOutliers;
+		nExcluded=nUnreliable+nOutliers;
 
 		Element stats = new Element("statistics");
 		
@@ -239,8 +242,15 @@ public class DataBaseStatistics {
 				.setAttribute(XML_DESCRIPTION,
 						"records environmentally reliable");
 
+		Element excluded = new Element(XML_ITEM);
+		excluded.setAttribute(XML_NAME, "Total excluded");
+		excluded.setAttribute(XML_TOTAL, nExcluded + "");
+		rPercent = round(((double) nExcluded / nEvaluated * 100));
+		excluded.setAttribute(XML_PERCENT, rPercent + "%");
+		excluded.setAttribute(XML_DESCRIPTION, "records geographically and environmentally excluded");
+
 		Element outliers = new Element(XML_ITEM);
-		outliers.setAttribute(XML_NAME, "2.1 utlier records");
+		outliers.setAttribute(XML_NAME, "2.1 Outlier records");
 		outliers.setAttribute(XML_TOTAL, nOutliers + "");
 		rPercent = round(((double) nOutliers / nEvaluated * 100));
 		outliers.setAttribute(XML_PERCENT, rPercent + "%");
@@ -248,6 +258,8 @@ public class DataBaseStatistics {
 		outliers.setAttribute(XML_PERCENT_GGOODS, rPercent + "%");
 		outliers.setAttribute(XML_DESCRIPTION, "records that are outliers in more than 80% env. variables");
 
+
+		
 		stats.addContent(evaluated);
 		stats.addContent(unreliable);
 		stats.addContent(unreliableByShape);
@@ -260,6 +272,7 @@ public class DataBaseStatistics {
 		stats.addContent(goods);
 		stats.addContent(outliers);
 		stats.addContent(egoods);
+		stats.addContent(excluded);
 		
 
 		Document doc = new Document(stats);

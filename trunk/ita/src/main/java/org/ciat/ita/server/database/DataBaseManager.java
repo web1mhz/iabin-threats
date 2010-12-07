@@ -53,12 +53,12 @@ public class DataBaseManager {
 
 	/**
 	 * This method close the conection with the database and frees resources.
-	 * @param conexion
+	 * @param connection
 	 * @return true if all was ok, and false otherwhise.
 	 */
-	public static boolean closeConnection(Connection conexion) {
+	public static boolean closeConnection(Connection connection) {
 		try {
-			conexion.close();
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;

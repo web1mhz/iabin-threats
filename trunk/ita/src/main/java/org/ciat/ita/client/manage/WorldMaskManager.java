@@ -1000,8 +1000,8 @@ public class WorldMaskManager {
 					if (args[1].equals("-n")) {
 						try {
 							int number = Integer.parseInt(args[2]);
-							evaluateLand_DirectSQL("temp_land_4A", number);
-							calculate_species("temp_land_4A", number, "temp_land_5A");
+							evaluateLand_DirectSQL(ServerConfig.getInstance().dbTableRecords, number);
+							calculate_species(ServerConfig.getInstance().dbTableRecords, number, ServerConfig.getInstance().dbTableTerrestrial);
 						} catch (NumberFormatException e) {
 							System.out
 									.println("The last parameter should be a number.");

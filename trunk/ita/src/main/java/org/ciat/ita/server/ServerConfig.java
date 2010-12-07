@@ -19,6 +19,7 @@ public class ServerConfig {
 	private final String XML_FILE = "server_config.xml";
 	private final String XML_UNVERIFIED_RECORDS = "unverified_records";
 	private final String XML_UNRELIBLE_RECORDS = "unrelible_records";
+	private final String XML_TERRESTRIAL_RECORDS = "terrestrial_records";
 	private final String XML_GOOD_RECORDS = "good_records";
 	private final String XML_FINAL_RECORDS = "final_records";
 	private final String XML_IP_ADDR = "ip_addr";
@@ -52,9 +53,13 @@ public class ServerConfig {
 	 */
 	public String dbTableGoods;
 	/**
-	 * name of the table in which the unreliable records are inserted
+	 * name of the table in which the unreliable records are
 	 */
 	public String dbTableUnreliable;
+	/**
+	 * name of the table in which the terrestrial records are
+	 */
+	public String dbTableTerrestrial;
 	/**
 	 * name of the table of the totally filtered records
 	 */
@@ -136,27 +141,34 @@ public class ServerConfig {
 				if (content.equalsIgnoreCase(XML_UNVERIFIED_RECORDS)) {
 					dbTableRecords = table.getTextTrim();
 				} else {
-					if (content.equalsIgnoreCase(XML_UNRELIBLE_RECORDS)) {
-						dbTableUnreliable = table.getTextTrim();
+					if (content.equalsIgnoreCase(XML_TERRESTRIAL_RECORDS)) {
+						dbTableTerrestrial = table.getTextTrim();
 					} else {
-						if (content.equalsIgnoreCase(XML_GOOD_RECORDS)) {
-							dbTableGoods = table.getTextTrim();
-							List<Element> vars = (List<Element>) table
-									.getChildren();
-							dbVariablesName = new LinkedHashSet<String>();
-							for (Element variable : vars) {
-								if (variable.getAttributeValue(XML_CONTENT)
-										.equalsIgnoreCase("variable")) {
-									dbVariablesName.add(variable.getTextTrim());
-								} else {
+						if (content.equalsIgnoreCase(XML_UNRELIBLE_RECORDS)) {
+							dbTableUnreliable = table.getTextTrim();
+						} else {
+							if (content.equalsIgnoreCase(XML_GOOD_RECORDS)) {
+								dbTableGoods = table.getTextTrim();
+								List<Element> vars = (List<Element>) table
+										.getChildren();
+								dbVariablesName = new LinkedHashSet<String>();
+								for (Element variable : vars) {
 									if (variable.getAttributeValue(XML_CONTENT)
-											.equalsIgnoreCase("outlier_count")) {
-										dbOutlierCount = variable.getTextTrim();
+											.equalsIgnoreCase("variable")) {
+										dbVariablesName.add(variable
+												.getTextTrim());
+									} else {
+										if (variable.getAttributeValue(
+												XML_CONTENT).equalsIgnoreCase(
+												"outlier_count")) {
+											dbOutlierCount = variable
+													.getTextTrim();
+										}
 									}
 								}
+							} else {
+								// unknow table;
 							}
-						} else {
-							// unknow table;
 						}
 					}
 				}
@@ -167,7 +179,7 @@ public class ServerConfig {
 	}
 
 	public static void main(String[] args) {
-		ServerConfig.getInstance();
+		ServerConfig.getInstance();		
 	}
 
 	private void createDeafaultXML() throws JDOMException, IOException {
@@ -192,7 +204,10 @@ public class ServerConfig {
 		Element tables = new Element("tables");
 		Element records = new Element("table");
 		records.setAttribute("content", XML_UNVERIFIED_RECORDS);
-		records.setText("temp_land_5A");
+		records.setText("temp_land_4A");
+		Element terrestrial = new Element("table");
+		terrestrial.setAttribute("content", XML_TERRESTRIAL_RECORDS);
+		terrestrial.setText("temp_land_5A");
 		Element good = new Element("table");
 		good.setAttribute("content", XML_GOOD_RECORDS);
 		good.setText("temp_good_records");
@@ -245,6 +260,7 @@ public class ServerConfig {
 		tables.addContent(good);
 		tables.addContent(finalrecords);
 		tables.addContent(unreliable);
+		tables.addContent(terrestrial);
 		database.addContent(tables);
 		config.addContent(rmi);
 		config.addContent(database);
