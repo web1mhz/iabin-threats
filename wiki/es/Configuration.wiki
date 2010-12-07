@@ -4,6 +4,8 @@
 [http://code.google.com/p/iabin-threats/wiki/Configuration?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
 [http://code.google.com/p/iabin-threats/wiki/Configuration?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
+<wiki:toc />
+
 == Introducción ==
 
 Este es un documento técnico y está destinado a personas con conocimientos técnicos en la ejecución de comandos java y mysql

@@ -4,6 +4,8 @@
 [http://code.google.com/p/iabin-threats/wiki/Configuration?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
 [http://code.google.com/p/iabin-threats/wiki/Configuration?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
+<wiki:toc />
+
 == Introduction ==
 
 This is a technical document and is intended to people who has relation with the technical implementation of the project.
