@@ -18,6 +18,6 @@
    * [SpeciesDistributionModelling Descripción]
    * [API]
  * Herramienta de Navegación
-   * [Descripción]
+   * [DescriptionNavTool Descripción]
    * [DataConversion Conversión de Datos]
    * [WEB]
