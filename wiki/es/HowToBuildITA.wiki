@@ -7,9 +7,9 @@
 
 == Introducción ==
 
-Este es un documento técnico y está destinado a las personas que tiene relación con la ejecución técnica del proyecto.
+Este es un documento técnico y está destinado a personas con conocimientos técnicos en la ejecución de comandos java y mysql
 
-El propósito de este documento es ilustrar cómo construir el proyecto desde el código fuente de este repositorio.
+El objetivo de este documento es ilustrar cómo construir el proyecto desde el código fuente de este repositorio.
 
 Le invitamos a leer primero la [Descripción] del proyecto.
 
