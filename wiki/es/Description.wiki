@@ -28,45 +28,45 @@ Reconocemos la importancia de la relación entre la biodiversidad y la socio-eco
 
 3.1.	No later than two (2) months after the date of signature of the Agreement by both Parties, the Institution shall deliver to GS/OAS and to GS/OAS’ satisfaction an interim technical-financial progress report of the Project (“First Report”) in conformity with Annex 6 of this Agreement. The Report shall include the progress made on the products planned in the proposal as these are defined in Annex 8 including the following activities:
 
-Activity 1	Cross checking of coordinates scripts: Finalize and implement a Java-based algorithm to cross-check coordinates of IABIN’s terrestrial biodiversity data.
-Activity 2	Georreferencing Script: Finalize and implement a Java-based algorithm to add value to non-georreferenced records within the IABIN Network.
-Activity 3	Assessment of all IABIN records: Assess all the primary data using the algorithms in Activities 1 and 2 and provide IABIN with a detailed evaluation of all its primary biodiversity data.
+Actividad 1 comprobación de las coordenadas: Finalizar y aplicar un algoritmo basado en Java para cotejar las coordenadas de los datos de la biodiversidad terrestre de IABIN.
+Actividad 2 Script georreferenciación: Finalizar y aplicar un algoritmo basado en Java para agregar valor a los registros no georreferenciado en la Red IABIN.
+Actividad 3 Evaluación de todos los registros de IABIN: Evaluar todos los datos primarios mediante los algoritmos en las Actividades 1 y 2 y proporcionar IABIN con una evaluación detallada de todos sus datos primarios sobre biodiversidad.
 
-Based on progress achieved in Activities 1, 2 and 3, CIAT will submit a report to OAS detailing the checking and georeferencing of all relevant data in IABIN’s Thematic Networks.  Within thirty (30) days following its receipt of the Report, GS/OAS shall review it and notify the Institution in writing that the Report is either satisfactory or unsatisfactory.  If the report is unsatisfactory, GS/OAS shall further notify the Institution in writing of what the Institution must do to make the Report satisfactory and the Institution shall have another thirty days to do so from the date it receives that notice.
+Basándose en los progresos en las Actividades 1, 2 y 3, el CIAT presentará un informe a la OEA que detalla el control y la georeferenciación de todos los datos en las redes temáticas de IABIN. Dentro de los treinta (30) días siguientes a la recepción del informe, la SG / OEA deberá revisarla y notificar a la Institución por escrito que el informe es satisfactorio o insatisfactorio. Si el informe no es satisfactorio, la SG / OEA también notificará a la Institución por escrito de lo que la Institución debe hacer para que el informe satisfactorio y la Institución tendrá otros treinta días para hacerlo desde la fecha en que reciba dicha notificación.
 
-3.2.	No later than four (4) months after the date of signature of the Agreement by both Parties, the Institution shall deliver to GS/OAS and to GS/OAS’ satisfaction an interim technical-financial progress report of the Project (“Second Report”) in conformity with Annex 6 of this Agreement. The Report shall include the progress made on the products planned in the proposal as these are defined in Annex 8 including the following deliverables:
+3.2. A más tardar cuatro (4) meses después de la fecha de la firma del acuerdo por ambas partes, la institución entregará a la SG / OEA y la SG / OEA un informe intermedio técnico-financiero del Proyecto ("Segundo Informe" ), de conformidad con el anexo 6 del presente Acuerdo. El informe incluirá los progresos realizados en los productos previstos en la propuesta como se definen en el Anexo 8, incluyendo los siguientes resultados:
 
-Activity 4	Training of niche models script: Finalize and implement a Java-based algorithm for the training of niche models (using a maximum entropy approach) and apply it to taxa with enough data in South America.
-Activity 5	Threat and Conservation Assesment: overlay the developed geographic distributions with ecosystem threat and protected areas layers, generate analysis metrics to provide the necessary background data for scenario assessment and policy making for South America.
-Activity 6	Beta version of the tool 
+Actividad 4 Script de formación de los modelos de nicho: Finalizar y aplicar un algoritmo basado en Java para la formación de modelos de nicho (utilizando un enfoque de máxima entropía) y aplicarlo a los taxones con suficientes datos en América del Sur.
+Actividad 5 Evaluación de Amenazas y Conservación: superposición de las distribuciones geográficas desarrollado con la amenaza de los ecosistemas y las capas de las áreas protegidas, generar métricas de análisis para proporcionar los datos básicos necesarios para la evaluación de escenarios y la formulación de políticas para América del Sur.
+Actividad 6 Beta versión de la herramienta
 
-Based on Activities 4 and 5, CIAT will submit to OAS a report detailing niche modeling and Threat and Conservation Assessment activities.  Within thirty (30) days following its receipt of the Report, GS/OAS shall review it and notify the Institution in writing that the Report is either satisfactory or unsatisfactory. If the report is unsatisfactory, GS/OAS shall further notify the Institution in writing of what the Institution must do to make the Report satisfactory and the Institution shall have another thirty days to do so from the date it receives that notice.
+Basado en Actividades 4 y 5, el CIAT presentará a la OEA un informe que detalla las actividades de modelado de nicho y de Amenazas y Conservación de evaluación. Dentro de los treinta (30) días siguientes a la recepción del informe, la SG / OEA deberá revisarla y notificar a la Institución por escrito que el informe es satisfactorio o insatisfactorio. Si el informe no es satisfactorio, la SG / OEA también notificará a la Institución por escrito de lo que la Institución debe hacer para que el informe satisfactorio y la Institución tendrá otros treinta días para hacerlo desde la fecha en que reciba dicha notificación.
 
-3.3.	The Institution must submit a final technical-financial report, detailing final development of the project, in digital version, in accordance with article 1.1 and in in conformity with Annex 6 of this Agreement, including the following deliverables as outlined in Annex 8: 
+3.3. La Institución debe presentar un informe final técnico-financiero, detallando el desarrollo final del proyecto, en versión digital, de conformidad con el artículo 1.1 y en conformidad con el Anexo 6 del presente Acuerdo, incluidos los productos siguientes como se indica en el anexo 8: 
 
-Activity 7	Google-maps based navigation tool: Development of an interactive Google-maps based interface to navigate through the biodiversity data and the modeling and overlaying results. 
+Actividad 7 Google-maps herramienta de navegación basado en: Desarrollo de un sistema interactivo de mapas de Google basado en la interfaz para navegar por los datos sobre la biodiversidad y la modelización y los resultados de superposición. 
 
-Activity 8	Prepare manuals and user guides: Generate documentation describing the functionality and use of all tools and processes developed under this agreement, in both English and Spanish. 
+Actividad 8 Elaborar manuales y guías del usuario: Genera la documentación que describe la funcionalidad y el uso de todas las herramientas y procesos desarrollados en el marco de este acuerdo, tanto en Inglés y Español. 
 
-Activity 9	Two demonstration events to the IABIN participants and decision-makers 
+Actividad 9 Dos eventos de demostración a los participantes de IABIN y tomadores de decisiones 
 
-Activity 10	Final version of all tools, manuals, technical documents and user guides in English and Spanish. 
-
-
-The Final Report, detailing Activities 6 and 7 of the project, as well as final results of all project activities, shall be received no later than six (6) months after the date of signature of the Agreement.  Within thirty (30) days following its receipt of the Final Report, GS/OAS shall review it and notify the Institution in writing that it is either satisfactory or unsatisfactory.  If the Report is unsatisfactory, GS/OAS shall further notify the Institution in writing of what the Institution must do to make the Report satisfactory and the Institution shall have another thirty days to do so from the date it receives that notice.
+Actividad 10 versión final de todas las herramientas, manuales, documentos técnicos y guías de usuario en Inglés y Español. 
 
 
+El Informe Final, detallando las actividades 6 y 7 del proyecto, así como los resultados finales de todas las actividades del proyecto, deberán ser recibidos a más tardar seis (6) meses después de la fecha de la firma del Acuerdo. Dentro de los treinta (30) días siguientes a la recepción del informe final, la SG / OEA deberá revisarla y notificar a la Institución por escrito que es satisfactorio o insatisfactorio. Si el informe no es satisfactorio, la SG / OEA también notificará a la Institución por escrito de lo que la Institución debe hacer para que el informe satisfactorio y la Institución tendrá otros treinta días para hacerlo desde la fecha en que reciba dicha notificación.
 
 
-How to make the data reliable enough?
- * Verify coordinates at different levels
- * Are the records where they say they are?
- * Are the records inside land areas (for terrestrial plant species only)
- * Are all the records within the environmental niche of the taxon?
- * Sea records: not verifiable
- * Correct wrong references
- * Add references to those that do not have
- * Cross-check with curators and feedback the database
+
+
+Cómo hacer que los datos sean lo suficientemente confiable?
+ * Verifique las coordenadas en los diferentes niveles
+ * Si los registros son los que dicen que son?
+ * Si los registros están dentro de las áreas de la tierra (para las especies vegetales terrestres, solamente)
+ * Si todos los registros están en el nicho ecológico del taxón?
+ * Registros en el mar : no se puede verificar
+ * Corregir las referencias incorrectas
+ * Agregue referencias a los que no tienen
+ * Cotejar con los conservadores y la retroalimentación de la base de datos
 
 
 
