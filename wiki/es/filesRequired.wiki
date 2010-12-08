@@ -7,13 +7,13 @@ Dentro de la carpeta con el nombre del código de la especie hay cuatro archivos
 
        NOMBRE DE ARCHIVO                      EJEMPLO                          COLUMNAS
 
-_species_code_number_.csv       e.g: 101616.csv	contains three columns: *species_code, longitude, latitude* <br>	<br>
-_species_code_number_-chull.csv       e.g: 101616-chull.csv	contains two columns: *longitude, latitude* <br><br>
-_species_code_number_-chull-buff.csv  e.g: 101616-chull-buff.csv	contains two columns: *longitude, latitude* <br><br>
+_species_code_number_.csv       e.g: 101616.csv	contiene tres columnas: *species_code, longitude, latitude* <br>	<br>
+_species_code_number_-chull.csv       e.g: 101616-chull.csv	contiene dos columnas: *longitude, latitude* <br><br>
+_species_code_number_-chull-buff.csv  e.g: 101616-chull-buff.csv	contiene dos columnas: *longitude, latitude* <br><br>
 _species_code_number_-info.txt        e.g:  101616-info.txt    <br><br>
 
 <br>
-   * Bioclim<br>
+   * Bioclima<br>
 <br>
 Esta carpeta requiere tener un archivo por cada una de las variaribles bioclimáticas p1.asc , p2.asc, p3.asc, etc.<br>
 
