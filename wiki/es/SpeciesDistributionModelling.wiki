@@ -20,10 +20,11 @@ Todo el trabajo se realizó con:
   * GRASS 6.4
   * Bash
 == Preparación y organización de los datos  ==
-  * *Organización de los datos de especies:* Los datos de presencia de datos se dividieron a nivel de especie. Para cada especie se creó un directorio que contiene los puntos de presencia para esas especies _info.txt_ file. In the _info.txt_ file the initial parameters of the species (i.e. kingdom, family, genus, number of presence points) are saved. During the modelling process results for the species are written in this file. 
-  * *Getting background points:* MaxEnt requires a random background sample. For each species it was determined in which which biomes (according to the wwf classification) the presence points fell. From these biomes a random sample of 10000 was drawn for the background points.
-  * *Extracting values of the climate variables:* The coordinates of all species and background points were merged. Using maxent the values for all 8 environmental variables were extracted. For each species for every presence and background point values of appropriate environmental variables were assigned.
+  * *Organización de los datos de especies:* Los datos de presencia de datos se dividieron a nivel de especie. Para cada especie se creó un directorio que contiene los puntos de presencia para esas especies en el archivo _info.txt_. En el archivo _info.txt_ se encuentra guardada información básica de la especie (i.e. reino, familia, genero, número de presencia de puntos). Durante el proceso de modelado los resultados para la especie se escriben en este archivo. 
+  * *Obteniendo puntos de fondo:* MaxEnt requiere una muestra de fondo al azar. Para cada especie se determinó en cuales biomas(según la clasificación de wwf) se redujo la presencia de puntos. A partir de estos biomas se ha elaborado una muestra aleatoria de 10.000 para los puntos de fondo.
 
-== SDM with MaxEnt ==
+  * *Extracción de los valores de las variables climáticas:* Las coordenadas de todas las especies y los puntos de fondo se fusionaron. Usando maxent los valores de las 8 variables ambientales fueron extraídos. Para cada presencia de espece y todos los valores de fondo apropiados para las variables ambientales fueron asignados.
 
-== Threat Assessment ==
+== SDM con MaxEnt ==
+
+== Evaluación de amenaza ==
