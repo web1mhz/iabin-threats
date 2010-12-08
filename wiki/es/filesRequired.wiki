@@ -1,11 +1,11 @@
- * Input Data
+ * Datos de entrada
 
-   * Species
+   * Especies
 
-The required files are:<br>
-inside the folder named after the species code there are 4 files:
+Los archivos requeridos son:<br>
+Dentro de la carpeta con el nombre del código de la especie hay cuatro archivos:
 
-           FILE NAME                      EXAMPLE                          COLUMNS
+       NOMBRE DE ARCHIVO                      EJEMPLO                          COLUMNAS
 
 _species_code_number_.csv       e.g: 101616.csv	contains three columns: *species_code, longitude, latitude* <br>	<br>
 _species_code_number_-chull.csv       e.g: 101616-chull.csv	contains two columns: *longitude, latitude* <br><br>
@@ -15,13 +15,13 @@ _species_code_number_-info.txt        e.g:  101616-info.txt    <br><br>
 <br>
    * Bioclim<br>
 <br>
-This folder requires each of the variables to have a file named p1.asc , p2.asc, p3.asc, etc.<br>
+Esta carpeta requiere tener un archivo por cada una de las variaribles bioclimáticas p1.asc , p2.asc, p3.asc, etc.<br>
 
  <br>
-   * Summaries<br>
+   * Sumarios<br>
   
-  This folder holds shape file, it doesn't matter the name of the file although all the files must have the same name<br>
-  example: <br>
+ Esta carpeta contiene un archivo shape, no importa el nombre del archivo, todos tienen el mismo nombre con diferentes extensiones<br>
+  ejemplo: <br>
 	SurAmerica.dbf<br>
 	SurAmerica.prj<br>
 	SurAmerica.qix<br>
