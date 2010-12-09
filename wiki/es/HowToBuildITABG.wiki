@@ -23,7 +23,7 @@ Le invitamos a leer primero la [Descripcion] del proyecto.
  
 == 1. Importando el código fuente ==
  
-Importar [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita-bg ita project] de este repositorio.
+Importar [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita-bg/src/main/java/org/ciat/ita/bg ita project] de este repositorio.
 
  {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita-bg ita}}}
  
