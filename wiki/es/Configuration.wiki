@@ -203,7 +203,7 @@ Ambos XML deberían haberse creado.
  * *column*:  Cada una de las columnas que tiene el archivo Shape.
  Para más información a cerca de archivos Shape [http://en.wikipedia.org/wiki/Shapefile click aquí].
 
-*mask*: Ubicación del archivo de máscara que contiene información de cada coordenada, Si la cobertura es en la tierra o el agua. El archivo se puede descargar [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.jgm aquí]
+*mask*: Ubicación del archivo de máscara que contiene información de cada coordenada, Si la cobertura es en la tierra o el agua. El archivo se puede descargar [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.zip aquí]
 
 *maxent*: La configuración de Maxent puede omitirse, este campo se utilizará en la ejecución posterior del proyecto.
 
