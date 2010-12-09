@@ -38,7 +38,7 @@ Basándose en los progresos en las Actividades 1, 2 y 3, el CIAT presentará un 
 
 Actividad 4 Script de formación de los modelos de nicho: Finalizar y aplicar un algoritmo basado en Java para la formación de modelos de nicho (utilizando un enfoque de máxima entropía) y aplicarlo a los taxones con suficientes datos en América del Sur.
 Actividad 5 Evaluación de Amenazas y Conservación: superposición de las distribuciones geográficas desarrollado con la amenaza de los ecosistemas y las capas de las áreas protegidas, generar métricas de análisis para proporcionar los datos básicos necesarios para la evaluación de escenarios y la formulación de políticas para América del Sur.
-Actividad 6 Beta versión de la herramienta
+Actividad 6 Versión Beta  de la herramienta
 
 Basado en Actividades 4 y 5, el CIAT presentará a la OEA un informe que detalla las actividades de modelado de nicho y de Amenazas y Conservación de evaluación. Dentro de los treinta (30) días siguientes a la recepción del informe, la SG / OEA deberá revisarla y notificar a la Institución por escrito que el informe es satisfactorio o insatisfactorio. Si el informe no es satisfactorio, la SG / OEA también notificará a la Institución por escrito de lo que la Institución debe hacer para que el informe satisfactorio y la Institución tendrá otros treinta días para hacerlo desde la fecha en que reciba dicha notificación.
 
