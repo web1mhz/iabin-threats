@@ -1,10 +1,8 @@
 package org.ciat.ita.bg;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,9 +23,7 @@ import java.util.Set;
 
 import org.ciat.ita.bg.database.DataBaseManager;
 import org.ciat.ita.bg.model.Record;
-import org.ciat.ita.bg.server.ServerConfig; //import org.jdom.Element;
-//import org.jdom.JDOMException;
-//import org.jdom.input.SAXBuilder;
+import org.ciat.ita.bg.server.ServerConfig; 
 import com.vividsolutions.jts.geom.Point;
 
 import org.dom4j.Document;
@@ -84,18 +80,24 @@ public class Biogeomancer {
 			// diferente de null
 			String xmlResult = setServiceUrl(urlBgServer, xmlData);
 			int intentos = 0;
-			while (xmlData == null || intentos < 1000) {
+			String horaInicioAtaqueDos=getDateTime();
+			while (xmlResult == null && intentos < 100000) { //prueba 1 vez con el server
 				System.out.println("\ntiempo : " + getDateTime());
 				System.out.println("\nnumero de intentos de conexion: "
 						+ intentos);
 				xmlResult = setServiceUrl(urlBgServer, xmlData);
 				intentos++;
 			}
+			System.out.println("empezo a las "+horaInicioAtaqueDos);
+			System.out.println("termino a las "+getDateTime());
 
+			
+			
+			
 			/*
 			 * TODO: Interpretar dicho String (xmlResult) como un xml y extraer
 			 * cada uno de los valores de latitud y longitud para ser ingresadas
-			 * en el objeto Record de la colección.
+			 * en el objeto Record de la coleccion.
 			 * 
 			 * Completar el codigo a continuacion:
 			 */
@@ -103,7 +105,17 @@ public class Biogeomancer {
 			// Working with XML
 
 			System.out.println("xmlresult inputstream: " + xmlResult);
-			Document document = org.dom4j.DocumentHelper.parseText(xmlResult);
+			
+			//se selecciona la fuente desde la que se obtiene el archivo xml de BG
+			Document document;
+			if(xmlResult!=null){
+				document = org.dom4j.DocumentHelper.parseText(xmlResult);
+				System.out.println("se leyo el xml del servidor ********");
+			}else{
+				document=getDocument("100Records.xml");
+			}
+			
+	
 
 			System.out.println("*******************************************");
 
@@ -120,7 +132,6 @@ public class Biogeomancer {
 			// ***********
 			String values = "";
 			String[] data;
-			String[] coordinates;
 			String longitude;
 			String latitude;
 			String uncertainty;
@@ -197,8 +208,7 @@ public class Biogeomancer {
 				}
 				while (j < x) {
 
-					System.out
-							.println("minor uncertainty :" + minorUncertainty);
+					//System.out.println("minor uncertainty :" + minorUncertainty);
 					if (Double.parseDouble(data[j]) < minorUncertainty) {
 						minorUncertainty = Double.parseDouble(data[j]);
 						minorLatitude = data[j - 3];
@@ -207,10 +217,13 @@ public class Biogeomancer {
 					}
 					j = j + 7;
 				}
-				System.out.println("the minor uncertainty is : "
-						+ minorUncertainty);
+				System.out.println("the minor uncertainty is : "+ minorUncertainty);
 				System.out.println("minor Latitude is : " + minorLatitude);
 				System.out.println("minor Longitude is : " + minorLongitude);
+				
+				//escribir los resultados en archivo csv
+				Boolean da=writeFile(minorLatitude, minorLongitude, minorUncertainty, "records.csv");
+				System.out.println("escribio el resultado "+da);
 
 				System.out.println("largo del arreglo split :" + x);
 
@@ -342,7 +355,7 @@ public class Biogeomancer {
 				}
 
 			} else {
-				// TODO: Manejar el error en caso de que exista algún problema.
+				// TODO: Manejar el error en caso de que exista algun problema.
 				// (retornar null?).
 				if (responseCode == HttpURLConnection.HTTP_INTERNAL_ERROR) {
 					// inputStream = connection.getErrorStream();
@@ -384,8 +397,17 @@ public class Biogeomancer {
 		return outputBuilder.toString();
 	}
 
+	
+	/**
+	 * the sql consult is performed, then every record is stored into a hashset, then is called 
+	 * the method startGeorref.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
+		//si no se especifica la consulta se hace por 10 records
+		String manyRecord="10";
+		if(args.length > 0) manyRecord=args[0];
 		Connection conx;
 		DataBaseManager.registerDriver();
 		conx = DataBaseManager.openConnection(
@@ -400,7 +422,7 @@ public class Biogeomancer {
 		System.out.println("inicia query : " + getDateTime());
 		ResultSet rs = DataBaseManager.makeQuery("select " + "*" + " from "
 				+ "temp_georeferenced_records" + " order by RAND()"
-				+ " limit 50", conx);
+				+ " limit "+manyRecord, conx);
 		System.out.println("termina query : " + getDateTime());
 		/*
 		 * se crea el HashSet en donde se almacenaran los records creados con
@@ -409,7 +431,7 @@ public class Biogeomancer {
 		HashSet<Record> grup = new HashSet<Record>();
 
 		try { /* se recorre el result set y se crean los records */
-			System.out.println("recorriendo el result set");
+			System.out.println("recorriendo el result set:"+manyRecord+" veces");
 
 			while (rs.next()) {
 				// System.out.println("recorriendo el result set");
@@ -497,5 +519,38 @@ public class Biogeomancer {
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
+	
+	   public static Document getDocument( final String xmlFileName )
+	   {
+	      Document document = null;
+	      SAXReader reader = new SAXReader();
+	      try
+	      {
+	         document = reader.read( xmlFileName );
+	      }
+	      catch (DocumentException e)
+	      {
+	         e.printStackTrace();
+	      }
+	      return document;
+	   }
+	   
+	   private static Boolean writeFile(String lat, String lon, Double minorUncertainty, String filename ) throws IOException{
+		   
+			String str;
+
+			File f = new File(filename);
+			FileOutputStream fop = new FileOutputStream(f, true);
+
+			if (f.exists()) {
+				str = lat+";"+lon+";"+minorUncertainty+"\n";
+				fop.write(str.getBytes());
+
+				fop.flush();
+				fop.close();
+			}
+		   
+		   return true;
+	   } 
 
 }
