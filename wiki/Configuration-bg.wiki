@@ -1,8 +1,8 @@
 #summary How to configure ITA-BG tool
 #sidebar TableOfContents
 
-[http://code.google.com/p/iabin-threats/wiki/Configuration?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
-[http://code.google.com/p/iabin-threats/wiki/Configuration?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+[http://code.google.com/p/iabin-threats/wiki/Configuration-bg?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/Configuration-bg?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 <wiki:toc />
 
