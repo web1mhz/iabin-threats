@@ -28,7 +28,7 @@ Reconocemos la importancia de la relación entre la biodiversidad y la socio-eco
 
 3.1.	A más tardar dos (2) meses después de la fecha de la firma del acuerdo por ambas partes, la institución entregará a la SG / OEA y la SG / OEA la satisfacción de un informe intermedio técnico-financiero del Proyecto ("Primer Informe" ), de conformidad con el anexo 6 del presente Acuerdo. El informe incluirá los progresos realizados en los productos previstos en la propuesta como se definen en el Anexo 8, incluyendo las siguientes actividades:
 
-Actividad 1 comprobación de las coordenadas: Finalizar y aplicar un algoritmo basado en Java para cotejar las coordenadas de los datos de la biodiversidad terrestre de IABIN.
+Actividad 1 Script de comparación de las coordenadas: Finalizar y aplicar un algoritmo basado en Java para comparar las coordenadas de los datos de la biodiversidad terrestre de IABIN.
 Actividad 2 Script georreferenciación: Finalizar y aplicar un algoritmo basado en Java para agregar valor a los registros no georreferenciado en la Red IABIN.
 Actividad 3 Evaluación de todos los registros de IABIN: Evaluar todos los datos primarios mediante los algoritmos en las Actividades 1 y 2 y proporcionar IABIN con una evaluación detallada de todos sus datos primarios sobre biodiversidad.
 
@@ -66,7 +66,7 @@ Cómo hacer que los datos sean lo suficientemente confiable?
  * Registros en el mar : no se puede verificar
  * Corregir las referencias incorrectas
  * Agregue referencias a los que no tienen
- * Cotejar con los conservadores y la retroalimentación de la base de datos
+ * Comparar con los conservadores y la retroalimentación de la base de datos
 
 
 
