@@ -1,0 +1,79 @@
+#summary How to build the ITA data filtering tool
+#labels Phase-Implementation
+#sidebar TableOfContents
+
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+
+<wiki:toc />
+
+== Introduction ==
+
+This is a technical document and is intended to people who has relation with the technical implementation of the project.
+
+The purpose of this document is to illustrate how to build the project from the source code of this repository.
+
+We invite you to read first the [Description] of the project.
+
+== Technical Requirements ==
+
+ * Apache Subversion SVN Client. [http://subversion.apache.org/packages.html Get it].
+ * Apache Maven. [http://maven.apache.org/download.html Get it]
+ * Java JRE version 6 or higher. [http://www.java.com/ Get it]
+
+== 1. Checking out the source code ==
+
+Check out the [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita ita project] of this repository.
+
+ {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita ita}}}
+ 
+Once the project has been checked out, you can update your local copy via the command: 
+ {{{svn update}}}
+
+The instructions for checking out from Google Code's SVN can be found [http://code.google.com/p/iabin-threats/source/checkout here]
+
+== 2. Organizing code for Eclipse IDE ==
+
+Once the source code has been checked out, if you want to organize it as an Eclipse IDE project, run the command:
+
+ {{{mvn eclipse:eclipse}}}
+
+== 3. Compiling project ==
+
+If you want to compile the project to get the binaries, run the command:
+
+ {{{mvn compile}}}
+
+It creates the /target/classes directory where you can find the compiled classes
+and the /target/rmi-classes where you can find the Stub classes to run the project using Remote Method Invocation [http://en.wikipedia.org/wiki/Java_remote_method_invocation Java RMI]
+
+== 4. Packaging project ==
+
+If you want to deploy the .jar file of the project, run the command:
+
+ {{{mvn package}}}
+
+Then you can find the .jar in the /target directory, called _ita_ with the current version of the project _e.g. ita-0.1-SNAPSHOT.jar_
+
+The compiling step is not necessary since the packaging one includes the compiling process to create the jar
+
+== 5. Using the project ==
+
+After packaging the project, you can use the services it provides. And after [Configuring] it you can run it with _java_ commands
+
+You can see the [API] page to know how to use the classes of the project or run directly any of the executable classes.
+
+
+=== 5.1 Running as stand alone ===
+
+If you have configured the project as stand alone you just need to execute the jar directly:
+
+ {{{java -Xmx1500m -jar ita-0.1-SNAPSHOT.jar}}}
+
+=== 5.2 Running as client-server ===
+
+If you wish to run the project in a client-server configuration, you must first  run an instance as server by calling the main of the _org.ciat.ita.server.Server_ class
+
+ {{{java -cp ita-0.1-SNAPSHOT.jar org.ciat.ita.server.Server}}}
+
+And then run several instances as clients by calling the main of the _org.ciat.ita.client.Client_ class or with just the same command than the stand alone one.
