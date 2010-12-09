@@ -203,7 +203,7 @@ Both XML should have been created.
  * *column*:  Each of the columns that have the shape file.
  More information about Shape file [http://en.wikipedia.org/wiki/Shapefile clic here].
 
-*mask*: Mask file location containing information about every coordinate in the world, whether land or water. The file can be get it [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.jgm here]
+*mask*: Mask file location containing information about every coordinate in the world, whether land or water. The file can be get it [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.zip here]
 
 *maxent*: Maxent configuration can be omitted. If you prefer, you are allowed to delete it.
 
