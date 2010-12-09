@@ -12,7 +12,7 @@ Este es un documento técnico y está destinado a personas con conocimientos té
 
 El objetivo de este documento es ilustrar cómo construir el proyecto desde el código fuente de este repositorio.
 
-== Technical Requirements ==
+== Requerimientos Técnicos ==
 
 	* Para este paso, el proyecto debe ser importado, editado y empaquetado. (ver sección [http://code.google.com/p/iabin-threats/wiki/HowToBuildITABG Cómo construir el proyecto ITA-BG])
 	* La última versión de JRE, disponible de forma gratuita en [http://www.java.com http://www.java.com]  
