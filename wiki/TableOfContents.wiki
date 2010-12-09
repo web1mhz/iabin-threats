@@ -10,9 +10,10 @@
    * [Configuration]
    * [RunningProcedure Running Procedure]
    * [API]
- * Re-Georreferencing
+ * Re-Geo-referencing
    * [DescriptionGeo Description]
    * [HowToBuildITABG How to build the project ITA-BG]
+   * [Configuration-bg configuration ]
    * [API]
  * Distribution Modeling
    * [SpeciesDistributionModelling Description]
