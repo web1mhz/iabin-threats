@@ -12,7 +12,7 @@
    * [API]
  * Re-Georreferencing
    * [DescriptionGeo Description]
-   * [HowToBuildITABG How to build the project]
+   * [HowToBuildITABG How to build the project ITA-BG]
    * [API]
  * Distribution Modeling
    * [SpeciesDistributionModelling Description]
