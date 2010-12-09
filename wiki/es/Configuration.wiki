@@ -14,7 +14,7 @@ El objetivo de este documento es ilustrar cómo construir el proyecto desde el c
 
 == Requerimientos técnicos ==
 
-	* Para este paso, el proyecto debe ser importado, editado y empaquetado. (ver sección [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA How To Build ITA])
+	* Para este paso, el proyecto debe ser importado, editado y empaquetado. (ver sección [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA Cómo construir el proyecto ITA])
 	* 250GB-500GB de DD de espacio disponible para la base de datos (mientras se realiza el proceso de importación), 30GB para archivos shape y archivos de variables bioclimáticas. 
 	* La última versión de JRE, disponible de forma gratuita en [http://www.java.com http://www.java.com] 
 	* Servidor de base de datos de MySQL 
