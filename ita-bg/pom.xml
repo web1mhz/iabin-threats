@@ -61,7 +61,7 @@
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
-										<Main-Class>org.ciat.ita.client.Client</Main-Class>
+										<Main-Class>org.ciat.ita.bg.Biogeomancer</Main-Class>
 									</manifestEntries>
 								</transformer>
 								<transformer
