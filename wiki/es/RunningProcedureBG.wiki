@@ -37,14 +37,14 @@ In order to use the geo-referencing tool, you must provide the number of records
 
 *Outputs:* the geo-referenced records are written aside to the original records, in the same table, in fields Blatitude, Blongitude, Uncertainty and is_fixed.
 
-====Technical procedure====
+====Procedimiento Técnico====
 Run into the database the sql query file named “QUERY_creates_table_georeferenced_records.sql” 
 
 Command line example: 
 
  {{{mysql –u User –p portal < QUERY_creates_table_georeferenced_records.sql }}}
 
-====Finalize====
+====Finalizar====
 Once the query has been run, the tables georeferenced_records and temp_georeferenced_records are created. 
 
 ====Procedimiento Técnico====
