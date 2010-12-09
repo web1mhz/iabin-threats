@@ -1,4 +1,4 @@
-#summary How to build the ITA data filtering tool
+#summary How to build the ITA-BG Re-georeferencing
 #labels Phase-Implementation
 #sidebar TableOfContents
 
@@ -23,11 +23,12 @@ We invite you to read first the [Description] of the project.
 
 == 1. Checking out the source code ==
 
-Check out the [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita ita project] of this repository.
+Check out the [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita-bg/src/main/java/org/ciat/ita/bg ita-bg project] of this repository.
 
- {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita ita}}}
+ {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita-bg ita-bg}}}
  
 Once the project has been checked out, you can update your local copy via the command: 
+
  {{{svn update}}}
 
 The instructions for checking out from Google Code's SVN can be found [http://code.google.com/p/iabin-threats/source/checkout here]
@@ -53,7 +54,7 @@ If you want to deploy the .jar file of the project, run the command:
 
  {{{mvn package}}}
 
-Then you can find the .jar in the /target directory, called _ita_ with the current version of the project _e.g. ita-0.1-SNAPSHOT.jar_
+Then you can find the .jar in the /target directory, called _ita-bg_ with the current version of the project _e.g. ita-bg-0.1-SNAPSHOT.jar_
 
 The compiling step is not necessary since the packaging one includes the compiling process to create the jar
 
@@ -68,12 +69,4 @@ You can see the [API] page to know how to use the classes of the project or run 
 
 If you have configured the project as stand alone you just need to execute the jar directly:
 
- {{{java -Xmx1500m -jar ita-0.1-SNAPSHOT.jar}}}
-
-=== 5.2 Running as client-server ===
-
-If you wish to run the project in a client-server configuration, you must first  run an instance as server by calling the main of the _org.ciat.ita.server.Server_ class
-
- {{{java -cp ita-0.1-SNAPSHOT.jar org.ciat.ita.server.Server}}}
-
-And then run several instances as clients by calling the main of the _org.ciat.ita.client.Client_ class or with just the same command than the stand alone one.
+ {{{java -Xmx1500m -jar ita-bg-0.1-SNAPSHOT.jar}}}
