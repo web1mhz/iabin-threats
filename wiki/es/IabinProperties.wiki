@@ -1,29 +1,29 @@
 #summary One-sentence summary of this page.
 
-Here is the description of the iabin.properties file, this one holds the configuration data needed for the project to run, mostly there are source and target paths, image colors , style url and more
+Esta es la descripción del archivo iabin.properties, ésta contiene los datos de configuración necesarios para ejecutar el proyecto, sobre todo hay rutas de origen y destino, colores de la imagen , estilo url y más
 
-in case the file iabin.properties is not created, just run the executable without parameters and a default configuration properties file will be created
-in the same folder as from which the executable has been launched, then make the desired changes and enter the path to the file for the configuration to be loaded
+En caso de que el archivo iabin.properties no este creado, simplemente ejecute el archivo ejecutable sin parámetros y un archivo de configuración por defecto propiedades se creará
+en la misma carpeta donde se ha ejecutado el archivo, a continuación puede hacer los cambios que desea e introducir la ruta para cargar la nueva configuración
 
 
-= Properties File Example =
+= Ejemplo archivo properties =
 ------------------
-- menu language
-  This option, permits to select in which language you prefer the menu to be shown, the options are english or spanish 
+- menu de lenguaje
+  Esta opción, permite seleccionar en qué idioma que prefiere que se muestre el menu, las opciones son Inglés o español
 ------------------
 language=english
 
 
 -----------------------------------------
 - _*PATH*  
-- source and target path of files_
+- Ruta de origen y destino de los archivos_
 -----------------------------------------
 
 path.source=c:/data/
 
 path.target=c:/iabinmaps/
 
--this is the folder inside path.source and path.target where files are written to and read from
+-Dentro de las carpetas path.source y path.target es donde se leen y escriben los archivos
 bioclim.path=bioclim/
 threat.path=threat/
 species.path=species/
@@ -32,7 +32,7 @@ summaries.kmloutputpath=protectedArea/
 
 -----------------------------------------
 - _*RASTERS* 
-- Name of raster files that are going to be converted into PNG format_
+- Nombre de los archivos raster que se van a convertir en formato PNG_
 -----------------------------------------
 
 rasters=P1;P2;P3
@@ -48,12 +48,12 @@ P2.filename=P2.asc
 
 ----------------------------------------
 - _*SHAPEFILES* 
-- Name of files that are going to be converted into KML format_
+-Nombre de los archivos Shape que van a ser convertidos en formato KML_
 ----------------------------------------
 
 shapes= pa  
 
-pa is the folder that is created inside summaries
+pa es la carpeta que se crea dentro de la carpeta summaries
 
 pa.group= summaries
 
@@ -62,7 +62,7 @@ pa.shapefile=SurAmerica.shp
 
 ----------------------------------------
 - _*ZOOM*  
-- minimum and maximum zoom that is going to be applied to bioclim, threats and richness raster files_
+- Zoom minimo y máximo que se va a aplicar a los archivos de bioclima,amenazas y riquezas de especies_
 ----------------------------------------
 
 zoom.min=0
@@ -72,8 +72,8 @@ zoom.max=1
 
 ----------------------------------------
 - _*KML Style*
-- style.url holds the style url that is going to be applied to KML files
-- http://wikipedia.agilityhoster.com/estilo.kml this part is the host and folder of style file and "#estilo" is the ID of the style that wants to be applied _
+- style.url tiene la url de estilo que se va a aplicar a los archivos KML
+- http://wikipedia.agilityhoster.com/estilo.kml esta parte es el host y la carpeta del archivo de estilo, y "#estilo" es el ID del estilo que se quiere aplicar _
 ----------------------------------------
 
 
@@ -81,15 +81,15 @@ style.url=http://wikipedia.agilityhoster.com/estilo.kml#estilo
 
 
 ----------------------------------------
-- _*PROTECTED AREA* 
-- The conversion of these polygons into KML is made by reading a shapefile that in this case is in path contained in "path.source"+ "summaries.path", and generating a main kml, from which
-- the other kml files, that form the polygons, are called, each polygon shows a table which is made with the values that are received in variable 
-- "PA.shape.column.indexes" and the values of "PA.shape.column.names" are settled as column names. 
+- _*Areas protegidas* 
+- La conversión de estos polígonos en KML  se realiza mediante la lectura de un archivo shape que en este caso esta en la ruta "path.source"+ "summaries.path", y generando un main.kml, de la que
+- los otros archivos KML, que forman los polígonos, son llamados, cada polígono muestra una tabla con información sobre el mismo, que se hace con los valores que se reciben en la variable
+- "PA.shape.column.indexes" y los valores de "PA.shape.column.names" se ponen como nombres de columna. 
 - 
-- PA.server.url holds the server address where MKL files are going to be hosted 
-- PA.shape.column.indexes Holds the features of shapefiles of protected areas that is wanted to be shown , includes column name, 
-- PA.shape.column.names holds the name that is going to be given to each column, and 
-- PA.kml.main holds the name of main KML (from which the other polygon KMLs are called)_
+- PA.server.url tiene la dirección del servidor donde los archivos MKL van a ser alojados
+- PA.shape.column.indexes contiene las características de los archivos shape de áreas protegidas que se quieren mostar, incluyendo el nombre de la columna, 
+- PA.shape.column.names tiene el nombre que se va a dar a cada columna, y 
+- PA.kml.main tiene el nombre del archivo KML principad (de donde son llamados los otros arhivos KML)_
 ----------------------------------------
 
 
@@ -104,17 +104,17 @@ PA.kml.main=mainKML.kml
 
 
 ----------------------------------------
-- _*COLORS* 
-- The colors that are going to be applied to raster files include type, scale, minimum color and maximum one.
-- P1.color.type "P1" is the name of the raster file p1.asc - the types that may exist are "temperature", "precipitation", "threats", "Species distribution"
-- "temperature", "precipitation", "threats" always take continuous values
-- Species "distribution" take discrete values fixed or quantiles
-- current species "richness" take discrete values fixed or quantiles
+- _*Colores* 
+- Los colores que se van a aplicar a los archivos raster incluyen el tipo, escala y valor máximo y mínimo del color.
+- P1.color.type "P1" es el nombre del archivo raster p1.asc - los tipos que pueden existir son "temperature", "precipitation", "threats", "Species distribution"
+- "temperature", "precipitation", "threats" siempre toman valores continuos
+- "Species distribution" toma valores discretos fijos o quatiles
+- "current species richness" toma valores discretos fijos o quatiles
 - temperature.color.min (max) the minimum (maximum) temperature color written in RGB format in decimal (255;255;255)
-- temperature.scale= may take discrete values "quantiles" or "fixed" or take continuous values "continuous"
-- temperature.scale.quantiles the value is decimal representing the number of quantiles in which the scale will be splitted  - by default 5 or 6 
-- temperature.scale.fixed gets the threshold value, this takes 100 as value by default
-- temperature.scale.continuous This does not get any value because the scale is degradated from minimum to maximum color_
+- temperature.scale= puede tomar valores discretos "quantiles" o "fixes" o tomar valores continuos "continuous"
+- temperature.scale.quantiles es el valor decimal que representa el número de quantiles en la que será dividida la escala  - por defecto 5 o 6 
+- temperature.scale.fixed obtiene el valor del umbral, este toma 100 como valor por defecto.
+- temperature.scale.continuous Este no toma ningún valor por que la escala es degradada del color mínimo al color máximo_
 ----------------------------------------
 
 
