@@ -129,6 +129,8 @@ public class DataBaseManager {
 	}
 
 	public static String correctStringToQuery(String cadena) {
+		if(cadena==null)
+			return "";
 		return cadena.replaceAll("'", "\\\\'");
 	}
 }
