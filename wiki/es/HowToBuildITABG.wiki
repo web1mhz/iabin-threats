@@ -1,9 +1,9 @@
-#summary Cómo contruir la herramienta de Re-georreferenciación
+#summary Cómo contruir la herramienta de filtrado de datos ITA
 #labels Phase-Implementation,Not-Finished
 #sidebar TableOfContents
 
-[http://code.google.com/p/iabin-threats/wiki/HowToBuildITABG?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
-[http://code.google.com/p/iabin-threats/wiki/HowToBuildITABG?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 <wiki:toc />
 
@@ -23,9 +23,9 @@ Le invitamos a leer primero la [Descripcion] del proyecto.
  
 == 1. Importando el código fuente ==
  
-Importar [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita-bg/src/main/java/org/ciat/ita/bg ita project] de este repositorio.
+Importar [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita ita project] de este repositorio.
 
- {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita-bg ita}}}
+ {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita ita}}}
  
 Para actualizar su copia, ejecute el comando:
  
@@ -54,7 +54,7 @@ Si desea implementar el archivo .jar del proyecto, ejecute el comando:
  
  {{{mvn package}}}
  
-Entonces puede encontrar el .jar en el directorio /target , llamado _ita-bg_ con la versión actual del proyecto _e.g. ita-0.1-SNAPSHOT.jar_
+Entonces puede encontrar el .jar en el directorio /target , llamado _ita_ con la versión actual del proyecto _e.g. ita-0.1-SNAPSHOT.jar_
  
 La compilación de este paso no es necesaria ya que el empaquetamiento incluye el proceso de compilación para crear el jar.
  
@@ -69,13 +69,13 @@ Puede ver la pagina del [API] para saber como usar las clases del proyecto o eje
 
 Si tiene configurado el proyecto de forma local solo necesita ejecutar el jar directamente:
 
- {{{java -Xmx1500m -jar ita-bg-0.1-SNAPSHOT.jar}}}
+ {{{java -Xmx1500m -jar ita-0.1-SNAPSHOT.jar}}}
 
 === 5.2 Ejecución como cliente-servidor ===
 
-Si la configuración no es local, debe ejecutar primero una instancia como servidor llamando a la clase principal de _org.ciat.ita-bg.server.Server_ class
+Si la configuración no es local, debe ejecutar primero una instancia como servidor llamando a la clase principal de _org.ciat.ita.server.Server_ class
 
- {{{java -cp ita-bg-0.1-SNAPSHOT.jar org.ciat.ita-bg.server.Server}}}
+ {{{java -cp ita-0.1-SNAPSHOT.jar org.ciat.ita.server.Server}}}
 
-Y a continuación, puede ejecutar varias instancias como clientes llamando a la clase principal _org.ciat.ita-bg.client.Client_  o con el mismo comando de la ejecución local.
+Y a continuación, puede ejecutar varias instancias como clientes llamando a la clase principal _org.ciat.ita.client.Client_  o con el mismo comando de la ejecución local.
 
