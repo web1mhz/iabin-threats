@@ -13,7 +13,7 @@
  * Re-Geo-referencing
    * [DescriptionGeo Description]
    * [HowToBuildITABG How to build the project ITA-BG]
-   * [Configuration-bg]
+   * [Configuration]
    * [API]
  * Distribution Modeling
    * [SpeciesDistributionModelling Description]
