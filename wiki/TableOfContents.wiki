@@ -14,6 +14,7 @@
    * [DescriptionGeo Description]
    * [HowToBuildITABG How to build the project ITA-BG]
    * [Configurationbg configuration]
+   * [RunningProcedureBG Running Procedure]
    * [API]
  * Distribution Modeling
    * [SpeciesDistributionModelling Description]
@@ -22,3 +23,4 @@
    * [DescriptionNavTool Description]
    * [DataConversion Data Conversion]
    * [WEB]
+   
