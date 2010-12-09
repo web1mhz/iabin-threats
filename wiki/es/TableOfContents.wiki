@@ -14,7 +14,7 @@
  * Re-Georreferenciación
    * [DescriptionGeo Descripción]
    * [HowToBuildITABG Cómo construir el proyecto ITA-BG]
-   * [Configuration Configuración] 
+   * [Configurationbg Configuración] 
    * [API]
  * Modelo de Distribución
    * [SpeciesDistributionModelling Descripción]
