@@ -1,4 +1,4 @@
-#summary How to configure ITA-BG tool
+#summary Cómo contruir la herramienta de Re-georreferenciación ITA-BG
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/Configurationbg?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
@@ -6,31 +6,30 @@
 
 <wiki:toc />
 
-== Introduction ==
+== Introducción ==
 
-This is a technical document and is intended to people who has relation with the technical implementation of the project.
+Este es un documento técnico y está destinado a personas con conocimientos técnicos en la ejecución de comandos java y mysql
 
-The purpose of this document is to illustrate how to configure the project in this repository.
+El objetivo de este documento es ilustrar cómo construir el proyecto desde el código fuente de este repositorio.
 
 == Technical Requirements ==
 
-	* To this point, the project must be imported, edited and packaged. (see How [http://code.google.com/p/iabin-threats/wiki/HowToBuildITABG How To Build ITA-BG] section)
-	* Latest version of JRE, available for free at [http://www.java.com http://www.java.com] 
-	* MySQL database server 
+	* Para este paso, el proyecto debe ser importado, editado y empaquetado. (ver sección [http://code.google.com/p/iabin-threats/wiki/HowToBuildITABG Cómo construir el proyecto ITA])
+	* La última versión de JRE, disponible de forma gratuita en [http://www.java.com http://www.java.com]  
+	* Servidor de base de datos de MySQL 
 
 
 
-== Configuring Files ==
+== Configurando Archivos ==
 
-The project needs an extra XML file that should be configured before start to run it (*server_config.xml*).
+El proyecto necesita configurar un archivo XML extra antes de comenzar a usarlo (*server_config.xml*).
 
-As the _svn_ command doesn't import these files, ITA project can generate them assigning default values that you should change later, depending of your file system and your personal configuration.
-
-run the following commands:
+como el comando _svn_ no importa este archivo, el proyecto ITA-BG puede generarlo asignando valores por defecto que se deben cambiar luego, dependiendo de su sistema y configuración personal.
+Para generar el archivo básico de configuración, ejecute el siguiente comando:
 
      java -jar ita-bg-0.1-SNAPSHOT.jar org.ciat.ita.bg.server.ServerConfig
 
-Both XML should have been created.
+El archvo XML debería haberse creado.
 
 -----------------------------------------------------
 
@@ -76,24 +75,22 @@ Both XML should have been created.
 </config>
 }}}
 
-*rmi port*: The default RMI Port. You can delete this tag in case your application is going executed as "LOCAL" configuration.
+*rmi port*: El puerto RMI Por defecto. Puede eliminar esta etiqueta si se va a ejecutar la aplicación con una configuración "LOCAL".
 
-*database*:
- * *name*: Database name
- * *ip_addr*: Database IP address
- * *port*: Database port
+*Base de datos*:
+ * *name*: Nombre de la base de datos
+ * *ip_addr*: Dirección IP de la base de datos
+ * *port*: Puerto de la base de datos
  
-*user name*: Database user. (You should change the default value _db_user_).
+*user name*: Usuario de la base de datos. (Debe cambiar el valor por defecto _db_user_).
 
-*password user*: Database password. (change the asterisks _******_).
+*password user*: Contraseña de la base de datos. (Cambie los asteriscos _******_).
 
-*tables*:
- * *unverified_records*: In case you have changed the name of the table in SQL scripts, change the default name table (occurrence_record) for the correct.
- * *good_records*: Same as above, but the default table name in this case is _temp_good_records_.
- * *final_records*:  Same as above, but the default table name in this case is _filtered_records_
- * *unrelible_records*:  Same as above, but the default table name in this case is _temp_bad_records_
+*tablas*:
+ * *unverified_records*: En caso de que haya cambiado los nombres de las tablas en los scripts SQL, cambie los nombres de las tablas (temp_land_5A) por los correctos.
+ * *good_records*: Igual que el anterior el nombre por defecto es _temp_good_records_.
+ * *final_records*:  Igual que el anterior el nombre por defecto es _filtered_records_
+ * *unrelible_records*:  Igual que el anterior el nombre por defecto es _temp_bad_records_
 
 
-Once the file configuration is correclty done, you can start to run each of the scripts presented in 
-
-this section.
+Una vez que el archivo de configuración se ha hecho correctamente, puede empezar a correr cada uno de los scripts que se presenta en esta sección.
