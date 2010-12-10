@@ -39,9 +39,9 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improveme
 
 *Figure 1* Assessment and improvement of IABIN TNs databases using automated algorithms
 
-But, how to make the data reliable enough?
+But, how to make the data reliable enough? We have implemented algorithms that:
 
- * Verify coordinates at different levels
+ * Verify coordinates at different levels, say:
   * Are the records where they say they are?
   * Are the records inside land areas (for terrestrial plant species only)
   * Are all the records within the environmental niche of the taxon?
@@ -54,7 +54,7 @@ Adequate documentation on how to build, configure and run the tools is also prov
 
 === Phase 1a: Cross-checking of coordinates ===
 
-Here we are concerned about the geographic errors. Common errors in primary biodiversity databases are (1) misspellings of country, state, county and locality names, (2) swapping of latitude or longitude, (3) assignation of the value zero when missing data is found, (4) coordinates in different systems or unknown systems, (5) wrong usage of decimal places or truncation of all decimals, (6) usage of different coordinate formats (e.g. degrees-minutes-seconds vs. decimal degrees) without proper documenting, among others.
+We are concerned about the geographic errors. Common errors in primary biodiversity databases are (1) misspellings of country, state, county and locality names, (2) swapping of latitude or longitude, (3) assignation of the value zero when missing data is found, (4) coordinates in different systems or unknown systems, (5) wrong usage of decimal places or truncation of all decimals, (6) usage of different coordinate formats (e.g. degrees-minutes-seconds vs. decimal degrees) without proper documenting, among others.
 
 In view of that we have developed and implemented automated Java software that runs in batch mode and assesses primary biodiversity data from large databases automatically, and provides statistics on the quality of the data. Our software verifies geographic references (coordinates) at three different levels (Figure 2):
  # Continental level
