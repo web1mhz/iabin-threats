@@ -13,9 +13,9 @@ En este tutorial se describen los pasos para tener una instalación completament
   
 ===1 Configuración de archivos===
 ====Descripción====
-En primer lugar, se deben establecer los valores para los parámetros de los archivos de configuración XML _server_config.xml_.
+En primer lugar, se deben establecer los valores para los parámetros del archivo de configuración XML _server_config.xml_.
  
-Si no hay archivos de configuración, los puede generar con los valores por defecto, mediante el script descrito en la sección de Procedimiento técnico. A continuación, puede editar los parámetros para establecer los valores correspondientes.  
+Si no hay archivo de configuración, lo puede generar con los valores por defecto, mediante el script descrito en la sección de Procedimiento técnico. A continuación, puede editar los parámetros para establecer los valores correspondientes.  
 
 La mayoría de los parámetros corresponden a las rutas de archivos y rutas de directorios. Los ejemplos para la configuración correcta de estos archivos se encuentran en el código fuente del proyecto. 
 
