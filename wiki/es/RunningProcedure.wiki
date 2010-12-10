@@ -21,7 +21,7 @@ La mayoría de los parámetros corresponden a las rutas de archivos y rutas de d
 
 Por favor, configure los archivos, incluso si sólo quiere que se ejecute en modo local.
 
-*Outputs:* Configuración de archivos: _server_config.xml_ y _client_config.xml_.
+*Salidas:* Configuración de archivos: _server_config.xml_ y _client_config.xml_.
 
 ====Procedimiento Técnico====
 Ejecute el script en java con los siguientes parámetros para la parte del servidor: 
@@ -39,9 +39,9 @@ A continuación edite los archivos server_config.xml and client_config.xml
 ====Descripción====
 Primero procesamos un filtrado basico de los registros lo cual excluye a los que no tienen valores latitud o longitud, la geospatial_issue es diferente de cero, la base de registro no especie y opcionalmente auqellos een los que la especie tiene menos de diez registros 
 
-*Inputs:* Tabla MySQL con los registros de ocurrencias de la base de datos. 
+*Entradas:* Tabla MySQL con los registros de ocurrencias de la base de datos. 
 
-*Outputs:* Varias tablas temporales (temp_land_1A, temp_land_2A, temp_land_3A, temp_land_4A y temp_land_5A ). La tabla temp_land_4A table contiene todos los registros que pasaron los filtros, y la tabla temp_land_5A está vacía y preparada para ser llenada en el siguiente paso.
+*Salidas:* Varias tablas temporales (temp_land_1A, temp_land_2A, temp_land_3A, temp_land_4A y temp_land_5A ). La tabla temp_land_4A table contiene todos los registros que pasaron los filtros, y la tabla temp_land_5A está vacía y preparada para ser llenada en el siguiente paso.
 
 ====Procedimiento Técnico====
 Ejecute en la base de datos la consulta sql del arhivo llamado “QUERY_basic_filter.sql” 
@@ -89,9 +89,9 @@ Un método confiable para hacer esto, sería la de conocer el _nub_concept_id_ d
 Se determina para cada registro, si es terrestre o no, utilizando una máscara terrestre. Una vez que todos los registros se han evaluado, se dertermina el porcentaje de registros no terrestres para esa especie, si este porcentaje es igual o superior al 90%, entonces la especie se considera no terrestre. Sólo los registros de las especies terrestres se insertan en la tabla temp_land_5A table.
 
 
-*Inputs:* _temp_land_4A_ tabla records, archivo de máscara terrestre “inland_msk.jgm” 
+*Entradas:* _temp_land_4A_ tabla records, archivo de máscara terrestre “inland_msk.jgm” 
 
-*Outputs:* _temp_land_5A_ Tabla llena con los registros de especies terrestres. 
+*Salidas:* _temp_land_5A_ Tabla llena con los registros de especies terrestres. 
 
 ====Procedimiento Técnico====
 Ejecute el script en java con los siguientes parámetros: 
@@ -136,9 +136,9 @@ Ejemplo para Linux:
 ====Descripción====
 Evalúa los registros usando recursos geoespaciales.
 
-*Inputs:* _temp_land_5A_ tabla Contiene los registros de especies terrestres. Archivo Shape _GADM_v0-6.shp_, archivo de máscara terrestre _inland_msk.jgm_ (el formato jgm es necesario) y el archivo de variables ambientales _BioAIO.emm_ y el archivo de formato _BioAIO.format_ 
+*Entradas:* _temp_land_5A_ tabla Contiene los registros de especies terrestres. Archivo Shape _GADM_v0-6.shp_, archivo de máscara terrestre _inland_msk.jgm_ (el formato jgm es necesario) y el archivo de variables ambientales _BioAIO.emm_ y el archivo de formato _BioAIO.format_ 
 
-*Outputs:* Las tablas temp_good_records y temp_bad_records contiene los datos de acuerdo a los resultados de evaluación. Si el registro pasó todos los filtros, estos datos con los correspondientes datos ambientales  deben estar en la tabla temp_good_records. Por el contrario, si los registros se reconocen como no confiables, sus datos deberian estar en la tabla bad_records con el tipo de error correspondiente encontrado. 
+*Salidas:* Las tablas temp_good_records y temp_bad_records contiene los datos de acuerdo a los resultados de evaluación. Si el registro pasó todos los filtros, estos datos con los correspondientes datos ambientales  deben estar en la tabla temp_good_records. Por el contrario, si los registros se reconocen como no confiables, sus datos deberian estar en la tabla bad_records con el tipo de error correspondiente encontrado. 
 
 Posibles valores de error: 
 *M:* Fuera de la máscara
@@ -203,9 +203,9 @@ ejemplo:
 ====Descripción====
 Dentro de cada especie calcular el valor máximo y el valor mínimo de cada variable ambiental para determinar si el registro es un caso atípico para esa variable.
  
-*Inputs:* _temp_good_records_ tabla que contiene los registros geoespaciales confiables y los datos ambientales correspondientes
+*Entradas:* _temp_good_records_ tabla que contiene los registros geoespaciales confiables y los datos ambientales correspondientes
 
-*Outputs:* _temp_good_records_  tabla con el numero valores atípicos para todas las variables
+*Salidas:* _temp_good_records_  tabla con el numero valores atípicos para todas las variables
 
 ====Procedimiento Técnico====
 Ejecute el script en java con los siguientes parámetros: 
@@ -230,8 +230,8 @@ ejemplo:
 ====Descripción==== 
 Este es un paso opcional. Su objetivo es extraer algunos datos estadísticos de los pasos de filtrado. cuántos registros son fiables y cuántos no, especificando el tipo de error. 
 
-*Inputs:* _temp_good_records_ tabla con el numero valores atípicos para todas las variables
-*Outputs:* El archivo XML _statistics.xml_ es generado. Contiene todas las estadísticas del conjunto de registros evaluados
+*Entradas:* _temp_good_records_ tabla con el numero valores atípicos para todas las variables
+*Salidas:* El archivo XML _statistics.xml_ es generado. Contiene todas las estadísticas del conjunto de registros evaluados
 
 ====Procedimiento Técnico====
 Ejecute el script con los siguientes parámetros: 
@@ -246,9 +246,9 @@ Ejecute el script con los siguientes parámetros:
 
 Discrimina los registros que tienen valor atípico en más de 16 distribuciones de variables ambientales y aquellos para los que la especie tiene menos de diez registros. Sólo los registros confiables se almacenan en la tabla final llamada filtered_records 
 
-*Inputs:* 	temp_good_records tabla con el numero valores atípicos para todas las variables
+*Entradas:* 	temp_good_records tabla con el numero valores atípicos para todas las variables
 
-*Outputs:* 	filtered_records tabla que contiene la totalidad de registros confiables.
+*Salidas:* 	filtered_records tabla que contiene la totalidad de registros confiables.
 
 ====Procedimiento Técnico====
 Ejecute en la base de datos el archivo sql llamado "QUERY_final_filter.sql"  
@@ -266,9 +266,9 @@ ejemplo:
 Exportación de los registros confiables en un archivo separado por comas, para que sean usados en Maxent
  
 
-*Inputs:* _filtered_records_ tabla que contiene todos los registros confiables
+*Entradas:* _filtered_records_ tabla que contiene todos los registros confiables
 
-*Outputs:* Un archivo separado por comas _filtered_records.csv_ con los registros confiables 
+*Salidas:* Un archivo separado por comas _filtered_records.csv_ con los registros confiables 
 
 ====Procedimiento Técnico====
 Ejecute el script en java usando los siguientes parámetros: 
@@ -292,9 +292,9 @@ ejemplo:
 ===Descripción===
 Este script genera los archivos lambda e inmediatamente despues genera las proyecciones de los datos de especies usando la aplicación maxent y las variables ambientales.
 
-*Inputs:* Las variables ambientales preferiblemente con una resolución baja. jar ejecutable de Maxent.
+*Entradas:* Las variables ambientales preferiblemente con una resolución baja. jar ejecutable de Maxent.
 
-*Outputs:* Archivos ascii de proyección de especies 
+*Salidas:* Archivos ascii de proyección de especies 
 
 ====Procedimiento Técnico====
 Ejecute el script en java con los siguientes parámetros: 

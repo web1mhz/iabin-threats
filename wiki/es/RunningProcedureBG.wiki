@@ -1,4 +1,4 @@
-#summary Procedure steps for using the Biogeomancer tool.
+#summary Pasos para utilizar la herramienta Biogeomancer.
 #labels Featured
 #sidebar TableOfContents
 
@@ -9,24 +9,24 @@
 
 = Introducción =
 
-This tutorial will describe the different procedure steps in order to have a fully functional installation of the Biogeomancer tool.
+En este tutorial se describen los pasos para tener una instalación completamente funcional de la herramienta BioGeomancer.
   
 ===1 Configuración de archivos===
 ====Descripción====
-First of all, the values of the  XML configuration file parameters _server_config.xml_ should be set.
+En primer lugar, se deben establecer los valores para los parámetros de los archivos de configuración XML _server_config.xml_.
  
-If the configuration file have not been created yet, you can generate it with default values using the script described in the Technical Procedure section. You can then edit it to set the corresponding values.  
+Si no hay archivos de configuración, los puede generar con los valores por defecto, mediante el script descrito en la sección de Procedimiento técnico. A continuación, puede editar los parámetros para establecer los valores correspondientes.  
 
-Most of these parameters are files and directories  paths. Examples of default settings are in the project source code. 
+La mayoría de los parámetros corresponden a las rutas de archivos y rutas de directorios. Los ejemplos para la configuración correcta de estos archivos se encuentran en el código fuente del proyecto. 
 
-*Outputs:* Configuration file: _server_config.xml_.
+*Salidas:* Archivo de configuración: _server_config.xml_.
 
 ====Procedimiento Técnico====
-To generate the default configuration file, run the script with java using the following parameters for the server part: 
+Para generar el archivo de configuración por defecto, ejecute el script en java con los siguientes parámetros para la parte del servidor: 
 
  {{{java -cp ita.jar org.ciat.ita.bg.server.ServerConfig}}}
 
-Then edit the file server_config.xml
+A continuación edite el archivo server_config.xml
   
    
 ===2 Georreferenciación===
