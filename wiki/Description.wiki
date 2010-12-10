@@ -13,7 +13,10 @@ Under that framework, IABIN has funded the Decision and Policy Analysis Program 
 
  # Automatic cross-checking scripts
  # Automatic georeferencing scripts
- # Results on both the cross-checking and georeferencing of the TNs with suitable databases for such purposes (SSTN, I3N and PTN)
+ # Results on both the cross-checking and georeferencing of the TNs with suitable databases for such purposes, namely:
+  # Species and Specimens Thematic Network (SSTN)
+  # Invasive Species Thematic Network (I3N)
+  # Pollinators Thematic Network (PTN)
  # Automatic species distribution models training scripts
  # An assessment of level of both anthropogenic threats and conservation status for a number of species (for which geographic distributions can be modelled)
  # A Google-maps based navigation tool for all the modelling results (from [5])
@@ -34,7 +37,7 @@ One of the most relevant issues regarding the analyses and latter conclusions de
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.png
 
-Figure 1 Assessment and improvement of IABIN TNs databases using automated algorithms
+*Figure 1* Assessment and improvement of IABIN TNs databases using automated algorithms
 
 But, how to make the data reliable enough?
 
@@ -59,7 +62,7 @@ In view of that we have developed and implemented automated Java software that r
  # Environmental level
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/script-process.PNG
-Figure 2 Flow chart of the coordinate verification process
+*Figure 2* Flow chart of the coordinate verification process
 
 To verify at the continental level, we use a high resolution land areas mask from the SRTM Digital Elevation Model coastlines (Jarvis et al., 2008); to verify at the country level, we use the data from the Global Administrative Areas (Hijmans, 2010); and to verify at the environmental level, we use the Tukey outlier test (Tukey, 1977) in a twenty-dimensional space given by 19 bioclimatic indices (Ramirez &  Bueno-Cabrera, 2009) derived from the WorldClim dataset (Hijmans et al., 2005) and the elevation (Jarvis et al., 2008). We flag a record as reliable only if it:
 
@@ -92,7 +95,7 @@ We acknowledge the importance of the relationship between biodiversity and socio
 A variety of tools and datasets are propsed for usage in this particular context (Figure 3)
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/niche-modeling-workflow.PNG
-Figure 3 Flow chart of the species modelling and threat and conservation assessment process
+*Figure 3* Flow chart of the species modelling and threat and conservation assessment process
 
 A Java based script will be generated for the training of niche models for all terrestrial taxa with at least 10 unique presence records within the IABIN network. To this purpose, the Maximum Entropy model (Phillips et al., 2006) will be used to achieve this. This approach has been largely evaluated by several authors and has demonstrated to perform very well under several sampling bias conditions or with very limited information, with increased accuracy compared with other niche models (Elith et al., 2006; Hijmans & Graham, 2006).
 
