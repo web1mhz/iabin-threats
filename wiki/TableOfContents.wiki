@@ -11,7 +11,6 @@
    * [RunningProcedure Running Procedure]
    * [API]
  * Re-Geo-referencing
-   * [DescriptionGeo Description]
    * [HowToBuildITABG How to build the project ITA-BG]
    * [Configurationbg configuration]
    * [RunningProcedureBG Running Procedure]
@@ -20,7 +19,6 @@
    * [SpeciesDistributionModelling Description]
    * [API]
  * Navigation Tool
-   * [DescriptionNavTool Description]
    * [DataConversion Data Conversion]
    * [WEB]
    
