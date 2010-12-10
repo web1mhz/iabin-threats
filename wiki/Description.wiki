@@ -49,7 +49,7 @@ But, how to make the data reliable enough? We have implemented algorithms that:
  * Add references to those that do not have
  * Cross-check with curators and feedback the database
 
-Adequate documentation on how to build, configure and run the tools is also provided in order to better manage knowledge transfer between and within TNs, and between TNs and project developers (see the table of contents in the left of this page). This googlecode project has been created with the aim of storing and providng access to all the source code and documentation, and also providing a platform where where bugs and problems can be raised as issues and discussed with developers.
+Adequate documentation on how to build, configure and run the tools is also provided in order to better manage knowledge transfer between and within TNs, and between TNs and project developers (see the table of contents in the left of this page). This googlecode project has been created with the aim of storing and providing access to all the source code and documentation, and also providing a platform where where bugs and problems can be raised as issues and discussed with developers.
 
 
 === Phase 1a: Cross-checking of coordinates ===

@@ -13,7 +13,10 @@ Bajo ese marco, IABIN ha financiado el Programa de Decisión y Análisis de Pol�
 
  # Scripts automáticos de Verificación de registros
  # Scripts automáticos de georreferenciación
- # Resultados en ambas, la verificación de registros y la georreferenciación de las redes temáticas con bases de datos disponibles para tales propósitos (SSTN, I3N and PTN)
+ # Resultados en ambas, la verificación de registros y la georreferenciación de las redes temáticas con bases de datos disponibles para tales propósitos, a saber:
+  # Red temática de Especies y Especímenes (SSTN)
+  # Red temática de Especies Invasivas(I3N)
+  # Red Temática de Polinizadores (PTN)
  # Scripts de entrenamiento de modelos de distribución de especies
  # Una evaluación del nivel de las amenazas antropogénicas y estado de conservación de varias especies (para los que la distribución geográfica se puede modelar)
  # Una herramienta de navegación basada en Google-maps para todos los resuldados de modelación (de [5])
@@ -25,33 +28,34 @@ Los recientes desarrollos en las aplicaciones de los Sistemas Geográficos de In
 
 Sin embargo, uno de los temas mas relevantes con respecto a los análisis y las últimas conclusiones derivadas del uso de los datos de biodiversidad primaria es la confianza en su calidad. Poor quality biodiversity data could lead to incorrect and biased conclusions as well as cause ineficient and/or wrong investment of the available resources and inadequate policy development. Checking of biodiversity data quality as well as adequate use is a key issue in order to aid decision-making processes, and equally important is increasing the impact of such data on policy-making processes and the society. Making use of freely online available spatial datasets plus some programming this is now doable not only at a large scale but also in a mostly automated way. Following sections will briefly describe each of the deliverables of this project.
 
-Reconocemos la importancia de la relación entre la biodiversidad y la socio-economía, y la dependencia de los seres humanos sobre la biodiversidad y servicios de alta calidad de los ecosistemas. Por lo tanto, consideramos que es fundamental evaluar el nivel en el que la biodiversidad está amenazada y conservada en todo el mundo, y en particular (dado el enfoque de IABIN) en América Latina, donde hay una presencia importante de "puntos" de biodiversidad (por ejemplo, Bosque Atlántico Brasileño, Yasuní de Ecuador Parque Nacional, el Escudo de Guayana, la selva amazónica, entre otros) hacen que las estrategias de conservación sean importantes hacia el futuro a corto y largo plazo. Strong methodologies to assess the impacts of anthropogenic activities will be developed and at least one peer reviewed publication will be pursued using the results of the modeling and cross-checking of coordinates. Para más información, póngase en contacto con Andy Jarvis, líder del Programa Decisión y Análisis de Políticas en el CIAT (a.jarvis @ cgiar.org).
+Reconocemos la importancia de la relación entre la biodiversidad y la socio-economía, y la dependencia de los seres humanos sobre la biodiversidad y servicios de alta calidad de los ecosistemas. Por lo tanto, consideramos que es fundamental evaluar el nivel en el que la biodiversidad está amenazada y conservada en todo el mundo, y en particular (dado el enfoque de IABIN) en América Latina, donde hay una presencia importante de "puntos" de biodiversidad (por ejemplo, Bosque Atlántico Brasileño, Yasuní de Ecuador Parque Nacional, el Escudo de Guayana, la selva amazónica, entre otros) hacen que las estrategias de conservación sean importantes hacia el futuro a corto y largo plazo. Metodologías fuertes para evaluar los impactos de las actividades antropogénicas y se desarrollará al menos 1 publicación revisada la cual se emitirá usando los resultados del modelamiento y verificación de las coordenadas. Para más información, póngase en contacto con Andy Jarvis, líder del Programa Decisión y Análisis de Políticas en el CIAT (a.jarvis @ cgiar.org).
 
 
-== Phase 1: Development of automated tools, assessment and improvement of IABIN TNs primary biodiversity data ==
+== Fase 1: Desarrollo de herramientas automatizadas, evaluación y mejora de datos primarios de biodiversidad de IABIN TNs ==
 
-One of the most relevant issues regarding the analyses and latter conclusions derived from the usage of primary biodiversity data is the reliance on its quality. We have built automated algorithms (Figure 1) developed in the Java programming language that allow a thorough coordinate verification process (error detection) and georeferencing process (error correction). Through this process we intend to develop an automated platform for IABIN’s TNs to assess their own data whenever more data is incorporated on any of their databases. 
+Uno de los temas mas relevantes con respecto a los análisis y las últimas conclusiones derivadas del uso de los datos de biodiversidad primaria es la confianza en su calidad. Hemos construido algoritmos automatizados (Figure 1) desarrollado en el lenguaje de programación Java que permite un exhaustivo proceso de verificación de coordenadas (detección de error) y proceso de georreferenciación (corrección de error). Through this process we intend to develop an automated platform for IABIN’s TNs to assess their own data whenever more data is incorporated on any of their databases. 
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.png
 
-Figure 1 Assessment and improvement of IABIN TNs databases using automated algorithms
+Figure 1 Diagrama de flujo del proceso verificación de coordenadas.
 
-But, how to make the data reliable enough?
+Pero, ¿cómo hacer que los datos sean lo suficientemente confiable?
 
- * Verify coordinates at different levels
-  * Are the records where they say they are?
-  * Are the records inside land areas (for terrestrial plant species only)
-  * Are all the records within the environmental niche of the taxon?
- * Correct wrong references
- * Add references to those that do not have
- * Cross-check with curators and feedback the database
+ * Verifique las coordenadas en los diferentes niveles
+ * Si los registros son los que dicen que son?
+ * Si los registros están dentro de las áreas de la tierra (para las especies vegetales terrestres, solamente)
+ * Si todos los registros están en el nicho ecológico del taxón?
+ * Registros en el mar : no se puede verificar
+ * Corregir las referencias incorrectas
+ * Agregue referencias a los que no tienen
+ * Comparar con los conservadores y la retroalimentación de la base de datos
 
-Adequate documentation on how to build, configure and run the tools is also provided in order to better manage knowledge transfer between and within TNs, and between TNs and project developers (see the table of contents in the left of this page). This googlecode project has been created with the aim of storing and providng access to all the source code and documentation, and also providing a platform where where bugs and problems can be raised as issues and discussed with developers.
+Documentación adecuada sobre cómo construir, cofigurar and run the tools is also provided in order to better manage knowledge transfer between and within TNs, y entre las redes temáticas y desarrolladores de proyectos (ver la tabla de contenido en la parte izquierda de esta página). Este proyecto ha sido creado en googlecode  con el objetivo de almacenar y proporcionar acceso a todo el código fuente y la documentación, y también proporciona una plataforma en donde los errores y los problemas pueden ser planteados como temas y discutidos con los desarrolladores.
 
 
-=== Phase 1a: Cross-checking of coordinates ===
+=== Fase 1a: Verificación de coordenadas ===
 
-Here we are concerned about the geographic errors. Common errors in primary biodiversity databases are (1) misspellings of country, state, county and locality names, (2) swapping of latitude or longitude, (3) assignation of the value zero when missing data is found, (4) coordinates in different systems or unknown systems, (5) wrong usage of decimal places or truncation of all decimals, (6) usage of different coordinate formats (e.g. degrees-minutes-seconds vs. decimal degrees) without proper documenting, among others.
+Aquí estamos preocupados por los errores geográficos. Errores comunes en bases de datos primarios sobre biodiversidad son: (1) errores de ortografía del país, estado, condado y nombre de localidades, (2) intercambio de latitud o longitud, (3) asignación del valor cero cuando la información no se encuentra, (4) coordenadas en diferentes sistemas o sistemas de desconocidos, (5) mal uso de decimales o el truncamiento de todos los decimales, (6) el uso de diferentes formatos de coordenadas (e.g. grados-minutos-segundos vs. grados decimales) sin la debida documentación, entre otros.
 
 In view of that we have developed and implemented automated Java software that runs in batch mode and assesses primary biodiversity data from large databases automatically, and provides statistics on the quality of the data. Our software verifies geographic references (coordinates) at three different levels (Figure 2):
  # Continental level
