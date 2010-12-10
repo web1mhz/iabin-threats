@@ -30,7 +30,7 @@ run the following commands:
 
      java -jar ita-bg-0.1-SNAPSHOT.jar org.ciat.ita.bg.server.ServerConfig
 
-Both XML should have been created.
+XML file should have been created.
 
 -----------------------------------------------------
 
