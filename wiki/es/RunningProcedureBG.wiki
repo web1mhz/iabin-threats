@@ -31,46 +31,46 @@ Then edit the file server_config.xml
    
 ===2 Georreferenciación===
 ====Descripción====
-In order to use the geo-referencing tool, you must provide the number of records that you want to process. 
+Para utilizar la herramienta de geo-rreferenciación, debe proporcionar el número de registros que desea procesar.
 
-*Inputs:* MySQL table with the occurrence records of the database (which are selected from the table specified in server_config.xml), and the 
+*Entradas:* Tabla MySQL con los registros de ocurrencias de la base de datos (que se seleccionan de la tabla especificada en server_config.xml), y la 
 
-*Outputs:* the geo-referenced records are written aside to the original records, in the same table, in fields Blatitude, Blongitude, Uncertainty and is_fixed.
+*Salida:* Los registros geo-rreferenciados se escriben a un lado de los registros originales, en la misma tabla, en los campos Blatitude, Blongitude, Uncertainty y is_fixed.
 
 ====Procedimiento Técnico====
-Run into the database the sql query file named “QUERY_creates_table_georeferenced_records.sql” 
+Ejecutar en la base de datos la consulta sql del archivo llamado “QUERY_creates_table_georeferenced_records.sql” 
 
-Command line example: 
+Ejemplo de línea de comando: 
 
  {{{mysql –u User –p portal < QUERY_creates_table_georeferenced_records.sql }}}
 
 ====Finalizar====
-Once the query has been run, the tables georeferenced_records and temp_georeferenced_records are created. 
+Una vez que la consulta se ha ejecutado, se crean las tablas georeferenced_records y temp_georeferenced_records. 
 
 ====Procedimiento Técnico====
-Run the script in java with the following parameters: 
+Ejecute el script en java con los siguientes parámetros:
 
-*Parameters:* 
+*Parámetros:* 
  
- {{{-Xmx<BYTES>}}} bytes of Maximum java heap size 
+ {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
 
-*Command line:*
+*Línea de comando:*
 
  {{{java -XmxBYTES -cp ita.jar org.ciat.ita.bg.Biogeomancer}}}
 
 
 ===Local===
 
-In standalone mode you just need to run a single instance.
+En modo local sólo necesita ejecutar una instancia.
 
-*Parameters:*
+*Parámetros:*
  {{{-Xmx<BYTES>}}} of Maximum java heap size 
 
-*Command line:*
+*Línea de comando:*
 
  {{{java -XmxBYTES -cp ita.jar}}}
 
-example 
+Ejemplo
 
  {{{java -Xmx1500m -jar ita.jar}}}
 
