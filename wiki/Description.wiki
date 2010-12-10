@@ -69,8 +69,19 @@ To verify at the continental level, we use a high resolution land areas mask fro
  # Being a record from a terrestrial species, falls within land areas, and
  # Is not flagged as an outlier for a given species in less than 80% of the 20 environmental variables used to describe the environment
 
+=== Correction of coordinates ===
 
+Even when a coordinate verification process is implemented, it does not directly imply that the best-bet is being done from the available data. A quality improvement process is still required in order to be able to use the best-shaped data in further analyses. Geographically speaking, this means the retrieval of coordinates when they are either unavailable or erroneous. Using biogeomancer (Guralnick &  Hill, 2009, Guralnick et al., 2006, Hill et al., 2009), one can retrieve the coordinates of a particular location by means of the collecting place information provided in the database (e.g. country, state, county, and locality name). Though the location information is not available in all the cases when also the coordinates are lacking, it is available in a number of cases and can be retrieved with a considerable degree of confidence (Hill et al., 2009)
 
+In this particular case, we have developed software that uses all the records flagged as not reliable (from the automatic data filtering and cross-checking), is capable of 
+
+ # Identifying the records that have enough location information to retrieve a coordinate, 
+ # querying the biogeomancer service at http://bg.berkeley.edu/latest/
+ # interpreting the result from the biogeomancer service, and 
+ # adding the retrieved coordinate to the database.
+
+ 
+ 
 == References ==
 
 Bass MS, Finer M, Jenkins CN, Kreft H, Cisneros-Herrera DF, et al. (2010) Global Conservation Significance of Ecuador’s Yasuní National Park. PLoS ONE 5(1): e8767. doi: 10.1371/journal.pone.0008767
