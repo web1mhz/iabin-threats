@@ -7,66 +7,69 @@
 
 == Introduction ==
 
+The Inter-American Biodiversity Information Network (IABIN) has the mandate of providing a networking information infrastructure as well as primary biodiversity data on a number of topics in order to improve decision-making, particularly for issues at the interface of human development and biodiversity conservation. During the late 2010, IABIN has approved funds for projects aiming to (a) develop IABIN; and (b) provide the necessary instruments to draw knowledge from the information contained in the network mentioned to support sound decision-making concerning the conservation and sustainable use of biodiversity.
 
+Under that framework, IABIN has funded the Decision and Policy Analysis Program (DAPA) at the International Center for Tropical Agriculture (CIAT) on a project entitled *"Improve primary data and use it for threat assessment and in situ conservation planning in South America"*. More specifically, we intend to assess and improve the geographic quality of the primary data provided by the different IABIN Thematic Networks (TNs) using a scientifically rigorous and mostly automated approach. The data will then be used in a variety of modelling and statistical exercises aiming to derive practical conclusions on the conservation status of Biodiversity, and finally, a web interface for policy-makers to navigate throughout all our results will be provided. More specifically, the project will deliver:
+
+1. Automatic cross-checking scripts
+2. Automatic georeferencing scripts
+3. Results on both the cross-checking and georeferencing of the TNs with suitable databases for such purposes (SSTN, I3N and PTN)
+4. Automatic species distribution models training scripts
+5. An assessment of level of both anthropogenic threats and conservation status for a number of species (for which geographic distributions can be modelled)
+6. A Google-maps based navigation tool for all the modelling results (from [5])
+
+
+== Rationale ==
 
 Recent developments in Geographic Information Systems (GIS) and ecological niche modeling (ENM) applications have added value to data, and permit researchers to provide highly policy-relevant analyses to direct conservation interventions. Through the most recent ENM techniques, potential distributions of species can be analyzed using fairly limited or biased datasets containing primary data to determine current biodiversity hotspots (Phillips et al. 2006; Elith et al. 2006; Hijmans and Graham 2006), and likely threats from anthropogenic activities (Jarvis et al. 2009) and climate change (IPCC 2007) in order to deﬁne current and future in situ and ex situ conservation priorities (Walker et al. 2009; Bass et al. 2010).
 
-However, one of the most relevant issues regarding the analyses and latter conclusions derived from the usage of primary biodiversity data is the reliance on its quality. Poor quality biodiversity data could lead to incorrect and biased conclusions as well as cause ineﬃcient and/or wrong investment of the available resources and inadequate policy development. Checking of biodiversity data quality as well as adequate use is a key issue in order to aid decision-making processes. We intend to (1) assess and improve the quality of IABIN's terrestrial holdings using automated scripts, (2) use the primary biodiversity data to develop niche models, (3) couple those results to assess the extent at which South American biodiversity is both under threat and conserved by the current Protected Areas network, and (4) implement an interface through which all results can be accessed and viewed by policy-makers. We have automated algorithms developed in the Java programming language that allow a thorough coordinate veriﬁcation process, which have been used on the GBIF (The Global Biodiversity Information Facility) database, and through which the whole database was veriﬁed for consistency of location data. Some 85% of the data was found to be correct at three different levels (Fig. 2). The same assessment will be done for all IABIN holdings in the ﬁrst place. 
+However, one of the most relevant issues regarding the analyses and latter conclusions derived from the usage of primary biodiversity data is the reliance on its quality. Poor quality biodiversity data could lead to incorrect and biased conclusions as well as cause ineficient and/or wrong investment of the available resources and inadequate policy development. Checking of biodiversity data quality as well as adequate use is a key issue in order to aid decision-making processes, and equally important is increasing the impact of such data on policy-making processes and the society. Making use of freely online available spatial datasets plus some programming this is now doable not only at a large scale but also in a mostly automated way. Following sections will briefly describe each of the deliverables of this project.
 
-http://iabin-threats.googlecode.com/svn/wiki/resources/script-process.PNG
-Figure 1 Flow chart of the coordinate verification process
+
 
 We acknowledge the importance of the relationship between biodiversity and socio-economy, and the reliance of human beings on biodiversity and high quality ecosystem services. We, therefore, consider it fundamental to assess the level at which biodiversity is threatened and conserved across the globe, and particularly (given IABIN’s focus) in Latin America, where the presence of signiﬁcant biodiversity ‘hotspots’ (e.g. Brazilian Atlantic Forest, Ecuador’s Yasuní National Park, the Guyana Shield, the Amazon forest, among others) make conservation strategies critical towards the near and long term future. Strong methodologies to assess the impacts of anthropogenic activities will be developed and at least one peer reviewed publication will be pursued using the results of the modeling and cross-checking of coordinates. For further information, please contact Andy Jarvis, leader of the Decision and Policy Analysis program at CIAT (a.jarvis@cgiar.org).
 
 
----------------
+== Phase 1: Development of automated tools, assessment and improvement of IABIN TNs primary biodiversity data ==
 
-1.1.	The purpose of this Agreement is to establish the regulatory framework to develop and integrate tools in Spanish and English oriented to improve primary data quality and reliance including:  (i) assess and improve the quality of IABIN’s terrestrial holdings using automated scripts; (ii) use the primary biodiversity data to develop niche models; (iii) couple those results to assess the extent at which South American taxa are both under threat and conserved by the current Protected Areas Network; and (iv) implement an interface through which all results will be made available to policy-makers (hereinafter the “Project”).
+One of the most relevant issues regarding the analyses and latter conclusions derived from the usage of primary biodiversity data is the reliance on its quality. We have built automated algorithms (Figure 1) developed in the Java programming language that allow a thorough coordinate verification process (error detection) and georeferencing process (error correction). Through this process we intend to develop an automated platform for IABIN’s TNs to assess their own data whenever more data is incorporated on any of their databases. But, how to make the data reliable enough?
 
-1.2.	This Agreement will augment ongoing efforts within IABIN to integrate, visualize and make available data digitized and standardized by IABIN and its partners. These efforts include the IABIN Data Integration and Analysis Center (DIAC)which will utilize the Data Basin platform (www.databasin.org), developed by the Conservation Biology Institute (CBI) and built on ESRI Geospatial Information Systems (GIS) software. The DIAC will upload, display, and analyze the data resulting from IABIN’s granting effort under Component 2 of the IABIN GEF project.  Users will be able to browse Component 2 data, as well as complementary layers from other sources, search across a range of geographic and thematic fields, and perform analyses of this data, all in a bilingual (English and Spanish) environment.. CIAT’s activities under this Agreement will assist CBI´s Data Basin and IABIN’s Thematic Networks to ensure the highest quality biodiversity data is included in the IABIN DIAC and IABIN TNs  CIAT will: (1) assess and improve the quality of IABIN's terrestrial holdings using automated scripts, (2) use the primary biodiversity data to develop ecological niche models, (3) couple those results to assess the extent at which South American biodiversity is both under threat and conserved by the current Protected Areas network, and (4) implement an interface through which all results can be accessed and viewed by policy-makers (5) publish a peer-review journal about the IABIN DIAC data integration process along with IABIN Team and CBI-Data Basin.
-
-
-3.1.	No later than two (2) months after the date of signature of the Agreement by both Parties, the Institution shall deliver to GS/OAS and to GS/OAS’ satisfaction an interim technical-financial progress report of the Project (“First Report”) in conformity with Annex 6 of this Agreement. The Report shall include the progress made on the products planned in the proposal as these are defined in Annex 8 including the following activities:
-
-Activity 1	Cross checking of coordinates scripts: Finalize and implement a Java-based algorithm to cross-check coordinates of IABIN’s terrestrial biodiversity data.
-Activity 2	Georreferencing Script: Finalize and implement a Java-based algorithm to add value to non-georreferenced records within the IABIN Network.
-Activity 3	Assessment of all IABIN records: Assess all the primary data using the algorithms in Activities 1 and 2 and provide IABIN with a detailed evaluation of all its primary biodiversity data.
-
-Based on progress achieved in Activities 1, 2 and 3, CIAT will submit a report to OAS detailing the checking and georeferencing of all relevant data in IABIN’s Thematic Networks.  Within thirty (30) days following its receipt of the Report, GS/OAS shall review it and notify the Institution in writing that the Report is either satisfactory or unsatisfactory.  If the report is unsatisfactory, GS/OAS shall further notify the Institution in writing of what the Institution must do to make the Report satisfactory and the Institution shall have another thirty days to do so from the date it receives that notice.
-
-3.2.	No later than four (4) months after the date of signature of the Agreement by both Parties, the Institution shall deliver to GS/OAS and to GS/OAS’ satisfaction an interim technical-financial progress report of the Project (“Second Report”) in conformity with Annex 6 of this Agreement. The Report shall include the progress made on the products planned in the proposal as these are defined in Annex 8 including the following deliverables:
-
-Activity 4	Training of niche models script: Finalize and implement a Java-based algorithm for the training of niche models (using a maximum entropy approach) and apply it to taxa with enough data in South America.
-Activity 5	Threat and Conservation Assesment: overlay the developed geographic distributions with ecosystem threat and protected areas layers, generate analysis metrics to provide the necessary background data for scenario assessment and policy making for South America.
-Activity 6	Beta version of the tool 
-
-Based on Activities 4 and 5, CIAT will submit to OAS a report detailing niche modeling and Threat and Conservation Assessment activities.  Within thirty (30) days following its receipt of the Report, GS/OAS shall review it and notify the Institution in writing that the Report is either satisfactory or unsatisfactory. If the report is unsatisfactory, GS/OAS shall further notify the Institution in writing of what the Institution must do to make the Report satisfactory and the Institution shall have another thirty days to do so from the date it receives that notice.
-
-3.3.	The Institution must submit a final technical-financial report, detailing final development of the project, in digital version, in accordance with article 1.1 and in in conformity with Annex 6 of this Agreement, including the following deliverables as outlined in Annex 8: 
-
-Activity 7	Google-maps based navigation tool: Development of an interactive Google-maps based interface to navigate through the biodiversity data and the modeling and overlaying results. 
-
-Activity 8	Prepare manuals and user guides: Generate documentation describing the functionality and use of all tools and processes developed under this agreement, in both English and Spanish. 
-
-Activity 9	Two demonstration events to the IABIN participants and decision-makers 
-
-Activity 10	Final version of all tools, manuals, technical documents and user guides in English and Spanish. 
-
-
-The Final Report, detailing Activities 6 and 7 of the project, as well as final results of all project activities, shall be received no later than six (6) months after the date of signature of the Agreement.  Within thirty (30) days following its receipt of the Final Report, GS/OAS shall review it and notify the Institution in writing that it is either satisfactory or unsatisfactory.  If the Report is unsatisfactory, GS/OAS shall further notify the Institution in writing of what the Institution must do to make the Report satisfactory and the Institution shall have another thirty days to do so from the date it receives that notice.
-
-
-
-
-How to make the data reliable enough?
  * Verify coordinates at different levels
- * Are the records where they say they are?
- * Are the records inside land areas (for terrestrial plant species only)
- * Are all the records within the environmental niche of the taxon?
- * Sea records: not verifiable
+  * Are the records where they say they are?
+  * Are the records inside land areas (for terrestrial plant species only)
+  * Are all the records within the environmental niche of the taxon?
  * Correct wrong references
  * Add references to those that do not have
  * Cross-check with curators and feedback the database
 
+http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.PNG
+Figure 1 Assessment and improvement of IABIN TNs databases using automated algorithms
+
+Adequate documentation on how to build, configure and run the tools is also provided in order to better manage knowledge transfer between and within TNs, and between TNs and project developers (see the table of contents in the left of this page). This googlecode project has been created with the aim of storing and providng access to all the source code and documentation, and also providing a platform where where bugs and problems can be raised as issues and discussed with developers.
 
 
+=== Cross-checking of coordinates ===
+
+
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/script-process.PNG
+Figure 2 Flow chart of the coordinate verification process
+
+
+
+
+== References ==
+
+Bass MS, Finer M, Jenkins CN, Kreft H, Cisneros-Herrera DF, et al. (2010) Global Conservation Significance of Ecuador’s Yasuní National Park. PLoS ONE 5(1): e8767. doi: 10.1371/journal.pone.0008767
+
+Elith J, Graham CH, Anderson RP, Dudik M., Ferrier S., et al. (2006) Novel methods improve prediction of species' distributions from occurrence data. Ecography 29: 129-151. 
+
+Hijmans RJ, Graham CH (2006) The ability of climate envelope models to predict the effect of climate change on species distributions. Global Change Biology 12: 2271-2281. 
+
+Intergovernmental Panel on Climate Change (2007) IPCC Fourth Assessment Report: Climate Change 2007, IPCC, Geneva. 
+
+Jarvis A, Trouval JL, Castro-Schmitz M, Sotomayor L, Hyman GG (2010) Assessment of threats to ecosystems in South America. Journal for Nature Conservation. Journal for Nature Conservation, 
+
+Phillips SJ, Anderson RP, Schapire RE (2006) Maximum entropy modeling of species geographic distributions. Ecological Modelling, 190: 231-259. 
+
+Walker R, Moore NJ, Arima E, Perz S, Simmons C, Caldas M, Vergara D, Bohrer C (2009) Protecting the Amazon with Protected Areas. PNAS, vol. 106, no. 26, 10582-10586.
