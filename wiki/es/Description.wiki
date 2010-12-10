@@ -33,7 +33,7 @@ Reconocemos la importancia de la relación entre la biodiversidad y la socio-eco
 
 == Fase 1: Desarrollo de herramientas automatizadas, evaluación y mejora de datos primarios de biodiversidad de IABIN TNs ==
 
-Uno de los temas mas relevantes con respecto a los análisis y las últimas conclusiones derivadas del uso de los datos de biodiversidad primaria es la confianza en su calidad. Hemos construido algoritmos automatizados (Figure 1) desarrollado en el lenguaje de programación Java que permite un exhaustivo proceso de verificación de coordenadas (detección de error) y proceso de georreferenciación (corrección de error). Through this process we intend to develop an automated platform for IABIN’s TNs to assess their own data whenever more data is incorporated on any of their databases. 
+Uno de los temas mas relevantes con respecto a los análisis y las últimas conclusiones derivadas del uso de los datos de biodiversidad primaria es la confianza en su calidad. Hemos construido algoritmos automatizados (Figure 1) desarrollado en el lenguaje de programación Java que permite un exhaustivo proceso de verificación de coordenadas (detección de error) y proceso de georreferenciación (corrección de error). A través de este proceso intentamos desarrollar una plataforma automatizada para las redes temáticas de IABIN para evaluar sus propios datos cada vez que más datos se incorporen en cualquiera de sus bases de datos. 
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.png
 
