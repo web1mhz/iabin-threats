@@ -7,16 +7,16 @@
 
 == Introduction ==
 
-The Inter-American Biodiversity Information Network (IABIN) has the mandate of providing a networking information infrastructure as well as primary biodiversity data on a number of topics in order to improve decision-making, particularly for issues at the interface of human development and biodiversity conservation. During the late 2010, IABIN has approved funds for projects aiming to (a) develop IABIN; and (b) provide the necessary instruments to draw knowledge from the information contained in the network mentioned to support sound decision-making concerning the conservation and sustainable use of biodiversity.
+The *Inter-American Biodiversity Information Network (IABIN)* has the mandate of providing a networking information infrastructure as well as primary biodiversity data on a number of topics in order to improve decision-making, particularly for issues at the interface of human development and biodiversity conservation. During the late 2010, IABIN has approved funds for projects aiming to (a) develop IABIN; and (b) provide the necessary instruments to draw knowledge from the information contained in the network mentioned to support sound decision-making concerning the conservation and sustainable use of biodiversity.
 
 Under that framework, IABIN has funded the Decision and Policy Analysis Program (DAPA) at the International Center for Tropical Agriculture (CIAT) on a project entitled *"Improve primary data and use it for threat assessment and in situ conservation planning in South America"*. More specifically, we intend to assess and improve the geographic quality of the primary data provided by the different IABIN Thematic Networks (TNs) using a scientifically rigorous and mostly automated approach. The data will then be used in a variety of modelling and statistical exercises aiming to derive practical conclusions on the conservation status of Biodiversity, and finally, a web interface for policy-makers to navigate throughout all our results will be provided. More specifically, the project will deliver:
 
-1. Automatic cross-checking scripts
-2. Automatic georeferencing scripts
-3. Results on both the cross-checking and georeferencing of the TNs with suitable databases for such purposes (SSTN, I3N and PTN)
-4. Automatic species distribution models training scripts
-5. An assessment of level of both anthropogenic threats and conservation status for a number of species (for which geographic distributions can be modelled)
-6. A Google-maps based navigation tool for all the modelling results (from [5])
+ # Automatic cross-checking scripts
+ # Automatic georeferencing scripts
+ # Results on both the cross-checking and georeferencing of the TNs with suitable databases for such purposes (SSTN, I3N and PTN)
+ # Automatic species distribution models training scripts
+ # An assessment of level of both anthropogenic threats and conservation status for a number of species (for which geographic distributions can be modelled)
+ # A Google-maps based navigation tool for all the modelling results (from [5])
 
 
 == Rationale ==
