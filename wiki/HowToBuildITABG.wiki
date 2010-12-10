@@ -46,7 +46,6 @@ If you want to compile the project to get the binaries, run the command:
  {{{mvn compile}}}
 
 It creates the /target/classes directory where you can find the compiled classes
-and the /target/rmi-classes where you can find the Stub classes to run the project using Remote Method Invocation [http://en.wikipedia.org/wiki/Java_remote_method_invocation Java RMI]
 
 == 4. Packaging project ==
 
