@@ -32,7 +32,13 @@ We acknowledge the importance of the relationship between biodiversity and socio
 
 == Phase 1: Development of automated tools, assessment and improvement of IABIN TNs primary biodiversity data ==
 
-One of the most relevant issues regarding the analyses and latter conclusions derived from the usage of primary biodiversity data is the reliance on its quality. We have built automated algorithms (Figure 1) developed in the Java programming language that allow a thorough coordinate verification process (error detection) and georeferencing process (error correction). Through this process we intend to develop an automated platform for IABIN’s TNs to assess their own data whenever more data is incorporated on any of their databases. But, how to make the data reliable enough?
+One of the most relevant issues regarding the analyses and latter conclusions derived from the usage of primary biodiversity data is the reliance on its quality. We have built automated algorithms (Figure 1) developed in the Java programming language that allow a thorough coordinate verification process (error detection) and georeferencing process (error correction). Through this process we intend to develop an automated platform for IABIN’s TNs to assess their own data whenever more data is incorporated on any of their databases. 
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.png
+
+Figure 1 Assessment and improvement of IABIN TNs databases using automated algorithms
+
+But, how to make the data reliable enough?
 
  * Verify coordinates at different levels
   * Are the records where they say they are?
@@ -41,9 +47,6 @@ One of the most relevant issues regarding the analyses and latter conclusions de
  * Correct wrong references
  * Add references to those that do not have
  * Cross-check with curators and feedback the database
-
-http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.png
-Figure 1 Assessment and improvement of IABIN TNs databases using automated algorithms
 
 Adequate documentation on how to build, configure and run the tools is also provided in order to better manage knowledge transfer between and within TNs, and between TNs and project developers (see the table of contents in the left of this page). This googlecode project has been created with the aim of storing and providng access to all the source code and documentation, and also providing a platform where where bugs and problems can be raised as issues and discussed with developers.
 
