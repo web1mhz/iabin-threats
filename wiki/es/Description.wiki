@@ -72,32 +72,31 @@ Para verificar a nivel continental, usamos una mascara de areas de tierra de alt
  # Is not flagged as an outlier for a given species in less than 80% of the 20 environmental variables used to describe the environment
 
 
-=== Phase 1b: Correction of coordinates ===
+=== Fase 1b: Corrección de coordenadas ===
 
-Even when a coordinate verification process is implemented, it does not directly imply that the best-bet is being done from the available data. A quality improvement process is still required in order to be able to use the best-shaped data in further analyses. Geographically speaking, this means the retrieval of coordinates when they are either unavailable or erroneous. Using biogeomancer (Guralnick &  Hill, 2009, Guralnick et al., 2006, Hill et al., 2009), one can retrieve the coordinates of a particular location by means of the collecting place information provided in the database (e.g. country, state, county, and locality name). Though the location information is not available in all the cases when also the coordinates are lacking, it is available in a number of cases and can be retrieved with a considerable degree of confidence (Hill et al., 2009)
+Incluso cuando una coordenada proceso de verificación se lleva a cabo, eso no implica directamente que se haga la mejor apuesta  de los datos disponibles. A quality improvement process is still required in order to be able to use the best-shaped data in further analyses. Geográficamente hablando, esto significa que la recuperación de las coordenadas cuando están o no disponibles o erróneas. Usando BioGeomancer (Guralnick &  Hill, 2009, Guralnick et al., 2006, Hill et al., 2009), se puede recuperar las coordenadas de un lugar determinado por medio de la información recogida en la base de datos (e.g. pais, estado, condado, nombre de localidad). Aunque la información de ubicación no está disponible en todos los casos en los que también se carece de las coordenadas, está disponible en un número de casos y se puede recuperar con un alto grado de confianza (Hill et al., 2009)
 
-In this particular case, we have developed software that uses all the records flagged as not reliable (from the automatic data filtering and cross-checking), is capable of 
+En este caso particular, hemos desarrollado un software que utiliza todos los registros marcados como no confiables (de los datos de filtrado automático y de verificación), que es capaz de:
 
- # Identifying the records that have enough location information to retrieve a coordinate, 
- # querying the biogeomancer service at http://bg.berkeley.edu/latest/
- # interpreting the result from the biogeomancer service, and 
- # adding the retrieved coordinate to the database.
+ # La identificación de los registros que tienen información sobre la ubicación suficiente para recuperar una coordenada, 
+ # consultar el servicio en BioGeomancer http://bg.berkeley.edu/latest/
+ # interpretar el resultado del servicio de BioGeomancer , y
+ # añadiendo las coordenadas recuperadas a la base de datos.
 
 
-== Phase 2: Modelling species distributions and assessing threat and conservation status ==
+== Fase 2: Modelización de la distribución de especies, evaluación de amenaza y estado de conservación ==
 
-We acknowledge the importance of the relationship between biodiversity and socio-economy, and the reliance of human beings on biodiversity and high quality ecosystem services. We, therefore, consider it fundamental to assess the level at which biodiversity is threatened and conserved across the globe, and particularly (given IABIN’s thematic networks focus) in Latin America, where the presence of significant biodiversity ‘hotspots’ (e.g. Brazilian Atlantic Forest, Ecuador’s Yasuní National Park, the Guyana Shield, the Amazon forest, among others) make conservation strategies critical towards the near and long term future. Using the highest quality primary biodiversity data from the IABIN TNs databases we:
+Reconocemos la importancia de la relación entre la biodiversidad y la socio-economía, y la dependencia de los seres humanos sobre la biodiversidad y servicios de alta calidad de los ecosistemas. Por lo tanto, consideramos que es fundamental evaluar el nivel en el que la biodiversidad está amenazada y conservada en todo el mundo, y en particular (dado el enfoque de IABIN) en América Latina, donde hay una presencia importante de "puntos" de biodiversidad (por ejemplo, Bosque Atlántico Brasileño, Yasuní de Ecuador Parque Nacional, el Escudo de Guayana, la selva amazónica, entre otros) hacen que las estrategias de conservación sean importantes hacia el futuro a corto y largo plazo. Utilizando la más alta calidad de los datos primarios sobre biodiversidad de las bases de datos de las Redes Temáticas de IABIN, nosotros:
 
- * Develop species distributions using a modelling technique,
+ * Desarrollar la distribución de especies usando una técnica de modelado,
  * Overlay these distributions with a set of spatially explicit anthropogenic threats,
- * Overlay these distributions with the current distribution of protected areas, and
- * Calculate the proper metrics to both validate the models developed and to assess the set of species regarding threat and conservation status
+ * Superposición de estas distribuciones con la distribución actual de las áreas protegidas, y
+ * Calcular los indicadores adecuados tanto para validar los modelos desarrollados y para evaluar el conjunto de las especies sobre el estado de amenaza y conservación.
 
-A variety of tools and datasets are propsed for usage in this particular context (Figure 3)
+Una variedad de herramientas y bases de datos se proponen para su uso en este contexto particular, (Figure 3)
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/niche-modeling-workflow.PNG
-Figure 3 Flow chart of the species modelling and threat and conservation assessment process
-
+Figura 3 Diagrama de flujo del modelado de las especies y la amenaza y el proceso de evaluación para la conservación
 A Java based script will be generated for the training of niche models for all terrestrial taxa with at least 10 unique presence records within the IABIN network. To this purpose, the Maximum Entropy model (Phillips et al., 2006) will be used to achieve this. This approach has been largely evaluated by several authors and has demonstrated to perform very well under several sampling bias conditions or with very limited information, with increased accuracy compared with other niche models (Elith et al., 2006; Hijmans & Graham, 2006).
 
 Niche models will be trained using a baseline climatic scenario as provided by WorldClim (Hijmans et al., 2005), at 5 arc-minute spatial resolution. Selected model performance metrics will be provided for all the modeled species (i.e. area under the ROC curve, correlation, logistic deviation and euclidean distance).
