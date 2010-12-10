@@ -64,7 +64,7 @@ Ejecute el script en java con los siguientes parámetros:
 En modo local sólo necesita ejecutar una instancia.
 
 *Parámetros:*
- {{{-Xmx<BYTES>}}} of Maximum java heap size 
+ {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
 
 *Línea de comando:*
 
