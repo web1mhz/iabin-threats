@@ -42,7 +42,7 @@ One of the most relevant issues regarding the analyses and latter conclusions de
  * Add references to those that do not have
  * Cross-check with curators and feedback the database
 
-http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.PNG
+http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.png
 Figure 1 Assessment and improvement of IABIN TNs databases using automated algorithms
 
 Adequate documentation on how to build, configure and run the tools is also provided in order to better manage knowledge transfer between and within TNs, and between TNs and project developers (see the table of contents in the left of this page). This googlecode project has been created with the aim of storing and providng access to all the source code and documentation, and also providing a platform where where bugs and problems can be raised as issues and discussed with developers.
