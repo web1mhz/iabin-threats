@@ -46,7 +46,6 @@ Si desea compilar el proyecto para obtener los archivos binarios, ejecute el com
  {{{mvn compile}}}
  
 Esto crea el directorio  /target/classes donde estan las clases compiladadas
-y el directorio /target/rmi-classes donde estan las clases Stub para ejecutar el proyecto usando Remote Method Invocation [http://en.wikipedia.org/wiki/Java_remote_method_invocation Java RMI]
  
 == 4. Empaquetando el proyecto ==
  
