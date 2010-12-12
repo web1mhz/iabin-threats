@@ -1,4 +1,4 @@
-#summary What is ITA data filtering tool
+#summary Qué es la herramienta de filtrado de datos ITA
 #labels Phase-Implementation
 #sidebar TableOfContents
 
