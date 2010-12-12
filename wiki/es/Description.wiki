@@ -1,5 +1,5 @@
 #summary Qué es la herramienta de filtrado de datos ITA
-#labels Phase-Implementation
+#labels Fase-Implementación
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/Description?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
