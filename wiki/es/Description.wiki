@@ -106,18 +106,18 @@ Las distribuciones de potencial será un umbral a la probabilidad promedio de la
 Un grupo de conjuntos de datos espaciales que representa la influencia del medio ambiente, factores sociales y económicos en los ecosistemas donde un taxón o de un grupo de taxa pueden estar presentes para ser utilizados (Jarvis et al. 2010) to calculate the level of threat of all biodiversity using the comprised species richness layer and each of the threat layers. Threats for individual species will also be created by means of a threat index. In addition to that, species distributions will also be overlaid with the protected area networks in South America, both at the aggregate level (species richness) and at the individual species level. The level of protection of all modeled taxa will therefore be assessed using the comprised species richness/diversity layer by calculating the average, maximum and minimum amount of taxa held in each protected area, and the percent of different diversity-category areas which is protected and unprotected. 
 
 
-== Phase 3: Development of web visualisation to increase the impact of research outputs ==
+== Fase 3: Desarrollo de visualización web para aumentar el impacto de los resultados de la investigación ==
 
-Equally important to doing science is delivering it to the proper public. Not only scientific publications and grey literature (i.e. reports, working papers) need to be done, but also easy access to data needs to be provided. The best way to deliver data is providing a platform where users:
+Igualmente importante para la ciencia es  la entrega al público adecuado. No sólo las publicaciones científicas y la literatura gris (informes,documentos de trabajo) hay que hacer, sino también debe proporcionar el acceso fácil a los datos. La mejor manera de entregar los datos es proporcionar una plataforma donde los usuarios:
 
- * Can navigate through and visualise the data,
- * can dinamically play around with the data, and
- * can download the data,
+ * Puede navegar y visualizar los datos,
+ * puede jugar dinámicamente con los datos, y
+ * pueda descargar los datos,
 
 We are pursuing the development of a Google-Maps based interface to select a desired taxon, navigate through the niche modeling results as well as through the occurrence data, with the ability to differentiate between incorrect, corrected, new (georreferenced) and discarded locations (due to errors). This interface will also allow to query the threat assessment and conservation status metrics calculated in *Phase 2* and stored in a database, and will allow showing it as a small box for the selected taxon. A query on the total biodiversity layers can also be dynamically analyzed, and the metrics queried as well. 
 
 
-== Contacts and project staff ==
+== Contactos y personal del proyeco ==
 
  * Dr. Andy Jarvis (a.jarvis@cgiar.org), project coordinator
  
