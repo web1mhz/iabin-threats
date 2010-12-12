@@ -50,7 +50,7 @@ Pero, ¿cómo hacer que los datos sean lo suficientemente confiable?
  * Agregue referencias a los que no tienen
  * Comparar con los conservadores y la retroalimentación de la base de datos
 
-Documentación adecuada sobre cómo construir, cofigurar and run the tools is also provided in order to better manage knowledge transfer between and within TNs, y entre las redes temáticas y desarrolladores de proyectos (ver la tabla de contenido en la parte izquierda de esta página). Este proyecto ha sido creado en googlecode  con el objetivo de almacenar y proporcionar acceso a todo el código fuente y la documentación, y también proporciona una plataforma en donde los errores y los problemas pueden ser planteados como temas y discutidos con los desarrolladores.
+Documentación adecuada sobre cómo construir, cofigurar y ejecutar las herramientas se proporciona también con el fin de mejorar la gestión de la transferencia de conocimientos entre y dentro de las redes temáticas, y entre las redes temáticas y desarrolladores de proyectos (ver la tabla de contenido en la parte izquierda de esta página). Este proyecto ha sido creado en googlecode  con el objetivo de almacenar y proporcionar acceso a todo el código fuente y la documentación, y también proporciona una plataforma en donde los errores y los problemas pueden ser planteados como temas y discutidos con los desarrolladores.
 
 
 === Fase 1a: Verificación de coordenadas ===
