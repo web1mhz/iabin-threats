@@ -220,6 +220,7 @@ public class Client {
 					.println("There was a problem trying send the results to the server.");
 			System.out.println("ERROR:");
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 			System.out.println();
 			System.out.println(".....Trying to send back the results in "
 					+ parts + " parts....");
@@ -320,9 +321,8 @@ public class Client {
 				System.out.println(e.getMessage());
 			}
 		} catch (Exception e) {
-			System.out
-					.println("There was a problem trying to get the countries codes (ISOs)");
-			System.out.println("ERROR: ");
+			System.out.println("There was a problem");
+			System.out.println("ERROR:");
 			System.out.println(e.getMessage());
 		}
 
