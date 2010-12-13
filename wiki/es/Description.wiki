@@ -57,7 +57,7 @@ Documentación adecuada sobre cómo construir, cofigurar y ejecutar las herramie
 
 Aquí estamos preocupados por los errores geográficos. Errores comunes en bases de datos primarios sobre biodiversidad son: (1) errores de ortografía del país, estado, condado y nombre de localidades, (2) intercambio de latitud o longitud, (3) asignación del valor cero cuando la información no se encuentra, (4) coordenadas en diferentes sistemas o sistemas de desconocidos, (5) mal uso de decimales o el truncamiento de todos los decimales, (6) el uso de diferentes formatos de coordenadas (e.g. grados-minutos-segundos vs. grados decimales) sin la debida documentación, entre otros.
 
-En vista de eso hemos desarrollado e implementado un software automatizado en Java que se ejecuta en modo batch y evalúa los datos primarios de biodiversidad  de grandes bases de datos de forma automática, y proporciona estadísticas sobre la calidad de los datos. Nuestro software verifica las referencias geográficas (coordenadas) en tres niveles diferentes (Figure 2):
+En vista de eso hemos desarrollado e implementado un software automatizado en Java que se ejecuta en modo batch y evalúa los datos primarios de biodiversidad  de grandes bases de datos de forma automática, y proporciona estadísticas sobre la calidad de los datos. Nuestro software verifica las referencias geográficas (coordenadas) en tres niveles diferentes (Figura 2):
  # Nivel continental
  # Nivel de pais
  # Nivel ambiental
@@ -68,8 +68,8 @@ Figura 2 Diagrama de flujo del proceso de verificación de coordenadas
 Para verificar a nivel continental, usamos una máscara de áreas de tierra de alta resolución del SRTM líneas de costa de modelo de elevación digital (Jarvis et al., 2008); para verificar a nivel de país, utilizamos los datos del Fondo Mundial para las Áreas de Administración (Hijmans, 2010); y para verificar a nivel del medio ambiente, utilizamos la prueba de Tukey atípico (Tukey, 1977) en un espacio de veinte dimensiones propuesta por 19 índices bioclimáticos (Ramirez &  Bueno-Cabrera, 2009) derivados del conjunto de datos WorldClim (Hijmans et al., 2005) y la elevación (Jarvis et al., 2008). marcamos un registro como confiable solamente si:
 
  # Se encuentra en el país en el que se informa, que ha sido recogido y / u observado
- # Ser un registro de una especie terrestre, estr comprendido en las zonas terrestres, y
- # Is not flagged as an outlier for a given species in less than 80% of the 20 environmental variables used to describe the environment
+ # Es un registro de una especie terrestre, está comprendido en las zonas terrestres, y
+ # no se ha marcado como una capa para unas especies dadas en menos de 80% de las 20 variables ambientales usadas para describir el ambiente.
 
 
 === Fase 1b: Corrección de coordenadas ===
