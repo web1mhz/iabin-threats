@@ -33,7 +33,7 @@ Reconocemos la importancia de la relación entre la biodiversidad y la socio-eco
 
 == Fase 1: Desarrollo de herramientas automatizadas, evaluación y mejora de datos primarios de biodiversidad de IABIN TNs ==
 
-Uno de los temas mas relevantes con respecto a los análisis y las últimas conclusiones derivadas del uso de los datos de biodiversidad primaria es la confianza en su calidad. Hemos construido algoritmos automatizados (Figure 1) desarrollado en el lenguaje de programación Java que permite un exhaustivo proceso de verificación de coordenadas (detección de error) y proceso de georreferenciación (corrección de error). A través de este proceso intentamos desarrollar una plataforma automatizada para las redes temáticas de IABIN para evaluar sus propios datos cada vez que más datos se incorporen en cualquiera de sus bases de datos. 
+Uno de los temas mas relevantes con respecto a los análisis y las últimas conclusiones derivadas del uso de los datos de biodiversidad primaria es la confianza en su calidad. Hemos construido algoritmos automatizados (Figura 1) desarrollados en el lenguaje de programación Java que permiten un exhaustivo proceso de verificación de coordenadas (detección de error) y proceso de georreferenciación (corrección de error). A través de este proceso intentamos desarrollar una plataforma automatizada para las redes temáticas de IABIN para evaluar sus propios datos cada vez que más datos se incorporen en cualquiera de sus bases de datos. 
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.png
 
@@ -86,9 +86,9 @@ En este caso particular, hemos desarrollado un software que utiliza todos los re
 
 == Fase 2: Modelización de la distribución de especies, evaluación de amenaza y estado de conservación ==
 
-Reconocemos la importancia de la relación entre la biodiversidad y la socio-economía, y la dependencia de los seres humanos sobre la biodiversidad y servicios de alta calidad de los ecosistemas. Por lo tanto, consideramos que es fundamental evaluar el nivel en el que la biodiversidad está amenazada y conservada en todo el mundo, y en particular (dado el enfoque de IABIN) en América Latina, donde hay una presencia importante de "puntos" de biodiversidad (por ejemplo, Bosque Atlántico Brasileño, Yasuní de Ecuador Parque Nacional, el Escudo de Guayana, la selva amazónica, entre otros) hacen que las estrategias de conservación sean importantes hacia el futuro a corto y largo plazo. Utilizando la más alta calidad de los datos primarios sobre biodiversidad de las bases de datos de las Redes Temáticas de IABIN, nosotros:
+Reconocemos la importancia de la relación entre la biodiversidad y la socio-economía, y la dependencia de los seres humanos sobre la biodiversidad y servicios de alta calidad de los ecosistemas. Por lo tanto, consideramos que es fundamental evaluar el nivel en el que la biodiversidad está amenazada y conservada en todo el mundo, y en particular (dado el enfoque de IABIN) en América Latina, donde hay una presencia importante de "puntos" de biodiversidad (por ejemplo, Bosque Atlántico Brasileño, Parque Nacional Yasuní de Ecuador , el Escudo de Guayana, la selva amazónica, entre otros) hacen que las estrategias de conservación sean importantes hacia el futuro a corto y largo plazo. Utilizando la más alta calidad de los datos primarios sobre biodiversidad de las bases de datos de las Redes Temáticas de IABIN, nosotros:
 
- * Desarrollar la distribución de especies usando una técnica de modelado,
+ * Desarrollaremos la distribución de especies usando una técnica de modelado,
  * Superposición de estas distribuciones con una serie de amenazas antropogénicas espacialmente explícitas,
  * Superposición de estas distribuciones con la distribución actual de las áreas protegidas, y
  * Calcular los indicadores adecuados tanto para validar los modelos desarrollados y para evaluar el conjunto de las especies sobre el estado de amenaza y conservación.
