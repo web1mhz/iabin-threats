@@ -6,13 +6,11 @@
    * [Especificaciones Generales]
    * [Preguntas Frecuentes]
  * Filtro de Datos
-   * [DescriptionFilter Descripción]
    * [HowToBuildITA Cómo construir el proyecto ITA]
    * [Configuration Configuración] 
    * [RunningProcedure Procedimiento de Ejecución]
    * [API]
  * Re-Georreferenciación
-   * [DescriptionGeo Descripción]
    * [HowToBuildITABG Cómo construir el proyecto ITA-BG]
    * [Configurationbg Configuración]
    * [RunningProcedureBG Procedimiento de Ejecución] 
