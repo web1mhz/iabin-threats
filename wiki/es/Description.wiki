@@ -37,9 +37,9 @@ Uno de los temas mas relevantes con respecto a los análisis y las últimas conc
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.png
 
-Figure 1 Diagrama de flujo del proceso verificación de coordenadas.
+Figura 1 Evaluación y mejora de las bases de datos de las redes temáticas de IABIN  utilizando algoritmos automatizados.
 
-Pero, ¿cómo hacer que los datos sean lo suficientemente confiable?
+Pero, ¿cómo hacer que los datos sean lo suficientemente confiable? Hemos implementado algoritmos que:
 
  * Verifique las coordenadas en los diferentes niveles
  * Si los registros son los que dicen que son?
