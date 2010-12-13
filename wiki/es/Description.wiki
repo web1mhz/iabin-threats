@@ -119,19 +119,19 @@ Buscamos el desarrollo de una interfaz basada en google maps para seleccionar un
 
 == Contactos y personal del proyeco ==
 
- * Dr. Andy Jarvis (a.jarvis@cgiar.org), project coordinator
+ * Dr. Andy Jarvis (a.jarvis@cgiar.org), Coordinador del proyecto
  
- * Julian Ramirez-Villegas (j.r.villegas@cgiar.org), spatial analysis supervision
- * Louis Reymondin (louis.reymondin@gmail.com), development supervision
+ * Julian Ramirez-Villegas (j.r.villegas@cgiar.org), Supervisión de análisis espacial
+ * Louis Reymondin (louis.reymondin@gmail.com), Supervisión de desarrollo
  
- * Daniel Amariles (d.a.amariles@cgiar.org), developer
- * Hector Tobon (h.f.tobon@cgiar.org), developer
- * Johannes Signer (j.m.signer@gmail.com), ecologist and spatial analyst
- * Jhon Jairo Tello (jhoanse@gmail.com), developer
- * Jorge Camacho (lotvxx@gmail.com), developer
+ * Daniel Amariles (d.a.amariles@cgiar.org), desarrollador
+ * Hector Tobon (h.f.tobon@cgiar.org), desarrollador
+ * Johannes Signer (j.m.signer@gmail.com), ecologista y analista espacial
+ * Jhon Jairo Tello (jhoanse@gmail.com), desarrollador
+ * Jorge Camacho (lotvxx@gmail.com), desarrollador
 
 
-== References ==
+== Referencias ==
 
 Bass MS, Finer M, Jenkins CN, Kreft H, Cisneros-Herrera DF, et al. (2010) Global Conservation Significance of Ecuador’s Yasuní National Park. PLoS ONE 5(1): e8767. doi: 10.1371/journal.pone.0008767
 
