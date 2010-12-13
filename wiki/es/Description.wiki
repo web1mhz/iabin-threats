@@ -114,7 +114,7 @@ Igualmente importante para la ciencia es  la entrega al público adecuado. No s�
  * puede jugar dinámicamente con los datos, y
  * pueda descargar los datos,
 
-We are pursuing the development of a Google-Maps based interface to select a desired taxon, navigate through the niche modeling results as well as through the occurrence data, with the ability to differentiate between incorrect, corrected, new (georreferenced) and discarded locations (due to errors). This interface will also allow to query the threat assessment and conservation status metrics calculated in *Phase 2* and stored in a database, and will allow showing it as a small box for the selected taxon. A query on the total biodiversity layers can also be dynamically analyzed, and the metrics queried as well. 
+Buscamos el desarrollo de una interfaz basada en google maps para seleccionar un taxon  deseado, navegar a través de los resultados de modelo de nicho también como a través de las ocurrencias de datos , con la habilidad para diferenciar entre incorrecto, corregido, nuevo (georreferenciado) y ubicaciones descartadas (debido a errores). Esta interfaz tambien permitirá consultar la evaluación de amenazas y las métricas de estatus de conservación calculadas en la fase 2 y almacenadas en la base de datos, y permitirá mostrarlo como una pequeña caja del taxon seleccionado. Una consulta en las capas totales de biodiversidad puede ser tambien analizada dinámicamente, y las métricas consultadas también. 
 
 
 == Contactos y personal del proyeco ==
