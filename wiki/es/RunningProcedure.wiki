@@ -81,7 +81,7 @@ Por ejemplo, la creación de un archivo de JGM en sistema de archivos Linux con 
 
   
 ===4 Filtrando especies no terrestres===
-====Description====
+====Descripción====
 Los registros de especies no terrestres que no son posibles de evaluar. En consecuencia, las especies no terrestres deben ser discriminadas y las terrestres almacenadas en la tabla _temp_land_5A_ .
 
 Un método confiable para hacer esto, sería la de conocer el _nub_concept_id_ de todas las especies no terrestres y filtrar los registros de  _temp_land_4A_ e insertar sólo los terrestres que están en la tabla _temp_land_5A_ . Pero todos estos nub_concept_id son dificiles de conocer. Asi que en este paso las especies no terrestres se pueden determinar de la siguiente manera: 
