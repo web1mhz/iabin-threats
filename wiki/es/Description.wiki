@@ -65,7 +65,7 @@ En vista de eso hemos desarrollado e implementado un software automatizado en Ja
 http://iabin-threats.googlecode.com/svn/wiki/resources/Proceso.PNG
 Figura 2 Diagrama de flujo del proceso de verificación de coordenadas
 
-Para verificar a nivel continental, usamos una mascara de areas de tierra de alta resolucion del SRTM lineas de costa de modelo de elevacion digital (Jarvis et al., 2008); para verificar a nivel de país, utilizamos los datos del Fondo Mundial para las Áreas de Administración (Hijmans, 2010); y para verificar a nivel del medio ambiente, utilizamos la prueba de Tukey atípico (Tukey, 1977) en un espacio de veinte dimensiones propuesta por 19 índices bioclimáticos (Ramirez &  Bueno-Cabrera, 2009) derivados del conjunto de datos WorldClim (Hijmans et al., 2005) y la elevación (Jarvis et al., 2008). marcamos un registro como confiable solamente si:
+Para verificar a nivel continental, usamos una máscara de áreas de tierra de alta resolución del SRTM líneas de costa de modelo de elevación digital (Jarvis et al., 2008); para verificar a nivel de país, utilizamos los datos del Fondo Mundial para las Áreas de Administración (Hijmans, 2010); y para verificar a nivel del medio ambiente, utilizamos la prueba de Tukey atípico (Tukey, 1977) en un espacio de veinte dimensiones propuesta por 19 índices bioclimáticos (Ramirez &  Bueno-Cabrera, 2009) derivados del conjunto de datos WorldClim (Hijmans et al., 2005) y la elevación (Jarvis et al., 2008). marcamos un registro como confiable solamente si:
 
  # Se encuentra en el país en el que se informa, que ha sido recogido y / u observado
  # Ser un registro de una especie terrestre, estr comprendido en las zonas terrestres, y
@@ -96,8 +96,9 @@ Reconocemos la importancia de la relación entre la biodiversidad y la socio-eco
 Una variedad de herramientas y bases de datos se proponen para su uso en este contexto particular, (Figura 3)
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/niche-modeling-workflow.PNG
-Figura 3 Diagrama de flujo del modelado de las especies y la amenaza y el proceso de evaluación para la conservación
-Se generarán un Script basado en Java  para la formación de modelos de nicho para todos los taxons terrestres con al menos 10 registros de presencia única dentro de la red de IABIN. Para este fin, se utilizará el modelo de máxima entropía(Phillips et al., 2006). Este enfoque ha sido ampliamente evaluado por varios autores y ha demostrado que funcionan muy bien en varias condiciones de sesgo de muestreo o con muy poca información, con una mayor precisión en comparación con otros modelos de nicho (Elith et al., 2006; Hijmans & Graham, 2006).
+Figura 3 Diagrama de flujo del modelado de las especies y la amenaza y el proceso de evaluación para la conservación.
+
+Se generará un Script basado en Java  para la formación de modelos de nicho para todos los taxons terrestres con al menos 10 registros de presencia única dentro de la red de IABIN. Para este fin, se utilizará el modelo de máxima entropía(Phillips et al., 2006). Este enfoque ha sido ampliamente evaluado por varios autores y ha demostrado que funcionan muy bien en varias condiciones de sesgo de muestreo o con muy poca información, con una mayor precisión en comparación con otros modelos de nicho (Elith et al., 2006; Hijmans & Graham, 2006).
 
 Los modelos de nicho serán entrenados con un escenario climático de referencia conforme a lo dispuesto por WorldClim (Hijmans et al., 2005), en una resolución espacial de 5 arco-minutos. Seleccionado métricas de rendimiento del modelo se facilitará el modelado de todas las especies  (i.e. área bajo la curva ROC, la correlación, desviación logística y la distancia euclidiana).
 
