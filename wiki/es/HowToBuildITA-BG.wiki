@@ -1,5 +1,5 @@
 #summary Cómo contruir la herramienta de filtrado de datos ITA
-#labels Phase-Implementation,Not-Finished
+#labels Fase-Implementación,No terminado
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]

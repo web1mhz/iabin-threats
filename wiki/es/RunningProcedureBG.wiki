@@ -1,5 +1,5 @@
 #summary Pasos para utilizar la herramienta Biogeomancer.
-#labels Featured
+#labels Destacado
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/RunningProcedureBG?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
