@@ -62,7 +62,7 @@ En vista de eso hemos desarrollado e implementado un software automatizado en Ja
  # Nivel de pais
  # Nivel ambiental
 
-http://iabin-threats.googlecode.com/svn/wiki/resources/script-process.PNG
+http://iabin-threats.googlecode.com/svn/wiki/resources/Proceso.PNG
 Figura 2 Diagrama de flujo del proceso de verificación de coordenadas
 
 Para verificar a nivel continental, usamos una mascara de areas de tierra de alta resolucion del SRTM lineas de costa de modelo de elevacion digital (Jarvis et al., 2008); para verificar a nivel de país, utilizamos los datos del Fondo Mundial para las Áreas de Administración (Hijmans, 2010); y para verificar a nivel del medio ambiente, utilizamos la prueba de Tukey atípico (Tukey, 1977) en un espacio de veinte dimensiones propuesta por 19 índices bioclimáticos (Ramirez &  Bueno-Cabrera, 2009) derivados del conjunto de datos WorldClim (Hijmans et al., 2005) y la elevación (Jarvis et al., 2008). marcamos un registro como confiable solamente si:
@@ -93,7 +93,7 @@ Reconocemos la importancia de la relación entre la biodiversidad y la socio-eco
  * Superposición de estas distribuciones con la distribución actual de las áreas protegidas, y
  * Calcular los indicadores adecuados tanto para validar los modelos desarrollados y para evaluar el conjunto de las especies sobre el estado de amenaza y conservación.
 
-Una variedad de herramientas y bases de datos se proponen para su uso en este contexto particular, (Figure 3)
+Una variedad de herramientas y bases de datos se proponen para su uso en este contexto particular, (Figura 3)
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/niche-modeling-workflow.PNG
 Figura 3 Diagrama de flujo del modelado de las especies y la amenaza y el proceso de evaluación para la conservación
