@@ -1,5 +1,5 @@
 #summary Cómo contruir la herramienta de Re-georreferenciación ITA-BG
-#labels Phase-Implementation,Not-Finished
+#labels Fase-Implementación,No terminado
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/HowToBuildITABG?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
