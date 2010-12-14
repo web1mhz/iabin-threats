@@ -20,6 +20,7 @@ Todo el trabajo se realizó con:
   * GRASS 6.4
   * Bash
 == Preparación y organización de los datos  ==
+Flujo de trabajo:
   * *Organización de los datos de especies:* Los datos de presencia de datos se dividieron a nivel de especie. Para cada especie se creó un directorio que contiene los puntos de presencia para esas especies en el archivo _info.txt_. En el archivo _info.txt_ se encuentra guardada información básica de la especie (i.e. reino, familia, genero, número de presencia de puntos). Durante el proceso de modelado los resultados para la especie se escriben en este archivo. 
   * *Obteniendo puntos de fondo:* MaxEnt requiere una muestra de fondo al azar. Para cada especie se determinó en cuales biomas(según la clasificación de wwf) se redujo la presencia de puntos. A partir de estos biomas se ha elaborado una muestra aleatoria de 10.000 para los puntos de fondo.
   * *Extracción de los valores de las variables climáticas:* Las coordenadas de todas las especies y los puntos de fondo se fusionaron. Usando maxent los valores de las 8 variables ambientales fueron extraídos.para cada especie, para cada presencia y para todos los valores de fondo se asignaron las variables ambientales apropiadas.
@@ -45,8 +46,3 @@ Todo el trabajo se realizó con:
 
 
 
-= Sintaxis =
-Añadir el contenido aquí. Dar formato al contenido con:
-  * Texto en *negrita* or _cursiva_
-  * Títulos, párrafos y listas
-  * Enlaces automáticos a otras páginas wiki

@@ -166,7 +166,7 @@ En modo local sólo tiene que ejecutar una instancia.
 
 *Línea de comando:*
 
- {{{java -XmxBYTES -cp ita.jar}}}
+ {{{java -XmxBYTES -jar ita.jar}}}
 
 Ejemplo: 
 

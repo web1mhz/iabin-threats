@@ -24,7 +24,7 @@ La mayoría de los parámetros corresponden a las rutas de archivos y rutas de d
 ====Procedimiento Técnico====
 Para generar el archivo de configuración por defecto, ejecute el script en java con los siguientes parámetros para la parte del servidor: 
 
- {{{java -cp ita.jar org.ciat.ita.bg.server.ServerConfig}}}
+ {{{java -cp ita-bg.jar org.ciat.ita.bg.server.ServerConfig}}}
 
 A continuación edite el archivo server_config.xml
   
@@ -56,7 +56,7 @@ Ejecute el script en java con los siguientes parámetros:
 
 *Línea de comando:*
 
- {{{java -XmxBYTES -cp ita.jar org.ciat.ita.bg.Biogeomancer}}}
+ {{{java -XmxBYTES -cp ita-bg.jar org.ciat.ita.bg.Biogeomancer}}}
 
 
 ===Local===
@@ -68,9 +68,9 @@ En modo local sólo necesita ejecutar una instancia.
 
 *Línea de comando:*
 
- {{{java -XmxBYTES -cp ita.jar}}}
+ {{{java -XmxBYTES -jar ita-bg.jar}}}
 
 Ejemplo
 
- {{{java -Xmx1500m -jar ita.jar}}}
+ {{{java -Xmx1500m -jar ita-bg.jar}}}
 

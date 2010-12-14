@@ -25,7 +25,7 @@ Le invitamos a leer primero la [Descripcion] del proyecto.
  
 Importar [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita-bg/src/main/java/org/ciat/ita/bg ita-bg project] de este repositorio.
 
- {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita-bg ita-bg}}}
+ {{{svn checkout https://iabin-threats.googlecode.com/svn/trunk/ita-bg ita-bg}}}
  
 Para actualizar su copia, ejecute el comando:
  

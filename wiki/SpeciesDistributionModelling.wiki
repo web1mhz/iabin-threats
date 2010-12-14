@@ -38,7 +38,7 @@ Workflow:
  * Task 14: Here a convex hull for the all presence points is calculated. This hull is buffered by 300 km and the raster with the predictions is clipped to the buffered convex hull.
  * Task 16: The species richness for each genus is calculated
  * Task 17: The species richness for each species type is calculated
- * Task 18: For each species the area under each each level (no, low, mid, high) of each treat is calculated. Additionally the fraction of the area that is still available and and already lost is calculated.
+ * Task 18: For each species the area under each each level (no, low, mid, high) of each treat is calculated. Additionally the fraction of the area that is still available and already lost is calculated.
  * Task 19: For each species the mean occurrence probability inside and outside of protected areas is calculated. Additionally for each species the percentage of area protected is calculated.
  * Task 20: For each protected area the mean species richness and the mean of each threat is calculated.
  * Task 21: For each species type the mean species richness is calculated and the percent that is protected is calculated.
