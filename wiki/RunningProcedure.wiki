@@ -203,6 +203,7 @@ example
 ====Description====
 Within each specie calculate the maximum value and the minimum value of each environmental variable to determinate when the record is an outlier for that variable.
  
+
 *Inputs:* _temp_good_records_ table filled with the geospatially reliable records data and the corresponding environmental data 
 
 *Outputs:* _temp_good_records_ table with the count of the outlier for all variables 
@@ -230,7 +231,9 @@ example:
 ====Description==== 
 This is an optional step. Its aim is to extract some statistics of the filtering steps. how many records are reliable and how many are not, specifying the error type. 
 
+
 *Inputs:* _temp_good_records_ table with the count of the outlier for all variables 
+
 *Outputs:* The XML file _statistics.xml_ is generated. It contains all the statistics of the set of records evaluated 
 
 ====Technical procedure====
@@ -272,11 +275,17 @@ Exporting the reliable records into a comma separated file to be run in Maxent
 ====Technical procedure====
 Run the script using java with the following parameters: 
   
+
 *Parameters:* 
+
  {{{csv}}} To run the corresponding method to export a csv per specie. 
+ 
  {{{-Xmx<BYTES>}}} of Maximum java heap size 
+ 
  {{{-n <NUMBER>}}} of records that should be analized to show the time statistics 
+ 
  {{{-d <OUTPUT>}}} directory exactly location  
+ 
 
 *Command line:*
 
@@ -299,9 +308,13 @@ This script generates the lambda files and immediately after generates the proje
 Run the script in java with the following parameters: 
 
 *Parameters:*
+
  {{{-Xmx<BYTES>}}} of Maximum java heap size 
+ 
  {{{maxent}}} to Run the corresponding script to generate species projections  
+ 
  {{{-i <INSTANCES>}}} of Maxent  that will be executed at same time 
+ 
 
 *Command line:*
 
