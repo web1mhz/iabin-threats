@@ -34,13 +34,13 @@ Todo el trabajo se realizó con:
  # Con la función `get.sp.swd()` los archivos generados en el último paso se dividen de nuevo y se crea un archivo SWD para cada especie para los puntos de orígenes y puntos de presencia.
  # En el siguiente ciclo para cada servidor se crea una carpeta, cada carpeta contiene para cada núcleo disponible en el servidor un archivo de R BATCH. Que se pueden iniciar con `R BATCH filename.R`. Las especies se distribuyen por igual en todos los núcleos.
  * Tarea 15: Para esta parte, R debe ser iniciado desde un grass shell. Para cada modelo las predicciones se importan a grass y las estadísticas de evaluación extraídas y escritas en *info.txt* para cada especie. 
- * Tarea 14: Here a convex hull for the all presence points is calculated. This hull is buffered by 300 km and the raster with the predictions is clipped to the buffered convex hull.
- * Tarea 16: The species richness for each genus is calculated
- * Tarea 17: The species richness for each species type is calculated
- * Tarea 18: For each species the area under each each level (no, low, mid, high) of each treat is calculated. Additionally the fraction of the area that is still available and and already lost is calculated.
- * Tarea 19: For each species the mean occurrence probability inside and outside of protected areas is calculated. Additionally for each species the percentage of area protected is calculated.
- * Tarea 20: For each protected area the mean species richness and the mean of each threat is calculated.
- * Tarea 21: For each species type the mean species richness is calculated and the percent that is protected is calculated.	
+ * Tarea 14: Aquí se calcula una envolvente convexa de todos los puntos de presencia. This hull is buffered by 300 km and the raster with the predictions is clipped to the buffered convex hull.
+ * Tarea 16: Se calcula la riqueza de especies de cada género. 
+ * Tarea 17: Se calcula la riqueza de especies por cada tipo de especies.
+ * Tarea 18: For each species the area under each each level (no, low, mid, high) of each treat is calculated. Además,se calcula la fracción del área que todavía está disponible y la que ya se ha perdido.
+ * Tarea 19: Para cada especie, se calcula la probabilidad media de ocurrencia dentro y fuera de las áreas protegidas. Además, para cada especie se calcula el porcentaje de área protegida.
+ * Tarea 20: Para cada área protegida se calcula la media de la riqueza de especies y la media de cada amenaza.
+ * Tarea 21: Para cada tipo de especies se calcula la media de la riqueza de especies y se calcula el porcentaje que está protegido.	
 
 
 
