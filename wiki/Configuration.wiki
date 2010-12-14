@@ -70,9 +70,9 @@ As the _svn_ command doesn't import these files, ITA project can generate them a
 
 run the following commands:
 
-     java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig
+     java -cp ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig
 
-     java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.server.ServerConfig
+     java -cp ita-0.1-SNAPSHOT.jar org.ciat.ita.server.ServerConfig
 
 Both XML should have been created.
 
