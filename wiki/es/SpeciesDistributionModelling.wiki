@@ -33,8 +33,8 @@ Todo el trabajo se realizó con:
   # La función `get.full.swd(...)` se ejecuta dos veces. Una vez para los puntos de fondo y una vez para los puntos de presencia. `get.full.swd()` se encuentra en *002_get_background.R*. la funcion extrae todos los puntos unicos de presencia y ausencia. para estos puntos los valores de las capas ambientales se extraen con `get.full.swd()` basado en Maxent, y algunas herramientas de shell de Unix como awk.
  # Con la función `get.sp.swd()` los archivos generados en el último paso se dividen de nuevo y se crea un archivo SWD para cada especie para los puntos de orígenes y puntos de presencia.
  # En el siguiente ciclo para cada servidor se crea una carpeta, cada carpeta contiene para cada núcleo disponible en el servidor un archivo de R BATCH. Que se pueden iniciar con `R BATCH filename.R`. Las especies se distribuyen por igual en todos los núcleos.
- * Tarea 15: Para esta parte, R debe ser iniciado desde un grass shell. Para cada modelo las predicciones se importan a grass y las estadísticas de evaluación extraídas y escritas en *info.txt* para cada especie. 
- * Tarea 14: Aquí se calcula una envolvente convexa de todos los puntos de presencia. This hull is buffered by 300 km and the raster with the predictions is clipped to the buffered convex hull.
+ * Tarea 15: Para esta parte, R debe ser iniciado desde un grass shell. Para cada modelo las predicciones se importan a grass y las estadísticas de evaluación son extraídas y escritas en *info.txt* para cada especie. 
+ * Tarea 14: Aquí se calcula un área convexa de todos los puntos de presencia. This hull is buffered by 300 km and the raster with the predictions is clipped to the buffered convex hull.
  * Tarea 16: Se calcula la riqueza de especies de cada género. 
  * Tarea 17: Se calcula la riqueza de especies por cada tipo de especies.
  * Tarea 18: For each species the area under each each level (no, low, mid, high) of each treat is calculated. Además,se calcula la fracción del área que todavía está disponible y la que ya se ha perdido.
