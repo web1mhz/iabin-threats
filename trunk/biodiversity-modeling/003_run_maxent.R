@@ -38,15 +38,9 @@ system(paste("java -mx",max.ram,"m -jar ", dir.maxent, "/maxent.jar nowarnings o
 system(paste("java -mx",max.ram,"m -cp ", dir.maxent, "/maxent.jar density.Project ",dir.out,"/",sp_id,"/results/",sp_id,".lambdas ",dir.proj, " ",dir.out,"/",sp_id,"/proj/",sp_id," nowarnings fadebyclamping -r -a -z", sep=""),wait=T)
 
 
-## zipWrite fails with snowfall, hence use the unix commands
-system(paste("tar -zcf ",dir.out,"/",sp_id,".tar.gz -C", dir.out," ",sp_id,sep=""))
+## zip files
+system(paste("zip -r ",dir.out,"/",sp_id,".zip ", dir.out,"/",sp_id,sep=""))
 system(paste("rm -r ",dir.out,"/",sp_id, sep=""))
-
-## write *.gz, function provided by J. Ramirez
-#for (raster in list.files(paste(sp_id,"proj/", sep="/"))) zipWrite(raster(paste(sp_id,"proj",raster, sep="/")), paste(sp_id,"proj", sep="/"), paste(strsplit(raster, "\\.")[[1]][1],"gz", sep="."))
-
-# rm original files
-#file.remove(paste(sp_id,"/proj/",list.files(paste(sp_id,"/proj/", sep=""), pattern="*.asc"), sep=""))
 
 tt <- proc.time()[3] - t.start
 write(paste(sp_id, tt, Sys.time(), sep=";"), log.file, append=T)

@@ -32,6 +32,7 @@ get.background <- function(sp_id, ecoregions, v.all, no.background=10000, make.s
   #v.all <- getValues(ecoregions)
   v.ok <- v.ok[!is.na(v.ok)]
   v.new <- ifelse(match(v.all, v.ok),1,NA)
+  if(any(!is.na(v.new))){
   rr <- setValues(ecoregions, v.new)
   rr.df <- as.data.frame(as(rr,"SpatialPointsDataFrame"))
   background <- rr.df[sample(1:nrow(rr.df), no.background, replace=T),1:2]
@@ -47,6 +48,8 @@ get.background <- function(sp_id, ecoregions, v.all, no.background=10000, make.s
     # make swd background
     system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",dir.out,"/",sp_id,"/training/background.csv ",env.var, ">",dir.out,"/",sp_id,"/training/background_swd.csv", sep=""),wait=T)
   }
+  } else write(sp_id, paste(dir.out,"/no_bg_made.csv", sep=""), append=T)
+  
 }
 
 ### funciton to get swd files, not that this should only be run on a unix machine since it requires awk, and some shell tools
@@ -78,4 +81,7 @@ get.sp.swd <- function(sp_id, type="species",swd=read.csv(paste(dir.out,"/specie
 
   # write the file again
   write.table(data,paste(dir.out,"/", sp_id,"/training/",type,"_swd.csv", sep=""), row.names=F, quote=F, sep=",")
+
+  # print progress
+  print(paste("finished with ..... ", sp_id))
 }

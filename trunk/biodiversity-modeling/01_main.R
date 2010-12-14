@@ -17,8 +17,6 @@ rm(list=ls())
 source("./parameters/parameters.R")
 # save parameters that were used in this run to the results directory
 save(list=ls(), file=paste(dir.out,"/parameters.RData",sep=""))
-# set working directory
-setwd(dir.wd)
 
 ###########################################
 # Read fils and create for each species 
@@ -27,7 +25,7 @@ setwd(dir.wd)
 ###########################################
 
 sp <- apply(species.files.raw,1,write.species.csv,log.file=log.make.species.csv, req.points=pts.min,dir.out=dir.out)
-save(sp, file=species.id.to.process)
+save(sp, file=species.id.to.process) 
 
 ###########################################
 # Create SWD files and run maxent
@@ -53,6 +51,19 @@ system.time(sfSapply(sp, function(i) get.background(sp_id=i, ecoregions=eco, v.a
  
 sfStop()
 
+## remove files that have no background
+
+if(any(grepl("no_bg", list.files(path=dir.out)))) {
+  files <- read.table(paste(dir.out,"no_bg_made.csv", sep="/"))
+  system(paste("mkdir ", dir.out,"/no_bg", sep=""))
+  for (i in files) system(paste("mv -v ",dir.out,"/",i," ",dir.out,"/no_bg",i,sep=""))
+  sp <- list.files(path=dir.out, pattern="^[0-9].*")
+  
+  # save updated sp list
+  save(list=ls(), file=paste(dir.out,"/parameters.RData"))
+}
+
+
 ## Make swd files 
 # extract all unique points
 system.time(get.full.swd(type="species", env.full=env.full, dir.out=dir.out))
@@ -68,6 +79,7 @@ sfExport("pts.full")
 sfExport("dir.out")
 system.time(sfSapply(sp, function(x) get.sp.swd(sp_id=x, type="background", pts=pts.full, swd=read.csv(paste(dir.out, "/background_swd.csv", sep="")))))
 sfStop()
+
 
 
 ##### Run Maxent #####
@@ -119,11 +131,11 @@ for (server in 1:length(servers))
 # most likely this will be continued after some time and parameters will need to be reloaded
 # the name of the out.dir of the run that shall be continued need to be given here!
 # This R session needs to be started from a GRASS shell in the right mapset with the right region!
-parameters <- "results/20101028.5/parameters.RData"
+parameters <- "results/20101207.3/parameters.RData"
 load(parameters)
 # load species ids
 load(species.id.to.process)
-files <- list.files(path=dir.out,pattern="^[0-9].*.tar.gz")
+files <- list.files(path=dir.out,pattern="^[0-9].*.zip")
 
 # This script must be run within a grass shell
 # check mapset and region are right
@@ -141,18 +153,18 @@ files.error <- files[files[,2]<1048576,]
 files <- files[files[,2]>=1048576,]
 
 # prep out file
-eval.stats <- data.frame(id=rep(NA, length(files[,1])), avg.auc_train=NA, avg.auc_test=NA, sd.auc=NA, prevalence=NA, ten.percentile=NA, roc=NA)
+eval.stats <- data.frame(id=rep(NA, length(files[,1])), avg.auc_train=NA, avg.auc_test=NA, sd.auc=NA, prevalence=NA, ten.percentile=NA, roc=NA, bio1=NA, bio12=NA, bio15=NA, bio4=NA, bio5=NA, bio6=NA, bio16=NA, bio17=NA, max.contribution=NA)
 
 write.table(files.error, paste(dir.out, "/species_where_maxent_failed.txt",sep=""))
 
 st <- proc.time()
 for (i in 1:length(files[,1])){
-  system(paste("tar -zxf ",dir.out,"/",files[i,1]," -C ", dir.out,sep="")) # extract the archives
+  system(paste("unzip ",dir.out,"/",files[i,1],sep="")) # extract the archives
   this.id=strsplit(files[i,1],"\\.")[[1]][1] # get the id of the species that is being procesed 
   
-  # calculate roc threshold
-  for (j in 0:(me.no.replicates-1)){
-    roc <- c()
+  # calculate roc threshold, min distance
+  roc <- c()  
+  for (j in 0:(me.no.replicates-1)){ ## some revision is needed here!    
     omission.rate <- read.csv(paste(dir.out,"/",this.id, "/cross/", this.id, "_",j,"_omission.csv", sep=""))
     spec <- omission.rate$Fractional.area
     sens <- 1-omission.rate$Training.omission
@@ -169,10 +181,30 @@ for (i in 1:length(files[,1])){
   eval.stats[i,'id'] <- this.id
   eval.stats[i,'avg.auc_train'] <- me.res[(me.no.replicates+1),'Training.AUC']
   eval.stats[i,'avg.auc_test'] <- me.res[(me.no.replicates+1),'Test.AUC']
-  eval.stats[i,'sd.auc'] <- me.res[(me.no.replicates+1),'AUC.Standard.Deviation']
+  
+  # if sd < 0, substitute for NA, that is because there fewer than 20 points and CV fails
+  me.sd <- me.res[(me.no.replicates+1),'AUC.Standard.Deviation']
+  if (me.sd < 0) {eval.stats[i,'sd.auc'] <- NA} else eval.stats[i,'sd.auc'] <- me.sd
+
   eval.stats[i,'prevalence'] <- me.res[(me.no.replicates+1),'Prevalence..average.of.logistic.output.over.background.sites.']
   eval.stats[i,'ten.percentile'] <- me.res[(me.no.replicates+1),'X10.percentile.training.presence.logistic.threshold']
   eval.stats[i,'roc'] <- mean(roc)
+
+  # bio variables
+  eval.stats[i,'bio1'] <- me.res[(me.no.replicates+1),'bio1.contribution']
+  eval.stats[i,'bio12'] <- me.res[(me.no.replicates+1),'bio12.contribution']
+  eval.stats[i,'bio15'] <- me.res[(me.no.replicates+1),'bio15.contribution']
+  eval.stats[i,'bio4'] <- me.res[(me.no.replicates+1),'bio4.contribution']
+
+  # other four variales, only if a species has more than 10 records
+  if(any(grepl("bio5", names(me.res)))) eval.stats[i,'bio5'] <- me.res[(me.no.replicates+1),'bio5.contribution']
+  if(any(grepl("bio6", names(me.res)))) eval.stats[i,'bio6'] <- me.res[(me.no.replicates+1),'bio6.contribution']
+  if(any(grepl("bio16", names(me.res)))) eval.stats[i,'bio16'] <- me.res[(me.no.replicates+1),'bio16.contribution']
+  if(any(grepl("bio17", names(me.res)))) eval.stats[i,'bio17'] <- me.res[(me.no.replicates+1),'bio17.contribution']
+
+  # get the bio with the max contribution
+  eval.stats[i, 'max.contribution'] <- names(eval.stats)[which(eval.stats[i,]==max(eval.stats[i,grep("bio", names(eval.stats))], na.rm=T))]
+
   print(paste("finished ", i, "of", length(files[,1]), "species."))
   
   # import projection to grass
@@ -207,7 +239,16 @@ write(paste("avg.auc_train : ",eval.stats[eval.stats[,1]==i,'avg.auc_train'],
               "\nsd.auc : ",eval.stats[eval.stats[,1]==i,'sd.auc'],
               "\nprevalence : ",eval.stats[eval.stats[,1]==i,'prevalence'],
               "\nten.percentile : ",eval.stats[eval.stats[,1]==i,'ten.percentile'], 
-              "\nroc : ",  eval.stats[eval.stats[,1]==i,'roc'], sep=""), paste(dir.out,i,"info.txt", sep="/"), append=T)
+              "\nroc : ",  eval.stats[eval.stats[,1]==i,'roc'], 
+              "\nbio1 : ", eval.stats[eval.stats[,1]==i,'bio1'],
+              "\nbio4 : ", eval.stats[eval.stats[,1]==i,'bio4'],
+              "\nbio12 : ", eval.stats[eval.stats[,1]==i,'bio12'],
+              "\nbio15 : ", eval.stats[eval.stats[,1]==i,'bio15'],
+              "\nbio5 : ", eval.stats[eval.stats[,1]==i,'bio5'],
+              "\nbio6 : ", eval.stats[eval.stats[,1]==i,'bio6'],
+              "\nbio16 : ", eval.stats[eval.stats[,1]==i,'bio16'],
+              "\nbio17 : ", eval.stats[eval.stats[,1]==i,'bio17'],
+              "\nmost.important.bio : ", eval.stats[eval.stats[,1]==i,'max.contribution'],sep=""), paste(dir.out,i,"info.txt", sep="/"), append=T)
 }
 
 
@@ -221,7 +262,7 @@ write(paste("avg.auc_train : ",eval.stats[eval.stats[,1]==i,'avg.auc_train'],
 #### Execute in GRASS shell assuming the location and mapset are correct
 #### cd into the working directory of this run eg. cd ./results/20101012.2
 
-# load parameters - is not working yet, may need some refinement, copy parameters by hand
+# load parameters 
 . ../../parameters/parameters.sh
 
 # initizialise
@@ -370,41 +411,94 @@ rm tmp.sf
 # Threat for each species (task 18)
 ###########################################
 
-# average area under each threat threat
-
 for species in `ls | grep ^[0-9].*.[0-9]$` # do for all species
 do
+  g.remove rast=MASK
   auc_species=`awk -F" : " '/avg.auc_test/{print $2}' $species/info.txt` # get the average auc for this species
 
   if [ $(echo "$auc_species > $auc_th" | bc) -gt 0 ] # only proces species where the auc is bigger than the specified auc
   then
     threshold=`awk -F" : " '/roc/{print $2}' $species/info.txt` # get species threshold
     r.mapcalc "tmp.$species=if(me.c.${species} >= $threshold,1,null())" # calculate temp grid only with the area above threshold
-    r.mapcalc "MASK=tmp.$species" # mask to area above threshold
-    area=`r.sum tmp.$species | awk -F= '{print $2}'` # sum the area
+    area=`r.sum tmp.$species | awk -F= '{print $2}'` # sum the area over all area
     echo "area.above.th.in.pixel : $area" >> $species/info.txt # write to file
-      for danger in `g.mlist type=rast mapset=threats pattern="ta.*"` # loop through all threats
+    areakm=`r.report -hne map=tmp.${species} units=k nsteps=1 | awk -F'|' '/TOTAL/{print $3}' | sed 's/,//g'` # sum area in km2
+    echo "area.above.th.in.km2 : $areakm" >> $species/info.txt
+    
+    # area that is alread 'lost', its all no data in the layer ta.aggregated
+    r.mapcalc "MASK=if(tmp.$species)&&if(isnull(ta.aggregate))"
+    arealost=`r.report -hne map=tmp.${species} units=k | awk -F'|' '/TOTAL/{print $3}' | sed 's/,//g '`
+    echo "area.lost.in.km2 : $arealost" >> $species/info.txt
+    echo "percent.lost :" `echo "scale=4; $arealost / $areakm * 100" | bc` >> $species/info.txt
+    areanotlost=`echo "scale=4; $areakm-$arealost" | bc`
+    echo "area.not.lost.in.km2 : $areanotlost" >> $species/info.txt
+    # mean occurence probability in lost area
+    eval `r.univar -g me.c.$species`
+    echo "lost.mean.occ.probability : $mean" >> $species/info.txt
+    echo "lost.sd.occ.probability : $stddev" >> $species/info.txt
+
+    # mean occurence probability in not lost area
+    g.remove rast=MASK
+    r.mapcalc "MASK=if(ta.aggregate)&&if(tmp.$species)"
+    eval `r.univar -g me.c.$species`
+    echo "not.lost.mean.occ.probability : $mean" >> $species/info.txt
+    echo "not.lost.sd.occ.probability : $stddev" >> $species/info.txt
+   
+    # keep mask for areas that are presence of this species
+    # g.remove rast=MASK    
+    # r.mapcalc "MASK=tmp.$species" # mask to area above threshold
+      for danger in `g.mlist type=rast mapset=PERMANENT pattern="ta.*"` # loop through all threats
       do   
         if [ $(echo "$area > 0" | bc) -gt 0 ]  # only treat species where the area above the threshold is > 0, this check might be obsolete
         then 
           # mean threat
-          area_danger=`r.sum $danger@threats | awk -F= '{print $2}'` # sum up the danger for this species
-          mean=`echo "scale=2; $area_danger / $area" | bc`      # calculate the man danger
-          echo "$danger : $mean" >> $species/info.txt    # write mean danger to info file
+          eval `r.univar -g $danger`
+          sleep 0.1
+          echo "${danger}.mean : $mean" >> $species/info.txt 
+          echo "${danger}.sd : $stddev" >> $species/info.txt 
+          echo "${danger}.min : $min" >> $species/info.txt 
+          echo "${danger}.max : $max" >> $species/info.txt 
+          echo "${danger}.coeff_var : $coeff_var" >> $species/info.txt 
+          
           
           # % low, mid, high, no threat
           for level in `g.mlist type=rast mapset=threats pattern="tac.$danger*"` # calculate the % area of each species under each low, mid, high and no thread
           do
-            area_level=`r.sum $level@threats | awk -F= '{print $2}'` # calculate area of threat at no, low, mid, high
-            percent_level=`echo "scale=2; $area_level / $area * 100" | bc` # calculate the percentage
+            # Percent under threat
+            g.remove rast=MASK
+            r.mapcalc "MASK=if($level)&&if(tmp.$species)"
+            area_level=`r.report -hne map=tmp.$species units=k | awk -F'|' '/TOTAL/{print $3}' | sed 's/,//g'`
+
+            if [ "$danger" = "ta.access_pop" ]; then
+              percent_level=`echo "scale=4; $area_level / $areakm *100" | bc`            
+            else            
+              percent_level=`echo "scale=4; $area_level / $areanotlost *100" | bc`
+            fi
+
             level_name=`echo $level | awk -F. '{print $3"."$4}'` # get the name of the threat and level (1=no, 2=low, 3=mid, 4=high)
             echo "percent.under.threat.$level_name : $percent_level" >> $species/info.txt # write file
+            
+            # Do mean occurence probability under this threat
+            eval `r.univar -g me.c.$species`
+            echo "${level_name}.mean.occ.probability : $mean" >> $species/info.txt
+            echo "${level_name}.sd.occ.probability : $stddev" >> $species/info.txt
+
+            # Do mean occurence probability not under this threat
+            g.remove rast=MASK            
+            r.mapcalc "MASK=if(isnull($level))&&if(tmp.$species)"
+            eval `r.univar -g me.c.$species`
+            echo "not.${level_name}.mean.occ.probability : $mean" >> $species/info.txt
+            echo "not.${level_name}.sd.occ.probability : $stddev" >> $species/info.txt
+
           done
         else
           echo "$danger : NA" >> $species/info.txt    
         fi
       done
   fi
+  
+  echo "===================================== done with an other one ============================================"
+  
   g.remove rast=tmp.$species
   g.remove rast=MASK
 done
@@ -412,16 +506,23 @@ done
 
 ## Create a threat index with R
 
-## read the data
-data <- list.files(pattern="^[0-9]")
+# csv
+threats <- c()
+for (i in list.files(pattern="^[0-9]")) threats <- rbind(threats, t(read.table(paste(i,"/info.txt", sep=""), sep=":"))[2,])
+threats <- as.data.frame(threats, stringsAsFactors=F)
 
-level <- c(1,2,3,4)
-threats <- c("access_pop","conv_ag","fires","grazing","infrastr","oil_gas", "rec_conv")
+names(threats)[1:ncol(threats)] <- t(read.table(paste(i,"/info.txt", sep=""), sep=":", stringsAsFactors=F)[,1])
 
-for (i in data) {
-d <- readLines(paste(i,"/info.txt",sep=""))
-if(any(grepl("percent.under.threat.access_pop.1",d))==T) { 
-write(paste("threat.index : ",mean(sapply(threats,function(ta) mean(sapply(level, function(lv) as.numeric(strsplit(d[grep(paste(ta,lv,sep="."),d)],":")[[1]][2])*lv)))),spe=""), paste(i,"/info.txt",sep=""), append=T)}
+calc.index <- function(sp_id, dangers=c("rec_conv", "infrastr", "grazing", "fires", "conv_ag", "access_pop")) {
+
+  index <- 0
+  tt <- threats[as.numeric(threats[,1])==sp_id,]
+  if (tt$percent.lost > 40 &tt$lost.mean.occ.probability > tt$not.lost.mean.occ.probability ) index <- index + 4000
+  if (tt$percent.lost > 40 &tt$lost.mean.occ.probability < tt$not.lost.mean.occ.probability ) index <- index + 3000
+  if (tt$percent.lost < 40 &tt$lost.mean.occ.probability > tt$not.lost.mean.occ.probability ) index <- index + 2000
+  if (tt$percent.lost < 40 &tt$lost.mean.occ.probability < tt$not.lost.mean.occ.probability ) index <- index + 1000 
+  for (danger in dangers) for (level in 1:4) index <- index + as.numeric(tt[,paste("percent.under.threat.",danger,".",level," ", sep="")])*level
+  return(index)
 }
 
 
@@ -525,6 +626,36 @@ do
   area_protected=`r.sum $i | awk -F= '{print $2}'` # sum the area that is protected
   percent_protected=`echo "scale=2; $area_protected / $area_total *100" | bc` 
   echo "percent.protected : $percent_protected" >> summary/$i.txt
+done
+
+###### Export convex hull grid, env variales and make everyhting ready for the web interface
+
+for i in `ls | grep ^[0-9].*.[0-9]$` # do for all species
+do
+  #r.out.arc in=me.c.$i out=$i/$i.asc
+  #echo $i
+  
+  echo "lon,lat" >  $i/points.csv
+  # exports the coords of the polygon (B) and the centroid (C), awk is used to get extract only the points of the polyon. 
+  v.out.ascii in=occ_$i format=point | awk -F'|' '{print $1","$2}' >> $i/points.csv
+  echo $i
+
+done
+
+## rename to make the dir ready for the web interface
+
+mkdir ready
+
+for i in `ls | grep ^[0-9].*.[0-9]$` # do for all species
+do
+  if [ `cat $i/chull.csv | wc -l` -gt 2 ] 
+  then
+    mkdir ready/$i
+    cp $i/points.csv ready/$i/$i.csv
+    cp $i/chull.csv ready/$i/${i}-chull.csv
+    cp $i/chull_buffer.csv ready/$i/${i}-chull-buff.csv
+    cp -v $i/info.txt ready/$i/${i}-info.txt
+  fi
 done
 
 ###### Additional stuff
