@@ -32,11 +32,13 @@ Workflow:
   # With the function `get.background(...)` for all species the background points are extracted from the same biomes where the presence points are found. The function is stored in *002_make_background.R*. `get.background()` can be parallelised with `sfApply()` from the snowfall package. 
   # Files that have now backgrounds, because there was an error are moved to the folder *no_bg* and will not be considered for the next steps of the analysis. 
   # The function `get.full.swd(...)` is being run twice. Once for the background points and once for the presence points. `get.full.swd()` is located in *002_get_background.R*. The function extracts all unique presence and absence points. For this points the values of the environmental layers are extracted. `get.full.swd()` relies on Maxent, and some Unix shell tools such as awk.
- *
-
-
-= Syntax =
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ # With the function `get.sp.swd()` the files produced in the last step are split again and a SWD file is created for each species for backgrounds points and presence points.
+ # In the next loop for each server a folder is created, each folder contains for each availble core of the server a R BATCH file. They can be started with `R BATCH filename.R`. Species are equally distributed over all cores.
+ * Task 15: For this part, R needs to be started from a grass shell. For each model the predictions are imported to grass and the evaluation statistics extracted and written to the *info.txt* for each species. 
+ * Task 14: Here a convex hull for the all presence points is calculated. This hull is buffered by 300 km and the raster with the predictions is clipped to the buffered convex hull.
+ * Task 16: The species richness for each genus is calculated
+ * Task 17: The species richness for each species type is calculated
+ * Task 18: For each species the area under each each level (no, low, mid, high) of each treat is calculated. Additionally the fraction of the area that is still available and and already lost is calculated.
+ * Task 19: For each species the mean occurrence probability inside and outside of protected areas is calculated. Additionally for each species the percentage of area protected is calculated.
+ * Task 20: For each protected area the mean species richness and the mean of each threat is calculated.
+ * Task 21: For each species type the mean species richness is calculated and the percent that is protected is calculated.
