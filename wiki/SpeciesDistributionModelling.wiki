@@ -24,9 +24,8 @@ All work was done using:
   * *Getting background points:* MaxEnt requires a random background sample. For each species it was determined in which which biomes (according to the wwf classification) the presence points fell. From these biomes a random sample of 10000 was drawn for the background points.
   * *Extracting values of the climate variables:* The coordinates of all species and background points were merged. Using maxent the values for all 8 environmental variables were extracted. For each species for every presence and background point values of appropriate environmental variables were assigned.
 
-== SDM with MaxEnt ==
-
-== Threat Assessment ==
+== Description of functions and scripts ==
+* *01_main.R*: This script contains the whole work flow. Some functions are outsourced in other scripts, in order to reduce the code. The first part, until the evaluation of the Maxent models, is almost exclusively written R. The majority of the subsequent analysis is done with GRASS, hence the scripts are for a bash shell. The most important file is the file _parameters.R_. This file is sourced at the beginning of the process and contains all parameters and additional functions.
 
 
 
