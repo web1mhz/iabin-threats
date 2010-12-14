@@ -203,6 +203,7 @@ ejemplo:
 ====Descripción====
 Dentro de cada especie calcular el valor máximo y el valor mínimo de cada variable ambiental para determinar si el registro es un caso atípico para esa variable.
  
+ 
 *Entradas:* _temp_good_records_ tabla que contiene los registros geoespaciales confiables y los datos ambientales correspondientes
 
 *Salidas:* _temp_good_records_  tabla con el numero valores atípicos para todas las variables
@@ -230,7 +231,9 @@ ejemplo:
 ====Descripción==== 
 Este es un paso opcional. Su objetivo es extraer algunos datos estadísticos de los pasos de filtrado. cuántos registros son fiables y cuántos no, especificando el tipo de error. 
 
+
 *Entradas:* _temp_good_records_ tabla con el numero valores atípicos para todas las variables
+
 *Salidas:* El archivo XML _statistics.xml_ es generado. Contiene todas las estadísticas del conjunto de registros evaluados
 
 ====Procedimiento Técnico====
@@ -265,7 +268,6 @@ ejemplo:
 ====Descripción====
 Exportación de los registros confiables en un archivo separado por comas, para que sean usados en Maxent
  
-
 *Entradas:* _filtered_records_ tabla que contiene todos los registros confiables
 
 *Salidas:* Un archivo separado por comas _filtered_records.csv_ con los registros confiables 
@@ -273,11 +275,17 @@ Exportación de los registros confiables en un archivo separado por comas, para 
 ====Procedimiento Técnico====
 Ejecute el script en java usando los siguientes parámetros: 
   
-*Parámetros:* 
+  
+*Parámetros:*
+ 
  {{{csv}}} Para ejecutar el método correspondiente para la exportación de un archivo csv por especie. 
+ 
  {{{-Xmx<BYTES>}}}  Máximo tamaño de bytes de almacenamiento dinámico de Java
+ 
  {{{-n <NUMBER>}}} de los registros que deben ser analizadas para mostrar las estadísticas de tiempo
+ 
  {{{-d <OUTPUT>}}} Ubicación exacta del directorio. 
+
 
 *Línea de comando:*
 
@@ -300,9 +308,13 @@ Este script genera los archivos lambda e inmediatamente despues genera las proye
 Ejecute el script en java con los siguientes parámetros: 
 
 *Parámetros:*
+
  {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
+ 
  {{{maxent}}} Para ejecutar el script correspondiente para generar proyecciones de las especies 
+ 
  {{{-i <INSTANCES>}}} de Maxent que se ejecutará al mismo tiempo.
+
 
 *Línea de comando:*
 
