@@ -4,7 +4,7 @@
 
 	<groupId>org.ciat.dapa</groupId>
 	<artifactId>ita</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.2-BETA</version>
 	<packaging>jar</packaging>
 
 	<name>ita</name>
