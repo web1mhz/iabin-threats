@@ -24,7 +24,7 @@ Most of these parameters are files and directories  paths. Examples of default s
 ====Technical procedure====
 To generate the default configuration file, run the script with java using the following parameters for the server part: 
 
- {{{java -cp ita.jar org.ciat.ita.bg.server.ServerConfig}}}
+ {{{java -cp ita-bg.jar org.ciat.ita.bg.server.ServerConfig}}}
 
 Then edit the file server_config.xml
   
@@ -56,7 +56,7 @@ Run the script in java with the following parameters:
 
 *Command line:*
 
- {{{java -XmxBYTES -cp ita.jar org.ciat.ita.bg.Biogeomancer}}}
+ {{{java -XmxBYTES -cp ita-bg.jar org.ciat.ita.bg.Biogeomancer}}}
 
 
 ===Standalone===
@@ -68,9 +68,9 @@ In standalone mode you just need to run a single instance.
 
 *Command line:*
 
- {{{java -XmxBYTES -cp ita.jar}}}
+ {{{java -XmxBYTES -jar ita-bg.jar}}}
 
 example 
 
- {{{java -Xmx1500m -jar ita.jar}}}
+ {{{java -Xmx1500m -jar ita-bg.jar}}}
 

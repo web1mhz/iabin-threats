@@ -166,7 +166,7 @@ In standalone mode you just need to run a single instance.
 
 *Command line:*
 
- {{{java -XmxBYTES -cp ita.jar}}}
+ {{{java -XmxBYTES -jar ita.jar}}}
 
 example 
 

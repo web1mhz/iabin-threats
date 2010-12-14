@@ -25,7 +25,7 @@ We invite you to read first the [Description] of the project.
 
 Check out the [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita-bg/src/main/java/org/ciat/ita/bg ita-bg project] of this repository.
 
- {{{svn checkout https://iabin-threats.googlecode.com/svn/branches/ita-bg ita-bg}}}
+ {{{svn checkout https://iabin-threats.googlecode.com/svn/trunk/ita-bg ita-bg}}}
  
 Once the project has been checked out, you can update your local copy via the command: 
 

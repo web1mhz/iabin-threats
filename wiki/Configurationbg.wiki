@@ -94,6 +94,6 @@ XML file should have been created.
  * *unrelible_records*:  Same as above, but the default table name in this case is _temp_bad_records_
 
 
-Once the file configuration is correclty done, you can start to run each of the scripts presented in 
+Once the file configuration is correctly done, you can start to run each of the scripts presented in 
 
 this section.
