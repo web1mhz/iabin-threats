@@ -160,7 +160,7 @@ public class OutliersManager {
 		int nRecords = 0;
 		rs = DataBaseManager.makeQuery("select count(*) \"c\" from "
 				+ ServerConfig.getInstance().dbTableGoods + " where " + NUB_CONCEPT_ID + "="
-				+ nub_concept, conx);
+				+ nub_concept+" group by latitude, longitude", conx);
 		if (rs.next())
 			nRecords = rs.getInt("c");
 		rs.getStatement().close();
@@ -218,7 +218,7 @@ public class OutliersManager {
 		 */
 		ResultSet rs = DataBaseManager.makeQuery("select * from "
 				+ ServerConfig.getInstance().dbTableGoods + " where " + NUB_CONCEPT_ID + "="
-				+ nub_concept, conx);
+				+ nub_concept+" group by latitude, longitude", conx);
 		double Q1 = 0, Q3 = 0, IQR = 0, LB[] = new double[n], UB[] = new double[n];
 		int p1 = 0, p3 = 0;
 		/*
