@@ -20,15 +20,19 @@ All work was done using:
   * GRASS 6.4
   * Bash
 == Data preparation and organisation ==
+Workflow:
   * *Organising species data:* The presence data was divided to the species level. For each species a subdirectory was created containing the presence points for that species and _info.txt_ file. In the _info.txt_ file the initial parameters of the species (i.e. kingdom, family, genus, number of presence points) are saved. During the modelling process results for the species are written in this file. 
   * *Getting background points:* MaxEnt requires a random background sample. For each species it was determined in which which biomes (according to the wwf classification) the presence points fell. From these biomes a random sample of 10000 was drawn for the background points.
   * *Extracting values of the climate variables:* The coordinates of all species and background points were merged. Using maxent the values for all 8 environmental variables were extracted. For each species for every presence and background point values of appropriate environmental variables were assigned.
 
-== Description of functions and scripts ==
-* *01_main.R*: This script contains the whole work flow. Some functions are outsourced in other scripts, in order to reduce the code. The first part, until the evaluation of the Maxent models, is almost exclusively written R. The majority of the subsequent analysis is done with GRASS, hence the scripts are for a bash shell. The most important file is the file _parameters.R_. This file is sourced at the beginning of the process and contains all parameters and additional functions.
-
-
-
+== Processing ==
+*01_main.R*: This script contains the whole work flow. Some functions are outsourced in other scripts, in order to reduce the code. The first part, until the evaluation of the Maxent models, is almost exclusively written R. The majority of the subsequent analysis is done with GRASS, hence the scripts are for a bash shell. The most important file is the file *parameters.R*. This file is sourced at the beginning of the process and contains all parameters and additional functions. The process of the analysis is as follows:
+ * Task 9: the function `write.species.csv()` is applied to all species. It extracts the points for all species with more than 10 or more occurrence points, creates a folder for this species and stores the points in the subfolder training. The script is stored in *write_species_csv.R*.
+ * Task 10-13: This part of the code creates the SWD files for the presence points and background points and creates the R batch scripts to run Maxent.
+  # With the function `get.background(...)` for all species the background points are extracted from the same biomes where the presence points are found. The function is stored in *002_make_background.R*. `get.background()` can be parallelised with `sfApply()` from the snowfall package. 
+  # Files that have now backgrounds, because there was an error are moved to the folder *no_bg* and will not be considered for the next steps of the analysis. 
+  # The function `get.full.swd(...)` is being run twice. Once for the background points and once for the presence points. `get.full.swd()` is located in *002_get_background.R*. The function extracts all unique presence and absence points. For this points the values of the environmental layers are extracted. `get.full.swd()` relies on Maxent, and some Unix shell tools such as awk.
+ *
 
 
 = Syntax =
