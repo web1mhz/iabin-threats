@@ -44,7 +44,7 @@ We first proceed to a basic filtering which excludes the records which have no l
 *Outputs:* Several temporal tables (temp_land_1A, temp_land_2A, temp_land_3A, temp_land_4A and temp_land_5A ). The temp_land_4A table contains all the records that passed the filters, and temp_land_5A table is empty and prepared to be filled during the next step.
 
 ====Technical procedure====
-Run into the database the sql query file named “QUERY_basic_filter.sql” 
+Run into the database the sql query file named “QUERY_basic_filter.sql”
 
 Command line example: 
 
@@ -53,7 +53,7 @@ Command line example:
 ====Finalize====
 Once the query has been run, the tables temp_land_1A, temp_land_2A and temp_land_3A are not needed anymore, so these can be drooped. The tables temp_land_4A and temp_land_5A will be used in the next step. 
 
-===3 Getting the JGM file===
+===3 Getting the JGM file (optional)===
 ====Description====
 If you don't have the JGM file for the filtering non terrestrial species step, You may  download it from: //TODO download URL
 

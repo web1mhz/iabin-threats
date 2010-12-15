@@ -53,7 +53,7 @@ Ejemplo de la línea de comando:
 ====Finalizar====
 Una vez que la consulta se ha ejecutado, las tablas temp_land_1A, temp_land_2A and temp_land_3A ya no se necesitan, por lo que pueden ser borradas. Las tablas temp_land_4A and temp_land_5A se utilizarán en el siguiente paso. 
 
-===3 Obteniendo el archivo JGM===
+===3 Obteniendo el archivo JGM (opcional)===
 ====Descripción====
 Si no tiene el archivo jgm para el paso de filtrar las especies no terrestres, puede descargarlo de :: //TODO download URL
 
