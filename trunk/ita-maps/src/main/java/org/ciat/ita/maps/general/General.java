@@ -46,10 +46,11 @@ public class General {
 		} catch (ArrayIndexOutOfBoundsException e1) {
 			System.out
 					.println("Please provide the path to the iabin.properties file");
-			PropertiesGenerator hola = new PropertiesGenerator(
+			PropertiesGenerator propGen = new PropertiesGenerator(
 					"default-iabin.properties");
 			try {
-				hola.write();
+				
+				propGen.write();
 				System.out
 						.println("the file \"default-iabin.properties\" has been created on same folder as this program is ");
 			} catch (IOException e2) {
@@ -108,8 +109,6 @@ public class General {
 			throws NullPointerException {
 
 		File file = new File(sourceFile);
-
-		shp = new Shapefile(file);
 		SimpleFeature sf = null;
 		KmlGroupCreator grupo = new KmlGroupCreator(urlServer);
 
@@ -156,9 +155,9 @@ public class General {
 			// *****************************************************************************
 			// esta sección crea el archivo properties con la configuración por
 			// defecto
-			PropertiesGenerator hola = new PropertiesGenerator(targetpath+ "default-iabin.properties");
+			PropertiesGenerator propGen = new PropertiesGenerator(targetpath+ "default-iabin.properties");
 			try {
-				hola.write();
+				propGen.write();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -168,6 +167,9 @@ public class General {
 		// protected areas shape to kml
 
 		if (opt == 2 || opt == 5)
+			
+			
+		shp = new Shapefile(file);
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
