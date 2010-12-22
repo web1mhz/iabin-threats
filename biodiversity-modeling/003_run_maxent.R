@@ -23,16 +23,20 @@
 
 run.maxent <- function(sp_id,max.ram, dir.maxent, no.replicates, replicate.type, dir.proj,log.file="log.run.maxent")
 { 
-   t.start <- proc.time()[3]
+t.start <- proc.time()[3]
 dir.create(paste(dir.out,"/",sp_id,"/results", sep=""))
 dir.create(paste(dir.out,"/",sp_id,"/cross", sep=""))
 dir.create(paste(dir.out,"/",sp_id,"/proj", sep=""))
 
 # train the model
-system(paste("java -mx",max.ram,"m -jar ", dir.maxent, "/maxent.jar nowarnings outputdirectory=", dir.out,"/",sp_id, "/results samplesfile=",dir.out,"/",sp_id,"/training/species_swd.csv environmentallayers=",dir.out,"/",sp_id,"/training/background_swd.csv -a -z", sep=""),wait=T)
+# flags:
+# -a autoron
+# -z dont show gui
+# -P dont do impoartnace of env variables
+system(paste("java -mx",max.ram,"m -jar ", dir.maxent, "/maxent.jar nowarnings outputdirectory=", dir.out,"/",sp_id, "/results samplesfile=",dir.out,"/",sp_id,"/training/species_swd.csv environmentallayers=",dir.out,"/",sp_id,"/training/background_swd.csv -a -z nopictures -P plots=false", sep=""),wait=T)
 					
 # crossvalidate
-system(paste("java -mx",max.ram,"m -jar ", dir.maxent, "/maxent.jar nowarnings outputdirectory=",dir.out,"/", sp_id, "/cross samplesfile=",dir.out,"/",sp_id,"/training/species_swd.csv environmentallayers=",dir.out,"/",sp_id,"/training/background_swd.csv -P replicates=",no.replicates," replicatetype=",replicate.type," -a -z", sep=""),wait=T)
+system(paste("java -mx",max.ram,"m -jar ", dir.maxent, "/maxent.jar nowarnings outputdirectory=",dir.out,"/", sp_id, "/cross samplesfile=",dir.out,"/",sp_id,"/training/species_swd.csv environmentallayers=",dir.out,"/",sp_id,"/training/background_swd.csv -P replicates=",no.replicates," replicatetype=",replicate.type," -a -z nopictures -P plots=false", sep=""),wait=T)
 
 # project
 system(paste("java -mx",max.ram,"m -cp ", dir.maxent, "/maxent.jar density.Project ",dir.out,"/",sp_id,"/results/",sp_id,".lambdas ",dir.proj, " ",dir.out,"/",sp_id,"/proj/",sp_id," nowarnings fadebyclamping -r -a -z", sep=""),wait=T)

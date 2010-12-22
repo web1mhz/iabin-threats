@@ -13,7 +13,7 @@ library(snowfall)
 # clean workspace
 rm(list=ls())
 
-### Load parameters and setup working directory assuming R session was onpend from iabin root directorg
+### Load parameters and setup working directory assuming R session was onpend from iabin root directory
 source("./parameters/parameters.R")
 # save parameters that were used in this run to the results directory
 save(list=ls(), file=paste(dir.out,"/parameters.RData",sep=""))
@@ -46,8 +46,8 @@ sfExport("me.no.background")
 sfExport("dir.out")
 sfExport("env.reduced")
 sfExport("env.full")
-
-system.time(sfSapply(sp, function(i) get.background(sp_id=i, ecoregions=eco, v.all=eco.values, no.background=me.no.background, make.swd=FALSE)))
+for (i in 1:length(sp))
+system.time(sfSapply(sp[[i]], function(i) get.background(sp_id=i, ecoregions=eco, v.all=eco.values, no.background=me.no.background, make.swd=FALSE)))
  
 sfStop()
 
@@ -60,7 +60,7 @@ if(any(grepl("no_bg", list.files(path=dir.out)))) {
   sp <- list.files(path=dir.out, pattern="^[0-9].*")
   
   # save updated sp list
-  save(list=ls(), file=paste(dir.out,"/parameters.RData"))
+  save(list=ls(), file=paste(dir.out,"/parameters.RData", sep=""))
 }
 
 
@@ -122,7 +122,7 @@ for (server in 1:length(servers))
   
 }
 
-
+  
 ###########################################
 # Extract metrics from the model and 
 # import rasters to grass (task 15)
@@ -131,7 +131,7 @@ for (server in 1:length(servers))
 # most likely this will be continued after some time and parameters will need to be reloaded
 # the name of the out.dir of the run that shall be continued need to be given here!
 # This R session needs to be started from a GRASS shell in the right mapset with the right region!
-parameters <- "results/20101207.3/parameters.RData"
+parameters <- "results/20101216.4/parameters.RData"
 load(parameters)
 # load species ids
 load(species.id.to.process)
@@ -165,25 +165,28 @@ for (i in 1:length(files[,1])){
   # calculate roc threshold, min distance
   roc <- c()  
   for (j in 0:(me.no.replicates-1)){ ## some revision is needed here!    
-    omission.rate <- read.csv(paste(dir.out,"/",this.id, "/cross/", this.id, "_",j,"_omission.csv", sep=""))
-    spec <- omission.rate$Fractional.area
-    sens <- 1-omission.rate$Training.omission
-    log.vals <- omission.rate$Corresponding.logistic.value
-        
-    abs.dif <- abs(1-(sens+spec))
+    omission.rate <- try(read.csv(paste(dir.out,"/",this.id, "/cross/", this.id, "_",j,"_omission.csv", sep=""))) 
+    if (class(omission.rate) != "try-error") { 
+      spec <- omission.rate$Fractional.area
+      sens <- 1-omission.rate$Training.omission
+      log.vals <- omission.rate$Corresponding.logistic.value
+          
+      abs.dif <- abs(1-(sens+spec))
 
-    if (length(log.vals[which(abs.dif== min(abs.dif))]) > 1) {
-      roc <- c(roc, mean(log.vals[which(abs.dif==min(abs.dif))]))
-    } else roc <- c(roc, log.vals[which(abs.dif==min(abs.dif))])
+      if (length(log.vals[which(abs.dif== min(abs.dif))]) > 1) {
+        roc <- c(roc, mean(log.vals[which(abs.dif==min(abs.dif))]))
+      } else roc <- c(roc, log.vals[which(abs.dif==min(abs.dif))])
+    }
   }
 
   me.res <- read.csv(paste(dir.out,"/",this.id, "/cross/maxentResults.csv", sep=""))
+
   eval.stats[i,'id'] <- this.id
-  eval.stats[i,'avg.auc_train'] <- me.res[(me.no.replicates+1),'Training.AUC']
-  eval.stats[i,'avg.auc_test'] <- me.res[(me.no.replicates+1),'Test.AUC']
+  eval.stats[i,'avg.auc_train'] <- me.res[nrow(me.res),'Training.AUC']
+  eval.stats[i,'avg.auc_test'] <- me.res[nrow(me.res),'Test.AUC']
   
   # if sd < 0, substitute for NA, that is because there fewer than 20 points and CV fails
-  me.sd <- me.res[(me.no.replicates+1),'AUC.Standard.Deviation']
+  me.sd <- me.res[nrow(me.res),'AUC.Standard.Deviation']
   if (me.sd < 0) {eval.stats[i,'sd.auc'] <- NA} else eval.stats[i,'sd.auc'] <- me.sd
 
   eval.stats[i,'prevalence'] <- me.res[(me.no.replicates+1),'Prevalence..average.of.logistic.output.over.background.sites.']
@@ -191,16 +194,16 @@ for (i in 1:length(files[,1])){
   eval.stats[i,'roc'] <- mean(roc)
 
   # bio variables
-  eval.stats[i,'bio1'] <- me.res[(me.no.replicates+1),'bio1.contribution']
-  eval.stats[i,'bio12'] <- me.res[(me.no.replicates+1),'bio12.contribution']
-  eval.stats[i,'bio15'] <- me.res[(me.no.replicates+1),'bio15.contribution']
-  eval.stats[i,'bio4'] <- me.res[(me.no.replicates+1),'bio4.contribution']
+  eval.stats[i,'bio1'] <- me.res[nrow(me.res),'bio1.contribution']
+  eval.stats[i,'bio12'] <- me.res[nrow(me.res),'bio12.contribution']
+  eval.stats[i,'bio15'] <- me.res[nrow(me.res),'bio15.contribution']
+  eval.stats[i,'bio4'] <- me.res[nrow(me.res),'bio4.contribution']
 
   # other four variales, only if a species has more than 10 records
-  if(any(grepl("bio5", names(me.res)))) eval.stats[i,'bio5'] <- me.res[(me.no.replicates+1),'bio5.contribution']
-  if(any(grepl("bio6", names(me.res)))) eval.stats[i,'bio6'] <- me.res[(me.no.replicates+1),'bio6.contribution']
-  if(any(grepl("bio16", names(me.res)))) eval.stats[i,'bio16'] <- me.res[(me.no.replicates+1),'bio16.contribution']
-  if(any(grepl("bio17", names(me.res)))) eval.stats[i,'bio17'] <- me.res[(me.no.replicates+1),'bio17.contribution']
+  if(any(grepl("bio5", names(me.res)))) eval.stats[i,'bio5'] <- me.res[nrow(me.res),'bio5.contribution']
+  if(any(grepl("bio6", names(me.res)))) eval.stats[i,'bio6'] <- me.res[nrow(me.res),'bio6.contribution']
+  if(any(grepl("bio16", names(me.res)))) eval.stats[i,'bio16'] <- me.res[nrow(me.res),'bio16.contribution']
+  if(any(grepl("bio17", names(me.res)))) eval.stats[i,'bio17'] <- me.res[nrow(me.res),'bio17.contribution']
 
   # get the bio with the max contribution
   eval.stats[i, 'max.contribution'] <- names(eval.stats)[which(eval.stats[i,]==max(eval.stats[i,grep("bio", names(eval.stats))], na.rm=T))]
@@ -297,7 +300,7 @@ do
   count=$(( $count + 1 ))
 done
 
-###########################################
+#####################################################################################
 # Species Richness per genus (task 16)
 ###########################################
 
@@ -506,14 +509,7 @@ done
 
 ## Create a threat index with R
 
-# csv
-threats <- c()
-for (i in list.files(pattern="^[0-9]")) threats <- rbind(threats, t(read.table(paste(i,"/info.txt", sep=""), sep=":"))[2,])
-threats <- as.data.frame(threats, stringsAsFactors=F)
 
-names(threats)[1:ncol(threats)] <- t(read.table(paste(i,"/info.txt", sep=""), sep=":", stringsAsFactors=F)[,1])
-
-calc.index <- function(sp_id, dangers=c("rec_conv", "infrastr", "grazing", "fires", "conv_ag", "access_pop")) {
 
   index <- 0
   tt <- threats[as.numeric(threats[,1])==sp_id,]
@@ -525,6 +521,70 @@ calc.index <- function(sp_id, dangers=c("rec_conv", "infrastr", "grazing", "fire
   return(index)
 }
 
+
+for i in */info.txt
+do
+  sp=`awk -F: '/species id/ {print $2}' $i`
+  plost=`awk -F: '/\"/ {print $2}' $i`
+  lost=`awk -F: '/^lost.mean.occ.probability/ {print $2}' $i`
+  shere=`awk -F: '/not.lost.mean.occ.probability/ {print $2}' $i`
+  t1=`awk -F: '/percent.under.threat.aggregate.1/ {print $2}' $i`
+  t2=`awk -F: '/percent.under.threat.aggregate.2/ {print $2}' $i`
+  t3=`awk -F: '/percent.under.threat.aggregate.3/ {print $2}' $i`
+  t4=`awk -F: '/percent.under.threat.aggregate.4/ {print $2}' $i`
+
+  echo "$sp, $plost, $lost, $shere, $t1, $t2, $t3, $t4" >> threat.csv
+  echo $i
+done 
+### Create Code 
+
+write(paste("threats <- data.frame()",
+    "\ncount <- 1",
+    "\nfor (i in list.files(pattern=\"^[0-9]\")) {",
+    "\ntmp <- read.table(paste(i,\"/info.txt\",sep=\"\"), sep=\":\", stringsAsFactors=F)", sep=""), "cmd.R", append=F)
+
+for (tt in c("access_pop","aggregate","conv_ag","fires","grazing","infrastr","oil_gas","rec_conv"))
+  {
+      write(paste("threats[count, \"species_id\"] <- i", 
+      "\nthreats[count, \"percent.lost\"] <- ifelse(length(as.numeric(tmp[grep(\"percent.lost\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"percent.lost\",tmp[,1]),2]),NA)",
+      "\nthreats[count, \"lost.mean.occ.probability\"] <- ifelse(length(as.numeric(tmp[grep(\"^lost.mean.occ.probability\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"^lost.mean.occ.probability\",tmp[,1]),2]),NA)",
+      "\nthreats[count, \"not.lost.mean.occ.probability\"] <- ifelse(length(as.numeric(tmp[grep(\"not.lost.mean.occ.probability\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"not.lost.mean.occ.probability\",tmp[,1]),2]),NA)",sep=""), "cmd.R", append=T)
+      for (n in 1:4) {
+      write(paste("threats[count, \"percent.under.threat.",tt,".",n,"\"] <- ifelse(length(as.numeric(tmp[grep(\"percent.under.threat.",tt,".",n,"\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"percent.under.threat.",tt,".",n,"\",tmp[,1]),2]),NA)", sep=""), "cmd.R", append=T)
+       write(paste("threats[count, \"",tt,".",n,".mean.occ.probability\"] <- ifelse(length(as.numeric(tmp[grep(\"^",tt,".",n,".mean.occ.probability\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"^",tt,".",n,".mean.occ.probability\",tmp[,1]),2]),NA)", sep=""), "cmd.R", append=T)
+     }
+      
+  }
+write("count <- count+1; if(count%%50==0) print(count)}", "cmd.R", append=T)
+
+## calculate the threat for each species
+
+for (i in 1:nrow(threats)) {
+for (danger in c("rec_conv", "infrastr", "grazing", "fires", "conv_ag", "access_pop", "oil_gas", "aggregate"))
+{
+  tmp.danger <- c()
+  tmp.ocp <- c()
+  for (level in 1:4) {
+      a.threat <- threats[i,grep(paste("percent.under.threat.",danger,".",level, sep=""), names(threats))]
+      m.ocp <- threats[i,grep(paste(danger,".",level,".mean.occ.probability", sep=""), names(threats))]
+      if (a.threat == 0 | is.na(a.threat)) {a.threat <- 0; m.ocp <- 1}      
+      tmp.danger <- c(tmp.danger, a.threat/100 * m.ocp * level )
+      tmp.ocp <- c(tmp.ocp, m.ocp*level)
+  }
+  threats[i,paste("risk.", danger, sep="")] <- sum(tmp.danger)/sum(tmp.ocp)
+}
+
+if(i %% 100 == 0) print(i)
+
+}
+
+
+
+
+# Maximum threat
+for (i in 1:nrow(threats)){
+threats[i, 'highest.risk'] <- names(threats)[which(threats[i,]==max(threats[i,grep("risk.*.[vgrpgs]$", names(threats))], na.rm=T))]}
+threats[,'value.highest.risk'] <- apply(threats[,grep("risk.*.[vgrpgs]$", names(threats))],1,max)
 
 ###########################################
 # Mean % area protected in and outside 
@@ -627,6 +687,10 @@ do
   percent_protected=`echo "scale=2; $area_protected / $area_total *100" | bc` 
   echo "percent.protected : $percent_protected" >> summary/$i.txt
 done
+
+##########################################################################################
+#### End of Analysis 
+##########################################################################################
 
 ###### Export convex hull grid, env variales and make everyhting ready for the web interface
 
