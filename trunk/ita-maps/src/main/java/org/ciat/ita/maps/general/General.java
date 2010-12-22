@@ -79,9 +79,9 @@ public class General {
 
 		String[] shapesID = PropertiesManager.getInstance().getPropertiesAsStringArray("shapes");
 		String sourcePath = PropertiesManager.getInstance().getPropertiesAsString("path.source");
-		if(!sourcePath.endsWith(File.separator)) sourcePath=sourcePath+"/";
+		if(!sourcePath.endsWith(File.separator)) sourcePath=sourcePath+File.separator;
 		String targetPath = PropertiesManager.getInstance().getPropertiesAsString("path.target");
-		if(targetPath.endsWith(File.pathSeparator))	targetPath=targetPath+"/";
+		if(targetPath.endsWith(File.pathSeparator))	targetPath=targetPath+File.separator;
 		String species = PropertiesManager.getInstance().getPropertiesAsString("species.path");
 		String language = PropertiesManager.getInstance().getPropertiesAsString("language");
 
