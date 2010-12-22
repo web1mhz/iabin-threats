@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class PropertiesGenerator {
 	
-	private String fileName;
+	private  String fileName;
 	
 	public PropertiesGenerator(String file){
 	this.fileName=file;	
@@ -94,6 +94,12 @@ public class PropertiesGenerator {
 	+"precipitation.scale=continuous\r\n" );
     out.flush();
 	out.close();
+	
+	}
+	
+	public boolean exists(){
+		File file=new File(fileName);
+		 return file.exists();
 	
 	}
 

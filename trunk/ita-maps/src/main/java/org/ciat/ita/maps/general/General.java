@@ -42,24 +42,33 @@ public class General {
 		s2k = new General();
 
 		try {
-			s2k.executeFromProperties(args[0]);
-		} catch (ArrayIndexOutOfBoundsException e1) {
-			System.out
-					.println("Please provide the path to the iabin.properties file");
-			PropertiesGenerator propGen = new PropertiesGenerator(
-					"default-iabin.properties");
-			try {
+			if(args.length>0){
+				s2k.executeFromProperties(args[0]);
+			}else{
+
 				
-				propGen.write();
-				System.out
-						.println("the file \"default-iabin.properties\" has been created on same folder as this program is ");
-			} catch (IOException e2) {
-				e2.printStackTrace();
+				System.out.println("Please provide the path to the iabin.properties file");
+				PropertiesGenerator propGen = new PropertiesGenerator("default-iabin.properties");
+				try {
+					if(propGen.exists()){
+					System.out.println("the file \"default-iabin.properties\" already exists on same folder as this program is \n nothing done. \n if you want to create a new one, please delete the one already exists");
+					}else{
+						propGen.write();
+						System.out.println("the file \"default-iabin.properties\" has been created on same folder as this program is");
+					}
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
+			
 			}
+			
+			
+	
+		} catch (ArrayIndexOutOfBoundsException e1) {
+			System.out.println("__Please provide the path to the iabin.properties file");
 			e1.getMessage();
 		} catch (NullPointerException e3) {
-			System.out
-					.println("add the line \"language=english\" to the iabin.properties file");
+			System.out.println("add the line \"language=english\" to the iabin.properties file");
 		}
 	}
 
@@ -109,6 +118,7 @@ public class General {
 			throws NullPointerException {
 
 		File file = new File(sourceFile);
+		shp = new Shapefile(file);
 		SimpleFeature sf = null;
 		KmlGroupCreator grupo = new KmlGroupCreator(urlServer);
 
@@ -169,7 +179,7 @@ public class General {
 		if (opt == 2 || opt == 5)
 			
 			
-		shp = new Shapefile(file);
+	
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
