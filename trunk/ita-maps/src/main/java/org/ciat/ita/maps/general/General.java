@@ -44,17 +44,16 @@ public class General {
 		try {
 			if(args.length>0){
 				s2k.executeFromProperties(args[0]);
-			}else{
-
-				
-				System.out.println("Please provide the path to the iabin.properties file");
-				PropertiesGenerator propGen = new PropertiesGenerator("default-iabin.properties");
+			}else{				
+				//System.out.println("Please provide the path to the iabin.properties file");
+				PropertiesGenerator propGen = new PropertiesGenerator("iabin.properties");
 				try {
 					if(propGen.exists()){
-					System.out.println("the file \"default-iabin.properties\" already exists on same folder as this program is \n nothing done. \n if you want to create a new one, please delete the one already exists");
+						s2k.executeFromProperties("iabin.properties");
+					//System.out.println("the file \"default-iabin.properties\" already exists on same folder as this program is \n nothing done. \n if you want to create a new one, please delete the one already exists");
 					}else{
 						propGen.write();
-						System.out.println("the file \"default-iabin.properties\" has been created on same folder as this program is");
+						System.out.println("the file \"iabin.properties\" has been created on same folder as this program is");
 					}
 				} catch (IOException e2) {
 					e2.printStackTrace();
@@ -65,7 +64,7 @@ public class General {
 			
 	
 		} catch (ArrayIndexOutOfBoundsException e1) {
-			System.out.println("__Please provide the path to the iabin.properties file");
+			System.out.println("__Please provide the path to the iabin.properties file or execute the script without arguments");
 			e1.getMessage();
 		} catch (NullPointerException e3) {
 			System.out.println("add the line \"language=english\" to the iabin.properties file");
