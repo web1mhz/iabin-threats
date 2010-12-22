@@ -104,26 +104,18 @@ public class CoordinatesFixer {
 				}
 			}
 
-			if (lon > 180 || lon < -180) {
-				String lonc = (lon + "").charAt(0) + "" + (lon + "").charAt(1)
-						+ "." + ((lon + "").substring(2)).replaceAll("[.]", "");
-				try {
-					lon = Double.parseDouble(lonc);
-				} catch (NumberFormatException e) {
-					lon = 0;
-				}
-			}
-			if (lat > 90 || lon < -90) {
-				String latc = (lat + "").charAt(0) + "" + (lat + "").charAt(1)
-						+ "." + ((lat + "").substring(2)).replaceAll("[.]", "");
-				try {
-					lat = Double.parseDouble(latc);
-				} catch (NumberFormatException e) {
-					lat = 0;
-				}
+			if (lon < -180) {
+				System.out.println(lon + " " + rs.getString("id"));
 			}
 
-			if ((lat == 0 || lon == 0)) {
+			while (lon > 180 || lon < -180) {
+				lon /= 10;
+			}
+			while (lat > 90 || lat < -90) {
+				lat /= 10;
+			}
+
+			if (lat == 0 || lon == 0) {
 				fixable = false;
 			}
 
@@ -169,7 +161,7 @@ public class CoordinatesFixer {
 			DataBaseManager.makeChange(
 					"UPDATE I3N_occurrence_record set latitude="
 							+ fixed.get(id).y + " , longitude="
-							+ fixed.get(id).x + " where id='" + id+"'", conx);
+							+ fixed.get(id).x + " where id='" + id + "'", conx);
 		}
 
 	}
@@ -220,6 +212,10 @@ public class CoordinatesFixer {
 
 	private static double degreesToDecimal(String val) {
 		val = val.trim();
+		val=val.replace("â", "");
+		val=val.replace("â", "");
+		val=val.replace("™", "");
+		val=val.replace("€", "'");
 		String degreeValue = "0";
 		String minutesValue = "0";
 		String secondsValue = "0";
@@ -268,17 +264,20 @@ public class CoordinatesFixer {
 			}
 		} else {
 			String[] dmsValue = val.split("[. ]");
-			if (dmsValue.length > 0) {
+			if (dmsValue.length > 2) {
 				degreeValue = dmsValue[0];
+				minutesValue = dmsValue[1];
+				secondsValue = dmsValue[2];
+			} else {
 				if (dmsValue.length > 1) {
-					minutesValue = dmsValue[1];
-					if (dmsValue.length > 2) {
-						secondsValue = dmsValue[2];
-					}
+					return Double.parseDouble(dmsValue[0]+"."+dmsValue[2]);
 				}
 			}
 		}
 
+		//if(val.startsWith("60")){
+		//System.out.println(val +" "+degreeValue+" "+minutesValue+" " +secondsValue);}
+		
 		return (Double.parseDouble(degreeValue)
 				+ (Double.parseDouble(minutesValue) / 60.0) + (Double
 				.parseDouble(secondsValue) / 3600.0));
