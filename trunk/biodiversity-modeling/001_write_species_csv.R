@@ -48,8 +48,12 @@ write.species.csv <- function(x, req.points=10, log.file="log.txt", dir.out=dir.
 
       if(nrow(this.sp.u)>=req.points)
       {
-          # create file
+         # create file
          dir.create(paste(dir.out,i,"training",sep="/"),recursive=T)
+          
+         # points from gbif and iabin
+         pts.gbif <- nrow(this.sp.u[this.sp.u$database=="GBIF",])
+         pts.iabin.sstn <- nrow(this.sp.u[this.sp.u$database=="SSTN",])
 
          write(paste("species id : ",i,
               "\nspecie : ",this.sp.u[1,'specie'],
@@ -58,7 +62,8 @@ write.species.csv <- function(x, req.points=10, log.file="log.txt", dir.out=dir.
               "\nfamily_id : ",this.sp.u[1,'family_id'], 
               "\nfamily : ", this.sp.u[1,'family'],
               "\nclass : ",sp.class,
-              "\nfile.created : ",date(), 
+              "\npts.gbif : ",pts.gbif,
+              "\npts.iabin.sstn : ",pts.iabin.sstn, 
               "\nnumber.of.points : ",nrow(this.sp.u), sep=""), paste(dir.out,i,"info.txt", sep="/"))
   
          write.table("species,lon,lat", paste(dir.out,i,"training/species.csv", sep="/"), row.names=F, col.names=F, quote=F, sep=",", append=F)

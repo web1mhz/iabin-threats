@@ -3,6 +3,12 @@
 # inc(x,increment=1) increments x by a value increment, default is 1
 inc <- function(x,increment=1) eval.parent(substitute(x <- x + increment))
 
+fill.char <- function(word="foo.bar", max.char=10, fill.with="."){
+  x <- max.char - nchar(word)
+  y <- paste(rep(fill.with,x), collapse="")
+  return(paste(word, y))
+}
+
 # introduce some unix commands
 
 # get wd

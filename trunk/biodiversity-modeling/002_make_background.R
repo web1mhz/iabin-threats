@@ -35,7 +35,7 @@ get.background <- function(sp_id, ecoregions, v.all, no.background=10000, make.s
   if(any(!is.na(v.new))){
   rr <- setValues(ecoregions, v.new)
   rr.df <- as.data.frame(as(rr,"SpatialPointsDataFrame"))
-  background <- rr.df[sample(1:nrow(rr.df), no.background, replace=T),1:2]
+  background <- rr.df[sample(1:nrow(rr.df), no.background, replace=T),2:3]
   write.table("species,longitude,latitude",paste(dir.out,"/",sp_id,"/training/background.csv", sep=""),col.names=F, row.names=F,append=F, quote=F)
   write.table(c("background", background), paste(dir.out,"/",sp_id,"/training/background.csv",sep=""), col.names=F, row.names=F, sep=",", append=T, quote=F)
 
@@ -54,10 +54,21 @@ get.background <- function(sp_id, ecoregions, v.all, no.background=10000, make.s
 
 ### funciton to get swd files, not that this should only be run on a unix machine since it requires awk, and some shell tools
 
+for i in `ls -1 | grep ^[0-9]`
+do
+  awk -F, '!/species/ {print $2":"$3","$2","$3}' $i/training/background.csv >> background_sort.u.csv
+  echo $i
+done
+
+sort -u background_sort.u.csv > background_sort_u.csv # reduced the file from 9.5G to 11mb :)
+
+
 get.full.swd <- function(type="species", env.full=env.full, dir.out=dir.out)
 {
    system(paste("echo key,lon,lat > ",dir.out,"/",type,"_sort_u.csv", sep=""))
+   print("created the file")
    system(paste("cat ",dir.out,"/[0-9]*/training/",type,".csv | awk -F, '!/species/ {print $2\":\"$3\",\"$2\",\"$3}'| sort -u >>",dir.out,"/",type,"_sort_u.csv", sep="")) # get unique
+   print("now start to extract values with maxent extract")
    system(paste("java -cp ", dir.maxent, "/maxent.jar density.Getval ",dir.out,"/",type,"_sort_u.csv ",env.full, "> ",dir.out,"/",type,"_swd.csv", sep=""),wait=T) # get swd
 }
 
