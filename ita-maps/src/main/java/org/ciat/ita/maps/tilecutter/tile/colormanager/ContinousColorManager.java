@@ -57,10 +57,10 @@ public class ContinousColorManager extends ColorManager{
 	  
 		int line = 35;
 		
-		int recWidth = 60;
-		int recHeight = line*4-recWidth+20;
+		int recWidth = 40;
+		int recHeight = line*4-recWidth;
 		
-		int width = recWidth*5;
+		int width = recWidth*4;
 		int height = line*4+10;
 		
 		
@@ -71,23 +71,23 @@ public class ContinousColorManager extends ColorManager{
 		graphics.setColor(Color.WHITE);
 		graphics.fillRect(0, 0, width, height);
 		
-		 int fontSize = 12;
-		Font font = new Font("Arial", Font.PLAIN, fontSize);
+		// int fontSize = 12;
+		//Font font = new Font("Arial", Font.PLAIN, fontSize);
 		    
-		graphics.setFont(font);
-		graphics.setColor(Color.BLACK);
-		graphics.drawString(descripcion,5,(line-recHeight)/2+recHeight/2);
+		//graphics.setFont(font);
+		//graphics.setColor(Color.BLACK);
+		//graphics.drawString(descripcion,5,(line-recHeight)/2+recHeight/2);
 		
 		Color colorMin = new Color(getRGB(getMin()));
 		Color colorMax = new Color(getRGB(getMax()));
 		graphics.setPaint(new GradientPaint(5, (line-recHeight)/2+line*2, colorMax,0, recHeight+line, colorMin ));
-		graphics.fillRect(5,(line-recHeight)/2+line*2, recWidth-20, recHeight);
+		graphics.fillRect(5,(line-recHeight)/2+line*2, recWidth, recHeight);
 		
 		
 		graphics.setColor(Color.BLACK);
-		graphics.drawRect(5,(line-recHeight)/2+line*2, recWidth-20, recHeight);
-		graphics.drawString("High: "+Float.toString(this.getMax()/10), recWidth-5,(line-recHeight)/2+recHeight/2+30);
-		graphics.drawString("Low: "+Float.toString(this.getMin()/10), recWidth-5,recHeight+40);
+		graphics.drawRect(5,(line-recHeight)/2+line*2, recWidth, recHeight);
+		graphics.drawString("High: "+Float.toString(this.getMax()/10), recWidth+10,(line-recHeight)/2+recHeight/2+30);
+		graphics.drawString("Low: "+Float.toString(this.getMin()/10), recWidth+10,recHeight+40);
 		
 		
 		return image;
