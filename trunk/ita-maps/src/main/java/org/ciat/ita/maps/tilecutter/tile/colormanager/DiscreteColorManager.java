@@ -81,7 +81,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 		int recWidth = 30;
 		int recHeight = line - 10;
 
-		int width = 200;
+		int width = 150;
 		int height = umbrales.length * line + line;
 
 		BufferedImage image = new BufferedImage(width, height,
@@ -94,10 +94,10 @@ public abstract class DiscreteColorManager extends ColorManager {
 
 		int cont = line;
 
-		graphics.setColor(Color.BLACK);
-		graphics.drawString(descripcion, 5, (line - recHeight) / 2 + recHeight);
+		//graphics.setColor(Color.BLACK);
+		//graphics.drawString(descripcion, 5, (line - recHeight) / 2 + recHeight);
 
-		int valorMinimo = (int) this.getMin()/10;
+		float valorMinimo = this.getMin();
 		for (int i = 0; i < umbrales.length; i++) {
 			Color color = new Color(getRGB(umbrales[i]
 					- (float) Math.pow(10, -8)));
@@ -105,7 +105,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 			graphics.fillRect(5, (line - recHeight) / 2 + cont, recWidth,recHeight);
 			graphics.setColor(Color.BLACK);
 			graphics.drawRect(5, (line - recHeight) / 2 + cont, recWidth,recHeight);
-			ColorManager.drawYCenteredString(5, (line -6)+ cont, graphics,"[ " + valorMinimo + " " + Float.toString(umbrales[i])+ " ]");
+			ColorManager.drawYCenteredString(5, (line -6)+ cont, graphics,"[ " + valorMinimo/10 + " " + Float.toString(umbrales[i]/10)+ " ]");
 			cont += line;
 			valorMinimo = (int) umbrales[i];
 
