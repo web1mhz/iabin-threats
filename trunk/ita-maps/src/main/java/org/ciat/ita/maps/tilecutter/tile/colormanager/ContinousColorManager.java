@@ -86,8 +86,8 @@ public class ContinousColorManager extends ColorManager{
 		
 		graphics.setColor(Color.BLACK);
 		graphics.drawRect(5,(line-recHeight)/2+line*2, recWidth, recHeight);
-		graphics.drawString("High: "+Float.toString(this.getMax()/10), recWidth+10,(line-recHeight)/2+recHeight/2+30);
-		graphics.drawString("Low: "+Float.toString(this.getMin()/10), recWidth+10,recHeight+40);
+		graphics.drawString(Float.toString(this.getMax()/10), recWidth+10,(line-recHeight)/2+recHeight/2+30);
+		graphics.drawString(Float.toString(this.getMin()/10), recWidth+10,recHeight+40);
 		
 		
 		return image;

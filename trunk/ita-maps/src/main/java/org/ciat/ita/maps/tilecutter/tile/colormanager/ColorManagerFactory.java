@@ -29,7 +29,7 @@ public class ColorManagerFactory {
 
 		if (PropertiesManager.getInstance().existProperty(colorType + ".value.max"))
 			max = PropertiesManager.getInstance().getPropertiesAsFloat(
-					colorType + ".value.max");
+					colorType + ".value.max")*10;
 		else
 			max = raster.getMax();
 
