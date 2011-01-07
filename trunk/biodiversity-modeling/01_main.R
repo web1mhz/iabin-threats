@@ -159,7 +159,7 @@ write.table(files.error, paste(dir.out, "/species_where_maxent_failed.txt",sep="
 
 st <- proc.time()
 for (i in 1:length(files[,1])){
-  system(paste("unzip ",dir.out,"/",files[i,1],sep="")) # extract the archives
+  system(paste("unzip -q ",dir.out,"/",files[i,1],sep="")) # extract the archives
   this.id=strsplit(files[i,1],"\\.")[[1]][1] # get the id of the species that is being procesed 
   
   # calculate roc threshold, min distance
@@ -206,7 +206,7 @@ for (i in 1:length(files[,1])){
   if(any(grepl("bio17", names(me.res)))) eval.stats[i,'bio17'] <- me.res[nrow(me.res),'bio17.contribution']
 
   # get the bio with the max contribution
-  eval.stats[i, 'max.contribution'] <- names(eval.stats)[which(eval.stats[i,]==max(eval.stats[i,grep("bio", names(eval.stats))], na.rm=T))]
+  eval.stats[i, 'max.contribution'] <- names(eval.stats)[which(eval.stats[i,]==max(eval.stats[i,grep("bio", names(eval.stats))], na.rm=T))][1]
 
   print(paste("finished ", i, "of", length(files[,1]), "species."))
   
@@ -235,6 +235,7 @@ write.table(cbind(missing.sp, missing.values), log.extract.auc, row.names=F, col
 write.table(eval.stats, paste(dir.out, "/evaluation_statistics.csv",sep=""), col.names=T, row.names=F, sep=",", append=F, quote=F)
 
 # write it to the species file
+count <- 1
 for (i in eval.stats[,1])
 {
 write(paste("avg.auc_train : ",eval.stats[eval.stats[,1]==i,'avg.auc_train'], 
@@ -252,6 +253,8 @@ write(paste("avg.auc_train : ",eval.stats[eval.stats[,1]==i,'avg.auc_train'],
               "\nbio16 : ", eval.stats[eval.stats[,1]==i,'bio16'],
               "\nbio17 : ", eval.stats[eval.stats[,1]==i,'bio17'],
               "\nmost.important.bio : ", eval.stats[eval.stats[,1]==i,'max.contribution'],sep=""), paste(dir.out,i,"info.txt", sep="/"), append=T)
+              if(count %% 100 == 0) print(count)
+              count <- count+1
 }
 
 
@@ -305,6 +308,7 @@ done
 ###########################################
 
 # make a file where for each species the class, family, genus and species is written
+# task 16 and 17 could be made a lot more efficient with the use of r.series, method=count
 
 echo "class,fam_id,gen_id,sp_id" > tax.txt
 
@@ -414,6 +418,142 @@ rm tmp.sf
 # Threat for each species (task 18)
 ###########################################
 
+###########################################
+# R
+
+###########################################
+# Abrevatoins
+#
+# a. - stands for area in km2
+# p. - percent
+# m. - mean
+# sd. - sd
+
+
+
+ev <- read.csv("evaluation_statistics.csv")
+
+ 
+
+
+###########################################
+# load default
+
+library(spgrass6)
+library(raster)
+
+sa <- raster(readRAST6("sa"))
+sav <- getValues(sa)
+a.sa <- getValues(area(sa))
+
+t.agg <- raster(readRAST6("ta.aggregate"))
+t.aggv <- getValues(t.agg)
+
+# all the threats
+threat.names <- c("aggregate", "access_pop", "conv_ag", "fires", "grazing", "infrastr", "oil_gas", "rec_conv")
+
+threat.data <- list()
+
+for (i in 1:length(threat.names)) {
+  tmp <- list()
+  tmp$name <- threat.names[i]
+  tmp$data <- raster(readRAST6(paste("ta.",threat.names[i],sep="")))
+  tmp$datav <- getValues(tmp$data)
+
+  levels <- list()
+
+  for (j in 1:4) {
+    tmp2 <- list()
+    tmp2$data <- raster(readRAST6(paste("tac.ta",threat.names[i],j,sep=".")))     
+    tmp2$datav <- getValues(tmp2$data)
+    
+    tmp2v <- ifelse(is.na(tmp2$datav),0,1)
+    tmp2$datav <- getValues(mask(setValues(sa,tmp2v),sa))
+
+    levels[[j]] <- tmp2
+  }
+  tmp$levels <- levels
+  threat.data[[i]] <- tmp
+}
+
+
+# code pixels that are lost already with 0, others with 1 and outside sa with NA
+lost <- ifelse(is.na(t.aggv),0,1)
+lost <- mask(setValues(sa,lost),sa)
+lostv <- getValues(lost)
+
+files <- list.files(pattern="^[0-9].*[0-9]$")
+count <- 1
+for (sp in files) {
+
+  roc <- ev[ev$id==sp, 'roc']
+
+  r <- raster(readRAST6(paste("me.c.",sp,sep="")))
+
+  # total above threshold
+  rv <- getValues(r)    
+  a.total <- sum(a.sa[rv>=roc], na.rm=T)
+  write(paste("area.above.th.in.km2 : ",a.total, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+
+  # area lost already
+  a.lost <- sum(a.sa[rv>=roc & lostv == 0],na.rm=T)
+  write(paste("area.lost.in.km2 : ",a.lost, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+
+  # area not lost
+  a.nlost <- sum(a.sa[rv>=roc & lostv == 1],na.rm=T)
+
+  # percent lost
+  p.lost <- a.lost / a.total * 100
+  write(paste("percent.lost : ",p.lost, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+
+  # mean occurrence probability in lost area
+  m.occurrence.lost.at <- mean(rv[rv>=roc & lostv == 0],na.rm=T)
+  write(paste("lost.mean.occ.probability : ",m.occurrence.lost.at, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+
+  # mean occurence probabilty in still available habitat
+  m.occurrence.nlost.at <- mean(rv[rv>=roc & lostv == 1],na.rm=T)
+  write(paste("not.lost.mean.occ.probability :",m.occurrence.nlost.at, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+  
+
+  for (i in 1:length(threat.names)) {
+    m.threat <- mean(threat.data[[i]]$datav[rv>=roc], na.rm=T)
+    write(paste("ta.",threat.names[i],".mean : ",m.threat, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+    sd.threat <- sd(threat.data[[i]]$datav[rv>=roc], na.rm=T)
+    write(paste("ta.",threat.names[i],".sd : ",sd.threat, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+    max.threat <- max(threat.data[[i]]$datav[rv>=roc], na.rm=T)
+    write(paste("ta.",threat.names[i],".max : ",max.threat, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+    min.threat <- min(threat.data[[i]]$datav[rv>=roc], na.rm=T)
+    write(paste("ta.",threat.names[i],".min : ",min.threat, sep=""), paste(sp,"/info.txt", sep=""), append=T)  
+
+    for (j in 1:4) {
+      
+      # Percent under threat
+      a.level <- sum(a.sa[threat.data[[i]]$level[[j]]$datav==1 & rv>=roc],na.rm=T) / a.nlost * 100
+      
+      if (threat.names[i]=="access_pop")      
+        a.level <- sum(a.sa[threat.data[[i]]$level[[j]]$datav==1 & rv>=roc],na.rm=T) / a.total * 100
+
+      write(paste("percent.under.",threat.names[i],".",j," : ",a.level, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+            
+      # mean occurrence probability under threat
+      m.ocp.level <- mean(rv[threat.data[[i]]$level[[j]]$datav==1 & rv>=roc],na.rm=T)
+      write(paste(threat.names[i],".",j,"mean.occ.probability : ",m.ocp.level, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+      
+      # mean occurenc eprobability not under threat
+      m.ocp.nlevel <- mean(rv[threat.data[[i]]$level[[j]]$datav==0 & rv>=roc],na.rm=T)
+      write(paste("not.",threat.names[i],".",j,"mean.occ.probability : ",m.ocp.nlevel, sep=""), paste(sp,"/info.txt", sep=""), append=T)
+  
+    }
+  }
+
+  print(paste(count, "of", length(files)))
+  count <- count + 1
+}
+
+
+
+########################################### obsolete
+
 for species in `ls | grep ^[0-9].*.[0-9]$` # do for all species
 do
   g.remove rast=MASK
@@ -500,79 +640,69 @@ do
       done
   fi
   
-  echo "===================================== done with an other one ============================================"
-  
+  echo "===================================== done with $species ============================================"
+  echo $species >> created_threat.txt
   g.remove rast=tmp.$species
   g.remove rast=MASK
 done
 
 
-## Create a threat index with R
+### Extract values
 
+# all the fields from the info.txt file that will be included into the table
+fields.to.extract <- c("species id ","percent.lost ","lost.mean.occ.probability ","not.lost.mean.occ.probability ","ta.aggregate.mean ","ta.aggregate.sd ","ta.aggregate.max ","ta.aggregate.min ","percent.under.aggregate.1 ","aggregate.1mean.occ.probability ","not.aggregate.1mean.occ.probability ","percent.under.aggregate.2 ","aggregate.2mean.occ.probability ","not.aggregate.2mean.occ.probability ","percent.under.aggregate.3 ","aggregate.3mean.occ.probability ","not.aggregate.3mean.occ.probability ","percent.under.aggregate.4 ","aggregate.4mean.occ.probability ","not.aggregate.4mean.occ.probability ","ta.access_pop.mean ","ta.access_pop.sd ","ta.access_pop.max ","ta.access_pop.min ","percent.under.access_pop.1 ","access_pop.1mean.occ.probability ","not.access_pop.1mean.occ.probability ","percent.under.access_pop.2 ","access_pop.2mean.occ.probability ","not.access_pop.2mean.occ.probability ","percent.under.access_pop.3 ","access_pop.3mean.occ.probability ","not.access_pop.3mean.occ.probability ","percent.under.access_pop.4 ","access_pop.4mean.occ.probability ","not.access_pop.4mean.occ.probability ","ta.conv_ag.mean ","ta.conv_ag.sd ","ta.conv_ag.max ","ta.conv_ag.min ","percent.under.conv_ag.1 ","conv_ag.1mean.occ.probability ","not.conv_ag.1mean.occ.probability ","percent.under.conv_ag.2 ","conv_ag.2mean.occ.probability ","not.conv_ag.2mean.occ.probability ","percent.under.conv_ag.3 ","conv_ag.3mean.occ.probability ","not.conv_ag.3mean.occ.probability ","percent.under.conv_ag.4 ","conv_ag.4mean.occ.probability ","not.conv_ag.4mean.occ.probability ","ta.fires.mean ","ta.fires.sd ","ta.fires.max ","ta.fires.min ","percent.under.fires.1 ","fires.1mean.occ.probability ","not.fires.1mean.occ.probability ","percent.under.fires.2 ","fires.2mean.occ.probability ","not.fires.2mean.occ.probability ","percent.under.fires.3 ","fires.3mean.occ.probability ","not.fires.3mean.occ.probability ","percent.under.fires.4 ","fires.4mean.occ.probability ","not.fires.4mean.occ.probability ","ta.grazing.mean ","ta.grazing.sd ","ta.grazing.max ","ta.grazing.min ","percent.under.grazing.1 ","grazing.1mean.occ.probability ","not.grazing.1mean.occ.probability ","percent.under.grazing.2 ","grazing.2mean.occ.probability ","not.grazing.2mean.occ.probability ","percent.under.grazing.3 ","grazing.3mean.occ.probability ","not.grazing.3mean.occ.probability ","percent.under.grazing.4 ","grazing.4mean.occ.probability ","not.grazing.4mean.occ.probability ","ta.infrastr.mean ","ta.infrastr.sd ","ta.infrastr.max ","ta.infrastr.min ","percent.under.infrastr.1 ","infrastr.1mean.occ.probability ","not.infrastr.1mean.occ.probability ","percent.under.infrastr.2 ","infrastr.2mean.occ.probability ","not.infrastr.2mean.occ.probability ","percent.under.infrastr.3 ","infrastr.3mean.occ.probability ","not.infrastr.3mean.occ.probability ","percent.under.infrastr.4 ","infrastr.4mean.occ.probability ","not.infrastr.4mean.occ.probability ","ta.oil_gas.mean ","ta.oil_gas.sd ","ta.oil_gas.max ","ta.oil_gas.min ","percent.under.oil_gas.1 ","oil_gas.1mean.occ.probability ","not.oil_gas.1mean.occ.probability ","percent.under.oil_gas.2 ","oil_gas.2mean.occ.probability ","not.oil_gas.2mean.occ.probability ","percent.under.oil_gas.3 ","oil_gas.3mean.occ.probability ","not.oil_gas.3mean.occ.probability ","percent.under.oil_gas.4 ","oil_gas.4mean.occ.probability ","not.oil_gas.4mean.occ.probability ","ta.rec_conv.mean ","ta.rec_conv.sd ","ta.rec_conv.max ","ta.rec_conv.min ","percent.under.rec_conv.1 ","rec_conv.1mean.occ.probability ","not.rec_conv.1mean.occ.probability ","percent.under.rec_conv.2 ","rec_conv.2mean.occ.probability ","not.rec_conv.2mean.occ.probability ","percent.under.rec_conv.3 ","rec_conv.3mean.occ.probability ","not.rec_conv.3mean.occ.probability ","percent.under.rec_conv.4 ","rec_conv.4mean.occ.probability ","not.rec_conv.4mean.occ.probability ","occ.prob.mean.in.pa ","occ.prob.sd.in.pa ","occ.prob.mean.outside.pa ","occ.prob.sd.outside.pa ","percent.area.protected ")
 
+# create the tables
+write(paste(fields.to.extract, collapse=","), "threats_table.csv", append=F)
+write(paste(fields.to.extract, collapse=","), "error.threats_table.csv", append=F)
 
-  index <- 0
-  tt <- threats[as.numeric(threats[,1])==sp_id,]
-  if (tt$percent.lost > 40 &tt$lost.mean.occ.probability > tt$not.lost.mean.occ.probability ) index <- index + 4000
-  if (tt$percent.lost > 40 &tt$lost.mean.occ.probability < tt$not.lost.mean.occ.probability ) index <- index + 3000
-  if (tt$percent.lost < 40 &tt$lost.mean.occ.probability > tt$not.lost.mean.occ.probability ) index <- index + 2000
-  if (tt$percent.lost < 40 &tt$lost.mean.occ.probability < tt$not.lost.mean.occ.probability ) index <- index + 1000 
-  for (danger in dangers) for (level in 1:4) index <- index + as.numeric(tt[,paste("percent.under.threat.",danger,".",level," ", sep="")])*level
-  return(index)
+# get all files
+f <- list.files(pattern="^[0-9].*[0-9]$")
+
+# extract all values
+system.time(lapply(f, rw.threat))
+
+# function that extracts the values
+rw.threat <- function(id, file="threats_table.csv", to.extract=fields.to.extract) {
+
+  tmp <- read.table(paste(id, "/info.txt", sep=""), sep=":", stringsAsFactors=F)
+  extracted <- tmp[tmp[,1] %in% to.extract,2]
+  if(length(extracted)==length(to.extract)) {
+    write(paste(extracted, collapse=","), file, append=T)
+  } else write(paste(tmp[tmp[1,] %in% to.extract,2], collapse=","), paste("error.",file,sep=""), append=T)
+
 }
 
-
-for i in */info.txt
-do
-  sp=`awk -F: '/species id/ {print $2}' $i`
-  plost=`awk -F: '/\"/ {print $2}' $i`
-  lost=`awk -F: '/^lost.mean.occ.probability/ {print $2}' $i`
-  shere=`awk -F: '/not.lost.mean.occ.probability/ {print $2}' $i`
-  t1=`awk -F: '/percent.under.threat.aggregate.1/ {print $2}' $i`
-  t2=`awk -F: '/percent.under.threat.aggregate.2/ {print $2}' $i`
-  t3=`awk -F: '/percent.under.threat.aggregate.3/ {print $2}' $i`
-  t4=`awk -F: '/percent.under.threat.aggregate.4/ {print $2}' $i`
-
-  echo "$sp, $plost, $lost, $shere, $t1, $t2, $t3, $t4" >> threat.csv
-  echo $i
-done 
-### Create Code 
-
-write(paste("threats <- data.frame()",
-    "\ncount <- 1",
-    "\nfor (i in list.files(pattern=\"^[0-9]\")) {",
-    "\ntmp <- read.table(paste(i,\"/info.txt\",sep=\"\"), sep=\":\", stringsAsFactors=F)", sep=""), "cmd.R", append=F)
-
-for (tt in c("access_pop","aggregate","conv_ag","fires","grazing","infrastr","oil_gas","rec_conv"))
-  {
-      write(paste("threats[count, \"species_id\"] <- i", 
-      "\nthreats[count, \"percent.lost\"] <- ifelse(length(as.numeric(tmp[grep(\"percent.lost\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"percent.lost\",tmp[,1]),2]),NA)",
-      "\nthreats[count, \"lost.mean.occ.probability\"] <- ifelse(length(as.numeric(tmp[grep(\"^lost.mean.occ.probability\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"^lost.mean.occ.probability\",tmp[,1]),2]),NA)",
-      "\nthreats[count, \"not.lost.mean.occ.probability\"] <- ifelse(length(as.numeric(tmp[grep(\"not.lost.mean.occ.probability\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"not.lost.mean.occ.probability\",tmp[,1]),2]),NA)",sep=""), "cmd.R", append=T)
-      for (n in 1:4) {
-      write(paste("threats[count, \"percent.under.threat.",tt,".",n,"\"] <- ifelse(length(as.numeric(tmp[grep(\"percent.under.threat.",tt,".",n,"\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"percent.under.threat.",tt,".",n,"\",tmp[,1]),2]),NA)", sep=""), "cmd.R", append=T)
-       write(paste("threats[count, \"",tt,".",n,".mean.occ.probability\"] <- ifelse(length(as.numeric(tmp[grep(\"^",tt,".",n,".mean.occ.probability\",tmp[,1]),2]))==1,as.numeric(tmp[grep(\"^",tt,".",n,".mean.occ.probability\",tmp[,1]),2]),NA)", sep=""), "cmd.R", append=T)
-     }
-      
-  }
-write("count <- count+1; if(count%%50==0) print(count)}", "cmd.R", append=T)
 
 ## calculate the threat for each species
 
-for (i in 1:nrow(threats)) {
+threats <- read.csv("threats_table.csv")
+
+threats <- threats[!is.na(threats[,2]),]
+
+# prep data.frame
 for (danger in c("rec_conv", "infrastr", "grazing", "fires", "conv_ag", "access_pop", "oil_gas", "aggregate"))
-{
-  tmp.danger <- c()
-  tmp.ocp <- c()
-  for (level in 1:4) {
-      a.threat <- threats[i,grep(paste("percent.under.threat.",danger,".",level, sep=""), names(threats))]
-      m.ocp <- threats[i,grep(paste(danger,".",level,".mean.occ.probability", sep=""), names(threats))]
-      if (a.threat == 0 | is.na(a.threat)) {a.threat <- 0; m.ocp <- 1}      
-      tmp.danger <- c(tmp.danger, a.threat/100 * m.ocp * level )
-      tmp.ocp <- c(tmp.ocp, m.ocp*level)
+ threats[1,paste("risk.", danger, sep="")] <- NA
+
+col.risk <- grep("risk", names(threats))
+
+
+for (i in 1:nrow(threats)) {
+  t.index <- c()
+  for (danger in c("rec_conv", "infrastr", "grazing", "fires", "conv_ag", "access_pop", "oil_gas", "aggregate"))
+  {
+    tmp.danger <- c()
+    tmp.ocp <- c()
+    for (level in 1:4) {
+        a.threat <- threats[i,grep(paste("percent.under.",danger,".",level, sep=""), names(threats))]
+        m.ocp <- threats[i,grep(paste("^",danger,".",level,"mean.occ.probability", sep=""), names(threats))]
+        if (a.threat == 0 | is.na(a.threat)) {a.threat <- 0; m.ocp <- 1}      
+        tmp.danger <- c(tmp.danger, a.threat/100 * m.ocp * level )
+        tmp.ocp <- c(tmp.ocp, m.ocp*level)
+    }
+    t.index <- c(t.index, sum(tmp.danger)/sum(tmp.ocp))
   }
-  threats[i,paste("risk.", danger, sep="")] <- sum(tmp.danger)/sum(tmp.ocp)
-}
+  threats[i,col.risk] <- t.index
 
 if(i %% 100 == 0) print(i)
 
@@ -580,11 +710,45 @@ if(i %% 100 == 0) print(i)
 
 
 
-
+###########################################
 # Maximum threat
-for (i in 1:nrow(threats)){
-threats[i, 'highest.risk'] <- names(threats)[which(threats[i,]==max(threats[i,grep("risk.*.[vgrpgs]$", names(threats))], na.rm=T))]}
+
+# which is the highest risk
+threats[, 'highest.risk'] <- apply(threats,1,get.highest.risk)
+
+get.highest.risk <- function(threats) 
+  return(paste(names(threats)[which(threats==max(threats[grep("risk.*.[vgrpgs]$", names(threats))], na.rm=T))], collapse=","))
+
+# what is the value of the highest risk
 threats[,'value.highest.risk'] <- apply(threats[,grep("risk.*.[vgrpgs]$", names(threats))],1,max)
+threats$group <- as.numeric(substr(threats$species.id,1,1))
+
+# add the different threat groups
+for (i in 1:nrow(threats)) threats[i,'threat.group'] <- threat.group(threats[i,])
+
+threat.group <- function(tt) {
+  if (tt$percent.lost == 0) {
+    index <- 1
+  } else if (tt$percent.lost > 40 &tt$lost.mean.occ.probability > tt$not.lost.mean.occ.probability ) { 
+    index <- 4
+  } else if (tt$percent.lost > 40 &tt$lost.mean.occ.probability < tt$not.lost.mean.occ.probability ) {
+    index <- 3 
+  } else if (tt$percent.lost < 40 &tt$lost.mean.occ.probability > tt$not.lost.mean.occ.probability ) {
+    index <- 2  
+  } else if (tt$percent.lost < 40 &tt$lost.mean.occ.probability < tt$not.lost.mean.occ.probability ) {
+    index <- 1
+  } 
+  i <- i+1
+  return(index)
+}
+
+
+write.csv(threats, "threats_complete.csv")
+
+
+h <- ggplot(threats[threats$group==9,], aes(x=value.highest.risk, fill=highest.risk))
+h + geom_bar(binwidth=0.05)
+
 
 ###########################################
 # Mean % area protected in and outside 
@@ -652,6 +816,7 @@ g.remove rast=tmp
 
 ## Join this values to the map of WDPA
 # add columns
+g.copy vect=protected_area@PERMANENT,pa
 v.db.addcol map=pa columns="max_rep double precission"
 
 for i in parks/*
@@ -663,7 +828,7 @@ do
 done
 
 ###########################################
-# Species Richness per class (task 21)
+# (task 21)
 ###########################################
 mkdir summary
 
@@ -680,9 +845,9 @@ do
     echo "$j.sd : $stddev" >> summary/$i.txt
     echo "$j.mean : $mean" >> summary/$i.txt
   done
-  r.mask -r 
+  g.remove rast=MASK
   area_total=`r.sum $i | awk -F= '{print $2}'`
-  r.mask protected_areas
+  r.mapcalc "MASK=protected_areas"
   area_protected=`r.sum $i | awk -F= '{print $2}'` # sum the area that is protected
   percent_protected=`echo "scale=2; $area_protected / $area_total *100" | bc` 
   echo "percent.protected : $percent_protected" >> summary/$i.txt
@@ -701,7 +866,7 @@ do
   
   echo "lon,lat" >  $i/points.csv
   # exports the coords of the polygon (B) and the centroid (C), awk is used to get extract only the points of the polyon. 
-  v.out.ascii in=occ_$i format=point | awk -F'|' '{print $1","$2}' >> $i/points.csv
+  v.out.ascii in=occ_$i format=point | awk -F'|' '{print $1","$2}' >> $i/points.csv	
   echo $i
 
 done
@@ -721,19 +886,186 @@ do
     cp -v $i/info.txt ready/$i/${i}-info.txt
   fi
 done
+#--------------------------------------------------------------------#
+#--------------------------------------------------------------------#
+# Analyse threat
+#--------------------------------------------------------------------#
 
-###### Additional stuff
-## chck for env var correlation
-r.random sa vector_output=random_env n=5000 --o
+# get for each species type all species that are in group4
+r <- read.csv("threats_complete.csv")
+for (i in unique(r$group)) {
+   write.table(r[r$group==i&r$threat.group==4,'species.id'], paste(i,"species_threat_group4.csv", sep=""), col.names=F, row.names=F, quote=F, append=F)
+}
 
-for i in $(seq 1 19)
+# pixels with threat group 4
+   
+for i in 1 5 6 7 8 9
 do
-v.db.addcol map=random_env columns="bio$i double precision"
-v.what.rast vect=random_env rast=bio$i.30sec col=bio$i
+r.mapcalc "out=0"
+for line in `cat ${i}species_threat_group4.csv`
+do
 
+th=`awk -F" : " '/^roc/{print $2}' $line/info.txt`
+
+r.mapcalc "tmp=if(isnull(me.c.$line),0,me.c.$line)"
+r.mapcalc "tmp1=if(tmp>=$th,1,0)"
+r.mapcalc "t.o=out+tmp1"
+r.mapcalc "out=t.o"
+echo $line
+done
+g.copy rast=out,th4species_grp${i}_with_th --o
 done
 
-res <- data.frame(from=rep(NA,19*18/2), to=NA, cor=NA)
-count <- 1
+# all species
+r.mapcalc "th4all_grps=th4species_grp1_with_th+th4species_grp5_with_th+th4species_grp6_with_th+th4species_grp7_with_th+th4species_grp8_with_th+th4species_grp9_with_th"
 
-for (i in 1:19) for (j in 1:19) if(j>i) {res[count,] <- cbind(i,j,cor(bio[,i],bio[,j])); count <- count + 1}
+#--------------------------------------------------------------------#
+# get admin 1 for south america
+mkdir gadm_sa
+cd gadm_sa
+
+for country in COL ECU BRA BOL ARG PER GUY GUF VEN SUR PRY URY CHL
+do
+wget http://www.gadm.org/data/shp/${country}_adm.zip
+unzip ${country}_adm.zip
+done
+
+# merge them to one shapefile
+
+ogr2ogr sa_adm1.shp COL_adm1.shp
+
+for country in ECU BRA BOL ARG PER GUY GUF VEN SUR PRY URY CHL
+do
+ogr2ogr -update -append sa_adm1.shp ${country}_adm1.shp -nln sa_adm1 
+done
+
+
+# for each province number of species from group 4
+db.select table=adm1 | cut -d"|" -f5 > adm1_id.tmp
+db.select table=adm1 | awk -F"|" '{print $3","$5","$6}' > country_code.csv
+
+echo "id,min,mean,max" > th4_per_province.csv
+
+for i in `cat adm1_id.tmp`
+do
+	r.mapcalc "tmp=if(adm1==$i,1,null())"
+	r.mapcalc "MASK=tmp"
+	eval `r.univar -g th4all_grps`
+	echo $i,$min,$mean,$max >> th4_per_province.csv
+	echo $i
+	g.remove rast=MASK@all_species
+done
+
+r <- read.csv("th4_per_province.csv")
+head(r)
+r <- r[2:nrow(r),]
+
+cc <- read.csv("country_code.csv")
+
+#r$mean <- ifelse(is.na(r$mean),0,r$mean)
+
+#r$quant.mean <- 0
+#r$quant.mean <- ifelse(r$mean < summary(r$mean)[2],1,r$quant.mean)
+#r$quant.mean <- ifelse(r$mean >= summary(r$mean)[2]&r$mean<summary(r$mean)[3],2,r$quant.mean)
+#r$quant.mean <- ifelse(r$mean >= summary(r$mean)[3]&r$mean<summary(r$mean)[5],3,r$quant.mean)
+#r$quant.mean <- ifelse(r$mean >= summary(r$mean)[5],4,r$quant.mean)
+
+#plot(sa, col=col[r$quant.mean])
+map("world", col="grey99", add=T)
+
+
+
+# for each ecoregion number of species from group 4
+v.to.rast in=eco out=eco_eco use=attr col=ECO_ID 
+
+#--------------------------------------------------------------------#
+# cleaning
+
+# create grid where protected = 1 and not protected = 0
+#--------------------------------------------------------------------#
+# make plot for each species group
+#--------------------------------------------------------------------#
+
+# General set up
+#--------------------------------------------------------------------#
+
+# load libraries
+library(spgrass6)
+library(raster)
+
+# load datasets from grass
+veco <- readVECT6("eco")
+vdeco <- veco@data
+rsa <- raster(readRAST6("sa"))
+reco <- raster(readRAST6("eco_eco"))
+
+rveco <- getValues(reco)
+rveco <- ifelse(is.na(rveco),0,rveco)
+
+rvsa <- getValues(rsa)
+rvprotected <- getValues(raster(readRAST6("protected_areas")))
+rvprotected <- ifelse(is.na(rvprotected),0,1)
+rarea <- mask(area(rsa),rsa)
+rvarea <- getValues(rarea)
+
+# names of ecoregions
+eco.names <- vdeco[!duplicated(vdeco$ECO_ID),]
+
+# group names
+sp <- data.frame(grp.id=c(1,5,6,7,8,9),grp.name=c("reptilia","amphibia","aves","insecta", "mammalia", "plantae"),grp.label=c("Reptiles", "Amphibians", "Birds", "Insects", "Mammals", "Plants"))
+
+# prepare eco reagions
+eco.df <- data.frame(ECO_ID=unique(rveco), pprotected=0)
+
+# add names for each eco region
+eco.df <- eco.df[eco.df[,'ECO_ID']!=0,]
+for (i in 1:nrow(eco.df))
+	eco.df[i,'name'] <- eco.names[eco.names$ECO_ID==eco.df[i,'ECO_ID'],'ECO_NAME']
+
+for (i in 1:nrow(sp))    
+{
+   # read raster with the number of species that threatend per pixel
+   rth4 <- raster(readRAST6(paste("th4species_grp",sp[i,'grp.id'],"_with_th", sep="")))
+   rvth4 <- getValues(rth4)
+   rvth4 <- ifelse(is.na(rvth4),0,rvth4)
+
+   # read raster with total number of species of that group per pixel
+   rsp <- raster(readRAST6(paste("cla.",sp[i,'grp.name'], sep="")))
+   rvsp <- getValues(rsp)
+   
+   # for each species group calculate the mean number of species and mean number of threatend species for each ecoregion
+   count <- 1
+   for (j in unique(rveco)) {
+      eco.df[eco.df$ECO_ID==j,paste("cla.",sp[i,'grp.id'],".all.sp",sep="")] <- sp.all <- mean(rvsp[rveco==j],na.rm=T)
+      eco.df[eco.df$ECO_ID==j,paste("cla",sp[i,'grp.id'],".th4", sep="")] <- sp.th <- mean(rvth4[rveco==j], na.rm=T)
+      eco.df[eco.df$ECO_ID==j,paste('pth.',sp[i,'grp.id'],sep="")] <- sp.th / sp.all
+      if(i==1) print( eco.df[eco.df$ECO_ID==j,'pprotected'] <- (sum(rvarea[rveco==j & rvprotected==1], na.rm=T) /sum(rvarea[rveco==j],na.rm=T)))
+      
+      count <- count+1
+   }
+
+   # devide ecoregions for each species group into four quantiles
+   eco.df[,paste('quant.mean.',i,sep="")] <- 0
+   eco.df[,paste('quant.mean.',i,sep="")] <- ifelse(eco.df[,paste('cla',sp[i,1],'.th4', sep="")] < summary(eco.df[,paste('cla',sp[i,1],'.th4',sep="")])[2],1,eco.df[,paste('quant.mean.',i,sep="")] )
+   eco.df[,paste('quant.mean.',i,sep="")] <- ifelse(eco.df[,paste('cla',sp[i,1],'.th4', sep="")] >= summary(eco.df[,paste('cla',sp[i,1],'.th4',sep="")])[2]&eco.df[,paste("cla",sp[i,1],".th4", sep="")]<summary(eco.df[,paste('cla',sp[i,1],'.th4', sep="")])[3],2,eco.df[,paste('quant.mean.',i,sep="")] )
+   eco.df[,paste('quant.mean.',i,sep="")] <- ifelse(eco.df[,paste('cla',sp[i,1],'.th4', sep="")] >= summary(eco.df[,paste('cla',sp[i,1],'.th4',sep="")])[3]&eco.df[,paste("cla",sp[i,1],".th4", sep="")]<summary(eco.df[,paste('cla',sp[i,1],'.th4', sep="")])[5],3,eco.df[,paste('quant.mean.',i,sep="")] )
+   eco.df[,paste('quant.mean.',i,sep="")] <- ifelse(eco.df[,paste('cla',sp[i,1],'.th4', sep="")] >= summary(eco.df[,paste('cla',sp[i,1],'.th4',sep="")])[5],4,eco.df[,paste('quant.mean.',i,sep="")] )
+
+
+}
+
+cols <- c("darkgreen", "brown", "orange", "red")
+with(eco.mean.th4, plot(aprotected,ptotal, pch=quant.mean, col=cols[quant.mean], las=T, ylab="Proportion of total species that within group 4", xlab="Proportion of ecoregion that is under protection"))
+with(eco.mean.th4, thigmophobe.labels(aprotected,ptotal,eco.mean.th4$name))
+abline(h=mean(eco.mean.th4$ptotal, na.rm=T), col="grey66", lty=2)
+
+par(mfrow=c(2,3))
+for (i in 1:nrow(sp)) {
+   plot(eco.df$pprotected,eco.df[,paste("pth.",sp[i,1], sep="")],ylim=c(0,.7), pch=eco.df[,paste('quant.mean.',i, sep="")],col=cols[eco.df[,paste('quant.mean.',i, sep="")]],ylab="Portion of species in threat group 4", xlab="Portion of ecoregion under protection")
+   title(sp[i, 'grp.label'])
+   abline(h=mean(eco.df[,paste("pth.",sp[i,1],sep="")], na.rm=T), col="grey66", lty=2)
+   legend("topright",c("1st quantile", "2nd quantile", "3rd quantile", "4th quantile"), pch=1:4, col=cols[1:4])
+   #text(0.5,0.25, paste(eco.df[order(eco.df[,paste("pth.",sp[i,1],sep="")],decreasing=T),'name'][1:10], collapse="\n"), pos=4, col="grey50")
+   with(head(eco.df[order(eco.df[,paste("pth.",sp[i,1], sep="")],decreasing=T),],11), thigmophobe.labels(pprotected,get(paste("pth.",sp[i,1],sep="")),as.numeric(name)))
+
+}
