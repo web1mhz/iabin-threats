@@ -257,6 +257,20 @@ write(paste("avg.auc_train : ",eval.stats[eval.stats[,1]==i,'avg.auc_train'],
               count <- count+1
 }
 
+###########################################
+# Move all modells with an AUC of < 0.7 to
+# a different folder
+
+mkdir auc_below_07
+
+for species in `ls | grep ^[0-9].*.[0-9]$`
+do
+ auc_species=`awk -F" : " '/avg.auc_test/{print $2}' $species/info.txt`
+ if [  $(echo "$auc_species < 0.7" | bc) -gt 0 ] # check if the AUC is above the required threshold
+ then
+    mv -v $species ./auc_below_07/
+ fi
+done
 
 ###########################################
 # Do CHull, export chull as buffer and cut 
@@ -552,101 +566,6 @@ for (sp in files) {
 
 
 
-########################################### obsolete
-
-for species in `ls | grep ^[0-9].*.[0-9]$` # do for all species
-do
-  g.remove rast=MASK
-  auc_species=`awk -F" : " '/avg.auc_test/{print $2}' $species/info.txt` # get the average auc for this species
-
-  if [ $(echo "$auc_species > $auc_th" | bc) -gt 0 ] # only proces species where the auc is bigger than the specified auc
-  then
-    threshold=`awk -F" : " '/roc/{print $2}' $species/info.txt` # get species threshold
-    r.mapcalc "tmp.$species=if(me.c.${species} >= $threshold,1,null())" # calculate temp grid only with the area above threshold
-    area=`r.sum tmp.$species | awk -F= '{print $2}'` # sum the area over all area
-    echo "area.above.th.in.pixel : $area" >> $species/info.txt # write to file
-    areakm=`r.report -hne map=tmp.${species} units=k nsteps=1 | awk -F'|' '/TOTAL/{print $3}' | sed 's/,//g'` # sum area in km2
-    echo "area.above.th.in.km2 : $areakm" >> $species/info.txt
-    
-    # area that is alread 'lost', its all no data in the layer ta.aggregated
-    r.mapcalc "MASK=if(tmp.$species)&&if(isnull(ta.aggregate))"
-    arealost=`r.report -hne map=tmp.${species} units=k | awk -F'|' '/TOTAL/{print $3}' | sed 's/,//g '`
-    echo "area.lost.in.km2 : $arealost" >> $species/info.txt
-    echo "percent.lost :" `echo "scale=4; $arealost / $areakm * 100" | bc` >> $species/info.txt
-    areanotlost=`echo "scale=4; $areakm-$arealost" | bc`
-    echo "area.not.lost.in.km2 : $areanotlost" >> $species/info.txt
-    # mean occurence probability in lost area
-    eval `r.univar -g me.c.$species`
-    echo "lost.mean.occ.probability : $mean" >> $species/info.txt
-    echo "lost.sd.occ.probability : $stddev" >> $species/info.txt
-
-    # mean occurence probability in not lost area
-    g.remove rast=MASK
-    r.mapcalc "MASK=if(ta.aggregate)&&if(tmp.$species)"
-    eval `r.univar -g me.c.$species`
-    echo "not.lost.mean.occ.probability : $mean" >> $species/info.txt
-    echo "not.lost.sd.occ.probability : $stddev" >> $species/info.txt
-   
-    # keep mask for areas that are presence of this species
-    # g.remove rast=MASK    
-    # r.mapcalc "MASK=tmp.$species" # mask to area above threshold
-      for danger in `g.mlist type=rast mapset=PERMANENT pattern="ta.*"` # loop through all threats
-      do   
-        if [ $(echo "$area > 0" | bc) -gt 0 ]  # only treat species where the area above the threshold is > 0, this check might be obsolete
-        then 
-          # mean threat
-          eval `r.univar -g $danger`
-          sleep 0.1
-          echo "${danger}.mean : $mean" >> $species/info.txt 
-          echo "${danger}.sd : $stddev" >> $species/info.txt 
-          echo "${danger}.min : $min" >> $species/info.txt 
-          echo "${danger}.max : $max" >> $species/info.txt 
-          echo "${danger}.coeff_var : $coeff_var" >> $species/info.txt 
-          
-          
-          # % low, mid, high, no threat
-          for level in `g.mlist type=rast mapset=threats pattern="tac.$danger*"` # calculate the % area of each species under each low, mid, high and no thread
-          do
-            # Percent under threat
-            g.remove rast=MASK
-            r.mapcalc "MASK=if($level)&&if(tmp.$species)"
-            area_level=`r.report -hne map=tmp.$species units=k | awk -F'|' '/TOTAL/{print $3}' | sed 's/,//g'`
-
-            if [ "$danger" = "ta.access_pop" ]; then
-              percent_level=`echo "scale=4; $area_level / $areakm *100" | bc`            
-            else            
-              percent_level=`echo "scale=4; $area_level / $areanotlost *100" | bc`
-            fi
-
-            level_name=`echo $level | awk -F. '{print $3"."$4}'` # get the name of the threat and level (1=no, 2=low, 3=mid, 4=high)
-            echo "percent.under.threat.$level_name : $percent_level" >> $species/info.txt # write file
-            
-            # Do mean occurence probability under this threat
-            eval `r.univar -g me.c.$species`
-            echo "${level_name}.mean.occ.probability : $mean" >> $species/info.txt
-            echo "${level_name}.sd.occ.probability : $stddev" >> $species/info.txt
-
-            # Do mean occurence probability not under this threat
-            g.remove rast=MASK            
-            r.mapcalc "MASK=if(isnull($level))&&if(tmp.$species)"
-            eval `r.univar -g me.c.$species`
-            echo "not.${level_name}.mean.occ.probability : $mean" >> $species/info.txt
-            echo "not.${level_name}.sd.occ.probability : $stddev" >> $species/info.txt
-
-          done
-        else
-          echo "$danger : NA" >> $species/info.txt    
-        fi
-      done
-  fi
-  
-  echo "===================================== done with $species ============================================"
-  echo $species >> created_threat.txt
-  g.remove rast=tmp.$species
-  g.remove rast=MASK
-done
-
-
 ### Extract values
 
 # all the fields from the info.txt file that will be included into the table
@@ -716,6 +635,7 @@ if(i %% 100 == 0) print(i)
 # which is the highest risk
 threats[, 'highest.risk'] <- apply(threats,1,get.highest.risk)
 
+# function to the the highest risk, used in the apply above
 get.highest.risk <- function(threats) 
   return(paste(names(threats)[which(threats==max(threats[grep("risk.*.[vgrpgs]$", names(threats))], na.rm=T))], collapse=","))
 
@@ -723,31 +643,17 @@ get.highest.risk <- function(threats)
 threats[,'value.highest.risk'] <- apply(threats[,grep("risk.*.[vgrpgs]$", names(threats))],1,max)
 threats$group <- as.numeric(substr(threats$species.id,1,1))
 
-# add the different threat groups
-for (i in 1:nrow(threats)) threats[i,'threat.group'] <- threat.group(threats[i,])
 
-threat.group <- function(tt) {
-  if (tt$percent.lost == 0) {
-    index <- 1
-  } else if (tt$percent.lost > 40 &tt$lost.mean.occ.probability > tt$not.lost.mean.occ.probability ) { 
-    index <- 4
-  } else if (tt$percent.lost > 40 &tt$lost.mean.occ.probability < tt$not.lost.mean.occ.probability ) {
-    index <- 3 
-  } else if (tt$percent.lost < 40 &tt$lost.mean.occ.probability > tt$not.lost.mean.occ.probability ) {
-    index <- 2  
-  } else if (tt$percent.lost < 40 &tt$lost.mean.occ.probability < tt$not.lost.mean.occ.probability ) {
-    index <- 1
-  } 
-  i <- i+1
-  return(index)
-}
+# add a threat group 1 lowest quartile and 4 the highest
+ss <- summary(threats$value.highest.risk)
+threats$threat.group <- vreclass(threats$value.highest.risk, ss[c(2,3,5)])
+
+# only use files AUC is > 0.7
+f <- list.files(patter="^[0-9].*.[0-9]$")
+threats <- threats[match(f,threats[,"species.id"]),]
 
 
 write.csv(threats, "threats_complete.csv")
-
-
-h <- ggplot(threats[threats$group==9,], aes(x=value.highest.risk, fill=highest.risk))
-h + geom_bar(binwidth=0.05)
 
 
 ###########################################
@@ -861,8 +767,7 @@ done
 
 for i in `ls | grep ^[0-9].*.[0-9]$` # do for all species
 do
-  #r.out.arc in=me.c.$i out=$i/$i.asc
-  #echo $i
+  r.out.arc in=me.c.$i out=$i/$i.asc
   
   echo "lon,lat" >  $i/points.csv
   # exports the coords of the polygon (B) and the centroid (C), awk is used to get extract only the points of the polyon. 
@@ -886,186 +791,4 @@ do
     cp -v $i/info.txt ready/$i/${i}-info.txt
   fi
 done
-#--------------------------------------------------------------------#
-#--------------------------------------------------------------------#
-# Analyse threat
-#--------------------------------------------------------------------#
 
-# get for each species type all species that are in group4
-r <- read.csv("threats_complete.csv")
-for (i in unique(r$group)) {
-   write.table(r[r$group==i&r$threat.group==4,'species.id'], paste(i,"species_threat_group4.csv", sep=""), col.names=F, row.names=F, quote=F, append=F)
-}
-
-# pixels with threat group 4
-   
-for i in 1 5 6 7 8 9
-do
-r.mapcalc "out=0"
-for line in `cat ${i}species_threat_group4.csv`
-do
-
-th=`awk -F" : " '/^roc/{print $2}' $line/info.txt`
-
-r.mapcalc "tmp=if(isnull(me.c.$line),0,me.c.$line)"
-r.mapcalc "tmp1=if(tmp>=$th,1,0)"
-r.mapcalc "t.o=out+tmp1"
-r.mapcalc "out=t.o"
-echo $line
-done
-g.copy rast=out,th4species_grp${i}_with_th --o
-done
-
-# all species
-r.mapcalc "th4all_grps=th4species_grp1_with_th+th4species_grp5_with_th+th4species_grp6_with_th+th4species_grp7_with_th+th4species_grp8_with_th+th4species_grp9_with_th"
-
-#--------------------------------------------------------------------#
-# get admin 1 for south america
-mkdir gadm_sa
-cd gadm_sa
-
-for country in COL ECU BRA BOL ARG PER GUY GUF VEN SUR PRY URY CHL
-do
-wget http://www.gadm.org/data/shp/${country}_adm.zip
-unzip ${country}_adm.zip
-done
-
-# merge them to one shapefile
-
-ogr2ogr sa_adm1.shp COL_adm1.shp
-
-for country in ECU BRA BOL ARG PER GUY GUF VEN SUR PRY URY CHL
-do
-ogr2ogr -update -append sa_adm1.shp ${country}_adm1.shp -nln sa_adm1 
-done
-
-
-# for each province number of species from group 4
-db.select table=adm1 | cut -d"|" -f5 > adm1_id.tmp
-db.select table=adm1 | awk -F"|" '{print $3","$5","$6}' > country_code.csv
-
-echo "id,min,mean,max" > th4_per_province.csv
-
-for i in `cat adm1_id.tmp`
-do
-	r.mapcalc "tmp=if(adm1==$i,1,null())"
-	r.mapcalc "MASK=tmp"
-	eval `r.univar -g th4all_grps`
-	echo $i,$min,$mean,$max >> th4_per_province.csv
-	echo $i
-	g.remove rast=MASK@all_species
-done
-
-r <- read.csv("th4_per_province.csv")
-head(r)
-r <- r[2:nrow(r),]
-
-cc <- read.csv("country_code.csv")
-
-#r$mean <- ifelse(is.na(r$mean),0,r$mean)
-
-#r$quant.mean <- 0
-#r$quant.mean <- ifelse(r$mean < summary(r$mean)[2],1,r$quant.mean)
-#r$quant.mean <- ifelse(r$mean >= summary(r$mean)[2]&r$mean<summary(r$mean)[3],2,r$quant.mean)
-#r$quant.mean <- ifelse(r$mean >= summary(r$mean)[3]&r$mean<summary(r$mean)[5],3,r$quant.mean)
-#r$quant.mean <- ifelse(r$mean >= summary(r$mean)[5],4,r$quant.mean)
-
-#plot(sa, col=col[r$quant.mean])
-map("world", col="grey99", add=T)
-
-
-
-# for each ecoregion number of species from group 4
-v.to.rast in=eco out=eco_eco use=attr col=ECO_ID 
-
-#--------------------------------------------------------------------#
-# cleaning
-
-# create grid where protected = 1 and not protected = 0
-#--------------------------------------------------------------------#
-# make plot for each species group
-#--------------------------------------------------------------------#
-
-# General set up
-#--------------------------------------------------------------------#
-
-# load libraries
-library(spgrass6)
-library(raster)
-
-# load datasets from grass
-veco <- readVECT6("eco")
-vdeco <- veco@data
-rsa <- raster(readRAST6("sa"))
-reco <- raster(readRAST6("eco_eco"))
-
-rveco <- getValues(reco)
-rveco <- ifelse(is.na(rveco),0,rveco)
-
-rvsa <- getValues(rsa)
-rvprotected <- getValues(raster(readRAST6("protected_areas")))
-rvprotected <- ifelse(is.na(rvprotected),0,1)
-rarea <- mask(area(rsa),rsa)
-rvarea <- getValues(rarea)
-
-# names of ecoregions
-eco.names <- vdeco[!duplicated(vdeco$ECO_ID),]
-
-# group names
-sp <- data.frame(grp.id=c(1,5,6,7,8,9),grp.name=c("reptilia","amphibia","aves","insecta", "mammalia", "plantae"),grp.label=c("Reptiles", "Amphibians", "Birds", "Insects", "Mammals", "Plants"))
-
-# prepare eco reagions
-eco.df <- data.frame(ECO_ID=unique(rveco), pprotected=0)
-
-# add names for each eco region
-eco.df <- eco.df[eco.df[,'ECO_ID']!=0,]
-for (i in 1:nrow(eco.df))
-	eco.df[i,'name'] <- eco.names[eco.names$ECO_ID==eco.df[i,'ECO_ID'],'ECO_NAME']
-
-for (i in 1:nrow(sp))    
-{
-   # read raster with the number of species that threatend per pixel
-   rth4 <- raster(readRAST6(paste("th4species_grp",sp[i,'grp.id'],"_with_th", sep="")))
-   rvth4 <- getValues(rth4)
-   rvth4 <- ifelse(is.na(rvth4),0,rvth4)
-
-   # read raster with total number of species of that group per pixel
-   rsp <- raster(readRAST6(paste("cla.",sp[i,'grp.name'], sep="")))
-   rvsp <- getValues(rsp)
-   
-   # for each species group calculate the mean number of species and mean number of threatend species for each ecoregion
-   count <- 1
-   for (j in unique(rveco)) {
-      eco.df[eco.df$ECO_ID==j,paste("cla.",sp[i,'grp.id'],".all.sp",sep="")] <- sp.all <- mean(rvsp[rveco==j],na.rm=T)
-      eco.df[eco.df$ECO_ID==j,paste("cla",sp[i,'grp.id'],".th4", sep="")] <- sp.th <- mean(rvth4[rveco==j], na.rm=T)
-      eco.df[eco.df$ECO_ID==j,paste('pth.',sp[i,'grp.id'],sep="")] <- sp.th / sp.all
-      if(i==1) print( eco.df[eco.df$ECO_ID==j,'pprotected'] <- (sum(rvarea[rveco==j & rvprotected==1], na.rm=T) /sum(rvarea[rveco==j],na.rm=T)))
-      
-      count <- count+1
-   }
-
-   # devide ecoregions for each species group into four quantiles
-   eco.df[,paste('quant.mean.',i,sep="")] <- 0
-   eco.df[,paste('quant.mean.',i,sep="")] <- ifelse(eco.df[,paste('cla',sp[i,1],'.th4', sep="")] < summary(eco.df[,paste('cla',sp[i,1],'.th4',sep="")])[2],1,eco.df[,paste('quant.mean.',i,sep="")] )
-   eco.df[,paste('quant.mean.',i,sep="")] <- ifelse(eco.df[,paste('cla',sp[i,1],'.th4', sep="")] >= summary(eco.df[,paste('cla',sp[i,1],'.th4',sep="")])[2]&eco.df[,paste("cla",sp[i,1],".th4", sep="")]<summary(eco.df[,paste('cla',sp[i,1],'.th4', sep="")])[3],2,eco.df[,paste('quant.mean.',i,sep="")] )
-   eco.df[,paste('quant.mean.',i,sep="")] <- ifelse(eco.df[,paste('cla',sp[i,1],'.th4', sep="")] >= summary(eco.df[,paste('cla',sp[i,1],'.th4',sep="")])[3]&eco.df[,paste("cla",sp[i,1],".th4", sep="")]<summary(eco.df[,paste('cla',sp[i,1],'.th4', sep="")])[5],3,eco.df[,paste('quant.mean.',i,sep="")] )
-   eco.df[,paste('quant.mean.',i,sep="")] <- ifelse(eco.df[,paste('cla',sp[i,1],'.th4', sep="")] >= summary(eco.df[,paste('cla',sp[i,1],'.th4',sep="")])[5],4,eco.df[,paste('quant.mean.',i,sep="")] )
-
-
-}
-
-cols <- c("darkgreen", "brown", "orange", "red")
-with(eco.mean.th4, plot(aprotected,ptotal, pch=quant.mean, col=cols[quant.mean], las=T, ylab="Proportion of total species that within group 4", xlab="Proportion of ecoregion that is under protection"))
-with(eco.mean.th4, thigmophobe.labels(aprotected,ptotal,eco.mean.th4$name))
-abline(h=mean(eco.mean.th4$ptotal, na.rm=T), col="grey66", lty=2)
-
-par(mfrow=c(2,3))
-for (i in 1:nrow(sp)) {
-   plot(eco.df$pprotected,eco.df[,paste("pth.",sp[i,1], sep="")],ylim=c(0,.7), pch=eco.df[,paste('quant.mean.',i, sep="")],col=cols[eco.df[,paste('quant.mean.',i, sep="")]],ylab="Portion of species in threat group 4", xlab="Portion of ecoregion under protection")
-   title(sp[i, 'grp.label'])
-   abline(h=mean(eco.df[,paste("pth.",sp[i,1],sep="")], na.rm=T), col="grey66", lty=2)
-   legend("topright",c("1st quantile", "2nd quantile", "3rd quantile", "4th quantile"), pch=1:4, col=cols[1:4])
-   #text(0.5,0.25, paste(eco.df[order(eco.df[,paste("pth.",sp[i,1],sep="")],decreasing=T),'name'][1:10], collapse="\n"), pos=4, col="grey50")
-   with(head(eco.df[order(eco.df[,paste("pth.",sp[i,1], sep="")],decreasing=T),],11), thigmophobe.labels(pprotected,get(paste("pth.",sp[i,1],sep="")),as.numeric(name)))
-
-}
