@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.ciat.ita.client.manage.ShapeFileManager;
 import org.ciat.ita.server.database.DataBaseManager;
 
 import com.vividsolutions.jts.geom.Coordinate;
@@ -37,17 +39,21 @@ public class CoordinatesFixer {
 	}
 
 	private static void fixCoordinates() throws SQLException {
+		ShapeFileManager sfman = new ShapeFileManager();
+
 		rs = DataBaseManager
 				.makeQuery(
-						"select id, I3N_latitude, I3N_longitude from I3N_occurrence_record",
+						"select id, I3N_latitude, I3N_longitude, iso_country_code from I3N_occurrence_record",
 						conx);
 
 		Map<Integer, Coordinate> fixed = new HashMap<Integer, Coordinate>();
 
 		double lat = 0;
 		double lon = 0;
+		int maxDistance = 3;
 		String i3nlat = null;
 		String i3nlon = null;
+		String iso = null;
 		boolean fixable = true;
 		int analized = 0;
 		int vacio = 0;
@@ -55,6 +61,7 @@ public class CoordinatesFixer {
 			analized++;
 			i3nlat = rs.getString("I3N_latitude");
 			i3nlon = rs.getString("I3N_longitude");
+			iso = rs.getString("iso_country_code");
 			lat = 0;
 			lon = 0;
 			fixable = true;
@@ -62,9 +69,11 @@ public class CoordinatesFixer {
 			if (i3nlon != null
 					&& i3nlat != null
 					&& (i3nlat.contains("W") || i3nlat.contains("w")
-							|| i3nlon.contains("S") || i3nlon.contains("s")
 							|| i3nlat.contains("E") || i3nlat.contains("e")
-							|| i3nlon.contains("N") || i3nlon.contains("n"))) {
+							|| i3nlat.contains("O") || i3nlat.contains("X")
+							|| i3nlon.contains("Y") || i3nlon.contains("S")
+							|| i3nlon.contains("s") || i3nlon.contains("N") || i3nlon
+							.contains("n"))) {
 				String temp = i3nlat;
 				i3nlat = i3nlon;
 				i3nlon = temp;
@@ -104,10 +113,6 @@ public class CoordinatesFixer {
 				}
 			}
 
-			if (lon < -180) {
-				System.out.println(lon + " " + rs.getString("id"));
-			}
-
 			while (lon > 180 || lon < -180) {
 				lon /= 10;
 			}
@@ -115,7 +120,49 @@ public class CoordinatesFixer {
 				lat /= 10;
 			}
 
+			// shape corrector:
+
+			if (sfman.compareISO(lat, lon, iso) != null) {
+				// changing longitude hemisphere
+				if (sfman.compareISO(lat, -lon, iso, maxDistance) == null) {
+					lon *= -1;
+				} else {
+					// changing both hemispheres
+					if (sfman.compareISO(-lat, -lon, iso, maxDistance) == null) {
+						lat *= -1;
+						lon *= -1;
+					} else {
+					// try changing coordinates
+					if (sfman.compareISO(lon, lat, iso, maxDistance) == null) {
+						double temp = lon;
+						lon = lat;
+						lat = temp;
+					} else {
+
+						// try changing coordinates and orientation
+						if (sfman.compareISO(-lon, -lat, iso, maxDistance) == null) {
+							double temp = -lon;
+							lon = -lat;
+							lat = temp;
+						} else {
+							// try changing coordinates and orientation, and
+							// reducing latitude
+							if (sfman.compareISO(-lon, -(lat / 10), iso,
+									maxDistance) == null) {
+								double temp = -lon;
+								lon = -(lat / 10);
+								lat = temp;
+							}
+						}
+					}}
+				}
+			}
+
 			if (lat == 0 || lon == 0) {
+				fixable = false;
+			}
+
+			if (fixable && sfman.compareISO(lat, lon, iso, maxDistance) != null) {
 				fixable = false;
 			}
 
@@ -151,7 +198,8 @@ public class CoordinatesFixer {
 
 		}
 		System.out.println("Analized:" + analized + " Acepted_Fixed:"
-				+ fixed.size() + " Null_Empty:" + vacio);
+				+ fixed.size() + " Null_Empty:" + vacio + " Not Fixed:"
+				+ (analized - vacio - fixed.size()));
 		rs.getStatement().close();
 		rs.close();
 		rs = null;
@@ -212,10 +260,10 @@ public class CoordinatesFixer {
 
 	private static double degreesToDecimal(String val) {
 		val = val.trim();
-		val=val.replace("â", "");
-		val=val.replace("â", "");
-		val=val.replace("™", "");
-		val=val.replace("€", "'");
+		val = val.replace("â", "");
+		val = val.replace("â", "");
+		val = val.replace("™", "");
+		val = val.replace("€", "'");
 		String degreeValue = "0";
 		String minutesValue = "0";
 		String secondsValue = "0";
@@ -270,14 +318,11 @@ public class CoordinatesFixer {
 				secondsValue = dmsValue[2];
 			} else {
 				if (dmsValue.length > 1) {
-					return Double.parseDouble(dmsValue[0]+"."+dmsValue[2]);
+					return Double.parseDouble(dmsValue[0] + "." + dmsValue[2]);
 				}
 			}
 		}
 
-		//if(val.startsWith("60")){
-		//System.out.println(val +" "+degreeValue+" "+minutesValue+" " +secondsValue);}
-		
 		return (Double.parseDouble(degreeValue)
 				+ (Double.parseDouble(minutesValue) / 60.0) + (Double
 				.parseDouble(secondsValue) / 3600.0));

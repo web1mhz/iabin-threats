@@ -1,7 +1,6 @@
 package org.ciat.ita.client.manage;
 
 import java.io.File;
-import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -21,6 +20,14 @@ public class ShapeFileManager {
 	 *                     inverse="base:model.ShapeFile"
 	 */
 	private ShapeFile shapefile;
+
+	public ShapeFile getShapefile() {
+		return shapefile;
+	}
+
+	public void setShapefile(ShapeFile shapefile) {
+		this.shapefile = shapefile;
+	}
 
 	private Map<String, String> countriesISO;
 
@@ -56,10 +63,9 @@ public class ShapeFileManager {
 	 *         WRONG_COUNTRY when the county in database does not match with any
 	 *         possible country in the shape file for those coordinates;
 	 *         NULL_COUNTRY when there is no country data in the records
-	 * @throws RemoteException
 	 */
 	public String compareCountriesISO(double latRecord, double lngRecord,
-			String countryRecord) throws RemoteException {
+			String countryRecord)  {
 
 		if (countryRecord == null || countryRecord.isEmpty()
 				|| countryRecord.equals("")) {
@@ -71,6 +77,9 @@ public class ShapeFileManager {
 			if (possibleCountries.size() > 0) {
 				Iterator<String> iteraCmpPais = possibleCountries.iterator();
 				while (iteraCmpPais.hasNext()) {
+					if(countriesISO==null){
+						return ShapeFile.E_NOT_FOUND_COUNTRY;
+					}
 					isoComparar = countriesISO.get(iteraCmpPais.next());
 					if (countryRecord.equalsIgnoreCase(isoComparar)) {
 						possibleCountries = null;
@@ -89,9 +98,73 @@ public class ShapeFileManager {
 			}
 		}
 	}
+	
+	public String compareISO(double latRecord, double lngRecord,
+			String isoCountry)  {
+
+		if (isoCountry == null || isoCountry.isEmpty()
+				|| isoCountry.equals("")) {
+			return ShapeFile.E_NULL_COUNTRY;
+		} else {
+			String isoComparar = "";
+			List<String> possibleCountries = shapefile.polygonsForAPoint(
+					latRecord, lngRecord);
+			if (possibleCountries.size() > 0) {
+				Iterator<String> iteraCmpPais = possibleCountries.iterator();
+				while (iteraCmpPais.hasNext()) {
+					isoComparar = isoCountry;
+					if (isoCountry.equalsIgnoreCase(isoComparar)) {
+						possibleCountries = null;
+						return null;
+					}
+				}
+				possibleCountries = null;
+				/***
+				 * if none of the possible countries match with the country in
+				 * database, is a wrong country data
+				 */
+				return ShapeFile.E_WRONG_COUNTRY;
+			} else {
+				possibleCountries = null;
+				return ShapeFile.E_NOT_FOUND_COUNTRY;
+			}
+		}
+	}
+	
+	public String compareISO(double latRecord, double lngRecord,
+			String isoCountry, double maxDistance)  {
+
+		if (isoCountry == null || isoCountry.isEmpty()
+				|| isoCountry.equals("")) {
+			return ShapeFile.E_NULL_COUNTRY;
+		} else {
+			String isoComparar = "";
+			List<String> possibleCountries = shapefile.polygonsForAPoint(
+					latRecord, lngRecord, maxDistance);
+			if (possibleCountries.size() > 0) {
+				Iterator<String> iteraCmpPais = possibleCountries.iterator();
+				while (iteraCmpPais.hasNext()) {
+					isoComparar = isoCountry;
+					if (isoCountry.equalsIgnoreCase(isoComparar)) {
+						possibleCountries = null;
+						return null;
+					}
+				}
+				possibleCountries = null;
+				/***
+				 * if none of the possible countries match with the country in
+				 * database, is a wrong country data
+				 */
+				return ShapeFile.E_WRONG_COUNTRY;
+			} else {
+				possibleCountries = null;
+				return ShapeFile.E_NOT_FOUND_COUNTRY;
+			}
+		}
+	}
 
 	public String compareCountries(double latRecord, double lngRecord,
-			String countryRecord) throws RemoteException {
+			String countryRecord) {
 
 		if (countryRecord == null || countryRecord.isEmpty()
 				|| countryRecord.equals("")) {
