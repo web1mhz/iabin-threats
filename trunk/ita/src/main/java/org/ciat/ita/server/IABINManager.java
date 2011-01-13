@@ -73,7 +73,6 @@ public class IABINManager {
 		long tiempoTotal = System.currentTimeMillis();
 		long antes = System.currentTimeMillis();
 		int n = 0;
-		try {
 
 			/*
 			 * For all the records in round
@@ -130,12 +129,7 @@ public class IABINManager {
 					+ "ms FreeMem:" + Runtime.getRuntime().freeMemory());
 
 			insertResults();
-		} catch (RemoteException e) {
-			System.out
-					.println("There was a problem trying to get the countries codes (ISOs)");
-			System.out.println("ERROR: ");
-			System.out.println(e.getMessage());
-		}
+		
 
 	}
 
