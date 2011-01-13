@@ -37,9 +37,9 @@ import org.jaxen.SimpleNamespaceContext;
 
 public class Biogeomancer {
 
-	// private static final String BgServer =
-	// "http://bg.berkeley.edu:8080/ws-test/batch";
+	 //private static final String BgServer = "http://bg.berkeley.edu:8080/ws-test/batch";
 	private static final String BgServer = "http://bg.berkeley.edu/ws/batch";
+	//http://bg.berkeley.edu:8080/ws/batch
 
 	/**
 	 * @param places
@@ -94,7 +94,7 @@ public class Biogeomancer {
 			String xmlResult = setServiceUrl(urlBgServer, xmlData);
 			int intentos = 0;
 			String horaInicioAtaqueDos=getDateTime();
-			while (xmlResult == null && intentos < 10) { //prueba 1 vez con el server
+			while (xmlResult == null && intentos < 20) { //prueba 1 vez con el server
 				System.out.println("\ntiempo : " + getDateTime());
 				System.out.println("\nnumero de intentos de conexion: "
 						+ intentos);
@@ -120,13 +120,15 @@ public class Biogeomancer {
 			System.out.println("xmlresult inputstream: " + xmlResult);
 			
 			//se selecciona la fuente desde la que se obtiene el archivo xml de BG
-			Document document;
+			Document document = null;
 			if(xmlResult!=null){
 				document = org.dom4j.DocumentHelper.parseText(xmlResult);
 				System.out.println("se leyo el xml del servidor ********");
-			}else{
+			}/*else{
+				System.out.println("se requiere el archivo 100Records.xml para ser analizado");
+			
 				document=getDocument("100Records.xml");
-			}
+			}*/
 			
 	
 
@@ -241,7 +243,21 @@ public class Biogeomancer {
 				System.out.println("largo del arreglo split :" + x);
 
 			}
-			System.out.println("los registros que no tienen respuesta son :"
+			
+			str = "\nstart time" + getDateTime()
+			+ "\nlos registros que no tienen respuesta son :"
+			+ sinrespuesta
+			+ "\nlos registros que tienen 1 respuesta  son :"
+			+ unasolarespuesta
+			+ "\nlos registros que tienen 2 respuestas son :"
+			+ dosrespuestas
+			+ "\nlos registros que tienen >2 respuestas son :"
+			+ masde2respuestas + "\n el total de los registros es :"
+			+ nodes.size() + "\nstart time : " + horaInicio
+			+ "\nend time : " + getDateTime();
+			
+			System.out.println(str);
+	/*		System.out.println("los registros que no tienen respuesta son :"
 					+ sinrespuesta);
 			System.out.println("los registros que tienen 1 respuesta  son :"
 					+ unasolarespuesta);
@@ -249,23 +265,13 @@ public class Biogeomancer {
 					+ dosrespuestas);
 			System.out.println("los registros que tienen >2 respuestas son :"
 					+ masde2respuestas);
-			System.out.println("el total de los registros es :" + nodes.size());
+			System.out.println("el total de los registros es :" + nodes.size());*/
 
 			// writes the timing and results to d:/out.txt
 			fop = new FileOutputStream(f, true);
 
 			if (f.exists()) {
-				str = "\nstart time" + getDateTime()
-						+ "\nlos registros que no tienen respuesta son :"
-						+ sinrespuesta
-						+ "\nlos registros que tienen 1 respuesta  son :"
-						+ unasolarespuesta
-						+ "\nlos registros que tienen 2 respuestas son :"
-						+ dosrespuestas
-						+ "\nlos registros que tienen >2 respuestas son :"
-						+ masde2respuestas + "\nel total de los registros es :"
-						+ nodes.size() + "\nstart time : " + horaInicio
-						+ "\nend time : " + getDateTime();
+				
 				fop.write(str.getBytes());
 
 				fop.flush();
@@ -419,7 +425,8 @@ public class Biogeomancer {
 	public static void main(String[] args) {
 
 		//si no se especifica la consulta se hace por 10 records
-		String manyRecord="10";
+		String manyRecord="100" +
+				"";
 		if(args.length > 0) manyRecord=args[0];
 		Connection conx;
 		DataBaseManager.registerDriver();
