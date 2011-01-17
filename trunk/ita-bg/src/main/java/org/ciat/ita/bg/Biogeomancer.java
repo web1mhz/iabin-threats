@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -155,6 +156,12 @@ public class Biogeomancer {
 			String minorLatitude = "";
 
 			int sinrespuesta = 0, unasolarespuesta = 0, dosrespuestas = 0, masde2respuestas = 0;
+			
+			Iterator<Record> it = places.iterator();
+			it.next();
+			Record reco = null;
+			int idrec;
+			
 			// *************
 			for (int i = 0; i < nodes.size(); i++) {
 				// System.out.println("contador :"+i);
@@ -213,7 +220,7 @@ public class Biogeomancer {
 					System.out.println("valor " + y + " : " + data[y]);
 
 				}
-				// se haya el punto con menor uncertainty
+				// se halla el punto con menor uncertainty
 				int j = 11;
 
 				if (x > 11) {
@@ -241,7 +248,19 @@ public class Biogeomancer {
 				System.out.println("escribio el resultado "+da);
 
 				System.out.println("largo del arreglo split :" + x);
+				
+				
+				//escribir las coordenadas en los campos Blatitud , Blongitud, uncertainty and is_fixed
 
+				
+				if (it.hasNext()) reco=it.next();
+				idrec= reco.getId();
+				System.out.println("id's editadas "+idrec);
+				consulta("update temp_georeferenced_records set blatitude="+minorLatitude
+						+", blongitude="+minorLongitude+", uncertainty="
+						+minorUncertainty+", is_fixed=1 where id="+idrec+" ;" );
+				
+			
 			}
 			
 			str = "\nstart time" + getDateTime()
@@ -425,8 +444,7 @@ public class Biogeomancer {
 	public static void main(String[] args) {
 
 		//si no se especifica la consulta se hace por 10 records
-		String manyRecord="100" +
-				"";
+		String manyRecord="100" + "";
 		if(args.length > 0) manyRecord=args[0];
 		Connection conx;
 		DataBaseManager.registerDriver();
@@ -441,7 +459,7 @@ public class Biogeomancer {
 		System.out.println("hace la consulta y devuelve el result set");
 		System.out.println("inicia query : " + getDateTime());
 		ResultSet rs = DataBaseManager.makeQuery("select " + "*" + " from "
-				+ "temp_georeferenced_records" + " order by RAND()"
+				+ "temp_georeferenced_records" +" where !is_fixed=1"+" group by locality" //+ " order by RAND()"
 				+ " limit "+manyRecord, conx);
 		System.out.println("termina query : " + getDateTime());
 		/*
@@ -526,6 +544,26 @@ public class Biogeomancer {
 		 */
 
 		return distance;
+	}
+	
+	public static int consulta(String query) {
+		
+		Connection conx;
+		DataBaseManager.registerDriver();
+		conx = DataBaseManager.openConnection(
+				ServerConfig.getInstance().database_user, ServerConfig.getInstance().database_password);
+
+		/*
+		 * aqui se hace la consulta a la base de datos y las respuestas se
+		 * almacenan en un ResultSet
+		 */
+		System.out.println("realiza el update o insert");
+		System.out.println("inicia update : " + getDateTime());
+		System.out.println(query+"\n");
+		
+		return DataBaseManager.makeChange(query, conx);
+		
+		
 	}
 
 	/**
