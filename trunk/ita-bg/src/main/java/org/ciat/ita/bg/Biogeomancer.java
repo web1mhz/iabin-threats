@@ -158,7 +158,7 @@ public class Biogeomancer {
 			int sinrespuesta = 0, unasolarespuesta = 0, dosrespuestas = 0, masde2respuestas = 0;
 			
 			Iterator<Record> it = places.iterator();
-			it.next();
+			//it.next();
 			Record reco = null;
 			int idrec;
 			
@@ -253,14 +253,15 @@ public class Biogeomancer {
 				//escribir las coordenadas en los campos Blatitud , Blongitud, uncertainty and is_fixed
 
 				
-				if (it.hasNext()) reco=it.next();
+				if (it.hasNext()) {
+					reco=it.next();
 				idrec= reco.getId();
 				System.out.println("id's editadas "+idrec);
 				consulta("update temp_georeferenced_records set blatitude="+minorLatitude
 						+", blongitude="+minorLongitude+", uncertainty="
 						+minorUncertainty+", is_fixed=1 where id="+idrec+" ;" );
 				
-			
+				}else{System.out.println("no hay records en el resultset places");}
 			}
 			
 			str = "\nstart time" + getDateTime()
@@ -444,7 +445,7 @@ public class Biogeomancer {
 	public static void main(String[] args) {
 
 		//si no se especifica la consulta se hace por 10 records
-		String manyRecord="100" + "";
+		String manyRecord="10" + "";
 		if(args.length > 0) manyRecord=args[0];
 		Connection conx;
 		DataBaseManager.registerDriver();
