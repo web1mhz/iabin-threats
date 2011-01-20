@@ -118,7 +118,7 @@ public class Biogeomancer {
 			System.out.println("va a leer los tags xml");
 			// Working with XML
 
-			System.out.println("xmlresult inputstream: " + xmlResult);
+			//System.out.println("xmlresult inputstream: " + xmlResult);
 			
 			//se selecciona la fuente desde la que se obtiene el archivo xml de BG
 			Document document = null;
@@ -165,12 +165,10 @@ public class Biogeomancer {
 			// *************
 			for (int i = 0; i < nodes.size(); i++) {
 				// System.out.println("contador :"+i);
-				System.out.println("\n" + ((Node) nodes.get(i)).getName()
-						+ " numero " + i);
+				//System.out.println("\n" + ((Node) nodes.get(i)).getName()	+ " numero " + i);
 				// System.out.println("getText"+((Node)nodes.get(i)).getText()
 				// );
-				System.out.println("getStringValue"
-						+ ((Node) nodes.get(i)).getStringValue());
+				//System.out.println("getStringValue"	+ ((Node) nodes.get(i)).getStringValue());
 				values = ((Node) nodes.get(i)).getStringValue();
 
 				data = values.split("\n");
@@ -189,9 +187,9 @@ public class Biogeomancer {
 					latitude = data[data.length - 4];
 					longitude = data[data.length - 3];
 
-					System.out.println("latitude : " + latitude);
-					System.out.println("longitude : " + longitude);
-					System.out.println("uncertainty : " + uncertainty);
+				//	System.out.println("latitude : " + latitude);
+				//	System.out.println("longitude : " + longitude);
+				//	System.out.println("uncertainty : " + uncertainty);
 				}
 				if (x == 19) {
 					dosrespuestas++;
@@ -199,27 +197,27 @@ public class Biogeomancer {
 					latitude = data[data.length - 4];
 					longitude = data[data.length - 3];
 
-					System.out.println("latitude : " + latitude);
-					System.out.println("longitude : " + longitude);
-					System.out.println("uncertainty : " + uncertainty);
+				//	System.out.println("latitude : " + latitude);
+				//	System.out.println("longitude : " + longitude);
+				//	System.out.println("uncertainty : " + uncertainty);
 
 					uncertainty = data[data.length - 8];
 					latitude = data[data.length - 11];
 					longitude = data[data.length - 10];
 
-					System.out.println("latitude : " + latitude);
-					System.out.println("longitude : " + longitude);
-					System.out.println("uncertainty : " + uncertainty);
+				//	System.out.println("latitude : " + latitude);
+				//	System.out.println("longitude : " + longitude);
+				//	System.out.println("uncertainty : " + uncertainty);
 				}
 				if (x > 19)
 					masde2respuestas++;
 
 				int z = x;
 				// muestra cada valor del record en el arreglo despues del split
-				for (int y = 0; y < x; y++) {
+			/*	for (int y = 0; y < x; y++) {
 					System.out.println("valor " + y + " : " + data[y]);
 
-				}
+				}*/
 				// se halla el punto con menor uncertainty
 				int j = 11;
 
@@ -257,7 +255,10 @@ public class Biogeomancer {
 					reco=it.next();
 				idrec= reco.getId();
 				System.out.println("id's editadas "+idrec);
-				consulta("update temp_georeferenced_records set blatitude="+minorLatitude
+				/*consulta("update temp_georeferenced_records set blatitude="+minorLatitude
+						+", blongitude="+minorLongitude+", uncertainty="
+						+minorUncertainty+", is_fixed=1 where id="+idrec+" ;" );*/
+				consulta("update georeferenced_records set blatitude="+minorLatitude
 						+", blongitude="+minorLongitude+", uncertainty="
 						+minorUncertainty+", is_fixed=1 where id="+idrec+" ;" );
 				
@@ -409,7 +410,8 @@ public class Biogeomancer {
 			// write the output to the console
 			System.out.println("esto se recibe del servidor : \n");
 
-			System.out.println("setserviceurl :" + xmlText);
+		//	System.out.println("setserviceurl :" + xmlText);
+			System.out.println("setserviceurl :" );
 			// BgManager.recordToFile("autoGenerate.xml", xmlText);
 			connection.disconnect();
 			// return xmlText;
@@ -444,8 +446,13 @@ public class Biogeomancer {
 	 */
 	public static void main(String[] args) {
 
+		int contadorr=0;
+	while(true){
+		
+		System.out.println(getDateTime()+ "--------- se han consultado " + contadorr+" registros" );
+		
 		//si no se especifica la consulta se hace por 10 records
-		String manyRecord="10" + "";
+		String manyRecord="6" + "";
 		if(args.length > 0) manyRecord=args[0];
 		Connection conx;
 		DataBaseManager.registerDriver();
@@ -459,9 +466,14 @@ public class Biogeomancer {
 		 */
 		System.out.println("hace la consulta y devuelve el result set");
 		System.out.println("inicia query : " + getDateTime());
-		ResultSet rs = DataBaseManager.makeQuery("select " + "*" + " from "
+		/*ResultSet rs = DataBaseManager.makeQuery("select " + "*" + " from "
 				+ "temp_georeferenced_records" +" where !is_fixed=1"+" group by locality" //+ " order by RAND()"
-				+ " limit "+manyRecord, conx);
+				+ " limit "+manyRecord, conx);*/
+		
+		ResultSet rs=DataBaseManager.makeQuery(
+				"select * from georeferenced_records where latitude is null and longitude is null " +
+				"and locality is not null and is_fixed=0 group by locality limit "+manyRecord , conx);
+		
 		System.out.println("termina query : " + getDateTime());
 		/*
 		 * se crea el HashSet en donde se almacenaran los records creados con
@@ -524,8 +536,11 @@ public class Biogeomancer {
 		DataBaseManager.closeConnection(conx);
 
 		// /}cierra el for
-	}
+		contadorr++;	
+	}//cierra while
 
+	
+}
 	/**
 	 * Finds the distance beetwen two given points
 	 * 
