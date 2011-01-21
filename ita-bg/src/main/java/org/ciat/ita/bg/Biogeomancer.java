@@ -522,7 +522,7 @@ public class Biogeomancer {
 			e.printStackTrace();
 		}
 
-		DataBaseManager.closeConnection(conx);
+		
 
 		String horaEmpieza = getDateTime();
 		System.out.println("inicia startGeorref a las " + horaEmpieza);
