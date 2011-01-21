@@ -52,7 +52,7 @@ public class Biogeomancer {
 	 * @throws DocumentException
 	 * @throws JaxenException
 	 */
-	public static Set<Record> startGeorref(Set<Record> places) throws IOException, DocumentException, JaxenException {
+	public static Set<Record> startGeorref(Set<Record> places, Connection conx) throws IOException, DocumentException, JaxenException {
 
 		// escribe archivo de estadisticas de tiempo y cantidad de datos referenciados
 		String outputFile = "out.txt";
@@ -253,9 +253,9 @@ public class Biogeomancer {
 							+minorUncertainty+", is_fixed=1 where id="+idrec+" ;" );*/
 					if (minorLatitude != "" && minorLongitude != "") {
 						consulta("update georeferenced_records set blatitude=" + minorLatitude + ", blongitude=" + minorLongitude + ", uncertainty=" + minorUncertainty + ", is_fixed=1 where id="
-								+ idrec + " ;");
+								+ idrec + " ;", conx);
 					} else {
-						consulta("update georeferenced_records set is_fixed=2 where id=" + idrec + " ;");
+						consulta("update georeferenced_records set is_fixed=2 where id=" + idrec + " ;", conx);
 					}
 
 				} else {
@@ -507,7 +507,7 @@ public class Biogeomancer {
 			/* se inicia la georreferenciacion */
 			try {
 
-				startGeorref(grup);
+				startGeorref(grup, conx);
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -553,11 +553,7 @@ public class Biogeomancer {
 		return distance;
 	}
 
-	public static int consulta(String query) {
-
-		Connection conx;
-		DataBaseManager.registerDriver();
-		conx = DataBaseManager.openConnection(ServerConfig.getInstance().database_user, ServerConfig.getInstance().database_password);
+	public static int consulta(String query, Connection conx) {
 
 		/*
 		 * aqui se hace la consulta a la base de datos y las respuestas se
