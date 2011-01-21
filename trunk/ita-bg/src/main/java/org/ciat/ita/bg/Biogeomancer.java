@@ -389,7 +389,7 @@ public class Biogeomancer {
 
 				// aqui se escribe la informacion recibida del servidor de BG en
 				// un archivo xml
-				File f = new File("c:/outputBiogeomancer.xml");
+				File f = new File("outputBiogeomancer.xml");
 				FileOutputStream fop = new FileOutputStream(f, true);
 				String texto;
 
@@ -453,19 +453,23 @@ public class Biogeomancer {
 	 */
 	public static void main(String[] args) {
 
-		int contadorr=0;
-	while(true){
 		
-		System.out.println(getDateTime()+ "--------- se han consultado " + contadorr+" registros" );
 		
-		//si no se especifica la consulta se hace por 10 records
-		String manyRecord="6" + "";
-		if(args.length > 0) manyRecord=args[0];
 		Connection conx;
 		DataBaseManager.registerDriver();
 		conx = DataBaseManager.openConnection(
 				ServerConfig.getInstance().database_user, ServerConfig
-						.getInstance().database_password);
+				.getInstance().database_password);
+		
+		int contadorr=0;
+	while(true){
+		
+		System.out.println(getDateTime()+ "------------------- se han consultado " + contadorr+" registros" );
+		
+		//si no se especifica la consulta se hace por 10 records
+		String manyRecord="6" + "";
+		if(args.length > 0) manyRecord=args[0];
+		
 
 		/*
 		 * aqui se hace la consulta a la base de datos y las respuestas se
@@ -540,12 +544,12 @@ public class Biogeomancer {
 		System.out.println("started at : " + horaEmpieza + "\r\n"
 				+ " ended at : " + horaTermina);
 
-		DataBaseManager.closeConnection(conx);
 
 		// /}cierra el for
 		contadorr++;	
 	}//cierra while
 
+	//DataBaseManager.closeConnection(conx);
 	
 }
 	/**
