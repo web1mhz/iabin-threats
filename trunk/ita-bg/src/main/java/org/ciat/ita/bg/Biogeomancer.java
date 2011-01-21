@@ -184,6 +184,16 @@ public class Biogeomancer {
 					// System.out.println("longitude : " + longitude);
 					// System.out.println("uncertainty : " + uncertainty);
 				}
+				if (x == 13) {
+					unasolarespuesta++;
+					uncertainty = data[data.length - 1];
+					latitude = data[data.length - 4];
+					longitude = data[data.length - 3];
+
+					// System.out.println("latitude : " + latitude);
+					// System.out.println("longitude : " + longitude);
+					// System.out.println("uncertainty : " + uncertainty);
+				}
 				if (x == 19) {
 					dosrespuestas++;
 					uncertainty = data[data.length - 1];
@@ -215,17 +225,17 @@ public class Biogeomancer {
 				int j = 11;
 
 				if (x > 11) {
-					minorUncertainty = Double.parseDouble(data[j]);
-					minorLatitude = data[8];
-					minorLongitude = data[9];
+					minorUncertainty = Double.parseDouble(data[data.length-1]);
+					minorLatitude = data[data.length-4];
+					minorLongitude = data[data.length-3];
 				}
 				while (j < x) {
 
 					// System.out.println("minor uncertainty :" + minorUncertainty);
-					if (Double.parseDouble(data[j]) < minorUncertainty) {
-						minorUncertainty = Double.parseDouble(data[j]);
-						minorLatitude = data[j - 3];
-						minorLongitude = data[j - 2];
+					if (Double.parseDouble(data[data.length-1]) < minorUncertainty) {
+						minorUncertainty = Double.parseDouble(data[data.length-1]);
+						minorLatitude = data[data.length-4];
+						minorLongitude = data[data.length-3];
 
 					}
 					j = j + 7;
