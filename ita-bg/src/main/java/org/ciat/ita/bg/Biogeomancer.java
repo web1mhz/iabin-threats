@@ -168,7 +168,7 @@ public class Biogeomancer {
 				//System.out.println("\n" + ((Node) nodes.get(i)).getName()	+ " numero " + i);
 				// System.out.println("getText"+((Node)nodes.get(i)).getText()
 				// );
-				//System.out.println("getStringValue"	+ ((Node) nodes.get(i)).getStringValue());
+				System.out.println("getStringValue"	+ ((Node) nodes.get(i)).getStringValue());
 				values = ((Node) nodes.get(i)).getStringValue();
 
 				data = values.split("\n");
@@ -249,6 +249,8 @@ public class Biogeomancer {
 				
 				
 				//escribir las coordenadas en los campos Blatitud , Blongitud, uncertainty and is_fixed
+				//is_fixed=1 se georreferencio correctamente
+				//is_fixed=2 Biogeomancer no pudo referenciar el registro
 
 				
 				if (it.hasNext()) {
@@ -258,9 +260,14 @@ public class Biogeomancer {
 				/*consulta("update temp_georeferenced_records set blatitude="+minorLatitude
 						+", blongitude="+minorLongitude+", uncertainty="
 						+minorUncertainty+", is_fixed=1 where id="+idrec+" ;" );*/
+				if(minorLatitude!="" && minorLongitude!="")
+				{
 				consulta("update georeferenced_records set blatitude="+minorLatitude
 						+", blongitude="+minorLongitude+", uncertainty="
 						+minorUncertainty+", is_fixed=1 where id="+idrec+" ;" );
+				}else{
+					consulta("update georeferenced_records set is_fixed=2 where id="+idrec+" ;" );
+				}
 				
 				}else{System.out.println("no hay records en el resultset places");}
 			}
