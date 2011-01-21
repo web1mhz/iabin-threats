@@ -453,7 +453,7 @@ public class Biogeomancer {
 	 */
 	public static void main(String[] args) {
 
-		
+		boolean bandera=true;
 		
 		Connection conx;
 		DataBaseManager.registerDriver();
@@ -462,7 +462,7 @@ public class Biogeomancer {
 				.getInstance().database_password);
 		
 		int contadorr=0;
-	while(true){
+	while(bandera){
 		
 		System.out.println(getDateTime()+ "------------------- se han consultado " + contadorr+" registros" );
 		
@@ -484,6 +484,11 @@ public class Biogeomancer {
 		ResultSet rs=DataBaseManager.makeQuery(
 				"select * from georeferenced_records where latitude is null and longitude is null " +
 				"and locality is not null and is_fixed=0 group by locality limit "+manyRecord , conx);
+		
+		if(rs==null) {
+			bandera=false;
+			System.out.println("no hay registros para georreferenciar. Quit");
+		}
 		
 		System.out.println("termina query : " + getDateTime());
 		/*
@@ -549,7 +554,7 @@ public class Biogeomancer {
 		contadorr++;	
 	}//cierra while
 
-	//DataBaseManager.closeConnection(conx);
+	DataBaseManager.closeConnection(conx);
 	
 }
 	/**
