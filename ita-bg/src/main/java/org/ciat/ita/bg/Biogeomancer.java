@@ -91,7 +91,7 @@ public class Biogeomancer {
 			urlBgServer = new URL(BgServer);
 
 			// sigue solicitando informacion al servidor hasta que devuelva
-			// diferente de null
+			// diferente de null durante 20 intentos mas
 			String xmlResult = setServiceUrl(urlBgServer, xmlData);
 			int intentos = 0;
 			String horaInicioAtaqueDos = getDateTime();
@@ -121,6 +121,7 @@ public class Biogeomancer {
 			if (xmlResult != null) {
 				document = org.dom4j.DocumentHelper.parseText(xmlResult);
 				System.out.println("se leyo el xml del servidor ********");
+				System.out.println("xmlresult: "+xmlResult); //muestra el xml resultado recibido de biogeomancer
 			}/*else{
 				System.out.println("se requiere el archivo 100Records.xml para ser analizado");
 				
@@ -130,6 +131,7 @@ public class Biogeomancer {
 			System.out.println("*******************************************");
 
 			System.out.println("*****************shows xml values**************************");
+			
 
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("dwc", "http://rs.tdwg.org/dwc/terms/");
@@ -446,10 +448,10 @@ public class Biogeomancer {
 		int contadorr = 0;
 		while (bandera) {
 
-			System.out.println(getDateTime() + "------------------- se han consultado " + contadorr + " registros");
+			System.out.println(getDateTime() + "------------------- se van a consultar " + contadorr + " registros");
 
 			// si no se especifica la consulta se hace por 10 records
-			String manyRecord = "6";
+			String manyRecord = "10";
 			if (args.length > 0)
 				manyRecord = args[0];
 
@@ -467,18 +469,21 @@ public class Biogeomancer {
 			 * TODO @Jorge La consulta se debe agrupar tanto por locality, country, county, etc... porque puede ser que existan varias locality iguales pero con diferente ubicación.
 			 */
 			ResultSet rs = DataBaseManager.makeQuery("select * from georeferenced_records where latitude is null and longitude is null "
-					+ "and locality is not null and is_fixed=0 group by locality limit " + manyRecord, conx);
+					+ "and locality is not null and is_fixed=0 group by locality, country, county, state_province limit " + manyRecord, conx);
 
 			/**
 			 * TODO @Jorge Esto no es del todo cierto. Cuando el resulset arroja null es porque hubo un error en la consulta. No estoy seguro pero si ya no hay más registros, la consulta devuelve un
 			 * resulset vacío.
 			 */
-			if (rs == null) {
-				bandera = false;
-				System.out.println("no hay registros para georreferenciar. Quit");
-			}
+		
+				if (rs == null ) {
+					bandera = false;
+					System.out.println("there are no records for georeferencing. Quit");
+					break;
+				}
+			
 
-			System.out.println("termina query : " + getDateTime());
+			System.out.println("ends query : " + getDateTime());
 			/*
 			 * se crea el HashSet en donde se almacenaran los records creados con
 			 * cada linea del Resultset
@@ -488,6 +493,8 @@ public class Biogeomancer {
 			try { /* se recorre el result set y se crean los records */
 				System.out.println("recorriendo el result set:" + manyRecord + " veces");
 
+				
+				
 				while (rs.next()) {
 					// System.out.println("recorriendo el result set");
 
