@@ -128,7 +128,7 @@ public class Biogeomancer {
 				document=getDocument("100Records.xml");
 				}*/
 
-			System.out.println("*******************************************");
+			//System.out.println("*******************************************");
 
 			System.out.println("*****************shows xml values**************************");
 			
@@ -279,6 +279,7 @@ public class Biogeomancer {
 					+ "\nlos registros que tienen 2 respuestas son :" + dosrespuestas + "\nlos registros que tienen >2 respuestas son :" + masde2respuestas + "\n el total de los registros es :"
 					+ nodes.size() + "\nstart time : " + horaInicio + "\nend time : " + getDateTime();
 
+
 			System.out.println(str);
 			/*		System.out.println("los registros que no tienen respuesta son :"
 							+ sinrespuesta);
@@ -290,6 +291,25 @@ public class Biogeomancer {
 							+ masde2respuestas);
 					System.out.println("el total de los registros es :" + nodes.size());*/
 
+			
+			if(nodes.size()==0){
+				
+				System.out.println("sleeps during 10 seconds ...");
+					for(int i=0;i<10;i++){
+						
+						System.out.print(i+" ");
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+					}
+					System.out.println("wakes up, retrying");
+			}
+			
+			
 			// writes the timing and results to d:/out.txt
 			fop = new FileOutputStream(f, true);
 
