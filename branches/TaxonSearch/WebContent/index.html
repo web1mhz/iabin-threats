@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+	<title>Menu Especies</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="css/default.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+		<script type="text/javascript">		
+			$(document).ready(function(){ // Script del Navegador
+				//$("ul.subnavegador").slideUp('fast');
+				//$("ul.phylum").hide();
+				$(".elemento").click(
+					function(event) {							
+						$target = $(event.target).parent();						
+						
+						if($("#"+$target.attr("id")).children("ul").is(":visible")) {
+							
+							$("#"+$target.attr("id")).children("ul").slideUp('fast');
+							
+						} else {
+							
+							$("#"+$target.attr("id")).children("ul").slideDown('fast');
+						}
+						return false;
+					}
+				);
+				
+				
+			});
+		</script>	
+</head>
+<body>
+  	<div id="contenido-demo">	
+		<h2>Men&uacute; Especies</h2>
+		
+		<ul class="navegador">
+			<li id='10' class="elemento">
+				<a href="#">Animalia</a>
+				<ul>
+					<li id="101" class="elemento">
+						<a href="#">Acanthocephala</a>
+						<ul>
+							<li id="1011" class="elemento"><a href="#">Annelida</a></li>			
+							<li id="1012" class="elemento"><a href="#">Arthropoda</a></li>
+							<li id="1013" class="elemento"><a href="#">Chordata</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			
+			<li id="20" class="elemento">
+				<a href="#">Plantae</a>			
+				<ul>
+					<li id="201" class="elemento"><a href="#">Anthocerotophyta</a></li>
+					<li id="202" class="elemento"><a href="#">Bacillariophyta</a></li>			
+					<li id="203" class="elemento"><a href="#">Bryophyta</a></li>
+					<li id="204" class="elemento"><a href="#">Chlorophyta</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+	</div>	
+		
+</body>
+</html>
