@@ -5,7 +5,7 @@
 <web-app>
 	<servlet>
 		<servlet-name>Ejemplo</servlet-name>
-		<servlet-class>paquete.Servicio</servlet-class>
+		<servlet-class>service.Servicio</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Ejemplo</servlet-name>
