@@ -2,11 +2,16 @@ package service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.DataBaseManager;
+
 
 public class Servicio extends HttpServlet {
 	private static final long serialVersionUID = 7332571365625168689L;
@@ -27,8 +32,12 @@ public class Servicio extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		boolean respuesta=false;
 		
 		String id = req.getParameter("id");
+		
+		respuesta=consulta(id); //se hace la consulta y se devuelven los objetos
+		
 		resp.setContentType("text/html");
 		//if(id != null && id.equals("10")) {
 		PrintWriter out = resp.getWriter();
@@ -49,6 +58,22 @@ public class Servicio extends HttpServlet {
 	public void destroy() {
 		// TODO Auto-generated method stub
 		super.destroy();
+	}
+	
+	
+	public boolean consulta(String id){
+		
+		DataBaseManager.registerDriver();
+
+		Connection conx;
+		conx = DataBaseManager.openConnection("jacamacho", "123456","gisbif.ciat.cgiar.org", "3306", "iabin_sstn");
+		
+		ResultSet rs = DataBaseManager.makeQuery("select * from georeferenced_records where is_fixed=1 and id="+id, conx);
+
+		DataBaseManager.closeConnection(conx);
+
+		//se supone que debe devolver el hashset de los objetos que se necesitan 
+		return true;
 	}
 	
 
