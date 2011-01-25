@@ -66,7 +66,7 @@ public class Servicio extends HttpServlet {
 		DataBaseManager.registerDriver();
 
 		Connection conx;
-		conx = DataBaseManager.openConnection("jacamacho", "123456","gisbif.ciat.cgiar.org", "3306", "iabin_sstn");
+		conx = DataBaseManager.openConnection("user", "pass","ip", "port", "database");
 		
 		ResultSet rs = DataBaseManager.makeQuery("select * from georeferenced_records where is_fixed=1 and id="+id, conx);
 
