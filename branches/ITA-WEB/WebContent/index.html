@@ -13,17 +13,24 @@
 				//$("ul.phylum").hide();				
 				
 		$(".elemento").click(function(event) {
-			$target = $(event.target).parent();
 			$.ajax({
-					type: "GET",      
-			    	url: "servicio.do",
-					data: "id="+$target.attr("id"),
-			    	success: function(data){
-		        		alert(data);
+				type: "GET",      
+		    	url: "servicio.do",
+				data: "id="+$target.attr("id"),
+		    	success: function(data){
+		    		alert(data);
+					
+	        	
+	    		}
 
-		        	
-		    		}
-    		});
+		
+		});
+
+
+
+			
+			$target = $(event.target).parent();
+			  		
 			if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
 				$("#" + $target.attr("id")).children("ul").slideUp('fast');
 			} else {
@@ -39,9 +46,9 @@
 <h2>Men&uacute; Especies</h2>
 
 <ul class="navegador">
-	<li id='10' class="elemento"><a href="#">Animalia</a>
+	<li id='116' class="elemento"><a href="#">Animalia</a>
 	<ul>
-		<li id="101" class="elemento">
+			<li id="101" class="elemento">
 			<a href="#">Acanthocephala</a>
 			<ul>
 			<li id="1011" class="elemento"><a href="#">Annelida</a></li>
