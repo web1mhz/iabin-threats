@@ -11,24 +11,20 @@
 	$(document).ready(function() { // Script del Navegador
 				//$("ul.subnavegador").slideUp('fast');
 				//$("ul.phylum").hide();				
-				
+		$(".elemento").children("ul").slideUp('fast');
+		
 		$(".elemento").click(function(event) {
 			$target = $(event.target).parent();
-			$.ajax({
-					type: "GET",      
-			    	url: "servicio.do",
-					data: "id="+$target.attr("id"),
-			    	success: function(data){
-			    		alert(data);
-						
-			    		$target.append("<ul><li id=1011 class=elemento><a href=#>"+data+"</a></li></ul>")
-		    		}
-
-			
-    		});
-
-			
-    		
+			$.getJSON("service.do?id="+$target.attr("id"),
+				function(data){
+					$variable = "";
+					$.each(data, function(i, taxon){
+						$variable += "id: "+taxon.id+" - canonical: "+taxon.canonical+" - rankID: "+taxon.rankID+"\n";
+			    		//$target.append("<ul><li id=1011 class=elemento><a href=#>"+data+"</a></li></ul>")
+			        });
+					alert($variable);
+				}
+			);
 			if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
 				$("#" + $target.attr("id")).children("ul").slideUp('fast');
 			} else {
@@ -41,20 +37,25 @@
 </head>
 <body onload="requestServlet();">
 <div id="contenido-demo">
-<h2>Men&uacute; Especies</h2>
+<h2>Species Menu</h2>
 
 <ul class="navegador">
-	<li id='116' class="elemento"><a href="#">Animalia</a>
-	
+	<li id="1" class="elemento"><a href="#">Animalia</a>
+		<ul>
+			<li id="1201" class="elemento"><a href="#">Anthocerotophyta</a></li>
+			<li id="1202" class="elemento"><a href="#">Bacillariophyta</a></li>
+			<li id="1203" class="elemento"><a href="#">Bryophyta</a></li>
+			<li id="1204" class="elemento"><a href="#">Chlorophyta</a></li>
+		</ul>	
 	</li>
-
-	<li id="20" class="elemento"><a href="#">Plantae</a>
-	<ul>
-		<li id="201" class="elemento"><a href="#">Anthocerotophyta</a></li>
-		<li id="202" class="elemento"><a href="#">Bacillariophyta</a></li>
-		<li id="203" class="elemento"><a href="#">Bryophyta</a></li>
-		<li id="204" class="elemento"><a href="#">Chlorophyta</a></li>
-	</ul>
+	<li id="30" class="elemento"><a href="#">Plantae</a>
+		<ul>
+			<li id="201" class="elemento">
+				<a href="#">Anthocerotophyta</a></li>
+			<li id="202" class="elemento"><a href="#">Bacillariophyta</a></li>
+			<li id="203" class="elemento"><a href="#">Bryophyta</a></li>
+			<li id="204" class="elemento"><a href="#">Chlorophyta</a></li>
+		</ul>
 	</li>
 
 </ul>

@@ -5,11 +5,8 @@ public class TaxonObject {
 	private String canonical;
 	private int rankID;	
 	
-	public TaxonObject(String id, String canonical, int rankID) {
+	public TaxonObject() {
 		super();
-		this.id = id;
-		this.canonical = canonical;
-		this.rankID = rankID;
 	}
 	public String getId() {
 		return id;

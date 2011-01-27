@@ -4,12 +4,12 @@
 
 <web-app>
 	<servlet>
-		<servlet-name>Ejemplo</servlet-name>
-		<servlet-class>service.Servicio</servlet-class>
+		<servlet-name>TaxonSearch</servlet-name>
+		<servlet-class>service.Service</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Ejemplo</servlet-name>
-		<url-pattern>/servicio.do</url-pattern>
+		<servlet-name>TaxonSearch</servlet-name>
+		<url-pattern>/service.do</url-pattern>
 	</servlet-mapping>
 	<!--  >servlet-mapping>
 		<servlet-name>Ejemplo</servlet-name>
