@@ -12,28 +12,28 @@
 <script type="text/javascript">
 
 	$(document).ready(function() { // Script del Navegador
-				//$("ul.subnavegador").slideUp('fast');
-				//$("ul.phylum").hide();				
-		//$(".elemento").children("ul").slideUp('fast');
-		
+				
 		$(".elemento").click(function(event) {
+			
+						
 			$target = $(event.target).parent();
 			$.getJSON("service.do?id="+$target.attr("id"),
+					//$("li").live("click",function(){	
 				function(data){
 					$variable = "";
-					$.each(data, function(i, taxon){
-						$variable += "id: "+taxon.id+" - canonical: "+taxon.canonical+" - rankID: "+taxon.rankID+"\n";
-						$target.append("<ul><li id="+taxon.id+" class=elemento><a href=# >"+taxon.canonical+"</a></li></ul>");
-			        });
-					//$target.append("<ul><li id=1011 class=elemento><a href=#>"+variable+"</a></li></ul>")
-					//alert($variable);
 
 					
+					$.each(data, function(i, taxon){
+						$variable += "id: "+taxon.id+" - canonical: "+taxon.canonical+" - rankID: "+taxon.rankID+"\n";
+						
+						$target.append("<ul><li id="+taxon.id+" class=elemento><a href=# >"+taxon.canonical+"</a></li></ul>");
+			        });
+					
+					alert($target.attr("id"));
 				}
 			);
-
-			//alert($variable);
 			
+						
 			if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
 				$("#" + $target.attr("id")).children("ul").slideUp('fast');
 			} else {
@@ -42,6 +42,7 @@
 			}
 			return false;
 		});
+		
 	});
 
 
@@ -52,7 +53,7 @@
 <h2>Species Menu</h2>
 
 <ul class="navegador">
-	<li id="1" class="elemento"><a href="#">Animalia</a>
+	<li id="1" class="elemento" ><a href="#">Animalia</a>
 		
 	</li>
 	<li id="30" class="elemento"><a href="#">Plantae</a>
