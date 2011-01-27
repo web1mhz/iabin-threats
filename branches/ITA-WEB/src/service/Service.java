@@ -102,7 +102,7 @@ public class Service extends HttpServlet {
 						conx); // Esta es una consulta temporal. No es la
 								// original.*/
 		ResultSet rs = DataBaseManager.makeQuery(
-				"select tn.canonical from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck where tc.taxon_name_id=tn.id and tc.rank=2000 and tc.kingdom_concept_id=tck.id and tck.taxon_name_id=tnk.id and tnk.id="+id+" group by canonical",
+				"select tn.id, tn.canonical from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck where tc.taxon_name_id=tn.id and tc.rank=2000 and tc.kingdom_concept_id=tck.id and tck.taxon_name_id=tnk.id and tnk.id="+id+" group by canonical",
 				conx); // Esta es una consulta temporal. No es la
 						// original. by lotvx
 		
