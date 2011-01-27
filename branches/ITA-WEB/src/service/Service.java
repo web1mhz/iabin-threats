@@ -95,11 +95,21 @@ public class Service extends HttpServlet {
 
 		HashSet<TaxonObject> taxons = new HashSet<TaxonObject>();
 		conx = DataBaseManager.openConnection(user, pass, ip, port, database);
-		ResultSet rs = DataBaseManager
-				.makeQuery(
-						"select tn.id, tn.canonical, tc.rank from taxon_concept tc, taxon_name tn where tc.taxon_name_id = tn.id and tn.rank = 1000",
+		/*ResultSet rs = DataBaseManager.makeQuery(
+						"select tn.id, tn.canonical, tc.rank from taxon_concept tc, taxon_name tn " +
+						"where tc.taxon_name_id = tn.id " +
+						"and tn.rank = 1000",
 						conx); // Esta es una consulta temporal. No es la
-								// original.
+								// original.*/
+		ResultSet rs = DataBaseManager.makeQuery(
+				"select tn.canonical from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck where tc.taxon_name_id=tn.id and tc.rank=2000 and tc.kingdom_concept_id=tck.id and tck.taxon_name_id=tnk.id and tnk.id="+id+" group by canonical",
+				conx); // Esta es una consulta temporal. No es la
+						// original. by lotvx
+		
+		
+		
+		
+		
 		while (rs.next()) {
 			TaxonObject taxon = new TaxonObject();
 			taxon.setId(rs.getString(1));
