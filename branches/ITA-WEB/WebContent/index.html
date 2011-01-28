@@ -24,8 +24,16 @@
 					
 					
 						$.each(data, function(i, taxon){
+							var title="Family"
+								if(taxon.rankID==6000){
+									title="Genus";
+									}else{
+										if(taxon.rankID==7000){
+											title="Specie";
+												}
+										}
 							$target.append("<ul><li id="+taxon.id+" rank="+taxon.rankID+
-									" class=elemento><a href=# >"+taxon.canonical+"</a></li></ul>");
+									" class=elemento><a href=# ><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
 				        });
 
 						
@@ -44,12 +52,21 @@
 <h2>Species Menu</h2>
 
 <ul class="navegador">
-	<li id="149476" rank="1000" class="elemento"><a href="#">Plants</a></li>
-	<li id="47519" rank="3000" class="elemento"><a href="#">Amphibians</a></li>
-	<li id="45994" rank="3000" class="elemento"><a href="#">Birds</a></li>
-	<li id="3" rank="3000" class="elemento"><a href="#">Insects</a></li>
-	<li id="45599" rank="3000" class="elemento"><a href="#">Mammals</a></li>
-	<li id="51772" rank="3000" class="elemento"><a href="#">Reptiles</a></li>	
+	<li id="149476" rank="1000" class="elemento"><a href="#"><Strong>Kingdom</Strong> Plantae</a></li>
+	<li id="149476" rank="1000" class="elemento"><Strong>Kingdom</Strong> Animalia</li>
+	<ul>
+		<li id="149476" rank="1000" class="elemento"><Strong>Phylum</Strong> Chordata</li>
+		<ul>
+			<li id="221704" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Amphibia</a></li>
+			<li id="221705" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Aves</a></li>
+			<li id="223922" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Mammalia</a></li>
+			<li id="223924" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Reptilia</a></li>	
+		</ul>
+		<li id="149476" rank="1000" class="elemento"><Strong>Phylum</Strong> Arthropoda</li>
+		<ul>
+			<li id="149449" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Insecta</a></li>
+		</ul>
+	</ul>
 </ul>
 </div>
 

@@ -6,7 +6,6 @@ import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,20 +22,17 @@ import com.google.gson.reflect.TypeToken;
 
 public class Service extends HttpServlet {
 	private static final long serialVersionUID = 7332571365625168689L;
-	private String user;
-    private String pass;
-	private String ip;
-	private String port;
-	private String database;
 	private Connection conx;
 	private static Gson gson = new Gson();
-	private ResultSet rs;
+	private ResultSet rs ;
+	
 	
 
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		DataBaseManager.registerDriver();
+		
 		/*
 		 * Aquí irá todo lo relacionado con la creación e inicialización de la
 		 * conexión a la base de datos. Hay que tener en cuenta que la conexión
@@ -97,6 +93,8 @@ public class Service extends HttpServlet {
 	public Set<TaxonObject> makeQuery(String id, int rank) throws SQLException {
 		HashSet<TaxonObject> taxons = new HashSet<TaxonObject>();
 		conx = DataBaseManager.openConnection(Info.getUser(), Info.getPass(), Info.getIp(), Info.getPort(), Info.getDatabase());
+		
+		
 		/*ResultSet rs = DataBaseManager.makeQuery(
 						"select tn.id, tn.canonical, tc.rank from taxon_concept tc, taxon_name tn " +
 						"where tc.taxon_name_id = tn.id " +
@@ -111,7 +109,7 @@ public class Service extends HttpServlet {
 					"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
 					"where tc.taxon_name_id=tn.id and tc.rank="+5000+" and " +
 					"tc.kingdom_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
-					"tck.id="+id+" order by tn.canonical",conx); // Esta es una consulta temporal. No es la
+					"tck.id="+id+" order by canonical",conx); // Esta es una consulta temporal. No es la
 			// original. by lotvx
 			
 		}else{
@@ -121,7 +119,7 @@ public class Service extends HttpServlet {
 						"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
 						"where tc.taxon_name_id=tn.id and tc.rank="+5000+" and " +
 						"tc.class_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
-						"tck.id="+id+" order by tn.canonical",conx);
+						"tck.id="+id+" order by canonical",conx);
 				
 			}else{
 				if(rank==5000){
@@ -131,7 +129,7 @@ public class Service extends HttpServlet {
 							"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
 							"where tc.taxon_name_id=tn.id and tc.rank="+6000+" and " +
 									"tc.family_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
-									"tck.id="+id+" order by tn.canonical",conx); // Esta es una consulta temporal. No es la
+									"tck.id="+id+" order by canonical",conx); // Esta es una consulta temporal. No es la
 									// original. by lotvx
 				}else{
 					if(rank==6000){
@@ -141,12 +139,13 @@ public class Service extends HttpServlet {
 								"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
 								"where tc.taxon_name_id=tn.id and tc.rank="+7000+" and " +
 										"tc.genus_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
-										"tck.id="+id+" order by tn.canonical",conx); // Esta es una consulta temporal. No es la
+										"tck.id="+id+" order by canonical",conx); // Esta es una consulta temporal. No es la
 										// original. by lotvx
 					}
 				}
 			}
 		}
+	
 			
 	/*	ResultSet rs = DataBaseManager.makeQuery(
 				"select tn.id, tn.canonical, tc.rank " +
@@ -157,15 +156,21 @@ public class Service extends HttpServlet {
 						// original. by louis*/
 		
 		
-		
-		while (rs.next()) {
+	
+		while (rs.next() ) {
+			
 			TaxonObject taxon = new TaxonObject();
 			taxon.setId(rs.getString(1));
 			taxon.setCanonical(rs.getString(2));
 			taxon.setRankID(rs.getInt(3));
 			taxons.add(taxon);
 		}
-		rs.close();
+		
+    	
+    		rs.close();
+		
+    	
+		
 		DataBaseManager.closeConnection(conx);
 		return taxons;
 	}
