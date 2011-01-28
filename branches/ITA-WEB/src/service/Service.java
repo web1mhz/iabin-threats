@@ -107,41 +107,41 @@ public class Service extends HttpServlet {
 		if(rank==1000){
 			// buscar family 5000
 			 rs= DataBaseManager.makeQuery(
-					"select tn.id, tn.canonical, tc.rank " +
+					"select tc.id, tn.canonical, tc.rank " +
 					"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
 					"where tc.taxon_name_id=tn.id and tc.rank="+5000+" and " +
 					"tc.kingdom_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
-					"tnk.id="+id+" group by canonical",conx); // Esta es una consulta temporal. No es la
+					"tck.id="+id+" order by canonical",conx); // Esta es una consulta temporal. No es la
 			// original. by lotvx
 			
 		}else{
 			if(rank==3000){
 				rs = DataBaseManager.makeQuery(
-						"select tn.id, tn.canonical, tc.rank " +
+						"select tc.id, tn.canonical, tc.rank " +
 						"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
 						"where tc.taxon_name_id=tn.id and tc.rank="+5000+" and " +
 						"tc.class_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
-						"tnk.id="+id+" group by canonical",conx);
+						"tck.id="+id+" order by canonical",conx);
 				
 			}else{
 				if(rank==5000){
 					// buscar genus 6000
 					rs = DataBaseManager.makeQuery(
-							"select tn.id, tn.canonical, tc.rank " +
+							"select tc.id, tn.canonical, tc.rank " +
 							"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
 							"where tc.taxon_name_id=tn.id and tc.rank="+6000+" and " +
-									"tc.genus_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
-									"tnk.id="+id+" group by canonical",conx); // Esta es una consulta temporal. No es la
+									"tc.family_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
+									"tck.id="+id+" order by canonical",conx); // Esta es una consulta temporal. No es la
 									// original. by lotvx
 				}else{
 					if(rank==6000){
 						// buscar specie 7000
 						rs = DataBaseManager.makeQuery(
-								"select tn.id, tn.canonical, tc.rank " +
+								"select tc.id, tn.canonical, tc.rank " +
 								"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
 								"where tc.taxon_name_id=tn.id and tc.rank="+7000+" and " +
-										"tc.species_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
-										"tnk.id="+id+" group by canonical",conx); // Esta es una consulta temporal. No es la
+										"tc.genus_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
+										"tck.id="+id+" order by canonical",conx); // Esta es una consulta temporal. No es la
 										// original. by lotvx
 					}
 				}
