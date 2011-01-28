@@ -11,38 +11,25 @@
 	
 <script type="text/javascript">
 
-	$(document).ready(function() { // Script del Navegador
-				
-		$(".elemento").click(function(event) {
-			
-						
-			$target = $(event.target).parent();
-			$.getJSON("service.do?id="+$target.attr("id"),
-					//$("li").live("click",function(){	
-				function(data){
-					$variable = "";
+	$(document).ready(function() {
 
-					
-					$.each(data, function(i, taxon){
-						$variable += "id: "+taxon.id+" - canonical: "+taxon.canonical+" - rankID: "+taxon.rankID+"\n";
-						
-						$target.append("<ul><li id="+taxon.id+" class=elemento><a href=# >"+taxon.canonical+"</a></li></ul>");
-			        });
-					
-					alert($target.attr("id"));
-				}
-			);
-			
-						
+		$(".elemento").click(function(event) {
+			$target = $(event.target).parent();
+
 			if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
-				$("#" + $target.attr("id")).children("ul").slideUp('fast');
+				$("#" + $target.attr("id")).children("ul").remove();
 			} else {
-				$("#" + $target.attr("id")).children("ul").slideDown('fast');
-				
+				$.getJSON("service.do?id="+$target.attr("id")+"&rank="+$target.attr("rank"),
+					function(data){
+						$.each(data, function(i, taxon){
+							$target.append("<ul><li id="+taxon.id+" rank="+taxon.rankID+
+									" class=elemento><a href=# >"+taxon.canonical+"</a></li></ul>");
+				        });
+					}
+				);
 			}
 			return false;
 		});
-		
 	});
 
 
@@ -53,19 +40,8 @@
 <h2>Species Menu</h2>
 
 <ul class="navegador">
-	<li id="1" class="elemento" ><a href="#">Animalia</a>
-		
-	</li>
-	<li id="30" class="elemento"><a href="#">Plantae</a>
-		<ul>
-			<li id="201" class="elemento">
-				<a href="#">Anthocerotophyta</a></li>
-			<li id="202" class="elemento"><a href="#">Bacillariophyta</a></li>
-			<li id="203" class="elemento"><a href="#">Bryophyta</a></li>
-			<li id="204" class="elemento"><a href="#">Chlorophyta</a></li>
-		</ul>
-	</li>
-
+	<li id="1" rank="1000" class="elemento"><a href="#">Animalia</a></li>
+	<li id="30" rank="1000" class="elemento"><a href="#">Plantae</a></li>
 </ul>
 </div>
 

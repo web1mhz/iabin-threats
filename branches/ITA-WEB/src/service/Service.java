@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import model.DataBaseManager;
 import model.TaxonObject;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 public class Service extends HttpServlet {
 	private static final long serialVersionUID = 7332571365625168689L;
-	private String user = "jacamacho";
-    private String pass = "123456";
+	private String user = "guest";
+    private String pass = "aesculus";
 	private String ip = "gisbif.ciat.cgiar.org";
 	private String port = "3306";
 	private String database = "iabin_sstn";
@@ -51,7 +51,8 @@ public class Service extends HttpServlet {
 
 		try {
 			String id = req.getParameter("id");
-			Set<TaxonObject> taxons = makeQuery(id);
+			String rank = req.getParameter("rank");
+			Set<TaxonObject> taxons = makeQuery(id,Integer.parseInt(rank));
 			
 			// Converting to JSON
 			Type setType = new TypeToken<Set<TaxonObject>>(){}.getType();
@@ -91,8 +92,7 @@ public class Service extends HttpServlet {
 		super.destroy();
 	}
 
-	public Set<TaxonObject> makeQuery(String id) throws SQLException {
-
+	public Set<TaxonObject> makeQuery(String id, int rank) throws SQLException {
 		HashSet<TaxonObject> taxons = new HashSet<TaxonObject>();
 		conx = DataBaseManager.openConnection(user, pass, ip, port, database);
 		/*ResultSet rs = DataBaseManager.makeQuery(
@@ -102,11 +102,12 @@ public class Service extends HttpServlet {
 						conx); // Esta es una consulta temporal. No es la
 								// original.*/
 		ResultSet rs = DataBaseManager.makeQuery(
-				"select tn.id, tn.canonical, tc.rank from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck where tc.taxon_name_id=tn.id and tc.rank=2000 and tc.kingdom_concept_id=tck.id and tck.taxon_name_id=tnk.id and tnk.id="+id+" group by canonical",
-				conx); // Esta es una consulta temporal. No es la
+				"select tn.id, tn.canonical, tc.rank " +
+				"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
+				"where tc.taxon_name_id=tn.id and tc.rank="+(rank+1000)+" and " +
+						"tc.kingdom_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
+						"tnk.id="+id+" group by canonical",conx); // Esta es una consulta temporal. No es la
 						// original. by lotvx
-		
-		
 		
 		
 		
@@ -121,5 +122,4 @@ public class Service extends HttpServlet {
 		DataBaseManager.closeConnection(conx);
 		return taxons;
 	}
-
 }
