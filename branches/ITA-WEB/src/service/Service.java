@@ -23,8 +23,8 @@ import com.google.gson.reflect.TypeToken;
 
 public class Service extends HttpServlet {
 	private static final long serialVersionUID = 7332571365625168689L;
-	private String user = "guest";
-    private String pass = "aesculus";
+	private String user = "jacamacho";
+    private String pass = "123456";
 	private String ip = "gisbif.ciat.cgiar.org";
 	private String port = "3306";
 	private String database = "iabin_sstn";

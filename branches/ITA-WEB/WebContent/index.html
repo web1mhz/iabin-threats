@@ -21,6 +21,7 @@
 			} else {
 				$.getJSON("service.do?id="+$target.attr("id")+"&rank="+$target.attr("rank"),
 					function(data){
+					
 						$.each(data, function(i, taxon){
 							$target.append("<ul><li id="+taxon.id+" rank="+taxon.rankID+
 									" class=elemento><a href=# >"+taxon.canonical+"</a></li></ul>");
@@ -35,7 +36,7 @@
 
 </script>
 </head>
-<body onload="requestServlet();">
+<body onload="">
 <div id="contenido-demo">
 <h2>Species Menu</h2>
 
