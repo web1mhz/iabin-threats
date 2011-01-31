@@ -40,12 +40,13 @@
 							},
 							complete: function(data, code) {
 								if(code == "success") {
-									$loaderGift = $("#"+$target.attr("id")+" #loaderGift").remove();
+									$("#"+$target.attr("id")+" #loaderGift").remove();
 								}
 							},
 							error: function(data, error, objectError) {
 								// Aun falta implementar lo que sucederá cuando hay un error
-								alert("error --> error: "+error);
+								alert("error: "+error);
+								$("#"+$target.attr("id")+" #loaderGift").remove();
 							}
 						}); // END ajax
 					} // END if			
