@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -91,7 +92,7 @@ public class Service extends HttpServlet {
 	}
 
 	public Set<TaxonObject> makeQuery(String id, int rank) throws SQLException {
-		HashSet<TaxonObject> taxons = new HashSet<TaxonObject>();
+		TreeSet<TaxonObject> taxons = new TreeSet<TaxonObject>();
 		conx = DataBaseManager.openConnection(Info.getUser(), Info.getPass(), Info.getIp(), Info.getPort(), Info.getDatabase());
 		
 		

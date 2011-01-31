@@ -1,6 +1,6 @@
 package model;
 
-public class TaxonObject {
+public class TaxonObject implements Comparable<TaxonObject> {
 	private String id;
 	private String canonical;
 	private int rankID;	
@@ -37,6 +37,11 @@ public class TaxonObject {
 	@Override
 	public int hashCode() {		
 		return id.hashCode();
+	}
+	@Override
+	public int compareTo(TaxonObject o) {
+		
+		return (this.getCanonical()+this.getRankID()).compareTo(o.getCanonical()+o.getRankID());
 	}
 	
 }
