@@ -13,10 +13,12 @@
 			$(document).ready(function() {
 				
 				$(".element").click(function(event) {
-										 
+									 
 					$target = $(event.target).parent();	
 					if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
 						$("ul li a").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center','padding-left':'25px'});
+						$("#contenidoDemo #contenidoDemo1").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center','padding-left':'25px'});
+						$("#contenidoDemo #animalia").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center','padding-left':'25px'});
 						$("#" + $target.attr("id")).children("ul").remove();
 					} else {	
 
@@ -44,6 +46,7 @@
 											" class=element><a href=# ><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
 								});
 							},
+							
 							complete: function(data, code) {
 								if(code == "success") {
 									$("#"+$target.attr("id")+" #loaderGift").remove();

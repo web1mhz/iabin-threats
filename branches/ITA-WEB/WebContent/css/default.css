@@ -1,12 +1,3 @@
-/*
-Web dise–ada y programada por Emenia
-www.emenia.es
-jbustamante@emenia.es
-*/
-
-/* 
-	R E S E T (Por Eric Meyer)
-*/
 	html, body, div, 
 	h1, h2, h3, h4, h5, h6,
 	a, font, img,
@@ -29,7 +20,7 @@ jbustamante@emenia.es
 */
 	html, body 				{ 	margin: 0; padding: 0; text-align: center; width: 100%; }
 	body					{	color: #333; font-family: "Trebuchet MS", Tahoma, Arial, sans-serif; font-size: 62.5%; line-height: 1.7em; text-align: center;}
-	h1, h2, h3, h5, h5, h6 	{	font-weight:bold; font-family: Georgia, Times, "Times New Roman", serif; }
+	h1, h2 	{	font-weight:bold; font-family: Georgia, Times, "Times New Roman", serif; }
 	a:link, a:visited		{	color: #000; text-decoration: underline; }
 	a:hover					{	color: #f4A774; background: url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center;}
 	a:active				{	color: #000; text-decoration: underline; }
