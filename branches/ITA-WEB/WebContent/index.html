@@ -10,12 +10,17 @@
 			src="http://code.jquery.com/jquery-1.4.4.js"></script>	
 			
 		<script type="text/javascript">		
-			$(document).ready(function() {		
+			$(document).ready(function() {
+				
 				$(".element").click(function(event) {
+										 
 					$target = $(event.target).parent();	
 					if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
+						$("ul li a").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center','padding-left':'25px'});
 						$("#" + $target.attr("id")).children("ul").remove();
-					} else {				
+					} else {	
+
+						
 						$.ajax({
 							url: "service.do",
 							dataType: "json",
@@ -34,6 +39,7 @@
 											title="Specie";
 										}
 									}
+									
 									$target.append("<ul><li id="+taxon.id+" rank="+taxon.rankID+
 											" class=element><a href=# ><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
 								});
@@ -41,6 +47,7 @@
 							complete: function(data, code) {
 								if(code == "success") {
 									$("#"+$target.attr("id")+" #loaderGift").remove();
+								
 								}
 							},
 							error: function(data, error, objectError) {
@@ -49,6 +56,7 @@
 								$("#"+$target.attr("id")+" #loaderGift").remove();
 							}
 						}); // END ajax
+						$("ul li a").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center','padding-left':'25px'});
 					} // END if			
 							
 				});	// END click 
