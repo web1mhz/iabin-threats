@@ -54,8 +54,8 @@ jbustamante@emenia.es
 /*
 	C O N T E N I D O    D E M O
 */
-	#contenido-demo			{	width: 960px; margin: 50px auto 0;}
-	#contenido-demo h2		{	font-size: 4em; margin-bottom: 50px;}
+	#contenidoDemo			{	width: 960px; margin: 50px auto 0;}
+	#contenidoDemo h2		{	font-size: 4em; margin-bottom: 50px;}
 	ul						{	text-align: left;}
 	ul li 					{	font-size: 18px; padding: 5px 0; }
 	ul li a 				{	width: 120px; background: url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center; padding-left: 25px; }

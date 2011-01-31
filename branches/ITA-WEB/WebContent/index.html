@@ -12,7 +12,7 @@
 		<script type="text/javascript">		
 			$(document).ready(function() {		
 				$(".elemento").click(function(event) {
-					$target = $(event.target).parent();		
+					$target = $(event.target).parent();	
 					if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
 						$("#" + $target.attr("id")).children("ul").remove();
 					} else {				
@@ -21,7 +21,9 @@
 							dataType: "json",
 							data: "id="+$target.attr("id")+"&rank="+$target.attr("rank"),
 							beforeSend: function(data) {
-								alert("before send --> data: "+data);
+								//alert("before send --> data: "+data);
+								$loaderGift = $("#loaderGift").clone().show();
+								$target.append($loaderGift);
 							},
 							success: function(data) {
 								$.each(data, function(i, taxon) {
@@ -38,7 +40,7 @@
 								});
 							},
 							complete: function(data, code) {
-								alert("complete --> code: "+code);
+								$loaderGift = $("#"+$target.attr("id")+" #loaderGift").remove();
 							},
 							error: function(data, error, objectError) {
 								alert("error --> error: "+error);
@@ -53,7 +55,7 @@
 		</script>
 	</head>
 	<body onload="">
-		<div id="contenido-demo">
+		<div id="contenidoDemo">
 			<h2>Species Menu</h2>
 	
 			<ul class="navegador">
@@ -75,4 +77,5 @@
 			</ul>
 		</div>
 	</body>
+	<img id="loaderGift" src="images/ajax-loader.gif" style="display:none;" />
 </html>
