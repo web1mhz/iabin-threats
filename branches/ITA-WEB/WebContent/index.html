@@ -1,74 +1,78 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
-<head>
-<title>Menu Especies</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" type="text/css" href="css/default.css" />
-
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.4.4.js"></script>	
-	
-<script type="text/javascript">
-
-	$(document).ready(function() {
-
-		$(".elemento").click(function(event) {
-			$target = $(event.target).parent();
-
-			if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
-				$("#" + $target.attr("id")).children("ul").remove();
-			} else {
-				$.getJSON("service.do?id="+$target.attr("id")+"&rank="+$target.attr("rank"),
-					function(data){
-					
-					
-						$.each(data, function(i, taxon){
-							var title="Family"
-								if(taxon.rankID==6000){
-									title="Genus";
-									}else{
-										if(taxon.rankID==7000){
+	<head>
+		<title>Menu Especies</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		
+		<script type="text/javascript"
+			src="http://code.jquery.com/jquery-1.4.4.js"></script>	
+			
+		<script type="text/javascript">		
+			$(document).ready(function() {		
+				$(".elemento").click(function(event) {
+					$target = $(event.target).parent();		
+					if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
+						$("#" + $target.attr("id")).children("ul").remove();
+					} else {				
+						$.ajax({
+							url: "service.do",
+							dataType: "json",
+							data: "id="+$target.attr("id")+"&rank="+$target.attr("rank"),
+							beforeSend: function(data) {
+								alert("before send --> data: "+data);
+							},
+							success: function(data) {
+								$.each(data, function(i, taxon) {
+									var title="Family";
+									if(taxon.rankID==6000){
+										title="Genus";
+									} else {
+										if(taxon.rankID==7000) {
 											title="Specie";
-												}
 										}
-							$target.append("<ul><li id="+taxon.id+" rank="+taxon.rankID+
-									" class=elemento><a href=# ><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
-				        });
-
-						
-					}
-				);
-			}
-			return false;
-		});
-	});
-
-
-</script>
-</head>
-<body onload="">
-<div id="contenido-demo">
-<h2>Species Menu</h2>
-
-<ul class="navegador">
-	<li id="149476" rank="1000" class="elemento"><a href="#"><Strong>Kingdom</Strong> Plantae</a></li>
-	<li id="149476" rank="1000" class="elemento"><Strong>Kingdom</Strong> Animalia</li>
-	<ul>
-		<li id="149476" rank="1000" class="elemento"><Strong>Phylum</Strong> Chordata</li>
-		<ul>
-			<li id="221704" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Amphibia</a></li>
-			<li id="221705" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Aves</a></li>
-			<li id="223922" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Mammalia</a></li>
-			<li id="223924" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Reptilia</a></li>	
-		</ul>
-		<li id="149476" rank="1000" class="elemento"><Strong>Phylum</Strong> Arthropoda</li>
-		<ul>
-			<li id="149449" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Insecta</a></li>
-		</ul>
-	</ul>
-</ul>
-</div>
-
-</body>
+									}
+									$target.append("<ul><li id="+taxon.id+" rank="+taxon.rankID+
+											" class=elemento><a href=# ><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
+								});
+							},
+							complete: function(data, code) {
+								alert("complete --> code: "+code);
+							},
+							error: function(data, error, objectError) {
+								alert("error --> error: "+error);
+							}
+						}); // END ajax
+					} // END if			
+							
+				});	// END click 
+			}); //END ready
+		
+		
+		</script>
+	</head>
+	<body onload="">
+		<div id="contenido-demo">
+			<h2>Species Menu</h2>
+	
+			<ul class="navegador">
+				<li id="149476" rank="1000" class="elemento"><a href="#"><Strong>Kingdom</Strong> Plantae</a></li>
+				<li id="149476" rank="1000" class="elemento"><Strong>Kingdom</Strong> Animalia</li>
+				<ul>
+					<li id="149476" rank="1000" class="elemento"><Strong>Phylum</Strong> Chordata</li>
+					<ul>
+						<li id="221704" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Amphibia</a></li>
+						<li id="221705" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Aves</a></li>
+						<li id="223922" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Mammalia</a></li>
+						<li id="223924" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Reptilia</a></li>	
+					</ul>
+					<li id="149476" rank="1000" class="elemento"><Strong>Phylum</Strong> Arthropoda</li>
+					<ul>
+						<li id="149449" rank="3000" class="elemento"><a href="#"><Strong>Class</Strong> Insecta</a></li>
+					</ul>
+				</ul>
+			</ul>
+		</div>
+	</body>
 </html>
