@@ -521,6 +521,7 @@ public class Biogeomancer {
 	 * then is called the method startGeorref.
 	 * 
 	 * @param args
+	 * @throws SQLException 
 	 */
 	public static void main(String[] args) {
 		DataBaseManager.registerDriver();
@@ -539,7 +540,7 @@ public class Biogeomancer {
 					+ " registros");
 
 			// si no se especifica la consulta se hace por 10 records
-			String manyRecord = "100";
+			String manyRecord = "10";
 			if (args.length > 0)
 				manyRecord = args[0];
 
@@ -574,11 +575,16 @@ public class Biogeomancer {
 			 * vac�o.
 			 */
 
-			if (rs == null) {
-				bandera = false;
-				System.out
-						.println("there are no records for georeferencing. Quit");
-				break;
+			try {
+				if (rs == null||rs.isClosed()) {
+					bandera = false;
+					System.out
+							.println("there are no records for georeferencing. Quit");
+					break;
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 
 			System.out.println("ends query : " + getDateTime());
