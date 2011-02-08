@@ -33,14 +33,15 @@
 											title="Specie";
 										}
 									}									
-									$target.append("<ul><li id="+taxon.id+" rank="+taxon.rankID+
-										" class=element><a href=# ><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
-								});								
+									$target.append("<ul style='display:none;'><li id="+taxon.id+" rank="+taxon.rankID+
+										" class=element><a><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
+								});					
 							},
 							complete: function(data, code) {
 								if(code == "success") {
 									$("#"+$target.attr("id")+" #loaderGift").remove();
 									$("#" + $target.attr("id")).children("a").css("background", "url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center");
+									$("#" + $target.attr("id")).children("ul").slideDown('fast');
 								}
 							},
 							error: function(data, error, objectError) {
@@ -55,8 +56,6 @@
 						if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
 							// if is visible slide up and hide the content.							
 							$("#" + $target.attr("id")).children("a").css("background", "url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center");
-							//$("#contenidoDemo #contenidoDemo1").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center','padding-left':'25px'});
-							//$("#contenidoDemo #animalia").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center','padding-left':'25px'});
 							$("#" + $target.attr("id")).children("ul").slideUp('fast');
 						} else {
 							// if is not visible slide down and show the content.
@@ -77,7 +76,7 @@
 				<li id="149476" rank="1000" class="element"><a href="#"><Strong>Kingdom</Strong> Plantae</a></li>
 				<li  class="element"><a href="#" id="animalia"><Strong>Kingdom</Strong> Animalia</a></li>
 					<ul>
-						<li><a href="#" id="contenidoDemo1"><Strong>Phylum</Strong> Chordata</a>
+						<li class="element"><a id="contenidoDemo1"><Strong>Phylum</Strong> Chordata</a>
 							<ul>
 								<li id="221704" rank="3000" class="element"><a href="#"><Strong>Class</Strong> Amphibia</a></li>
 								<li id="221705" rank="3000" class="element"><a href="#"><Strong>Class</Strong> Aves</a></li>
@@ -87,7 +86,7 @@
 						</li>
 					</ul>
 					<ul>	
-						<li><a href="#" id="contenidoDemo1"><Strong>Phylum</Strong> Arthropoda</a>
+						<li class="element"><a href="#" id="contenidoDemo1"><Strong>Phylum</Strong> Arthropoda</a>
 							<ul>
 						        <li id="149449" rank="3000" class="element"><a href="#"><Strong>Class</Strong> Insecta</a></li>
 					        </ul>
