@@ -10,70 +10,58 @@
 			src="http://code.jquery.com/jquery-1.4.4.js"></script>	
 			
 		<script type="text/javascript">	
-		var bandera=1;	
-			$(document).ready(function() {
-				
-				$(".element").click(function(event) {
-								 
+			var bandera=1;	
+			$(document).ready(function() {				
+				$(".element").click(function(event) {								 
 					$target = $(event.target).parent();	
 					
 					if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
-
 						
 						$("ul li a").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center','padding-left':'25px'});
 						$("#contenidoDemo #contenidoDemo1").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center','padding-left':'25px'});
 						$("#contenidoDemo #animalia").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center','padding-left':'25px'});
 						$("#" + $target.attr("id")).children("ul").slideUp('fast');
-
 						bandera=0;
 					} else {	
-
-						       if(bandera==0){
-						    	   $("#" + $target.attr("id")).children("ul").slideDown('fast');
-						    	  bandera=1;
-						       } else{
-						$.ajax({
-							url: "service.do",
-							dataType: "json",
-							data: "id="+$target.attr("id")+"&rank="+$target.attr("rank"),
-							beforeSend: function(data) {
-								$loaderGift = $("#loaderGift").clone().show();
-								$target.append($loaderGift);
-							},
-							success: function(data) {
-									
-								
-								$.each(data, function(i, taxon) {
-									var title="Family";
-									if(taxon.rankID==6000){
-										title="Genus";
-									} else {
-										if(taxon.rankID==7000) {
-											title="Specie";
+						if(bandera==0){
+							$("#" + $target.attr("id")).children("ul").slideDown('fast');
+						    bandera=1;
+						} else{
+							$.ajax({
+								url: "service.do",
+								dataType: "json",
+								data: "id="+$target.attr("id")+"&rank="+$target.attr("rank"),
+								beforeSend: function(data) {
+									$loaderGift = $("#loaderGift").clone().show();
+									$target.append($loaderGift);
+								},
+								success: function(data) {								
+									$.each(data, function(i, taxon) {
+										var title="Family";
+										if(taxon.rankID==6000){
+											title="Genus";
+										} else {
+											if(taxon.rankID==7000) {
+												title="Specie";
 											}
-									}
-									
-									
-									$target.append("<ul><li id="+taxon.id+" rank="+taxon.rankID+
+										}									
+										$target.append("<ul><li id="+taxon.id+" rank="+taxon.rankID+
 											" class=element><a href=# ><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
-								});
-								
-							},
-							
-							complete: function(data, code) {
-								if(code == "success") {
+									});								
+								},
+								complete: function(data, code) {
+									if(code == "success") {
+										$("#"+$target.attr("id")+" #loaderGift").remove();	
+									}
+								},
+								error: function(data, error, objectError) {
+									// Aun falta implementar lo que sucederá cuando hay un error
+									alert("error: "+error);
 									$("#"+$target.attr("id")+" #loaderGift").remove();
-								
 								}
-							},
-							error: function(data, error, objectError) {
-								// Aun falta implementar lo que sucederá cuando hay un error
-								alert("error: "+error);
-								$("#"+$target.attr("id")+" #loaderGift").remove();
-							}
-						}); // END ajax
-						$("ul li a").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center','padding-left':'25px'});
-					} // END if			
+							}); // END ajax
+							$("ul li a").css({'width':'120px','background':'url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center','padding-left':'25px'});
+						} // END if			
 					}		
 				});	// END click 
 			}); //END ready
