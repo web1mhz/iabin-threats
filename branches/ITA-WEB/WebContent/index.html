@@ -20,6 +20,7 @@
 							url: "service.do",
 							dataType: "json",
 							data: "id="+$target.attr("id")+"&rank="+$target.attr("rank"),
+			
 							beforeSend: function(data) {
 								$loaderGift = $("#loaderGift").clone().show();
 								$target.append($loaderGift);
@@ -72,6 +73,9 @@
 		</script>
 	</head>
 	<body onload="">
+	   <div id="search">
+	   <input type=text name=search /><input type=button value=Search />
+	   </div>
 		<div id="demoContent">
 			<h2>Species Menu</h2>
 			<ul>
