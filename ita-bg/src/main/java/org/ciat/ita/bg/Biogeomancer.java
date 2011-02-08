@@ -1,15 +1,15 @@
 package org.ciat.ita.bg;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -38,6 +38,7 @@ import org.jaxen.JaxenException;
 import org.jaxen.SimpleNamespaceContext;
 import org.jdom.Element;
 import org.jdom.JDOMException;
+import org.jdom.input.JDOMParseException;
 import org.jdom.input.SAXBuilder;
 
 public class Biogeomancer {
@@ -98,10 +99,14 @@ public class Biogeomancer {
 
 			// sigue solicitando informacion al servidor hasta que devuelva
 			// diferente de null durante 20 intentos mas
-			String xmlResult = setServiceUrl(urlBgServer, xmlData);
+			
+			//String xmlResult = setServiceUrl(urlBgServer, xmlData);
+			String xmlResult=null;//reemplaza la linea de arriba para no hacer la peticion batch via POST
+			
+			
 			int intentos = 0;
 			String horaInicioAtaqueDos = getDateTime();
-			while (xmlResult == null && intentos < 20) { // prueba 1 vez con el
+		/*	while (xmlResult == null && intentos < 2) { // prueba 1 vez con el
 															// server
 				System.out.println("\ntiempo : " + getDateTime());
 				System.out.println("\nnumero de intentos de conexion: "
@@ -326,7 +331,7 @@ public class Biogeomancer {
 			System.out.println(str);
 			
 			//when the via POST request fails it connects via GET
-			if(nodes.size()==0)
+			if(nodes.size()==0||xmlResult == null)
 			{
 
 				try {
@@ -525,6 +530,11 @@ public class Biogeomancer {
 	 */
 	public static void main(String[] args) {
 		DataBaseManager.registerDriver();
+		
+		System.getProperties().put("proxySet", "true");
+		System.getProperties().put("proxyHost", "proxy4.ciat.cgiar.org");
+		System.getProperties().put("proxyPort", "8080");
+		
 
 		boolean bandera = true;
 		Connection conx;
@@ -540,7 +550,7 @@ public class Biogeomancer {
 					+ " registros");
 
 			// si no se especifica la consulta se hace por 10 records
-			String manyRecord = "10";
+			String manyRecord = "100";
 			if (args.length > 0)
 				manyRecord = args[0];
 
@@ -754,7 +764,7 @@ public class Biogeomancer {
 		String minorLatitude = "";
 
 		for (Record p : places) {
-			xmlRes = "";
+			xmlRes="";
 			country = p.getCountry();
 			state = p.getState();
 			county = p.getCounty();
@@ -765,7 +775,8 @@ public class Biogeomancer {
 			System.out.println(county);
 			System.out.println(state);
 			System.out.println(locality);
-
+			System.out.println("id : "+idrec);
+			
 			if (country == null)
 				country = "";
 			if (state == null)
@@ -778,35 +789,45 @@ public class Biogeomancer {
 				county = county + ",";
 			if (locality == null)
 				locality = "";
+			
+
+			
+			address = "http://bg.berkeley.edu:8080/ws/single?sp=" + country	+ "&locality=" + state + county + locality;
+			//address= "http://bg.berkeley.edu:8080/ws/single?sp=Montana&locality=14%20mi%20SSW%20Missoula";
+			System.out.println(address);
+			
+		//	xmlRes=connectByGet(address);
+		//	System.out.println("xml: \n"+xmlRes);
 
 			try {
 
-				address = "http://bg.berkeley.edu:8080/ws/single?sp=" + country
-						+ "&locality=" + state + county + locality;
-				System.out.println(address);
+
 				URL url = new URL(address);
 
-				BufferedReader in = new BufferedReader(new InputStreamReader(
-						url.openStream()));
+				BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 				String str;
 
 				while ((str = in.readLine()) != null) {
 					xmlRes = xmlRes + str + "\n";
-					// System.out.println(str);
+				//	System.out.println("STR: \n");
+					System.out.println(str);
 
 				}
+				System.out.println("this is received from the server \n");
 				System.out.println(xmlRes);
 
 				in.close();
 			} catch (MalformedURLException e) {
+				System.out.println("MalformedURL");
 			} catch (IOException e) {
+				System.out.println("IOException");
 			}
 
 			// interpreting the xml
 
 			SAXBuilder builder = new SAXBuilder(false);
-			org.jdom.Document document = builder
-					.build(new ByteArrayInputStream(xmlRes.getBytes()));
+			try{
+			org.jdom.Document document = builder.build(new ByteArrayInputStream(xmlRes.getBytes()));
 
 			Element root = document.getRootElement();
 
@@ -852,21 +873,41 @@ public class Biogeomancer {
 			System.out.println("longitude : " + minorLongitude);
 			System.out.println("uncertainty : " + minorUncertainty);
 			
+			String fixedCountry=p.getCountry();
+			if(p.getCountry()!=null &&p.getCountry()!="")  fixedCountry=DataBaseManager.correctStringToQuery(p.getCountry());
+			String fixedCounty=p.getCounty();
+			if(p.getCounty()!=null &&p.getCounty()!="")  fixedCounty=DataBaseManager.correctStringToQuery(p.getCounty());
+			String fixedState=p.getState();
+			if(p.getState()!=null &&p.getState()!="")  fixedState=DataBaseManager.correctStringToQuery(p.getState());
+			String fixedLocality=p.getState();
+			if(p.getLocality()!=null &&p.getLocality()!="")  fixedLocality=DataBaseManager.correctStringToQuery(p.getLocality());
+			
+			
 			//writes in DB
 			if (minorLatitude != "" && minorLongitude != "") {
-				consulta("update georeferenced_records set blatitude=" + minorLatitude + ", blongitude=" + minorLongitude + ", uncertainty=" + minorUncertainty + ", is_fixed=1 where id="
-						+ idrec + " ;", conx);
+				consulta("update georeferenced_records set blatitude=" 
+						+ minorLatitude + ", blongitude=" 
+						+ minorLongitude + ", uncertainty=" 
+						+ minorUncertainty + ", is_fixed=1 where country='"+(fixedCountry)
+						+ "' and county='"+(fixedCounty)
+						+ "' and locality='"+(fixedLocality)
+						+ "' and state_province='"+(fixedState)
+						+"' ;", conx);
 			} else {
 				consulta("update georeferenced_records set is_fixed=2 where id=" + idrec + " ;", conx);
 			}
 			
-	/*		if (minorLatitude != "" && minorLongitude != "") {
+		/*	if (minorLatitude != "" && minorLongitude != "") {
 				System.out.println("update georeferenced_records set blatitude=" + minorLatitude + ", blongitude=" + minorLongitude + ", uncertainty=" + minorUncertainty + ", is_fixed=1 where id="
 						+ idrec + " ;");
 			} else {
 				System.out.println("update georeferenced_records set is_fixed=2 where id=" + idrec + " ;");
+			}*/
+			
+			}catch (JDOMParseException e){
+				System.out.println("the server presented an error for this record, this will be marked with is_fixed=3");
+				consulta("update georeferenced_records set is_fixed=3 where id=" + idrec + " ;", conx);
 			}
-	*/
 			
 			minorUncertainty = 99999999999999.0;
 			minorLongitude = "";
@@ -875,4 +916,26 @@ public class Biogeomancer {
 		return "success!!";
 	}// ends method
 
+	
+	private static String connectByGet(String address){
+		String res="";
+        try {
+            URL url = new URL(address);
+    
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+            String str=null;
+
+            while ((str = in.readLine()) != null) {
+            	res = res + str + "\n";
+                //System.out.println(str);
+            }
+
+            in.close();
+        } 
+        catch (MalformedURLException e) {} 
+        catch (IOException e) {}
+    
+        return res;
+	}
+	
 }
