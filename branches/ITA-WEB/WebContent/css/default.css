@@ -27,8 +27,8 @@
 /*
 	D E M O   C O N T E N T
 */
-	#contenidoDemo			{	width: 960px; margin: 50px auto 0;}
-	#contenidoDemo h2		{	font-size: 4em; margin-bottom: 50px;}
+	#demoContent			{	width: 960px; margin: 50px auto 0;}
+	#demoContent h2 		{	font-size: 4em; margin-bottom: 50px;}
 	ul						{	text-align: left;}
 	ul li 					{	font-size: 15px; padding: 5px 0; }
 	ul li a 				{	width: 120px; background: url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center; padding-left: 25px; }
@@ -36,6 +36,6 @@
 	ul li li				{	font-size: 14px; padding-left: 25px;}
 	ul li a.desplegable li a{	background: url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center; }
 	ul li a ul li a         {background: url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center; }
-	#contenidoDemo #contenidoDemo1 {	font-size: 14px; padding-left:40px; background: url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 20px center;}
-	#contenidoDemo #animalia {	font-size: 15px; padding-left: 25px ; background: url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center;}
+	#demoContent #demoContent1 {	font-size: 14px; padding-left:40px; background: url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 20px center;}
+	#demoContent #animalia  {	font-size: 15px; padding-left: 25px ; background: url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center;}
 
