@@ -908,14 +908,18 @@ String address2;
 			
 			//writes in DB
 			if (minorLatitude != "" && minorLongitude != "") {
-				consulta("update georeferenced_records set blatitude=" 
+			/*	consulta("update georeferenced_records set blatitude=" 
 						+ minorLatitude + ", blongitude=" 
 						+ minorLongitude + ", uncertainty=" 
 						+ minorUncertainty + ", is_fixed=1 where country='"+(fixedCountry)
 						+ "' and county='"+(fixedCounty)
 						+ "' and locality='"+(fixedLocality)
 						+ "' and state_province='"+(fixedState)
-						+"' ;", conx);
+						+"' ;", conx);*/
+				consulta("update georeferenced_records set blatitude=" 
+						+ minorLatitude + ", blongitude=" 
+						+ minorLongitude + ", uncertainty=" 
+						+ minorUncertainty + ", is_fixed=1 where id="+idrec+" ;", conx);
 			} else {
 				consulta("update georeferenced_records set is_fixed=2 where id=" + idrec + " ;", conx);
 			}
