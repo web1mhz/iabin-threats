@@ -897,13 +897,13 @@ String address2;
 			System.out.println("uncertainty : " + minorUncertainty);
 			
 			String fixedCountry=p.getCountry();
-			if(p.getCountry()!=null &&p.getCountry()!="")  fixedCountry=DataBaseManager.correctStringToQuery(p.getCountry());
+			if(p.getCountry()!=null &&p.getCountry()!="")  fixedCountry="'"+DataBaseManager.correctStringToQuery(p.getCountry())+"'"; else fixedCountry=null;
 			String fixedCounty=p.getCounty();
-			if(p.getCounty()!=null &&p.getCounty()!="")  fixedCounty=DataBaseManager.correctStringToQuery(p.getCounty());
+			if(p.getCounty()!=null &&p.getCounty()!="")  fixedCounty="'"+DataBaseManager.correctStringToQuery(p.getCounty())+"'"; else fixedCounty=null;
 			String fixedState=p.getState();
-			if(p.getState()!=null &&p.getState()!="")  fixedState=DataBaseManager.correctStringToQuery(p.getState());
+			if(p.getState()!=null &&p.getState()!="")  fixedState="'"+DataBaseManager.correctStringToQuery(p.getState())+"'"; else fixedState=null;
 			String fixedLocality=p.getState();
-			if(p.getLocality()!=null &&p.getLocality()!="")  fixedLocality=DataBaseManager.correctStringToQuery(p.getLocality());
+			if(p.getLocality()!=null &&p.getLocality()!="")  fixedLocality="'"+DataBaseManager.correctStringToQuery(p.getLocality())+"'"; else fixedLocality=null;
 			
 			
 			//writes in DB
@@ -911,11 +911,11 @@ String address2;
 			/*	consulta("update georeferenced_records set blatitude=" 
 						+ minorLatitude + ", blongitude=" 
 						+ minorLongitude + ", uncertainty=" 
-						+ minorUncertainty + ", is_fixed=1 where country='"+(fixedCountry)
-						+ "' and county='"+(fixedCounty)
-						+ "' and locality='"+(fixedLocality)
-						+ "' and state_province='"+(fixedState)
-						+"' ;", conx);*/
+						+ minorUncertainty + ", is_fixed=1 where country="+(fixedCountry)
+						+ " and county="+(fixedCounty)
+						+ " and locality="+(fixedLocality)
+						+ " and state_province="+(fixedState)
+						+" ;", conx);*/
 				consulta("update georeferenced_records set blatitude=" 
 						+ minorLatitude + ", blongitude=" 
 						+ minorLongitude + ", uncertainty=" 
@@ -933,7 +933,7 @@ String address2;
 			
 			}catch (JDOMParseException e){
 				System.out.println("the server presented an error for this record, this will be marked with is_fixed=3");
-				consulta("update georeferenced_records set is_fixed=3 where id=" + idrec + " ;", conx);
+				consulta("update georeferenced_records set is_fixed=3 where id=" + idrec + " and is_fixed=0 ;", conx);
 			}
 			
 			minorUncertainty = 99999999999999.0;
