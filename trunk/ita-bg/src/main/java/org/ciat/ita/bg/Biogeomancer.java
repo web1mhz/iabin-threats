@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -790,11 +792,32 @@ public class Biogeomancer {
 			if (locality == null)
 				locality = "";
 			
-
+String address2;
 			
 			address = "http://bg.berkeley.edu:8080/ws/single?sp=" + country	+ "&locality=" + state + county + locality;
 			//address= "http://bg.berkeley.edu:8080/ws/single?sp=Montana&locality=14%20mi%20SSW%20Missoula";
 			System.out.println(address);
+			
+		/*	address2=URLEncoder.encode(address, "cp1252");
+			System.out.println("cp1252\n"+address2);
+			address2=URLEncoder.encode(address, "utf-8");
+			System.out.println("utf-8\n"+address2);
+			address2=URLEncoder.encode(address, "utf-16");
+			System.out.println("utf-16\n"+address2);
+			address2=URLEncoder.encode(address, "iso-8859-1");
+			System.out.println("iso5981\n"+address2);
+			
+			address2=URLDecoder.decode(address, "cp1252");
+			System.out.println("cp1252\n"+address2);
+			address2=URLDecoder.decode(address, "utf-8");
+			System.out.println("utf-8\n"+address2);
+			address2=URLDecoder.decode(address, "utf-16");
+			System.out.println("utf-16\n"+address2);
+			address2=URLDecoder.decode(address, "iso-8859-1");
+			System.out.println("iso5981\n"+address2);*/
+
+
+			
 			
 		//	xmlRes=connectByGet(address);
 		//	System.out.println("xml: \n"+xmlRes);
@@ -813,8 +836,8 @@ public class Biogeomancer {
 					System.out.println(str);
 
 				}
-				System.out.println("this is received from the server \n");
-				System.out.println(xmlRes);
+			/*	System.out.println("this is received from the server \n");
+				System.out.println(xmlRes);*/
 
 				in.close();
 			} catch (MalformedURLException e) {
