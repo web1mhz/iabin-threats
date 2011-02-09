@@ -29,7 +29,7 @@ $(document).ready(function() {
 				complete: function(data, code) {
 					if(code == "success") {
 						$("#"+$target.attr("id")+" #loaderGift").remove();
-						$("#" + $target.attr("id")).children("a").css("background", "url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center");
+						$("#" + $target.attr("id")).children("a").css("background", "url(../images/minus.gif) no-repeat 10px center");
 						$("#" + $target.attr("id")).children("ul").slideDown('fast');
 					}
 				},
@@ -44,12 +44,12 @@ $(document).ready(function() {
 			// is visible?
 			if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
 				// if is visible slide up and hide the content.							
-				$("#" + $target.attr("id")).children("a").css("background", "url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center");
+				$("#" + $target.attr("id")).children("a").css("background", "url(../images/plus.gif) no-repeat 10px center");
 				$("#" + $target.attr("id")).children("ul").slideUp('fast');
 			} else {
 				// if is not visible slide down and show the content.
 				$("#" + $target.attr("id")).children("ul").slideDown('fast');
-				$("#" + $target.attr("id")).children("a").css("background", "url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center");			
+				$("#" + $target.attr("id")).children("a").css("background", "url(../images/minus.gif) no-repeat 10px center");			
 			}
 		}					
 	});	// END click 
