@@ -22,7 +22,7 @@
 	body					{	color: #333; font-family: "Trebuchet MS", Tahoma, Arial, sans-serif; font-size: 62.5%; line-height: 1.7em; text-align: center;}
 	h1, h2 	{	font-weight:bold; font-family: Georgia, Times, "Times New Roman", serif; }
 	a:link, a:visited		{	color: #000; text-decoration: underline; }
-	a:hover					{	color: #f4A774; background: url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center;}
+	a:hover					{	color: #f4A774; background: url(../images/minus.gif) no-repeat 10px center;}
 	a:active				{	color: #000; text-decoration: underline; }
 /*
 	D E M O   C O N T E N T
@@ -31,11 +31,11 @@
 	#demoContent h2 		{	font-size: 4em; margin-bottom: 50px;}
 	ul						{	text-align: left;}
 	ul li 					{	font-size: 15px; padding: 5px 0; }
-	ul li a 				{	width: 120px; background: url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center; padding-left: 25px; }
-	ul li a.desplegable		{	background: url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center; }	
+	ul li a 				{	width: 120px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px; }
+	ul li a.desplegable		{	background: url(../images/plus.gif) no-repeat 10px center; }	
 	ul li li				{	font-size: 14px; padding-left: 25px;}
-	ul li a.desplegable li a{	background: url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center; }
-	ul li a ul li a         {background: url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 10px center; }
-	#demoContent #demoContent1 {	font-size: 14px; padding-left:40px; background: url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 20px center;}
-	#demoContent #animalia  {	font-size: 15px; padding-left: 25px ; background: url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 10px center;}
+	ul li a.desplegable li a{	background: url(../images/plus.gif) no-repeat 10px center; }
+	ul li a ul li a         {background: url(../images/plus.gif) no-repeat 10px center; }
+	#demoContent #demoContent1 {	font-size: 14px; padding-left:40px; background: url(../images/minus.gif) no-repeat 20px center;}
+	#demoContent #animalia  {	font-size: 15px; padding-left: 25px ; background: url(../images/minus.gif) no-repeat 10px center;}
 
