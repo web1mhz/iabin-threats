@@ -6,7 +6,6 @@ import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -69,11 +68,6 @@ public class Service extends HttpServlet {
 			out.flush();
 			out.close();
 		}
-
-		// resp.setContentType("text/html");
-		// if(id != null && id.equals("10")) {
-
-		// }
 	}
 
 	@Override
@@ -91,13 +85,6 @@ public class Service extends HttpServlet {
 		TreeSet<TaxonObject> taxons = new TreeSet<TaxonObject>();
 		conx = DataBaseManager.openConnection(Info.getUser(), Info.getPass(), Info.getIp(), Info.getPort(), Info.getDatabase());
 
-		/*ResultSet rs = DataBaseManager.makeQuery(
-						"select tn.id, tn.canonical, tc.rank from taxon_concept tc, taxon_name tn " +
-						"where tc.taxon_name_id = tn.id " +
-						"and tn.rank = 1000",
-						conx); // Esta es una consulta temporal. No es la
-								// original.htobon*/
-
 		if (rank == 1000) {
 			// buscar family 5000
 			rs = DataBaseManager.makeQuery("select tc.id, tn.canonical, tc.rank " + "from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck "
@@ -112,28 +99,17 @@ public class Service extends HttpServlet {
 					// buscar genus 6000
 					rs = DataBaseManager.makeQuery("select tc.id, tn.canonical, tc.rank " + "from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck "
 							+ "where tc.taxon_name_id=tn.id and tc.rank=" + 6000 + " and " + "tc.family_concept_id=tck.id and tck.taxon_name_id=tnk.id and " + "tck.id=" + id + " order by canonical",
-							conx); // Esta es una consulta temporal. No es la
-					// original. by lotvx
+							conx); 
 				} else {
 					if (rank == 6000) {
 						// buscar specie 7000
 						rs = DataBaseManager.makeQuery("select tc.id, tn.canonical, tc.rank " + "from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck "
 								+ "where tc.taxon_name_id=tn.id and tc.rank=" + 7000 + " and " + "tc.genus_concept_id=tck.id and tck.taxon_name_id=tnk.id and " + "tck.id=" + id
-								+ " order by canonical", conx); // Esta es una consulta temporal. No es la
-						// original. by lotvx
+								+ " order by canonical", conx); 
 					}
 				}
 			}
 		}
-
-		/*	ResultSet rs = DataBaseManager.makeQuery(
-					"select tn.id, tn.canonical, tc.rank " +
-					"from taxon_name tn , taxon_concept tc, taxon_name tnk , taxon_concept tck " +
-					"where tc.taxon_name_id=tn.id and tc.rank="+(rank+1000)+" and " +
-							"tc.kingdom_concept_id=tck.id and tck.taxon_name_id=tnk.id and " +
-							"tnk.id="+id+" group by canonical",conx); // Esta es una consulta temporal. No es la
-							// original. by louis*/
-
 		
 		while (!rs.isClosed() && rs.next()) {
 			TaxonObject taxon = new TaxonObject();
