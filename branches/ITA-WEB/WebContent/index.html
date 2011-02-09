@@ -4,21 +4,29 @@
 	<head>
 		<title>Menu Especies</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" type="text/css" href="css/default.css" />
 		
-		<script type="text/javascript"
-			src="http://code.jquery.com/jquery-1.4.4.js"></script>	
-			
+		<!-- Remote references -->		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+  		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+  		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css"></script>
+  		
+  		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+		
+		
+		<!-- Local references -->
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
 		<script type="text/javascript" src="js/TaxonClick.js"></script>
+		<script type="text/javascript" src="js/TaxonSearch.js"></script>
 	</head>
 	<body>
 	   
 		<div id="demoContent">
-			<h2>Species Menu</h2>
-		<div id="search">
-   		    <input type=text name=search /><input type=button value=Search />
-	    </div>
-			<ul>
+			<h2>Species Menu</h2>			
+			
+			<div class="ui-widget">
+   		    	<input id="search" /><input type=button value=Search />
+	    	</div>
+			<ul class="general">
 				<li id="149476" rank="1000" class="element"><a> Plants</a></li>					
 				<li id="221704" rank="3000" class="element"><a href="#"> Amphibians</a></li>
 				<li id="221705" rank="3000" class="element"><a href="#"> Birds</a></li>

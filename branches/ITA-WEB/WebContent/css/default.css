@@ -29,13 +29,13 @@
 */
 	#demoContent			{	width: 960px; margin: 50px auto 0;}
 	#demoContent h2 		{	font-size: 4em; margin-bottom: 50px;}
-	ul						{	text-align: left;}
-	ul li 					{	font-size: 15px; padding: 5px 0; }
-	ul li a 				{	width: 120px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px; }
-	ul li a.desplegable		{	background: url(../images/plus.gif) no-repeat 10px center; }	
-	ul li li				{	font-size: 14px; padding-left: 25px;}
-	ul li a.desplegable li a{	background: url(../images/plus.gif) no-repeat 10px center; }
-	ul li a ul li a         {background: url(../images/plus.gif) no-repeat 10px center; }
+	ul.general						{	text-align: left;}
+	ul.general li 					{	font-size: 15px; padding: 5px 0; }
+	ul.general li a 				{	width: 120px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px; }
+	ul.general li a.desplegable		{	background: url(../images/plus.gif) no-repeat 10px center; }	
+	ul.general li li				{	font-size: 14px; padding-left: 25px;}
+	
+	ul.general li a ul li a         {background: url(../images/plus.gif) no-repeat 10px center; }
 	#demoContent #demoContent1 {	font-size: 14px; padding-left:40px; background: url(../images/minus.gif) no-repeat 20px center;}
-	#demoContent #animalia  {	font-size: 15px; padding-left: 25px ; background: url(../images/minus.gif) no-repeat 10px center;}
+	
 
