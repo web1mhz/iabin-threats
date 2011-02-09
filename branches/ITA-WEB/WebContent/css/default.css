@@ -20,22 +20,26 @@
 */
 	html, body 				{ 	margin: 0; padding: 0; text-align: center; width: 100%; }
 	body					{	color: #333; font-family: "Trebuchet MS", Tahoma, Arial, sans-serif; font-size: 62.5%; line-height: 1.7em; text-align: center;}
-	h1, h2 	{	font-weight:bold; font-family: Georgia, Times, "Times New Roman", serif; }
+	h1, h2 					{	font-weight:bold;font-size:4em; font-family: Georgia, Times, "Times New Roman", serif; }
 	a:link, a:visited		{	color: #000; text-decoration: underline; }
 	a:hover					{	color: #f4A774; background: url(../images/minus.gif) no-repeat 10px center;}
 	a:active				{	color: #000; text-decoration: underline; }
 /*
-	D E M O   C O N T E N T
+	TREE STYLE
 */
-	#demoContent			{	width: 960px; margin: 50px auto 0;}
-	#demoContent h2 		{	font-size: 4em; margin-bottom: 50px;}
+	#treeStyle						{	width: 960px; margin: 50px auto 0;}
+	#treeStyle h2 					{	font-size: 4em; margin-bottom: 50px;}
 	ul.general						{	text-align: left;}
 	ul.general li 					{	font-size: 15px; padding: 5px 0; }
 	ul.general li a 				{	width: 120px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px; }
 	ul.general li a.desplegable		{	background: url(../images/plus.gif) no-repeat 10px center; }	
-	ul.general li li				{	font-size: 14px; padding-left: 25px;}
+	ul.general li li				{	font-size: 14px; padding-left: 25px;}	
+	ul.general li a ul li a         {   background: url(../images/plus.gif) no-repeat 10px center; }
 	
-	ul.general li a ul li a         {background: url(../images/plus.gif) no-repeat 10px center; }
-	#demoContent #demoContent1 {	font-size: 14px; padding-left:40px; background: url(../images/minus.gif) no-repeat 20px center;}
+/*
+	SEARCH STYLE
+*/		
+	.searchSpecie			    	{z-index:2;position:absolute;left:160px;}
+	.ui-widget						{ 	color: #333; font-family: "Trebuchet MS", Tahoma, Arial, sans-serif; text-align: left;}  
 	
 
