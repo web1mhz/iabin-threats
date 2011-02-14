@@ -7,7 +7,7 @@ else
   {// codigo para IE6, IE5
   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   }
-xmlhttp.open("GET","menu.xml",false);
+xmlhttp.open("GET","lib/menu.xml",false);
 xmlhttp.send();
 xmlDoc=xmlhttp.responseXML; 
 var x=xmlDoc.getElementsByTagName("category");
