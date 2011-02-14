@@ -22,5 +22,9 @@
 		<servlet-name>TaxonSearch</servlet-name>
 		<url-pattern>/taxonSearch.do</url-pattern>
 	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>menuiabin.html</welcome-file>
+	</welcome-file-list>
 
 </web-app>
