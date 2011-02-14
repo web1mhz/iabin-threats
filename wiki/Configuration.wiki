@@ -10,8 +10,6 @@
 
 This is a technical document and is intended to people who has relation with the technical implementation of the project.
 
-The purpose of this document is to illustrate how to build the project from the source code of this repository.
-
 == Technical Requirements ==
 
 	* To this point, the project must be imported, edited and packaged. (see How [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA How To Build ITA] section)
@@ -188,13 +186,13 @@ Both XML should have been created.
 </config>
 }}}
 
-*ip_addr*:  IP address ofMmySQL server
+*ip_addr*:  IP address of MySQL server
 
 *communication_type*:
  * _LOCAL_ to run the script as stand alone (Client and Server in the same machine) - _Recommended option_.
  * _RMI_ to run the script as remote configuration (One Server - Many Clients).
 
-*HttpProy server and port*: In case your Internet connection pass throw a proxy. Otherwise you can delete all the {{{<Proxy>}}} tag.
+*HttpProxy server and port*: In case your Internet connection pass throw a proxy. Otherwise you can delete all the {{{<Proxy>}}} tag.
 
 *work records*:  Number of records to be evaluated per batch.
 
