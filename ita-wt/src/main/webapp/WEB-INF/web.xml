@@ -6,7 +6,7 @@
 	<!-- Taxon Click Service -->
 	<servlet>
 		<servlet-name>TaxonClick</servlet-name>
-		<servlet-class>org.ciat.ita.modelservice.Service</servlet-class>
+		<servlet-class>org.ciat.ita.service.Service</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TaxonClick</servlet-name>
