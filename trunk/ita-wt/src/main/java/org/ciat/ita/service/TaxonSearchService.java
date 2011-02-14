@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.DataBaseManager;
-import model.TaxonObject;
+import org.ciat.ita.model.DataBaseManager;
+import org.ciat.ita.model.TaxonObject;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
