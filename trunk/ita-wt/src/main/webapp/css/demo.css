@@ -50,7 +50,7 @@ h5 { font-size: 11px; }
 	text-decoration: none;
 	height: 2em;
 	line-height: 1em;
-	behavior: url(../lib/PIE.htc);
+	behavior: url(../resources/templates/PIE.htc);
 		
 }
 #navigation a.head:hover {
