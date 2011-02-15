@@ -226,7 +226,7 @@ public class MaxentManager {
 			String outputLambdaDirectory, File outputLambda, File[] others,
 			String finalOutput, File climaticDir) {
 		try {
-			System.out.println(sampleFile.getName());
+			//System.out.println(sampleFile.getName());
 			numberRecords = Integer
 					.parseInt(sampleFile.getName().split("[_.]")[2]);
 			if (numberRecords <= 12) {
