@@ -164,12 +164,12 @@ public class MaxentManager {
 							backgroundFile, outputLambdaDirectory,
 							outputLambda, others, finalOutput, climaticDir,
 							this));
-
+					poolSize=6;
 					if(poolThread.getQueue().size()+poolThread.getActiveCount() >= poolSize) {
-						taskCountTemp = (int) poolThread.getCompletedTaskCount();
 						boolean otherPool = false;
 						while(!otherPool) {
-							if(poolThread.getCompletedTaskCount()-taskCountTemp >= poolThread.getCorePoolSize()) {								
+							if(poolThread.getCompletedTaskCount()-taskCountTemp >= poolThread.getCorePoolSize()) {
+								taskCountTemp = (int) poolThread.getCompletedTaskCount();
 								DecimalFormat format = new DecimalFormat(
 								"############.000");
 								temp = System.currentTimeMillis() - before;
