@@ -18,8 +18,6 @@ import org.ciat.ita.server.database.DataBaseManager;
 
 
 public class MaxentManager {
-
-	private int cont;
 	
 	public void exportSpeciesIntoCsv(String tableName, int number,
 			String outputDirectory) {
@@ -149,7 +147,7 @@ public class MaxentManager {
 		});
 
 		if (error.equals("")) {
-			cont = 0;
+			int taskCountTemp = 0;
 			long before = System.currentTimeMillis();
 			long temp = 0, timeTotal = 0;
 			File[] others = null;
@@ -157,42 +155,37 @@ public class MaxentManager {
 			ScheduledThreadPoolExecutor poolThread = new ScheduledThreadPoolExecutor(
 					threadSize);
 
-			for (File sampleFile : sampleFiles) {
-				
+			for (File sampleFile : sampleFiles) {				
 				if (!(new File(finalOutput + File.separatorChar
 						+ (sampleFile.getName().split("_")[1])+".asc")).exists()) {
-					cont++;
-
+					//cont++;
 					poolThread.submit(new MaxentProcessThread(sampleFile,
 							numberRecords, testPercentage, maxentFile,
 							backgroundFile, outputLambdaDirectory,
 							outputLambda, others, finalOutput, climaticDir,
 							this));
 
-					// maxentProcess(sampleFile, numberRecords, testPercentage,
-					// maxentFile, backgroundFile, outputLambdaDirectory,
-					// outputLambda, others, finalOutput, climaticDir);
-
-					// System.out.println(cont);
-					// System.out.println(poolThread.getActiveCount());
-					//poolSize=6;
-					if (cont % poolSize == 0) {
-						try {
-							while (cont != 0) {							
-								decreaseCountAndWait();
+					if(poolThread.getQueue().size()+poolThread.getActiveCount() >= poolSize) {
+						taskCountTemp = (int) poolThread.getCompletedTaskCount();
+						boolean otherPool = false;
+						while(!otherPool) {
+							if(poolThread.getCompletedTaskCount()-taskCountTemp >= poolThread.getCorePoolSize()) {								
+								DecimalFormat format = new DecimalFormat(
+								"############.000");
+								temp = System.currentTimeMillis() - before;
+								timeTotal += temp;
+								System.out.println(format.format((temp / 1000.0))
+										+ "seg - TOTAL: "
+										+ format.format((timeTotal / 60000.0))
+										+ "min | Last File: " + sampleFile+" Threads Queued: "+poolThread.getQueue().size()+" CompletedTasks: "+poolThread.getCompletedTaskCount());
 							}
-							DecimalFormat format = new DecimalFormat(
-									"############.000");
-							temp = System.currentTimeMillis() - before;
-							timeTotal += temp;
-							System.out.println(format.format((temp / 1000.0))
-									+ "seg - TOTAL: "
-									+ format.format((timeTotal / 60000.0))
-									+ "min | Last File: " + sampleFile+" PoolSize: "+cont+" CompletedTasks: "+poolThread.getCompletedTaskCount());
-						} catch (InterruptedException e) {
-							System.out.println(e.getMessage());
-						}
-					}
+							if(poolThread.getQueue().size() == 0 || poolThread.isTerminated()) {								
+								otherPool = true;
+							} else {								
+								try { this.wait(); } catch (InterruptedException e) {e.printStackTrace();}
+							}
+						}						
+					}					
 				} else {
 					System.out.println("File " + finalOutput
 							+ File.separatorChar
@@ -200,25 +193,14 @@ public class MaxentManager {
 							+ " already exists");
 				}
 			}
-
-			while (cont != 0) {
-				try {
-					//this.wait();
-					decreaseCountAndWait();
-				} catch (InterruptedException e) {
-					System.out.println(e.getMessage());
-				}
+			while(!(poolThread.getQueue().size() == 0 && poolThread.getActiveCount() == 0)) {				
+				try { this.wait(); } catch (InterruptedException e) {e.printStackTrace();}
 			}
 			System.exit(0);
 		} else {
 			System.out.println(error);
 		}
 
-	}
-
-	private synchronized int decreaseCountAndWait() throws InterruptedException {
-		this.wait();
-		return cont--;
 	}
 
 	private void maxentProcess(File sampleFile, int numberRecords,
