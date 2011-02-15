@@ -245,11 +245,11 @@ public class MaxentManager {
 					+ outputLambdaDirectory + " -X " + testPercentage
 					+ " nowarnings -z -a -r";
 
-			System.out.println("  [1] - "+line);
+			//System.out.println("  [1] - "+line);
 
 			Process maxentProcess = Runtime.getRuntime().exec(line);
 			maxentProcess.waitFor();
-			Thread.sleep(30000);
+			//Thread.sleep(30000);
 			maxentProcess.destroy();
 			
 
@@ -261,11 +261,11 @@ public class MaxentManager {
 					+ File.separatorChar + (sampleFile.getName().split("_")[1])
 					+ " nowarnings -r -a dontwriteclampgrid";
 			
-			System.out.println("  [2] - "+line);
+			//System.out.println("  [2] - "+line);
 			
 			maxentProcess = Runtime.getRuntime().exec(line2);
 			maxentProcess.waitFor();
-			Thread.sleep(30000);
+			//Thread.sleep(30000);
 			maxentProcess.destroy();
 		} catch (IOException e) {
 
