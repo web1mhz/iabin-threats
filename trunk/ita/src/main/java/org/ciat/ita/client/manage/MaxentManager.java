@@ -164,7 +164,6 @@ public class MaxentManager {
 							backgroundFile, outputLambdaDirectory,
 							outputLambda, others, finalOutput, climaticDir,
 							this));
-					poolSize=6;
 					if(poolThread.getQueue().size()+poolThread.getActiveCount() >= poolSize) {
 						boolean otherPool = false;
 						while(!otherPool) {
@@ -196,6 +195,7 @@ public class MaxentManager {
 			while(!(poolThread.getQueue().size() == 0 && poolThread.getActiveCount() == 0)) {				
 				try { this.wait(); } catch (InterruptedException e) {e.printStackTrace();}
 			}
+			
 			System.exit(0);
 		} else {
 			System.out.println(error);
