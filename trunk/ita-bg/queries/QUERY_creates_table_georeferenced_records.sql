@@ -30,3 +30,11 @@ ALTER TABLE temp_georeferenced_records add blongitude float default NULL;
 ALTER TABLE temp_georeferenced_records add uncertainty int(10) default '-1';
 ALTER TABLE temp_georeferenced_records add is_fixed tinyint(1) default '0';
 alter table temp_georeferenced_records add index(id);
+
+
+#estos updates modifican el nombre del pais y ponen el equivalente al nombre del iso country en ingles
+update temp_georeferenced_records o
+set o.country=(select n.name from country_name n where n.iso_country_code=o.iso_country_code and n.locale='en' limit 1);
+
+update georeferenced_records o
+set o.country=(select n.name from country_name n where n.iso_country_code=o.iso_country_code and n.locale='en' limit 1);

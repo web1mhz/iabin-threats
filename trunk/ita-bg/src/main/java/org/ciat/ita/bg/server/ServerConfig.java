@@ -134,7 +134,7 @@ public class ServerConfig {
 				dbTableFinalRecords = table.getTextTrim();
 			} else {
 				if (content.equalsIgnoreCase(XML_UNVERIFIED_RECORDS)) {
-					dbTableRecords = table.getTextTrim();
+					dbTableRecords = table.getTextTrim();//esta variable tiene el nombre de la tabla
 				} else {
 					if (content.equalsIgnoreCase(XML_UNRELIBLE_RECORDS)) {
 						dbTableUnreliable = table.getTextTrim();
