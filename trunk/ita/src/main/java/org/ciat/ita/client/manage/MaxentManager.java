@@ -19,9 +19,10 @@ import org.ciat.ita.server.database.DataBaseManager;
 
 public class MaxentManager {
 
+	private int cont;
+	
 	public void exportSpeciesIntoCsv(String tableName, int number,
 			String outputDirectory) {
-
 		try {
 			String tempFile = "last_nub.txt";
 			DataBaseManager.registerDriver();
@@ -114,6 +115,7 @@ public class MaxentManager {
 		File outputLambda = new File(outputLambdaDirectory);
 		File climaticDir = new File(bioclimaticDirectory);
 		File output = new File(finalOutput);
+		
 
 		String error = "";
 
@@ -147,7 +149,7 @@ public class MaxentManager {
 		});
 
 		if (error.equals("")) {
-			int cont = 0;
+			cont = 0;
 			long before = System.currentTimeMillis();
 			long temp = 0, timeTotal = 0;
 			File[] others = null;
@@ -173,11 +175,11 @@ public class MaxentManager {
 
 					// System.out.println(cont);
 					// System.out.println(poolThread.getActiveCount());
+					poolSize=6;
 					if (cont % poolSize == 0) {
 						try {
-							while (cont != 0) {
-								this.wait();
-								cont--;
+							while (cont != 0) {							
+								decreaseCountAndWait();
 							}
 							DecimalFormat format = new DecimalFormat(
 									"############.000");
@@ -186,7 +188,7 @@ public class MaxentManager {
 							System.out.println(format.format((temp / 1000.0))
 									+ "seg - TOTAL: "
 									+ format.format((timeTotal / 60000.0))
-									+ "min | Last File: " + sampleFile);
+									+ "min | Last File: " + sampleFile+" PoolSize: "+cont+" CompletedTasks: "+poolThread.getCompletedTaskCount());
 						} catch (InterruptedException e) {
 							System.out.println(e.getMessage());
 						}
@@ -201,8 +203,8 @@ public class MaxentManager {
 
 			while (cont != 0) {
 				try {
-					this.wait();
-					cont--;
+					//this.wait();
+					decreaseCountAndWait();
 				} catch (InterruptedException e) {
 					System.out.println(e.getMessage());
 				}
@@ -214,11 +216,17 @@ public class MaxentManager {
 
 	}
 
+	private synchronized int decreaseCountAndWait() throws InterruptedException {
+		this.wait();
+		return cont--;
+	}
+
 	private void maxentProcess(File sampleFile, int numberRecords,
 			int testPercentage, String maxentFile, String backgroundFile,
 			String outputLambdaDirectory, File outputLambda, File[] others,
 			String finalOutput, File climaticDir) {
 		try {
+			System.out.println(sampleFile.getName());
 			numberRecords = Integer
 					.parseInt(sampleFile.getName().split("[_.]")[2]);
 			if (numberRecords <= 12) {
@@ -237,11 +245,13 @@ public class MaxentManager {
 					+ outputLambdaDirectory + " -X " + testPercentage
 					+ " nowarnings -z -a -r";
 
-			// System.out.println(line);
+			System.out.println("  [1] - "+line);
 
 			Process maxentProcess = Runtime.getRuntime().exec(line);
 			maxentProcess.waitFor();
+			Thread.sleep(30000);
 			maxentProcess.destroy();
+			
 
 			// Corriendo maxent desde archivos lambdas.
 			String line2 = "java -mx" + memmory + "m -cp " + maxentFile
@@ -250,9 +260,12 @@ public class MaxentManager {
 					+ ".lambdas " + climaticDir + " " + finalOutput
 					+ File.separatorChar + (sampleFile.getName().split("_")[1])
 					+ " nowarnings -r -a dontwriteclampgrid";
-			// System.err.println(line2);
+			
+			System.out.println("  [2] - "+line);
+			
 			maxentProcess = Runtime.getRuntime().exec(line2);
 			maxentProcess.waitFor();
+			Thread.sleep(30000);
 			maxentProcess.destroy();
 		} catch (IOException e) {
 
