@@ -537,6 +537,8 @@ public class Biogeomancer {
 		System.getProperties().put("proxyHost", "proxy4.ciat.cgiar.org");
 		System.getProperties().put("proxyPort", "8080");
 		
+		String DBname= ServerConfig.getInstance().dbTableRecords;
+		
 
 		boolean bandera = true;
 		Connection conx;
@@ -576,9 +578,33 @@ public class Biogeomancer {
 			 */
 			ResultSet rs = DataBaseManager
 					.makeQuery(
-							"select * from georeferenced_records where latitude is null and longitude is null "
+							"select * from "+ DBname + " where latitude is null and longitude is null "
 									+ "and locality is not null and is_fixed=0 group by locality, country, county, state_province limit "
 									+ manyRecord, conx);
+									
+			/*						
+			
+			//esta consulta geo referencia registros buenos para validar la calidad de los datos de biogeomancer
+			ResultSet rs = DataBaseManager
+			.makeQuery(
+					
+			"select * from "+ DBname + " "+
+			"where latitude is not null " +
+			"and longitude is not null " +
+			"and latitude !=0 " +
+			"and longitude !=0 " + 
+			"and latitude!='' " +
+			"and longitude!='' " +  
+			"and locality!='.' " +
+			"and locality!='-' " +
+			"and locality is not null "+
+			"and country!='' " +
+			"and country!='-' "+
+			"and country is not null " +
+			"and is_fixed=0 "+
+			"group by state_province limit 100" ,conx);
+			*/
+			
 
 			/**
 			 * TODO @Jorge Esto no es del todo cierto. Cuando el resulset arroja
@@ -764,6 +790,8 @@ public class Biogeomancer {
 		Double minorUncertainty = 99999999999999.0;
 		String minorLongitude = "";
 		String minorLatitude = "";
+		
+		String dbname=ServerConfig.getInstance().dbTableRecords ;
 
 		for (Record p : places) {
 			xmlRes="";
@@ -908,7 +936,7 @@ String address2;
 			
 			//writes in DB
 			if (minorLatitude != "" && minorLongitude != "") {
-			/*	consulta("update georeferenced_records set blatitude=" 
+			/*	consulta("update "+ ServerConfig.getInstance().dbTableRecords + " set blatitude=" 
 						+ minorLatitude + ", blongitude=" 
 						+ minorLongitude + ", uncertainty=" 
 						+ minorUncertainty + ", is_fixed=1 where country="+(fixedCountry)
@@ -916,24 +944,24 @@ String address2;
 						+ " and locality="+(fixedLocality)
 						+ " and state_province="+(fixedState)
 						+" ;", conx);*/
-				consulta("update georeferenced_records set blatitude=" 
+				consulta("update "+ ServerConfig.getInstance().dbTableRecords + " set blatitude=" 
 						+ minorLatitude + ", blongitude=" 
 						+ minorLongitude + ", uncertainty=" 
 						+ minorUncertainty + ", is_fixed=1 where id="+idrec+" ;", conx);
 			} else {
-				consulta("update georeferenced_records set is_fixed=2 where id=" + idrec + " ;", conx);
+				consulta("update "+ ServerConfig.getInstance().dbTableRecords + " set is_fixed=2 where id=" + idrec + " ;", conx);
 			}
 			
 		/*	if (minorLatitude != "" && minorLongitude != "") {
-				System.out.println("update georeferenced_records set blatitude=" + minorLatitude + ", blongitude=" + minorLongitude + ", uncertainty=" + minorUncertainty + ", is_fixed=1 where id="
+				System.out.println("update "+ ServerConfig.getInstance().dbTableRecords + " set blatitude=" + minorLatitude + ", blongitude=" + minorLongitude + ", uncertainty=" + minorUncertainty + ", is_fixed=1 where id="
 						+ idrec + " ;");
 			} else {
-				System.out.println("update georeferenced_records set is_fixed=2 where id=" + idrec + " ;");
+				System.out.println("update "+ ServerConfig.getInstance().dbTableRecords + " set is_fixed=2 where id=" + idrec + " ;");
 			}*/
 			
 			}catch (JDOMParseException e){
 				System.out.println("the server presented an error for this record, this will be marked with is_fixed=3");
-				consulta("update georeferenced_records set is_fixed=3 where id=" + idrec + " and is_fixed=0 ;", conx);
+				consulta("update "+ ServerConfig.getInstance().dbTableRecords + " set is_fixed=3 where id=" + idrec + " and is_fixed=0 ;", conx);
 			}
 			
 			minorUncertainty = 99999999999999.0;
