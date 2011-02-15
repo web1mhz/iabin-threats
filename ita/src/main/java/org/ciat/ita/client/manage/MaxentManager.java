@@ -175,7 +175,7 @@ public class MaxentManager {
 
 					// System.out.println(cont);
 					// System.out.println(poolThread.getActiveCount());
-					poolSize=6;
+					//poolSize=6;
 					if (cont % poolSize == 0) {
 						try {
 							while (cont != 0) {							
