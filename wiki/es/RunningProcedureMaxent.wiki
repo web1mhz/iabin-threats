@@ -40,7 +40,7 @@ El objetivo de este documento es ilustrar cómo configurar y correr el algoritmo
 
 *maxent*: 
  * *maxent_file*: Ubicación del archivo JAR de Maxent.
- * *background_file*: Este archivo contiene 10000 puntos aleatorios para entrenar el modelo de maxent; y puede ser descargado desde [http://gisweb.ciat.cgiar.org/ita/public_downloads/background_clm.csv aquí]
+ * *background_file*: Este archivo contiene 10000 puntos aleatorios para ajustar el modelo de maxent; y puede ser descargado desde [http://gisweb.ciat.cgiar.org/ita/public_downloads/background_clm.csv aquí]
  * *lambda_output_dir*: Ubicación de los archivos resultantes de la primer ejecución de maxent.
  * *final_output_dir*: Este directorio contendrá todos los archivos Ascii con proyecciones resultantes de la segunda ejecución de maxent.
  * *bio_variables_dir*: Ubicación del directorio con Variables Bioclimáticas (Formato pequeño). Descargarlas [http://gisweb.ciat.cgiar.org/ita/public_downloads/small.zip aquí]. (No utilice las variables del archivo "All In One").
