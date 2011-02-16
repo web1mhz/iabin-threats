@@ -39,23 +39,6 @@ The purpose of this document is to illustrate how to configure and run the Maxen
 </config>
 }}}
 
-*ip_addr*:  IP address of MySQL server
-
-*communication_type*:
- * _LOCAL_ to run the script as stand alone (Client and Server in the same machine) - _Recommended option_.
- * _RMI_ to run the script as remote configuration (One Server - Many Clients).
-
-*HttpProxy server and port*: In case your Internet connection pass throw a proxy. Otherwise you can delete all the {{{<Proxy>}}} tag.
-
-*work records*:  Number of records to be evaluated per batch.
-
-*shape*: 
- * *path*: Global and detailed shape file. We recommend to download [http://gisweb.ciat.cgiar.org/ITA/public_downloads/GADM_v0-6.zip this file]
- * *column*:  Each of the columns that have the shape file.
- More information about Shape file [http://en.wikipedia.org/wiki/Shapefile clic here].
-
-*mask*: Mask file location containing information about every coordinate in the world, whether land or water. The file can be get it [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.zip here]
-
 *maxent*: 
  * *maxent_file*: Maxent JAR file location.
  * *sample_dir*: The sample directory contains the comma separated files resulting from running the [http://code.google.com/p/iabin-threats/wiki/RunningProcedureMaxent?wl=en#1._Exporting_records_into_a_comma_separated_file first process].
@@ -103,7 +86,7 @@ example:
 
 
 ===2. Generate species projections with Maxent===
-===Description===
+====Description====
 This script generates the lambda files and immediately after generates the projections of the species data using maxent application and the environmental varibles. 
 
 *Inputs:* Environmental variables preferably with a low resolution. Maxent runnable jar.
