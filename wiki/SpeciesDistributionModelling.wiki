@@ -19,14 +19,17 @@ Below each of this steps will be described in more detail and reference is given
  
 = Details =
 == Software ==
-All work was done using:
-  * R (in particular packages raster and snowfall)
+All were accomplished using the following software tools:
+  * R (in particular packages raster, spgrass6, and snowfall)
   * MaxEnt 3.3.1
   * GRASS 6.4
-  * Bash
+  * Bash Shell
+
 == Data preparation and organisation ==
-Workflow:
-  * *Organising species data:* The presence data was divided to the species level. For each species a subdirectory was created containing the presence points for that species and _info.txt_ file. In the _info.txt_ file the initial parameters of the species (i.e. kingdom, family, genus, number of presence points) are saved. During the modelling process results for the species are written in this file. 
+Directory structure:
+
+=== Workflow ===
+  * *Organising species data:* The presence records from GBIF and IABIN SSTN database was split by species. For each species a directory was created containing the presence points for that species and _info.txt_ file. In the _info.txt_ file the initial parameters of the species (i.e. kingdom, family, genus, number of presence points) are saved. During the modelling process results for the species are written in this file. 
   * *Getting background points:* MaxEnt requires a random background sample. For each species it was determined in which which biomes (according to the wwf classification) the presence points fell. From these biomes a random sample of 10000 was drawn for the background points.
   * *Extracting values of the climate variables:* The coordinates of all species and background points were merged. Using maxent the values for all 8 environmental variables were extracted. For each species for every presence and background point values of appropriate environmental variables were assigned.
 
