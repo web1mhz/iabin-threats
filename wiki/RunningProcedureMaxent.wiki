@@ -36,7 +36,7 @@ The purpose of this document is to illustrate how to configure and run the Maxen
   </shape>
   <mask path="/inland_msk.jgm" />
   <maxent>
-    <file name="maxent_file" type="jar" path="/maxent.jar" />
+    *<file name="maxent_file" type="jar" path="/maxent.jar" />*
     <file name="sample_dir" type="directory" path="/samples/" />
     <file name="backgroung_file" type="csv" path="/background_clm.csv" />
     <file name="lambda_output_dir" type="directory" path="/lambda_output/" />
