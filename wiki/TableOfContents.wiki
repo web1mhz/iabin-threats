@@ -17,7 +17,7 @@
    * [API]
  * Distribution Modeling
    * [SpeciesDistributionModelling Description]
-   * [RunningProcedureMaxent How To Configure and Run Maxent Script]
+   * [RunningProcedureMaxent Maxent Script]
    * [API]
  * Navigation Tool
    * [DataConversion Data Conversion]

@@ -17,6 +17,7 @@
    * [API]
  * Modelo de Distribución
    * [SpeciesDistributionModelling Descripción]
+   * [RunningProcedureMaxent Algoritmo de Maxent]
    * [API]
  * Herramienta de Navegación
    * [DescriptionNavTool Descripción]
