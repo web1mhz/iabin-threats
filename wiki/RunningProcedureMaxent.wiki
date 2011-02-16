@@ -7,11 +7,92 @@
 
 <wiki:toc />
 
+== Introduction ==
+
+This is a technical document and is intended to people who has relation with the technical implementation of the project.
+
+The purpose of this document is to illustrate how to configure and run the Maxent script.
 
 
 
 
-===Exporting records into a comma separated file===
+-----------------------------------------------------
+
+|| client_config.xml ||
+
+{{{
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+  <server ip_addr="localhost" communication_type="LOCAL" />
+  <Proxy>
+    <HttpProxy server="proxy4.ciat.cgiar.org" port="8080" />
+  </Proxy>
+  <work records="10000" />
+  <shape path="/GADM_v0-6.shp">
+    <column name="ISO">ISO</column>
+    <column name="country">ISOCOUNTRY</column>
+    <column name="state">NAME_1</column>
+    <column name="county">NAME_2</column>
+  </shape>
+  <mask path="/inland_msk.jgm" />
+  <maxent>
+    <file name="maxent_file" type="jar" path="/maxent.jar" />
+    <file name="sample_dir" type="directory" path="/samples/" />
+    <file name="backgroung_file" type="csv" path="/background_clm.csv" />
+    <file name="lambda_output_dir" type="directory" path="/lambda_output/" />
+    <file name="final_output_dir" type="directory" path="/final_output/" />
+    <file name="bio_variables_dir" type="directory" path="/small_variables/" />
+  </maxent>
+  <variables type="bioclimatic" path="/variables/">
+    <variable>alt</variable>
+    <variable>bio_1</variable>
+    <variable>bio_2</variable>
+    <variable>bio_3</variable>
+    <variable>bio_4</variable>
+    <variable>bio_5</variable>
+    <variable>bio_6</variable>
+    <variable>bio_7</variable>
+    <variable>bio_8</variable>
+    <variable>bio_9</variable>
+    <variable>bio_10</variable>
+    <variable>bio_11</variable>
+    <variable>bio_12</variable>
+    <variable>bio_13</variable>
+    <variable>bio_14</variable>
+    <variable>bio_15</variable>
+    <variable>bio_16</variable>
+    <variable>bio_17</variable>
+    <variable>bio_18</variable>
+    <variable>bio_19</variable>
+  </variables>
+</config>
+}}}
+
+*ip_addr*:  IP address of MySQL server
+
+*communication_type*:
+ * _LOCAL_ to run the script as stand alone (Client and Server in the same machine) - _Recommended option_.
+ * _RMI_ to run the script as remote configuration (One Server - Many Clients).
+
+*HttpProxy server and port*: In case your Internet connection pass throw a proxy. Otherwise you can delete all the {{{<Proxy>}}} tag.
+
+*work records*:  Number of records to be evaluated per batch.
+
+*shape*: 
+ * *path*: Global and detailed shape file. We recommend to download [http://gisweb.ciat.cgiar.org/ITA/public_downloads/GADM_v0-6.zip this file]
+ * *column*:  Each of the columns that have the shape file.
+ More information about Shape file [http://en.wikipedia.org/wiki/Shapefile clic here].
+
+*mask*: Mask file location containing information about every coordinate in the world, whether land or water. The file can be get it [http://gisweb.ciat.cgiar.org/ITA/public_downloads/inland_msk.zip here]
+
+*maxent*: Maxent configuration can be omitted. If you prefer, you are allowed to delete it.
+
+*variables path*: Bioclimatic variables location. You can find the 20 variables [http://gisweb.ciat.cgiar.org/ITA/public_downloads/BioAIO.zip here].
+
+-----------------------------------------------------
+
+
+===1. Exporting records into a comma separated file===
 ====Description====
 Exporting the reliable records into a comma separated file to be run in Maxent 
 
@@ -43,7 +124,7 @@ example:
  {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager csv -n 1000 -d /home/output }}}
   
 
-====12 Generate species projections with Maxent====
+====2. Generate species projections with Maxent====
 ===Description===
 This script generates the lambda files and immediately after generates the projections of the species data using maxent application and the environmental varibles. 
 

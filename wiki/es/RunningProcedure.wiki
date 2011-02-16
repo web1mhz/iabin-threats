@@ -264,63 +264,7 @@ ejemplo:
 *Finalizar:* Las tablas temp_good_records y temp_bad_records no se necesitan más. Las tablas temporales temp_good_1A, temp_good_2A, temp_good_3A ya no se usan, solo se usaron para la consulta, por lo que se pueden borrar. 
 
   
-===11 Exportación de registros en un archivo separado por comas===
-====Descripción====
-Exportación de los registros confiables en un archivo separado por comas, para que sean usados en Maxent
- 
-*Entradas:* _filtered_records_ tabla que contiene todos los registros confiables
-
-*Salidas:* Un archivo separado por comas _filtered_records.csv_ con los registros confiables 
-
-====Procedimiento Técnico====
-Ejecute el script en java usando los siguientes parámetros: 
-  
-  
-*Parámetros:*
- 
- {{{csv}}} Para ejecutar el método correspondiente para la exportación de un archivo csv por especie. 
- 
- {{{-Xmx<BYTES>}}}  Máximo tamaño de bytes de almacenamiento dinámico de Java
- 
- {{{-n <NUMBER>}}} de los registros que deben ser analizadas para mostrar las estadísticas de tiempo
- 
- {{{-d <OUTPUT>}}} Ubicación exacta del directorio. 
 
 
-*Línea de comando:*
 
- {{{java -XmxBYTES -cp ita.jar client.correctormanager.MaxentManager csv -n NUMBER -d OUTPUT}}}
-
-ejemplo: 
-
- {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager csv -n 1000 -d /home/output }}}
-  
-
-====12 Generar proyecciones de las especies con Maxent====
-===Descripción===
-Este script genera los archivos lambda e inmediatamente despues genera las proyecciones de los datos de especies usando la aplicación maxent y las variables ambientales.
-
-*Entradas:* Las variables ambientales preferiblemente con una resolución baja. jar ejecutable de Maxent.
-
-*Salidas:* Archivos ascii de proyección de especies 
-
-====Procedimiento Técnico====
-Ejecute el script en java con los siguientes parámetros: 
-
-*Parámetros:*
-
- {{{-Xmx<BYTES>}}} Máximo tamaño de bytes de almacenamiento dinámico de Java
- 
- {{{maxent}}} Para ejecutar el script correspondiente para generar proyecciones de las especies 
- 
- {{{-i <INSTANCES>}}} de Maxent que se ejecutará al mismo tiempo.
-
-
-*Línea de comando:*
-
- {{{java -XmxBYTES  -cp ita.jar client.correctormanager.MaxentManager maxent -i INSTANCES }}}
-
-ejemplo: 
-
- {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager maxent -i 4}}}   
  
