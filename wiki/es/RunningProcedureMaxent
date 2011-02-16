@@ -40,7 +40,6 @@ El objetivo de este documento es ilustrar cómo configurar y correr el algoritmo
 
 *maxent*: 
  * *maxent_file*: Ubicación del archivo JAR de Maxent.
- * *sample_dir*: El directorio de mustras contiene archivos separados por comas (CSV) resultantes de la ejecución del [ primer proceso].
  * *background_file*: Contains 10000 random points to train a maxent model and can be downloaded from [http://gisweb.ciat.cgiar.org/ita/public_downloads/background_clm.csv here]
  * *lambda_output_dir*: Results from the first run of maxent will be stored in this directory.
  * *final_output_dir*: This directory will contains all the Ascii-Grids with projections from the second run of maxent.
