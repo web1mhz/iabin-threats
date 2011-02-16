@@ -13,8 +13,9 @@ $(".threats").click(function(event) {
         var $target = $(event.target);
 		layer=$target.attr("id").split("-")[0]
         index=$target.attr("id").split("-")[1]
-        xInnerHtml('c1','<img src="'+layer+'/'+layer+index+'/'+layer+index+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/ita/'+layer+'/'+layer+index+'/'+layer+index+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('ampliacion');
+		$("#botonMostrarInfo").css("visibility", "hidden");
 		//mapa();
               
         });
@@ -23,8 +24,9 @@ $(".bioclim").click(function(event) {
         var $target = $(event.target);
 		layer=$target.attr("id").split("-")[0]
         index=$target.attr("id").split("-")[1]
-        xInnerHtml('c1','<img src="'+layer+'/p'+(index-7)+'/p'+(index-7)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/ita/'+layer+'/p'+(index-7)+'/p'+(index-7)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('ampliacion');
+		$("#botonMostrarInfo").css("visibility", "hidden");
 		//mapa();		              
         });
 
