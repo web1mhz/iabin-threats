@@ -73,4 +73,15 @@ In standalone mode you just need to run a single instance.
 example 
 
  {{{java -Xmx1500m -jar ita-bg.jar}}}
+ 
+ ====Presentation of Results====
+The results from biogeomancer will be acquired and written to the database, 
+these data will have also a column named is_fixed (status) that will contain a number
+whose meaning is explained in this table:
+
+status number     explanation
+	0				registers that have not been geoReferenced
+	1				registers corrected succesfully
+	2				registers that BG couldnt correct
+	3				registers in which BG returned error
 

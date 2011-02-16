@@ -74,3 +74,15 @@ Ejemplo
 
  {{{java -Xmx1500m -jar ita-bg.jar}}}
 
+ ====Presentacion de Resultados====
+Los resultados de biogeomancer se obtienen de y se escriben a la base de datos, 
+estos datostambién tendrán una columna llamada is_fixed (estatus) que contendrá un número
+cuyo significado se explica en la siguiente tabla:
+
+número de estatus   explicación
+	0				registros que no han sido geoReferenciados 
+	1				registros corregidos con éxito
+	2				registros que BG no pudo corregir
+	3				registros en cuyo caso BG devolvió un error
+	
+	
