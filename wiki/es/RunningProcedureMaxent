@@ -7,11 +7,51 @@
 
 <wiki:toc />
 
+== Introducción ==
 
+Este es un documento técnico y está destinado a las personas responsables de la implementación técnica del proyecto.
+
+El objetivo de este documento es ilustrar cómo configurar y correr el algoritmo de Maxent.
+
+
+== Configuración ==
+
+-----------------------------------------------------
+
+|| client_config.xml ||
+
+{{{
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+  ....
+  ....
+  <maxent>
+    <file name="maxent_file" type="jar" path="/maxent.jar" />
+    <file name="sample_dir" type="directory" path="/samples/" />
+    <file name="backgroung_file" type="csv" path="/background_clm.csv" />
+    <file name="lambda_output_dir" type="directory" path="/lambda_output/" />
+    <file name="final_output_dir" type="directory" path="/final_output/" />
+    <file name="bio_variables_dir" type="directory" path="/small_variables/" />
+  </maxent>
+  ....
+  ....
+</config>
+}}}
+
+*maxent*: 
+ * *maxent_file*: Ubicación del archivo JAR de Maxent.
+ * *sample_dir*: El directorio de mustras contiene archivos separados por comas (CSV) resultantes de la ejecución del [ primer proceso].
+ * *background_file*: Contains 10000 random points to train a maxent model and can be downloaded from [http://gisweb.ciat.cgiar.org/ita/public_downloads/background_clm.csv here]
+ * *lambda_output_dir*: Results from the first run of maxent will be stored in this directory.
+ * *final_output_dir*: This directory will contains all the Ascii-Grids with projections from the second run of maxent.
+ * *bio_variables_dir*: Small Bioclimatic variables directory location. Download [http://gisweb.ciat.cgiar.org/ita/public_downloads/small.zip here]. (Do not use the All In One file).
+ 
+
+-----------------------------------------------------
 
 ===1. Exportación de registros en un archivo separado por comas===
 ====Descripción====
-Exportación de los registros confiables en un archivo separado por comas, para que sean usados en Maxent
+Exportación de los registcorridaros confiables en un archivo separado por comas, para que sean usados en Maxent
  
 *Entradas:* _filtered_records_ tabla que contiene todos los registros confiables
 
