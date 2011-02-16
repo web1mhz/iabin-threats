@@ -9,12 +9,13 @@
 
 == Introduction ==
 
-This is a technical document and is intended to people who has relation with the technical implementation of the project.
+This is a technical document and is intended to people who are responsible for the technical implementation of the project.
 
 The purpose of this document is to illustrate how to configure and run the Maxent script.
 
 
 
+== Configuration ==
 
 -----------------------------------------------------
 
@@ -58,16 +59,15 @@ The purpose of this document is to illustrate how to configure and run the Maxen
 *maxent*: 
  * *maxent_file*: Maxent JAR file location.
  * *sample_dir*: The sample directory contains the comma separated files resulting from running the [http://code.google.com/p/iabin-threats/wiki/RunningProcedureMaxent?wl=en#1._Exporting_records_into_a_comma_separated_file first process].
- * *background_file*: 
+ * *background_file*: Contains 10000 random points to train a maxent model and can be downloaded from [http://gisweb.ciat.cgiar.org/ita/public_downloads/background_clm.csv here]
  * *lambda_output_dir*: Results from the first run of maxent will be stored in this directory.
  * *final_output_dir*: This directory will contains all the Ascee-Grids with projections from the second run of maxent.
- * *bio_variables_dir*: Bioclimatic variables directory location. Download [http://gisweb.ciat.cgiar.org/ita/public_downloads/small.zip here].
+ * *bio_variables_dir*: Small Bioclimatic variables directory location. Download [http://gisweb.ciat.cgiar.org/ita/public_downloads/small.zip here]. (Do not use the All In One file).
  
-
-*variables path*: Bioclimatic variables location. You can find the 20 variables [http://gisweb.ciat.cgiar.org/ITA/public_downloads/BioAIO.zip here].
 
 -----------------------------------------------------
 
+== Running Procedure ==
 
 ===1. Exporting records into a comma separated file===
 ====Description====
