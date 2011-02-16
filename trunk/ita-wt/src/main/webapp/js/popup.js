@@ -41,7 +41,7 @@ function centerPopup(){
 	var popupWidth = $("#popupContact").width();
 	//centering
 	$("#popupContact").css({
-		"position": "relative",
+		"position": "absolute",
 		"top": windowHeight/2-popupHeight/2,
 		"left": windowWidth/2-popupWidth/2
 	});

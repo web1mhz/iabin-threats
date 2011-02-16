@@ -37,7 +37,19 @@ for (i=0;i<x.length;i++)
 	document.write("<a id=popupContactClose>x</a>");	
 	document.write("<h1>Taxononomic Species Menu</h1>");
 	document.write("<p id=contactArea>");
-	document.write("<h2><input type=text name=search /><input type=button value=Search></h2>");	
+	document.write("<div class='searchSpecie'>");
+	document.write("<input id='search' class='ui-widget' /><input type=button value=Search />");
+	document.write("</div>");
+	document.write("<div id='treeStyle'>");
+	document.write("<ul class='general'>");
+	document.write("<li id='149476' rank='1000' class='element'><a href='#'> Plants</a></li>");
+	document.write("<li id='221704' rank='3000' class='element'><a href='#'> Amphibians</a></li>");
+	document.write("<li id='221705' rank='3000' class='element'><a href='#'> Birds</a></li>");
+	document.write("<li id='149449' rank='3000' class='element'><a href='#'> Insects</a></li>");
+	document.write("<li id='223922' rank='3000' class='element'><a href='#'> Mammals</a></li>");
+	document.write("<li id='223924' rank='3000' class='element'><a href='#'> Reptiles</a></li>");
+	document.write("</ul>>");
+	document.write("</div>");
 	document.write("</p></div>");
 	document.write("<div id=backgroundPopup></div>");
 	

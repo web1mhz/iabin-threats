@@ -13,12 +13,12 @@ $(".threats").click(function(event) {
         var $target = $(event.target);
 		layer=$target.attr("id").split("-")[0]
         index=$target.attr("id").split("-")[1]
+                              
         xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/ita/'+layer+'/'+layer+index+'/'+layer+index+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('ampliacion');
 		$("#botonMostrarInfo").css("visibility", "hidden");
-		//mapa();
-              
-        });
+		
+		 });
 
 $(".bioclim").click(function(event) {
         var $target = $(event.target);
@@ -27,7 +27,7 @@ $(".bioclim").click(function(event) {
         xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/ita/'+layer+'/p'+(index-7)+'/p'+(index-7)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('ampliacion');
 		$("#botonMostrarInfo").css("visibility", "hidden");
-		//mapa();		              
+			              
         });
 
 });
@@ -158,30 +158,15 @@ function initialize2(archivo) {
   
    
    function mapa() {
-   so1= map.getZoom();
+	so1= map.getZoom();
 	c = map.getCenter();
 	x = c.lng(),
 	y = c.lat();
-	
-    $(".threats").click(function(event) {
-        var $target = $(event.target);
-		layer=$target.attr("id").split("-")[0]
-        index=$target.attr("id").split("-")[1]
-       
-              
-       
-	
-	var o = parseFloat(document.getElementById("opac").value);
-	var opac;
-	if(o>100)
-		{
-			opac=100;
-			opac=opac/100;
-			document.getElementById('opac').value=100;
-			alert("no");
-		}
-		else
-			if(o<0)
+		
+	 var o = parseFloat(document.getElementById("opac").value);
+	   //alert('opacidad ='+o);
+	  		var opac;
+		if(o>100)
 			{
 				opac=100;
 				opac=opac/100;
@@ -189,23 +174,35 @@ function initialize2(archivo) {
 				alert("no");
 			}
 			else
-				opac=o/100;
-				
+				if(o<0)
+				{
+					opac=100;
+					opac=opac/100;
+					document.getElementById('opac').value=100;
+					alert("no");
+				}
+				else
+					opac=o/100;
+
   var tiles = new google.maps.ImageMapType({
-  
+	 
   //aqui obtengo la ruta de los tiles que he seleccionado en el radiobutton
     getTileUrl: function(point, zoom) {
-	
 	var X = point.x % (1 << zoom); // para repetir los tiles alrededor del mundo
-	  return  layer+"/"+layer+index+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	
+	if(layer=="Threats" ){
+	return  "http://gisweb.ciat.cgiar.org/ita/"+layer+"/"+layer+index+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	}
+	else{
+	return  "http://gisweb.ciat.cgiar.org/ita/"+layer+"/p"+(index-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";	
 		
+	}
   },																																																												
    tileSize: new google.maps.Size(256, 256),
    isPng: true,
    opacity:opac
   });
   
-  }); 
   
  //map.overlayMapTypes.insertAt(0, traffic);	
  initialize2(archivo);
