@@ -26,7 +26,11 @@ All were accomplished using the following software tools:
   * Bash Shell
 
 == Data preparation and organisation ==
-Directory structure:
+=== Directory structure ===
+Within the root directory _iabin_ there are the following directories located.
+ * *parameters* This directory contains the file _parameters.R_. In this file all paths, variables concenring the analysis (i.e. number of points used in the Maxent model, the type of environmental variables used in the Maxent model) are stored.
+ * *results* This directory holds a folder for each run of the analysis labelled with the date when the analysis was started. If several runs were performed at the same day, a number is added to the date. Within the folder for each run, an other folder is created for each species, labelled with its unique species id.
+ * *src* within the _src_ directory there are two further directories: _src/lib_ containing Maxent and _src/scripts_ containing all scripts that were used and area also available here.
 
 === Workflow ===
   * *Organising species data:* The presence records from GBIF and IABIN SSTN database was split by species. For each species a directory was created containing the presence points for that species and _info.txt_ file. In the _info.txt_ file the initial parameters of the species (i.e. kingdom, family, genus, number of presence points) are saved. During the modelling process results for the species are written in this file. 
