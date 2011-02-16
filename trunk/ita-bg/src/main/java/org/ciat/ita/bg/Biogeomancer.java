@@ -576,12 +576,12 @@ public class Biogeomancer {
 			 * country, county, etc... porque puede ser que existan varias
 			 * locality iguales pero con diferente ubicaci�n.
 			 */
-			ResultSet rs = DataBaseManager
+		/*	ResultSet rs = DataBaseManager
 					.makeQuery(
 							"select * from "+ DBname + " where latitude is null and longitude is null "
 									+ "and locality is not null and is_fixed=0 group by locality, country, county, state_province limit "
 									+ manyRecord, conx);
-									
+		*/							
 			/*						
 			
 			//esta consulta geo referencia registros buenos para validar la calidad de los datos de biogeomancer
@@ -604,7 +604,32 @@ public class Biogeomancer {
 			"and is_fixed=0 "+
 			"group by state_province limit 100" ,conx);
 			*/
+						
 			
+		/*	//esta consulta geo referencia registros con error 'O'
+			ResultSet rs = DataBaseManager
+			.makeQuery(
+					
+				"select * from georeferenced_records g, temp_bad_records b "+
+				"where g.id=b.id "+
+				"and b.error='O' "+
+				"and is_fixed=0 "+
+				"group by locality "+
+				"limit 100 " 
+				,conx);
+			
+			*/
+			//esta consulta geo referencia registros con error 'O'
+			ResultSet rs = DataBaseManager
+			.makeQuery(
+					
+				"select * from georeferenced_records g, temp_bad_records b "+
+				"where g.id=b.id "+
+				"and b.error='WC' "+
+				"and is_fixed=0 "+
+				"group by locality "+
+				"limit 100 " 
+				,conx);
 
 			/**
 			 * TODO @Jorge Esto no es del todo cierto. Cuando el resulset arroja
@@ -808,7 +833,9 @@ public class Biogeomancer {
 			System.out.println("id : "+idrec);
 			
 			if (country == null)
-				country = "";
+				country = "" ;
+			else
+				country = country + ",";
 			if (state == null)
 				state = "";
 			else
@@ -822,7 +849,7 @@ public class Biogeomancer {
 			
 String address2;
 			
-			address = "http://bg.berkeley.edu:8080/ws/single?sp=" + country	+ "&locality=" + state + county + locality;
+			address = "http://bg.berkeley.edu:8080/ws/single?sp=" + country	+state + county + "&locality=" +  locality;
 			//address= "http://bg.berkeley.edu:8080/ws/single?sp=Montana&locality=14%20mi%20SSW%20Missoula";
 			System.out.println(address);
 			
