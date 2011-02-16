@@ -1,8 +1,73 @@
-#summary Procedure steps for using Maxent script.
-#labels Featured
+#summary Pasos para utilizar la herramienta de filtrado de datos.
+#labels Destacado
 #sidebar TableOfContents
 
-[http://code.google.com/p/iabin-threats/wiki/RunningProcedure?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
-[http://code.google.com/p/iabin-threats/wiki/RunningProcedure?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+[http://code.google.com/p/iabin-threats/wiki/RunningProcedureMaxent?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/RunningProcedureMaxent?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 <wiki:toc />
+
+
+
+
+
+===Exporting records into a comma separated file===
+====Description====
+Exporting the reliable records into a comma separated file to be run in Maxent 
+
+*Inputs:* _filtered_records_ table filled with the reliable records 
+
+*Outputs:* A comma separated file _filtered_records.csv_ with the reliable records 
+
+====Technical procedure====
+Run the script using java with the following parameters: 
+  
+
+*Parameters:* 
+
+ {{{csv}}} To run the corresponding method to export a csv per specie. 
+ 
+ {{{-Xmx<BYTES>}}} of Maximum java heap size 
+ 
+ {{{-n <NUMBER>}}} of records that should be analized to show the time statistics 
+ 
+ {{{-d <OUTPUT>}}} directory exactly location  
+ 
+
+*Command line:*
+
+ {{{java -XmxBYTES -cp ita.jar client.correctormanager.MaxentManager csv -n NUMBER -d OUTPUT}}}
+
+example: 
+
+ {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager csv -n 1000 -d /home/output }}}
+  
+
+====12 Generate species projections with Maxent====
+===Description===
+This script generates the lambda files and immediately after generates the projections of the species data using maxent application and the environmental varibles. 
+
+*Inputs:* Environmental variables preferably with a low resolution. Maxent runnable jar.
+
+*Outputs:* Projection for species ascii files 
+
+====Technical procedure====
+Run the script in java with the following parameters: 
+
+*Parameters:*
+
+ {{{-Xmx<BYTES>}}} of Maximum java heap size 
+ 
+ {{{maxent}}} to Run the corresponding script to generate species projections  
+ 
+ {{{-i <INSTANCES>}}} of Maxent  that will be executed at same time 
+ 
+
+*Command line:*
+
+ {{{java -XmxBYTES  -cp ita.jar client.correctormanager.MaxentManager maxent -i INSTANCES }}}
+
+example: 
+
+ {{{java -Xmx1000m -cp ita.jar client.correctormanager.MaxentManager maxent -i 4}}}   
+ 
