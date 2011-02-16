@@ -10,8 +10,13 @@ Documentation on how the Species Distribution Modelling (SDM) was done.
 
 = Introduction =
 
-This page is intended to give a brief, not to technical summary about the species distribution modelling (sdm) within the IABIN project.
-
+Here we provide the technical details for the SDM and the consecutive threat assessment. Broadly the speaking the analysis can be divided into four steps:
+ * Preparation of the data
+ * SDM and their analysis
+ * Calculating threats for each species
+ * Calculating the percentage of area protected for each species
+Below each of this steps will be described in more detail and reference is given to the source code.
+ 
 = Details =
 == Software ==
 All work was done using:
