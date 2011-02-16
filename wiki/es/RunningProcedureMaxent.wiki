@@ -40,17 +40,17 @@ El objetivo de este documento es ilustrar cómo configurar y correr el algoritmo
 
 *maxent*: 
  * *maxent_file*: Ubicación del archivo JAR de Maxent.
- * *background_file*: Contains 10000 random points to train a maxent model and can be downloaded from [http://gisweb.ciat.cgiar.org/ita/public_downloads/background_clm.csv here]
- * *lambda_output_dir*: Results from the first run of maxent will be stored in this directory.
- * *final_output_dir*: This directory will contains all the Ascii-Grids with projections from the second run of maxent.
- * *bio_variables_dir*: Small Bioclimatic variables directory location. Download [http://gisweb.ciat.cgiar.org/ita/public_downloads/small.zip here]. (Do not use the All In One file).
+ * *background_file*: Este archivo contiene 10000 puntos aleatorios para entrenar el modelo de maxent; y puede ser descargado desde [http://gisweb.ciat.cgiar.org/ita/public_downloads/background_clm.csv aquí]
+ * *lambda_output_dir*: Ubicación de los archivos resultantes de la primer ejecución de maxent.
+ * *final_output_dir*: Este directorio contendrá todos los archivos Ascii con proyecciones resultantes de la segunda ejecución de maxent.
+ * *bio_variables_dir*: Ubicación del directorio con Variables Bioclimáticas (Formato pequeño). Descargarlas [http://gisweb.ciat.cgiar.org/ita/public_downloads/small.zip aquí]. (No utilice las variables del archivo "All In One").
  
 
 -----------------------------------------------------
 
 ===1. Exportación de registros en un archivo separado por comas===
 ====Descripción====
-Exportación de los registcorridaros confiables en un archivo separado por comas, para que sean usados en Maxent
+Exportación de los registros confiables en un archivo separado por comas, para que sean usados en Maxent
  
 *Entradas:* _filtered_records_ tabla que contiene todos los registros confiables
 
