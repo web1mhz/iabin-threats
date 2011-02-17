@@ -122,6 +122,10 @@ ul.general li a.desplegable		{	background: url(../images/plus.gif) no-repeat 10p
 ul.general li li				{	color: #000;font-size: 12px;padding: 5px 0;}
 ul.general li li				{	padding: 25px 25px 25px 18x; }
 ul.general li a ul li a         {   background: url(../images/plus.gif) no-repeat 10px center;}
+
+.searchSpecie			    	{z-index:2;position:absolute;left:100px;}
+	.ui-widget						{ 	color: #333;font-size: 12px; font-family: "Trebuchet MS", Tahoma, Arial, sans-serif; text-align: left;}
+
 /******STYLE POPUP **************/
 #backgroundPopup{
 display:none;
