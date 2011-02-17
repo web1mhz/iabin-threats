@@ -81,5 +81,118 @@ public class Csv2Polygon {
 		kml.marshal(new File(ruta));// se guarda kml en archivo
 
 	}
+	
+public void createKMLchull(String path, String archivo, String estilo1) throws FileNotFoundException {
+
+		
+		String ruta = path + archivo+"-chull.kml";
+		//filename = "d:/poligono.kml";
+
+		Kml kml = new Kml();
+		Folder folder =kml.createAndSetFolder();
+		Placemark placemark=folder.createAndAddPlacemark().withName(("Name"))
+		.withDescription("descripcion").withStyleUrl(estilo);
+
+		Polygon pol = placemark.createAndSetPolygon();
+		final Boundary bound = new Boundary();
+		final LinearRing lin = bound.createAndSetLinearRing();
+		List<Coordinate> kmlCoords = lin.createAndSetCoordinates();
+
+		for (String[] s : listaChull) {
+			Coordinate coord = new Coordinate(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+			kmlCoords.add(coord);
+		}
+		pol.setOuterBoundaryIs(bound);
+		
+
+		//*****************************************************************
+	
+	/*	Placemark placemark2=folder.createAndAddPlacemark().withName(("Name"))
+		.withDescription("descripcion").withStyleUrl(estilo1);
+		Polygon pol2 = placemark2.createAndSetPolygon();
+		final Boundary bound2 = new Boundary();
+		final LinearRing lin2 = bound2.createAndSetLinearRing();
+		List<Coordinate> kmlCoords2 = lin2.createAndSetCoordinates();
+		for (String[] s : listaChullBuff) {
+			Coordinate coord = new Coordinate(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+			kmlCoords2.add(coord);
+		}
+		pol2.setOuterBoundaryIs(bound2);
+	*/	
+		//********************************************************************
+		
+	/*	kmlCoords = lin.createAndSetCoordinates();
+		for (String[] s : listaChullBuff) {
+			Coordinate coord = new Coordinate(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+			kmlCoords.add(coord);
+		}
+		pol.addToInnerBoundaryIs(bound);*/
+	
+		kml.setFeature(folder);// se registra el folder al kml
+
+		File dir = new File(path);
+		dir.mkdirs();
+		
+		kml.marshal();// se imprime kml en consola
+		kml.marshal(new File(ruta));// se guarda kml en archivo
+
+	}
+	
+	public void createKMLchullbuff(String path, String archivo, String estilo1) throws FileNotFoundException {
+
+		
+		String ruta = path + archivo+"-chullbuff.kml";
+		//filename = "d:/poligono.kml";
+
+		Kml kml = new Kml();
+		Folder folder =kml.createAndSetFolder();
+		Placemark placemark=folder.createAndAddPlacemark().withName(("Name"))
+		.withDescription("descripcion").withStyleUrl(estilo);
+
+		Polygon pol = placemark.createAndSetPolygon();
+		final Boundary bound = new Boundary();
+		final LinearRing lin = bound.createAndSetLinearRing();
+		List<Coordinate> kmlCoords = lin.createAndSetCoordinates();
+
+		for (String[] s : listaChullBuff) {
+			Coordinate coord = new Coordinate(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+			kmlCoords.add(coord);
+		}
+		pol.setOuterBoundaryIs(bound);
+		
+
+		//*****************************************************************
+	
+	/*	Placemark placemark2=folder.createAndAddPlacemark().withName(("Name"))
+		.withDescription("descripcion").withStyleUrl(estilo1);
+		Polygon pol2 = placemark2.createAndSetPolygon();
+		final Boundary bound2 = new Boundary();
+		final LinearRing lin2 = bound2.createAndSetLinearRing();
+		List<Coordinate> kmlCoords2 = lin2.createAndSetCoordinates();
+		for (String[] s : listaChullBuff) {
+			Coordinate coord = new Coordinate(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+			kmlCoords2.add(coord);
+		}
+		pol2.setOuterBoundaryIs(bound2);
+	*/	
+		//********************************************************************
+		
+	/*	kmlCoords = lin.createAndSetCoordinates();
+		for (String[] s : listaChullBuff) {
+			Coordinate coord = new Coordinate(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+			kmlCoords.add(coord);
+		}
+		pol.addToInnerBoundaryIs(bound);*/
+	
+		kml.setFeature(folder);// se registra el folder al kml
+
+		File dir = new File(path);
+		dir.mkdirs();
+		
+		kml.marshal();// se imprime kml en consola
+		kml.marshal(new File(ruta));// se guarda kml en archivo
+
+	}
+	
 
 }
