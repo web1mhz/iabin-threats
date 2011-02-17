@@ -107,6 +107,21 @@ h5 { font-size: 11px; }
 	color:#BEF014;
 	
 }
+
+#navigation 
+#treeStyle						{	width: 960px; margin: 50px auto 0;}
+ul.general						{	text-align: left;}
+ul.general li 					{	font-size: 15px; padding: 10px 0; }
+ul.general li a:link, a:visited		{	color: #000; text-decoration: underline; }
+ul.general li a:hover				{	color: #f4A774; background: url(../images/minus.gif) no-repeat 10px center;}
+ul.general li a:active				{	color: #000; text-decoration: underline; }
+ul.general li a 				{	width: 120px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px; }
+ul.general li a 				{	color: #000;padding: 25px 25px 25px 18x; }
+
+ul.general li a.desplegable		{	background: url(../images/plus.gif) no-repeat 10px center; }	
+ul.general li li				{	color: #000;font-size: 12px;padding: 5px 0;}
+ul.general li li				{	padding: 25px 25px 25px 18x; }
+ul.general li a ul li a         {   background: url(../images/plus.gif) no-repeat 10px center;}
 /******STYLE POPUP **************/
 #backgroundPopup{
 display:none;
@@ -127,7 +142,7 @@ _position:absolute; /* hack for internet explorer 6*/
 height:500px;
 width:500px;
 vertical-align:top;
-
+overflow:auto;
 background:#FFFFFF;
 border:2px solid #cecece;
 z-index:3;
@@ -218,3 +233,4 @@ width:99%;
 height:720px;
 bottom:70px;
 }
+
