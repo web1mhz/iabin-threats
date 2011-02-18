@@ -42,15 +42,14 @@ function cerrar_ampliacion(){
 	
 }
 
- var cont=0; 
+  var cont=0; 
   var map;
   var so=4;
   var so1=0;
-  var theme;
-  
-   var toggleArray = [];
-   var kmlArray = [];
-   var cont;
+  var theme;  
+  var toggleArray = [];
+  var kmlArray = [];
+  var cont;
 
   function initialize() {
   
@@ -70,17 +69,18 @@ function cerrar_ampliacion(){
     map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
 	
   	    }
-var archivo;
+//var archivo;
 		
 function validar(archivo){
-if(cont==0){
-	 so1= map.getZoom();
-	 c = map.getCenter();
-     x = c.lng(),
-     y = c.lat();
-	 initialize2(archivo);
-	 cont=1;
-}
+	
+	if(cont==0){
+		so1= map.getZoom();
+		c = map.getCenter();
+		x = c.lng(),
+		y = c.lat();
+		initialize2(archivo);
+		cont=1;
+	}
 
 }
 

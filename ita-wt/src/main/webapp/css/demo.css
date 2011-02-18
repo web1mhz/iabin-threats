@@ -124,6 +124,9 @@ h5 { font-size: 11px; }
     
 #treeStyle ul.general                      {	text-align: left;width:150px}
 #treeStyle ul.general li                   {	font-size: 15px; padding: 5px 0;color: #333; }
+#treeStyle ul.general li a:link, a:visited		{	color: #000; text-decoration: underline; }
+#treeStyle ul.general li a:hover					{	color: #f4A774; background: url(../images/minus.gif) no-repeat 10px center;}
+#treeStyle ul.general li a:active				{	color: #000; text-decoration: underline; }
 #treeStyle ul.general li a 				{	width: 20px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px; }
 #treeStyle ul.general li a.desplegable		{	background: url(../images/plus.gif) no-repeat 10px center; }	
 #treeStyle ul.general li ul li				   {	width: 20px;color: #000;font-size: 11px;}

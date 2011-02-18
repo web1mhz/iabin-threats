@@ -1,8 +1,16 @@
- 	$(document).ready(function() {		
+ 	var archivo;
+	$(document).ready(function() {		
 	$(".element").click(function(event) {
 		event.stopPropagation();
 		$target = $(event.target).parent();
 		if($("#" + $target.attr("id")+" ul").attr("id") == undefined) {
+			
+			if($target.attr("rank")==7000){
+				
+				disablePopup();
+			}
+			
+			else{
 			// run ajax
 			$.ajax({
 				url: "service.do",
@@ -39,7 +47,8 @@
 					$("#"+$target.attr("id")+" #loaderGift").remove();
 				}
 			}); // END ajax
-		} else {
+		   } 
+		}else {
 			// content already exist
 			// is visible?
 			if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
