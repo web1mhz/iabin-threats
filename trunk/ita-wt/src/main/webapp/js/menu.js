@@ -30,10 +30,10 @@ for (i=0;i<x.length;i++)
 	document.write("<h5><label> family : Muridae</label></h5>");	
 	document.write("<h5><label> genus : Nectomys</label></h5>");	
 	document.write("<h5><label> specie : Nectomys apicalis</label></h5>");	
-	document.write("<h5><input type=checkbox name= check1 onclick= validar('8000967');toggleKML('0');> Ocurrence records</h5>");	
-	document.write("<h5><input type=checkbox name= check2 onclick= validar('8000967');toggleKML('1');> Convex hull</h5>");
-	document.write("<h5><input type=checkbox name= check3 onclick= validar('8000967');toggleKML('2')> Convex hull buffer</h5>");
-	document.write("<h5><input type=checkbox name= check4 onclick= validar('8000967');toggleKML('3')> Species distribution</h5>");
+	document.write("<h5><input type=checkbox name= check1 onclick= validar($target.attr('id'));toggleKML('0');> Ocurrence records</h5>");	
+	document.write("<h5><input type=checkbox name= check2 onclick= validar($target.attr('id'));toggleKML('1');> Convex hull</h5>");
+	document.write("<h5><input type=checkbox name= check3 onclick= validar($target.attr('id'));toggleKML('2')> Convex hull buffer</h5>");
+	document.write("<h5><input type=checkbox name= check4 onclick= validar($target.attr('id'));toggleKML('3')> Species distribution</h5>");
 	document.write("<div id=popupContact>");
 	document.write("<a id=popupContactClose>x</a>");	
 	document.write("<h1>Taxononomic Species Menu</h1>");
