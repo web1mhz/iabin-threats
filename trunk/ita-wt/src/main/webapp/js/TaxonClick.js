@@ -1,4 +1,4 @@
-$(document).ready(function() {		
+ 	$(document).ready(function() {		
 	$(".element").click(function(event) {
 		event.stopPropagation();
 		$target = $(event.target).parent();
@@ -22,7 +22,7 @@ $(document).ready(function() {
 								title="Specie";
 							}
 						}
-						$target.append("<ul style='display:none;'><li id="+taxon.id+" rank="+taxon.rankID+
+						$target.append(" <ul style='display:none;'><li id="+taxon.id+" rank="+taxon.rankID+
 							" class=element><a><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
 					});
 				},
