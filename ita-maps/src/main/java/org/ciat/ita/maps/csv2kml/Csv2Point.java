@@ -70,7 +70,7 @@ public class Csv2Point {
 		File dir = new File(path);
 		dir.mkdirs();	
 		
-		kml.marshal();//se imprime kml en consola
+		//kml.marshal();//se imprime kml en consola
 		kml.marshal(new File(ruta));//se guarda kml en archivo
 
 	}
