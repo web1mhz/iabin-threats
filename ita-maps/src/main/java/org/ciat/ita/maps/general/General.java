@@ -264,8 +264,10 @@ public class General {
 					Csv2Polygon pol = new Csv2Polygon(listaChull,listaChullBuff, estilo, estilo1);
 					try {
 						//pol.createKML(targetpath + species + s.getName()+ File.separator, s.getName(), style1); // cambiar a properties file
-						pol.createKMLchull(targetpath+species+s.getName()+File.separator,s.getName(), estilo1);  //crea kml chull
-						pol.createKMLchullbuff(targetpath+species+s.getName()+File.separator,s.getName(), estilo);  //crea kml chull buff
+						System.out.println("estilo :"+ estilo);
+						pol.createKMLchull(targetpath+species+s.getName()+File.separator,s.getName(), estilo);  //crea kml chull
+						System.out.println("estilo1 :"+ estilo1);
+						pol.createKMLchullbuff(targetpath+species+s.getName()+File.separator,s.getName(), estilo1);  //crea kml chull buff
 						
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();

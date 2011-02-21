@@ -79,7 +79,7 @@ public class Csv2Polygon {
 		File dir = new File(path);
 		dir.mkdirs();
 		
-		kml.marshal();// se imprime kml en consola
+		//kml.marshal();// se imprime kml en consola
 		kml.marshal(new File(ruta));// se guarda kml en archivo
 
 	}
@@ -135,7 +135,7 @@ public void createKMLchull(String path, String archivo, String estilo) throws Fi
 		File dir = new File(path);
 		dir.mkdirs();
 		
-		kml.marshal();// se imprime kml en consola
+		//kml.marshal();// se imprime kml en consola
 		kml.marshal(new File(ruta));// se guarda kml en archivo
 
 	}
@@ -191,7 +191,7 @@ public void createKMLchull(String path, String archivo, String estilo) throws Fi
 		File dir = new File(path);
 		dir.mkdirs();
 		
-		kml.marshal();// se imprime kml en consola
+		//kml.marshal();// se imprime kml en consola
 		kml.marshal(new File(ruta));// se guarda kml en archivo
 
 	}
