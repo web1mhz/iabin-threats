@@ -18,17 +18,19 @@ public class Csv2Polygon {
 	private LinkedList<String[]> listaChull;
 	private LinkedList<String[]> listaChullBuff;
 	private String estilo;
+	private String estilo1;
 
 	public Csv2Polygon(LinkedList<String[]> listaChull,
-			LinkedList<String[]> listaChullBuff, String estilo) {
+			LinkedList<String[]> listaChullBuff, String estilo, String estilo1) {
 
 		this.estilo = estilo;
+		this.estilo1=estilo1;
 		this.listaChull = listaChull;
 		this.listaChullBuff = listaChullBuff;
 
 	}
 
-	public void createKML(String path, String archivo, String estilo1) throws FileNotFoundException {
+	public void createKML(String path, String archivo, String estilo) throws FileNotFoundException {
 
 		
 		String ruta = path + archivo+"-pol.kml";
@@ -82,7 +84,7 @@ public class Csv2Polygon {
 
 	}
 	
-public void createKMLchull(String path, String archivo, String estilo1) throws FileNotFoundException {
+public void createKMLchull(String path, String archivo, String estilo) throws FileNotFoundException {
 
 		
 		String ruta = path + archivo+"-chull.kml";
@@ -147,7 +149,7 @@ public void createKMLchull(String path, String archivo, String estilo1) throws F
 		Kml kml = new Kml();
 		Folder folder =kml.createAndSetFolder();
 		Placemark placemark=folder.createAndAddPlacemark().withName(("Name"))
-		.withDescription("descripcion").withStyleUrl(estilo);
+		.withDescription("descripcion").withStyleUrl(estilo1);
 
 		Polygon pol = placemark.createAndSetPolygon();
 		final Boundary bound = new Boundary();

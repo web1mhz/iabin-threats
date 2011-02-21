@@ -223,7 +223,7 @@ public class General {
 			// estilo="http://wikipedia.agilityhoster.com/estilo.kml#estilo";//se
 			// debe agregar properties
 			String estilo = PropertiesManager.getInstance().getPropertiesAsString("style.url");
-			String style1 = PropertiesManager.getInstance().getPropertiesAsString("style1.url");
+			String estilo1 = PropertiesManager.getInstance().getPropertiesAsString("style1.url");
 
 			// String nombreArchivo= "default"; //nombre de archivo
 			// File folder = new File("c:/data/species/");//folder que contiene
@@ -261,10 +261,10 @@ public class General {
 						e.printStackTrace();
 					}
 
-					Csv2Polygon pol = new Csv2Polygon(listaChull,listaChullBuff, estilo);
+					Csv2Polygon pol = new Csv2Polygon(listaChull,listaChullBuff, estilo, estilo1);
 					try {
 						//pol.createKML(targetpath + species + s.getName()+ File.separator, s.getName(), style1); // cambiar a properties file
-						pol.createKMLchull(targetpath+species+s.getName()+File.separator,s.getName(), style1);  //crea kml chull
+						pol.createKMLchull(targetpath+species+s.getName()+File.separator,s.getName(), estilo1);  //crea kml chull
 						pol.createKMLchullbuff(targetpath+species+s.getName()+File.separator,s.getName(), estilo);  //crea kml chull buff
 						
 					} catch (FileNotFoundException e) {
