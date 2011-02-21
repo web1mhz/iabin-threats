@@ -37,9 +37,9 @@ public class Csv2Kml {
 		
 		
 		
-		Csv2Polygon pol=new Csv2Polygon(listaChull,listaChullBuff, estilo);
+		Csv2Polygon pol=new Csv2Polygon(listaChull,listaChullBuff, estilo, estilo1);
 		try {
-			pol.createKML("d:", "polig", estilo1);
+			pol.createKML("d:", "polig", estilo);
 		} catch (FileNotFoundException e) {		e.printStackTrace();		}
 
 	}
