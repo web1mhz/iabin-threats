@@ -233,14 +233,19 @@ public class General {
 
 			File[] listOfFiles = folder.listFiles();
 
+			int contador=100;
 			for (File s : listOfFiles) {
 
 				if (s.isDirectory()) {
 
 					// nombreArchivo= s.getName();
 					String ruta = folder.getPath() + File.separator+ s.getName() + File.separator + s.getName();
-					System.out.println("File " + ruta);
-
+					if(contador%100==0)	
+						{
+						System.out.println("File " + ruta);
+						System.gc();
+						}
+					contador++;
 					// ****************************
 
 					CsvFile file1 = new CsvFile(ruta + ".csv");
@@ -264,9 +269,9 @@ public class General {
 					Csv2Polygon pol = new Csv2Polygon(listaChull,listaChullBuff, estilo, estilo1);
 					try {
 						//pol.createKML(targetpath + species + s.getName()+ File.separator, s.getName(), style1); // cambiar a properties file
-						System.out.println("estilo :"+ estilo);
+						//System.out.println("estilo :"+ estilo);
 						pol.createKMLchull(targetpath+species+s.getName()+File.separator,s.getName(), estilo);  //crea kml chull
-						System.out.println("estilo1 :"+ estilo1);
+						//System.out.println("estilo1 :"+ estilo1);
 						pol.createKMLchullbuff(targetpath+species+s.getName()+File.separator,s.getName(), estilo1);  //crea kml chull buff
 						
 					} catch (FileNotFoundException e) {
@@ -276,6 +281,7 @@ public class General {
 				}
 
 			}
+			
 
 		} // fin case3
 
