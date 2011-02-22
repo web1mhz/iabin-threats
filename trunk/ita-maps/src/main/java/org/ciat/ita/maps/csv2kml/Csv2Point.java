@@ -51,7 +51,7 @@ public class Csv2Point {
 		String ruta = path +archivo+ "-point.kml";
 		//filename = "d:/csv2punto.kml";
 
-		System.out.println("empieza a mostrar");
+		//System.out.println("empieza a mostrar");
 
 		Placemark placemark = KmlFactory.createPlacemark();
 		Folder folder = kml.createAndSetFolder();
