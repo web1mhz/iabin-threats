@@ -111,10 +111,14 @@ public class TileCutter {
 			 
 			String group = PropertiesManager.getInstance().getPropertiesAsString(rasterID + ".group");
 			String pathGroup = PropertiesManager.getInstance().getPropertiesAsString(group + ".path");
+			
+			
+			//****************************************_full_with_threshold.asc
+			
 			String fileName = (s.getName()+File.separator + s.getName()+"_full_with_threshold.asc");
 			System.out.println("filename: "+fileName);
 			
-			iManager = new ImageManager(targetPath + pathGroup + s.getName());
+			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/full_with_threshold/");
 			TileManager tManager = new TileManager(iManager);
 			raster.loadRaster(sourcePath + pathGroup + fileName);
 			ColorManager cManager = ColorManagerFactory.createColorManager(rasterID, raster);
@@ -126,9 +130,30 @@ public class TileCutter {
 				tManager.cutRaster(raster, zoomMin);
 				zoomMin++;
 			}
-		
+			//***************************************_with_threshold.asc
+			
+			 fileName = (s.getName()+File.separator + s.getName()+"_with_threshold.asc");
+			System.out.println("filename: "+fileName);
+			
+			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/with_threshold/");
+			tManager = new TileManager(iManager);
+			raster.loadRaster(sourcePath + pathGroup + fileName);
+			cManager = ColorManagerFactory.createColorManager(rasterID, raster);
+			iManager.setColorManager(cManager);
+
+			zoomMin = PropertiesManager.getInstance().getPropertiesAsInt("zoom.min");
+			zoomMax = PropertiesManager.getInstance().getPropertiesAsInt("zoom.max");
+			while (zoomMin <= zoomMax) {
+				tManager.cutRaster(raster, zoomMin);
+				zoomMin++;
 			}
-		}
+		
+			
+			
+			
+		
+			}//fin if
+		}//fin for
 		
 		
 	}
