@@ -24,16 +24,18 @@ for (i=0;i<x.length;i++)
   document.write("<div id=both>");
   if(x[i].attributes.getNamedItem("name").nodeValue=="Species"){
 		
-	document.write("<div id=button><input type=button value=Kingdom></div><br><br><br>");
+	document.write("<div id=button><input type=button value=Kingdom ></div><br><br><br>");
 	document.write("<h5><label> Example specie</label></h5>");
 	document.write("<h5><label> class : mammalia</label></h5>");	
 	document.write("<h5><label> family : Muridae</label></h5>");	
 	document.write("<h5><label> genus : Nectomys</label></h5>");	
 	document.write("<h5><label> specie : Nectomys apicalis</label></h5>");	
-	document.write("<h5><input type=checkbox name= check1 onclick= validar($target.attr('id'));toggleKML('0');> Ocurrence records</h5>");	
-	document.write("<h5><input type=checkbox name= check2 onclick= validar($target.attr('id'));toggleKML('1');> Convex hull</h5>");
-	document.write("<h5><input type=checkbox name= check3 onclick= validar($target.attr('id'));toggleKML('2')> Convex hull buffer</h5>");
-	document.write("<h5><input type=checkbox name= check4 onclick= validar($target.attr('id'));toggleKML('3')> Species distribution</h5>");
+	//alert($target.attr('id'));
+	document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrence records</h5>");	
+	document.write("<h5><input type=checkbox name='convex' key='' class=specieData> Convex hull</h5>");
+	document.write("<h5><input type=checkbox name='convexHull' key='' class=specieData> Convex hull buffer</h5>");
+	document.write("<h5><input type=checkbox> Species distribution</h5>");
+	document.write("<h5><input type=checkbox> Species distribution threshold</h5>");
 	document.write("<div id=popupContact>");
 	document.write("<a id=popupContactClose>x</a>");	
 	document.write("<h1>Taxononomic Species Menu</h1>");
