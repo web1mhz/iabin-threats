@@ -134,7 +134,8 @@ public class General {
 			System.out.println("2. convierte archivo .shp a kml, protected areas");
 			System.out.println("3. convierte archivo .csv a kml; puntos y polígonos - ocurrencias y chull, chull-buff");
 			System.out.println("4. convierte archivo .asc a png, variables bioclimaticas");
-			System.out.println("5. realiza todos los procesos anteriores");
+			System.out.println("5. convierte archivo .asc a png, distribución de especies");
+			System.out.println("6. realiza todos los procesos anteriores");
 			System.out.println("para mas info consulta en la wiki del proyecto http://code.google.com/p/iabin-threats/wiki/DataConversion");
 		}
 		if (language.equals("english")) {
@@ -143,7 +144,8 @@ public class General {
 			System.out.println("2. convert file .shp to kml, protected areas");
 			System.out.println("3. convert file .csv to kml; points and polygons - ocurrences and chull, chull-buff");
 			System.out.println("4. convert file .asc to png, variables bioclimaticas");
-			System.out.println("5. performs all the previous tasks");
+			System.out.println("5. convert file .asc to png, species distribution");
+			System.out.println("6. performs all the previous tasks");
 			System.out.println("for more info visit the project's wiki page at http://code.google.com/p/iabin-threats/wiki/DataConversion");
 		}
 		String option;
@@ -157,7 +159,7 @@ public class General {
 		option = in.nextLine();
 
 		int opt = Integer.parseInt(option);
-		if (opt == 1 || opt == 5)
+		if (opt == 1 || opt == 6)
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
@@ -177,7 +179,7 @@ public class General {
 		// *****************************************************************************
 		// protected areas shape to kml
 
-		if (opt == 2 || opt == 5)
+		if (opt == 2 || opt == 6)
 			
 			
 	
@@ -213,7 +215,7 @@ public class General {
 		// archivos csv para convertir a kml
 		// puntos y polígonos - ocurrencias y chull, chull-buff
 
-		if (opt == 3 || opt == 5)
+		if (opt == 3 || opt == 6)
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
@@ -288,7 +290,7 @@ public class General {
 		// *************************************************************************************
 		// bioclim variables
 
-		if (opt == 4 || opt == 5)
+		if (opt == 4 || opt == 6)
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
@@ -303,6 +305,24 @@ public class General {
 			}
 
 		} // fin case 4
+		
+		//**********************************
+		// se crean las imagenes de distribucion de especies a partir de los rasters .asc
+		if (opt == 5 || opt == 6)
+		{
+			
+			if (language.equals("english"))	System.out.println("you selected option :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
+
+			try {
+				TileCutter.createSpeciesDistributionImages(propertiesFile);
+			} catch (IOException e) {
+				System.out.println("file not found");
+				e.getMessage();
+				e.printStackTrace();
+			}
+			
+		}//fin case 5
 
 		String horaTermina = this.getDateTime();
 		if (language.equals("espanol") || language.equals("español"))System.out.println("empezó a las : " + horaEmpieza + "\r\n"+ " finalizó a las : " + horaTermina);
