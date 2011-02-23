@@ -18,6 +18,7 @@ h1 { font-size: small }
 h2 { font-size: 8; }
 h3 { margin-top: .5em; }
 h5 { font-size: 11px; }
+h5 input.specieData { font-size: 19px; }
 
 #navigation {
 	border:0px solid #DCDCDC;
