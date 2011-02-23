@@ -41,6 +41,8 @@ public class PropertiesGenerator {
     +"#######################\r\n" 
     +"# RASTERS\r\n" 
     +"#######################\r\n" 
+    +"speciesDistribution=true\r\n"
+    +"speciesDistribution.group=species\r\n"
     +"rasters=p1;p2\r\n" 
     +"p1.group=bioclim\r\n" 
     +"p1.filename=P1.asc\r\n" 
@@ -79,6 +81,7 @@ public class PropertiesGenerator {
 	+"#######################\r\n" 
 	+"# COLORS\r\n" 
 	+"#######################\r\n" 
+	+"speciesDistribution.color.type=speciesColor\r\n"
 	+"p1.color.type=temperature\r\n" 
 	+"p2.color.type=precipitation\r\n" 
 	+"\r\n" 
@@ -91,7 +94,10 @@ public class PropertiesGenerator {
 	+"precipitation.color.min= 255;255;255\r\n" 
 	+"precipitation.color.max= 0;0;255\r\n" 
 	+"\r\n" 
-	+"precipitation.scale=continuous\r\n" );
+	+"precipitation.scale=continuous\r\n"
+	+"speciesColor.color.min=180;180;0\r\n"
+	+"speciesColor.color.max=255;180;255\r\n"
+	+"speciesColor.scale=continuous\r\n");
     out.flush();
 	out.close();
 	
