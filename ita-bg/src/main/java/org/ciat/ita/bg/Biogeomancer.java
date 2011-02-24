@@ -919,7 +919,7 @@ System.out.println("incio el envio");
 				System.out.println(locality);
 				System.out.println("id : " + idrec +" done.");
 			}
-			if(!debugMode.equalsIgnoreCase("true")) System.out.print("id : " + idrec +" done.\r");
+			if(!debugMode.equalsIgnoreCase("true")) System.out.print("id : " + idrec +" done. ");
 
 			if (country == null)
 				country = "";
@@ -995,6 +995,7 @@ System.out.println("incio el envio");
 				System.out.println("MalformedURL");
 			} catch (IOException e) {
 				if(debugMode.equalsIgnoreCase("true")) System.out.println("I/O Error. Malformed response or none");
+				if(!debugMode.equalsIgnoreCase("true")) System.out.print("is_fixed : 3\r\n");
 			}
 
 			// interpreting the xml
@@ -1097,10 +1098,12 @@ System.out.println("incio el envio");
 							+ ", blongitude=" + minorLongitude
 							+ ", uncertainty=" + minorUncertainty
 							+ ", is_fixed=1 where id=" + idrec + " ;", conx);
+					if(!debugMode.equalsIgnoreCase("true")) System.out.print("is_fixed : 1\r\n");
 				} else {
 					consulta("update "
 							+ ServerConfig.getInstance().dbTableRecords
 							+ " set is_fixed=2 where id=" + idrec + " ;", conx);
+					if(!debugMode.equalsIgnoreCase("true")) System.out.print("is_fixed : 2\r\n");
 				}
 
 				/*
