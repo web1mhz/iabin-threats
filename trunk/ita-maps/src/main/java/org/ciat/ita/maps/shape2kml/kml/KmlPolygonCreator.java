@@ -8,14 +8,18 @@ import java.io.FileNotFoundException;
 
 import org.opengis.feature.simple.SimpleFeature;
 
+import org.ciat.ita.maps.shape2kml.shape.Shapefile;
 import org.ciat.ita.maps.utils.PropertiesManager;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Point;
 
 import de.micromata.opengis.kml.v_2_2_0.Boundary;
 import de.micromata.opengis.kml.v_2_2_0.Coordinate;
+import de.micromata.opengis.kml.v_2_2_0.Folder;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
+import de.micromata.opengis.kml.v_2_2_0.KmlFactory;
 import de.micromata.opengis.kml.v_2_2_0.LinearRing;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
 import de.micromata.opengis.kml.v_2_2_0.Polygon;
@@ -87,6 +91,58 @@ public class KmlPolygonCreator {
 	
 
 	}
+//*********************************************************************
+	public void createKMLpointsInfo(SimpleFeature sf) throws FileNotFoundException {
 
+		Set<Integer> keySet = atributos.keySet();
+		String descripcion = "<table border=\"1\" padding=\"3\" width=\"300\"><tr bgcolor= \"#D2D2D2\">";
+
+		for (Integer i : keySet) {//se crean los titulos de la tabla de la informacion del poligono
+			descripcion+= "<td>"+atributos.get(i)+"</td>";
+		}
+		descripcion+="</tr><tr>";
+		for (Integer i : keySet) {//se crean los contenidos de la tabla de la informacion del poligono
+			descripcion+= "<td>"+sf.getAttribute(i)+"</td>";
+		}
+		descripcion+="</tr></table>";
+
+		final Kml kml = new Kml();
+	
+		String ruta = path+File.separator+ sf.getAttribute(1)+"-info.kml";
+		System.out.println("ruta: "+ruta);
+		//System.out.println("path: "+path);
+		
+		//System.out.println("descripcion: \r\n"+descripcion+"\r\n");
+
+
+
+		//System.out.println("empieza a mostrar");
+
+		Placemark placemark = KmlFactory.createPlacemark();
+		Folder folder = kml.createAndSetFolder();
+/**
+ * se recorre la lista generando las coordenadas y agregando al folder
+ */
+
+			placemark = folder.createAndAddPlacemark();//se crea el placemark y se naade al folder
+			placemark.withName(atributos.get(1)).withDescription(descripcion);
+			//placemark.createAndSetPoint();
+			Point punto=Shapefile.getPointForMarker(sf);
+			
+			placemark.createAndSetPoint().addToCoordinates(punto.getX(), punto.getY() );//se crean las coordenadas y se registran al placemark
+
+		
+		kml.setFeature(folder);//se registra el folder al kml
+		
+		File dir = new File(path);
+		dir.mkdirs();	
+		
+		//kml.marshal();//se imprime kml en consola
+		kml.marshal(new File(ruta));//se guarda kml en archivo
+
+	
+	
+
+	}
 	
 }
