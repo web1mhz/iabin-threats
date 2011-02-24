@@ -48,6 +48,7 @@ public class Biogeomancer {
 	// private static final String BgServer =
 	// "http://bg.berkeley.edu:8080/ws-test/batch";
 	private static final String BgServer = "http://bg.berkeley.edu/ws/batch";
+	private static String debugMode=null;
 
 	// http://bg.berkeley.edu:8080/ws/batch
 
@@ -64,12 +65,20 @@ public class Biogeomancer {
 			throws IOException, DocumentException, JaxenException {
 
 		// writes down timing statistics file and amount of geo referenced data
+	
+	
+		File f=null;
+		String str;
 		String outputFile = "out.txt";
 		String horaInicio = getDateTime();
-		String str;
+		FileOutputStream fop;
+	//	____________Debugging mode on____________________________________________________________________
+		
+		if(debugMode.equalsIgnoreCase("true"))
+		{
 
-		File f = new File(outputFile);
-		FileOutputStream fop = new FileOutputStream(f, true);
+		 f= new File(outputFile);
+		 fop = new FileOutputStream(f, true);
 
 		if (f.exists()) {
 			str = "\n\n*****************\nstart time : " + getDateTime();
@@ -78,22 +87,38 @@ public class Biogeomancer {
 			fop.flush();
 			fop.close();
 		}
+		}//endif
+//		________________________________________________________________________________
 
 		try {
 			String xmlData = dataToXML(places);
+			
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
 			System.out.println("despues de datatoxml :" + xmlData);
+			
+			
 
 			// writing xml query file on disk
 			String outputFile2 = "xmlData.txt";
 
-			File f2 = new File(outputFile2);
-			FileOutputStream fop2 = new FileOutputStream(f2, true);
+			File f2 ;
+			FileOutputStream fop2;
+			
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
+			{
+				f2= new File(outputFile2);
+			
+				 fop2= new FileOutputStream(f2, true);
 
-			if (f.exists()) {
-				fop2.write(xmlData.getBytes());
-				fop2.flush();
-				fop2.close();
-			}
+				if (f.exists()) {
+					fop2.write(xmlData.getBytes());
+					fop2.flush();
+					fop2.close();
+				}
+			
+			}//end if debugging mode
 
 			// enviando a servidor biogeomancer y obteniendo respuesta.
 			URL urlBgServer;
@@ -102,13 +127,14 @@ public class Biogeomancer {
 			// sigue solicitando informacion al servidor hasta que devuelva
 			// diferente de null durante 20 intentos mas
 			
-			//String xmlResult = setServiceUrl(urlBgServer, xmlData);
-			String xmlResult=null;//reemplaza la linea de arriba para no hacer la peticion batch via POST
 			
 			
-			int intentos = 0;
+		//	String xmlResult = setServiceUrl(urlBgServer, xmlData);
+			String xmlResult=null;
+			
+	/*		int intentos = 0;
 			String horaInicioAtaqueDos = getDateTime();
-		/*	while (xmlResult == null && intentos < 2) { // prueba 1 vez con el
+			while (xmlResult == null && intentos < 2) { // prueba 1 vez con el
 															// server
 				System.out.println("\ntiempo : " + getDateTime());
 				System.out.println("\nnumero de intentos de conexion: "
@@ -118,7 +144,7 @@ public class Biogeomancer {
 			}
 			System.out.println("empezo a las " + horaInicioAtaqueDos);
 			System.out.println("termino a las " + getDateTime());
-
+*/
 			/*----------------------------------------------------------------------------*/
 
 
@@ -131,7 +157,9 @@ public class Biogeomancer {
 			 * 
 			 * Completar el codigo a continuacion:
 			 */
-			System.out.println("va a leer los tags xml");
+			
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))		System.out.println("va a leer los tags xml");
 			// Working with XML
 
 			// System.out.println("xmlresult inputstream: " + xmlResult);
@@ -141,11 +169,16 @@ public class Biogeomancer {
 			Document document = null;
 			if (xmlResult != null) {
 				document = org.dom4j.DocumentHelper.parseText(xmlResult);
-				System.out.println("se leyo el xml del servidor ********");
-				System.out.println("xmlresult: " + xmlResult); // muestra el xml
-																// resultado
-																// recibido de
-																// biogeomancer
+				
+				
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
+				{
+					System.out.println("se leyo el xml del servidor ********");
+					System.out.println("xmlresult: " + xmlResult); 	
+					// muestra el xml resultado recibido de biogeomancer
+				}
+				
 			}/*
 			 * else{System.out.println(
 			 * "se requiere el archivo 100Records.xml para ser analizado");
@@ -155,8 +188,9 @@ public class Biogeomancer {
 
 			// System.out.println("*******************************************");
 
-			System.out
-					.println("*****************shows xml values**************************");
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
+			System.out.println("*****************shows xml values**************************");
 
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("dwc", "http://rs.tdwg.org/dwc/terms/");
@@ -189,12 +223,18 @@ public class Biogeomancer {
 				// " numero " + i);
 				// System.out.println("getText"+((Node)nodes.get(i)).getText()
 				// );
-				System.out.println("getStringValue"
-						+ ((Node) nodes.get(i)).getStringValue());
+				
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
+				System.out.println("getStringValue"	+ ((Node) nodes.get(i)).getStringValue());
+				
 				values = ((Node) nodes.get(i)).getStringValue();
 
 				data = values.split("\n");
 				int x = data.length;
+				
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
 				System.out.println("largo del arreglo split :" + x);
 
 				if (x == 6) {
@@ -274,25 +314,39 @@ public class Biogeomancer {
 					}
 					j = j + 7;
 				}
-				System.out.println("the minor uncertainty is : "+ minorUncertainty);
-				System.out.println("minor Latitude is : " + minorLatitude);
-				System.out.println("minor Longitude is : " + minorLongitude);
+				
+				
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
+				{
+					System.out.println("the minor uncertainty is : "+ minorUncertainty);
+					System.out.println("minor Latitude is : " + minorLatitude);
+					System.out.println("minor Longitude is : " + minorLongitude);
+				}
 
-				// escribir los resultados en archivo csv
-				Boolean da = writeFile(minorLatitude, minorLongitude,
-						minorUncertainty, "records.csv");
-				System.out.println("escribio el resultado " + da);
+				
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
+				{
+					// escribir los resultados en archivo csv
+					Boolean da = writeFile(minorLatitude, minorLongitude,minorUncertainty, "records.csv");
+					System.out.println("escribio el resultado " + da);
+					System.out.println("largo del arreglo split :" + x);
+				}
 
-				System.out.println("largo del arreglo split :" + x);
-
+				
 				// escribir las coordenadas en los campos Blatitud , Blongitud,
 				// uncertainty and is_fixed
 				// is_fixed=1 se georreferencio correctamente
 				// is_fixed=2 Biogeomancer no pudo referenciar el registro
+				// is_fixed=3 Biogeomancer returned an error, internal error
 
 				if (it.hasNext()) {
 					reco = it.next();
 					idrec = reco.getId();
+					
+					//	____________Debugging mode on____________________________________________________________________
+					if(debugMode.equalsIgnoreCase("true"))
 					System.out.println("id's editadas " + idrec);
 					/*
 					 * consulta("update temp_georeferenced_records set blatitude="
@@ -301,14 +355,14 @@ public class Biogeomancer {
 					 * +minorUncertainty+", is_fixed=1 where id="+idrec+" ;" );
 					 */
 					if (minorLatitude != "" && minorLongitude != "") {
-						consulta("update georeferenced_records set blatitude="
+						consulta("update "+ServerConfig.getInstance().dbTableRecords+" set blatitude="
 								+ minorLatitude + ", blongitude="
 								+ minorLongitude + ", uncertainty="
 								+ minorUncertainty + ", is_fixed=1 where id="
 								+ idrec + " ;", conx);
 					} else {
 						consulta(
-								"update georeferenced_records set is_fixed=2 where id="
+								"update "+ServerConfig.getInstance().dbTableRecords+" set is_fixed=2 where id="
 										+ idrec + " ;", conx);
 					}
 
@@ -330,6 +384,8 @@ public class Biogeomancer {
 					+ "\nend time : " + getDateTime();
 
 			
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
 			System.out.println(str);
 			
 			//when the via POST request fails it connects via GET
@@ -373,19 +429,24 @@ public class Biogeomancer {
 				System.out.println("wakes up, retrying");
 			}
 
-			// writes the timing and results to d:/out.txt
-			fop = new FileOutputStream(f, true);
+			
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
+			{
+				// writes the timing and results to d:/out.txt
+				fop = new FileOutputStream(f, true);
 
-			if (f.exists()) {
+				if (f.exists()) {
 
-				fop.write(str.getBytes());
+					fop.write(str.getBytes());
 
-				fop.flush();
-				fop.close();
-			}
+					fop.flush();
+					fop.close();
+				}
 
-			System.out.println("*******************************************");
-
+				System.out.println("*******************************************");
+			}//end if debugging mode
+			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 			return null;
@@ -400,8 +461,10 @@ public class Biogeomancer {
 	 *         Biogeomancer Server to the understanding of the information.
 	 */
 	private static String dataToXML(Set<Record> places) {
-		System.out
-				.println("-------------------------------------------dataToXML(Set<Record> places) {");
+		
+		//	____________Debugging mode on____________________________________________________________________
+		if(debugMode.equalsIgnoreCase("true"))
+		System.out.println("-------------------------------------------dataToXML(Set<Record> places) {");
 
 		StringBuffer data = new StringBuffer(
 				"<?xml version=\"1.0\" encoding=\"utf-8\"?><biogeomancer xmlns=\"http://bg.berkeley.edu\" xmlns:dwc=\"http://rs.tdwg.org/dwc/terms\" ><request type=\"batch\" interpreter=\"yale\" header=\"true\">");
@@ -433,7 +496,10 @@ public class Biogeomancer {
 	 */
 	private static String setServiceUrl(URL serviceUrl, String XMLdata) {
 
+		//	____________Debugging mode on____________________________________________________________________
+		if(debugMode.equalsIgnoreCase("true"))
 		System.out.println("inicia setServiceUrl");
+		
 		HttpURLConnection connection;
 		try {
 			// START PROXY CODE CONFIGURATION IN CIAT PLACE
@@ -443,12 +509,12 @@ public class Biogeomancer {
 			// END PROXY CODE CONFIGURATION
 
 			connection = (HttpURLConnection) serviceUrl.openConnection();
-			// Proxy proxyCIAT = new Proxy(Type.HTTP, );
-			// serviceUrl.openConnection()
+System.out.println("incio el envio");
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");
 
+			System.out.println("escribe el xml");
 			// Post the data item
 			OutputStream outputStream = connection.getOutputStream();
 			outputStream.write(XMLdata.getBytes());
@@ -457,46 +523,63 @@ public class Biogeomancer {
 
 			String xmlText = null;
 
+			System.out.println("espera respuesta");
 			// Retrieve the output
 			int responseCode = connection.getResponseCode();
 			InputStream inputStream;
+			
+			System.out.println("respuestaaaaaaaaaaaa");
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
 			System.out.println("response code: " + responseCode);
+			
+			
 			if (responseCode == HttpURLConnection.HTTP_OK) {
 				inputStream = connection.getInputStream();
 				xmlText = toString(inputStream);
 
-				// aqui se escribe la informacion recibida del servidor de BG en
-				// un archivo xml
-				File f = new File("outputBiogeomancer.xml");
-				FileOutputStream fop = new FileOutputStream(f, true);
-				String texto;
+				
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
+				{
+					// aqui se escribe la informacion recibida del servidor de BG en
+					// un archivo xml
+					File f = new File("outputBiogeomancer.xml");
+					FileOutputStream fop = new FileOutputStream(f, true);
+					String texto;
 
-				if (f.exists()) {
-					texto = xmlText;
-					fop.write(texto.getBytes());
-
-					fop.flush();
-					fop.close();
-				}
+					if (f.exists()) {
+						texto = xmlText;
+						fop.write(texto.getBytes());
+					
+						fop.flush();
+						fop.close();
+					}
+				}//end if debugging mode
 
 			} else {
 				// TODO: Manejar el error en caso de que exista algun problema.
 				// (retornar null?).
 				if (responseCode == HttpURLConnection.HTTP_INTERNAL_ERROR) {
 					// inputStream = connection.getErrorStream();
-					System.out
-							.println("HTTP Status-Code 500: Internal Server Error.");
+					System.out.println("HTTP Status-Code 500: Internal Server Error.");
 
 				} else {
 					System.out.println("other error " + responseCode);
 				}
 			}
 
-			// write the output to the console
-			System.out.println("esto se recibe del servidor : \n");
+			
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
+			{
+				// write the output to the console
+				System.out.println("esto se recibe del servidor : \n");
 
-			// System.out.println("setserviceurl :" + xmlText);
-			System.out.println("setserviceurl :");
+				// System.out.println("setserviceurl :" + xmlText);
+				System.out.println("setserviceurl :");
+			
+			}
 			// BgManager.recordToFile("autoGenerate.xml", xmlText);
 			connection.disconnect();
 			// return xmlText;
@@ -528,18 +611,19 @@ public class Biogeomancer {
 	 * then is called the method startGeorref.
 	 * 
 	 * @param args
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public static void main(String[] args) {
 		DataBaseManager.registerDriver();
-		
+
 		System.getProperties().put("proxySet", "true");
 		System.getProperties().put("proxyHost", "proxy4.ciat.cgiar.org");
 		System.getProperties().put("proxyPort", "8080");
-		
-		String DBname= ServerConfig.getInstance().dbTableRecords;
-		
 
+		String DBname = ServerConfig.getInstance().dbTableRecords;
+		debugMode = ServerConfig.getInstance().database_debug;
+		System.out.println("debug mode: "+debugMode);
+		
 		boolean bandera = true;
 		Connection conx;
 		conx = DataBaseManager.openConnection(
@@ -549,24 +633,28 @@ public class Biogeomancer {
 		int contadorr = 0;
 		while (bandera) {
 
-			System.out.println(getDateTime()
-					+ "------------------- se van a consultar " + contadorr
-					+ " registros");
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
+			System.out.println(getDateTime()+ "------------------- se van a consultar " + contadorr	+ " registros");
 
 			// si no se especifica la consulta se hace por 10 records
 			String manyRecord = "100";
 			if (args.length > 0)
 				manyRecord = args[0];
 
-			/*
-			 * aqui se hace la consulta a la base de datos y las respuestas se
-			 * almacenan en un ResultSet
-			 */
-			System.out.println("hace la consulta y devuelve el result set");
-			System.out.println("inicia query : " + getDateTime());
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
+			{
+				/*
+				 * aqui se hace la consulta a la base de datos y las respuestas se
+				 * almacenan en un ResultSet
+				 */
+				System.out.println("hace la consulta y devuelve el result set");
+				System.out.println("inicia query : " + getDateTime());
+			}
 			/*
 			 * ResultSet rs = DataBaseManager.makeQuery("select " + "*" +
-			 * " from " + "temp_georeferenced_records"
+			 * " from " + ServerConfig.getInstance().dbTableRecords
 			 * +" where !is_fixed=1"+" group by locality" //+ " order by RAND()"
 			 * + " limit "+manyRecord, conx);
 			 */
@@ -576,61 +664,46 @@ public class Biogeomancer {
 			 * country, county, etc... porque puede ser que existan varias
 			 * locality iguales pero con diferente ubicaci�n.
 			 */
-		/*	ResultSet rs = DataBaseManager
-					.makeQuery(
-							"select * from "+ DBname + " where latitude is null and longitude is null "
-									+ "and locality is not null and is_fixed=0 group by locality, country, county, state_province limit "
-									+ manyRecord, conx);
-		*/							
-			/*						
 			
-			//esta consulta geo referencia registros buenos para validar la calidad de los datos de biogeomancer
-			ResultSet rs = DataBaseManager
-			.makeQuery(
-					
-			"select * from "+ DBname + " "+
-			"where latitude is not null " +
-			"and longitude is not null " +
-			"and latitude !=0 " +
-			"and longitude !=0 " + 
-			"and latitude!='' " +
-			"and longitude!='' " +  
-			"and locality!='.' " +
-			"and locality!='-' " +
-			"and locality is not null "+
-			"and country!='' " +
-			"and country!='-' "+
-			"and country is not null " +
-			"and is_fixed=0 "+
-			"group by state_province limit 100" ,conx);
-			*/
-						
-			
-		/*	//esta consulta geo referencia registros con error 'O'
-			ResultSet rs = DataBaseManager
-			.makeQuery(
-					
-				"select * from georeferenced_records g, temp_bad_records b "+
-				"where g.id=b.id "+
-				"and b.error='O' "+
-				"and is_fixed=0 "+
-				"group by locality "+
-				"limit 100 " 
-				,conx);
-			
-			*/
-			//esta consulta geo referencia registros con error 'O'
-			ResultSet rs = DataBaseManager
-			.makeQuery(
-					
-				"select * from georeferenced_records g, temp_bad_records b "+
-				"where g.id=b.id "+
-				"and b.error='WC' "+
-				"and is_fixed=0 "+
-				"group by locality "+
-				"limit 100 " 
-				,conx);
+			  ResultSet rs = DataBaseManager .makeQuery( "select * from "+
+			  DBname + " where latitude is null and longitude is null " +
+			  "and locality is not null and is_fixed=0 group by locality, country, county, state_province limit "
+			  + manyRecord, conx);
+			 
+		/*	ResultSet rs = DataBaseManager.makeQuery("select * from " + DBname
+					+ " where is_fixed=8", conx);
 
+			/*
+			 * 
+			 * //esta consulta geo referencia registros buenos para validar la
+			 * calidad de los datos de biogeomancer ResultSet rs =
+			 * DataBaseManager .makeQuery(
+			 * 
+			 * "select * from "+ DBname + " "+ "where latitude is not null " +
+			 * "and longitude is not null " + "and latitude !=0 " +
+			 * "and longitude !=0 " + "and latitude!='' " + "and longitude!='' "
+			 * + "and locality!='.' " + "and locality!='-' " +
+			 * "and locality is not null "+ "and country!='' " +
+			 * "and country!='-' "+ "and country is not null " +
+			 * "and is_fixed=0 "+ "group by state_province limit 100" ,conx);
+			 */
+
+			/*
+			 * //esta consulta geo referencia registros con error 'O' ResultSet
+			 * rs = DataBaseManager .makeQuery(
+			 * 
+			 * "select * from georeferenced_records g, temp_bad_records b "+
+			 * "where g.id=b.id "+ "and b.error='O' "+ "and is_fixed=0 "+
+			 * "group by locality "+ "limit 100 " ,conx);
+			 */
+			// esta consulta geo referencia registros con error 'WC'
+			/*
+			 * ResultSet rs = DataBaseManager .makeQuery(
+			 * 
+			 * "select * from georeferenced_records g, temp_bad_records b "+
+			 * "where g.id=b.id "+ "and b.error='WC' "+ "and is_fixed=0 "+
+			 * "group by locality "+ "limit 100 " ,conx);
+			 */
 			/**
 			 * TODO @Jorge Esto no es del todo cierto. Cuando el resulset arroja
 			 * null es porque hubo un error en la consulta. No estoy seguro pero
@@ -639,7 +712,7 @@ public class Biogeomancer {
 			 */
 
 			try {
-				if (rs == null||rs.isClosed()) {
+				if (rs == null || rs.isClosed()) {
 					bandera = false;
 					System.out
 							.println("there are no records for georeferencing. Quit");
@@ -650,6 +723,8 @@ public class Biogeomancer {
 				e1.printStackTrace();
 			}
 
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
 			System.out.println("ends query : " + getDateTime());
 			/*
 			 * se crea el HashSet en donde se almacenaran los records creados
@@ -658,8 +733,10 @@ public class Biogeomancer {
 			HashSet<Record> grup = new HashSet<Record>();
 
 			try { /* se recorre el result set y se crean los records */
-				System.out.println("recorriendo el result set:" + manyRecord
-						+ " veces");
+				
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
+				System.out.println("recorriendo el result set:" + manyRecord+ " veces");
 
 				while (rs.next()) {
 					// System.out.println("recorriendo el result set");
@@ -688,7 +765,7 @@ public class Biogeomancer {
 			}
 
 			String horaEmpieza = getDateTime();
-			System.out.println("inicia startGeorref a las " + horaEmpieza);
+			System.out.println("Georeferenciation starts at " + horaEmpieza);
 
 			/* se inicia la georreferenciacion */
 			try {
@@ -705,13 +782,15 @@ public class Biogeomancer {
 				e.printStackTrace();
 			}
 			String horaTermina = getDateTime();
-			System.out.println("termina startGeorref a las " + horaTermina);
+			System.out.println("georeferentiation ends at " + horaTermina);
 
-			System.out.println("empez� a las : " + horaEmpieza + "\r\n"
-					+ " finaliz� a las : " + horaTermina);
-			System.out.println("started at : " + horaEmpieza + "\r\n"
-					+ " ended at : " + horaTermina);
-
+			
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
+			{
+			System.out.println("empez� a las : " + horaEmpieza + "\r\n"	+ " finaliz� a las : " + horaTermina);
+			System.out.println("started at : " + horaEmpieza + "\r\n"	+ " ended at : " + horaTermina);
+			}
 			// /}cierra el for
 			contadorr++;
 		}// cierra while
@@ -747,10 +826,15 @@ public class Biogeomancer {
 		 * aqui se hace la consulta a la base de datos y las respuestas se
 		 * almacenan en un ResultSet
 		 */
+		
+		//	____________Debugging mode on____________________________________________________________________
+		if(debugMode.equalsIgnoreCase("true"))
+		{
 		System.out.println("realiza el update o insert");
 		System.out.println("inicia update : " + getDateTime());
 		System.out.println(query + "\n");
-
+		}
+		
 		return DataBaseManager.makeChange(query, conx);
 
 	}
@@ -815,25 +899,30 @@ public class Biogeomancer {
 		Double minorUncertainty = 99999999999999.0;
 		String minorLongitude = "";
 		String minorLatitude = "";
-		
-		String dbname=ServerConfig.getInstance().dbTableRecords ;
+
+		String dbname = ServerConfig.getInstance().dbTableRecords;
 
 		for (Record p : places) {
-			xmlRes="";
+			xmlRes = "";
 			country = p.getCountry();
 			state = p.getState();
 			county = p.getCounty();
 			locality = p.getLocality();
-			idrec=p.getId();
+			idrec = p.getId();
 
-			System.out.println(country);
-			System.out.println(county);
-			System.out.println(state);
-			System.out.println(locality);
-			System.out.println("id : "+idrec);
-			
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
+			{
+				System.out.println(country);
+				System.out.println(county);
+				System.out.println(state);
+				System.out.println(locality);
+				System.out.println("id : " + idrec +" done.");
+			}
+			if(!debugMode.equalsIgnoreCase("true")) System.out.print("id : " + idrec +" done.\r");
+
 			if (country == null)
-				country = "" ;
+				country = "";
 			else
 				country = country + ",";
 			if (state == null)
@@ -846,151 +935,197 @@ public class Biogeomancer {
 				county = county + ",";
 			if (locality == null)
 				locality = "";
+
+			String address2;
+
+			address = "http://bg.berkeley.edu:8080/ws/single?sp=" + country
+					+ state + county + "&locality=" + locality;
+			// address=
+			// "http://bg.berkeley.edu:8080/ws/single?sp=Montana&locality=14%20mi%20SSW%20Missoula";
 			
-String address2;
-			
-			address = "http://bg.berkeley.edu:8080/ws/single?sp=" + country	+state + county + "&locality=" +  locality;
-			//address= "http://bg.berkeley.edu:8080/ws/single?sp=Montana&locality=14%20mi%20SSW%20Missoula";
+			//	____________Debugging mode on____________________________________________________________________
+			if(debugMode.equalsIgnoreCase("true"))
 			System.out.println(address);
-			
-		/*	address2=URLEncoder.encode(address, "cp1252");
-			System.out.println("cp1252\n"+address2);
-			address2=URLEncoder.encode(address, "utf-8");
-			System.out.println("utf-8\n"+address2);
-			address2=URLEncoder.encode(address, "utf-16");
-			System.out.println("utf-16\n"+address2);
-			address2=URLEncoder.encode(address, "iso-8859-1");
-			System.out.println("iso5981\n"+address2);
-			
-			address2=URLDecoder.decode(address, "cp1252");
-			System.out.println("cp1252\n"+address2);
-			address2=URLDecoder.decode(address, "utf-8");
-			System.out.println("utf-8\n"+address2);
-			address2=URLDecoder.decode(address, "utf-16");
-			System.out.println("utf-16\n"+address2);
-			address2=URLDecoder.decode(address, "iso-8859-1");
-			System.out.println("iso5981\n"+address2);*/
 
+			/*
+			 * address2=URLEncoder.encode(address, "cp1252");
+			 * System.out.println("cp1252\n"+address2);
+			 * address2=URLEncoder.encode(address, "utf-8");
+			 * System.out.println("utf-8\n"+address2);
+			 * address2=URLEncoder.encode(address, "utf-16");
+			 * System.out.println("utf-16\n"+address2);
+			 * address2=URLEncoder.encode(address, "iso-8859-1");
+			 * System.out.println("iso5981\n"+address2);
+			 * 
+			 * address2=URLDecoder.decode(address, "cp1252");
+			 * System.out.println("cp1252\n"+address2);
+			 * address2=URLDecoder.decode(address, "utf-8");
+			 * System.out.println("utf-8\n"+address2);
+			 * address2=URLDecoder.decode(address, "utf-16");
+			 * System.out.println("utf-16\n"+address2);
+			 * address2=URLDecoder.decode(address, "iso-8859-1");
+			 * System.out.println("iso5981\n"+address2);
+			 */
 
-			
-			
-		//	xmlRes=connectByGet(address);
-		//	System.out.println("xml: \n"+xmlRes);
+			// xmlRes=connectByGet(address);
+			// System.out.println("xml: \n"+xmlRes);
 
 			try {
 
-
 				URL url = new URL(address);
 
-				BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+				BufferedReader in = new BufferedReader(new InputStreamReader(
+						url.openStream()));
 				String str;
 
 				while ((str = in.readLine()) != null) {
 					xmlRes = xmlRes + str + "\n";
-				//	System.out.println("STR: \n");
-					System.out.println(str);
+					// System.out.println("STR: \n");
+					//	____________Debugging mode on____________________________________________________________________
+					if(debugMode.equalsIgnoreCase("true"))	System.out.println(str);
 
 				}
-			/*	System.out.println("this is received from the server \n");
-				System.out.println(xmlRes);*/
+				/*
+				 * System.out.println("this is received from the server \n");
+				 * System.out.println(xmlRes);
+				 */
 
 				in.close();
 			} catch (MalformedURLException e) {
 				System.out.println("MalformedURL");
 			} catch (IOException e) {
-				System.out.println("IOException");
+				if(debugMode.equalsIgnoreCase("true")) System.out.println("I/O Error. Malformed response or none");
 			}
 
 			// interpreting the xml
 
 			SAXBuilder builder = new SAXBuilder(false);
-			try{
-			org.jdom.Document document = builder.build(new ByteArrayInputStream(xmlRes.getBytes()));
+			try {
+				org.jdom.Document document = builder.build(new ByteArrayInputStream(xmlRes.getBytes()));
 
-			Element root = document.getRootElement();
+				Element root = document.getRootElement();
 
-			List <Element>children = root.getChildren();
-			System.out.println("numero de resultados : "+(children.size()-1) );
+				List<Element> children = root.getChildren();
+				
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
+				System.out.println("numero de resultados : "+ (children.size() - 1));
 
-			for(int i=0;i<children.size();i++){
-			Element kid = children.get(i);
-			//System.out.println("getValue:"+kid.getValue());
-			//System.out.println("getName:"+kid.getName());
-			
-			
-				if (kid.getName()=="georeference") {
+				for (int i = 0; i < children.size(); i++) {
+					Element kid = children.get(i);
+					// System.out.println("getValue:"+kid.getValue());
+					// System.out.println("getName:"+kid.getName());
 
-					System.out.println("++++++++++++++++++++++++++++++++++++");
-					values = kid.getValue();
-					//System.out.println("getValue: "+kid.getValue() );
+					if (kid.getName() == "georeference") {
 
-					data = values.split("\n");
-					int x = data.length;
-					//System.out.println("largo del arreglo split :" + x);
-					uncertainty = data[data.length - 1];
-					latitude = data[data.length - 4];
-					longitude = data[data.length - 3];
-					
-					if(Double.parseDouble(uncertainty)<minorUncertainty){
-						minorUncertainty=Double.parseDouble(uncertainty);
-						minorLatitude=latitude;
-						minorLongitude=longitude;
-					}
+						values = kid.getValue();
+						// System.out.println("getValue: "+kid.getValue() );
 
-					System.out.println("--------------------------------------");
+						data = values.split("\n");
+						int x = data.length;
+						// System.out.println("largo del arreglo split :" + x);
+						uncertainty = data[data.length - 1];
+						latitude = data[data.length - 4];
+						longitude = data[data.length - 3];
 
+						if (Double.parseDouble(uncertainty) < minorUncertainty) {
+							minorUncertainty = Double.parseDouble(uncertainty);
+							minorLatitude = latitude;
+							minorLongitude = longitude;
+						}
+
+						
+
+					} else {
+						if (kid.getName() != "interpreter")
+							
+							//	____________Debugging mode on____________________________________________________________________
+							if(debugMode.equalsIgnoreCase("true"))
+							{
+							System.out.println("no hay resultados de biogeomancer");
+							System.out.println("--------------------------------------");
+							}
+
+					}// ends else
+
+				}// ends for
+
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
+				{
+					System.out.println("latitude : " + minorLatitude);
+					System.out.println("longitude : " + minorLongitude);
+					System.out.println("uncertainty : " + minorUncertainty);
+				}
+
+				String fixedCountry = p.getCountry();
+				if (p.getCountry() != null && p.getCountry() != "")
+					fixedCountry = "'"	+ DataBaseManager.correctStringToQuery(p.getCountry()) + "'";
+				else
+					fixedCountry = null;
+				String fixedCounty = p.getCounty();
+				if (p.getCounty() != null && p.getCounty() != "")
+					fixedCounty = "'"+ DataBaseManager.correctStringToQuery(p.getCounty()) + "'";
+				else
+					fixedCounty = null;
+				String fixedState = p.getState();
+				if (p.getState() != null && p.getState() != "")
+					fixedState = "'"+ DataBaseManager.correctStringToQuery(p.getState()) + "'";
+				else
+					fixedState = null;
+				String fixedLocality = p.getState();
+				if (p.getLocality() != null && p.getLocality() != "")
+					fixedLocality = "'"+ DataBaseManager.correctStringToQuery(p.getLocality()) + "'";
+				else
+					fixedLocality = null;
+
+				// writes in DB
+				if (minorLatitude != "" && minorLongitude != "") {
+					/*
+					 * consulta("update "+
+					 * ServerConfig.getInstance().dbTableRecords +
+					 * " set blatitude=" + minorLatitude + ", blongitude=" +
+					 * minorLongitude + ", uncertainty=" + minorUncertainty +
+					 * ", is_fixed=1 where country="+(fixedCountry) +
+					 * " and county="+(fixedCounty) +
+					 * " and locality="+(fixedLocality) +
+					 * " and state_province="+(fixedState) +" ;", conx);
+					 */
+					consulta("update "
+							+ ServerConfig.getInstance().dbTableRecords
+							+ " set blatitude=" + minorLatitude
+							+ ", blongitude=" + minorLongitude
+							+ ", uncertainty=" + minorUncertainty
+							+ ", is_fixed=1 where id=" + idrec + " ;", conx);
 				} else {
-					if (kid.getName()!="interpreter") System.out.println("no hay resultados de biogeomancer");
-					System.out.println("--------------------------------------");
+					consulta("update "
+							+ ServerConfig.getInstance().dbTableRecords
+							+ " set is_fixed=2 where id=" + idrec + " ;", conx);
+				}
 
-				}// ends else
+				/*
+				 * if (minorLatitude != "" && minorLongitude != "") {
+				 * System.out.println("update "+
+				 * ServerConfig.getInstance().dbTableRecords + " set blatitude="
+				 * + minorLatitude + ", blongitude=" + minorLongitude +
+				 * ", uncertainty=" + minorUncertainty +
+				 * ", is_fixed=1 where id=" + idrec + " ;"); } else {
+				 * System.out.println("update "+
+				 * ServerConfig.getInstance().dbTableRecords +
+				 * " set is_fixed=2 where id=" + idrec + " ;"); }
+				 */
 
-			}//ends for
-
-			System.out.println("latitude : " + minorLatitude);
-			System.out.println("longitude : " + minorLongitude);
-			System.out.println("uncertainty : " + minorUncertainty);
-			
-			String fixedCountry=p.getCountry();
-			if(p.getCountry()!=null &&p.getCountry()!="")  fixedCountry="'"+DataBaseManager.correctStringToQuery(p.getCountry())+"'"; else fixedCountry=null;
-			String fixedCounty=p.getCounty();
-			if(p.getCounty()!=null &&p.getCounty()!="")  fixedCounty="'"+DataBaseManager.correctStringToQuery(p.getCounty())+"'"; else fixedCounty=null;
-			String fixedState=p.getState();
-			if(p.getState()!=null &&p.getState()!="")  fixedState="'"+DataBaseManager.correctStringToQuery(p.getState())+"'"; else fixedState=null;
-			String fixedLocality=p.getState();
-			if(p.getLocality()!=null &&p.getLocality()!="")  fixedLocality="'"+DataBaseManager.correctStringToQuery(p.getLocality())+"'"; else fixedLocality=null;
-			
-			
-			//writes in DB
-			if (minorLatitude != "" && minorLongitude != "") {
-			/*	consulta("update "+ ServerConfig.getInstance().dbTableRecords + " set blatitude=" 
-						+ minorLatitude + ", blongitude=" 
-						+ minorLongitude + ", uncertainty=" 
-						+ minorUncertainty + ", is_fixed=1 where country="+(fixedCountry)
-						+ " and county="+(fixedCounty)
-						+ " and locality="+(fixedLocality)
-						+ " and state_province="+(fixedState)
-						+" ;", conx);*/
-				consulta("update "+ ServerConfig.getInstance().dbTableRecords + " set blatitude=" 
-						+ minorLatitude + ", blongitude=" 
-						+ minorLongitude + ", uncertainty=" 
-						+ minorUncertainty + ", is_fixed=1 where id="+idrec+" ;", conx);
-			} else {
-				consulta("update "+ ServerConfig.getInstance().dbTableRecords + " set is_fixed=2 where id=" + idrec + " ;", conx);
-			}
-			
-		/*	if (minorLatitude != "" && minorLongitude != "") {
-				System.out.println("update "+ ServerConfig.getInstance().dbTableRecords + " set blatitude=" + minorLatitude + ", blongitude=" + minorLongitude + ", uncertainty=" + minorUncertainty + ", is_fixed=1 where id="
-						+ idrec + " ;");
-			} else {
-				System.out.println("update "+ ServerConfig.getInstance().dbTableRecords + " set is_fixed=2 where id=" + idrec + " ;");
-			}*/
-			
-			}catch (JDOMParseException e){
+			} catch (JDOMParseException e) {
+				
+				//	____________Debugging mode on____________________________________________________________________
+				if(debugMode.equalsIgnoreCase("true"))
 				System.out.println("the server presented an error for this record, this will be marked with is_fixed=3");
-				consulta("update "+ ServerConfig.getInstance().dbTableRecords + " set is_fixed=3 where id=" + idrec + " and is_fixed=0 ;", conx);
+				
+				consulta("update " + ServerConfig.getInstance().dbTableRecords
+						+ " set is_fixed=3 where id=" + idrec
+						+ " and is_fixed=0 ;", conx);
 			}
-			
+
 			minorUncertainty = 99999999999999.0;
 			minorLongitude = "";
 			minorLatitude = "";
@@ -998,26 +1133,26 @@ String address2;
 		return "success!!";
 	}// ends method
 
-	
-	private static String connectByGet(String address){
-		String res="";
-        try {
-            URL url = new URL(address);
-    
-            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-            String str=null;
+	private static String connectByGet(String address) {
+		String res = "";
+		try {
+			URL url = new URL(address);
 
-            while ((str = in.readLine()) != null) {
-            	res = res + str + "\n";
-                //System.out.println(str);
-            }
+			BufferedReader in = new BufferedReader(new InputStreamReader(url
+					.openStream()));
+			String str = null;
 
-            in.close();
-        } 
-        catch (MalformedURLException e) {} 
-        catch (IOException e) {}
-    
-        return res;
+			while ((str = in.readLine()) != null) {
+				res = res + str + "\n";
+				// System.out.println(str);
+			}
+
+			in.close();
+		} catch (MalformedURLException e) {
+		} catch (IOException e) {
+		}
+
+		return res;
 	}
-	
+
 }

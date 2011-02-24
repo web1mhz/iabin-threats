@@ -26,6 +26,7 @@ public class ServerConfig {
 	private final String XML_NAME = "name";
 	private final String XML_COLUMN = "column";
 	private final String XML_CONTENT = "content";
+	private final String XML_DEBUGMODE = "state";
 	private static ServerConfig instance;
 
 	private ServerConfig() {
@@ -78,6 +79,10 @@ public class ServerConfig {
 	/**
 	 * names of the columns of the environmental variables data
 	 */
+	public String database_debug;
+	/**
+	 * names of the status of debug mode
+	 */
 	public Set<String> dbVariablesName;
 	/**
 	 * name of the of the counter of outlier
@@ -123,6 +128,7 @@ public class ServerConfig {
 		dbIPAddress = database.getAttributeValue(XML_IP_ADDR);
 		database_name = database.getAttributeValue(XML_NAME);
 		database_port = database.getAttributeValue(XML_PORT);
+		database_debug= database.getChild("debugMode").getTextTrim();
 		database_user = database.getChild("user").getTextTrim();
 		database_password = database.getChild("password").getTextTrim();
 		List<Element> tables = (List<Element>) database.getChild("tables")
@@ -189,6 +195,9 @@ public class ServerConfig {
 		password.setAttribute("user", "server");
 		// TODO encriptar clave
 		password.setText("*******");
+		Element debugMode = new Element("state");
+		debugMode.setAttribute("state", "debug");
+		debugMode.setText("true");
 		Element tables = new Element("tables");
 		Element records = new Element("table");
 		records.setAttribute("content", XML_UNVERIFIED_RECORDS);
@@ -241,6 +250,7 @@ public class ServerConfig {
 
 		database.addContent(user);
 		database.addContent(password);
+		database.addContent(debugMode);
 		tables.addContent(records);
 		tables.addContent(good);
 		tables.addContent(finalrecords);
