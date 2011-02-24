@@ -118,12 +118,7 @@ public class General {
 			String targetpath, String species, String language)
 			throws NullPointerException {
 
-		File file = new File(sourceFile);
-		shp = new Shapefile(file);
-		SimpleFeature sf = null;
-		KmlGroupCreator grupo = new KmlGroupCreator(urlServer);
 
-		FeatureIterator<SimpleFeature> fi = shp.getFeatures();
 		int count = 5;
 
 		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile, atributos);
@@ -180,15 +175,17 @@ public class General {
 		// protected areas shape to kml
 
 		if (opt == 2 || opt == 6)
-			
-			
-	
+		{		
+			File file = new File(sourceFile);//loads the shape file to read
+			shp = new Shapefile(file);
+			SimpleFeature sf = null;
+			KmlGroupCreator grupo = new KmlGroupCreator(urlServer);
 
-		{
+			FeatureIterator<SimpleFeature> fi = shp.getFeatures();
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
 			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 
-			while (fi.hasNext()) {// && count-- > 0) {
+	/*		while (fi.hasNext()) {// && count-- > 0) {
 				sf = fi.next();
 				try {
 					kml.createKML(sf);
@@ -199,16 +196,32 @@ public class General {
 
 				System.out.print(sf.getAttribute(4) + " ");
 				System.out.println(sf.getAttribute(5));
-
 			}
-
 			try {
 				grupo.writeKml(targetFile, mainKml);
 			} catch (FileNotFoundException e) {
-
 				e.printStackTrace();
 			}
+*/
+			while (fi.hasNext() ) {// && count-- > 0) {
+				sf = fi.next();
+				try {
+					kml.createKMLpointsInfo(sf);
+					grupo.addElement(sf.getAttribute(1) + "-info.kml");
+					
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				
+			}//fin while
+				try {
+					grupo.writeKml(targetFile, mainKml);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
 
+		
+			
 		}// fin case 2
 		// **********************************************************************************************************
 		// *** esta sección se encarga de recorrer la carpeta data y cargar los
