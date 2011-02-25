@@ -26,6 +26,8 @@ import org.ciat.ita.maps.csv2kml.Csv2Point;
 import org.ciat.ita.maps.csv2kml.Csv2Polygon;
 import org.ciat.ita.maps.csv2kml.CsvFile;
 
+import de.micromata.opengis.kml.v_2_2_0.Folder;
+
 public class General {
 
 	static LinkedList<String[]> lista;
@@ -67,7 +69,8 @@ public class General {
 			System.out.println("__Please provide the path to the iabin.properties file or execute the script without arguments");
 			e1.getMessage();
 		} catch (NullPointerException e3) {
-			System.out.println("add the line \"language=english\" to the iabin.properties file");
+			e3.getMessage();
+			System.out.println("add the line \"language=english\" to the "+args[0]+" file");
 		}
 	}
 
@@ -203,24 +206,27 @@ public class General {
 				e.printStackTrace();
 			}
 */
+			Folder folder = null;
 			while (fi.hasNext() ) {// && count-- > 0) {
 				sf = fi.next();
 				try {
-					kml.createKMLpointsInfo(sf);
-					grupo.addElement(sf.getAttribute(1) + "-info.kml");
+					kml.createKMLpointsInfo(sf, folder);
+					//grupo.addElement(sf.getAttribute(1) + "-info.kml");
 					
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
 				
 			}//fin while
-				try {
+				
+		/*		try 
+				{
 					grupo.writeKml(targetFile, mainKml);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
 
-		
+		*/
 			
 		}// fin case 2
 		// **********************************************************************************************************
