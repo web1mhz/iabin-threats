@@ -94,6 +94,8 @@ public class KmlPolygonCreator {
 //*********************************************************************
 	public void createKMLpointsInfo(SimpleFeature sf) throws FileNotFoundException {
 
+		Folder folder;
+		
 		Set<Integer> keySet = atributos.keySet();
 		String descripcion = "<table border=\"1\" padding=\"3\" width=\"300\"><tr bgcolor= \"#D2D2D2\">";
 
@@ -113,18 +115,16 @@ public class KmlPolygonCreator {
 		//System.out.println("path: "+path);
 		
 		//System.out.println("descripcion: \r\n"+descripcion+"\r\n");
-
-
-
 		//System.out.println("empieza a mostrar");
 
 		Placemark placemark = KmlFactory.createPlacemark();
-		Folder folder = kml.createAndSetFolder();
+		folder = kml.createAndSetFolder();
 /**
  * se recorre la lista generando las coordenadas y agregando al folder
  */
 
 			placemark = folder.createAndAddPlacemark();//se crea el placemark y se naade al folder
+		
 			placemark.withName(atributos.get(1)).withDescription(descripcion);
 			//placemark.createAndSetPoint();
 			Point punto=Shapefile.getPointForMarker(sf);

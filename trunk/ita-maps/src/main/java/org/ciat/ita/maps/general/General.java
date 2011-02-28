@@ -206,12 +206,12 @@ public class General {
 				e.printStackTrace();
 			}
 */
-			Folder folder = null;
+			
 			while (fi.hasNext() ) {// && count-- > 0) {
 				sf = fi.next();
 				try {
-					kml.createKMLpointsInfo(sf, folder);
-					//grupo.addElement(sf.getAttribute(1) + "-info.kml");
+					kml.createKMLpointsInfo(sf);
+					grupo.addElement(sf.getAttribute(1) + "-info.kml");
 					
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
@@ -219,14 +219,14 @@ public class General {
 				
 			}//fin while
 				
-		/*		try 
+				try 
 				{
 					grupo.writeKml(targetFile, mainKml);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
 
-		*/
+		
 			
 		}// fin case 2
 		// **********************************************************************************************************
