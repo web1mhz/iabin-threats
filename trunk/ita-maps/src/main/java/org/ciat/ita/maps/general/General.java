@@ -70,7 +70,7 @@ public class General {
 			e1.getMessage();
 		} catch (NullPointerException e3) {
 			e3.getMessage();
-			System.out.println("add the line \"language=english\" to the "+args[0]+" file");
+			System.out.println("some lines missing in "+args[0]+" file, add the line \"language=english\" to the "+args[0]+" file");
 		}
 	}
 
