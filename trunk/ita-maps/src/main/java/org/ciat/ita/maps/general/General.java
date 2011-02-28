@@ -98,6 +98,7 @@ public class General {
 
 			String sourceFile = sourcePath + pathGroup + fileName;
 			String targetFile = targetPath + pathGroup + shapeID;
+			System.out.println("targetfile: "+targetFile);
 			HashMap<Integer, String> atributos = new HashMap<Integer, String>();
 			for (int i = 0; i < columnIndexes.length; i++) {
 				atributos.put(columnIndexes[i], columnName[i]);
@@ -180,7 +181,10 @@ public class General {
 		if (opt == 2 || opt == 6)
 		{		
 			File file = new File(sourceFile);//loads the shape file to read
+			System.out.println("folder of shape file: "+sourceFile);
+			System.out.println("file: "+file);
 			shp = new Shapefile(file);
+			
 			SimpleFeature sf = null;
 			KmlGroupCreator grupo = new KmlGroupCreator(urlServer);
 
