@@ -92,10 +92,9 @@ public class KmlPolygonCreator {
 
 	}
 //*********************************************************************
-	public void createKMLpointsInfo(SimpleFeature sf) throws FileNotFoundException {
+	public Placemark createKMLpointsInfo(SimpleFeature sf, Folder folder) throws FileNotFoundException {
 
-		Folder folder;
-		
+
 		Set<Integer> keySet = atributos.keySet();
 		String descripcion = "<table border=\"1\" padding=\"3\" width=\"300\"><tr bgcolor= \"#D2D2D2\">";
 
@@ -108,22 +107,22 @@ public class KmlPolygonCreator {
 		}
 		descripcion+="</tr></table>";
 
-		final Kml kml = new Kml();
+		/////////////final Kml kml = new Kml();
 	
-		String ruta = path+File.separator+ sf.getAttribute(1)+"-info.kml";
-		System.out.println("ruta: "+ruta);
+		////////////////String ruta = path+File.separator+ sf.getAttribute(1)+"-info.kml";
+		/////////////System.out.println("ruta: "+ruta);
 		//System.out.println("path: "+path);
 		
 		//System.out.println("descripcion: \r\n"+descripcion+"\r\n");
 		//System.out.println("empieza a mostrar");
 
 		Placemark placemark = KmlFactory.createPlacemark();
-		folder = kml.createAndSetFolder();
+		////////////folder = kml.createAndSetFolder();
 /**
  * se recorre la lista generando las coordenadas y agregando al folder
  */
 
-			placemark = folder.createAndAddPlacemark();//se crea el placemark y se naade al folder
+			//////////placemark = folder.createAndAddPlacemark();//se crea el placemark y se naade al folder
 		
 			placemark.withName(atributos.get(1)).withDescription(descripcion);
 			//placemark.createAndSetPoint();
@@ -132,16 +131,16 @@ public class KmlPolygonCreator {
 			placemark.createAndSetPoint().addToCoordinates(punto.getX(), punto.getY() );//se crean las coordenadas y se registran al placemark
 
 		
-		kml.setFeature(folder);//se registra el folder al kml
+/*		kml.setFeature(folder);//se registra el folder al kml
 		
 		File dir = new File(path);
 		dir.mkdirs();	
 		
 		//kml.marshal();//se imprime kml en consola
 		kml.marshal(new File(ruta));//se guarda kml en archivo
-
+*/
 	
-	
+	return placemark;
 
 	}
 	
