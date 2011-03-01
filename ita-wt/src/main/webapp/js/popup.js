@@ -16,8 +16,8 @@ function loadPopup(){
 		$("#backgroundPopup").css({
 			"opacity": "0.7"
 		});
-		$("#backgroundPopup").fadeIn("slow");
-		$("#popupContact").fadeIn("slow");
+		$("#backgroundPopup").fadeIn("fast");
+		$("#popupContact").fadeIn("fast");
 		popupStatus = 1;
 	}
 }

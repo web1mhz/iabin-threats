@@ -30,26 +30,103 @@ $(".bioclim").click(function(event) {
 });
 
 
-$(".specieData").click(function(event) {
+	$(".specieData").click(function(event) {
     var $target = $(event.target);
     key = $target.attr("key");
     if($target.attr("name") == "occurrences") {
-    	showOccurences(key);
-    } else if($target.attr("name") == "convex") {
-    	showConvex(key);
-    }
+    		showOccurences(key);
+    	} 	else if($target.attr("name") == "convex") {
+    		showConvex(key);
+    		
+    	}
+    	else if($target.attr("name") == "convexHull") {
+    		showConvexHull(key);
+    		
+    	}
   //  setActualPosition();
-});
-
+	});
+	
+	$(".specieDistribution").click(function(event) {
+	    var $target = $(event.target);
+	    var layerName=$target.attr("name")
+	    var layerId=$target.attr("key")
+	    
+	    if(layerId == "") {	    	
+		document.form1.distribution.checked = false;
+		document.form1.threshold.checked = false;
+		//document.form1.threshold.checked = false;
+	    }
+	   
+	   if (document.form1.distribution.checked == true){
+	    	
+	    	showSpeciesLayer(layerName, layerId);
+	    	
+	    	
+	      }else {
+	    	  map.overlayMapTypes.removeAt(0);
+	  		
+	      }
+	   
+	  
+	   
+	  
+	    
+	});
+	
+	$(".uno").click(function(event) {
+		 var $target = $(event.target);
+		
+		if ($target.attr("checked")== true){
+			
+			
+		  showProtectedAreas();	
+		   
+		   var tiles2 = new google.maps.ImageMapType({
+		    	//aqui obtengo la ruta de los tiles que he seleccionado en el radiobutton
+		    	getTileUrl: function(point, zoom) {
+		    		var X = point.x % (1 << zoom); // para repetir los tiles alrededor del mundo
+		    		
+		    			return  "http://gisweb.ciat.cgiar.org/ita/pa/" +zoom + "/x" + X + "_y" + point.y + ".png"
+		    		
+		      	},																																																			
+		      	tileSize: new google.maps.Size(256, 256),
+		      	isPng: true,
+		      	opacity:0.5
+		    });
+		   
+		   map.overlayMapTypes.push(tiles2); 
+		}else{
+			poligonLayer.setMap(null);	
+			
+			for(i = 0; i < map.overlayMapTypes.length; i++) {
+		    	  map.overlayMapTypes.setAt(i, null);
+		    }
+			
+		}
+		
+		
+		
+	   });
+	    
+	
+	$(".opacidad").click(function(event) {
+		
+        if(JQuery('#Threats-0').attr("checked")) {
+        	alert("true");
+        } else {
+        	alert("false");
+        }
+		
+	});
 });
  
 function cerrar_ampliacion(){
-	xHide('ampliacion');
+	xHide('showScale');
 
 }
  
  function abrir_ampliacion(){
-	xShow('ampliacion');
+	xShow('showScale');
 	
 }
 
@@ -66,7 +143,6 @@ function cerrar_ampliacion(){
   var toggle=0;
   var ctaLayer;
   var poligonLayer; 
-
 function initialize() {
 	var myOptions = {
 			navigationControl: true,
@@ -101,8 +177,8 @@ function showOccurences(key) {
 		document.form1.occurrences.checked = false;
 	} else {
 	  if (document.form1.occurrences.checked){
-		  kml_layer1 = "http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/"+key+"-point.kml";
-		  ctaLayer = new google.maps.KmlLayer(kml_layer1, {preserveViewport:false});
+		  kml_layer1 = "http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/prueba/"+key+"-point.kml";
+		  ctaLayer = new google.maps.KmlLayer(kml_layer1, {preserveViewport:true});
 		  ctaLayer.setMap(map);
 	  } else {
 		ctaLayer.setMap(null);
@@ -114,8 +190,8 @@ function showConvex(key) {
 	if(key == "") {
 		document.form1.convex.checked = false;
 	} else {
-		if (document.form1.convex.checked){
-			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/"+key+"-pol.kml", {preserveViewport:false})
+		if (document.form1.convex.checked==true){
+			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/prueba/"+key+"-chull.kml", {preserveViewport:true})
 			poligonLayer.setMap(map);
 		} else {
 			poligonLayer.setMap(null);			
@@ -123,7 +199,29 @@ function showConvex(key) {
 	}
 } 
    
+function showConvexHull(key) {	
+	if(key == "") {
+		document.form1.convexHull.checked = false;
+	} else {
+		if (document.form1.convexHull.checked==true){
+			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/prueba/"+key+"-chullbuff.kml", {preserveViewport:true})
+			poligonLayer.setMap(map);
+		} else {
+			poligonLayer.setMap(null);			
+		}
+	}
+} 
+
+function showProtectedAreas() {	
+	
+	//alert(document.form1.Summaries.checked);
+			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/total-info1.kml", {preserveViewport:true})
+			poligonLayer.setMap(map);
+		
+	} 
 function showLayer(layerName, layerId) {
+	
+	
 	var o = parseFloat(document.getElementById("opac").value);
 	var opac;
 	if(o > 100){
@@ -143,16 +241,59 @@ function showLayer(layerName, layerId) {
     		var X = point.x % (1 << zoom); // para repetir los tiles alrededor del mundo
     		if(layerName == "Threats" ) {
     			return  "http://gisweb.ciat.cgiar.org/ita/"+layerName+"/"+layerName+layerId+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-    		} else {
+    		} else if (layerName == "Bioclim" ){
     			return  "http://gisweb.ciat.cgiar.org/ita/"+layerName+"/p"+(layerId-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    		}
+    		else if (layerName == "distribution" ){
+    			return  "http://gisweb.ciat.cgiar.org/ita/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    		}
+    		else if (layerName == "threshold" ){
+    			return  "http://gisweb.ciat.cgiar.org/ita/species/"+layerId+"/with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		}
       	},																																																			
       	tileSize: new google.maps.Size(256, 256),
       	isPng: true,
       	opacity:opac
     });
+   
     for(i = 0; i < map.overlayMapTypes.length; i++) {
     	  map.overlayMapTypes.setAt(i, null);
     }	
+   
     map.overlayMapTypes.push(tiles); 
+ }
+
+function showSpeciesLayer(layerName, layerId) {
+	
+	
+	var o = parseFloat(document.getElementById("opac").value);
+	var opac;
+	if(o > 100){
+		opac = 100;
+		opac = opac/100;
+		document.getElementById('opac').value = 100;
+	} else if(o < 0) {
+		opac = 100;
+		opac = opac / 100;
+		document.getElementById('opac').value = 100;
+	} else {
+		opac = o/100;
+	}
+    var tiles1 = new google.maps.ImageMapType({
+    	//aqui obtengo la ruta de los tiles que he seleccionado en el radiobutton
+    	getTileUrl: function(point, zoom) {
+    		var X = point.x % (1 << zoom); // para repetir los tiles alrededor del mundo
+    		 if (layerName == "distribution" ){
+    			return  "http://gisweb.ciat.cgiar.org/ita/species1/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    		}
+    		else if (layerName == "threshold" ){
+    			return  "http://gisweb.ciat.cgiar.org/ita/species1/"+layerId+"/with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    		}
+      	},																																																			
+      	tileSize: new google.maps.Size(256, 256),
+      	isPng: true,
+      	opacity:opac
+    });
+   
+    map.overlayMapTypes.push(tiles1); 
  }

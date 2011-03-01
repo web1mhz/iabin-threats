@@ -9,6 +9,8 @@
 				
 				disablePopup();
 				$('input.specieData').attr("key", $target.attr("id"));
+				$('input.specieDistribution').attr("key", $target.attr("id"));
+				
 				
 			}
 			

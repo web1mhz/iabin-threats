@@ -18,7 +18,7 @@ h1 { font-size: small }
 h2 { font-size: 8; }
 h3 { margin-top: .5em; }
 h5 { font-size: 11px; }
-h5 input.specieData { font-size: 19px; }
+
 
 #navigation {
 	border:0px solid #DCDCDC;
@@ -113,7 +113,6 @@ h5 input.specieData { font-size: 19px; }
 	
 }
 
-
 #treeStyle{
 	width: 980px;
 	margin: 50px ;
@@ -132,6 +131,7 @@ h5 input.specieData { font-size: 19px; }
 #treeStyle ul.general li a.desplegable		{	background: url(../images/plus.gif) no-repeat 10px center; }	
 #treeStyle ul.general li ul li				   {	width: 20px;color: #000;font-size: 11px;}
 #treeStyle ul.general li a ul li a         {   background: url(../images/plus.gif) no-repeat 10px center; }
+
 	
 /*
 	SEARCH STYLE
@@ -156,17 +156,18 @@ z-index:1;
 }
 #popupContact{
 display:none;
-position:absolute;
+position:fixed;
 _position:absolute; /* hack for internet explorer 6*/
 height:500px;
 width:500px;
-vertical-align:top;
-overflow:auto;
+overflow-x:hidden;
+overflow-y:auto;
 background:#FFFFFF;
 border:2px solid #cecece;
-z-index:3;
+z-index:2;
 padding:12px;
 font-size:13px;
+
 }
 #popupContact h1{
 text-align:left;
@@ -189,7 +190,7 @@ margin-bottom:20px;
 #popupContactClose{
 font-size:14px;
 line-height:14px;
-right:4px;
+right:6px;
 top:4px;
 position:absolute;
 color:#6fa5fd;
@@ -253,3 +254,4 @@ height:720px;
 bottom:70px;
 }
 
+#demo-frame > div.demo { padding: 10px !important; };
