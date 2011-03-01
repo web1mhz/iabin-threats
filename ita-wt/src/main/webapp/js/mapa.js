@@ -191,10 +191,10 @@ function showConvex(key) {
 		document.form1.convex.checked = false;
 	} else {
 		if (document.form1.convex.checked==true){
-			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/prueba/"+key+"-chull.kml", {preserveViewport:true})
-			poligonLayer.setMap(map);
+			convexLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/prueba/"+key+"-chull.kml", {preserveViewport:true})
+			convexLayer.setMap(map);
 		} else {
-			poligonLayer.setMap(null);			
+			convexLayer.setMap(null);			
 		}
 	}
 } 
@@ -215,8 +215,8 @@ function showConvexHull(key) {
 function showProtectedAreas() {	
 	
 	//alert(document.form1.Summaries.checked);
-			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/total-info1.kml", {preserveViewport:true})
-			poligonLayer.setMap(map);
+			paLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/total-info1.kml", {preserveViewport:true})
+			paLayer.setMap(map);
 		
 	} 
 function showLayer(layerName, layerId) {
