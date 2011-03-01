@@ -241,10 +241,10 @@ public class General {
 				descripcion+="</tr></table>";
 
 				Placemark placemark = KmlFactory.createPlacemark();
-				
+				String estilo = PropertiesManager.getInstance().getPropertiesAsString("style.url");
 				/* se recorre la lista generando las coordenadas y agregando al folder		*/
 				placemark = folder.createAndAddPlacemark();//se crea el placemark y se añade al folder	
-				placemark.withName(atributos.get(1)).withDescription(descripcion);	
+				placemark.withName(atributos.get(1)).withDescription(descripcion).withStyleUrl(estilo);	
 				Point punto=Shapefile.getPointForMarker(sf);	
 				//se crean las coordenadas y se registran al placemark
 				placemark.createAndSetPoint().addToCoordinates(punto.getX(), punto.getY() );
