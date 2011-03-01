@@ -129,31 +129,7 @@
 		    
 		    for(i = 0; i < map.overlayMapTypes.length; i++) {
 		    	  map.overlayMapTypes.setAt(i, null);
-		    }	
-		    
-		    
-						
-	/*
-			document.getElementById("Bioclim-8").checked=false;
-			document.getElementById("Bioclim-9").checked=false;
-			document.getElementById("Bioclim-10").checked=false;
-			document.getElementById("Bioclim-11").checked=false;
-			document.getElementById("Bioclim-12").checked=false;
-			document.getElementById("Bioclim-13").checked=false;
-			document.getElementById("Bioclim-14").checked=false;
-			document.getElementById("Bioclim-15").checked=false;
-			document.getElementById("Bioclim-16").checked=false;
-			document.getElementById("Bioclim-17").checked=false;
-			document.getElementById("Bioclim-18").checked=false;
-			document.getElementById("Bioclim-19").checked=false;
-			document.getElementById("Bioclim-20").checked=false;
-			document.getElementById("Bioclim-21").checked=false;
-			document.getElementById("Bioclim-22").checked=false;
-			document.getElementById("Bioclim-23").checked=false;
-			document.getElementById("Bioclim-24").checked=false;
-			document.getElementById("Bioclim-25").checked=false;
-			document.getElementById("Bioclim-26").checked=false;*/
-			//TODO
+		    }		
 		});
 		$("#closeLink").click(function() {
 			$("#buttonShowInfo").css("visibility", "");			
