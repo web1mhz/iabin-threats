@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.geotools.feature.FeatureIterator;
 import org.opengis.feature.simple.SimpleFeature;
@@ -26,7 +27,12 @@ import org.ciat.ita.maps.csv2kml.Csv2Point;
 import org.ciat.ita.maps.csv2kml.Csv2Polygon;
 import org.ciat.ita.maps.csv2kml.CsvFile;
 
+import com.vividsolutions.jts.geom.Point;
+
 import de.micromata.opengis.kml.v_2_2_0.Folder;
+import de.micromata.opengis.kml.v_2_2_0.Kml;
+import de.micromata.opengis.kml.v_2_2_0.KmlFactory;
+import de.micromata.opengis.kml.v_2_2_0.Placemark;
 
 public class General {
 
@@ -180,6 +186,9 @@ public class General {
 
 		if (opt == 2 || opt == 6)
 		{		
+			if (language.equals("english"))	System.out.println("you selected option :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
+
 			File file = new File(sourceFile);//loads the shape file to read
 			System.out.println("folder of shape file: "+sourceFile);
 			System.out.println("file: "+file);
@@ -189,8 +198,6 @@ public class General {
 			KmlGroupCreator grupo = new KmlGroupCreator(urlServer);
 
 			FeatureIterator<SimpleFeature> fi = shp.getFeatures();
-			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 
 	/*		while (fi.hasNext()) {// && count-- > 0) {
 				sf = fi.next();
@@ -211,25 +218,54 @@ public class General {
 			}
 */
 			
+			final Kml kml2 = new Kml();
+			Folder folder = kml2.createAndSetFolder();	
+			
+			String ruta = targetFile+File.separator+ "total-info.kml";
+			System.out.println("ruta: "+ruta);
+			
+			
+			
 			while (fi.hasNext() ) {// && count-- > 0) {
 				sf = fi.next();
-				try {
-					kml.createKMLpointsInfo(sf);
-					grupo.addElement(sf.getAttribute(1) + "-info.kml");
-					
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-				
-			}//fin while
-				
-				try 
-				{
-					grupo.writeKml(targetFile, mainKml);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
+				Set<Integer> keySet = atributos.keySet();
+				String descripcion = "<table border=\"1\" padding=\"3\" width=\"300\"><tr bgcolor= \"#D2D2D2\">";
 
+				for (Integer i : keySet) {//se crean los titulos de la tabla de la informacion del poligono
+					descripcion+= "<td>"+atributos.get(i)+"</td>";
+				}
+				descripcion+="</tr><tr>";
+				for (Integer i : keySet) {//se crean los contenidos de la tabla de la informacion del poligono
+					descripcion+= "<td>"+sf.getAttribute(i)+"</td>";
+				}
+				descripcion+="</tr></table>";
+
+				Placemark placemark = KmlFactory.createPlacemark();
+				
+				/* se recorre la lista generando las coordenadas y agregando al folder		*/
+				placemark = folder.createAndAddPlacemark();//se crea el placemark y se añade al folder	
+				placemark.withName(atributos.get(1)).withDescription(descripcion);	
+				Point punto=Shapefile.getPointForMarker(sf);	
+				//se crean las coordenadas y se registran al placemark
+				placemark.createAndSetPoint().addToCoordinates(punto.getX(), punto.getY() );
+	
+			}//fin while		
+	/*			try 
+				{	grupo.writeKml(targetFile, mainKml);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();				}
+*/
+			kml2.setFeature(folder);//se registra el folder al kml
+			
+			File dir = new File(targetFile);
+			dir.mkdirs();			
+			//kml.marshal();//se imprime kml en consola
+			try {
+				kml2.marshal(new File(ruta));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}//se guarda kml en archivo
 		
 			
 		}// fin case 2
