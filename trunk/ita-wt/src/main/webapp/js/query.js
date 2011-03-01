@@ -4,8 +4,8 @@
 				   $("#Bioclim").slideUp("fast");
 				   $("#Species").slideUp("fast");
 				   $("#Summaries").slideUp("fast");	
-        var contador = true;
-		 var contador1 = true;
+				   var contador = true;
+				   var contador1 = true;
         
 			
 		
@@ -90,23 +90,50 @@
 				   $("#Threats").slideUp("slow");}
 		});
 
-		$("#botonMostrarInfo").css("visibility", "hidden");
-		$("#botonMostrarInfo").click(function(){
+		$("#buttonShowInfo").css("visibility", "hidden");
+		$("#buttonShowInfo").click(function(){
 			abrir_ampliacion();
-			$("#botonMostrarInfo").css("visibility", "hidden");
+			$("#buttonShowInfo").css("visibility", "hidden");
 		});
 		
-		$("#none").click(function() {
-			$("#botonMostrarInfo").css("visibility", "hidden");	
-			$("#ampliacion").css("visibility", "hidden");
-			document.getElementById("Threats-0").checked=false;
-			document.getElementById("Threats-1").checked=false;
-			document.getElementById("Threats-2").checked=false;
-			document.getElementById("Threats-3").checked=false;
-			document.getElementById("Threats-4").checked=false;
-			document.getElementById("Threats-5").checked=false;
-			document.getElementById("Threats-6").checked=false;
-			document.getElementById("Threats-7").checked=false;
+		$("#clearThreats").click(function() {
+			$("#buttonShowInfo").css("visibility", "hidden");	
+			$("#showScale").css("visibility", "hidden");			
+		    ($("#Threats-0").attr("checked", false));
+		    ($("#Threats-1").attr("checked", false));
+		    ($("#Threats-2").attr("checked", false));
+		    ($("#Threats-3").attr("checked", false));
+		    ($("#Threats-4").attr("checked", false));
+		    ($("#Threats-5").attr("checked", false));
+		    ($("#Threats-6").attr("checked", false));
+		    ($("#Threats-7").attr("checked", false));
+		    ($("#Bioclim-8").attr("checked", false));
+		    ($("#Bioclim-9").attr("checked", false));
+		    ($("#Bioclim-10").attr("checked", false));
+		    ($("#Bioclim-11").attr("checked", false));
+		    ($("#Bioclim-12").attr("checked", false));
+		    ($("#Bioclim-13").attr("checked", false));
+		    ($("#Bioclim-14").attr("checked", false));
+		    ($("#Bioclim-15").attr("checked", false));
+		    ($("#Bioclim-16").attr("checked", false));
+		    ($("#Bioclim-17").attr("checked", false));
+		    ($("#Bioclim-18").attr("checked", false));
+		    ($("#Bioclim-19").attr("checked", false));
+		    ($("#Bioclim-20").attr("checked", false));
+		    ($("#Bioclim-21").attr("checked", false));
+		    ($("#Bioclim-22").attr("checked", false));
+		    ($("#Bioclim-23").attr("checked", false));
+		    ($("#Bioclim-24").attr("checked", false));
+		    ($("#Bioclim-25").attr("checked", false));
+		    ($("#Bioclim-26").attr("checked", false));
+		    
+		    for(i = 0; i < map.overlayMapTypes.length; i++) {
+		    	  map.overlayMapTypes.setAt(i, null);
+		    }	
+		    
+		    
+						
+	/*
 			document.getElementById("Bioclim-8").checked=false;
 			document.getElementById("Bioclim-9").checked=false;
 			document.getElementById("Bioclim-10").checked=false;
@@ -125,11 +152,24 @@
 			document.getElementById("Bioclim-23").checked=false;
 			document.getElementById("Bioclim-24").checked=false;
 			document.getElementById("Bioclim-25").checked=false;
-			document.getElementById("Bioclim-26").checked=false;
+			document.getElementById("Bioclim-26").checked=false;*/
+			//TODO
 		});
-		$("#linkCerrar").click(function() {
-			$("#botonMostrarInfo").css("visibility", "");			
+		$("#closeLink").click(function() {
+			$("#buttonShowInfo").css("visibility", "");			
 		});
 			
      });
    
+     $(function() {
+ 		$( "#slider-range-min" ).slider({
+ 			range: "min",
+ 			value: 50,
+ 			min: 1,
+ 			max: 100,
+ 			slide: function( event, ui ) {
+ 				$( "#opacityLayer" ).val(ui.value+"%" );
+ 			}
+ 		});
+ 		$( "#opacityLayer" ).val($( "#slider-range-min" ).slider( "value" )+ "%"  );
+ 	});
