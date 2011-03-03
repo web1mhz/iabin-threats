@@ -148,7 +148,23 @@ public class TileCutter {
 				zoomMin++;
 			}
 		
+			//***************************************_full.asc
 			
+			 fileName = (s.getName()+File.separator + s.getName()+"_full.asc");
+			System.out.println("filename: "+fileName);
+			
+			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/full/");
+			tManager = new TileManager(iManager);
+			raster.loadRaster(sourcePath + pathGroup + fileName);
+			cManager = ColorManagerFactory.createColorManager(rasterID, raster);
+			iManager.setColorManager(cManager);
+
+			zoomMin = PropertiesManager.getInstance().getPropertiesAsInt("zoom.min");
+			zoomMax = PropertiesManager.getInstance().getPropertiesAsInt("zoom.max");
+			while (zoomMin <= zoomMax) {
+				tManager.cutRaster(raster, zoomMin);
+				zoomMin++;
+			}
 			
 			
 		
