@@ -7,22 +7,23 @@ $(document).ready(function() {
 	xHeight ('c1',h)
 	xWidth ('closeScale',w)
 			
-$(".threats").click(function(event) {
-        var $target = $(event.target);
+$(".Threats").click(function(event) {
+	    var $target = $(event.target);
 		var layerName=$target.attr("id").split("-")[0]
         var layerId=$target.attr("id").split("-")[1]
-        xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/ita/'+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/'+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
 		$("#botonMostrarInfo").css("visibility", "hidden");
 		showLayer(layerName, layerId);
 		setActualPosition();
+		
 });
 
-$(".bioclim").click(function(event) {
+$(".Bioclim").click(function(event) {
         var $target = $(event.target);
 		var layerName=$target.attr("id").split("-")[0]
         var layerId=$target.attr("id").split("-")[1]
-        xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/ita/'+layerName+'/p'+(layerId-7)+'/p'+(layerId-7)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/'+layerName+'/p'+(layerId-7)+'/p'+(layerId-7)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
 		$("#botonMostrarInfo").css("visibility", "hidden");
 		showLayer(layerName, layerId); 
@@ -177,7 +178,8 @@ function showOccurences(key) {
 		document.form1.occurrences.checked = false;
 	} else {
 	  if (document.form1.occurrences.checked){
-		  kml_layer1 = "http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/prueba/"+key+"-point.kml";
+		  kml_layer1 = "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-point.kml";
+		  //TODO  esta ruta debe permitir ser configurable.
 		  ctaLayer = new google.maps.KmlLayer(kml_layer1, {preserveViewport:true});
 		  ctaLayer.setMap(map);
 	  } else {
@@ -191,7 +193,7 @@ function showConvex(key) {
 		document.form1.convex.checked = false;
 	} else {
 		if (document.form1.convex.checked==true){
-			convexLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/prueba/"+key+"-chull.kml", {preserveViewport:true})
+			convexLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-chull.kml", {preserveViewport:true})
 			convexLayer.setMap(map);
 		} else {
 			convexLayer.setMap(null);			
@@ -204,7 +206,7 @@ function showConvexHull(key) {
 		document.form1.convexHull.checked = false;
 	} else {
 		if (document.form1.convexHull.checked==true){
-			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/prueba/"+key+"-chullbuff.kml", {preserveViewport:true})
+			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-chullbuff.kml", {preserveViewport:true})
 			poligonLayer.setMap(map);
 		} else {
 			poligonLayer.setMap(null);			
@@ -215,9 +217,10 @@ function showConvexHull(key) {
 function showProtectedAreas() {	
 	
 	//alert(document.form1.Summaries.checked);
-			paLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/total-info1.kml", {preserveViewport:true})
+	
+			paLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/total-info12.kml", {preserveViewport:true})
 			paLayer.setMap(map);
-		
+	
 	} 
 function showLayer(layerName, layerId) {
 	
@@ -240,15 +243,15 @@ function showLayer(layerName, layerId) {
     	getTileUrl: function(point, zoom) {
     		var X = point.x % (1 << zoom); // para repetir los tiles alrededor del mundo
     		if(layerName == "Threats" ) {
-    			return  "http://gisweb.ciat.cgiar.org/ita/"+layerName+"/"+layerName+layerId+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/"+layerName+"/"+layerName+layerId+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		} else if (layerName == "Bioclim" ){
-    			return  "http://gisweb.ciat.cgiar.org/ita/"+layerName+"/p"+(layerId-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/"+layerName+"/p"+(layerId-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		}
     		else if (layerName == "distribution" ){
-    			return  "http://gisweb.ciat.cgiar.org/ita/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files//species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		}
     		else if (layerName == "threshold" ){
-    			return  "http://gisweb.ciat.cgiar.org/ita/species/"+layerId+"/with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files//species/"+layerId+"/with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		}
       	},																																																			
       	tileSize: new google.maps.Size(256, 256),
@@ -284,10 +287,10 @@ function showSpeciesLayer(layerName, layerId) {
     	getTileUrl: function(point, zoom) {
     		var X = point.x % (1 << zoom); // para repetir los tiles alrededor del mundo
     		 if (layerName == "distribution" ){
-    			return  "http://gisweb.ciat.cgiar.org/ita/species1/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		}
     		else if (layerName == "threshold" ){
-    			return  "http://gisweb.ciat.cgiar.org/ita/species1/"+layerId+"/with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		}
       	},																																																			
       	tileSize: new google.maps.Size(256, 256),

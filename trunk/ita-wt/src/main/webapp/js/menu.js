@@ -23,9 +23,8 @@ for (i=0;i<x.length;i++)
   document.write("<ul id="+x[i].attributes.getNamedItem("name").nodeValue+">");
   
   document.write("<div id=both>");
-   if(x[i].attributes.getNamedItem("name").nodeValue=="Species"){
-		
-	document.write("<div id=button><input type=button value=Kingdom ></div><br>");
+   if(x[i].attributes.getNamedItem("name").nodeValue=="Species"){		
+	document.write("<div id=button><input type=button value=Search Species ></div>");
 	document.write("<h5><label> Example specie</label></h5>");
 	document.write("<h5><label> class : mammalia</label></h5>");	
 	document.write("<h5><label> family : Muridae</label></h5>");	
