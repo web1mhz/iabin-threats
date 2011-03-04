@@ -130,12 +130,12 @@ public class TileCutter {
 				tManager.cutRaster(raster, zoomMin);
 				zoomMin++;
 			}
-			//***************************************_with_threshold.asc
+			//***************************************dist. limited to convex hull
 			
-			 fileName = (s.getName()+File.separator + s.getName()+"_with_threshold.asc");
+			 fileName = (s.getName()+File.separator + s.getName()+".asc");
 			System.out.println("filename: "+fileName);
 			
-			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/with_threshold/");
+			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/dist_limited to convex hull/");
 			tManager = new TileManager(iManager);
 			raster.loadRaster(sourcePath + pathGroup + fileName);
 			cManager = ColorManagerFactory.createColorManager(rasterID, raster);
