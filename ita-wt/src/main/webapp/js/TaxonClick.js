@@ -6,7 +6,6 @@
 		if($("#" + $target.attr("id")+" ul").attr("id") == undefined) {
 			
 			if($target.attr("rank")==7000){
-				
 				disablePopup();
 				$('input.specieData').attr("key", $target.attr("id"));
 				$('input.specieDistribution').attr("key", $target.attr("id"));
