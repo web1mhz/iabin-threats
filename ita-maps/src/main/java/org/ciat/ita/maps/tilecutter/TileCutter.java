@@ -135,7 +135,7 @@ public class TileCutter {
 			 fileName = (s.getName()+File.separator + s.getName()+".asc");
 			System.out.println("filename: "+fileName);
 			
-			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/dist_limited to convex hull/");
+			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/dist_limited_to_convex_hull/");
 			tManager = new TileManager(iManager);
 			raster.loadRaster(sourcePath + pathGroup + fileName);
 			cManager = ColorManagerFactory.createColorManager(rasterID, raster);
