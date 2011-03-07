@@ -53,25 +53,16 @@ $(".Bioclim").click(function(event) {
 	    var layerId=$target.attr("key")
 	    
 	    if(layerId == "") {	    	
+		document.form1.distributionLimitedtoconvex.checked = false;
 		document.form1.distribution.checked = false;
 		document.form1.threshold.checked = false;
-		//document.form1.threshold.checked = false;
-	    }
-	   
-	   if (document.form1.distribution.checked == true){
-	    	
-	    	showSpeciesLayer(layerName, layerId);
-	    	
+		  	
 	    	
 	      }else {
-	    	  map.overlayMapTypes.removeAt(0);
+	    	  showSpeciesLayer(layerName, layerId);
 	  		
 	      }
-	   
-	  
-	   
-	  
-	    
+	       
 	});
 	
 	$(".uno").click(function(event) {
@@ -247,12 +238,7 @@ function showLayer(layerName, layerId) {
     		} else if (layerName == "Bioclim" ){
     			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/"+layerName+"/p"+(layerId-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		}
-    		else if (layerName == "distribution" ){
-    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files//species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-    		}
-    		else if (layerName == "threshold" ){
-    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files//species/"+layerId+"/with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-    		}
+    		
       	},																																																			
       	tileSize: new google.maps.Size(256, 256),
       	isPng: true,
@@ -286,11 +272,14 @@ function showSpeciesLayer(layerName, layerId) {
     	//aqui obtengo la ruta de los tiles que he seleccionado en el radiobutton
     	getTileUrl: function(point, zoom) {
     		var X = point.x % (1 << zoom); // para repetir los tiles alrededor del mundo
-    		 if (layerName == "distribution" ){
-    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    		 if (layerName == "distributionLimitedtoconvex" ){
+    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    		}
+    		else if (layerName == "distribution" ){
+    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		}
     		else if (layerName == "threshold" ){
-    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
     		}
       	},																																																			
       	tileSize: new google.maps.Size(256, 256),
