@@ -81,7 +81,7 @@ h5 { font-size: 11px; }
 	text-decoration: none;
 	height: 2em;
 	line-height: 1em;
-	behavior: url(PIE.htc);
+	behavior: url(templates/PIE.htc);
 	
 }
 #navigation a.selected {
@@ -209,13 +209,8 @@ margin-bottom:1em;
 height:150px;
 }
 #button{
-z-index:3;
-position:absolute;
-top:100px;
-left:1px;
-right:100px;
 text-align:left;
-margin:50px;
+padding-left: 2px;
 }
 
 #tab{

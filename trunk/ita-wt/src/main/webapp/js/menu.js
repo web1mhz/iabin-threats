@@ -31,11 +31,12 @@ for (i=0;i<x.length;i++)
 	document.write("<h5><label> genus : Nectomys</label></h5>");	
 	document.write("<h5><label> specie : Nectomys apicalis</label></h5>");	
 	//alert($target.attr('id'));
-	document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrence records</h5>");	
+	document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrences records</h5>");	
 	document.write("<h5><input type=checkbox name='convex' key='' class=specieData> Convex hull</h5>");
 	document.write("<h5><input type=checkbox name='convexHull' key='' class=specieData> Convex hull buffer</h5>");
-	document.write("<h5><input type=checkbox id='0' name='distribution' key='' class=specieDistribution> Species distribution</h5>");
-	document.write("<h5><input type=checkbox id='1' name='threshold' key='' class=specieDistribution > Species distribution threshold</h5>");
+	document.write("<h5><input type=checkbox id='0' name='distributionLimitedtoconvex' key='' class=specieDistribution> Species distribution limited to convex hull (probabilities)</h5>");
+	document.write("<h5><input type=checkbox id='1' name='distribution' key='' class=specieDistribution >Species distribution (probabilities)</h5>");
+	document.write("<h5><input type=checkbox id='2' name='threshold' key='' class=specieDistribution >Thresholded species distribution</h5>");
 	document.write("<div id=popupContact>");
 	document.write("<a id=popupContactClose>x</a>");	
 	document.write("<h1>Taxononomic Species Menu</h1>");
