@@ -31,7 +31,7 @@ $(".Bioclim").click(function(event) {
 });
 
 
-	$(".specieData").click(function(event) {
+$(".specieData").click(function(event) {
     var $target = $(event.target);
     key = $target.attr("key");
     if($target.attr("name") == "occurrences") {
@@ -44,72 +44,46 @@ $(".Bioclim").click(function(event) {
     		showConvexHull(key);
     		
     	}
-  //  setActualPosition();
-	});
+});
 	
-	$(".specieDistribution").click(function(event) {
-	    var $target = $(event.target);
-	    var layerName=$target.attr("name")
-	    var layerId=$target.attr("key")
-	    var layerIDe=$target.attr("id")	    
-	    var overlayMaps = [
-	    	 	           		/* These are simply ImageMapTypeOptions we keep to create ImageMapTypes on demand when checkboxes are clicked
-	    	 	           		(http://code.google.com/apis/maps/documentation/v3/reference.html#ImageMapTypeOptions) */
-	    	 	           		{
-	    	 	           			getTileUrl: function(point, zoom){
-	    	 	           			 var X = point.x % (1 << zoom);
-	    	 	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-	    	 	           			},tileSize: new google.maps.Size(256,256),
-	    	 	           			isPng:true
-	    	 	           		},{
-	    	 	           			getTileUrl: function(point, zoom){
-	    	 	           			var X = point.x % (1 << zoom);
-	    	 	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-	    	 	           			},tileSize: new google.maps.Size(256,256),
-	    	 	           			isPng:true
-	    	 	           		},{
-	    	 	           			getTileUrl: function(point, zoom){
-	    	 	           			var X = point.x % (1 << zoom);
-	    	 	           			  return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-	    	 	           			},tileSize: new google.maps.Size(256,256),
-	    	 	           			isPng:true
-	    	 	           		}
-	    	 	           	];
-	    
-	    //alert(layerIDe);
-	    
-	    //alert($(this).attr('checked'));
-	    if(layerId == "") {	    	
-	    	$(this).attr('checked',false);
-		  	
-	    	
-	      }else 	  	/* Get the ID of the checkbox that was checked. 
-	    	 	This number corresponds to the order of the layers in our "uc.overlayMaps" array */
-	    	 	
-	    	 	if ($(this).attr('checked')){
-	    	 		/* Just using jQuery to see if the checkbox was checked or unchecked.
-	    	 		In this case it was checked, add the layer */
-	    	 	
-	    	 		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerIDe]);
-	    	 		/* Create a new ImageMapType with the ImageMapTypeOptions (http://code.google.com/apis/maps/documentation/v3/reference.html#ImageMapTypeOptions)
-	    	 		we've stored in our "uc.overlayMaps" array */
-	    	 			
-	    	 		map.overlayMapTypes.setAt(layerIDe,overlayMap);
-	    	 		/* Use our "layerID" to tell the map where in the "overlayMapTypes" array to insert our new layer */
-	    	 	}else{
-	    	 		/* The checkbox was unchecked, remove the layer */
-	    	 		if (map.overlayMapTypes.getLength()>0){
-	    	 			map.overlayMapTypes.setAt(layerIDe,null);
-	    	 			/* Use our "layerID" to tell the map where to set to null 
-	    	 			If we use "removeAt" instead of "setAt" our array length gets funky so
-	    	 			we just switch the layer out with a null. This effectively removes the layer.*/
-	    	 		}
-	    	 	}
-	  		
-	      
-	       
-	});
-	
+$(".specieDistribution").click(function(event) {
+    var $target = $(event.target);
+    var layerName=$target.attr("name");
+    var layerId=$target.attr("key");
+    var layerSpecieId=parseInt($target.attr("id"));	    
+    if(layerId == "") {	    	
+    	$target.attr('checked',false);
+    } else {	   
+    	if ($target.attr('checked')){
+    		var overlayMaps = [
+    		                   {
+    		                	   getTileUrl: function(point, zoom){
+	    	    	 	           		var X = point.x % (1 << zoom);
+	    	    	 	           		return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	    	 	           }, tileSize: new google.maps.Size(256,256),
+	    	    	 	           	 isPng:true
+	    	    	 	        } , {
+	    	    	 	    	    getTileUrl: function(point, zoom){
+	    	    	 	            	var X = point.x % (1 << zoom);
+	    	    	 	            	return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	    	 	            },tileSize: new google.maps.Size(256,256),
+	    	    	 	           	 isPng:true
+	    	    	 	          },{
+	    	    	 	           	 getTileUrl: function(point, zoom){
+	    	    	 	           	 	var X = point.x % (1 << zoom);
+	    	    	 	           	 	return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	    	 	           	 },tileSize: new google.maps.Size(256,256),
+	    	    	 	           			isPng:true
+	    	    	 	           }
+	    	    	 	         ];
+	    	 var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSpecieId]);	    	
+	    	 map.overlayMapTypes.setAt(1,overlayMap);	  
+	    } else {
+	    	map.overlayMapTypes.setAt(1,null);
+	    }    	
+    }
+});
+
 	$(".uno").click(function(event) {
 		 var $target = $(event.target);
 		
@@ -196,7 +170,13 @@ function initialize() {
 		if (map.getZoom() > 10) {
 			map.setZoom(10);
 		}
-	});	
+	});
+    if(map.overlayMapTypes.getLength() < 4) {
+    	map.overlayMapTypes.push(null);
+    	map.overlayMapTypes.push(null);
+    	map.overlayMapTypes.push(null);
+    	map.overlayMapTypes.push(null);
+    }
  }  
  
 function setActualPosition() {
@@ -251,15 +231,26 @@ function showConvexHull(key) {
 } 
 
 function showProtectedAreas() {	
-	
-	//alert(document.form1.Summaries.checked);
-	
 			paLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/total-info12.kml", {preserveViewport:true})
 			paLayer.setMap(map);
 	
 	} 
 function showLayer(layerName, layerId) {
-	
+	 var overlayMaps = [
+	 	           		{
+	 	           			getTileUrl: function(point, zoom){
+	 	           			 var X = point.x % (1 << zoom);
+	 	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/"+layerName+"/"+layerName+layerId+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	 	           			},tileSize: new google.maps.Size(256,256),
+	 	           			isPng:true
+	 	           		},{
+	 	           			getTileUrl: function(point, zoom){
+	 	           			 var X = point.x % (1 << zoom);
+	 	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/"+layerName+"/p"+(layerId-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	 	           			},tileSize: new google.maps.Size(256,256),
+	 	           			isPng:true
+	 	           		}
+	 	           		];
 	
 	var o = parseFloat(document.getElementById("opac").value);
 	var opac;
@@ -274,114 +265,16 @@ function showLayer(layerName, layerId) {
 	} else {
 		opac = o/100;
 	}
-    var tiles = new google.maps.ImageMapType({
-    	//aqui obtengo la ruta de los tiles que he seleccionado en el radiobutton
-    	getTileUrl: function(point, zoom) {
-    		var X = point.x % (1 << zoom); // para repetir los tiles alrededor del mundo
-    		if(layerName == "Threats" ) {
-    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/"+layerName+"/"+layerName+layerId+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-    		} else if (layerName == "Bioclim" ){
-    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/"+layerName+"/p"+(layerId-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-    		}
-    		
-      	},																																																			
-      	tileSize: new google.maps.Size(256, 256),
-      	isPng: true,
-      	opacity:opac
-    });
-   
-    for(i = 0; i < map.overlayMapTypes.length; i++) {
-    	  map.overlayMapTypes.setAt(i, null);
-    }	
-   
-    map.overlayMapTypes.push(tiles); 
+	
+	if (layerName == "Threats"){
+		var overlayMap = new google.maps.ImageMapType(overlayMaps[0]);
+ 		map.overlayMapTypes.setAt(0,overlayMap);
+	}else{
+ 		if (map.overlayMapTypes.getLength()>0){
+ 			map.overlayMapTypes.setAt(0,null);
+ 		}
+	}
+	
+	
  }
 
-function showSpeciesLayer(layerName, layerId) {
-	/*
-	
-	var o = parseFloat(document.getElementById("opac").value);
-	var opac;
-	if(o > 100){
-		opac = 100;
-		opac = opac/100;
-		document.getElementById('opac').value = 100;
-	} else if(o < 0) {
-		opac = 100;
-		opac = opac / 100;
-		document.getElementById('opac').value = 100;
-	} else {
-		opac = o/100;
-	}
-    var tiles1 = new google.maps.ImageMapType({
-    	//aqui obtengo la ruta de los tiles que he seleccionado en el radiobutton
-    	getTileUrl: function(point, zoom) {
-    		var X = point.x % (1 << zoom); // para repetir los tiles alrededor del mundo
-    		 if (layerName == "distributionLimitedtoconvex" ){
-    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-    		}
-    		else if (layerName == "distribution" ){
-    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-    		}
-    		else if (layerName == "threshold" ){
-    			return  "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-    		}
-      	},																																																			
-      	tileSize: new google.maps.Size(256, 256),
-      	isPng: true,
-      	opacity:opac
-    });
-   
-    map.overlayMapTypes.push(tiles1); */
-	
-	var overlayMaps = [
-	           		/* These are simply ImageMapTypeOptions we keep to create ImageMapTypes on demand when checkboxes are clicked
-	           		(http://code.google.com/apis/maps/documentation/v3/reference.html#ImageMapTypeOptions) */
-	           		{
-	           			getTileUrl: function(point, zoom){
-	           			 var X = point.x % (1 << zoom);
-	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-	           			},tileSize: new google.maps.Size(256,256),
-	           			opacity:0.7,
-	           			isPng:true
-	           		},{
-	           			getTileUrl: function(point, zoom){
-	           			var X = point.x % (1 << zoom);
-	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-	           			},tileSize: new google.maps.Size(256,256),
-	           			isPng:true
-	           		},{
-	           			getTileUrl: function(point, zoom){
-	           			var X = point.x % (1 << zoom);
-	           			  return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
-	           			},tileSize: new google.maps.Size(256,256),
-	           			isPng:true
-	           		}
-	           	];
-	
-	var layerIDe = parseInt($(this).attr('id'));
-	/* Get the ID of the checkbox that was checked. 
-	This number corresponds to the order of the layers in our "uc.overlayMaps" array */
-	
-	if ($(this).attr('checked')){
-		/* Just using jQuery to see if the checkbox was checked or unchecked.
-		In this case it was checked, add the layer */
-	
-		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerIDe]);
-		/* Create a new ImageMapType with the ImageMapTypeOptions (http://code.google.com/apis/maps/documentation/v3/reference.html#ImageMapTypeOptions)
-		we've stored in our "uc.overlayMaps" array */
-			
-		map.overlayMapTypes.setAt(layerIDe,overlayMap);
-		/* Use our "layerID" to tell the map where in the "overlayMapTypes" array to insert our new layer */
-	}else{
-		/* The checkbox was unchecked, remove the layer */
-		if (map.overlayMapTypes.getLength()>0){
-			map.overlayMapTypes.setAt(layerIDe,null);
-			/* Use our "layerID" to tell the map where to set to null 
-			If we use "removeAt" instead of "setAt" our array length gets funky so
-			we just switch the layer out with a null. This effectively removes the layer.*/
-		}
-	}
-	
-	
- }
