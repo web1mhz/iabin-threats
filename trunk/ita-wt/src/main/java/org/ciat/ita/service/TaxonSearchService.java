@@ -69,7 +69,7 @@ public class TaxonSearchService extends HttpServlet {
 		ArrayList<String> canonicals = new ArrayList<String>();
 		conx = DataBaseManager.openConnection(Info.getUser(), Info.getPass(), Info.getIp(), Info.getPort(), Info.getDatabase());
 		
-		rs = DataBaseManager.makeQuery("select tn.canonical from taxon_name tn where tn.canonical like '%"+term+"%' group by tn.canonical limit 10", conx);
+		rs = DataBaseManager.makeQuery("select tn.canonical from IABIN_taxon_name tn where tn.canonical like '%"+term+"%' group by tn.canonical limit 10", conx);
 		
 		while (!rs.isClosed() && rs.next()) {
 			canonicals.add(rs.getString(1));

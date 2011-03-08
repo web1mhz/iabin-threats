@@ -51,17 +51,62 @@ $(".Bioclim").click(function(event) {
 	    var $target = $(event.target);
 	    var layerName=$target.attr("name")
 	    var layerId=$target.attr("key")
+	    var layerIDe=$target.attr("id")	    
+	    var overlayMaps = [
+	    	 	           		/* These are simply ImageMapTypeOptions we keep to create ImageMapTypes on demand when checkboxes are clicked
+	    	 	           		(http://code.google.com/apis/maps/documentation/v3/reference.html#ImageMapTypeOptions) */
+	    	 	           		{
+	    	 	           			getTileUrl: function(point, zoom){
+	    	 	           			 var X = point.x % (1 << zoom);
+	    	 	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           			},tileSize: new google.maps.Size(256,256),
+	    	 	           			isPng:true
+	    	 	           		},{
+	    	 	           			getTileUrl: function(point, zoom){
+	    	 	           			var X = point.x % (1 << zoom);
+	    	 	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           			},tileSize: new google.maps.Size(256,256),
+	    	 	           			isPng:true
+	    	 	           		},{
+	    	 	           			getTileUrl: function(point, zoom){
+	    	 	           			var X = point.x % (1 << zoom);
+	    	 	           			  return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           			},tileSize: new google.maps.Size(256,256),
+	    	 	           			isPng:true
+	    	 	           		}
+	    	 	           	];
 	    
+	    //alert(layerIDe);
+	    
+	    //alert($(this).attr('checked'));
 	    if(layerId == "") {	    	
-		document.form1.distributionLimitedtoconvex.checked = false;
-		document.form1.distribution.checked = false;
-		document.form1.threshold.checked = false;
+	    	$(this).attr('checked',false);
 		  	
 	    	
-	      }else {
-	    	  showSpeciesLayer(layerName, layerId);
+	      }else 	  	/* Get the ID of the checkbox that was checked. 
+	    	 	This number corresponds to the order of the layers in our "uc.overlayMaps" array */
+	    	 	
+	    	 	if ($(this).attr('checked')){
+	    	 		/* Just using jQuery to see if the checkbox was checked or unchecked.
+	    	 		In this case it was checked, add the layer */
+	    	 	
+	    	 		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerIDe]);
+	    	 		/* Create a new ImageMapType with the ImageMapTypeOptions (http://code.google.com/apis/maps/documentation/v3/reference.html#ImageMapTypeOptions)
+	    	 		we've stored in our "uc.overlayMaps" array */
+	    	 			
+	    	 		map.overlayMapTypes.setAt(layerIDe,overlayMap);
+	    	 		/* Use our "layerID" to tell the map where in the "overlayMapTypes" array to insert our new layer */
+	    	 	}else{
+	    	 		/* The checkbox was unchecked, remove the layer */
+	    	 		if (map.overlayMapTypes.getLength()>0){
+	    	 			map.overlayMapTypes.setAt(layerIDe,null);
+	    	 			/* Use our "layerID" to tell the map where to set to null 
+	    	 			If we use "removeAt" instead of "setAt" our array length gets funky so
+	    	 			we just switch the layer out with a null. This effectively removes the layer.*/
+	    	 		}
+	    	 	}
 	  		
-	      }
+	      
 	       
 	});
 	
@@ -171,7 +216,7 @@ function showOccurences(key) {
 	  if (document.form1.occurrences.checked){
 		  kml_layer1 = "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-point.kml";
 		  //TODO  esta ruta debe permitir ser configurable.
-		  ctaLayer = new google.maps.KmlLayer(kml_layer1, {preserveViewport:true});
+		  ctaLayer = new google.maps.KmlLayer(kml_layer1, {preserveViewport:true, suppressInfoWindows: true});
 		  ctaLayer.setMap(map);
 	  } else {
 		ctaLayer.setMap(null);
@@ -184,7 +229,7 @@ function showConvex(key) {
 		document.form1.convex.checked = false;
 	} else {
 		if (document.form1.convex.checked==true){
-			convexLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-chull.kml", {preserveViewport:true})
+			convexLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-chull.kml", {preserveViewport:true, suppressInfoWindows: true})
 			convexLayer.setMap(map);
 		} else {
 			convexLayer.setMap(null);			
@@ -197,7 +242,7 @@ function showConvexHull(key) {
 		document.form1.convexHull.checked = false;
 	} else {
 		if (document.form1.convexHull.checked==true){
-			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-chullbuff.kml", {preserveViewport:true})
+			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-chullbuff.kml", {preserveViewport:true, suppressInfoWindows: true})
 			poligonLayer.setMap(map);
 		} else {
 			poligonLayer.setMap(null);			
@@ -253,7 +298,7 @@ function showLayer(layerName, layerId) {
  }
 
 function showSpeciesLayer(layerName, layerId) {
-	
+	/*
 	
 	var o = parseFloat(document.getElementById("opac").value);
 	var opac;
@@ -287,5 +332,56 @@ function showSpeciesLayer(layerName, layerId) {
       	opacity:opac
     });
    
-    map.overlayMapTypes.push(tiles1); 
+    map.overlayMapTypes.push(tiles1); */
+	
+	var overlayMaps = [
+	           		/* These are simply ImageMapTypeOptions we keep to create ImageMapTypes on demand when checkboxes are clicked
+	           		(http://code.google.com/apis/maps/documentation/v3/reference.html#ImageMapTypeOptions) */
+	           		{
+	           			getTileUrl: function(point, zoom){
+	           			 var X = point.x % (1 << zoom);
+	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	           			},tileSize: new google.maps.Size(256,256),
+	           			opacity:0.7,
+	           			isPng:true
+	           		},{
+	           			getTileUrl: function(point, zoom){
+	           			var X = point.x % (1 << zoom);
+	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	           			},tileSize: new google.maps.Size(256,256),
+	           			isPng:true
+	           		},{
+	           			getTileUrl: function(point, zoom){
+	           			var X = point.x % (1 << zoom);
+	           			  return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	           			},tileSize: new google.maps.Size(256,256),
+	           			isPng:true
+	           		}
+	           	];
+	
+	var layerIDe = parseInt($(this).attr('id'));
+	/* Get the ID of the checkbox that was checked. 
+	This number corresponds to the order of the layers in our "uc.overlayMaps" array */
+	
+	if ($(this).attr('checked')){
+		/* Just using jQuery to see if the checkbox was checked or unchecked.
+		In this case it was checked, add the layer */
+	
+		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerIDe]);
+		/* Create a new ImageMapType with the ImageMapTypeOptions (http://code.google.com/apis/maps/documentation/v3/reference.html#ImageMapTypeOptions)
+		we've stored in our "uc.overlayMaps" array */
+			
+		map.overlayMapTypes.setAt(layerIDe,overlayMap);
+		/* Use our "layerID" to tell the map where in the "overlayMapTypes" array to insert our new layer */
+	}else{
+		/* The checkbox was unchecked, remove the layer */
+		if (map.overlayMapTypes.getLength()>0){
+			map.overlayMapTypes.setAt(layerIDe,null);
+			/* Use our "layerID" to tell the map where to set to null 
+			If we use "removeAt" instead of "setAt" our array length gets funky so
+			we just switch the layer out with a null. This effectively removes the layer.*/
+		}
+	}
+	
+	
  }
