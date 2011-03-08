@@ -21,10 +21,10 @@ for (i=0;i<x.length;i++)
   document.write(x[i].attributes.getNamedItem("name").nodeValue);
   document.write("</a>");
   document.write("<ul id="+x[i].attributes.getNamedItem("name").nodeValue+">");
-  
+  document.write("<h5><a id=clear"+x[i].attributes.getNamedItem("id").nodeValue+"><img src=images/boton-clear.png border=0 align=left /></a></h5><br>");
   document.write("<div id=both>");
    if(x[i].attributes.getNamedItem("name").nodeValue=="Species"){		
-	document.write("<div id=button><input type=button value=Search Species ></div>");
+	document.write("<div id=button><input type=button value='Search Species' ></div>");
 	document.write("<h5><label> Example specie</label></h5>");
 	document.write("<h5><label> class : mammalia</label></h5>");	
 	document.write("<h5><label> family : Muridae</label></h5>");	
@@ -46,17 +46,17 @@ for (i=0;i<x.length;i++)
 	document.write("</div>");
 	document.write("<div id='treeStyle'>");
 	document.write("<ul class='general'>");
-	document.write("<li id='149476' rank='1000' class='element'><a href='#'> Plants</a></li>");
+	document.write("<li id='13140804' rank='1000' class='element'><a href='#'> Plants</a></li>");
 	document.write("<br>");
-	document.write("<li id='221704' rank='3000' class='element'><a href='#'> Amphibians</a></li>");
+	document.write("<li id='13140952' rank='3000' class='element'><a href='#'> Amphibians</a></li>");
 	document.write("<br>");
-	document.write("<li id='221705' rank='3000' class='element'><a href='#'> Birds</a></li>");
+	document.write("<li id='13140955' rank='3000' class='element'><a href='#'> Birds</a></li>");
 	document.write("<br>");
-	document.write("<li id='149449' rank='3000' class='element'><a href='#'> Insects</a></li>");
+	document.write("<li id='13140937' rank='3000' class='element'><a href='#'> Insects</a></li>");
 	document.write("<br>");
-	document.write("<li id='223922' rank='3000' class='element'><a href='#'> Mammals</a></li>");
+	document.write("<li id='13140957' rank='3000' class='element'><a href='#'> Mammals</a></li>");
 	document.write("<br>");
-	document.write("<li id='223924' rank='3000' class='element'><a href='#'> Reptiles</a></li>");
+	document.write("<li id='13140958' rank='3000' class='element'><a href='#'> Reptiles</a></li>");
 	document.write("</ul>");
 	document.write("</div>");
 	document.write("</p></div>");

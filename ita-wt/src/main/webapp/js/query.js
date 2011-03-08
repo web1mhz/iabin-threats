@@ -96,7 +96,7 @@
 			$("#buttonShowInfo").css("visibility", "hidden");
 		});
 		
-		$("#clearThreats").click(function() {
+		$("#clearthreat-menu").click(function() {
 			$("#buttonShowInfo").css("visibility", "hidden");	
 			$("#showScale").css("visibility", "hidden");			
 		    ($("#Threats-0").attr("checked", false));
@@ -107,6 +107,15 @@
 		    ($("#Threats-5").attr("checked", false));
 		    ($("#Threats-6").attr("checked", false));
 		    ($("#Threats-7").attr("checked", false));
+		    
+		    for(i = 0; i < map.overlayMapTypes.length; i++) {
+		    	  map.overlayMapTypes.setAt(i, null);
+		    }		
+		});
+		
+		$("#clearbioclim-menu").click(function() {
+			$("#buttonShowInfo").css("visibility", "hidden");	
+			$("#showScale").css("visibility", "hidden");			
 		    ($("#Bioclim-8").attr("checked", false));
 		    ($("#Bioclim-9").attr("checked", false));
 		    ($("#Bioclim-10").attr("checked", false));
@@ -131,6 +140,7 @@
 		    	  map.overlayMapTypes.setAt(i, null);
 		    }		
 		});
+		
 		$("#closeLink").click(function() {
 			$("#buttonShowInfo").css("visibility", "");			
 		});
