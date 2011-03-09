@@ -5,10 +5,7 @@
 				   $("#Species").slideUp("fast");
 				   $("#Summaries").slideUp("fast");	
 				   var contador = true;
-				   var contador1 = true;
-        
-			
-		
+				   var contador1 = true;		
         $("#boton1").click(function(event) {
            event.preventDefault();
             if(contador == true) {
@@ -17,8 +14,7 @@
 				$("#opacity").slideUp("slow");
 				$("#boton1").hide(10);
                 contador = true;
-            }
-                      
+            }                      
         });
 		 $("#boton2").click(function(event) {
            event.preventDefault();
@@ -29,15 +25,11 @@
 				$("#opacity").slideDown("slow");
 				$("#boton1").slideDown("fast");
                 contador1 = true;
-            }
-                      
+            }                      
         });
         
 		$("#threat-menu").click(function(event) {
-			event.preventDefault();
-
-
-						
+			event.preventDefault();						
 			if($("#Threats").attr("style").indexOf("none") > -1) {
 				$("#Threats").slideDown("slow");
 				$("#Bioclim").slideUp("slow");
@@ -47,8 +39,7 @@
 				   $("#Bioclim").slideUp("slow");
 				   $("#Species").slideUp("slow");
 				   $("#Summaries").slideUp("slow");	}
-		});
-		
+		});		
 		$("#bioclim-menu").click(function(event) {
 			event.preventDefault();
 			if($("#Bioclim").attr("style").indexOf("none") > -1) {
@@ -60,8 +51,7 @@
 					$("#Threats").slideUp("slow");	
 					$("#Species").slideUp("slow");
 					$("#Summaries").slideUp("slow");}
-		});
-		
+		});		
 		$("#taxon-menu").click(function(event) {
 			event.preventDefault();
 			if($("#Species").attr("style").indexOf("none") > -1) {
@@ -72,10 +62,8 @@
 			} else {$("#Species").slideUp("slow");
 				   $("#Bioclim").slideUp("slow");
 				   $("#Threats").slideUp("slow");	
-				   $("#Summaries").slideUp("slow");}
-					
-		});
-            
+				   $("#Summaries").slideUp("slow");}					
+		});            
 			$("#summaries-menu").click(function(event) {
 			event.preventDefault();
 			if($("#Summaries").attr("style").indexOf("none") > -1) {
@@ -89,13 +77,11 @@
 				   $("#Bioclim").slideUp("slow");
 				   $("#Threats").slideUp("slow");}
 		});
-
 		$("#buttonShowInfo").css("visibility", "hidden");
 		$("#buttonShowInfo").click(function(){
 			abrir_ampliacion();
 			$("#buttonShowInfo").css("visibility", "hidden");
-		});
-		
+		});		
 		$("#clearthreat-menu").click(function() {
 			$("#buttonShowInfo").css("visibility", "hidden");	
 			$("#showScale").css("visibility", "hidden");			
@@ -106,13 +92,9 @@
 		    ($("#Threats-4").attr("checked", false));
 		    ($("#Threats-5").attr("checked", false));
 		    ($("#Threats-6").attr("checked", false));
-		    ($("#Threats-7").attr("checked", false));
-		    
-		    for(i = 0; i < map.overlayMapTypes.length; i++) {
-		    	  map.overlayMapTypes.setAt(i, null);
-		    }		
-		});
-		
+		    ($("#Threats-7").attr("checked", false));		    
+		    map.overlayMapTypes.setAt(0,null);
+		});		
 		$("#clearbioclim-menu").click(function() {
 			$("#buttonShowInfo").css("visibility", "hidden");	
 			$("#showScale").css("visibility", "hidden");			
@@ -134,17 +116,24 @@
 		    ($("#Bioclim-23").attr("checked", false));
 		    ($("#Bioclim-24").attr("checked", false));
 		    ($("#Bioclim-25").attr("checked", false));
-		    ($("#Bioclim-26").attr("checked", false));
-		    
-		    for(i = 0; i < map.overlayMapTypes.length; i++) {
-		    	  map.overlayMapTypes.setAt(i, null);
-		    }		
+		    ($("#Bioclim-26").attr("checked", false));		    
+		    map.overlayMapTypes.setAt(0,null);
 		});
-		
+		$("#cleartaxon-menu").click(function() {
+			$("#buttonShowInfo").css("visibility", "hidden");	
+			$("#showScale").css("visibility", "hidden");
+			($(".specieData").attr("checked", false));
+			($(".specieDistribution").attr("checked", false));
+			occurencesLayer.setMap(null);
+			convexLayer.setMap(null);
+			poligonLayer.setMap(null);
+		    map.overlayMapTypes.setAt(1,null);
+		    map.overlayMapTypes.setAt(2,null);
+		    map.overlayMapTypes.setAt(3,null);
+		});		
 		$("#closeLink").click(function() {
 			$("#buttonShowInfo").css("visibility", "");			
-		});
-			
+		});			
      });
    
      $(function() {
