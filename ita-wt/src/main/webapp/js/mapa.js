@@ -245,7 +245,6 @@ function showOccurences(key) {
 	} else {
 	  if (document.form1.occurrences.checked){
 		  kml_layer1 = "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-point.kml?date="+(new Date()).getTime();
-		  alert(kml_layer1);
 		  //TODO  esta ruta debe permitir ser configurable.
 		  occurencesLayer = new google.maps.KmlLayer(kml_layer1, {preserveViewport:true, suppressInfoWindows: true});
 		  occurencesLayer.setMap(map);
