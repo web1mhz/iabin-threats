@@ -7,8 +7,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,12 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.ciat.ita.model.DataBaseManager;
-import org.ciat.ita.model.TaxonObject;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class TaxonSearchService extends HttpServlet {
+public class TaxonSearchServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = -2765354609645409373L;
 	private Connection conx;

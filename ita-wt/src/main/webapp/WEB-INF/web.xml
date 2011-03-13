@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!--<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 
-	2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd"> -->
 
 <web-app>
-	<!-- Taxon Click Service -->
+	<!-- This servlet runs for searching species when user click in one of the list canonicals -->
 	<servlet>
 		<servlet-name>TaxonClick</servlet-name>
-		<servlet-class>org.ciat.ita.service.Service</servlet-class>
+		<servlet-class>org.ciat.ita.service.TaxonClickServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TaxonClick</servlet-name>
 		<url-pattern>/service.do</url-pattern>
 	</servlet-mapping>
 	
-	<!-- Taxon Search Service -->
+	<!-- This servlet runs for searching a particular specie in the input text field. -->
 	<servlet>
 		<servlet-name>TaxonSearch</servlet-name>
-		<servlet-class>org.ciat.ita.service.TaxonSearchService</servlet-class>
+		<servlet-class>org.ciat.ita.service.TaxonSearchServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TaxonSearch</servlet-name>

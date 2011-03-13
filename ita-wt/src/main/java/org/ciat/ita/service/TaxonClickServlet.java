@@ -20,7 +20,7 @@ import org.ciat.ita.model.TaxonObject;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class Service extends HttpServlet {
+public class TaxonClickServlet extends HttpServlet {
 	private static final long serialVersionUID = 7332571365625168689L;
 	private Connection conx;
 	private static Gson gson = new Gson();
