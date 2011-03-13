@@ -33,21 +33,18 @@
 									}
 								}							
 							}
-							//$target.append(" <ul style='display:none;'><li id="+taxon.id+" rank="+taxon.rankID+
-								//" class=element><a><Strong>"+title+"</Strong>"+" "+taxon.canonical+"</a></li></ul>");
 							temp += "<li id="+taxon.id+" rank="+taxon.rankID+
 									" class=element><a>"+taxon.canonical+"</a></li>";
 						});
 						temp = "<li class=rankElement><Strong>"+rank+"</Strong></li>" + temp;
-						temp = "<ul>"+temp+"</ul>";
-						$target.append(temp);
-						
+						temp = "<ul style=display:none>"+temp+"</ul>";
+						$target.append(temp);						
 					},
 					complete: function(data, code) {
 						if(code == "success") {
 							$("#"+$target.attr("id")+" #loaderGift").remove();
 							$("#" + $target.attr("id")).children("a").css("background", "url(images/minus.gif) no-repeat 10px center");
-							//$("#" + $target.attr("id")).children("ul").slideDown('fast');
+							$("#" + $target.attr("id")).children("ul").slideDown('fast');
 						}
 					},
 					error: function(data, error, objectError) {
@@ -63,13 +60,13 @@
 			if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
 				// if is visible slide up and hide the content.							
 				$("#" + $target.attr("id")).children("a").css("background", "url(images/plus.gif) no-repeat 10px center");
-				$("#" + $target.attr("id")).children("ul").css("display", "none");
-				//$("#" + $target.attr("id")).children("ul").slideUp('fast');
+				//$("#" + $target.attr("id")).children("ul").css("display", "none");
+				$("#" + $target.attr("id")).children("ul").slideUp('fast');
 				
 			} else {
 				// if is not visible slide down and show the content.
-				$("#" + $target.attr("id")).children("ul").css("display", "");
-				//$("#" + $target.attr("id")).children("ul").slideDown('fast');
+				//$("#" + $target.attr("id")).children("ul").css("display", "");
+				$("#" + $target.attr("id")).children("ul").slideDown('fast');
 				$("#" + $target.attr("id")).children("a").css("background", "url(images/minus.gif) no-repeat 10px center");			
 			}
 		}					
