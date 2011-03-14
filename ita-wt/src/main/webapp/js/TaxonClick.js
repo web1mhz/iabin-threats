@@ -1,6 +1,7 @@
  	var archivo;
 	$(document).ready(function() {		
 	$(".element").click(function(event) {
+		event.preventDefault();
 		event.stopPropagation();
 		$target = $(event.target).parent();
 		if($("#" + $target.attr("id")+" ul").attr("id") == undefined) {
