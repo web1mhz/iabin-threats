@@ -120,8 +120,6 @@
 		    map.overlayMapTypes.setAt(0,null);
 		});
 		$("#cleartaxon-menu").click(function() {
-			$("#buttonShowInfo").css("visibility", "hidden");	
-			$("#showScale").css("visibility", "hidden");
 			($(".specieData").attr("checked", false));
 			($(".specieDistribution").attr("checked", false));
 			occurencesLayer.setMap(null);

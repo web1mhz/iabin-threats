@@ -36,7 +36,13 @@
 	<category  id="taxon-menu" name="Species">
 	</category>
 	<category id="summaries-menu" name="Summaries">	
-	<item type="checkbox" name="Summaries" class="uno" id="Summaries" >Protected Areas</item>
-	<item type="checkbox" name="Summaries" class="richness" id="Summaries" >Current species richness</item>
-    </category>
+	<item type="checkbox" name="Summaries" class="Summaries" id="Summaries" >Protected Areas</item>
+	<item type="checkbox" name="plants" class="richness" id="Summaries" >Current species Plants richness</item>
+	<item type="checkbox" name="mammals" class="richness" id="Summaries" >Current species Mammals richness</item>
+	<item type="checkbox" name="reptiles" class="richness" id="Summaries" >Current species Reptiles richness</item>
+	<item type="checkbox" name="amphibians" class="richness" id="Summaries" >Current species Amphibians richness</item>
+	<item type="checkbox" name="insects" class="richness" id="Summaries" >Current species Insects richness</item>
+	<item type="checkbox" name="birds" class="richness" id="Summaries" >Current species Birds richness</item>
+	<item type="checkbox" name="all" class="richness" id="Summaries" >Current species all richness</item>
+	</category>
 </Menu>
