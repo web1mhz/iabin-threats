@@ -36,10 +36,89 @@ public class TaxonomyTableCreator {
 			DataBaseManager.registerDriver();
 			java.sql.Connection conx=DataBaseManager.openConnection(ServerConfig.getInstance().database_user, ServerConfig.getInstance().database_password);
 			
+			
+			String classID;
+			String className;
+			
+			//insert classes
+			classID="13140937";
+			className="Insects";			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_concept " +
+					"(id, kingdom_concept_id," +
+					"taxon_name_id,rank ) values (" +
+					classID+","+13140803+
+					","+classID+",3000)", conx);
+			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_name " +
+					"(id, canonical,rank ) values (" +
+					classID+",'"+className+"',3000)", conx);
+			
+			classID="13140958";
+			className="Reptiles";			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_concept " +
+					"(id, kingdom_concept_id," +
+					"taxon_name_id,rank ) values (" +
+					classID+","+13140803+
+					","+classID+",3000)", conx);
+			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_name " +
+					"(id, canonical,rank ) values (" +
+					classID+",'"+className+"',3000)", conx);
+			
+			classID="13140955";
+			className="Birds";			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_concept " +
+					"(id, kingdom_concept_id," +
+					"taxon_name_id,rank ) values (" +
+					classID+","+13140803+
+					","+classID+",3000)", conx);
+			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_name " +
+					"(id, canonical,rank ) values (" +
+					classID+",'"+className+"',3000)", conx);
+
+			classID="13140952";
+			className="Amphibia";			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_concept " +
+					"(id, kingdom_concept_id," +
+					"taxon_name_id,rank ) values (" +
+					classID+","+13140803+
+					","+classID+",3000)", conx);
+			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_name " +
+					"(id, canonical,rank ) values (" +
+					classID+",'"+className+"',3000)", conx);
+			
+			classID="13140957";
+			className="Mammals";			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_concept " +
+					"(id, kingdom_concept_id," +
+					"taxon_name_id,rank ) values (" +
+					classID+","+13140803+
+					","+classID+",3000)", conx);
+			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_name " +
+					"(id, canonical,rank ) values (" +
+					classID+",'"+className+"',3000)", conx);
+			
+			//insert kingdom
+			
+			String kingdomID="13140804";
+			String kingdomName="Plants";
+		
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_concept " +
+					"(id, " +
+					"taxon_name_id,rank ) values (" +
+					kingdomID+
+					","+kingdomID+",1000)", conx);
+			
+			DataBaseManager.makeChange("insert IGNORE into IABIN_taxon_name " +
+					"(id, canonical,rank ) values (" +
+					kingdomID+",'"+kingdomName+"',1000)", conx);
+			
 			String linea=file.nextLine();
 			String split[];
-			String kingdomID="";
-			String classID="";
+			
 			String familyID;
 			String familyName;
 			String genusID;
