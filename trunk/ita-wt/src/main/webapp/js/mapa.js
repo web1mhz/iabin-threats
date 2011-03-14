@@ -30,7 +30,7 @@ $(".Threats").click(function(event) {
                            {
                         	   getTileUrl: function(point, zoom){
                                var X = point.x % (1 << zoom);
-                               return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/"+layerName+"/"+layerName+layerId+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+                               return path+layerName+"/"+layerName+layerId+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
                                },tileSize: new google.maps.Size(256,256),
                                isPng:true,
                                opacity:opac
@@ -46,13 +46,9 @@ $(".Threats").click(function(event) {
         xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/'+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
 		$("#botonMostrarInfo").css("visibility", "hidden");
-		
-		
-		//showLayer(layerName, layerId);
 		setActualPosition();
 		
 });
-
 $(".Bioclim").click(function(event) {
         var $target = $(event.target);
 		var layerName=$target.attr("id").split("-")[0]
@@ -61,7 +57,7 @@ $(".Bioclim").click(function(event) {
                            {
                         	   getTileUrl: function(point, zoom){
                                var X = point.x % (1 << zoom);
-                               return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/"+layerName+"/p"+(layerId-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+                               return path+layerName+"/p"+(layerId-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
                                },tileSize: new google.maps.Size(256,256),
                                isPng:true,
                                opacity:opac
@@ -77,7 +73,6 @@ $(".Bioclim").click(function(event) {
         xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/'+layerName+'/p'+(layerId-7)+'/p'+(layerId-7)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
 		$("#botonMostrarInfo").css("visibility", "hidden");
-		//showLayer(layerName, layerId); 
 		setActualPosition();
 });
 
@@ -98,6 +93,7 @@ $(".specieData").click(function(event) {
 });
 	
 $(".specieDistribution").click(function(event) {
+	alert(path);
     var $target = $(event.target);
     var layerName=$target.attr("name");
     var layerId=$target.attr("key");
@@ -106,21 +102,21 @@ $(".specieDistribution").click(function(event) {
 	                   {
 	                	   getTileUrl: function(point, zoom){
 	    	 	           		var X = point.x % (1 << zoom);
-	    	 	           		return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           		return path+"species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	           },tileSize: new google.maps.Size(256,256),
 	    	 	           	 isPng:true,
 	    	 	           	 opacity:0.7
 	    	 	        } , {
 	    	 	    	    getTileUrl: function(point, zoom){
 	    	 	            	var X = point.x % (1 << zoom);
-	    	 	            	return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	            	return path+"species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	            },tileSize: new google.maps.Size(256,256),
 	    	 	           	 isPng:true,
 	    	 	           	 opacity:0.6
 	    	 	          },{
 	    	 	           	 getTileUrl: function(point, zoom){
 	    	 	           	 	var X = point.x % (1 << zoom);
-	    	 	           	 	return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           	 	return path+"species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	           	 },tileSize: new google.maps.Size(256,256),
 	    	 	           	   isPng:true,
 	    	 	           	   opacity:0.5
@@ -146,49 +142,49 @@ $(".richness").click(function(event) {
 	                   {
 	                	   getTileUrl: function(point, zoom){
 	    	 	           		var X = point.x % (1 << zoom);
-	    	 	           		return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           		return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	       		},tileSize: new google.maps.Size(256,256),
 	    	 	           	  isPng:true,
 	    	 	           	  opacity:0.7
 	                   },{
 	                	   getTileUrl: function(point, zoom){
    	 	           				var X = point.x % (1 << zoom);
-   	 	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+   	 	           				return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
    	 	       				},tileSize: new google.maps.Size(256,256),
    	 	       				  isPng:true,
    	 	       				  opacity:0.7
 	                   },{
 		               	   getTileUrl: function(point, zoom){
 	    	 	           		var X = point.x % (1 << zoom);
-	    	 	           		return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           		return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	       		},tileSize: new google.maps.Size(256,256),
 	    	 	           	  isPng:true,
 	    	 	           	  opacity:0.7
 	                   },{
 		               	   getTileUrl: function(point, zoom){
 	    	 	           		var X = point.x % (1 << zoom);
-	    	 	           		return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/"+layerName+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           		return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	       		},tileSize: new google.maps.Size(256,256),
 	    	 	           	  isPng:true,
 	    	 	           	  opacity:0.7
 	                   },{
 	                	   getTileUrl: function(point, zoom){
    	 	           				var X = point.x % (1 << zoom);
-   	 	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/"+layerName+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+   	 	           				return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
    	 	       				},tileSize: new google.maps.Size(256,256),
    	 	       				  isPng:true,
    	 	       				  opacity:0.7
 	                   },{
 	                	   getTileUrl: function(point, zoom){
 	 	           				var X = point.x % (1 << zoom);
-	 	           				return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/"+layerName+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	 	           				return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	 	       				},tileSize: new google.maps.Size(256,256),
 	 	       				  isPng:true,
 	 	           	          opacity:0.7
 	                    },{
 		                    getTileUrl: function(point, zoom){
 	    	 	           		var X = point.x % (1 << zoom);
-	    	 	           		return "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/"+layerName+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           		return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	       		},tileSize: new google.maps.Size(256,256),
 	    	 	           	  isPng:true,
 	    	 	           	  opacity:0.7
@@ -198,10 +194,18 @@ $(".richness").click(function(event) {
        	if ($target.attr('checked')){
 			var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSpecieId]);
 			
-			map.overlayMapTypes.setAt((layerSpecieId+4),overlayMap);	  
+			map.overlayMapTypes.setAt((layerSpecieId+4),overlayMap);
+			xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+	        xShow('showScale');
+			$("#botonMostrarInfo").css("visibility", "hidden");
 		} else {
 			map.overlayMapTypes.setAt((layerSpecieId+4),null);
-		}    	
+			$("#buttonShowInfo").css("visibility", "hidden");	
+			$("#showScale").css("visibility", "hidden");	
+			
+		} 
+       	
+        
    
 });
 	
@@ -227,7 +231,7 @@ function cerrar_ampliacion(){
 }
 
  // ------------------------------------ JavaScript -------------------------------------
- 
+  var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
   var cont=0; 
   var map;  
   var so=4;
@@ -287,7 +291,7 @@ function showOccurences(key) {
 		document.form1.occurrences.checked = false;
 	} else {
 	  if (document.form1.occurrences.checked){
-		  kml_layer1 = "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-point.kml?date="+(new Date()).getTime();
+		  kml_layer1 = path+"species/"+key+"/"+key+"-point.kml?date="+(new Date()).getTime();
 		  //TODO  esta ruta debe permitir ser configurable.
 		  occurencesLayer = new google.maps.KmlLayer(kml_layer1, {preserveViewport:true, suppressInfoWindows: true});
 		  occurencesLayer.setMap(map);
@@ -302,7 +306,7 @@ function showConvex(key) {
 		document.form1.convex.checked = false;
 	} else {
 		if (document.form1.convex.checked==true){
-			convexLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-chull.kml", {preserveViewport:true, suppressInfoWindows: true})
+			convexLayer = new google.maps.KmlLayer(path+"species/"+key+"/"+key+"-chull.kml", {preserveViewport:true, suppressInfoWindows: true})
 			convexLayer.setMap(map);
 		} else {
 			convexLayer.setMap(null);			
@@ -315,7 +319,7 @@ function showConvexHull(key) {
 		document.form1.convexHull.checked = false;
 	} else {
 		if (document.form1.convexHull.checked==true){
-			poligonLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/species/"+key+"/"+key+"-chullbuff.kml", {preserveViewport:true, suppressInfoWindows: true})
+			poligonLayer = new google.maps.KmlLayer(path+"species/"+key+"/"+key+"-chullbuff.kml", {preserveViewport:true, suppressInfoWindows: true})
 			poligonLayer.setMap(map);
 		} else {
 			poligonLayer.setMap(null);			
