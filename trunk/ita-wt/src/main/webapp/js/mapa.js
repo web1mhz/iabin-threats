@@ -78,19 +78,43 @@ $(".specieData").click(function(event) {
     var $target = $(event.target);
     key = $target.attr("key");
     if($target.attr("name") == "occurrences") {
-    		showOccurences(key);
-    	} 	else if($target.attr("name") == "convex") {
-    		showConvex(key);
-    		
+    	if(key == "") {
+    		$target.attr('checked',false);
+    	} else {
+    	  if ($target.attr('checked')){
+    		  occurencesLayer = new google.maps.KmlLayer(path+"species/"+key+"/"+key+"-point.kml?date="+(new Date()).getTime(), {preserveViewport:true, suppressInfoWindows: true});
+    		  occurencesLayer.setMap(map);
+    	  } else {
+    		  occurencesLayer.setMap(null);
+    	  }
     	}
-    	else if($target.attr("name") == "convexHull") {
-    		showConvexHull(key);
-    		
+    }else if($target.attr("name") == "convex") {
+    	if(key == "") {
+    		$target.attr('checked',false);
+    	} else {
+    	  if ($target.attr('checked')){
+    		  convexLayer = new google.maps.KmlLayer(path+"species/"+key+"/"+key+"-chull.kml", {preserveViewport:true, suppressInfoWindows: true});
+    		  convexLayer.setMap(map);
+    	  } else {
+    		  convexLayer.setMap(null);
+    	  }
     	}
+    		
+    }else if($target.attr("name") == "convexHull") {
+    	if(key == "") {
+    		$target.attr('checked',false);
+    	} else {
+    	  if ($target.attr('checked')){
+    		  poligonLayer = new google.maps.KmlLayer(path+"species/"+key+"/"+key+"-chullbuff.kml", {preserveViewport:true, suppressInfoWindows: true});
+    		  poligonLayer.setMap(map);
+    	  } else {
+    		  poligonLayer.setMap(null);
+    	  }
+    	}
+    }
 });	
 $(".specieDistribution").click(function(event) {
-	alert(path);
-    var $target = $(event.target);
+	var $target = $(event.target);
     var layerName=$target.attr("name");
     var layerId=$target.attr("key");
     var layerSpecieId=parseInt($target.attr("id"));
@@ -266,44 +290,6 @@ function initialize() {
     	
     }
  }  
-function showOccurences(key) {
-	if(key == "") {
-		document.form1.occurrences.checked = false;
-	} else {
-	  if (document.form1.occurrences.checked){
-		  kml_layer1 = path+"species/"+key+"/"+key+"-point.kml?date="+(new Date()).getTime();
-		  //TODO  esta ruta debe permitir ser configurable.
-		  occurencesLayer = new google.maps.KmlLayer(kml_layer1, {preserveViewport:true, suppressInfoWindows: true});
-		  occurencesLayer.setMap(map);
-	  } else {
-		  occurencesLayer.setMap(null);
-	  }
-  }
-}
-function showConvex(key) {	
-	if(key == "") {
-		document.form1.convex.checked = false;
-	} else {
-		if (document.form1.convex.checked==true){
-			convexLayer = new google.maps.KmlLayer(path+"species/"+key+"/"+key+"-chull.kml", {preserveViewport:true, suppressInfoWindows: true})
-			convexLayer.setMap(map);
-		} else {
-			convexLayer.setMap(null);			
-		}
-	}
-}   
-function showConvexHull(key) {	
-	if(key == "") {
-		document.form1.convexHull.checked = false;
-	} else {
-		if (document.form1.convexHull.checked==true){
-			poligonLayer = new google.maps.KmlLayer(path+"species/"+key+"/"+key+"-chullbuff.kml", {preserveViewport:true, suppressInfoWindows: true})
-			poligonLayer.setMap(map);
-		} else {
-			poligonLayer.setMap(null);			
-		}
-	}
-} 
 
 function showProtectedAreas() {	
 			paLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/total-info12.kml", {preserveViewport:true})
