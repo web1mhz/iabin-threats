@@ -2,7 +2,9 @@
 //@Author: Adrian "yEnS" Mato Gondelle
 //@website: www.yensdesign.com
 //@email: yensamg@gmail.com
-//@license: Feel free to use it, but keep this credits please!					
+//@license: Feel free to use it, but keep this credits please!
+
+// adapted by CIAT Developer Team (DAPA Project) - johanse & htobon
 /***************************/
 
 //SETTING UP OUR POPUP
@@ -18,6 +20,12 @@ function loadPopup(){
 		});
 		$("#backgroundPopup").fadeIn("fast");
 		$("#popupContact").fadeIn("fast");
+		var $tree = $("#treeStyleTemp").clone(true);
+		$tree.attr("id", "treeStyle");
+		$tree.css("display", "");
+		$("#searchSpecie").after($tree);
+		//$tree.appendTo($("#contactArea"));
+		
 		popupStatus = 1;
 	}
 }
@@ -27,7 +35,8 @@ function disablePopup(){
 	//disables popup only if it is enabled
 	if(popupStatus==1){
 		$("#backgroundPopup").fadeOut("slow");
-		$("#popupContact").fadeOut("slow");
+		$("#popupContact").fadeOut("slow");		
+		$("#treeStyle").remove();
 		popupStatus = 0;
 	}
 }
