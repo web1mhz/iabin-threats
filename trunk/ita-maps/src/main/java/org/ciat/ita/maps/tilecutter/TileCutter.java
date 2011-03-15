@@ -2,6 +2,7 @@ package org.ciat.ita.maps.tilecutter;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -12,6 +13,7 @@ import org.ciat.ita.maps.tilecutter.tile.TileManager;
 import org.ciat.ita.maps.tilecutter.tile.colormanager.ColorManager;
 import org.ciat.ita.maps.tilecutter.tile.colormanager.ColorManagerFactory;
 import org.ciat.ita.maps.utils.PropertiesManager;
+import org.geotools.data.collection.ListFeatureCollection;
 
 /**
  * Clase principal (Main)
@@ -86,7 +88,7 @@ public class TileCutter {
 	}
 	
 	//converts the raster (.asc) files in the folder specified in properties file, to tile images
-	public static void createSpeciesDistributionImages(String arg) throws IOException{
+	public static void createSpeciesDistributionImages(String arg, String min, String max) throws IOException, NumberFormatException{
 		
 		if(control==true) PropertiesManager.register(arg);
 
@@ -97,12 +99,18 @@ public class TileCutter {
 		String sourcePath = PropertiesManager.getInstance().getPropertiesAsString("path.source");
 		String species = PropertiesManager.getInstance().getPropertiesAsString("species.path");
 		String speciesDistribution = PropertiesManager.getInstance().getPropertiesAsString("speciesDistribution");
-		if (speciesDistribution.equalsIgnoreCase("true")) System.out.println("se recorrer· la carpeta de especies");
+		if (speciesDistribution.equalsIgnoreCase("true")) System.out.println("se recorrer√° la carpeta de especies");
 
 		
 		File folder = new File(sourcePath + species);
 		System.out.println("folder: "+folder);
-		File[] listOfFiles = folder.listFiles();
+		File[] listOfFiles;
+		if(min != null && max != null) {
+			listOfFiles = folder.listFiles(new CustomPathFilter(min, max));
+		} else {
+			listOfFiles = folder.listFiles();
+		}
+		
 		for (File s : listOfFiles) {
 			if (s.isDirectory()) {
 		

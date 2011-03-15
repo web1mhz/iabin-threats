@@ -133,13 +133,13 @@ public class General {
 
 		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile, atributos);
 
-		if (language.equals("espanol") || language.equals("español")) {
+		if (language.equals("espanol") || language.equals("espaï¿½ol")) {
 			System.out.println("bienvenido \n seleccione la opcion que desee");
 			System.out.println("1. crear el archivo properties");
 			System.out.println("2. convierte archivo .shp a kml, protected areas");
-			System.out.println("3. convierte archivo .csv a kml; puntos y polígonos - ocurrencias y chull, chull-buff");
+			System.out.println("3. convierte archivo .csv a kml; puntos y polï¿½gonos - ocurrencias y chull, chull-buff");
 			System.out.println("4. convierte archivo .asc a png, variables bioclimaticas");
-			System.out.println("5. convierte archivo .asc a png, distribución de especies");
+			System.out.println("5. convierte archivo .asc a png, distribuciï¿½n de especies");
 			System.out.println("6. realiza todos los procesos anteriores");
 			System.out.println("para mas info consulta en la wiki del proyecto http://code.google.com/p/iabin-threats/wiki/DataConversion");
 		}
@@ -156,9 +156,9 @@ public class General {
 		String option;
 		String horaEmpieza = this.getDateTime();
 		if (language.equals("english"))	System.out.println("started at : " + horaEmpieza);
-		if (language.equals("espanol") || language.equals("español"))System.out.println("empieza a las : " + horaEmpieza);
+		if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("empieza a las : " + horaEmpieza);
 		if (language.equals("english"))	System.out.print("please select an option :");
-		if (language.equals("espanol") || language.equals("español"))System.out.print("por favor seleccione una opción :");
+		if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.print("por favor seleccione una opciï¿½n :");
 
 		Scanner in = new Scanner(System.in);
 		option = in.nextLine();
@@ -168,10 +168,10 @@ public class General {
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
+			if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("usted escogiï¿½ la opciï¿½n :" + option);
 
 			// *****************************************************************************
-			// esta sección crea el archivo properties con la configuración por
+			// esta secciï¿½n crea el archivo properties con la configuraciï¿½n por
 			// defecto
 			PropertiesGenerator propGen = new PropertiesGenerator(targetpath+ "default-iabin.properties");
 			try {
@@ -187,7 +187,7 @@ public class General {
 		if (opt == 2 || opt == 6)
 		{		
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
+			if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("usted escogiï¿½ la opciï¿½n :" + option);
 
 			File file = new File(sourceFile);//loads the shape file to read
 			System.out.println("folder of shape file: "+sourceFile);
@@ -243,7 +243,7 @@ public class General {
 				Placemark placemark = KmlFactory.createPlacemark();
 				String estilo = PropertiesManager.getInstance().getPropertiesAsString("style.url");
 				/* se recorre la lista generando las coordenadas y agregando al folder		*/
-				placemark = folder.createAndAddPlacemark();//se crea el placemark y se añade al folder	
+				placemark = folder.createAndAddPlacemark();//se crea el placemark y se aï¿½ade al folder	
 				placemark.withName(atributos.get(1)).withDescription(descripcion).withStyleUrl(estilo);	
 				Point punto=Shapefile.getPointForMarker(sf);	
 				//se crean las coordenadas y se registran al placemark
@@ -270,15 +270,15 @@ public class General {
 			
 		}// fin case 2
 		// **********************************************************************************************************
-		// *** esta sección se encarga de recorrer la carpeta data y cargar los
+		// *** esta secciï¿½n se encarga de recorrer la carpeta data y cargar los
 		// archivos csv para convertir a kml
-		// puntos y polígonos - ocurrencias y chull, chull-buff
+		// puntos y polï¿½gonos - ocurrencias y chull, chull-buff
 
 		if (opt == 3 || opt == 6)
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
+			if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("usted escogiï¿½ la opciï¿½n :" + option);
 
 			// String
 			// estilo="http://wikipedia.agilityhoster.com/estilo.kml#estilo";//se
@@ -353,7 +353,7 @@ public class General {
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
+			if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("usted escogiï¿½ la opciï¿½n :" + option);
 
 			try {
 				TileCutter.execute(propertiesFile);
@@ -371,20 +371,60 @@ public class General {
 		{
 			
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
+			if (language.equals("espanol") || language.equals("espaÃ±ol"))System.out.println("usted escogiÃ³ la opciÃ³n :" + option);
+			
+			if(opt == 5) {
+			
+				if (language.equals("english"))	System.out.println("Do you want to run the script for all species? y/n :");
+				if (language.equals("espanol") || language.equals("espaÃ±ol"))System.out.println("Desea correr el algoritmo para todas las especies? s/n" + option);
+				option = in.nextLine();
 
-			try {
-				TileCutter.createSpeciesDistributionImages(propertiesFile);
-			} catch (IOException e) {
-				System.out.println("file not found");
-				e.getMessage();
-				e.printStackTrace();
+				if(option.equalsIgnoreCase("n")) {
+						if (language.equals("english"))	System.out.println("Please write the minimum and maximum species directory separated by (-), format: 78465-98750543:");
+						if (language.equals("espanol") || language.equals("espaÃ±ol"))System.out.println("Por favor, indique el cÃ³digo de espÃ©cie mÃ­nimo y mÃ¡ximo, formato: 78465-98750543");
+						option = in.nextLine();					
+						String[] minMax = option.split("-");
+						if(minMax.length == 2) {
+							String min = minMax[0];
+							String max = minMax[1];
+							try {
+								TileCutter.createSpeciesDistributionImages(propertiesFile, min, max);
+							} catch (IOException e) {
+								System.out.println("file not found");
+								e.getMessage();
+								e.printStackTrace();
+							}
+						} else {
+							if (language.equals("english"))	System.out.println("Invalid format!");
+							if (language.equals("espanol") || language.equals("espaÃ±ol"))System.out.println("Formato incorrecto!");
+						}
+				} else {
+					try {
+						TileCutter.createSpeciesDistributionImages(propertiesFile, null, null);
+					} catch (IOException e) {
+						System.out.println("file not found");
+						e.getMessage();
+						e.printStackTrace();
+					}
+				}
+			} else {			
+				try {
+					TileCutter.createSpeciesDistributionImages(propertiesFile, null, null);
+				} catch (NumberFormatException e) {
+					System.out.println("format error");
+					e.getMessage();
+					e.printStackTrace();
+				} catch (IOException e) {
+					System.out.println("file not found");
+					e.getMessage();
+					e.printStackTrace();
+				}
 			}
 			
 		}//fin case 5
 
 		String horaTermina = this.getDateTime();
-		if (language.equals("espanol") || language.equals("español"))System.out.println("empezó a las : " + horaEmpieza + "\r\n"+ " finalizó a las : " + horaTermina);
+		if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("empezï¿½ a las : " + horaEmpieza + "\r\n"+ " finalizï¿½ a las : " + horaTermina);
 		if (language.equals("english"))System.out.println("started at : " + horaEmpieza + "\r\n"+ " ended at : " + horaTermina);
 
 	}// fin switch
