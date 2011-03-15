@@ -33,8 +33,6 @@
 	 
 	 
 	</category>
-	<category  id="taxon-menu" name="Species">
-	</category>
 	<category id="summaries-menu" name="Summaries">	
 	<item type="checkbox" name="Summaries" class="Summaries" id="Summaries" >Protected Areas</item>
 	<item type="checkbox" name="plants" class="richness" id="Summaries" >Current species Plants richness</item>

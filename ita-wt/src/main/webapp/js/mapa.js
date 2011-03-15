@@ -43,11 +43,9 @@ $(".Threats").click(function(event) {
 	    	map.overlayMapTypes.setAt(0,null);
 	    }   
 		
-        xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/'+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('c1','<img src="'+path+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
 		$("#botonMostrarInfo").css("visibility", "hidden");
-		setActualPosition();
-		
 });
 $(".Bioclim").click(function(event) {
         var $target = $(event.target);
@@ -70,10 +68,9 @@ $(".Bioclim").click(function(event) {
 	    	map.overlayMapTypes.setAt(0,null);
 	    }                                                           
                                                   
-        xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/'+layerName+'/p'+(layerId-7)+'/p'+(layerId-7)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('c1','<img src="'+path+layerName+'/p'+(layerId-7)+'/p'+(layerId-7)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
 		$("#botonMostrarInfo").css("visibility", "hidden");
-		setActualPosition();
 });
 
 
@@ -90,8 +87,7 @@ $(".specieData").click(function(event) {
     		showConvexHull(key);
     		
     	}
-});
-	
+});	
 $(".specieDistribution").click(function(event) {
 	alert(path);
     var $target = $(event.target);
@@ -129,8 +125,7 @@ $(".specieDistribution").click(function(event) {
 			map.overlayMapTypes.setAt((layerSpecieId+1),overlayMap);	  
 		} else {
 			map.overlayMapTypes.setAt((layerSpecieId+1),null);
-		}    	
-   
+		}   
 });
 
 $(".richness").click(function(event) {
@@ -195,7 +190,7 @@ $(".richness").click(function(event) {
 			var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSpecieId]);
 			
 			map.overlayMapTypes.setAt((layerSpecieId+4),overlayMap);
-			xInnerHtml('c1','<img src="http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+			xInnerHtml('c1','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
 	        xShow('showScale');
 			$("#botonMostrarInfo").css("visibility", "hidden");
 		} else {
@@ -203,10 +198,7 @@ $(".richness").click(function(event) {
 			$("#buttonShowInfo").css("visibility", "hidden");	
 			$("#showScale").css("visibility", "hidden");	
 			
-		} 
-       	
-        
-   
+		}   
 });
 	
 	$(".opacidad").click(function(event) {
@@ -229,7 +221,6 @@ function cerrar_ampliacion(){
 	xShow('showScale');
 	
 }
-
  // ------------------------------------ JavaScript -------------------------------------
   var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
   var cont=0; 
@@ -275,17 +266,6 @@ function initialize() {
     	
     }
  }  
- 
-function setActualPosition() {
-	c = map.getCenter();
-	x = c.lng();
-	y = c.lat();   
-	so1= map.getZoom();
-	map.setCenter(new google.maps.LatLng(y,x));
-	map.setZoom(so1);
-	map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
-}
-
 function showOccurences(key) {
 	if(key == "") {
 		document.form1.occurrences.checked = false;
@@ -300,7 +280,6 @@ function showOccurences(key) {
 	  }
   }
 }
-
 function showConvex(key) {	
 	if(key == "") {
 		document.form1.convex.checked = false;
@@ -312,8 +291,7 @@ function showConvex(key) {
 			convexLayer.setMap(null);			
 		}
 	}
-} 
-   
+}   
 function showConvexHull(key) {	
 	if(key == "") {
 		document.form1.convexHull.checked = false;
