@@ -70,7 +70,6 @@ function menu() {
 			}
 		} 
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Species"){
-			alert('id');
 			document.write("<div id=button><input type=button value='Search Species' ></div>");
 	        document.write("<div id=infoEspecie style='display:none;'>");
 	        document.write("<h5><label> class :</label><label id=data> mammalia</label></h5>");     
@@ -88,28 +87,39 @@ function menu() {
 	        document.write("<a id=popupContactClose>x</a>");        
 	        document.write("<h1>Taxononomic Species Menu</h1>");
 	        document.write("<p id=contactArea>");
-	        document.write("<div class='searchSpecie'>");
+	        document.write("<div id='searchSpecie' class='searchSpecie'>");
 	        document.write("<input id='search' class='ui-widget' /><input type=button value=Search />");
 	        document.write("</div>");
-	        document.write("<div id='treeStyle'>");
-	        document.write("<ul class='general'>");
-	        document.write("<li id='13140804' rank='1000' class='element'><a href=''> Plants</a></li>");
-	        document.write("<br>");
-	        document.write("<li id='13140952' rank='3000' class='element'><a href=''> Amphibians</a></li>");
-	        document.write("<br>");
-	        document.write("<li id='13140955' rank='3000' class='element'><a href=''> Birds</a></li>");
-	        document.write("<br>");
-	        document.write("<li id='13140937' rank='3000' class='element'><a href=''> Insects</a></li>");
-	        document.write("<br>");
-	        document.write("<li id='13140957' rank='3000' class='element'><a href=''> Mammals</a></li>");
-	        document.write("<br>");
-	        document.write("<li id='13140958' rank='3000' class='element'><a href=''> Reptiles</a></li>");
-	        document.write("</ul>");
-	        document.write("</div>");
+	        // Here goes the code about species popup
 	        document.write("</p></div>");
-	        document.write("<div id=backgroundPopup></div>");			
+	        document.write("<div id=backgroundPopup></div>");
 		}
 		document.write("</div></ul></li>");
 	}
 	document.write("</ul>");	
+}
+
+function infoPopupSpecies() {	
+	if (window.XMLHttpRequest) { // codigo para IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	} else {// codigo para IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.open("GET","templates/menu.xml",false);
+	xmlhttp.send();
+	xmlDoc=xmlhttp.responseXML;
+	var categories=xmlDoc.getElementsByTagName("category");
+	for (var i = 0; i < categories.length; i++) {
+		if(categories[i].attributes.getNamedItem("name").nodeValue=="Species"){
+			document.write("<div id='treeStyleTemp' style='display:none'>");				
+		    document.write("<ul class='general'>");
+		    var species = categories[i].getElementsByTagName("specie");
+		    for(j = 0; j < species.length; j++) {
+		    	document.write("<li id='"+species[j].attributes.getNamedItem("id").nodeValue+"' rank='"+species[j].attributes.getNamedItem("rank").nodeValue+"' class='element'><a href=''> "+species[j].childNodes[0].nodeValue+"</a></li>");		    	
+		    	document.write("<br>");
+		    }
+		    document.write("</ul>");
+		    document.write("</div>");
+		}
+	}    
 }
