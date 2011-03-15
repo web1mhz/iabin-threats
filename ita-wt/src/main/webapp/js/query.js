@@ -85,38 +85,13 @@
 		$("#clearthreat-menu").click(function() {
 			$("#buttonShowInfo").css("visibility", "hidden");	
 			$("#showScale").css("visibility", "hidden");			
-		    ($("#Threats-0").attr("checked", false));
-		    ($("#Threats-1").attr("checked", false));
-		    ($("#Threats-2").attr("checked", false));
-		    ($("#Threats-3").attr("checked", false));
-		    ($("#Threats-4").attr("checked", false));
-		    ($("#Threats-5").attr("checked", false));
-		    ($("#Threats-6").attr("checked", false));
-		    ($("#Threats-7").attr("checked", false));		    
+			($(".Threats").attr("checked", false));	    
 		    map.overlayMapTypes.setAt(0,null);
 		});		
 		$("#clearbioclim-menu").click(function() {
 			$("#buttonShowInfo").css("visibility", "hidden");	
 			$("#showScale").css("visibility", "hidden");			
-		    ($("#Bioclim-8").attr("checked", false));
-		    ($("#Bioclim-9").attr("checked", false));
-		    ($("#Bioclim-10").attr("checked", false));
-		    ($("#Bioclim-11").attr("checked", false));
-		    ($("#Bioclim-12").attr("checked", false));
-		    ($("#Bioclim-13").attr("checked", false));
-		    ($("#Bioclim-14").attr("checked", false));
-		    ($("#Bioclim-15").attr("checked", false));
-		    ($("#Bioclim-16").attr("checked", false));
-		    ($("#Bioclim-17").attr("checked", false));
-		    ($("#Bioclim-18").attr("checked", false));
-		    ($("#Bioclim-19").attr("checked", false));
-		    ($("#Bioclim-20").attr("checked", false));
-		    ($("#Bioclim-21").attr("checked", false));
-		    ($("#Bioclim-22").attr("checked", false));
-		    ($("#Bioclim-23").attr("checked", false));
-		    ($("#Bioclim-24").attr("checked", false));
-		    ($("#Bioclim-25").attr("checked", false));
-		    ($("#Bioclim-26").attr("checked", false));		    
+			($(".Bioclim").attr("checked", false));	    
 		    map.overlayMapTypes.setAt(0,null);
 		});
 		$("#cleartaxon-menu").click(function() {
