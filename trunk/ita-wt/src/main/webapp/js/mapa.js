@@ -24,8 +24,8 @@ $(document).ready(function() {
 			
 $(".Threats").click(function(event) {
 	    var $target = $(event.target);
-		var layerName=$target.attr("id").split("-")[0]
-        var layerId=$target.attr("id").split("-")[1]
+		var layerName=$target.attr("id").split("-")[0];
+        var layerId=$target.attr("id").split("-")[1];
         var overlayMaps = [
                            {
                         	   getTileUrl: function(point, zoom){
@@ -49,13 +49,13 @@ $(".Threats").click(function(event) {
 });
 $(".Bioclim").click(function(event) {
         var $target = $(event.target);
-		var layerName=$target.attr("id").split("-")[0]
-        var layerId=$target.attr("id").split("-")[1]
+		var layerName=$target.attr("id").split("-")[0];
+        var layerId=parseInt($target.attr("id").split("-")[1]);
         var overlayMaps = [
                            {
                         	   getTileUrl: function(point, zoom){
                                var X = point.x % (1 << zoom);
-                               return path+layerName+"/p"+(layerId-7)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+                               return path+layerName+"/p"+(layerId+1)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
                                },tileSize: new google.maps.Size(256,256),
                                isPng:true,
                                opacity:opac
@@ -68,7 +68,7 @@ $(".Bioclim").click(function(event) {
 	    	map.overlayMapTypes.setAt(0,null);
 	    }                                                           
                                                   
-        xInnerHtml('c1','<img src="'+path+layerName+'/p'+(layerId-7)+'/p'+(layerId-7)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('c1','<img src="'+path+layerName+'/p'+(layerId+1)+'/p'+(layerId+1)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
 		$("#botonMostrarInfo").css("visibility", "hidden");
 });
@@ -132,7 +132,7 @@ $(".richness").click(function(event) {
 	
     var $target = $(event.target);
     var layerName=$target.attr("name");
-    var layerSpecieId=($target.attr("id").split("-")[1])-28;
+    var layerSpecieId=parseInt($target.attr("id").split("-")[1]);
     var overlayMaps = [
 	                   {
 	                	   getTileUrl: function(point, zoom){
