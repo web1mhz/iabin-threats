@@ -129,7 +129,20 @@
 		    map.overlayMapTypes.setAt(2,null);
 		    map.overlayMapTypes.setAt(3,null);
 		});		
-		$("#closeLink").click(function() {
+		$("#clearsummaries-menu").click(function() {
+			$("#buttonShowInfo").css("visibility", "hidden");	
+			$("#showScale").css("visibility", "hidden");	
+			($(".richness").attr("checked", false));
+			map.overlayMapTypes.setAt(4,null);
+		    map.overlayMapTypes.setAt(5,null);
+		    map.overlayMapTypes.setAt(6,null);
+		    map.overlayMapTypes.setAt(7,null);
+		    map.overlayMapTypes.setAt(8,null);
+		    map.overlayMapTypes.setAt(9,null);
+		    map.overlayMapTypes.setAt(10,null);
+		    
+		});	
+	 $("#closeLink").click(function() {
 			$("#buttonShowInfo").css("visibility", "");			
 		});			
      });
