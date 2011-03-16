@@ -115,7 +115,7 @@
 		    map.overlayMapTypes.setAt(8,null);
 		    map.overlayMapTypes.setAt(9,null);
 		    map.overlayMapTypes.setAt(10,null);
-		    
+		    map.overlayMapTypes.setAt(11,null);
 		});	
 	 $("#closeLink").click(function() {
 			$("#buttonShowInfo").css("visibility", "");			

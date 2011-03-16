@@ -23,9 +23,7 @@ function loadPopup(){
 		var $tree = $("#treeStyleTemp").clone(true);
 		$tree.attr("id", "treeStyle");
 		$tree.css("display", "");
-		$("#searchSpecie").after($tree);
-		//$tree.appendTo($("#contactArea"));
-		
+		$("#searchSpecie").after($tree);		
 		popupStatus = 1;
 	}
 }

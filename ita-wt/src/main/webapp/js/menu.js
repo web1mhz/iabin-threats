@@ -42,20 +42,7 @@ function menu() {
 				document.write(items[j].childNodes[0].nodeValue);
 				document.write("</label></li></h5><br />");
 			}
-		}
-		if(categories[i].attributes.getNamedItem("name").nodeValue=="Species"){	
-			var items = categories[i].getElementsByTagName("item");
-			var j;
-			for(j = 0; j < items.length; j++) {			
-				document.write("<h5><li ><label>");
-				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
-						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
-						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
-						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" >");
-				document.write(items[j].childNodes[0].nodeValue);
-				document.write("</label></li></h5><br />");
-			}
-		}
+		}		
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Summaries"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
@@ -70,12 +57,9 @@ function menu() {
 			}
 		} 
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Species"){
+			
 			document.write("<div id=button><input type=button value='Search Species' ></div>");
 	        document.write("<div id=infoEspecie style='display:none;'>");
-	        document.write("<h5><label> class :</label><label id=data> mammalia</label></h5>");     
-	        document.write("<h5><label> family : Muridae</label></h5>");    
-	        document.write("<h5><label> genus : Nectomys</label></h5>");    
-	        document.write("<h5><label> specie : Nectomys apicalis</label></h5>");  
 	        document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrences records</h5>");        
 	        document.write("<h5><input type=checkbox name='convex' key='' class=specieData> Convex hull</h5>");
 	        document.write("<h5><input type=checkbox name='convexHull' key='' class=specieData> Convex hull buffer</h5>");
