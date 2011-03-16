@@ -5,7 +5,6 @@
 		event.stopPropagation();
 		$target = $(event.target).parent();
 		if($("#" + $target.attr("id")+" ul").attr("id") == undefined) {
-			
 			if($target.attr("rank")==7000) {
 				disablePopup();
 				$('input.specieData').attr("key", $target.attr("id"));
@@ -23,7 +22,7 @@
 					},
 					success: function(data) {
 						var rank = "";
-						var temp = "";					
+						var temp = "";
 						$.each(data, function(i, taxon) {
 							if(i == 0) {
 								rank = "Family: ";
@@ -37,10 +36,11 @@
 							}
 							temp += "<li id="+taxon.id+" rank="+taxon.rankID+
 									" class=element><a>"+taxon.canonical+"</a></li>";
-						});
+						});						
 						temp = "<li class=rankElement><Strong>"+rank+"</Strong></li>" + temp;
 						temp = "<ul style=display:none>"+temp+"</ul>";
-						$target.append(temp);						
+						$target.append(temp);
+						
 					},
 					complete: function(data, code) {
 						if(code == "success") {

@@ -156,7 +156,7 @@ $(".richness").click(function(event) {
 	
     var $target = $(event.target);
     var layerName=$target.attr("name");
-    var layerSpecieId=parseInt($target.attr("id").split("-")[1]);
+    var layerRichnessId=parseInt($target.attr("id").split("-")[1]);
     var overlayMaps = [
 	                   {
 	                	   getTileUrl: function(point, zoom){
@@ -211,14 +211,14 @@ $(".richness").click(function(event) {
 	                   
 	    	 	      ];
        	if ($target.attr('checked')){
-			var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSpecieId]);
+			var overlayMap = new google.maps.ImageMapType(overlayMaps[layerRichnessId-1]);
 			
-			map.overlayMapTypes.setAt((layerSpecieId+4),overlayMap);
+			map.overlayMapTypes.setAt((layerRichnessId+4),overlayMap);
 			xInnerHtml('c1','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
 	        xShow('showScale');
 			$("#botonMostrarInfo").css("visibility", "hidden");
 		} else {
-			map.overlayMapTypes.setAt((layerSpecieId+4),null);
+			map.overlayMapTypes.setAt((layerRichnessId+4),null);
 			$("#buttonShowInfo").css("visibility", "hidden");	
 			$("#showScale").css("visibility", "hidden");	
 			
@@ -276,6 +276,7 @@ function initialize() {
 		}
 	});
     if(map.overlayMapTypes.getLength() < 4) {
+    	map.overlayMapTypes.push(null);
     	map.overlayMapTypes.push(null);
     	map.overlayMapTypes.push(null);
     	map.overlayMapTypes.push(null);
