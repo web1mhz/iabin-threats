@@ -5,6 +5,12 @@ public class TaxonObject implements Comparable<TaxonObject> {
 	private String canonical;
 	private int rankID;	
 	
+	public TaxonObject(String id, String canonical, int rankID) {
+		super();
+		this.id = id;
+		this.canonical = canonical;
+		this.rankID = rankID;
+	}	
 	public TaxonObject() {
 		super();
 	}

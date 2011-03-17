@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.ciat.ita.model.DataBaseManager;
+import org.ciat.ita.model.TaxonObject;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -78,4 +79,21 @@ public class TaxonSearchServlet extends HttpServlet {
 		return canonicals;
 	}
 
+	
+	private ArrayList<TaxonObject> canonicalSearch(String canonical) throws SQLException {
+		ArrayList<TaxonObject> canonicals = new ArrayList<TaxonObject>();
+		conx = DataBaseManager.openConnection(Info.getUser(), Info.getPass(), Info.getIp(), Info.getPort(), Info.getDatabase());
+		
+		rs = DataBaseManager.makeQuery("select tn.id, tn.canonical, tn.rank  from IABIN_taxon_name tn where tn.canonical like '%"+canonical+"%' order by tn.rank ASC", conx);
+		
+		while (!rs.isClosed() && rs.next()) {
+			canonicals.add(new TaxonObject(rs.getInt("id")+"", rs.getString("canonical"), rs.getInt("rank")));
+		}
+
+		rs.close();
+
+		DataBaseManager.closeConnection(conx);
+		return canonicals;
+	}
+		
 }
