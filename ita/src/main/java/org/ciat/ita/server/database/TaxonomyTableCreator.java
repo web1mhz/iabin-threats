@@ -15,7 +15,8 @@ public class TaxonomyTableCreator {
 	 */
 	public static void main(String[] args) {
 		if(args.length<1){
-			System.out.println("Not enough arguments.");
+			System.out.println("Not enough arguments. Please enter the path of the CSV file as a parameter");
+			System.out.println("CSV header: Family ID, Family Name, Genus ID, Genus Name, Specie ID, Specie Name, Specie Type ID,  Specie Type Name");
 			System.exit(0);
 		}else{
 			File taxons=new File(args[0]);
@@ -23,7 +24,9 @@ public class TaxonomyTableCreator {
 				System.out.println("File "+args[0]+" doesn't exists");
 				System.exit(0);
 			}else{
+				System.out.println("Starting table creating process, CVS first row will be consider has header");
 				start(args);
+				System.out.println("Process finished");
 			}
 		}
 
@@ -126,15 +129,18 @@ public class TaxonomyTableCreator {
 			String specieID;
 			String specieName;
 			String type;
+			int count=0;
 			while(file.hasNextLine()){
-				linea=file.nextLine();
-				split=linea.split("[,]");
+			  count++;
+			  linea=file.nextLine();
+			  split=linea.split("[,]");
+			  if(split.length>7){
 				familyID=split[0].charAt(0)+"55"+split[0].substring(3);
-				familyName=split[1];
+				familyName=split[1].trim();
 				genusID=split[2].charAt(0)+"33"+split[2].substring(3);
-				genusName=split[3];
+				genusName=split[3].trim();
 				specieID=split[4];
-				specieName=split[5];
+				specieName=split[5].trim();
 				type=split[7];
 				
 				 if(type.equalsIgnoreCase("Insects")){
@@ -201,7 +207,9 @@ public class TaxonomyTableCreator {
 				 
 		
 				
-				
+			  }else{
+				  System.out.println("line "+count+" doesn't have enough columns ["+linea+"]");
+			  }
 			}
 			
 			DataBaseManager.closeConnection(conx);
