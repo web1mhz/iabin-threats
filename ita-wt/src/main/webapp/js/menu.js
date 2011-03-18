@@ -72,7 +72,7 @@ function menu() {
 	        document.write("<h1>Taxononomic Species Menu</h1>");
 	        document.write("<p id=contactArea>");
 	        document.write("<div id='searchSpecie' class='searchSpecie'>");
-	        document.write("<input id='search' class='ui-widget' /><input type=button value=Search />");
+	        document.write("<input id='search' class='ui-widget' /><input id='searchButton' type=button value='Search' />");
 	        document.write("</div>");
 	        // Here goes the code about species popup
 	        document.write("</p></div>");

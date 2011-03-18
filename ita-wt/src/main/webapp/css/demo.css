@@ -120,8 +120,10 @@ h5 { font-size: 11px; }
 #treeStyle h2{
 	font-size: 4em;
     margin-bottom: 50px;
-    }
-    
+}
+
+/* SEARCH SPECIES POPUP */
+
 #treeStyle ul.general                      {	text-align: left;width:150px}
 #treeStyle ul.general li               {	font-size: 15px; color: #333; }
 #treeStyle ul.general li a:link, a:visited, a:active		{	color: #000; text-decoration: underline; }
@@ -131,8 +133,12 @@ h5 { font-size: 11px; }
 #treeStyle ul.general li ul li			   {	width: 200px;font-size: 11px; display: block; padding-left: 25px;}
 #treeStyle ul.general li ul li.rankElement		   {	width: 200px;/*color: #A4A4A4;*/ font-style:italic;}
 #treeStyle ul.general li a ul li a         {   background: url(../images/plus.gif) no-repeat 10px center; }
+#treeStyle #loaderGift-big {padding-left: 150px; padding-top: 50px }
 
-	
+#treeStyle #error  {font-size: 15px; color: #610B0B; padding-left: 100px; padding-top: 50px;}
+
+
+
 /*
 	SEARCH STYLE
 */		
