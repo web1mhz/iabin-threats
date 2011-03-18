@@ -84,7 +84,7 @@ public class TaxonSearchServlet extends HttpServlet {
 		ArrayList<TaxonObject> canonicals = new ArrayList<TaxonObject>();
 		conx = DataBaseManager.openConnection(Info.getUser(), Info.getPass(), Info.getIp(), Info.getPort(), Info.getDatabase());
 		
-		rs = DataBaseManager.makeQuery("select tn.id, tn.canonical, tn.rank  from IABIN_taxon_name tn where tn.canonical like '%"+canonical+"%' order by tn.rank ASC", conx);
+		rs = DataBaseManager.makeQuery("select tn.id, tn.canonical, tn.rank  from IABIN_taxon_name tn where tn.canonical like '%"+canonical+"%' and rank>4000 order by tn.rank ASC", conx);
 		
 		while (!rs.isClosed() && rs.next()) {
 			canonicals.add(new TaxonObject(rs.getInt("id")+"", rs.getString("canonical"), rs.getInt("rank")));
