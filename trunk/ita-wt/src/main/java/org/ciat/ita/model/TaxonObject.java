@@ -1,5 +1,7 @@
 package org.ciat.ita.model;
 
+import java.text.DecimalFormat;
+
 public class TaxonObject implements Comparable<TaxonObject> {
 	private String id;
 	private String canonical;
@@ -50,4 +52,8 @@ public class TaxonObject implements Comparable<TaxonObject> {
 		return (this.getCanonical()+this.getRankID()).compareTo(o.getCanonical()+o.getRankID());
 	}
 	
+	@Override
+	public String toString() {		
+		return "id: "+id+", rankID: "+rankID+", canonical: "+canonical;
+	}	
 }

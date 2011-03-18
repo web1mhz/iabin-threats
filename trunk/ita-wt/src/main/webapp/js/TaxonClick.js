@@ -1,6 +1,6 @@
  	var archivo;
-	$(document).ready(function() {		
-	$(".element").click(function(event) {
+$(document).ready(function() {		
+	$(".element").live("click", function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		$target = $(event.target).parent();
@@ -51,7 +51,7 @@
 					},
 					error: function(data, error, objectError) {
 						// Aun falta implementar lo que sucederá cuando hay un error
-						alert("error: "+error);
+						alert("error: "+objectError);
 						$("#"+$target.attr("id")+" #loaderGift").remove();
 					}
 				}); // END ajax
@@ -71,6 +71,6 @@
 				$("#" + $target.attr("id")).children("ul").slideDown('fast');
 				$("#" + $target.attr("id")).children("a").css("background", "url(images/minus.gif) no-repeat 10px center");			
 			}
-		}					
-	});	// END click 
+		}	
+	}); // END click 	
 }); //END ready
