@@ -124,20 +124,27 @@ h5 { font-size: 11px; }
 
 /* SEARCH SPECIES POPUP */
 
-#treeStyle ul.general                      {	text-align: left;width:150px}
-#treeStyle ul.general li               {	font-size: 15px; color: #333; }
+#treeStyle ul.general                      {	text-align: left; width: 300px;}
+#treeStyle ul.general li               {	font-size: 15px; color: #333;}
 #treeStyle ul.general li a:link, a:visited, a:active		{	color: #000; text-decoration: underline; }
 #treeStyle ul.general li a:hover					{	color: #f4A774; background: url(../images/minus.gif) no-repeat 10px center;}
 #treeStyle ul.general li a 				{	width: 20px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px; }
 #treeStyle ul.general li a.desplegable		{	background: url(../images/plus.gif) no-repeat 10px center; }	
-#treeStyle ul.general li ul li			   {	width: 200px;font-size: 11px; display: block; padding-left: 25px;}
-#treeStyle ul.general li ul li.rankElement		   {	width: 200px;/*color: #A4A4A4;*/ font-style:italic;}
+#treeStyle ul.general li ul li			   {	width: 400px;font-size: 11px; display: block; padding-left: 25px;}
+#treeStyle ul.general li ul li.rankElement		   {	width: 400px;/*color: #A4A4A4;*/ font-style:italic;}
 #treeStyle ul.general li a ul li a         {   background: url(../images/plus.gif) no-repeat 10px center; }
 #treeStyle #loaderGift-big {padding-left: 150px; padding-top: 50px }
 
 #treeStyle #error  {font-size: 15px; color: #610B0B; padding-left: 100px; padding-top: 50px;}
 
-
+#treeStyle ul.search                 				{text-align: left; width: 300px; font-size: 11px;}
+#treeStyle ul.search li 							{text-align: left; width: 200px; padding-left: 25px; color: black;}
+#treeStyle ul.search li.rankElement		   			{width: 400px; font-size:15px; /*color: #A4A4A4;*/ font-style:italic; display: block; padding-top: 20px; padding-left: 0x;}
+#treeStyle ul.search li ul li			   			{width: 400px; display: block; padding-left: 25px;}
+#treeStyle ul.search li ul li.rankElement		   	{width: 400px; font-size: 11px; /*color: #A4A4A4;*/ font-style:italic; padding-top: 0px; padding-bottom: 0px; padding-left: 25px}
+#treeStyle ul.search li a 							{width: 400px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px;}
+#treeStyle ul.search li a:link, a:visited, a:active {color: #000; text-decoration: underline; }
+#treeStyle ul.search li a:hover						{color: #f4A774; background: url(../images/minus.gif) no-repeat 10px center;}
 
 /*
 	SEARCH STYLE
@@ -147,7 +154,8 @@ h5 { font-size: 11px; }
 
 
 
-/******STYLE POPUP **************/
+/******STYLE POPUP **************/no-repeat 10px center; padding-left: 25px;}
+#treeStyle ul.search li a:link, a:visited, a:active {color: #000; text-decoration: underline; }
 #backgroundPopup{
 display:none;
 position:fixed;

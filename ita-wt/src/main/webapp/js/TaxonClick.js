@@ -62,12 +62,10 @@ $(document).ready(function() {
 			if ($("#" + $target.attr("id")).children("ul").is(":visible")) {
 				// if is visible slide up and hide the content.							
 				$("#" + $target.attr("id")).children("a").css("background", "url(images/plus.gif) no-repeat 10px center");
-				//$("#" + $target.attr("id")).children("ul").css("display", "none");
 				$("#" + $target.attr("id")).children("ul").slideUp('fast');
 				
 			} else {
 				// if is not visible slide down and show the content.
-				//$("#" + $target.attr("id")).children("ul").css("display", "");
 				$("#" + $target.attr("id")).children("ul").slideDown('fast');
 				$("#" + $target.attr("id")).children("a").css("background", "url(images/minus.gif) no-repeat 10px center");			
 			}
