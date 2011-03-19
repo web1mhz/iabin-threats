@@ -23,41 +23,19 @@ $(document).ready(function() {
 				var $html = "<ul class='search'>";
 				for(var i = 0; i < data.length; i++) {					
 					$taxon = data[i];
-					/*if($taxon.rankID != $rankID) {
+					if($taxon.rankID != $rankID) {
 						$rankID = $taxon.rankID;
-						var $rank = "Family:";
+						var $rank = "Families:";
 						if($taxon.rankID==6000){
-							$rank="Genus:";
+							$rank="Genuses:";
 						} else if($taxon.rankID==7000) {
-								$rank="Specie: ";
+								$rank="Species: ";
 						}						
 						$html += "<li class='rankElement'><strong>"+$rank+"</strong></li>";
-					}*/
-					$html += "<li id='"+$taxon.id+"' class='element' rank='"+$taxon.rankID+"'><a>"+$taxon.canonical+"</a></li><br>";
-				}
-				
-				$("#treeStyle", $popupContext).append($html+"</ul>");
-				
-				
-				/*
-				var temp = "";					
-				$.each(data, function(i, taxon) {
-					if(i == 0) {
-						rank = "Family: ";
-						if(taxon.rankID==6000){
-							rank="Genus: ";
-						} else {
-							if(taxon.rankID==7000) {
-								rank="Specie: ";
-							}
-						}							
 					}
-					temp += "<li id="+taxon.id+" rank="+taxon.rankID+
-							" class=element><a>"+taxon.canonical+"</a></li>";
-				});
-				temp = "<li class=rankElement><Strong>"+rank+"</Strong></li>" + temp;
-				temp = "<ul style=display:none>"+temp+"</ul>";
-				$target.append(temp);	*/					
+					$html += "<li id='"+$taxon.id+"' class='element' rank='"+$taxon.rankID+"'><a>"+$taxon.canonical+"</a></li><br>";
+				}				
+				$("#treeStyle", $popupContext).append($html+"</ul>");				
 			},
 			complete: function(data, code) {
 				if(code == "success") {					
