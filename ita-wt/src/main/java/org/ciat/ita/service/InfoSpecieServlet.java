@@ -43,6 +43,7 @@ public class InfoSpecieServlet extends HttpServlet {
 			InfoSpecieModel infoSpecie = new InfoSpecieModel();
 			while ((line = reader.readLine()) != null) {
 				data = line.split(":");
+				String trimed = data[1].trim();
 				if (data[0].trim().equals("specie")) {
 					infoSpecie.setSpecieName(data[1].trim());
 				} else if (data[0].trim().equals("genus")) {
@@ -54,63 +55,66 @@ public class InfoSpecieServlet extends HttpServlet {
 				}else if (data[0].trim().equals("number.of.points")) {
 					infoSpecie.setNumberPoints(Integer.parseInt(data[1].trim()));
 				} else if (data[0].trim().equals("avg.auc_train")) {
-					infoSpecie.setAvgAucTrain (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setAvgAucTrain (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("avg.auc_test")) {
-					infoSpecie.setAvgAucTest (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setAvgAucTest (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("sd.auc")) {
-					infoSpecie.setSdAuc (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setSdAuc (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("prevalence")) {
-					infoSpecie.setPrevalence (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setPrevalence (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("percent.lost")) {
-					infoSpecie.setPercentLost (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setPercentLost (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("lost.mean.occ.probability")) {
-					infoSpecie.setLostMeanProbability (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setLostMeanProbability (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("not.lost.mean.occ.probability")) {
-					infoSpecie.setNotLostMeanProbability (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setNotLostMeanProbability (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.aggregate.mean")) {
-					infoSpecie.setAggregateMean (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setAggregateMean (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.aggregate.sd")) {
-					infoSpecie.setAggregateSd (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setAggregateSd (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.access_pop.mean")) {
-					infoSpecie.setAccessPopMean (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setAccessPopMean (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.access_pop.sd")) {
-					infoSpecie.setAccessPopSd (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setAccessPopSd (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.conv_ag.mean")) {
-					infoSpecie.setConvAgMean (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setConvAgMean (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.conv_ag.sd")) {
-					infoSpecie.setConvAgSd (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setConvAgSd (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.fires.mean")) {
-					infoSpecie.setFiresMean (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setFiresMean (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.fires.sd")) {
-					infoSpecie.setFiresSd (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setFiresSd (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.grazing.mean")) {
-					infoSpecie.setGrazingMean (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setGrazingMean (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.grazing.sd")) {
-					infoSpecie.setGrazingSd (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setGrazingSd (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.infrastr.mean")) {
-					infoSpecie.setInfrastrMean (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setInfrastrMean (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.infrastr.sd")) {
-					infoSpecie.setInfrastrSd (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setInfrastrSd (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.oil_gas.mean")) {
-					infoSpecie.setOilGasMean (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setOilGasMean (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.oil_gas.sd")) {
-					infoSpecie.setOilGasSd (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setOilGasSd (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.rec_conv.mean")) {
-					infoSpecie.setRecConvMean (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setRecConvMean (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("ta.rec_conv.sd")) {
-					infoSpecie.setRecConvSd (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setRecConvSd (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("occ.prob.mean.in.pa")) {
-					infoSpecie.setOccProbMean (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setOccProbMean (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("occ.prob.sd.in.pa")) {
-					infoSpecie.setOccProbSd (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setOccProbSd (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("occ.prob.mean.outside.pa")) {
-					infoSpecie.setOccProbMeanOut (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setOccProbMeanOut (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("occ.prob.sd.outside.pa")) {
-					infoSpecie.setOccProbSdOut (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setOccProbSdOut (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				} else if (data[0].trim().equals("percent.area.protected")) {
-					infoSpecie.setPercentAreaProtected (formatter.format(Double.parseDouble(data[1].trim())));
+					infoSpecie.setPercentAreaProtected (trimed.equals("NA") ? "NA" : formatter.format(Double.parseDouble(data[1].trim())));
 				}
 			}
+			
+			reader.close();
+			
 			String json = gson.toJson(infoSpecie);
 			PrintWriter writer = resp.getWriter();
 			writer.print(json);
