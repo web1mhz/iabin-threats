@@ -21,8 +21,18 @@
 		<url-pattern>/taxonSearch.do</url-pattern>
 	</servlet-mapping>
 	
+	<!-- This servlet runs for searching species when user click in one of the list canonicals -->
+	<servlet>
+		<servlet-name>InfoSpecie</servlet-name>
+		<servlet-class>org.ciat.ita.service.InfoSpecieServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InfoSpecie</servlet-name>
+		<url-pattern>/infoSpecie.do</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
-		<welcome-file>menuiabin.html</welcome-file>
+		<welcome-file>principal.html</welcome-file>
 	</welcome-file-list>
 
 </web-app>

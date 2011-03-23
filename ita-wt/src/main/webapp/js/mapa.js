@@ -225,7 +225,7 @@ $(".richness").click(function(event) {
 		}   
 });
 	
-	$(".opacidad").click(function(event) {
+	/*$(".opacidad").click(function(event) {
 		
         if(JQuery('#Threats-0').attr("checked")) {
         	alert("true");
@@ -233,9 +233,19 @@ $(".richness").click(function(event) {
         	alert("false");
         }
 		
-	});
+	});*/
+
+$("#showSpeciesInfo input").click(function(event){
+	var options = "height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0";
+	//var options = "height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=no";
+	var $target = $(event.target);	
+	var link = "infoSpecie.html?id="+$target.attr("id");
+    newWindow=window.open(link, 'Popup', options);  
+    return false; 
+	
 });
- 
+
+}); //END JQUERY
 function cerrar_ampliacion(){
 	xHide('showScale');
 
@@ -245,6 +255,8 @@ function cerrar_ampliacion(){
 	xShow('showScale');
 	
 }
+ 
+ 
  // ------------------------------------ JavaScript -------------------------------------
   var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
   var cont=0; 
