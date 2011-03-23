@@ -18,10 +18,7 @@ import com.google.gson.Gson;
 
 public class InfoSpecieServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 3667132459005103094L;
-	private static String path = "\\\\172.22.33.85\\geodata\\Threat-Assement\\species\\";
-	// private static String
-	// path="/mnt/HD724-geodata/iabin-threats/ITA/generated-files/species/";
+	private static final long serialVersionUID = 3667132459005103094L;	
 	private static Gson gson = new Gson();
 
 	@Override
@@ -36,7 +33,7 @@ public class InfoSpecieServlet extends HttpServlet {
 		DecimalFormat formatter = new DecimalFormat("####.####");
 		String id = req.getParameter("id");
 		if (id != null) {
-			File file = new File(path + id + File.separator + id + "-info.txt");
+			File file = new File(Info.getPath() + id + File.separator + id + "-info.txt");
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line;
 			String data[];
