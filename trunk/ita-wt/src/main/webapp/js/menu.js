@@ -58,7 +58,8 @@ function menu() {
 		} 
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Species"){
 			
-			document.write("<div id=button><input type=button value='Search Species' ></div>");
+			document.write("<div id=button><input type=button value='Search Species' ></div><br>");
+			document.write("<div id=showSpeciesInfo><input type=button value='Show Species Info' ></div><br>");
 	        document.write("<div id=infoEspecie style='display:none;'>");
 	        document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrences records</h5>");        
 	        document.write("<h5><input type=checkbox name='convex' key='' class=specieData> Convex hull</h5>");

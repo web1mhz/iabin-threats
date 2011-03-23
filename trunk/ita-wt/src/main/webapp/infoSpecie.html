@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="shortcut icon" href="http://gisweb.ciat.cgiar.org/ita/favicon.ico" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="js/getParamUrl.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {	
+	$.ajax({
+		url: "infoSpecie.do",
+		dataType: "json",
+		data: "id="+$.url.param('id'),
+		beforeSend: function(data) {
+			$loaderGift = $("#loaderGift").clone().show();
+					
+		},
+		success: function(info) {
+			$("#specieName").text(info.specieName);
+			$("#genusName").text(info.genusName);
+			$("#familyName").text(info.familyName);
+			$("#className").text(info.className);
+			$("#numberPoints").text(info.numberPoints);
+			$("#avgAucTrain").text(info.avgAucTrain);
+			$("#avgAucTest").text(info.avgAucTest);
+			$("#sdAuc").text(info.sdAuc);
+			$("#prevalence").text(info.prevalence);
+			$("#percentLost").text(info.percentLost);
+			$("#lostMeanProbability").text(info.lostMeanProbability);
+			$("#notLostMeanProbability").text(info.notLostMeanProbability);
+			$("#aggregateMean").text(info.aggregateMean);
+			$("#aggregateSd").text(info.aggregateSd);
+			$("#accessPopMean").text(info.accessPopMean);
+			$("#accessPopSd").text(info.accessPopSd);
+			$("#convAgMean").text(info.convAgMean);
+			$("#convAgSd").text(info.convAgSd);
+			$("#firesMean").text(info.firesMean);
+			$("#firesSd").text(info.firesSd);
+			$("#grazingMean").text(info.grazingMean);
+			$("#grazingSd").text(info.grazingSd);
+			$("#infrastrMean").text(info.infrastrMean);
+			$("#infrastrSd").text(info.infrastrSd);
+			$("#oilGasMean").text(info.oilGasMean);
+			$("#oilGasSd").text(info.oilGasSd);
+			$("#recConvMean").text(info.recConvMean);
+			$("#recConvSd").text(info.recConvSd);
+			$("#occProbMean").text(info.occProbMean);
+			$("#occProbSd").text(info.occProbSd);
+			$("#occProbMeanOut").text(info.occProbMeanOut);
+			$("#occProbSdOut").text(info.occProbSdOut);
+			$("#percentAreaProtected").text(info.percentAreaProtected);
+		},
+		complete: function(data, code) {
+			
+		},
+		error: function(data, error, objectError) {
+			
+		}
+	}); // END ajax
+});
+
+</script>
+<style type="text/css">
+.table {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size:10px;
+text-align: right;
+width: 600px;
+border:0px;
+border-bottom:1px;
+align:center;
+}
+
+.table th {
+padding: 5px;
+font-size: 11px;
+background-color: #BCD56C;
+background-image: url(fondo_th.png);
+background-repeat: repeat-x;
+color: #34484E;
+border-bottom:1px;
+border-right-style: solid;
+border-bottom-style: solid;
+border-right-color: #BCD56C;
+border-bottom-color: #BCD56C;
+font-family: “Trebuchet MS”, Arial;
+width: 52px;
+
+
+}
+
+.table th:HOVER{border-bottom: 1px dashed #bbb;
+background: #BCD56D;
+color: #666;}
+
+.table tr:HOVER{border-bottom: 1px dashed #bbb;
+background: #fcfcfc;
+color: #666;}
+
+.table td:HOVER{border-bottom: 1px dashed #bbb;
+background: #fcfcfc;
+color: #666;}
+
+.table .row {
+font-size: 10px;
+font-weight:bold;
+background-color: #BCD56C;
+background-image: url(fondo_tr01.png);
+background-repeat: repeat-x;
+color: #34484E;
+font-family: “Trebuchet MS”, Arial;
+text-align:left;
+}
+.table .row td {
+padding: 5px;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-right-style: solid;
+border-bottom-style: solid;
+border-right-color: #A4C4D0;
+border-bottom-color: #A4C4D0;
+text-align:left;
+width: 52px;
+}
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+<TABLE class="table"> 
+<TR class="row"> 
+   <TH colspan="4" ><div><span><h2 align="center">Additional Information For Specie</h2></span></div>
+   <h2 align="center" id="specieName">specie</h2>
+   </TH>
+   
+  </TR> 
+<TR class="row"> 
+  <TH><div><span>Genus</span></div></TH>
+  <TD id="genusName"><span></span></TD> 
+  <TH title=""><div><span>Family</span></div></TH>
+  <TD id="familyName"><span></span></TD>    
+</TR> 
+<TR class="row"> 
+  <TH><div><span>Species type</span></div></TH>
+  <TD id="className"><span ></span></TD>
+  <TH><div><span >Number of presence records</span></div></TH>
+  <TD id="numberPoints"><span ></span></TD>    
+</TR>
+<TR class="row"> 
+  <TH><div><span >Mean training AUC</span></div></TH>
+  <TD id="avgAucTrain"><span></span></TD>
+  <TH><div><span >Mean test AUC</span></div></TH>
+  <TD id="avgAucTest"><span"></span></TD>    
+</TR>
+<TR class="row"> 
+  <TH><div><span >standard deviation of test AUC </span></div></TH>
+  <TD id="sdAuc"><span ></span></TD>
+  <TH><div><span >Threshold,Occurrence threshold based on prevalence</span></div></TH>
+  <TD id="prevalence"><span ></span></TD>    
+</TR>
+<TR class="row"> 
+  <TH><div><span >Lost habitat, Percent of potential distribution already lost</span></div></TH>
+  <TD id="percentLost"><span ></span></TD>
+  <TH title="Mean occurrence probability within already lost potential distribution"><div align="left"><span>Lost occurrence pro.. </span></div></TH>
+  <TD id="lostMeanProbability"><span ></span></TD>    
+</TR>
+<TR class="row"> 
+  <TH title="Mean occurrence probability within still available potential distribution"><div align="left"><span>Available occurrence pro.. </span></div></TH>
+  <TD id="notLostMeanProbability"><span ></span></TD>
+  <TH><div><span >Mean aggregated threat</span></div></TH>
+  <TD id="aggregateMean"><span ></span></TD>    
+</TR>
+<TR class="row"> 
+  <TH><div><span >SD of aggregated threat</span></div></TH>
+  <TD id="aggregateSd"><span></span></TD>
+  <TH><div><span >Mean threat by population access </span></div></TH>
+  <TD id="accessPopMean"><span></span></TD>   
+</TR>
+<TR class="row">
+  <TH><div><span >SD of threat by population access</span></div></TH>
+  <TD id="accessPopSd"><span></span></TD> 
+  <TH><div><span>Mean threat by conversion to agriculture</span></div></TH>
+  <TD id="convAgMean"><span></span></TD>    
+</TR>
+<TR class="row"> 
+  <TH><div><span >SD of threat by conversion to agriculture</span></div></TH>
+  <TD id="convAgSd"><span></span></TD>
+  <TH><div><span>Mean threat by fire</span></div></TH>
+  <TD id="firesMean"><span></span></TD>   
+</TR>
+<TR class="row"> 
+  <TH><div><span>SD of threat by fire</span></div></TH>
+  <TD id="firesSd"><span></span></TD>
+  <TH><div><span>Mean threat by grazing</span></div></TH>
+  <TD id="grazingMean"><span></span></TD>   
+</TR>
+<TR class="row"> 
+  <TH><div><span>SD of threat by grazing</span></div></TH>
+  <TD id="grazingSd"><span></span></TD> 
+  <TH><div><span>Mean threat by infrastructure</span></div></TH>
+  <TD id="infrastrMean"><span></span></TD>  
+</TR>
+<TR class="row"> 
+  <TH><div><span>SD of threat by infrastructure</span></div></TH>
+  <TD id="infrastrSd"><span ></span></TD> 
+  <TH><div><span>Mean threat by oil and gas extraction</span></div></TH>
+  <TD id="oilGasMean"><span></span></TD>    
+</TR>
+<TR class="row"> 
+  <TH><div align="left"><span>SD of threat by oil and gas extraction</span></div></TH>
+  <TD id="oilGasSd"><span ></span></TD> 	
+  <TH><div><span>Mean threat by recent conversion</span></div></TH>
+  <TD id="recConvMean"><span></span></TD>   
+</TR>
+<TR class="row"> 
+  <TH><div><span >SD of threat by recent conversion</span></div></TH>
+  <TD id="recConvSd"><span ></span></TD>
+  <TH title="Mean occurrence probability inside of protected areas"><div><span>Inside PA occ..</span></div></TH>
+  <TD id="occProbMean"><span ></span></TD>    
+</TR>
+<TR class="row"> 
+  <TH title="SD of occurrence probabilit inside of protected areas"><div><span>Inside PA sd..</span></div></TH>
+  <TD id="occProbSd"><span></span></TD>
+  <TH title="Mean occurrence probability outside of protected areas"><div><span>Outside PA occ..</span></div></TH>
+  <TD id="occProbMeanOut"><span></span></TD>  
+</TR>
+<TR class="row">
+  <TH title="SD of occurrence probability outside of protected areas"><div><span>Outside PA occ..</span></div></TH>
+  <TD id="occProbSdOut" width="52px"><span></span></TD> 
+  <TH title="Percentage of potential distribution that is protected"><div><span>Percentage protected</span></div></TH>
+  <TD id="percentAreaProtected"><span></span></TD> 
+</TR>
+</TABLE>	
+</body>
+<img id="loaderGift" src="images/ajax-loader-big.gif" style="display:none;" />
+</html>
