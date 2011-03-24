@@ -15,11 +15,11 @@ function menu() {
 		document.write(categories[i].attributes.getNamedItem("name").nodeValue);
 		document.write("</a>");
 		document.write("<ul id="+categories[i].attributes.getNamedItem("name").nodeValue+">");
-		document.write("<h5><a id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"><img src=images/boton-clear.png border=0 align=left /></a></h5><br>");
 		document.write("<div id=both>");
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Threats"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
+			document.write("<h5><a  class=myButton id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
@@ -33,6 +33,7 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Bioclim"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
+			document.write("<h5><a  class=myButton id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
@@ -46,6 +47,7 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Summaries"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
+			document.write("<h5><a  class=myButton id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
@@ -57,10 +59,8 @@ function menu() {
 			}
 		} 
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Species"){
-			
-			document.write("<div id=button><input type=button value='Search Species' ></div><br>");
-			document.write("<div id=showSpeciesInfo><input type=button value='Show Species Info' ></div><br>");
-	        document.write("<div id=infoEspecie style='display:none;'>");
+			document.write("<h5><a  class=myButton id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a><a id=button class=myButton>Search</a><div id=showSpeciesInfo><a class=myButton>Show Info</a></div><br>");
+			document.write("<div id=infoEspecie style='display:none;'>");
 	        document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrences records</h5>");        
 	        document.write("<h5><input type=checkbox name='convex' key='' class=specieData> Convex hull</h5>");
 	        document.write("<h5><input type=checkbox name='convexHull' key='' class=specieData> Convex hull buffer</h5>");

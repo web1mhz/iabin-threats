@@ -222,10 +222,6 @@ overflow:auto;
 margin-bottom:1em;
 height:150px;
 }
-#button{
-text-align:left;
-padding-left: 2px;
-}
 
 #tab{
 width:100%;
@@ -261,6 +257,101 @@ right:5px;
 width:99%;
 height:720px;
 bottom:70px;
+}
+#navigation .myButton {
+	
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6cbf5f), color-stop(1, #548c26) );
+	background:-moz-linear-gradient( center top, #6cbf5f 5%, #548c26 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6cbf5f', endColorstr='#548c26');
+	background-color:#6cbf5f;
+	-moz-border-radius:16px;
+	-webkit-border-radius:16px;
+	border-radius:16px;
+	border:0px solid;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:11px;
+	font-weight:bold;
+	padding:4px 7px;
+	text-decoration:none;
+	}.myButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #548c26), color-stop(1, #6cbf5f) );
+	background:-moz-linear-gradient( center top, #548c26 5%, #6cbf5f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#548c26', endColorstr='#6cbf5f');
+	background-color:#548c26;
+	behavior: url(templates/PIE.htc);
+}.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+#imageWait{
+z-index:3;
+padding:2 2 2 2px;
+position:absolute;
+left:300px;
+top:300px;
+
+}
+.table {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size:10px;
+text-align: right;
+width: 600px;
+border:0px;
+border-bottom:1px;
+
+}
+
+.table th {
+font-size: 11px;
+background-color: #BCD56C;
+background-image: url(fondo_th.png);
+background-repeat: repeat-x;
+color: #34484E;
+border-bottom:1px;
+border-right-style: solid;
+border-bottom-style: solid;
+border-right-color: #BCD56C;
+border-bottom-color: #BCD56C;
+font-family: “Trebuchet MS”, Arial;
+width: 52px;
+
+
+}
+
+.table th:HOVER{border-bottom: 1px dashed #bbb;
+background: #BCD56D;
+color: #666;}
+
+.table tr:HOVER{border-bottom: 1px dashed #bbb;
+background: #fcfcfc;
+color: #666;}
+
+.table td:HOVER{border-bottom: 1px dashed #bbb;
+background: #fcfcfc;
+color: #666;}
+
+.table .row {
+font-size: 10px;
+font-weight:bold;
+background-color: #BCD56C;
+background-image: url(fondo_tr01.png);
+background-repeat: repeat-x;
+color: #34484E;
+font-family: “Trebuchet MS”, Arial;
+text-align:left;
+}
+.table .row td {
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-right-style: solid;
+border-bottom-style: solid;
+border-right-color: #A4C4D0;
+border-bottom-color: #A4C4D0;
+text-align:left;
+width: 52px;
 }
 
 #demo-frame > div.demo { padding: 10px !important; };
