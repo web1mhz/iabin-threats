@@ -72,7 +72,7 @@ $(document).ready(function(){
 		//load popup
 		loadPopup();
 	});
-				
+					
 	//CLOSING POPUP
 	//Click the x event!
 	$("#popupContactClose").click(function(){

@@ -224,20 +224,17 @@ $(".richness").click(function(event) {
 			
 		}   
 });
-	
-	/*$(".opacidad").click(function(event) {
-		
-        if(JQuery('#Threats-0').attr("checked")) {
-        	alert("true");
-        } else {
-        	alert("false");
-        }
-		
-	});*/
 
-$("#showSpeciesInfo input").click(function(event){
-	var options = "height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0";
-	//var options = "height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=no";
+$(".Summaries").click(function(event) {
+	var $target = $(event.target);
+    var layerName=$target.attr("name");
+    var layerSummariesId=parseInt($target.attr("id").split("-")[1]);
+    alert(layerName);
+    alert(layerSummariesId);
+});
+		
+$("#showSpeciesInfo a").click(function(event){
+	var options = "height=700,width=700,scrollTo,resizable=1,scrollbars=1,location=0";
 	var $target = $(event.target);	
 	var link = "infoSpecie.html?id="+$target.attr("id");
     newWindow=window.open(link, 'Popup', options);  
