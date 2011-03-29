@@ -229,8 +229,87 @@ $(".Summaries").click(function(event) {
 	var $target = $(event.target);
     var layerName=$target.attr("name");
     var layerSummariesId=parseInt($target.attr("id").split("-")[1]);
-    alert(layerName);
-    alert(layerSummariesId);
+    var overlayMaps = [
+	                   {
+	                	   getTileUrl: function(point, zoom){
+	    	 	           		var X = point.x % (1 << zoom);
+	    	 	           		return path+"/"+layerName+"/pa/paQ4/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	       		},tileSize: new google.maps.Size(256,256),
+	    	 	           	  isPng:true,
+	    	 	           	  opacity:0.7
+	                   },{
+	                	   getTileUrl: function(point, zoom){
+	    	 	           		var X = point.x % (1 << zoom);
+	    	 	           		return path+"/"+layerName+"/pa/paQ3/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	       		},tileSize: new google.maps.Size(256,256),
+	    	 	           	  isPng:true,
+	    	 	           	  opacity:0.7
+	                   },{
+	                	   getTileUrl: function(point, zoom){
+	    	 	           		var X = point.x % (1 << zoom);
+	    	 	           		return path+"/"+layerName+"/pa/paQ2/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	       		},tileSize: new google.maps.Size(256,256),
+	    	 	           	  isPng:true,
+	    	 	           	  opacity:0.7
+	                   },{
+	                	   getTileUrl: function(point, zoom){
+	    	 	           		var X = point.x % (1 << zoom);
+	    	 	           		return path+"/"+layerName+"/pa/paQ1/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	       		},tileSize: new google.maps.Size(256,256),
+	    	 	           	  isPng:true,
+	    	 	           	  opacity:0.7
+	                   }
+	                   ];
+    
+    
+    
+    if ($target.attr('checked')==true){
+    	paLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info4.kml?date="+(new Date()).getTime(),{preserveViewport:true});
+    	paLayer1 = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info3.kml?date="+(new Date()).getTime(),{preserveViewport:true});
+    	paLayer2 = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info2.kml?date="+(new Date()).getTime(),{preserveViewport:true});
+    	paLayer3 = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info1.kml?date="+(new Date()).getTime(),{preserveViewport:true});
+    	    		
+		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSummariesId]);
+		var overlayMap1 = new google.maps.ImageMapType(overlayMaps[layerSummariesId+1]);
+		var overlayMap2 = new google.maps.ImageMapType(overlayMaps[layerSummariesId+2]);
+		var overlayMap3 = new google.maps.ImageMapType(overlayMaps[layerSummariesId+3]);				
+		map.overlayMapTypes.setAt((layerSummariesId+12),overlayMap);
+		map.overlayMapTypes.setAt((layerSummariesId+13),overlayMap1);
+		map.overlayMapTypes.setAt((layerSummariesId+14),overlayMap2);
+		map.overlayMapTypes.setAt((layerSummariesId+15),overlayMap3);
+		
+		if (map.getZoom() > 0) {
+    		paLayer.setMap(map);	   		
+    	}else{
+    		paLayer.setMap(null);    		
+    	}
+    	if (map.getZoom() > 3) {
+     		paLayer1.setMap(map);	   		
+    	}else{
+     		paLayer1.setMap(null);    		
+    	}
+    	
+    	if (map.getZoom() > 4) {
+    		paLayer2.setMap(map);	   		
+    	}else{
+    		paLayer2.setMap(null);    		
+    	}
+    	if (map.getZoom() > 5) {
+       		paLayer3.setMap(map);	   		
+    	}else{
+     		paLayer3.setMap(null);
+    		
+    	}
+    } else if ($target.attr('checked')==false){
+    	for(i=12;i<=15;i++){
+		map.overlayMapTypes.setAt((layerSummariesId+i),null);		
+    	}
+    	paLayer.setMap(null);
+    	paLayer1.setMap(null);
+    	paLayer2.setMap(null);
+    	paLayer3.setMap(null);
+	}   
+    
 });
 		
 $("#showSpeciesInfo a").click(function(event){
@@ -267,6 +346,7 @@ function cerrar_ampliacion(){
   var toggle=0;
   var ctaLayer;
   var poligonLayer; 
+  var paLayer;
 function initialize() {
 	var myOptions = {
 			navigationControl: true,
@@ -280,11 +360,41 @@ function initialize() {
     map.setZoom(so);
     map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
     google.maps.event.addListener(map, 'zoom_changed', function() {
-		if (map.getZoom() > 10) {
-			map.setZoom(10);
-		}
-	});
+    				zoomChange();
+    });
+    
+    function zoomChange(){
+    	if (map.getZoom() > 7) {
+        	map.setZoom(7);    		
+    	}
+    	if (document.form1.Summaries.checked==true && map.getZoom() > 0) {
+    		paLayer.setMap(map);	   		
+    	}else{
+    		paLayer.setMap(null);    		
+    	}
+    	if (document.form1.Summaries.checked==true && map.getZoom() > 3) {
+     		paLayer1.setMap(map);	   		
+    	}else{
+     		paLayer1.setMap(null);    		
+    	}
+    	
+    	if (document.form1.Summaries.checked==true && map.getZoom() > 4) {
+    		paLayer2.setMap(map);	   		
+    	}else{
+    		paLayer2.setMap(null);    		
+    	}
+    	if (document.form1.Summaries.checked==true && map.getZoom() > 5) {
+       		paLayer3.setMap(map);	   		
+    	}else{
+     		paLayer3.setMap(null);
+    		
+    	}
+    }
     if(map.overlayMapTypes.getLength() < 4) {
+    	map.overlayMapTypes.push(null);
+    	map.overlayMapTypes.push(null);
+    	map.overlayMapTypes.push(null);
+    	map.overlayMapTypes.push(null);
     	map.overlayMapTypes.push(null);
     	map.overlayMapTypes.push(null);
     	map.overlayMapTypes.push(null);
@@ -300,9 +410,3 @@ function initialize() {
     	
     }
  }  
-
-function showProtectedAreas() {	
-			paLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/ita/protected-areas/pa/total-info12.kml", {preserveViewport:true})
-			paLayer.setMap(map);
-	
-	}

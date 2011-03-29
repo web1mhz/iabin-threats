@@ -36,8 +36,15 @@ $(document).ready(function() {
 									}
 								}							
 							}
+							
+							if(taxon.rankID==7000) {
 							temp += "<li id="+taxon.id+" rank="+taxon.rankID+
-									" class=element><a>"+taxon.canonical+"</a></li>";
+									" class=rankElement><a>"+taxon.canonical+"</a></li>";
+							}else{
+								temp += "<li id="+taxon.id+" rank="+taxon.rankID+
+								" class=element><a>"+taxon.canonical+"</a></li>";
+							}
+							
 						});						
 						temp = "<li class=rankElement><Strong>"+rank+"</Strong></li>" + temp;
 						temp = "<ul style=display:none>"+temp+"</ul>";
