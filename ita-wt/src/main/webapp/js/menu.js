@@ -69,7 +69,7 @@ function menu() {
 	        document.write("<h5><input type=checkbox id='2' name='threshold' key='' class=specieDistribution >Thresholded species distribution</h5>");
 	        document.write("</div>");
 			document.write("<div id=popupContact>");
-	        document.write("<a id=popupContactClose>x</a>");        
+	        document.write("<a id=popupContactClose><img src=images/close-icon.png border=0 align=middle /></a>");        
 	        document.write("<h1>Taxononomic Species Menu</h1>");
 	        document.write("<p id=contactArea>");
 	        document.write("<div id='searchSpecie' class='searchSpecie'>");
