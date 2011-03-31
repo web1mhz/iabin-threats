@@ -110,6 +110,7 @@
 			$("#buttonShowInfo").css("visibility", "hidden");	
 			$("#showScale").css("visibility", "hidden");	
 			($(".richness").attr("checked", false));
+			($(".Summaries").attr("checked", false));
 			map.overlayMapTypes.setAt(4,null);
 		    map.overlayMapTypes.setAt(5,null);
 		    map.overlayMapTypes.setAt(6,null);
@@ -117,7 +118,15 @@
 		    map.overlayMapTypes.setAt(8,null);
 		    map.overlayMapTypes.setAt(9,null);
 		    map.overlayMapTypes.setAt(10,null);
-		    map.overlayMapTypes.setAt(11,null);
+		    map.overlayMapTypes.setAt(12,null);
+		    map.overlayMapTypes.setAt(13,null);
+		    map.overlayMapTypes.setAt(14,null);
+		    map.overlayMapTypes.setAt(15,null);
+		    paLayer.setMap(null);
+		    paLayer1.setMap(null);
+		    paLayer2.setMap(null);
+		    paLayer3.setMap(null);
+		    
 		});	
 	 $("#closeLink").click(function() {
 			$("#buttonShowInfo").css("visibility", "");			
