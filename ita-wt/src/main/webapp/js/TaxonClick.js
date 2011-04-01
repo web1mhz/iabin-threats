@@ -1,4 +1,3 @@
- 	var archivo;
 $(document).ready(function() {		
 	$(".element").live("click", function(event) {
 		event.preventDefault();
@@ -10,7 +9,7 @@ $(document).ready(function() {
 				$("#showSpeciesInfo a").attr("id", $target.attr("id"));
 				$('input.specieData').attr("key", $target.attr("id"));
 				$('input.specieDistribution').attr("key", $target.attr("id"));
-				$('#infoEspecie').css({'display' : 'block'});
+				$('#infoSpecieOptions').css({'display' : 'block'});
 				$("#specieButtons #showSpeciesInfo").css("display", "inline");
 				$("#specieButtons [id^='clear']").css("display", "inline");
 			} else {

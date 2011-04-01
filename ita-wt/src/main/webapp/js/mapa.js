@@ -45,7 +45,8 @@ $(".Threats").click(function(event) {
 		
         xInnerHtml('c1','<img src="'+path+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
-		$("#botonMostrarInfo").css("visibility", "hidden");
+        $("#showScale").css("display", "block");
+		$("#buttonShowScaleInfo").css("display", "none");
 });
 $(".Bioclim").click(function(event) {
         var $target = $(event.target);
@@ -70,7 +71,8 @@ $(".Bioclim").click(function(event) {
                                                   
         xInnerHtml('c1','<img src="'+path+layerName+'/p'+(layerId+1)+'/p'+(layerId+1)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
-		$("#botonMostrarInfo").css("visibility", "hidden");
+        $("#showScale").css("display", "block");
+        $("#buttonShowScaleInfo").css("display", "none");
 });
 
 
@@ -216,11 +218,12 @@ $(".richness").click(function(event) {
 			map.overlayMapTypes.setAt((layerRichnessId+4),overlayMap);
 			xInnerHtml('c1','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
 	        xShow('showScale');
-			$("#botonMostrarInfo").css("visibility", "hidden");
+			$("#showScale").css("display", "block");
+			$("#buttonShowScaleInfo").css("display", "none");
 		} else {
 			map.overlayMapTypes.setAt((layerRichnessId+4),null);
-			$("#buttonShowInfo").css("visibility", "hidden");	
-			$("#showScale").css("visibility", "hidden");	
+			$("#buttonShowScaleInfo").css("display", "none");	
+			$("#showScale").css("display", "none");	
 			
 		}   
 });

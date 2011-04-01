@@ -140,7 +140,7 @@ h5 { font-size: 11px; }
 
 #treeStyle ul.search                 				{text-align: left; width: 300px; font-size: 11px;}
 #treeStyle ul.search li 							{text-align: left; width: 200px; padding-left: 25px; color: black;}
-#treeStyle ul.search li.rankElement		   			{width: 400px; font-size:15px; /*color: #A4A4A4;*/ font-style:italic; display: block; padding-top: 20px; padding-left: 0x;}
+#treeStyle ul.search li.rankElement		   			{width: 400px; font-size:11px; /*color: #A4A4A4;*/ font-style:italic; display: block; padding-top: 0px; padding-bottom: 0px; padding-left: 0x;}
 #treeStyle ul.search li ul li			   			{width: 400px; display: block; padding-left: 25px;}
 #treeStyle ul.search li ul li.rankElement		   	{width: 400px; font-size: 11px; /*color: #A4A4A4;*/ font-style:italic; padding-top: 0px; padding-bottom: 0px; padding-left: 25px}
 #treeStyle ul.search li a 							{width: 400px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px;}
@@ -290,6 +290,33 @@ bottom:70px;
 	position:relative;
 	top:1px;
 }
+.scaleButton {
+	
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6cbf5f), color-stop(1, #548c26) );
+	background:-moz-linear-gradient( center top, #6cbf5f 5%, #548c26 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6cbf5f', endColorstr='#548c26');
+	background-color:#6cbf5f;
+	-moz-border-radius:16px;
+	-webkit-border-radius:16px;
+	border-radius:16px;
+	border:0px solid;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:11px;
+	font-weight:bold;
+	padding:4px 7px;
+	text-decoration:none;
+	}.scaleButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #548c26), color-stop(1, #6cbf5f) );
+	background:-moz-linear-gradient( center top, #548c26 5%, #6cbf5f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#548c26', endColorstr='#6cbf5f');
+	background-color:#548c26;
+	behavior: url(templates/PIE.htc);
+}.scaleButton:active {
+	position:relative;
+	top:1px;
+}
 
 #imageWait{
 z-index:3;
@@ -299,6 +326,11 @@ left:300px;
 top:300px;
 
 }
+
+/*
+	SHOW SPECIES INFO TABLE STYLE
+*/	
+
 .table {
 font-family: Verdana, Arial, Helvetica, sans-serif;
 font-size:10px;
@@ -320,7 +352,7 @@ border-right-style: solid;
 border-bottom-style: solid;
 border-right-color: #BCD56C;
 border-bottom-color: #BCD56C;
-font-family: �Trebuchet MS�, Arial;
+font-family: Trebuchet MS, Arial;
 width: 52px;
 
 
@@ -345,7 +377,7 @@ background-color: #BCD56C;
 background-image: url(fondo_tr01.png);
 background-repeat: repeat-x;
 color: #34484E;
-font-family: �Trebuchet MS�, Arial;
+font-family: Trebuchet MS, Arial;
 text-align:left;
 }
 .table .row td {
