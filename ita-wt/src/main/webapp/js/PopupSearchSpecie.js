@@ -76,7 +76,8 @@ $(document).ready(function(){
 					
 	//CLOSING POPUP
 	//Click the x event!
-	$("#popupContactClose").click(function(){
+	$("#popupContactClose").click(function(event){
+		event.preventDefault();
 		disablePopup();
 	});
 	//Click out event!
