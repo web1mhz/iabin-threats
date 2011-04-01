@@ -1,4 +1,4 @@
-     $(document).ready(function() {
+$(document).ready(function() {
 	 			   $("#showMenu").hide(10);
 	 	           $("#Threats").slideUp("fast");
 				   $("#Bioclim").slideUp("fast");
@@ -82,19 +82,22 @@
 			abrir_ampliacion();
 			$("#buttonShowScaleInfo").css("display", "none");
 		});		
-		$("#clearthreat-menu").click(function() {
+		$("#clearthreat-menu").click(function(event) {
+			event.preventDefault();
 			$("#buttonShowScaleInfo").css("display", "none");	
 			$("#showScale").css("display", "none");			
 			($(".Threats").attr("checked", false));	    
 		    map.overlayMapTypes.setAt(0,null);
 		});		
-		$("#clearbioclim-menu").click(function() {
+		$("#clearbioclim-menu").click(function(event) {
+			event.preventDefault();
 			$("#buttonShowScaleInfo").css("display", "none");	
 			$("#showScale").css("display", "none");			
 			($(".Bioclim").attr("checked", false));	    
 		    map.overlayMapTypes.setAt(0,null);
 		});
-		$("#cleartaxon-menu").click(function() {
+		$("#cleartaxon-menu").click(function(event) {
+			event.preventDefault();
 			($(".specieData").attr("checked", false));
 			($(".specieDistribution").attr("checked", false));
 			$("#specieButtons #showSpeciesInfo").css("display", "none");
@@ -107,7 +110,8 @@
 		    map.overlayMapTypes.setAt(2,null);
 		    map.overlayMapTypes.setAt(3,null);
 		});		
-		$("#clearsummaries-menu").click(function() {
+		$("#clearsummaries-menu").click(function(event) {
+			event.preventDefault();
 			$("#buttonShowScaleInfo").css("display", "none");	
 			$("#showScale").css("display", "none");	
 			($(".richness").attr("checked", false));

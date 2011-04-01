@@ -2,9 +2,9 @@ $(document).ready(function() {
 	$(".element").live("click", function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		$target = $(event.target).parent();
+		$target = $(event.target).parent();		
 		if($("#" + $target.attr("id")+" ul").attr("id") == undefined) {
-			if($target.attr("rank")==7000) {
+			if($target.attr("rank")==7000) {				
 				disablePopup();
 				$("#showSpeciesInfo a").attr("id", $target.attr("id"));
 				$('input.specieData').attr("key", $target.attr("id"));
@@ -35,14 +35,13 @@ $(document).ready(function() {
 										rank="Specie: ";
 									}
 								}							
-							}
-							
+							}							
 							if(taxon.rankID==7000) {
-							temp += "<li id="+taxon.id+" rank="+taxon.rankID+
-									" class=rankElement><a>"+taxon.canonical+"</a></li>";
+								temp += "<li id="+taxon.id+" rank="+taxon.rankID+
+									" class=specieElement><a href=''>"+taxon.canonical+"</a></li>";
 							}else{
 								temp += "<li id="+taxon.id+" rank="+taxon.rankID+
-								" class=element><a>"+taxon.canonical+"</a></li>";
+								" class=element><a href=''>"+taxon.canonical+"</a></li>";
 							}
 							
 						});						
@@ -79,5 +78,5 @@ $(document).ready(function() {
 				$("#" + $target.attr("id")).children("a").css("background", "url(images/minus.gif) no-repeat 10px center");			
 			}
 		}	
-	}); // END click 	
+	}); // END click
 }); //END ready

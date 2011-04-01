@@ -316,6 +316,7 @@ $(".Summaries").click(function(event) {
 });
 		
 $("#showSpeciesInfo a").click(function(event){
+	event.preventDefault();
 	var options = "height=700,width=700,scrollTo,resizable=1,scrollbars=1,location=0";
 	var $target = $(event.target);	
 	var link = "infoSpecie.html?id="+$target.attr("id");
