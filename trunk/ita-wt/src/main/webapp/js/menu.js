@@ -59,7 +59,14 @@ function menu() {
 			}
 		} 
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Species"){
-			document.write("<h5><a  class=myButton id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a><a id=button class=myButton>Search</a><div id=showSpeciesInfo><a class=myButton>Show Info</a></div><br>");
+			// Buttons: Search, InfoSpecie, Clear
+			document.write("<div id=specieButtons>");
+			document.write("<a id=button class=utilityButtons>Search</a>");		
+			document.write("<div id=showSpeciesInfo style=display:none><a class=utilityButtons>Show Info</a></div>");
+			document.write("<a  class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+" style=display:none> Clear </a>");
+			document.write("</div><br>");
+			
+			//document.write("<h5><a  class=myButton id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a><a id=button class=myButton>Search</a><div id=showSpeciesInfo><a class=myButton>Show Info</a></div><br>");
 			document.write("<div id=infoEspecie style='display:none;'>");
 	        document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrences records</h5>");        
 	        document.write("<h5><input type=checkbox name='convex' key='' class=specieData> Convex hull</h5>");

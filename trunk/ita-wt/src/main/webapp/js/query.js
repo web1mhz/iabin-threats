@@ -64,7 +64,7 @@
 				   $("#Threats").slideUp("slow");	
 				   $("#Summaries").slideUp("slow");}					
 		});            
-			$("#summaries-menu").click(function(event) {
+		$("#summaries-menu").click(function(event) {
 			event.preventDefault();
 			if($("#Summaries").attr("style").indexOf("none") > -1) {
 				$("#Summaries").slideDown("slow");
@@ -77,8 +77,7 @@
 				   $("#Bioclim").slideUp("slow");
 				   $("#Threats").slideUp("slow");}
 		});
-		$("#buttonShowInfo").css("visibility", "hidden");
-		$("#showSpeciesInfo").css("visibility", "hidden");
+		
 		$("#buttonShowInfo").click(function(){
 			abrir_ampliacion();
 			$("#buttonShowInfo").css("visibility", "hidden");
@@ -98,7 +97,9 @@
 		$("#cleartaxon-menu").click(function() {
 			($(".specieData").attr("checked", false));
 			($(".specieDistribution").attr("checked", false));
-			$("#showSpeciesInfo").css("visibility", "hidden");
+			$("#specieButtons #showSpeciesInfo").css("display", "none");
+			$("#specieButtons [id^='clear']").css("display", "none");
+			$("#both #infoEspecie").css("display", "none");
 			occurencesLayer.setMap(null);
 			convexLayer.setMap(null);
 			poligonLayer.setMap(null);
