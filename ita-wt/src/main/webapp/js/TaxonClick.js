@@ -11,7 +11,8 @@ $(document).ready(function() {
 				$('input.specieData').attr("key", $target.attr("id"));
 				$('input.specieDistribution').attr("key", $target.attr("id"));
 				$('#infoEspecie').css({'display' : 'block'});
-				$("#showSpeciesInfo").css("visibility", "");
+				$("#specieButtons #showSpeciesInfo").css("display", "inline");
+				$("#specieButtons [id^='clear']").css("display", "inline");
 			} else {
 				// run ajax
 				$.ajax({
