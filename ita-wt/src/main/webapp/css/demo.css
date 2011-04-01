@@ -263,7 +263,7 @@ width:99%;
 height:720px;
 bottom:70px;
 }
-#specieButtons .utilityButtons {
+#navigation .utilityButtons {
 	
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6cbf5f), color-stop(1, #548c26) );
 	background:-moz-linear-gradient( center top, #6cbf5f 5%, #548c26 100% );
