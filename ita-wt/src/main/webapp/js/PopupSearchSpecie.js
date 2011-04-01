@@ -66,7 +66,8 @@ $(document).ready(function(){
 	
 	//LOADING POPUP
 	//Click the button event!
-	$("#button").click(function(){
+	$("#searchSpeciePopupButton").click(function(event){
+		event.preventDefault();
 		//centering with css
 		centerPopup();
 		//load popup

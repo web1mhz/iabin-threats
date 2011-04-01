@@ -34,9 +34,9 @@ $(document).ready(function() {
 						$html += "<li class='rankElement'><strong>"+$rank+"</strong></li>";
 					}
 					if($taxon.rankID==7000){
-						$html += "<li id='"+$taxon.id+"' class='rankElement' rank='"+$taxon.rankID+"'><a>"+$taxon.canonical+"</a></li><br>";
+						$html += "<li id='"+$taxon.id+"' class='specieElement' rank='"+$taxon.rankID+"'><a href=''>"+$taxon.canonical+"</a></li><br>";
 					}else{
-						$html += "<li id='"+$taxon.id+"' class='element' rank='"+$taxon.rankID+"'><a>"+$taxon.canonical+"</a></li><br>";	
+						$html += "<li id='"+$taxon.id+"' class='element' rank='"+$taxon.rankID+"'><a href=''>"+$taxon.canonical+"</a ></li><br>";	
 					}
 				}				
 				$("#treeStyle", $popupContext).append($html+"</ul>");				
