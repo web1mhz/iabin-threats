@@ -19,7 +19,7 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Threats"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a  class=myButton id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<h5><a  class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
@@ -33,7 +33,7 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Bioclim"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a  class=myButton id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<h5><a  class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
@@ -47,7 +47,7 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Summaries"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a  class=myButton id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<h5><a  class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
