@@ -57,15 +57,11 @@ scope:row;
 }
 
 #navigation {
-	border:0px solid #DCDCDC;
 	margin:1px;
 	padding:0px;
-	text-indent:0px;
-	background-color: rgba(100,100,100, 0.7);
-	background-color:#646464;
+	text-indent:0px;	
 	filter:alpha(opacity=70);
-	width:170px;
-	
+	width:170px;	
 }
 #navigation a.head {
 	width: 140px;
@@ -287,11 +283,18 @@ display:block;
 	font-size:9px;
 	vertical-align:baseline;
 	margin:0;
-	padding:0;
-	overflow:auto;
+	padding:0;	
 	margin-bottom:1em;
-	height:150px;
 	width: 180px;
+}
+.submenuContent {
+	background-color: rgba(100,100,100, 0.7);
+	background-color:#646464;
+}
+.submenuLayout {
+	display: block;
+	height: 120px;
+	overflow: auto;
 }
 
 #tab{
