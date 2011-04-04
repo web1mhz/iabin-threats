@@ -213,7 +213,7 @@ $(".richness").click(function(event) {
 	                   
 	    	 	      ];
        	if ($target.attr('checked')){
-			var overlayMap = new google.maps.ImageMapType(overlayMaps[layerRichnessId-1]);
+       		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerRichnessId-1]);
 			
 			map.overlayMapTypes.setAt((layerRichnessId+4),overlayMap);
 			xInnerHtml('c1','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
@@ -266,7 +266,7 @@ $(".Summaries").click(function(event) {
     
     
     
-    if ($target.attr('checked')==true){
+    if ($target.attr('checked')==true){    	
     	paLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info4.kml?date="+(new Date()).getTime(),{preserveViewport:true});
     	paLayer1 = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info3.kml?date="+(new Date()).getTime(),{preserveViewport:true});
     	paLayer2 = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info2.kml?date="+(new Date()).getTime(),{preserveViewport:true});
