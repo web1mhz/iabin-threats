@@ -97,19 +97,18 @@ $(document).ready(function() {
 		    map.overlayMapTypes.setAt(0,null);
 		});
 		$("#cleartaxon-menu").click(function(event) {
-			event.preventDefault();
-			
 			($(".specieData").attr("checked", false));
 			($(".specieDistribution").attr("checked", false));
 			$("#specieButtons #showSpeciesInfo").css("display", "none");
 			$("#specieButtons [id^='clear']").css("display", "none");
 			$("#both #infoSpecieOptions").css("display", "none");
-			map.overlayMapTypes.setAt(1,null);
-			map.overlayMapTypes.setAt(2,null);
-			map.overlayMapTypes.setAt(3,null);
 			occurencesLayer.setMap(null);
 			convexLayer.setMap(null);
 			poligonLayer.setMap(null);
+			map.overlayMapTypes.setAt(1,null);
+			map.overlayMapTypes.setAt(2,null);
+			map.overlayMapTypes.setAt(3,null);
+			event.preventDefault();			
 		});		
 		$("#clearsummaries-menu").click(function(event) {
 			event.preventDefault();
@@ -124,6 +123,7 @@ $(document).ready(function() {
 		    map.overlayMapTypes.setAt(8,null);
 		    map.overlayMapTypes.setAt(9,null);
 		    map.overlayMapTypes.setAt(10,null);
+		    map.overlayMapTypes.setAt(11,null);
 		    map.overlayMapTypes.setAt(12,null);
 		    map.overlayMapTypes.setAt(13,null);
 		    map.overlayMapTypes.setAt(14,null);
