@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Specie Information</title>
 <link rel="shortcut icon" href="http://gisweb.ciat.cgiar.org/ita/favicon.ico" />
 <link rel="stylesheet" href="css/demo.css" media="screen" />
@@ -23,21 +24,21 @@ $(document).ready(function() {
 			$("#className").text(info.className);
 			$("#numberPoints").text(info.numberPoints);
 			$("#avgAucTrain").text(info.avgAucTrain);
-			$("#avgAucTest").text(info.avgAucTest+" � "+info.sdAuc);
+			$("#avgAucTest").text(info.avgAucTest+" ± "+info.sdAuc);
 			$("#prevalence").text(info.prevalence);
 			$("#percentLost").text(info.percentLost);
 			$("#lostMeanProbability").text(info.lostMeanProbability);
 			$("#notLostMeanProbability").text(info.notLostMeanProbability);
-			$("#aggregateMean").text(info.aggregateMean+" � "+info.aggregateSd);
-			$("#accessPopMean").text(info.accessPopMean+" � "+info.accessPopSd);
-			$("#convAgMean").text(info.convAgMean+" � "+info.convAgSd);
-			$("#firesMean").text(info.firesMean+" � "+info.firesSd);
-			$("#grazingMean").text(info.grazingMean+" � "+info.grazingSd);
-			$("#infrastrMean").text(info.infrastrMean+" � "+info.infrastrSd);
-			$("#oilGasMean").text(info.oilGasMean+" � "+info.oilGasSd);
-			$("#recConvMean").text(info.recConvMean+" � "+info.recConvSd);
-			$("#occProbMean").text(info.occProbMean+" � "+info.occProbSd);
-			$("#occProbMeanOut").text(info.occProbMeanOut+" � "+info.occProbSdOut);
+			$("#aggregateMean").text(info.aggregateMean+" ± "+info.aggregateSd);
+			$("#accessPopMean").text(info.accessPopMean+" ± "+info.accessPopSd);
+			$("#convAgMean").text(info.convAgMean+" ± "+info.convAgSd);
+			$("#firesMean").text(info.firesMean+" ± "+info.firesSd);
+			$("#grazingMean").text(info.grazingMean+" ± "+info.grazingSd);
+			$("#infrastrMean").text(info.infrastrMean+" ± "+info.infrastrSd);
+			$("#oilGasMean").text(info.oilGasMean+" ± "+info.oilGasSd);
+			$("#recConvMean").text(info.recConvMean+" ± "+info.recConvSd);
+			$("#occProbMean").text(info.occProbMean+" ± "+info.occProbSd);
+			$("#occProbMeanOut").text(info.occProbMeanOut+" ± "+info.occProbSdOut);
 			$("#percentAreaProtected").text(info.percentAreaProtected);
 			$("#infoSpecie").fadeIn();
 		},
