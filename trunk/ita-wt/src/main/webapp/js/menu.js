@@ -14,12 +14,13 @@ function menu() {
 		document.write("<li><a id="+categories[i].attributes.getNamedItem("id").nodeValue+" "+"class='head'>");
 		document.write(categories[i].attributes.getNamedItem("name").nodeValue);
 		document.write("</a>");
-		document.write("<ul id="+categories[i].attributes.getNamedItem("name").nodeValue+">");
+		document.write("<ul id="+categories[i].attributes.getNamedItem("name").nodeValue+" class=submenuContent>");
 		document.write("<div id=both>");
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Threats"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<h5><a  class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
@@ -29,11 +30,13 @@ function menu() {
 				document.write(items[j].childNodes[0].nodeValue);
 				document.write("</label></li></h5><br />");
 			}
+			document.write("</div>");			
 		}
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Bioclim"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<h5><a class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
@@ -43,11 +46,13 @@ function menu() {
 				document.write(items[j].childNodes[0].nodeValue);
 				document.write("</label></li></h5><br />");
 			}
-		}		
+			document.write("</div>");
+		}
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Summaries"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<h5><a  class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
@@ -57,6 +62,7 @@ function menu() {
 				document.write(items[j].childNodes[0].nodeValue);
 				document.write("</label></li></h5><br />");
 			}
+			document.write("</div>");			
 		} 
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Species"){
 			// Buttons: Search, InfoSpecie, Clear
@@ -65,7 +71,7 @@ function menu() {
 			document.write("<div id=showSpeciesInfo style=display:none><a href='' class=utilityButtons>Show Info</a></div>");
 			document.write("<a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+" style=display:none> Clear </a>");
 			document.write("</div><br>");
-			document.write("<div id=infoSpecieOptions style='display:none;'>");
+			document.write("<div id=infoSpecieOptions class=submenuLayout style='display:none;'>");
 	        document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrences records</h5>");        
 	        document.write("<h5><input type=checkbox name='convex' key='' class=specieData> Convex hull</h5>");
 	        document.write("<h5><input type=checkbox name='convexHull' key='' class=specieData> Convex hull buffer</h5>");
