@@ -4,8 +4,8 @@ $(document).ready(function() {
 	var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
 	xWidth ('showScale',w + 6)
 	xHeight ('showScale',h + 6 + 20)
-	xWidth ('c1',w)
-	xHeight ('c1',h)
+	xWidth ('scale',w)
+	xHeight ('scale',h)
 	xWidth ('closeScale',w)
 	
 	var o = parseFloat(document.getElementById("opac").value);
@@ -43,7 +43,7 @@ $(".Threats").click(function(event) {
 	    	map.overlayMapTypes.setAt(0,null);
 	    }   
 		
-        xInnerHtml('c1','<img src="'+path+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('scale','<img src="'+path+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
         $("#showScale").css("display", "block");
 		$("#buttonShowScaleInfo").css("display", "none");
@@ -69,7 +69,7 @@ $(".Bioclim").click(function(event) {
 	    	map.overlayMapTypes.setAt(0,null);
 	    }                                                           
                                                   
-        xInnerHtml('c1','<img src="'+path+layerName+'/p'+(layerId+1)+'/p'+(layerId+1)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('scale','<img src="'+path+layerName+'/p'+(layerId+1)+'/p'+(layerId+1)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
         $("#showScale").css("display", "block");
         $("#buttonShowScaleInfo").css("display", "none");
@@ -216,7 +216,7 @@ $(".richness").click(function(event) {
        		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerRichnessId-1]);
 			
 			map.overlayMapTypes.setAt((layerRichnessId+4),overlayMap);
-			xInnerHtml('c1','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+			xInnerHtml('scale','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
 	        xShow('showScale');
 			$("#showScale").css("display", "block");
 			$("#buttonShowScaleInfo").css("display", "none");

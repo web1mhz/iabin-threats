@@ -20,6 +20,41 @@ h2 { font-size: 8; }
 h3 { margin-top: .5em; }
 h5 { font-size: 11px; }
 
+#imageIabin{
+width:240px;
+height=100px;
+position:relative;
+float: left;	
+}
+#imageCiat{
+width:150px;
+height=40px;
+position:absolute;
+right:5px;
+top:20px;	
+}
+#descriptionProject{
+width:300px;
+position:relative;
+float: center;
+}
+#show{
+width:145px;
+height:45px;
+border:0px; 	
+}
+#hide{
+width:145px;
+height:45px;
+border:0px; 	
+}
+
+#principal{
+height:500px;
+align:center;
+valign:top;
+scope:row;
+}
 
 #navigation {
 	border:0px solid #DCDCDC;
@@ -294,8 +329,38 @@ width:99%;
 height:720px;
 bottom:70px;
 }
-.scaleButton {
-	
+#showScale{
+z-index:3;
+padding:2 2 2 2px;
+position:absolute;
+left:30px;
+top:600px;
+display:none;
+border: 1px solid #666666;
+}
+#closeScale{
+background-color:#0A0A0A;
+font-family:arial,verdana;
+font-size:8pt;
+line-height:15px;
+text-align:right;
+height: 20px;
+padding-right:2px;
+}
+#closeLink{
+color:#ffffff;
+}
+#buttonShowScaleInfo{
+z-index:3;
+padding:2 2 2 2px;
+position:absolute;
+left:65px;
+top:695px;
+display:none;	
+}
+
+
+.scaleButton {	
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6cbf5f), color-stop(1, #548c26) );
 	background:-moz-linear-gradient( center top, #6cbf5f 5%, #548c26 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6cbf5f', endColorstr='#548c26');
@@ -311,13 +376,15 @@ bottom:70px;
 	font-weight:bold;
 	padding:4px 7px;
 	text-decoration:none;
-	}.scaleButton:hover {
+	}
+	.scaleButton:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #548c26), color-stop(1, #6cbf5f) );
 	background:-moz-linear-gradient( center top, #548c26 5%, #6cbf5f 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#548c26', endColorstr='#6cbf5f');
 	background-color:#548c26;
 	behavior: url(templates/PIE.htc);
-}.scaleButton:active {
+}
+.scaleButton:active {
 	position:relative;
 	top:1px;
 }
@@ -395,4 +462,4 @@ text-align:left;
 width: 52px;
 }
 
-#demo-frame > div.demo { padding: 10px !important; };
+#sliderOpacity-frame > div.sliderOpacity { padding: 10px !important; };
