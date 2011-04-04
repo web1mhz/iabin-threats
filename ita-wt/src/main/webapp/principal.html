@@ -30,56 +30,47 @@
 <form id="form1" name="form1"  target="_top">
   <table id="tab">
     <tr align="center">
-		<th id="th" scope="row"><img src="images/logo-iabin_spanish.jpg" alt="iabin" style="width:240px; height=100px; position:relative;float: left;"/>
-	    <h2 style="width:300px;position:relative;float: center;">Google-maps based navigation tool for all the modelling results</h2><img src="images/ciat-logo.jpg" alt="iabin" style="width:150px; height=40px; position:absolute;right:5px;top:20px;"/>
+		<th id="th" scope="row"><img id="imageIabin" src="images/logo-iabin_spanish.jpg"/>
+	    <h2 id="descriptionProject">Google-maps based navigation tool for all the modelling results</h2><img id="imageCiat" src="images/ciat-logo.jpg"/>
 		</th>
 	</tr>
     <tr>
-    <th height="500" align="center" valign="top" scope="row">
-
+    <th id="principal">
 		<div id="div">
 			<div>
-				<p><a id="showMenu" href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('show','','images/show1.png',1)"><img src="images/show.png" alt="Show Menu" name="show" width="145" height="45" border="0" id="show" /></a></p>
-				<p> <a id="hideMenu"href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('hide','','images/hide1.png',1)"><img src="images/hide.png" alt="Hide Menu" name="hide" width="145" height="45" border="0" id="hide" /></a></p> 
+				<p><a id="showMenu" href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('show','','images/show1.png',1)"><img src="images/show.png" id="show" /></a></p>
+				<p> <a id="hideMenu"href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('hide','','images/hide1.png',1)"><img src="images/hide.png" id="hide" /></a></p> 
 			</div>
-			
-			<div id="ingresarAqui">
-				<div id="main" class="box"><script type="text/javascript">menu();</script></div>     
-	    	</div>
-			
-			<div align="center" id="opacity">
-				<p>&nbsp;</p>
-				
-				<INPUT TYPE="text" NAME="opac" id="opac" VALUE="80" maxlength="3"  size="3" style="margin-top:2px; visible= false" onkeypress="return checkSubmit(event)">%
-				
+			<div id="menu">			
+				<script type="text/javascript">menu();</script>
+			</div>     
+	    	<div align="center" id="opacity">
+				<p>&nbsp;</p>				
+				<INPUT TYPE="text" NAME="opac" id="opac" VALUE="80" maxlength="3"  size="3" style="margin-top:2px; visible= false" onkeypress="return checkSubmit(event)">%				
 			</div>
-   					<div class="demo">
+   			<div class="sliderOpacity">
 				<p>
 					<label for="opacityLayer"><h5>Opacity value:</h5></label>
 					<input type="text" id="opacityLayer" VALUE="50" style="border:0; color:#f6931f; font-weight:bold;" />
 				</p>
 					<div id="slider-range-min" ></div>
-					</div>
+			</div>
 		</div>
-		<div id="map"></div>
-		
-	<div id="showScale" style="z-index:3;padding:2 2 2 2px; position:absolute; left:30px; top:600px; display:none; border: 1px solid #666666; background-image: url(images/cargando.gif); background-repeat: no-repeat;"> 
-			<div id="c1"> 
+		<div id="map"></div>		
+		<div id="showScale"> 
+			<div id="scale"> 
 			</div> 
-		<div id="closeScale" style="background-color:#0A0A0A; font-family:arial,verdana; font-size:8pt; line-height:20px; text-align:right;float:right; height: 20px; padding-right:5px;"> 
-			<a id="closeLink" href="javascript:cerrar_ampliacion()" style="color:#ffffff;">[X] Close</a> 
+		<div id="closeScale"> 
+			<a id="closeLink" href="javascript:cerrar_ampliacion()">[X] Close</a> 
 		</div> 
-
-	</div> 
-	<div id="buttonShowScaleInfo"  style="z-index:3;padding:2 2 2 2px; position:absolute; left:65px; top:695px; display:none;"> 
-		<h5><a href='' class="scaleButton"  >Show Scale</a></h5>
-	</div>
-		
+		</div> 
+		<div id="buttonShowScaleInfo"> 
+			<h5><a href='' class="scaleButton"  >Show Scale</a></h5>
+		</div>		
 	</th>
 	</tr>
 </table> 
-</form>
- 
+</form> 
 </body>
 <img id="loaderGift" src="images/ajax-loader.gif" style="display:none;" />
 <script type="text/javascript">infoPopupSpecies();</script>

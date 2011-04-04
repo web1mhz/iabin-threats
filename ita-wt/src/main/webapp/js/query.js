@@ -10,7 +10,7 @@ $(document).ready(function() {
            event.preventDefault();
             if(contador == true) {
 				$("#showMenu").show(10);
-                $("#ingresarAqui").slideUp("slow");
+                $("#menu").slideUp("slow");
 				$("#opacity").slideUp("slow");
 				$("#hideMenu").hide(10);
                 contador = true;
@@ -21,7 +21,7 @@ $(document).ready(function() {
             if(contador1 == true) {
 			   $("#showMenu").hide(10);
 				$("#hideMenu").show(10);
-				$("#ingresarAqui").slideDown("slow");
+				$("#menu").slideDown("slow");
 				$("#opacity").slideDown("slow");
 				$("#hideMenu").slideDown("fast");
                 contador1 = true;
@@ -79,6 +79,7 @@ $(document).ready(function() {
 		});
 		
 		$("#buttonShowScaleInfo").click(function(){
+			event.preventDefault();
 			abrir_ampliacion();
 			$("#buttonShowScaleInfo").css("display", "none");
 		});		
@@ -135,7 +136,7 @@ $(document).ready(function() {
 		    
 		});	
 	 $("#closeLink").click(function() {
-			$("#buttonShowScaleInfo").css("display", "block");			
+			$("#buttonShowScaleInfo").fadeIn();			
 		});			
      });
    
