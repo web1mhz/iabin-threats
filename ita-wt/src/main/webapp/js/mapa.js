@@ -7,7 +7,7 @@ $(document).ready(function() {
 	xWidth ('scale',w)
 	xHeight ('scale',h)
 	xWidth ('closeScale',w)
-	
+	/*
 	var o = parseFloat(document.getElementById("opac").value);
 	var opac;
 	if(o > 100){
@@ -21,7 +21,7 @@ $(document).ready(function() {
 	} else {
 		opac = o/100;
 	}
-			
+		*/	
 $(".Threats").click(function(event) {
 	    var $target = $(event.target);
 		var layerName=$target.attr("id").split("-")[0];
@@ -33,7 +33,7 @@ $(".Threats").click(function(event) {
                                return path+layerName+"/"+layerName+layerId+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
                                },tileSize: new google.maps.Size(256,256),
                                isPng:true,
-                               opacity:opac
+                               opacity:0.8
                            }
                            ]; 
 		if ($target.attr('checked')){
@@ -59,7 +59,7 @@ $(".Bioclim").click(function(event) {
                                return path+layerName+"/p"+(layerId+1)+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
                                },tileSize: new google.maps.Size(256,256),
                                isPng:true,
-                               opacity:opac
+                               opacity:0.8
                             }
                            ];
 		if ($target.attr('checked')){
