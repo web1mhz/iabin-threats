@@ -66,99 +66,99 @@ $(document).ready(function() {
    
    </TH>   
 </TR> 
-<TR class="row"> 
+<TR class="row" > 
   <TH colspan="4"><div align="center"><span>Species information</span></div></TH>
 </TR> 
-<TR class="row"> 
+<TR class="row" title="Scientific name of the taxon"> 
   <TH><div><span>Name</span></div></TH>
   <TD id="specieName"><span></span></TD> 
 </TR>
-<TR class="row"> 
+<TR class="row" title="Scientific name of the family to which the taxon belongs"> 
   <TH><div><span>Family</span></div></TH>
   <TD id="familyName"><span></span></TD> 
 </TR>
-<TR class="row"> 
+<TR class="row" title="Category of the species when modeled (i.e. amphibian, reptile, mammal, bird, plant, insect)"> 
   <TH><div><span>Species type</span></div></TH>
   <TD id="className"><span ></span></TD>
 </TR>   
 <TR class="row"> 
   <TH colspan="4"><div align="center"><span>Modelling details</span></div></TH>
 </TR> 
-<TR class="row"> 
+<TR class="row" title="Number of unique locations used in the modeling"> 
   <TH><div><span >Number of presence records</span></div></TH>
   <TD id="numberPoints"><span ></span></TD>    
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average area under the Receiver Operating Characteristic (ROC) curve calculated from 10-cross validated Maxent runs using training data, ranges from 0 to 1."> 
   <TH><div><span >Mean training AUC</span></div></TH>
   <TD id="avgAucTrain"><span></span></TD>
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average area under the ROC curve calculated from 10-cross validated Maxent runs using test data, ranges from 0 to 1."> 
   <TH><div><span >Test AUC</span></div></TH>
   <TD id="avgAucTest"><span></span></TD>    
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average probability over training locations, used to bin species distributions."> 
 <TH><div><span >Prevalence threshold</span></div></TH>
   <TD id="prevalence"><span></span></TD>
 </TR>
 <TR class="row"> 
   <TH colspan="4"><div align="center"><span>Threat status</span></div></TH>
 </TR> 
-<TR class="row"> 
+<TR class="row" title="Percent area within the distributional range of each species reported as lost habitat in the study by Jarvis et al. 2010."> 
   <TH><div><span >Lost habitat (%)</span></div></TH>
   <TD id="percentLost"><span ></span></TD>
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average probability of all pixels within the areas indicated as suitable for the species and lost in the study by Jarvis et al. 2010 (from 0 to 1)."> 
   <TH><div align="left"><span>Average probability in lost habitat areas </span></div></TH>
   <TD id="lostMeanProbability"><span ></span></TD>    
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average probability of all pixels within the areas indicated as suitable for the species and not lost in the study by Jarvis et al. 2010 (from 0 to 1)."> 
   <TH><div align="left"><span>Average probability in natural areas </span></div></TH>
   <TD id="notLostMeanProbability"><span ></span></TD>
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average aggregate threat over the species distributional range, plus or minus one standard deviation (from 0 to 3). For a summary of threats please refer to Jarvis et al. 2010."> 
  <TH><div><span >Aggregate threat</span></div></TH>
   <TD id="aggregateMean"><span ></span></TD> 
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average threat due to population accessibility over the species distributional range, plus or minus one standard deviation (from 0 to 3)."> 
   <TH><div><span >Threat by population access </span></div></TH>
   <TD id="accessPopMean"><span></span></TD>   
 </TR>
-<TR class="row">
+<TR class="row" title="Average threat due to agricultural pressure on ecosystems over the species distributional range, plus or minus one standard deviation (from 0 to 3).">
   <TH><div><span>Mean threat by conversion to agriculture</span></div></TH>
   <TD id="convAgMean"><span></span></TD>    
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average threat due to natural or provoked fires over the species distributional range, plus or minus one standard deviation (from 0 to 3)."> 
   <TH><div><span>Threat by fire</span></div></TH>
   <TD id="firesMean"><span></span></TD>   
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average threat due to livestock pressure on ecosystems over the species distributional range, plus or minus one standard deviation (from 0 to 3)."> 
   <TH><div><span>Threat by grazing</span></div></TH>
   <TD id="grazingMean"><span></span></TD>   
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average threat due to infrastructure development over the species distributional range, plus or minus one standard deviation (from 0 to 3)."> 
   <TH><div><span>Threat by infrastructure development</span></div></TH>
   <TD id="infrastrMean"><span></span></TD>  
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average threat due to oil and gas settlements for extraction over the species distributional range, plus or minus one standard deviation (from 0 to 3)."> 
   <TH><div><span>Threat by oil and gas extraction</span></div></TH>
   <TD id="oilGasMean"><span></span></TD>    
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average threat due to recent land use change over the species distributional range, plus or minus one standard deviation (from 0 to 3)."> 
   <TH><div><span>Threat by recent conversion </span></div></TH>
   <TD id="recConvMean"><span></span></TD>   
 </TR>
 <TR class="row"> 
   <TH colspan="4"><div align="center"><span>Conservation status</span></div></TH>
 </TR> 
-<TR class="row"> 
+<TR class="row" title="Average probability of finding the species within the protected areas that enclose the species distributional range (from 0 to 1), plus or minus one standard deviation."> 
   <TH><div><span>Occurrence probability within protected areas </span></div></TH>
   <TD id="occProbMean"><span ></span></TD>    
 </TR>
-<TR class="row"> 
+<TR class="row" title="Average probability of finding the species outside the protected areas enclosed within the species distributional range (from 0 to 1), plus or minus one standard deviation."> 
    <TH><div><span>Occurrence probability outside protected areas</span></div></TH>
   <TD id="occProbMeanOut"><span></span></TD>  
 </TR>
-<TR class="row">
+<TR class="row" title="Proportion of the distributional range of the species that is covered by protected areas of any kind.">
   <TH><div><span>Percentage of potential distribution that is protected (%)</span></div></TH>
   <TD id="percentAreaProtected"><span></span></TD> 
 </TR>
