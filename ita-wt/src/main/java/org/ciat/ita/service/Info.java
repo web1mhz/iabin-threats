@@ -6,9 +6,7 @@ public class Info {
 	private static String pass = "cajanus";
 	private static String ip = "gisbif.ciat.cgiar.org";
 	private static String port = "3306";
-	private static String database = "gbif_sept2010";
-	private static String path = "";
-	
+	private static String database = "gbif_sept2010";	
 	
 	public static String getUser() {
 		return user;
