@@ -131,22 +131,18 @@ scope:row;
 	text-indent:0px;
 	
 }
-#navigation li {
-	width: 170px;
+#navigation li {	
 	list-style:none outside none; display:inline;
 	color:#BEF014;
 	
 
 }
 #navigation li:hover {
-    width: 170px;
 	list-style:none outside none; display:inline;
-	color:#BEF014;
-	
+	color:#BEF014;	
 }
 
 #navigation .utilityButtons {
-	
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6cbf5f), color-stop(1, #548c26) );
 	background:-moz-linear-gradient( center top, #6cbf5f 5%, #548c26 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6cbf5f', endColorstr='#548c26');
@@ -162,6 +158,9 @@ scope:row;
 	font-size:9px;
 	padding:4px 7px;
 	text-decoration:none;
+	position: relative;
+	top: 5px;
+	left: 10px;
 	}.utilityButtons:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #548c26), color-stop(1, #6cbf5f) );
 	background:-moz-linear-gradient( center top, #548c26 5%, #6cbf5f 100% );
@@ -171,6 +170,23 @@ scope:row;
 }.utilityButtons:active {
 	position:relative;
 	top:1px;
+}
+
+#navigation .submenuButtons {
+	display:block;
+	padding-right: 15px;
+	height: 30px;
+}
+
+hr.submenuDivision {
+	background-color: white;
+}
+
+#navigation .opacityBar {
+	width: 90px;
+	display: inline-block;
+	left: 20px;
+	top: 7px;
 }
 
 #treeStyle{
@@ -285,7 +301,6 @@ display:block;
 	margin:0;
 	padding:0;	
 	margin-bottom:1em;
-	width: 180px;
 }
 .submenuContent {
 	background-color: rgba(100,100,100, 0.7);
@@ -295,6 +310,8 @@ display:block;
 	display: block;
 	height: 120px;
 	overflow: auto;
+	position: relative;
+	top: 10px;
 }
 
 #tab{
