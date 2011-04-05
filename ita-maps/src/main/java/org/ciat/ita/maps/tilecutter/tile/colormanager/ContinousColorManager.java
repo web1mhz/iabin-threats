@@ -2,9 +2,12 @@ package org.ciat.ita.maps.tilecutter.tile.colormanager;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
+
 import org.ciat.ita.maps.tilecutter.raster.Raster;
 public class ContinousColorManager extends ColorManager{
 	/**
@@ -54,14 +57,15 @@ public class ContinousColorManager extends ColorManager{
 
 	@Override
 	public BufferedImage getScaleImage(String descripcion) {
-	  
-		int line = 35;
+		int nbStep = 5;
+		int line = 10;
+		int margin = 30;
 		
-		int recWidth = 40;
-		int recHeight = line*4-recWidth;
+		int recWidth = 200;
+		int recHeight = line;
 		
-		int width = recWidth*4;
-		int height = line*4+10;
+		int width = recWidth+margin;
+		int height = recHeight*2+margin/2;
 		
 		
 		BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
@@ -73,23 +77,54 @@ public class ContinousColorManager extends ColorManager{
 		
 		// int fontSize = 12;
 		//Font font = new Font("Arial", Font.PLAIN, fontSize);
-		    
+		   
 		//graphics.setFont(font);
 		//graphics.setColor(Color.BLACK);
 		//graphics.drawString(descripcion,5,(line-recHeight)/2+recHeight/2);
+		Font font = new Font("Arial", Font.PLAIN, 10);
+	    
+		graphics.setFont(font);
 		
 		Color colorMin = new Color(getRGB(getMin()));
 		Color colorMax = new Color(getRGB(getMax()));
-		graphics.setPaint(new GradientPaint(5, (line-recHeight)/2+line*2, colorMax,0, recHeight+line, colorMin ));
-		graphics.fillRect(5,(line-recHeight)/2+line*2, recWidth, recHeight);
+		graphics.setPaint(new GradientPaint(margin/2, margin/4, colorMin,recWidth, 0, colorMax ));
+		graphics.fillRect(margin/2, margin/4, recWidth, recHeight);
+		
+		FontMetrics fm = graphics.getFontMetrics(font);
 		
 		
 		graphics.setColor(Color.BLACK);
-		graphics.drawRect(5,(line-recHeight)/2+line*2, recWidth, recHeight);
-		graphics.drawString(Float.toString(this.getMax()/10), recWidth+10,(line-recHeight)/2+recHeight/2+30);
-		graphics.drawString(Float.toString(this.getMin()/10), recWidth+10,recHeight+40);
+		graphics.drawRect(margin/2, margin/4, recWidth, recHeight);
+		int fWidth;
+		float diffMinMax = (this.getMax()-this.getMin())/nbStep;
+		float min = this.getMin();
+		float toWrite;
 		
 		
+		String format = "#";
+		int fact = 1;
+		if(diffMinMax < 1.5){
+			format = format + ".";
+			for(int i=1; diffMinMax*i<1.5; i *= 10){
+				format = format + "#";
+				fact *= 10;
+			}
+		}
+		
+		DecimalFormat formater = new DecimalFormat(format);
+		for(int i =0; i < nbStep; i++){
+			toWrite =  (float)Math.floor((min+i*diffMinMax)*fact)/fact;
+			fWidth= fm.stringWidth(formater.format(toWrite));
+			graphics.drawString(formater.format(toWrite), margin/2-fWidth/2 + 
+					(recWidth/nbStep)*i,recHeight+20);
+			graphics.drawLine(margin/2+(recWidth/nbStep)*i,recHeight+margin/4, 
+					margin/2+(recWidth/nbStep)*i, recHeight+10);
+		}
+		
+		fWidth  = fm.stringWidth(formater.format(Math.floor(this.getMax()*fact)/fact));
+		graphics.drawString(formater.format(this.getMax()), margin/2+recWidth-fWidth/2,recHeight+20);
+		graphics.drawLine(margin/2+recWidth,recHeight+margin/4, 
+				margin/2+recWidth, recHeight+10);
 		return image;
 	}
 
