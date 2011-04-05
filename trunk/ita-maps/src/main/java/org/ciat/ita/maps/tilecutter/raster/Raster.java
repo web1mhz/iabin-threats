@@ -52,8 +52,9 @@ public class Raster {
 	 * @param y
 	 * @param value
 	 */
-	public void setValue(int x, int y, float value) {
+	public void setValue(int x, int y, float value, float factor) {
 		if(value != header.getNoData()) {
+			value *= factor;
 			if(value > max)
 				max = value;
 			if(value < min)
@@ -87,7 +88,7 @@ public class Raster {
 			for (int y = 0; y < grid[x].length; y++) {
 
 				setValue(x,y,raster.calculaValorPixel(header.pixelSupIzq(x, y),
-						header.pixelInfDer(x, y)));
+						header.pixelInfDer(x, y)),1);
 				
 			}
 		}
@@ -98,7 +99,7 @@ public class Raster {
 	 * @param file 
 	 * @throws IOException
 	 */
-	public void loadRaster(String file) throws IOException {
+	public void loadRaster(String file, float factor) throws IOException {
 			
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 
@@ -115,7 +116,7 @@ public class Raster {
 			try {
 			data = line.split(" ");
 			for (int x = 0; x < data.length; x++)
-				setValue(x,y,Float.parseFloat(data[x]));
+				setValue(x,y,Float.parseFloat(data[x]),factor);
 			y++;
 			//System.out.println(y);
 			}catch (NumberFormatException e){

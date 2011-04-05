@@ -57,10 +57,10 @@ public class TileCutter {
 			String group = PropertiesManager.getInstance().getPropertiesAsString(rasterID + ".group");
 			String pathGroup = PropertiesManager.getInstance().getPropertiesAsString(group + ".path");
 			String fileName = PropertiesManager.getInstance().getPropertiesAsString(rasterID + ".filename");
-
+			float factor = PropertiesManager.getInstance().getPropertiesAsFloat(group + ".factor");
 			iManager = new ImageManager(targetPath + pathGroup + rasterID);
 			TileManager tManager = new TileManager(iManager);
-			raster.loadRaster(sourcePath + pathGroup + fileName);
+			raster.loadRaster(sourcePath + pathGroup + fileName,factor);
 			ColorManager cManager = ColorManagerFactory.createColorManager(rasterID, raster);
 			iManager.setColorManager(cManager);
 
@@ -125,10 +125,10 @@ public class TileCutter {
 			
 			String fileName = (s.getName()+File.separator + s.getName()+"_full_with_threshold.asc");
 			System.out.println("filename: "+fileName);
-			
+			float factor = PropertiesManager.getInstance().getPropertiesAsFloat(group + ".factor");
 			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/full_with_threshold/");
 			TileManager tManager = new TileManager(iManager);
-			raster.loadRaster(sourcePath + pathGroup + fileName);
+			raster.loadRaster(sourcePath + pathGroup + fileName,factor);
 			ColorManager cManager = ColorManagerFactory.createColorManager(rasterID, raster);
 			iManager.setColorManager(cManager);
 
@@ -145,7 +145,8 @@ public class TileCutter {
 			
 			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/dist_limited_to_convex_hull/");
 			tManager = new TileManager(iManager);
-			raster.loadRaster(sourcePath + pathGroup + fileName);
+			factor = PropertiesManager.getInstance().getPropertiesAsFloat(group + ".factor");
+			raster.loadRaster(sourcePath + pathGroup + fileName,factor);
 			cManager = ColorManagerFactory.createColorManager(rasterID, raster);
 			iManager.setColorManager(cManager);
 
@@ -163,7 +164,8 @@ public class TileCutter {
 			
 			iManager = new ImageManager(targetPath + pathGroup + s.getName()+"/full/");
 			tManager = new TileManager(iManager);
-			raster.loadRaster(sourcePath + pathGroup + fileName);
+			factor = PropertiesManager.getInstance().getPropertiesAsFloat(group + ".factor");
+			raster.loadRaster(sourcePath + pathGroup + fileName,factor);
 			cManager = ColorManagerFactory.createColorManager(rasterID, raster);
 			iManager.setColorManager(cManager);
 

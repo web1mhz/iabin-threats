@@ -1,8 +1,12 @@
 package org.ciat.ita.maps.tilecutter.tile.colormanager;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
+
 import org.ciat.ita.maps.tilecutter.raster.Raster;
 
 public abstract class DiscreteColorManager extends ColorManager {
@@ -76,40 +80,76 @@ public abstract class DiscreteColorManager extends ColorManager {
 
 	@Override
 	public BufferedImage getScaleImage(String descripcion) {
-		int line = 30;
-
-		int recWidth = 30;
-		int recHeight = line - 10;
-
-		int width = 150;
-		int height = umbrales.length * line + line;
+		Font font = new Font("Arial", Font.PLAIN, 10);
+		
+		
+		float diffMinMax = (this.getMax()-this.getMin())/umbrales.length;
+		String format = "#";
+		int fact = 1;
+		if(diffMinMax < 1.5){
+			format = format + ".";
+			for(int i=1; diffMinMax*i<1.5; i *= 10){
+				format = format + "#";
+				fact *= 10;
+			}
+		}
+		final DecimalFormat formater = new DecimalFormat(format);
+		
+		int boxMargin = 0;
+		int colorRecWidth = 25 + (fact/10)*2;
+		int line = 10;
+		int margin = 30;
+		
+		int recWidth = umbrales.length*(colorRecWidth+boxMargin);
+		int recHeight = line;
+		
+		int width = recWidth+margin;
+		int height = recHeight*2+margin/2;
+		
 
 		BufferedImage image = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);
 
 		Graphics2D graphics = (Graphics2D) image.getGraphics();
-
+		graphics.setFont(font);
+		final FontMetrics fm = graphics.getFontMetrics(font);
+		
 		graphics.setColor(Color.WHITE);
 		graphics.fillRect(0, 0, width, height);
 
-		int cont = line;
 
 		//graphics.setColor(Color.BLACK);
 		//graphics.drawString(descripcion, 5, (line - recHeight) / 2 + recHeight);
 
+		
+		
+		
+		String toWrite;
+		int tWidth;
 		float valorMinimo = this.getMin();
+		
 		for (int i = 0; i < umbrales.length; i++) {
 			Color color = new Color(getRGB(umbrales[i]
 					- (float) Math.pow(10, -8)));
 			graphics.setColor(color);
-			graphics.fillRect(5, (line - recHeight) / 2 + cont, recWidth,recHeight);
+			toWrite = formater.format(Math.floor(valorMinimo*fact)/fact);/* + " " + 
+				formater.format(Math.floor(umbrales[i]*fact)/fact)+ " ]";*/
+			tWidth= fm.stringWidth(toWrite);
+			graphics.fillRect(margin/2+i*colorRecWidth+i*boxMargin, margin/4, colorRecWidth,recHeight);
 			graphics.setColor(Color.BLACK);
-			graphics.drawRect(5, (line - recHeight) / 2 + cont, recWidth,recHeight);
-			ColorManager.drawYCenteredString(5, (line -6)+ cont, graphics,"[ " + valorMinimo/10 + " " + Float.toString(umbrales[i]/10)+ " ]");
-			cont += line;
-			valorMinimo = (int) umbrales[i];
-
+			graphics.drawRect(margin/2+i*colorRecWidth+i*boxMargin, margin/4, colorRecWidth,recHeight);
+			graphics.drawString(toWrite,
+					margin/2+(i)*colorRecWidth+i*boxMargin-tWidth/2, 
+					recHeight+20);
+			//cont += line;
+			valorMinimo =  umbrales[i];
 		}
+		
+		toWrite = formater.format(Math.floor(getMax()*fact)/fact);
+		tWidth= fm.stringWidth(toWrite);
+		graphics.drawString(toWrite,
+				margin/2+(umbrales.length)*colorRecWidth+umbrales.length*boxMargin-tWidth/2, 
+				recHeight+20);
 
 		return image;
 
