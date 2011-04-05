@@ -11,7 +11,7 @@ function menu() {
 	document.write("<ul id=navigation>");
 	var i;
 	for (i = 0; i < categories.length; i++){
-		document.write("<li><a id="+categories[i].attributes.getNamedItem("id").nodeValue+" "+"class='head'>");
+		document.write("<li><a href='' id="+categories[i].attributes.getNamedItem("id").nodeValue+" "+"class='head'>");
 		document.write(categories[i].attributes.getNamedItem("name").nodeValue);
 		document.write("</a>");
 		document.write("<ul id="+categories[i].attributes.getNamedItem("name").nodeValue+" class=submenuContent>");
@@ -19,7 +19,7 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Threats"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a  class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
@@ -35,7 +35,7 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Bioclim"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
@@ -51,9 +51,9 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Summaries"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a  class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			document.write("<div class=submenuLayout>");			
-			for(j = 0; j < items.length; j++) {			
+			for(j = 0; j < items.length; j++) {
 				document.write("<h5><li ><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
