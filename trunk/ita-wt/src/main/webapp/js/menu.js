@@ -19,7 +19,11 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Threats"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<div class='submenuButtons'>");
+			document.write("<a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a>");
+			document.write("<div id='opacityThreats' class='opacityBar'></div>");
+			document.write("</div>");
+			document.write("<hr class='submenuDivision'>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");
@@ -35,7 +39,11 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Bioclim"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<div class='submenuButtons'>");
+			document.write("<a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a>");
+			document.write("<div id='opacityBioclim' class='opacityBar'></div>");
+			document.write("</div>");
+			document.write("<hr class='submenuDivision'>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
 				document.write("<h5><li ><label>");

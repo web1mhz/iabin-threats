@@ -98,6 +98,7 @@ $(document).ready(function() {
 		    map.overlayMapTypes.setAt(0,null);
 		});
 		$("#cleartaxon-menu").click(function(event) {
+			event.preventDefault();			
 			($(".specieData").attr("checked", false));
 			($(".specieDistribution").attr("checked", false));
 			$("#specieButtons #showSpeciesInfo").css("display", "none");
@@ -109,7 +110,6 @@ $(document).ready(function() {
 			map.overlayMapTypes.setAt(1,null);
 			map.overlayMapTypes.setAt(2,null);
 			map.overlayMapTypes.setAt(3,null);
-			event.preventDefault();			
 		});		
 		$("#clearsummaries-menu").click(function(event) {
 			event.preventDefault();
@@ -141,7 +141,25 @@ $(document).ready(function() {
      });
    
      $(function() {
- 		$( "#slider-range-min" ).slider({
+    	 $("#opacityThreats").slider({
+    		 range: "min",
+    		 value: 80,
+    		 min: 1,
+    		 max: 100,
+    		 slide: function( event, ui ) {
+  				$( "#opacityLayer" ).val(ui.value+"%" );
+    	 	}
+    	 });
+    	 $("#opacityBioclim").slider({
+    		 range: "min",
+    		 value: 80,
+    		 min: 1,
+    		 max: 100,
+    		 slide: function( event, ui ) {
+  				$( "#opacityLayer" ).val(ui.value+"%" );
+    	 	}
+    	 });
+ 		/*$( "#slider-range-min" ).slider({
  			range: "min",
  			value: 50,
  			min: 1,
@@ -149,6 +167,6 @@ $(document).ready(function() {
  			slide: function( event, ui ) {
  				$( "#opacityLayer" ).val(ui.value+"%" );
  			}
- 		});
- 		$( "#opacityLayer" ).val($( "#slider-range-min" ).slider( "value" )+ "%"  );
+ 		});*/
+ 		//$( "#opacityLayer" ).val($( "#slider-range-min" ).slider( "value" )+ "%"  );
  	});
