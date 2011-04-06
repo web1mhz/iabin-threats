@@ -75,11 +75,13 @@ function menu() {
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Species"){
 			// Buttons: Search, InfoSpecie, Clear
 			document.write("<div id=specieButtons>");
-			document.write("<a href='' id=searchSpeciePopupButton class=utilityButtons>Search</a>");		
-			document.write("<div id=showSpeciesInfo style=display:none><a href='' class=utilityButtons>Show Info</a></div>");
+			document.write("<a href='' id=searchSpeciePopupButton class=utilityButtons>Search</a>");			
+			document.write("<div id=showSpeciesInfo style=display:none><a href='' class=utilityButtons>Show Info</a></div>");			
 			document.write("<a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+" style=display:none> Clear </a>");
-			document.write("</div><br>");
-			document.write("<div id=infoSpecieOptions class=submenuLayout style='display:none;'>");
+			document.write("<div id='opacitySpecie' class='opacityBar' style='display:none;'></div>");
+			document.write("</div>");
+			document.write("<br /><hr class='submenuDivision'>");
+			document.write("<div id=infoSpecieOptions class=submenuLayout style='display:none;'>");			
 	        document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrences records</h5>");        
 	        document.write("<h5><input type=checkbox name='convex' key='' class=specieData> Convex hull</h5>");
 	        document.write("<h5><input type=checkbox name='convexHull' key='' class=specieData> Convex hull buffer</h5>");

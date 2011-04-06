@@ -12,6 +12,7 @@ $(document).ready(function() {
 				$('#infoSpecieOptions').css({'display' : 'block'});
 				$("#specieButtons #showSpeciesInfo").css("display", "inline");
 				$("#specieButtons [id^='clear']").css("display", "inline");
+				$("#opacitySpecie").css("display", "block");
 			} else {
 				// run ajax
 				$.ajax({

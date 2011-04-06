@@ -98,7 +98,7 @@ $(document).ready(function() {
 		    map.overlayMapTypes.setAt(0,null);
 		});
 		$("#cleartaxon-menu").click(function(event) {
-			event.preventDefault();			
+			event.preventDefault();						
 			occurencesLayer.setMap(null);
 			convexLayer.setMap(null);
 			poligonLayer.setMap(null);
@@ -109,6 +109,7 @@ $(document).ready(function() {
 			($(".specieDistribution").attr("checked", false));
 			$("#specieButtons #showSpeciesInfo").css("display", "none");
 			$("#specieButtons [id^='clear']").css("display", "none");
+			$("#opacitySpecie").css("display", "none");
 			$("#both #infoSpecieOptions").css("display", "none");
 		});		
 		$("#clearsummaries-menu").click(function(event) {
@@ -144,6 +145,15 @@ $(document).ready(function() {
     	 	}
     	 });
     	 $("#opacityBioclim").slider({
+    		 range: "min",
+    		 value: 80,
+    		 min: 1,
+    		 max: 100,
+    		 slide: function( event, ui ) {
+  				$( "#opacityLayer" ).val(ui.value+"%" );
+    	 	}
+    	 });
+    	 $("#opacitySpecie").slider({
     		 range: "min",
     		 value: 80,
     		 min: 1,
