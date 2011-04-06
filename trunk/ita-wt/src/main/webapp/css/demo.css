@@ -189,6 +189,11 @@ hr.submenuDivision {
 	top: 7px;
 }
 
+#navigation #opacitySpecie {
+	margin-left: 15px;
+	margin-top: 5px;
+}
+
 #treeStyle{
 	width: 980px;
 	margin: 50px ;
