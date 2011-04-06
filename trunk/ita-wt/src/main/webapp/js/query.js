@@ -117,23 +117,14 @@ $(document).ready(function() {
 			$("#showScale").css("display", "none");	
 			($(".richness").attr("checked", false));
 			($(".Summaries").attr("checked", false));
-			map.overlayMapTypes.setAt(4,null);
-		    map.overlayMapTypes.setAt(5,null);
-		    map.overlayMapTypes.setAt(6,null);
-		    map.overlayMapTypes.setAt(7,null);
-		    map.overlayMapTypes.setAt(8,null);
-		    map.overlayMapTypes.setAt(9,null);
-		    map.overlayMapTypes.setAt(10,null);
-		    map.overlayMapTypes.setAt(11,null);
-		    map.overlayMapTypes.setAt(12,null);
-		    map.overlayMapTypes.setAt(13,null);
-		    map.overlayMapTypes.setAt(14,null);
-		    map.overlayMapTypes.setAt(15,null);
-		    paLayer.setMap(null);
-		    paLayer1.setMap(null);
-		    paLayer2.setMap(null);
-		    paLayer3.setMap(null);
-		    
+			for(i=4;i<=15;i++){
+				if(map.overlayMapTypes.getAt(i) != null) {
+					map.overlayMapTypes.setAt(i,null);
+				}
+	    	}			
+			for(i = 0 ; i < paLayers.length; i++) {				
+				paLayers[i].setMap(null);
+			}		    
 		});	
 	 $("#closeLink").click(function() {
 			$("#buttonShowScaleInfo").fadeIn();			
@@ -147,7 +138,9 @@ $(document).ready(function() {
     		 min: 1,
     		 max: 100,
     		 slide: function( event, ui ) {
+    		 	event.stopPropagation();
   				$( "#opacityLayer" ).val(ui.value+"%" );
+  				//alert(typeof map.overlayMapTypes.getAt(0));
     	 	}
     	 });
     	 $("#opacityBioclim").slider({

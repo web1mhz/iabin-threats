@@ -1,4 +1,23 @@
+ var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
+	  var cont=0; 
+	  var map;  
+	  var so=4;
+	  var so1=0;
+	  var theme;  
+	  var toggleArray = [];
+	  var kmlArray = [];
+	  var cont;
+	  var toggle=0;
+	  var ctaLayer;
+	  var poligonLayer; 
+	  var paLayers =[];
+	  
 $(document).ready(function() {
+	
+	 
+	
+	
+	
     var w = 120;
 	var h = 100;
 	var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
@@ -146,8 +165,7 @@ $(".specieDistribution").click(function(event) {
 	    	 	         ];
    
     	if ($target.attr('checked')){
-			var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSpecieId]);
-			
+			var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSpecieId]);			
 			map.overlayMapTypes.setAt((layerSpecieId+1),overlayMap);	  
 		} else {
 			map.overlayMapTypes.setAt((layerSpecieId+1),null);
@@ -262,55 +280,44 @@ $(".Summaries").click(function(event) {
 	    	 	           	  isPng:true,
 	    	 	           	  opacity:0.7
 	                   }
-	                   ];
-    
-    
-    
-    if ($target.attr('checked')==true){    	
-    	paLayer = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info4.kml?date="+(new Date()).getTime(),{preserveViewport:true});
-    	paLayer1 = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info3.kml?date="+(new Date()).getTime(),{preserveViewport:true});
-    	paLayer2 = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info2.kml?date="+(new Date()).getTime(),{preserveViewport:true});
-    	paLayer3 = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info1.kml?date="+(new Date()).getTime(),{preserveViewport:true});
-    	    		
-		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSummariesId]);
-		var overlayMap1 = new google.maps.ImageMapType(overlayMaps[layerSummariesId+1]);
-		var overlayMap2 = new google.maps.ImageMapType(overlayMaps[layerSummariesId+2]);
-		var overlayMap3 = new google.maps.ImageMapType(overlayMaps[layerSummariesId+3]);				
-		map.overlayMapTypes.setAt((layerSummariesId+12),overlayMap);
-		map.overlayMapTypes.setAt((layerSummariesId+13),overlayMap1);
-		map.overlayMapTypes.setAt((layerSummariesId+14),overlayMap2);
-		map.overlayMapTypes.setAt((layerSummariesId+15),overlayMap3);
-		
+	                   ];    
+    if ($target.attr('checked')==true){
+    	for(i = 4; i > 0 ; i--) {
+    		paLayers[4-i] = new google.maps.KmlLayer("http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/summaries/pa/total-info"+i+".kml?date="+(new Date()).getTime(),{preserveViewport:true});
+    	}
+    	var imageMapTypes = [];
+    	for(i = 0; i < 4; i++) {
+    		imageMapTypes[i] = new google.maps.ImageMapType(overlayMaps[layerSummariesId+i]);
+    		map.overlayMapTypes.setAt((layerSummariesId+12+i),imageMapTypes[i]);
+    	}    	
 		if (map.getZoom() > 0) {
-    		paLayer.setMap(map);	   		
+    		paLayers[0].setMap(map);
     	}else{
-    		paLayer.setMap(null);    		
+    		paLayers[0].setMap(null);
     	}
     	if (map.getZoom() > 3) {
-     		paLayer1.setMap(map);	   		
+     		paLayers[1].setMap(map);
     	}else{
-     		paLayer1.setMap(null);    		
+    		paLayers[1].setMap(null);    		
     	}
-    	
     	if (map.getZoom() > 4) {
-    		paLayer2.setMap(map);	   		
+    		paLayers[2].setMap(map);	   		
     	}else{
-    		paLayer2.setMap(null);    		
+    		paLayers[2].setMap(null);    		
     	}
     	if (map.getZoom() > 5) {
-       		paLayer3.setMap(map);	   		
+    		paLayers[3].setMap(map);	   		
     	}else{
-     		paLayer3.setMap(null);
-    		
+    		paLayers[3].setMap(null);    		
     	}
     } else if ($target.attr('checked')==false){
     	for(i=12;i<=15;i++){
-		map.overlayMapTypes.setAt((layerSummariesId+i),null);		
-    	}
-    	paLayer.setMap(null);
-    	paLayer1.setMap(null);
-    	paLayer2.setMap(null);
-    	paLayer3.setMap(null);
+    		map.overlayMapTypes.setAt((layerSummariesId+i),null);		
+    	}	
+    	for(i = 0 ; i < paLayers.length; i++) {
+    		
+			paLayers[i].setMap(null);
+		}
 	}   
     
 });
@@ -338,19 +345,7 @@ function cerrar_ampliacion(){
  
  
  // ------------------------------------ JavaScript -------------------------------------
-  var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
-  var cont=0; 
-  var map;  
-  var so=4;
-  var so1=0;
-  var theme;  
-  var toggleArray = [];
-  var kmlArray = [];
-  var cont;
-  var toggle=0;
-  var ctaLayer;
-  var poligonLayer; 
-  var paLayer;
+
 function initialize() {
 	var myOptions = {
 			navigationControl: true,
@@ -372,25 +367,25 @@ function initialize() {
         	map.setZoom(7);    		
     	}
     	if (document.form1.Summaries.checked==true && map.getZoom() > 0) {
-    		paLayer.setMap(map);	   		
+    		paLayers[0].setMap(map);	   		
     	}else{
-    		paLayer.setMap(null);    		
+    		paLayer[0].setMap(null);    		
     	}
     	if (document.form1.Summaries.checked==true && map.getZoom() > 3) {
-     		paLayer1.setMap(map);	   		
+     		paLayers[1].setMap(map);	   		
     	}else{
-     		paLayer1.setMap(null);    		
+     		paLayers[1].setMap(null);    		
     	}
     	
     	if (document.form1.Summaries.checked==true && map.getZoom() > 4) {
-    		paLayer2.setMap(map);	   		
+    		paLayers[2].setMap(map);	   		
     	}else{
-    		paLayer2.setMap(null);    		
+    		paLayers[2].setMap(null);    		
     	}
     	if (document.form1.Summaries.checked==true && map.getZoom() > 5) {
-       		paLayer3.setMap(map);	   		
+       		paLayers[3].setMap(map);	   		
     	}else{
-     		paLayer3.setMap(null);
+     		paLayers[3].setMap(null);
     		
     	}
     }
