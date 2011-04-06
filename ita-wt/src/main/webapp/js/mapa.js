@@ -1,15 +1,9 @@
- var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
-	  var cont=0; 
+	  var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
 	  var map;  
-	  var so=4;
-	  var so1=0;
-	  var theme;  
-	  var toggleArray = [];
-	  var kmlArray = [];
-	  var cont;
-	  var toggle=0;
-	  var ctaLayer;
+	  var zoomMap=4;
 	  var poligonLayer; 
+	  var convexLayer;
+	  var ocurrencesLayer;
 	  var paLayers =[];
 	  
 $(document).ready(function() {
@@ -290,19 +284,13 @@ $(".Summaries").click(function(event) {
     		imageMapTypes[i] = new google.maps.ImageMapType(overlayMaps[layerSummariesId+i]);
     		map.overlayMapTypes.setAt((layerSummariesId+12+i),imageMapTypes[i]);
     	}    	
-		if (map.getZoom() > 0) {
+		if (map.getZoom() > 4) {
     		paLayers[0].setMap(map);
-    	}else{
-    		paLayers[0].setMap(null);
-    	}
-    	if (map.getZoom() > 3) {
-     		paLayers[1].setMap(map);
-    	}else{
-    		paLayers[1].setMap(null);    		
-    	}
-    	if (map.getZoom() > 4) {
+    		paLayers[1].setMap(map);
     		paLayers[2].setMap(map);	   		
     	}else{
+    		paLayers[0].setMap(null);
+    		paLayers[1].setMap(null);
     		paLayers[2].setMap(null);    		
     	}
     	if (map.getZoom() > 5) {
@@ -356,7 +344,7 @@ function initialize() {
 	}
     map = new google.maps.Map(document.getElementById("map"), myOptions);
     map.setCenter(new google.maps.LatLng(-13.2,-59.6));
-    map.setZoom(so);
+    map.setZoom(zoomMap);
     map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
     google.maps.event.addListener(map, 'zoom_changed', function() {
     				zoomChange();
@@ -366,20 +354,13 @@ function initialize() {
     	if (map.getZoom() > 7) {
         	map.setZoom(7);    		
     	}
-    	if (document.form1.Summaries.checked==true && map.getZoom() > 0) {
-    		paLayers[0].setMap(map);	   		
-    	}else{
-    		paLayer[0].setMap(null);    		
-    	}
-    	if (document.form1.Summaries.checked==true && map.getZoom() > 3) {
-     		paLayers[1].setMap(map);	   		
-    	}else{
-     		paLayers[1].setMap(null);    		
-    	}
-    	
     	if (document.form1.Summaries.checked==true && map.getZoom() > 4) {
+    		paLayers[0].setMap(map);
+     		paLayers[1].setMap(map);
     		paLayers[2].setMap(map);	   		
     	}else{
+    		paLayers[0].setMap(null);
+     		paLayers[1].setMap(null);  
     		paLayers[2].setMap(null);    		
     	}
     	if (document.form1.Summaries.checked==true && map.getZoom() > 5) {

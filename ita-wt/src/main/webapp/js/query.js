@@ -99,17 +99,17 @@ $(document).ready(function() {
 		});
 		$("#cleartaxon-menu").click(function(event) {
 			event.preventDefault();			
-			($(".specieData").attr("checked", false));
-			($(".specieDistribution").attr("checked", false));
-			$("#specieButtons #showSpeciesInfo").css("display", "none");
-			$("#specieButtons [id^='clear']").css("display", "none");
-			$("#both #infoSpecieOptions").css("display", "none");
 			occurencesLayer.setMap(null);
 			convexLayer.setMap(null);
 			poligonLayer.setMap(null);
 			map.overlayMapTypes.setAt(1,null);
 			map.overlayMapTypes.setAt(2,null);
 			map.overlayMapTypes.setAt(3,null);
+			($(".specieData").attr("checked", false));
+			($(".specieDistribution").attr("checked", false));
+			$("#specieButtons #showSpeciesInfo").css("display", "none");
+			$("#specieButtons [id^='clear']").css("display", "none");
+			$("#both #infoSpecieOptions").css("display", "none");
 		});		
 		$("#clearsummaries-menu").click(function(event) {
 			event.preventDefault();
