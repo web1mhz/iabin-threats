@@ -58,21 +58,21 @@ public class ContinousColorManager extends ColorManager{
 	@Override
 	public BufferedImage getScaleImage(String descripcion) {
 		int nbStep = 5;
-		int line = 10;
+		int line = 15;
 		int margin = 30;
 		
-		int recWidth = 200;
+		int recWidth = 140;
 		int recHeight = line;
 		
 		int width = recWidth+margin;
-		int height = recHeight*2+margin/2;
+		int height = recHeight*2;
 		
 		
 		BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
 		
 		Graphics2D graphics = (Graphics2D) image.getGraphics();
 		
-		graphics.setColor(Color.WHITE);
+		graphics.setColor(new Color(255,255,255,0));
 		graphics.fillRect(0, 0, width, height);
 		
 		// int fontSize = 12;
@@ -81,20 +81,20 @@ public class ContinousColorManager extends ColorManager{
 		//graphics.setFont(font);
 		//graphics.setColor(Color.BLACK);
 		//graphics.drawString(descripcion,5,(line-recHeight)/2+recHeight/2);
-		Font font = new Font("Arial", Font.PLAIN, 10);
+		Font font = new Font("serif", Font.BOLD, 10);
 	    
 		graphics.setFont(font);
 		
 		Color colorMin = new Color(getRGB(getMin()));
 		Color colorMax = new Color(getRGB(getMax()));
 		graphics.setPaint(new GradientPaint(margin/2, margin/4, colorMin,recWidth, 0, colorMax ));
-		graphics.fillRect(margin/2, margin/4, recWidth, recHeight);
+		graphics.fillRect(margin/2, 0, recWidth, recHeight);
 		
 		FontMetrics fm = graphics.getFontMetrics(font);
 		
 		
 		graphics.setColor(Color.BLACK);
-		graphics.drawRect(margin/2, margin/4, recWidth, recHeight);
+		graphics.drawRect(margin/2, 0, recWidth, recHeight);
 		int fWidth;
 		float diffMinMax = (this.getMax()-this.getMin())/nbStep;
 		float min = this.getMin();
@@ -116,15 +116,15 @@ public class ContinousColorManager extends ColorManager{
 			toWrite =  (float)Math.floor((min+i*diffMinMax)*fact)/fact;
 			fWidth= fm.stringWidth(formater.format(toWrite));
 			graphics.drawString(formater.format(toWrite), margin/2-fWidth/2 + 
-					(recWidth/nbStep)*i,recHeight+20);
-			graphics.drawLine(margin/2+(recWidth/nbStep)*i,recHeight+margin/4, 
-					margin/2+(recWidth/nbStep)*i, recHeight+10);
+					(recWidth/nbStep)*i,recHeight+line-2);
+			graphics.drawLine(margin/2+(recWidth/nbStep)*i,recHeight, 
+					margin/2+(recWidth/nbStep)*i, recHeight+line/4);
 		}
 		
 		fWidth  = fm.stringWidth(formater.format(Math.floor(this.getMax()*fact)/fact));
-		graphics.drawString(formater.format(this.getMax()), margin/2+recWidth-fWidth/2,recHeight+20);
-		graphics.drawLine(margin/2+recWidth,recHeight+margin/4, 
-				margin/2+recWidth, recHeight+10);
+		graphics.drawString(formater.format(this.getMax()), margin/2+recWidth-fWidth/2,recHeight+line-2);
+		graphics.drawLine(margin/2+recWidth,recHeight, 
+				margin/2+recWidth, recHeight+line/4);
 		return image;
 	}
 
