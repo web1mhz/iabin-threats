@@ -80,7 +80,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 
 	@Override
 	public BufferedImage getScaleImage(String descripcion) {
-		Font font = new Font("Arial", Font.PLAIN, 10);
+		Font font = new Font("serif", Font.BOLD, 10);
 		
 		
 		float diffMinMax = (this.getMax()-this.getMin())/umbrales.length;
@@ -95,16 +95,17 @@ public abstract class DiscreteColorManager extends ColorManager {
 		}
 		final DecimalFormat formater = new DecimalFormat(format);
 		
-		int boxMargin = 0;
-		int colorRecWidth = 25 + (fact/10)*2;
-		int line = 10;
 		int margin = 30;
+		int boxMargin = 0;
+		int colorRecWidth = (170-margin)/umbrales.length;
+		int line = 15;
+		
 		
 		int recWidth = umbrales.length*(colorRecWidth+boxMargin);
 		int recHeight = line;
 		
 		int width = recWidth+margin;
-		int height = recHeight*2+margin/2;
+		int height = recHeight*2;
 		
 
 		BufferedImage image = new BufferedImage(width, height,
@@ -114,7 +115,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 		graphics.setFont(font);
 		final FontMetrics fm = graphics.getFontMetrics(font);
 		
-		graphics.setColor(Color.WHITE);
+		graphics.setColor(new Color(0,0,0,0));
 		graphics.fillRect(0, 0, width, height);
 
 
@@ -135,12 +136,12 @@ public abstract class DiscreteColorManager extends ColorManager {
 			toWrite = formater.format(Math.floor(valorMinimo*fact)/fact);/* + " " + 
 				formater.format(Math.floor(umbrales[i]*fact)/fact)+ " ]";*/
 			tWidth= fm.stringWidth(toWrite);
-			graphics.fillRect(margin/2+i*colorRecWidth+i*boxMargin, margin/4, colorRecWidth,recHeight);
+			graphics.fillRect(margin/2+i*colorRecWidth+i*boxMargin, 0, colorRecWidth,recHeight);
 			graphics.setColor(Color.BLACK);
-			graphics.drawRect(margin/2+i*colorRecWidth+i*boxMargin, margin/4, colorRecWidth,recHeight);
+			graphics.drawRect(margin/2+i*colorRecWidth+i*boxMargin, 0, colorRecWidth,recHeight);
 			graphics.drawString(toWrite,
 					margin/2+(i)*colorRecWidth+i*boxMargin-tWidth/2, 
-					recHeight+20);
+					recHeight*2-2);
 			//cont += line;
 			valorMinimo =  umbrales[i];
 		}
@@ -149,7 +150,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 		tWidth= fm.stringWidth(toWrite);
 		graphics.drawString(toWrite,
 				margin/2+(umbrales.length)*colorRecWidth+umbrales.length*boxMargin-tWidth/2, 
-				recHeight+20);
+				recHeight*2-2);
 
 		return image;
 
