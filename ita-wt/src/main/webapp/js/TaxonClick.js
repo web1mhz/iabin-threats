@@ -1,19 +1,24 @@
 $(document).ready(function() {		
+	$(".specieElement").live("click", function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		$target = $(event.target).parent();
+		// It suppose all elements here have rank value 7000
+		disablePopup();
+		$("#showSpeciesInfo a").attr("id", $target.attr("id"));
+		$('input.specieData').attr("key", $target.attr("id"));
+		$('input.specieDistribution').attr("key", $target.attr("id"));
+		$('#infoSpecieOptions').css({'display' : 'block'});
+		$("#specieButtons #showSpeciesInfo").css("display", "inline");
+		$("#specieButtons [id^='clear']").css("display", "inline");
+		$("#opacitySpecie").css("display", "block");
+	});
 	$(".element").live("click", function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		$target = $(event.target).parent();		
 		if($("#" + $target.attr("id")+" ul").attr("id") == undefined) {
-			if($target.attr("rank")==7000) {				
-				disablePopup();
-				$("#showSpeciesInfo a").attr("id", $target.attr("id"));
-				$('input.specieData').attr("key", $target.attr("id"));
-				$('input.specieDistribution').attr("key", $target.attr("id"));
-				$('#infoSpecieOptions').css({'display' : 'block'});
-				$("#specieButtons #showSpeciesInfo").css("display", "inline");
-				$("#specieButtons [id^='clear']").css("display", "inline");
-				$("#opacitySpecie").css("display", "block");
-			} else {
+			if($target.attr("rank") != 7000) {				
 				// run ajax
 				$.ajax({
 					url: "service.do",
