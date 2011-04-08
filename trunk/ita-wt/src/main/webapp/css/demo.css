@@ -1,4 +1,7 @@
 * { margin: 0; padding: 0; }
+* {
+     outline: none;
+}
 html, body, #main { height: 100% }
 a {	text-decoration:none; }
 body, div { font-family: 'arial', arial, arial, arial, arial }
@@ -38,6 +41,13 @@ width:300px;
 position:relative;
 float: center;
 }
+
+#labelmenu{
+	position:absolute;
+	top:12px;
+	left:70px;
+	color:#ffffff;
+	}
 #show{
 width:145px;
 height:45px;
@@ -60,65 +70,48 @@ scope:row;
 	margin:1px;
 	padding:0px;
 	text-indent:0px;	
-	filter:alpha(opacity=70);
 	width:170px;	
 }
 #navigation a.head {
-	width: 140px;
-	border:1px solid #CCC;
-	cursor:pointer;
-	position:relative;
-	border-bottom: 0;
-	-webkit-border-radius: 8px 8px 8px 8px;
-    -moz-border-radius: 8px 8px 8px 8px;
-    border-radius: 8px 8px 8px 8px;
-	background:#bfd255 url(../images/dropdown.png) no-repeat scroll left ;
-	background:url(../images/dropdown.png) no-repeat scroll left,-moz-linear-gradient(top, #bfd255 0%, #8eb92a 29%, #72aa00 96%, #9ecb2d 100%); /* firefox */
-	background-position: 8px;
-    background: url(../images/dropdown.png) no-repeat scroll left,-webkit-gradient(linear, left top, left bottom, color-stop(0%,#bfd255), color-stop(29%,#8eb92a), color-stop(96%,#72aa00), color-stop(100%,#9ecb2d)); /* webkit */
-	background-position: 8px;	
-	color:#FFF;
-	display:block;
-	font-size: small;
-	font-weight: bold;
-	margin:0px;
-	padding: 3px 4px 0px 30px;
-	text-align: left;
-	text-decoration: none;
-	height: 2em;
-	line-height: 1em;
-	behavior: url(templates/PIE.htc);
-		
-}
-#navigation a.head:hover {
-	border:1px solid #CCC;
-	cursor:pointer;
-	position:relative;
-	border-bottom: 0;
-    -webkit-border-radius: 8px 8px 8px 8px;
-    -moz-border-radius: 8px 8px 8px 8px;
-    border-radius: 8px 8px 8px 8px;
-	background:#73880a url(../images/dropup.png) no-repeat scroll left; /* old browsers */
-	background:url(../images/dropup.png) no-repeat scroll left,-moz-linear-gradient(top, #73880a 0%, #324911 99%, #73880a 100%); /* firefox */
-	background-position: 5px;
-    background:url(../images/dropup.png) no-repeat scroll left,-webkit-gradient(linear, left top, left bottom, color-stop(0%,#73880a), color-stop(99%,#324911), color-stop(100%,#73880a)); /* webkit */
-	background-position: 5px;    
-	color:#FFF;
-	display:block;
-	font-size: small;
-	font-weight: bold;
-	margin:0px;
-	padding: 3px 4px 0px 30px;
-	text-align: left;
-	text-decoration: none;
-	height: 2em;
-	line-height: 1em;
-	behavior: url(templates/PIE.htc);
+border: 0 none;
+cursor: pointer;
+font-weight: bold;
+padding: 0 15px 0 0;
+text-align: center;
+height: 30px;
+line-height: 25px;
+width: 170px;
+background: transparent url(../images/btn_right.png ) no-repeat scroll right top;
+clear: left;
+font-size: 12px;
+display: block;
+position: relative;
+white-space: nowrap;
+color: #FFFFFF;
 	
 }
-#navigation a.selected {
-	background-image: url(ejemplo_imagen.png) ;
+
+
+#navigation a.head span{	
+background: transparent url(../images/btn_left.png ) no-repeat;
+clear: left;
+font-size: 12px;
+display: block;
+padding: 0 0 0 15px;
+position: relative;
+white-space: nowrap;
+height: 30px;
+line-height: 25px;
+color: #FFFFFF;	
+	}
+#navigation a.head:hover {
+background-position: 100% -30px;
 }
+
+#navigation a.head:hover span{
+	background-position: 0% -30px;
+	
+	}
 #navigation a.current {
 	background-color:#FFFF99;
 	
@@ -179,7 +172,8 @@ scope:row;
 }
 
 hr.submenuDivision {
-	background-color: white;
+	color: #ffffff;
+	background-color: #ffffff;
 }
 
 #navigation .opacityBar {
@@ -228,7 +222,7 @@ hr.submenuDivision {
 #treeStyle ul.search li ul li.rankElement		   	{width: 400px; font-size: 11px; /*color: #A4A4A4;*/ font-style:italic; padding-top: 0px; padding-bottom: 0px; padding-left: 25px}
 #treeStyle ul.search li a 							{width: 400px; background: url(../images/plus.gif) no-repeat 10px center; padding-left: 25px;}
 #treeStyle ul li.specieElement a 					{font-size:11px;height:2px;width: 2px; background: #ffffff; padding-left: 15px;}
-#treeStyle ul.search li a:link, a:visited, a:active {color: #000; }
+#treeStyle ul.search li a:link, a:visited, a:active {color: #000000; }
 #treeStyle ul.search li a:hover						{color: #f4A774; background:ffffff}
 #treeStyle ul li.rankElement a:hover			{font-size:11px;color: #f4A774; }
 
@@ -241,7 +235,7 @@ hr.submenuDivision {
 
 
 
-/******STYLE POPUP **************/no-repeat 10px center; padding-left: 25px;}
+/******STYLE POPUP **************/
 #treeStyle ul.search li a:link, a:visited, a:active {color: #000; }
 #backgroundPopup{
 display:none;
@@ -309,7 +303,7 @@ display:block;
 }
 .submenuContent {
 	background-color: rgba(100,100,100, 0.7);
-	background-color:#646464;
+	background-color:#646464;	
 }
 .submenuLayout {
 	display: block;

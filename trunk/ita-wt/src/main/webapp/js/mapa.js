@@ -4,14 +4,8 @@
 	  var poligonLayer; 
 	  var convexLayer;
 	  var ocurrencesLayer;
-	  var paLayers =[];
-	  
-$(document).ready(function() {
-	
-	 
-	
-	
-	
+	  var paLayers =[];	  
+$(document).ready(function() {	
     var w = 120;
 	var h = 100;
 	var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
@@ -370,23 +364,7 @@ function initialize() {
     		
     	}
     }
-    if(map.overlayMapTypes.getLength() < 4) {
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	map.overlayMapTypes.push(null);
-    	
+    for(i=0;i<15;i++) {
+    	map.overlayMapTypes.push(null);   	
     }
  }  
