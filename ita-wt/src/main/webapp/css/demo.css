@@ -115,11 +115,11 @@ background-position: 100% -30px;
 	background-color:#FFFF99;
 	
 }
-#navigation ul {
+#navigation ul.submenuContent {
 	border-width:3px;
 	border-style: inset;
 	margin:2px;
-	padding:5px;	
+	padding:5px;
 }
 #navigation li {	
 	list-style:none outside none; display:inline;
