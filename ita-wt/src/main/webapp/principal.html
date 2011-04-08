@@ -27,20 +27,20 @@
 		<script src="js/egeoxml.js" type="text/javascript"></script>
 		<script src="js/x_core.js"></script> 
 </head>
-<body onLoad="initialize();MM_preloadImages('images/untitled1.PNG','images/ocultar1.png')" marginwidth="center" >
+<body onLoad="initialize();MM_preloadImages()" marginwidth="center" >
 <form id="form1" name="form1"  target="_top">
   <table id="tab">
     <tr align="center">
-		<th id="th" scope="row"><img id="imageIabin" src="images/logo-iabin_spanish.jpg"/>
-	    <h2 id="descriptionProject">Google-maps based navigation tool for all the modelling results</h2><img id="imageCiat" src="images/ciat-logo.jpg"/>
+		<th id="th" scope="row"><img id="imageIabin" src="images/logo-iabin_spanish.jpg" />
+	    <h2 id="descriptionProject" >Google-maps based navigation tool for all the modelling results</h2><img id="imageCiat" src="images/ciat-logo.jpg"/>
 		</th>
 	</tr>
     <tr>
     <th id="principal">
 		<div id="div">
 			<div>
-				<p><a id="showMenu" href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('show','','images/show1.png',1)"><img src="images/show.png" id="show" /></a></p>
-				<p> <a id="hideMenu"href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('hide','','images/hide1.png',1)"><img src="images/hide.png" id="hide" /></a></p> 
+				<p><a id="showMenu" href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('show','','images/show.png',1)"><img src="images/show1.png" id="show" /><label id=labelmenu>Show</label></a></p>
+				<p> <a id="hideMenu"href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('hide','','images/show.png',1)"><img src="images/show1.png" id="hide" /><label id=labelmenu>Hide</label></a></p> 
 			</div>
 			<div id="menu">			
 				<script type="text/javascript">menu();</script>

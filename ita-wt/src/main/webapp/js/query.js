@@ -3,14 +3,15 @@ $(document).ready(function() {
 	 	           $("#Threats").slideUp("fast");
 				   $("#Bioclim").slideUp("fast");
 				   $("#Species").slideUp("fast");
-				   $("#Summaries").slideUp("fast");	
+				   $("#Summaries").slideUp("fast");
+				   $("#hideMenu").show();
 				   var contador = true;
 				   var contador1 = true;		
         $("#hideMenu").click(function(event) {
            event.preventDefault();
             if(contador == true) {
 				$("#showMenu").show(10);
-                $("#menu").slideUp("slow");
+                $("#menu").fadeOut();
 				$("#opacity").slideUp("slow");
 				$("#hideMenu").hide(10);
                 contador = true;
@@ -21,7 +22,7 @@ $(document).ready(function() {
             if(contador1 == true) {
 			   $("#showMenu").hide(10);
 				$("#hideMenu").show(10);
-				$("#menu").slideDown("slow");
+				$("#menu").fadeIn();
 				$("#opacity").slideDown("slow");
 				$("#hideMenu").slideDown("fast");
                 contador1 = true;
@@ -78,7 +79,7 @@ $(document).ready(function() {
 				   $("#Threats").slideUp("slow");}
 		});
 		
-		$("#buttonShowScaleInfo").click(function(){
+		$("#buttonShowScaleInfo").click(function(event){
 			event.preventDefault();
 			abrir_ampliacion();
 			$("#buttonShowScaleInfo").css("display", "none");

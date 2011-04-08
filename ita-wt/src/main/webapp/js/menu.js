@@ -11,9 +11,9 @@ function menu() {
 	document.write("<ul id=navigation>");
 	var i;
 	for (i = 0; i < categories.length; i++){
-		document.write("<li><a href='' id="+categories[i].attributes.getNamedItem("id").nodeValue+" "+"class='head'>");
+		document.write("<li><a href='' id="+categories[i].attributes.getNamedItem("id").nodeValue+" "+"class='head'><span>");
 		document.write(categories[i].attributes.getNamedItem("name").nodeValue);
-		document.write("</a>");
+		document.write("</span></a>");
 		document.write("<ul id="+categories[i].attributes.getNamedItem("name").nodeValue+" class=submenuContent>");
 		document.write("<div id=both>");
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Threats"){	
