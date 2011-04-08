@@ -89,16 +89,6 @@ function menu() {
 	        document.write("<h5><input type=checkbox id='1' name='distribution' key='' class=specieDistribution >Species distribution (probabilities)</h5>");
 	        document.write("<h5><input type=checkbox id='2' name='threshold' key='' class=specieDistribution >Thresholded species distribution</h5>");
 	        document.write("</div>");
-			document.write("<div id=popupContact>");
-	        document.write("<a id=popupContactClose href=''><img src=images/close-icon.png border=0 align=middle/></a>");        
-	        document.write("<h1>Taxononomic Species Menu</h1>");
-	        document.write("<p id=contactArea>");
-	        document.write("<div id='searchSpecie' class='searchSpecie'>");
-	        document.write("<input id='search' class='ui-widget' /><input id='searchButton' type=button value='Search' />");
-	        document.write("</div>");
-	        // Here goes the code about species popup
-	        document.write("</p></div>");
-	        document.write("<div id=backgroundPopup></div>");
 		}
 		document.write("</div></ul></li>");
 	}
@@ -121,8 +111,7 @@ function infoPopupSpecies() {
 		    document.write("<ul class='general'>");
 		    var species = categories[i].getElementsByTagName("specie");
 		    for(j = 0; j < species.length; j++) {
-		    	document.write("<li id='"+species[j].attributes.getNamedItem("id").nodeValue+"' rank='"+species[j].attributes.getNamedItem("rank").nodeValue+"' class='element'><a href=''> "+species[j].childNodes[0].nodeValue+"</a></li>");		    	
-		    	document.write("<br>");
+		    	document.write("<li id='"+species[j].attributes.getNamedItem("id").nodeValue+"' rank='"+species[j].attributes.getNamedItem("rank").nodeValue+"' class='element'><a href=''> "+species[j].childNodes[0].nodeValue+"</a></li>");
 		    }
 		    document.write("</ul>");
 		    document.write("</div>");

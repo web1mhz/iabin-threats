@@ -45,7 +45,8 @@
 			</div>
 			<div id="menu">			
 				<script type="text/javascript">menu();</script>
-			</div>     
+	  			<div id=backgroundPopup></div>
+			</div>
 	    	<div align="center" id="opacity">
 				<p>&nbsp;</p>				
 				<INPUT TYPE="text" NAME="opac" id="opac" VALUE="80" maxlength="3"  size="3" style="margin-top:2px; visible= false" onkeypress="return checkSubmit(event)">%				
@@ -58,7 +59,7 @@
 					<div id="slider-range-min" ></div>
 			</div>
 		</div>
-		<div id="map"></div>		
+		<div id="map"></div>
 		<div id="showScale"> 
 			<div id="scale"> 
 			</div> 
@@ -69,6 +70,16 @@
 		<div id="buttonShowScaleInfo"> 
 			<h5><a href='' class="scaleButton"  >Show Scale</a></h5>
 		</div>		
+		<div id=popupContact>
+			<a id=popupContactClose href=''><img src=images/close-icon.png border=0 align=middle/></a>        
+	        <h1>Taxononomic Species Menu</h1>
+	        <p id=contactArea>
+	        	<div id='searchSpecie' class='searchSpecie'>
+	        		<input id='search' class='ui-widget' />
+	        		<input id='searchButton' type=button value='Search' />
+	        	</div>
+	        </p>
+		</div>
 	</th>
 	</tr>
 </table> 
