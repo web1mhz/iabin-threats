@@ -26,15 +26,15 @@ function menu() {
 			document.write("<hr class='submenuDivision'>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
-				document.write("<h5><li ><label>");
+				document.write("<h5><li >");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
 						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
 						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" >");
 				document.write(items[j].childNodes[0].nodeValue);
-				document.write("</label></li></h5><br />");
+				document.write("</li></h5>");
 			}
-			document.write("</div>");			
+			document.write("</div>");	
 		}
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Bioclim"){	
 			var items = categories[i].getElementsByTagName("item");
@@ -46,13 +46,13 @@ function menu() {
 			document.write("<hr class='submenuDivision'>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
-				document.write("<h5><li ><label>");
+				document.write("<h5><li>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
 						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
 						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" >");
 				document.write(items[j].childNodes[0].nodeValue);
-				document.write("</label></li></h5><br />");
+				document.write("</li></h5>");
 			}
 			document.write("</div>");
 		}
@@ -62,7 +62,7 @@ function menu() {
 			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {
-				document.write("<h5><li ><label>");
+				document.write("<h5><li><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
 						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
