@@ -13,9 +13,8 @@ body {
 	color: #333;
 	background-color: #ffffff;
 }
-ul, li {margin: 0;	padding: 0;	border: 0;	outline: 0;	font-size: 100%; vertical-align: top;	background: transparent;}
 	
-ol, ul {	list-style: none;}
+ol, ul { list-style: none;}
 
 h1, h2 { font-family: 'arial', verdana, arial; padding: 6px; margin: 0; }
 h1 { font-size: small }
@@ -25,13 +24,11 @@ h5 { font-size: 11px; }
 
 #imageIabin{
 width:240px;
-height=100px;
 position:relative;
 float: left;	
 }
 #imageCiat{
 width:150px;
-height=40px;
 position:absolute;
 right:5px;
 top:20px;	
@@ -41,24 +38,32 @@ width:300px;
 position:relative;
 float: center;
 }
-
-#labelmenu{
-	position:absolute;
-	top:12px;
-	left:70px;
+.showHideMenu{
+	position: relative;
+	top: 15px;
+}
+.showHideMenu label {
+	position:relative;
+	bottom:30px;
+	left:10px;
 	color:#ffffff;
-	}
+}
+#moveIcon {
+	position:absolute;
+	right:119px;
+	bottom:45px;
+	border: 0px;
+}
 #show{
 width:145px;
 height:45px;
-border:0px; 	
+border: 0px;
 }
 #hide{
 width:145px;
 height:45px;
-border:0px; 	
+border: 0px;
 }
-
 #principal{
 height:500px;
 align:center;
@@ -70,24 +75,18 @@ scope:row;
 	margin:1px;
 	padding:0px;
 	text-indent:0px;	
-	width:170px;	
+	width:200px;	
 }
 #navigation a.head {
-border: 0 none;
-cursor: pointer;
 font-weight: bold;
 padding: 0 15px 0 0;
 text-align: center;
 height: 30px;
-line-height: 25px;
-width: 170px;
 background: transparent url(../images/btn_right.png ) no-repeat scroll right top;
 clear: left;
 font-size: 12px;
 display: block;
 position: relative;
-white-space: nowrap;
-color: #FFFFFF;
 	
 }
 
@@ -117,12 +116,10 @@ background-position: 100% -30px;
 	
 }
 #navigation ul {
-	width: 170px;
-	border-width:1px;
-	margin:1px;
-	padding:2px;
-	text-indent:0px;
-	
+	border-width:3px;
+	border-style: inset;
+	margin:2px;
+	padding:5px;	
 }
 #navigation li {	
 	list-style:none outside none; display:inline;

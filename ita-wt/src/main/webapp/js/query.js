@@ -26,8 +26,10 @@ $(document).ready(function() {
 				$("#opacity").slideDown("slow");
 				$("#hideMenu").slideDown("fast");
                 contador1 = true;
-            }                      
+            }                    
         });
+		 
+		 $("#div").draggable({handle: "#moveIcon"});
         
 		$("#threat-menu").click(function(event) {
 			event.preventDefault();						
@@ -99,7 +101,7 @@ $(document).ready(function() {
 		    map.overlayMapTypes.setAt(0,null);
 		});
 		$("#cleartaxon-menu").click(function(event) {
-			event.preventDefault();						
+			event.preventDefault();
 			occurencesLayer.setMap(null);
 			convexLayer.setMap(null);
 			poligonLayer.setMap(null);
