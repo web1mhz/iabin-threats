@@ -296,8 +296,7 @@ $(".Summaries").click(function(event) {
     	for(i=12;i<=15;i++){
     		map.overlayMapTypes.setAt((layerSummariesId+i),null);		
     	}	
-    	for(i = 0 ; i < paLayers.length; i++) {
-    		
+    	for(i = 0 ; i < paLayers.length; i++) {    		
 			paLayers[i].setMap(null);
 		}
 	}   
@@ -306,12 +305,11 @@ $(".Summaries").click(function(event) {
 		
 $("#showSpeciesInfo a").click(function(event){
 	event.preventDefault();
-	var options = "height=700,width=700,scrollTo,resizable=1,scrollbars=1,location=0";
+	var options = "height=450,width=700,scrollTo,resizable=1,scrollbars=1,toolbar=0,statusbar=0";
 	var $target = $(event.target);	
 	var link = "infoSpecie.html?id="+$target.attr("id");
     newWindow=window.open(link, 'Popup', options);  
     return false; 
-	
 });
 
 }); //END JQUERY
