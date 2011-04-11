@@ -1,13 +1,15 @@
 $(document).ready(function() {
-	 			   $("#showMenu").hide(10);
-	 	           $("#Threats").slideUp("fast");
-				   $("#Bioclim").slideUp("fast");
-				   $("#Species").slideUp("fast");
-				   $("#Summaries").slideUp("fast");
-				   $("#hideMenu").show();
-				   var contador = true;
-				   var contador1 = true;		
-        $("#hideMenu").click(function(event) {
+	var contador = true;
+	var contador1 = true;
+	
+	$("#showMenu").hide(10);
+	$("#Threats").slideUp("fast");
+	$("#Bioclim").slideUp("fast");
+	$("#Species").slideUp("fast");
+	$("#Summaries").slideUp("fast");
+	$("#hideMenu").show();
+	
+	$("#hideMenu").click(function(event) {
            event.preventDefault();
             if(contador == true) {
 				$("#showMenu").show(10);
@@ -16,7 +18,7 @@ $(document).ready(function() {
 				$("#hideMenu").hide(10);
                 contador = true;
             }                      
-        });
+    });
 		 $("#showMenu").click(function(event) {
            event.preventDefault();
             if(contador1 == true) {
@@ -141,39 +143,58 @@ $(document).ready(function() {
 		});	
 	 $("#closeLink").click(function() {
 			$("#buttonShowScaleInfo").fadeIn();			
-		});			
-     });
+	});
+	 
+	 $(".showScaleOpacity").click(function(event) {
+		 event.preventDefault();
+		 divScaleOpacity = $(event.target).next();		 
+		 divScaleOpacity.toggle("slow", function() {
+			 if( $(event.target).attr("src") == "images/plus.gif") {
+				 $(event.target).attr("src", "images/minus.gif");				 
+			 } else {
+				 $(event.target).attr("src", "images/plus.gif");
+			 }
+		 });		 
+	 });
+	 
+	 $("#opacityThreats").slider({
+		 range: "min",
+		 value: 80,
+		 min: 1,
+		 max: 100,
+		 slide: function( event, ui ) {
+		 	event.stopPropagation();
+				$( "#opacityLayer" ).val(ui.value+"%" );
+				//alert(typeof map.overlayMapTypes.getAt(0));
+	 	}
+	 });
+	 $("#opacityBioclim").slider({
+		 range: "min",
+		 value: 80,
+		 min: 1,
+		 max: 100,
+		 slide: function( event, ui ) {
+				$( "#opacityLayer" ).val(ui.value+"%" );
+	 	}
+	 });
+	 $("#opacitySpecie").slider({
+		 range: "min",
+		 value: 80,
+		 min: 1,
+		 max: 100,
+		 slide: function( event, ui ) {
+				$( "#opacityLayer" ).val(ui.value+"%" );
+	 	}
+	 });
+	 
+	 $(".showScaleOpacity").live("click", function(event) {
+		 
+	 });
+	 
+});
    
-     $(function() {
-    	 $("#opacityThreats").slider({
-    		 range: "min",
-    		 value: 80,
-    		 min: 1,
-    		 max: 100,
-    		 slide: function( event, ui ) {
-    		 	event.stopPropagation();
-  				$( "#opacityLayer" ).val(ui.value+"%" );
-  				//alert(typeof map.overlayMapTypes.getAt(0));
-    	 	}
-    	 });
-    	 $("#opacityBioclim").slider({
-    		 range: "min",
-    		 value: 80,
-    		 min: 1,
-    		 max: 100,
-    		 slide: function( event, ui ) {
-  				$( "#opacityLayer" ).val(ui.value+"%" );
-    	 	}
-    	 });
-    	 $("#opacitySpecie").slider({
-    		 range: "min",
-    		 value: 80,
-    		 min: 1,
-    		 max: 100,
-    		 slide: function( event, ui ) {
-  				$( "#opacityLayer" ).val(ui.value+"%" );
-    	 	}
-    	 });
+     //$(function() {
+    	 
  		/*$( "#slider-range-min" ).slider({
  			range: "min",
  			value: 50,
@@ -184,4 +205,4 @@ $(document).ready(function() {
  			}
  		});*/
  		//$( "#opacityLayer" ).val($( "#slider-range-min" ).slider( "value" )+ "%"  );
- 	});
+ 	//});

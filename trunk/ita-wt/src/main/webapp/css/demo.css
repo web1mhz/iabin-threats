@@ -103,12 +103,16 @@ ul {
 	padding:5px;
 }
 #navigation li {	
-	list-style:none outside none; display:inline;
+	list-style:none outside none; 
+	display:block;
 	color:#BEF014;
-	}
-#navigation li:hover {
-	list-style:none outside none; display:inline;
-	color:#BEF014;	
+}
+#both li:hover {
+	color:#FFFFFF;	
+}
+
+#navigation ul.submenuContenthover.hover {
+	color:red;
 }
 
 #navigation .utilityButtons {
@@ -149,16 +153,13 @@ hr.submenuDivision {
 	background-color: #ffffff;
 }
 
-#navigation .opacityBar {
-	width: 90px;
-	display: inline-block;
-	left: 20px;
-	top: 7px;
-}
-
 #navigation #opacitySpecie {
 	margin-left: 15px;
 	margin-top: 5px;
+}
+
+.scaleImage {
+	width: 100%;
 }
 
 #treeStyle{
@@ -168,6 +169,44 @@ hr.submenuDivision {
 #treeStyle h2{
 	font-size: 4em;
     margin-bottom: 50px;
+}
+
+/* OPACITY BAR */
+
+#navigation .opacityBar {
+	width: 90px;
+	display: inline-block;
+	left: 35px;
+	top: 5px;
+}
+
+.divScaleOpacity {
+	background-color: #9FB3A4;
+	padding-bottom: 10px;
+	padding-top: 5px;
+	margin-top: 2px;
+	margin-bottom: 5px;
+}
+
+.ui-slider-horizontal {
+	height: 0.4em;
+}
+
+.ui-slider .ui-slider-handle {
+	height: 0.9em;
+	width: 0.7em;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background: #7BAB7C; /* color selector */
+	border: 1px solid #3E6540; /*color borde selector*/
+}
+
+.ui-widget-header {
+	background: #396511 /* color barra progreso izquierda */
+}
+.ui-widget-content {
+	background: #CBEEBC /* color barra progreso derecha */
 }
 
 /* SEARCH SPECIES POPUP */

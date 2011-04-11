@@ -177,7 +177,7 @@ $(".richness").click(function(event) {
 	
     var $target = $(event.target);
     var layerName=$target.attr("name");
-    var layerRichnessId=parseInt($target.attr("id").split("-")[1]);
+    var layerRichnessId=parseInt($target.attr("id").split("-")[1]); 
     var overlayMaps = [
 	                   {
 	                	   getTileUrl: function(point, zoom){
@@ -231,19 +231,45 @@ $(".richness").click(function(event) {
 	                   },
 	                   
 	    	 	      ];
+    	var imageMore = $("#"+$target.attr("id")+" + .showScaleOpacity");
        	if ($target.attr('checked')){
        		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerRichnessId-1]);
-			
 			map.overlayMapTypes.setAt((layerRichnessId+4),overlayMap);
-			xInnerHtml('scale','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
-	        xShow('showScale');
+			//xInnerHtml('scale','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+	        //xShow('showScale');
 			$("#showScale").css("display", "block");
-			$("#buttonShowScaleInfo").css("display", "none");
+			$("#buttnShowScaleInfo").css("display", "none");
+			if(imageMore != undefined) {
+				imageMore.attr("src", "images/minus.gif");
+				imageMore.show();
+				var scaleOpacity = $("#divScaleOpacityTemp").clone(true);				
+				scaleOpacity.attr("id", $target.attr("id")+"-ScOp"); //ScOp --> Scale Opacity				
+				scaleOpacity.children("img").attr("src", path+"summaries/"+layerName+'/'+layerName+"scaleImage.png");
+				scaleOpacity.children("#opacityDivTemp").attr("id", "opacityDiv").slider({
+		    		 range: "min",
+		    		 value: 80,
+		    		 min: 1,
+		    		 max: 100,
+		    		 slide: function( event, ui ) {
+		    		 	event.stopPropagation();
+		  				$( "#opacityLayer" ).val(ui.value+"%" );
+		  				//alert(typeof map.overlayMapTypes.getAt(0));
+		    	 	}
+		    	 });
+				$target.parent().append(scaleOpacity);
+				scaleOpacity.slideDown("slow");
+			}
 		} else {
 			map.overlayMapTypes.setAt((layerRichnessId+4),null);
 			$("#buttonShowScaleInfo").css("display", "none");	
-			$("#showScale").css("display", "none");	
-			
+			$("#showScale").css("display", "none");
+			$("#"+$target.attr("id")+" + .showScaleOpacity").hide();
+			$("#"+$target.attr("id")+"-ScOp").slideUp("slow", function() { 
+				$(this).remove();
+			});
+			if(imageMore != undefined) {
+				imageMore.hide();
+			}
 		}   
 });
 
