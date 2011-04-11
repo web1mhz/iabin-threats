@@ -257,7 +257,8 @@ $(".richness").click(function(event) {
 		    	 	}
 		    	 });
 				$target.parent().append(scaleOpacity);
-				scaleOpacity.slideDown("slow");
+				//scaleOpacity.slideDown("slow");
+				scaleOpacity.toggle("slow");
 			}
 		} else {
 			map.overlayMapTypes.setAt((layerRichnessId+4),null);
