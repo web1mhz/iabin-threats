@@ -46,7 +46,7 @@ public class ScaleGenerator {
 			File dir = new File(targetPath+ pathGroup + rasterID + File.separator);
 			dir.mkdirs();
 			try {
-				ImageIO.write(scaleImage, "png", new File(targetPath+ pathGroup + rasterID + File.separator + rasterID+ "scaleTestImage.png"));
+				ImageIO.write(scaleImage, "png", new File(targetPath+ pathGroup + rasterID + File.separator + rasterID+ "scaleImage.png"));
 			} catch (IOException e) { e.printStackTrace();
 			}
 		}//fin for
