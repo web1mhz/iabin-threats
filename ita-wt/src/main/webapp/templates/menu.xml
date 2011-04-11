@@ -44,7 +44,7 @@
 		<item type="checkbox" name="plants" class="richness" id="Summaries" > Plant species richness</item>
 		<item type="checkbox" name="mammals" class="richness" id="Summaries" > Mammal species richness</item>
 		<item type="checkbox" name="reptiles" class="richness" id="Summaries" > Reptile species richness</item>
-		<item type="checkbox" name="amphibians" class="richness" id="Summaries" >Amphibian species richness</item>
+		<item type="checkbox" name="amphibians" class="richness" id="Summaries" > Amphibian species richness</item>
 		<item type="checkbox" name="insects" class="richness" id="Summaries" > Insect species richness</item>
 		<item type="checkbox" name="birds" class="richness" id="Summaries" > Bird species richness</item>
 		<item type="checkbox" name="all" class="richness" id="Summaries" > Total species richnness</item>

@@ -21,7 +21,7 @@ function menu() {
 			var j;
 			document.write("<div class='submenuButtons'>");
 			document.write("<a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a>");
-			document.write("<div id='opacityThreats' class='opacityBar'></div>");
+			document.write("<div class='opacityThreats' class='opacityBar'></div>");
 			document.write("</div>");
 			document.write("<hr class='submenuDivision'>");
 			document.write("<div class=submenuLayout>");			
@@ -30,9 +30,11 @@ function menu() {
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
 						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
-						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" >");
+						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" />");
 				document.write(items[j].childNodes[0].nodeValue);
-				document.write("</li><br>");
+				document.write(" <img id='showScaleOpacity' src='images/plus.gif' />");
+				document.write("</li>");
+				document.write("<div class='divScaleOpacity'></div>");
 			}
 			document.write("</div>");	
 		}
@@ -50,9 +52,10 @@ function menu() {
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
 						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
-						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" >");
+						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" />");
 				document.write(items[j].childNodes[0].nodeValue);
-				document.write("</li><br>");
+				document.write(" <img class='showScaleOpacity' src='images/plus.gif' />");				
+				document.write("</li>");
 			}
 			document.write("</div>");
 		}
@@ -62,13 +65,17 @@ function menu() {
 			document.write("<a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {
-				document.write("<li><label>");
+				document.write("<li>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
 						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
-						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" >");
+						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" />");
 				document.write(items[j].childNodes[0].nodeValue);
-				document.write("</label></li><br>");
+				if(j != 0) {
+					document.write(" <img class='showScaleOpacity' src='images/minus.gif' style='display: none;'/>");
+					//document.write("<div class='divScaleOpacity'></div>");
+				}
+				document.write("</li>");
 			}
 			document.write("</div>");			
 		} 
