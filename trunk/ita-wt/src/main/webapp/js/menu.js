@@ -85,9 +85,9 @@ function menu() {
 	        document.write("<input type=checkbox name='occurrences' key='' class=specieData> Occurrences records<br>");        
 	        document.write("<input type=checkbox name='convex' key='' class=specieData> Convex hull<br>");
 	        document.write("<input type=checkbox name='convexHull' key='' class=specieData> Convex hull buffer<br>");
-	        document.write("<input type=checkbox id='0' name='distributionLimitedtoconvex' key='' class=specieDistribution> Species distribution limited to convex hull (probabilities)<br>");
-	        document.write("<input type=checkbox id='1' name='distribution' key='' class=specieDistribution >Species distribution (probabilities)<br>");
-	        document.write("<input type=checkbox id='2' name='threshold' key='' class=specieDistribution >Thresholded species distribution<br>");
+	        document.write("<input type=checkbox id='0' name='dist_limited_to_convex_hull' key='' class=specieDistribution> Species distribution limited to convex hull (probabilities)<br>");
+	        document.write("<input type=checkbox id='1' name='full' key='' class=specieDistribution >Species distribution (probabilities)<br>");
+	        document.write("<input type=checkbox id='2' name='full_with_threshold' key='' class=specieDistribution >Thresholded species distribution<br>");
 	        document.write("</div>");
 		}
 		document.write("</div></ul></li>");
