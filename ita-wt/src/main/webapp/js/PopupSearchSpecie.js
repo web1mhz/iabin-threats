@@ -72,6 +72,18 @@ $(document).ready(function(){
 		centerPopup();
 		//load popup
 		loadPopup();
+		occurencesLayer.setMap(null);
+		convexLayer.setMap(null);
+		poligonLayer.setMap(null);
+		$("#infoSpecieOptions").css({"display" : "none"});
+		($(".specieData").attr("checked", false));
+		($(".specieDistribution").attr("checked", false));
+		$("#showScale").css("display", "none");
+		$("#opacitySpecie").css("display", "none");
+        $("#buttonShowScaleInfo").css("display", "none");
+        map.overlayMapTypes.setAt(1,null);
+        map.overlayMapTypes.setAt(2,null);
+        map.overlayMapTypes.setAt(3,null);
 	});
 					
 	//CLOSING POPUP

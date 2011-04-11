@@ -6,8 +6,8 @@
 	  var ocurrencesLayer;
 	  var paLayers =[];	  
 $(document).ready(function() {	
-    var w = 120;
-	var h = 100;
+    var w = 170;
+	var h = 30;
 	var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
 	xWidth ('showScale',w + 6)
 	xHeight ('showScale',h + 6 + 20)
@@ -131,21 +131,21 @@ $(".specieDistribution").click(function(event) {
 	                   {
 	                	   getTileUrl: function(point, zoom){
 	    	 	           		var X = point.x % (1 << zoom);
-	    	 	           		return path+"species/"+layerId+"/dist_limited_to_convex_hull"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           		return path+"species/"+layerId+"/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	           },tileSize: new google.maps.Size(256,256),
 	    	 	           	 isPng:true,
 	    	 	           	 opacity:0.7
 	    	 	        } , {
 	    	 	    	    getTileUrl: function(point, zoom){
 	    	 	            	var X = point.x % (1 << zoom);
-	    	 	            	return path+"species/"+layerId+"/full"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	            	return path+"species/"+layerId+"/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	            },tileSize: new google.maps.Size(256,256),
 	    	 	           	 isPng:true,
 	    	 	           	 opacity:0.6
 	    	 	          },{
 	    	 	           	 getTileUrl: function(point, zoom){
 	    	 	           	 	var X = point.x % (1 << zoom);
-	    	 	           	 	return path+"species/"+layerId+"/full_with_threshold"+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+	    	 	           	 	return path+"species/"+layerId+"/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	           	 },tileSize: new google.maps.Size(256,256),
 	    	 	           	   isPng:true,
 	    	 	           	   opacity:0.5
@@ -153,11 +153,24 @@ $(".specieDistribution").click(function(event) {
 	    	 	         ];
    
     	if ($target.attr('checked')){
-			var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSpecieId]);			
-			map.overlayMapTypes.setAt((layerSpecieId+1),overlayMap);	  
+    		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerSpecieId]);			
+			map.overlayMapTypes.setAt((layerSpecieId+1),overlayMap);			
 		} else {
 			map.overlayMapTypes.setAt((layerSpecieId+1),null);
-		}   
+			$("#showScale").css("display", "none");
+	        $("#buttonShowScaleInfo").css("display", "none");
+		}    	
+    	if($target.attr("id")==0){
+    		xInnerHtml('scale','<img src="'+path+'5000009'+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+	        xShow('showScale');
+	        $("#showScale").css("display", "block");
+	        $("#buttonShowScaleInfo").css("display", "none");
+    	}else if($target.attr("id")==1 ||$target.attr("id")==2){
+    		xInnerHtml('scale','<img src="'+path+'5000009'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+	        xShow('showScale');
+	        $("#showScale").css("display", "block");
+	        $("#buttonShowScaleInfo").css("display", "none");    		
+    	}
 });
 
 $(".richness").click(function(event) {

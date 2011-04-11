@@ -100,8 +100,14 @@ $(document).ready(function() {
 			($(".Bioclim").attr("checked", false));	    
 		    map.overlayMapTypes.setAt(0,null);
 		});
-		$("#cleartaxon-menu").click(function(event) {
+		$("#cleartaxon-menu").click(function(event) {			
 			event.preventDefault();
+			if ($(".specieData").attr("checked")==false){
+				$("#infoSpecieOptions").css({"display" : "none"});
+				$("#specieButtons #showSpeciesInfo").css("display", "none");
+				$("#opacitySpecie").css("display", "none");
+				$("#specieButtons [id^='clear']").css("display", "none");				
+			}else{
 			occurencesLayer.setMap(null);
 			convexLayer.setMap(null);
 			poligonLayer.setMap(null);
@@ -114,6 +120,9 @@ $(document).ready(function() {
 			$("#specieButtons [id^='clear']").css("display", "none");
 			$("#opacitySpecie").css("display", "none");
 			$("#both #infoSpecieOptions").css("display", "none");
+			$("#showScale").css("display", "none");
+	        $("#buttonShowScaleInfo").css("display", "none");
+			}
 		});		
 		$("#clearsummaries-menu").click(function(event) {
 			event.preventDefault();
