@@ -26,13 +26,13 @@ function menu() {
 			document.write("<hr class='submenuDivision'>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
-				document.write("<h5><li >");
+				document.write("<li>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
 						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
 						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" >");
 				document.write(items[j].childNodes[0].nodeValue);
-				document.write("</li></h5>");
+				document.write("</li><br>");
 			}
 			document.write("</div>");	
 		}
@@ -46,29 +46,29 @@ function menu() {
 			document.write("<hr class='submenuDivision'>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {			
-				document.write("<h5><li>");
+				document.write("<li>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
 						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
 						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" >");
 				document.write(items[j].childNodes[0].nodeValue);
-				document.write("</li></h5>");
+				document.write("</li><br>");
 			}
 			document.write("</div>");
 		}
 		if(categories[i].attributes.getNamedItem("name").nodeValue=="Summaries"){	
 			var items = categories[i].getElementsByTagName("item");
 			var j;
-			document.write("<h5><a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a></h5>");
+			document.write("<a href='' class=utilityButtons id=clear"+categories[i].attributes.getNamedItem("id").nodeValue+"> Clear </a>");
 			document.write("<div class=submenuLayout>");			
 			for(j = 0; j < items.length; j++) {
-				document.write("<h5><li><label>");
+				document.write("<li><label>");
 				document.write("<input type="+items[j].attributes.getNamedItem("type").nodeValue+" "
 						+"name="+items[j].attributes.getNamedItem("name").nodeValue+" "
 						+"class="+items[j].attributes.getNamedItem("class").nodeValue+" "
 						+"id="+items[j].attributes.getNamedItem("id").nodeValue+"-"+j+" >");
 				document.write(items[j].childNodes[0].nodeValue);
-				document.write("</label></li></h5><br />");
+				document.write("</label></li><br>");
 			}
 			document.write("</div>");			
 		} 
@@ -82,12 +82,12 @@ function menu() {
 			document.write("</div>");
 			document.write("<br /><hr class='submenuDivision'>");
 			document.write("<div id=infoSpecieOptions class=submenuLayout style='display:none;'>");			
-	        document.write("<h5><input type=checkbox name='occurrences' key='' class=specieData> Occurrences records</h5>");        
-	        document.write("<h5><input type=checkbox name='convex' key='' class=specieData> Convex hull</h5>");
-	        document.write("<h5><input type=checkbox name='convexHull' key='' class=specieData> Convex hull buffer</h5>");
-	        document.write("<h5><input type=checkbox id='0' name='distributionLimitedtoconvex' key='' class=specieDistribution> Species distribution limited to convex hull (probabilities)</h5>");
-	        document.write("<h5><input type=checkbox id='1' name='distribution' key='' class=specieDistribution >Species distribution (probabilities)</h5>");
-	        document.write("<h5><input type=checkbox id='2' name='threshold' key='' class=specieDistribution >Thresholded species distribution</h5>");
+	        document.write("<input type=checkbox name='occurrences' key='' class=specieData> Occurrences records<br>");        
+	        document.write("<input type=checkbox name='convex' key='' class=specieData> Convex hull<br>");
+	        document.write("<input type=checkbox name='convexHull' key='' class=specieData> Convex hull buffer<br>");
+	        document.write("<input type=checkbox id='0' name='distributionLimitedtoconvex' key='' class=specieDistribution> Species distribution limited to convex hull (probabilities)<br>");
+	        document.write("<input type=checkbox id='1' name='distribution' key='' class=specieDistribution >Species distribution (probabilities)<br>");
+	        document.write("<input type=checkbox id='2' name='threshold' key='' class=specieDistribution >Thresholded species distribution<br>");
 	        document.write("</div>");
 		}
 		document.write("</div></ul></li>");
