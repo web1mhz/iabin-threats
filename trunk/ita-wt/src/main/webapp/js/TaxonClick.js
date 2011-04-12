@@ -5,6 +5,34 @@ $(document).ready(function() {
 		$target = $(event.target).parent();
 		// It suppose all elements here have rank value 7000
 		disablePopup();
+		$(".specieData").each(function () {
+			 if($(this).attr("checked")==true && $(this).attr("id")=="ocurrences"){
+				 $(this).attr("checked", false);
+				 occurencesLayer.setMap(null);					 
+			 }else if($(this).attr("checked")==true && $(this).attr("id")=="convex"){					 
+				 $(this).attr("checked", false);
+				 convexLayer.setMap(null);					 
+			 }else if($(this).attr("checked")==true && $(this).attr("id")=="convexHull"){					 
+				 $(this).attr("checked", false);
+				 poligonLayer.setMap(null);
+			 }		
+			 
+		 });
+		
+		 $(".specieDistribution").each(function () {
+			 if($(this).attr("checked")==true && $(this).attr("id")=="0"){
+				 $(this).attr("checked", false);
+				 map.overlayMapTypes.setAt(1,null);					 
+			 }else if($(this).attr("checked")==true && $(this).attr("id")=="1"){					 
+				 $(this).attr("checked", false);
+				 map.overlayMapTypes.setAt(2,null);					 
+			 }else if($(this).attr("checked")==true && $(this).attr("id")=="2"){					 
+				 $(this).attr("checked", false);
+				 map.overlayMapTypes.setAt(3,null);
+			 }
+		 });				
+		$("#showScale").css("display", "none");		
+        $("#buttonShowScaleInfo").css("display", "none");
 		$("#showSpeciesInfo a").attr("id", $target.attr("id"));
 		$('input.specieData').attr("key", $target.attr("id"));
 		$('input.specieDistribution').attr("key", $target.attr("id"));
@@ -64,7 +92,7 @@ $(document).ready(function() {
 						}
 					},
 					error: function(data, error, objectError) {
-						// Aun falta implementar lo que suceder√° cuando hay un error
+						// Aun falta implementar lo que suceder· cuando hay un error
 						alert("error: "+objectError);
 						$("#"+$target.attr("id")+" #loaderGift").remove();
 					}

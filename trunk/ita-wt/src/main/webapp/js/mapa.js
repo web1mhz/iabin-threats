@@ -7,28 +7,12 @@
 	  var paLayers =[];	  
 $(document).ready(function() {	
     var w = 170;
-	var h = 30;
-	var path= "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
+	var h = 30;	
 	xWidth ('showScale',w + 6)
 	xHeight ('showScale',h + 6 + 20)
 	xWidth ('scale',w)
 	xHeight ('scale',h)
-	xWidth ('closeScale',w)
-	/*
-	var o = parseFloat(document.getElementById("opac").value);
-	var opac;
-	if(o > 100){
-		opac = 100;
-		opac = opac/100;
-		document.getElementById('opac').value = 100;
-	} else if(o < 0) {
-		opac = 100;
-		opac = opac / 100;
-		document.getElementById('opac').value = 100;
-	} else {
-		opac = o/100;
-	}
-		*/	
+	xWidth ('closeScale',w)	
 $(".Threats").click(function(event) {
 	    var $target = $(event.target);
 		var layerName=$target.attr("id").split("-")[0];
@@ -50,7 +34,7 @@ $(".Threats").click(function(event) {
 	    	map.overlayMapTypes.setAt(0,null);
 	    }   
 		
-        xInnerHtml('scale','<img src="'+path+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('scale','<img src="'+path+layerName+'/'+layerName+layerId+'/'+layerName+layerId+'scaleImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
         $("#showScale").css("display", "block");
 		$("#buttonShowScaleInfo").css("display", "none");
@@ -76,7 +60,7 @@ $(".Bioclim").click(function(event) {
 	    	map.overlayMapTypes.setAt(0,null);
 	    }                                                           
                                                   
-        xInnerHtml('scale','<img src="'+path+layerName+'/p'+(layerId+1)+'/p'+(layerId+1)+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
+        xInnerHtml('scale','<img src="'+path+layerName+'/p'+(layerId+1)+'/p'+(layerId+1)+'scaleImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
         xShow('showScale');
         $("#showScale").css("display", "block");
         $("#buttonShowScaleInfo").css("display", "none");
@@ -258,11 +242,7 @@ $(".richness").click(function(event) {
     	var imageMore = $("#"+$target.attr("id")+" + .showScaleOpacity");
        	if ($target.attr('checked')){
        		var overlayMap = new google.maps.ImageMapType(overlayMapOptions);
-			map.overlayMapTypes.setAt(layerRichnessId+4,overlayMap);
-			//xInnerHtml('scale','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
-	        //xShow('showScale');
-			$("#showScale").css("display", "block");
-			$("#buttnShowScaleInfo").css("display", "none");
+			map.overlayMapTypes.setAt(layerRichnessId+4,overlayMap);			
 			if(imageMore != undefined) {
 				imageMore.attr("src", "images/minus.gif");
 				imageMore.show();
