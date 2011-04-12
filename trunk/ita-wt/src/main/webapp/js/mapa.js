@@ -173,33 +173,57 @@ $(".specieDistribution").click(function(event) {
     	}
 });
 
-$(".richness").click(function(event) {
+function getOverlayMapOptions(layerName, opacityValue) {
 	
+	var overlay = {
+		getTileUrl: function(point, zoom){			
+    		var X = point.x % (1 << zoom);
+    		return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
+		},tileSize: new google.maps.Size(256,256),
+    	  isPng:true,
+    	  opacity:opacityValue,
+    	  setOpacity: function(opacValue) {
+    		  this.opacity = opacValue; 
+    	  }
+	};
+	return overlay;
+}
+$(".richness").click(function(event) {
     var $target = $(event.target);
     var layerName=$target.attr("name");
     var layerRichnessId=parseInt($target.attr("id").split("-")[1]); 
-    var overlayMaps = [
+    var overlayMapOptions = getOverlayMapOptions(layerName, 0.5);
+    /*var overlayMaps = [
 	                   {
 	                	   getTileUrl: function(point, zoom){
 	    	 	           		var X = point.x % (1 << zoom);
 	    	 	           		return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	       		},tileSize: new google.maps.Size(256,256),
-	    	 	           	  isPng:true,
-	    	 	           	  opacity:0.7
+	    	 	           	isPng:true,
+	    	 	           	opacity:0.7,
+	    	 	           	setOpacity: function(opacValue) {
+	    	 	       		  this.opacity = opacValue;
+	    	 	       		}	    	 	       		
 	                   },{
 	                	   getTileUrl: function(point, zoom){
    	 	           				var X = point.x % (1 << zoom);
    	 	           				return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
    	 	       				},tileSize: new google.maps.Size(256,256),
    	 	       				  isPng:true,
-   	 	       				  opacity:0.7
+   	 	       				  opacity:0.7,
+   	 	       				  setOpacity: function(opacValue) {
+   		    	 	       		  this.opacity = opacValue;
+   		    	 	       		}
 	                   },{
 		               	   getTileUrl: function(point, zoom){
 	    	 	           		var X = point.x % (1 << zoom);
 	    	 	           		return path+"summaries/"+layerName+"/"+zoom + "/x" + X + "_y" + point.y + ".png";
 	    	 	       		},tileSize: new google.maps.Size(256,256),
-	    	 	           	  isPng:true,
-	    	 	           	  opacity:0.7
+	    	 	       		isPng:true,
+	    	 	       		opacity:0.7,
+	    	 	       		setOpacity: function(opacValue) {
+	    	 	       			this.opacity = opacValue;
+	    	 	       		}
 	                   },{
 		               	   getTileUrl: function(point, zoom){
 	    	 	           		var X = point.x % (1 << zoom);
@@ -230,11 +254,11 @@ $(".richness").click(function(event) {
 	    	 	           	  opacity:0.7
 	                   },
 	                   
-	    	 	      ];
+	    	 	      ];*/
     	var imageMore = $("#"+$target.attr("id")+" + .showScaleOpacity");
        	if ($target.attr('checked')){
-       		var overlayMap = new google.maps.ImageMapType(overlayMaps[layerRichnessId-1]);
-			map.overlayMapTypes.setAt((layerRichnessId+4),overlayMap);
+       		var overlayMap = new google.maps.ImageMapType(overlayMapOptions);
+			map.overlayMapTypes.setAt(layerRichnessId+4,overlayMap);
 			//xInnerHtml('scale','<img src="'+path+'summaries/'+layerName+'/'+layerName+'scaleTestImage.png"'+'width="'+w+'" height="'+h+'" border="0">') 
 	        //xShow('showScale');
 			$("#showScale").css("display", "block");
@@ -247,17 +271,17 @@ $(".richness").click(function(event) {
 				scaleOpacity.children("img").attr("src", path+"summaries/"+layerName+'/'+layerName+"scaleImage.png");
 				scaleOpacity.children("#opacityDivTemp").attr("id", "opacityDiv").slider({
 		    		 range: "min",
-		    		 value: 80,
+		    		 value: 50,
 		    		 min: 1,
 		    		 max: 100,
 		    		 slide: function( event, ui ) {
 		    		 	event.stopPropagation();
 		  				$( "#opacityLayer" ).val(ui.value+"%" );
-		  				//alert(typeof map.overlayMapTypes.getAt(0));
-		    	 	}
+		  					overlayMapOptions.setOpacity(ui.value/100.0);		  					
+		  					map.overlayMapTypes.setAt(layerRichnessId+4,new google.maps.ImageMapType(overlayMapOptions));	 
+		    	 	 }
 		    	 });
 				$target.parent().append(scaleOpacity);
-				//scaleOpacity.slideDown("slow");
 				scaleOpacity.toggle("slow");
 			}
 		} else {
@@ -273,6 +297,7 @@ $(".richness").click(function(event) {
 			}
 		}   
 });
+
 
 $(".Summaries").click(function(event) {
 	var $target = $(event.target);
