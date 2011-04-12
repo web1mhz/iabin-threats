@@ -1,15 +1,13 @@
 $(document).ready(function() {
-	var contador = true;
-	var contador1 = true;
-	
-	$("#showMenu").hide(10);
-	$("#Threats").slideUp("fast");
-	$("#Bioclim").slideUp("fast");
-	$("#Species").slideUp("fast");
-	$("#Summaries").slideUp("fast");
-	$("#hideMenu").show();
-	
-	$("#hideMenu").click(function(event) {
+	 			   $("#showMenu").hide(10);
+	 	           $("#Threats").slideUp("fast");
+				   $("#Bioclim").slideUp("fast");
+				   $("#Species").slideUp("fast");
+				   $("#Summaries").slideUp("fast");
+				   $("#hideMenu").show();
+				   var contador = true;
+				   var contador1 = true;		
+        $("#hideMenu").click(function(event) {
            event.preventDefault();
             if(contador == true) {
 				$("#showMenu").show(10);
@@ -18,7 +16,7 @@ $(document).ready(function() {
 				$("#hideMenu").hide(10);
                 contador = true;
             }                      
-    });
+        });
 		 $("#showMenu").click(function(event) {
            event.preventDefault();
             if(contador1 == true) {
@@ -103,28 +101,40 @@ $(document).ready(function() {
 		    map.overlayMapTypes.setAt(0,null);
 		});
 		$("#cleartaxon-menu").click(function(event) {			
-			event.preventDefault();
-			if ($(".specieData").attr("checked")==false){
-				$("#infoSpecieOptions").css({"display" : "none"});
-				$("#specieButtons #showSpeciesInfo").css("display", "none");
-				$("#opacitySpecie").css("display", "none");
-				$("#specieButtons [id^='clear']").css("display", "none");				
-			}else{
-			occurencesLayer.setMap(null);
-			convexLayer.setMap(null);
-			poligonLayer.setMap(null);
-			map.overlayMapTypes.setAt(1,null);
-			map.overlayMapTypes.setAt(2,null);
-			map.overlayMapTypes.setAt(3,null);
-			($(".specieData").attr("checked", false));
-			($(".specieDistribution").attr("checked", false));
+			event.preventDefault();				
+			 $(".specieData").each(function () {
+				 if($(this).attr("checked")==true && $(this).attr("id")=="ocurrences"){
+					 $(this).attr("checked", false);
+					 occurencesLayer.setMap(null);					 
+				 }else if($(this).attr("checked")==true && $(this).attr("id")=="convex"){					 
+					 $(this).attr("checked", false);
+					 convexLayer.setMap(null);					 
+				 }else if($(this).attr("checked")==true && $(this).attr("id")=="convexHull"){					 
+					 $(this).attr("checked", false);
+					 poligonLayer.setMap(null);
+				 }		
+				 
+			 });
+			
+			 $(".specieDistribution").each(function () {
+				 if($(this).attr("checked")==true && $(this).attr("id")=="0"){
+					 $(this).attr("checked", false);
+					 map.overlayMapTypes.setAt(1,null);					 
+				 }else if($(this).attr("checked")==true && $(this).attr("id")=="1"){					 
+					 $(this).attr("checked", false);
+					 map.overlayMapTypes.setAt(2,null);					 
+				 }else if($(this).attr("checked")==true && $(this).attr("id")=="2"){					 
+					 $(this).attr("checked", false);
+					 map.overlayMapTypes.setAt(3,null);
+				 }
+			 });			
+			$("#infoSpecieOptions").css("display", "none");			
 			$("#specieButtons #showSpeciesInfo").css("display", "none");
 			$("#specieButtons [id^='clear']").css("display", "none");
 			$("#opacitySpecie").css("display", "none");
-			$("#both #infoSpecieOptions").css("display", "none");
 			$("#showScale").css("display", "none");
 	        $("#buttonShowScaleInfo").css("display", "none");
-			}
+			
 		});		
 		$("#clearsummaries-menu").click(function(event) {
 			event.preventDefault();
@@ -132,6 +142,8 @@ $(document).ready(function() {
 			$("#showScale").css("display", "none");	
 			($(".richness").attr("checked", false));
 			($(".Summaries").attr("checked", false));
+			$(".showScaleOpacity").css("display", "none");
+			$(".divScaleOpacity").css("display", "none");			
 			for(i=4;i<=15;i++){
 				if(map.overlayMapTypes.getAt(i) != null) {
 					map.overlayMapTypes.setAt(i,null);
@@ -140,12 +152,13 @@ $(document).ready(function() {
 			for(i = 0 ; i < paLayers.length; i++) {				
 				paLayers[i].setMap(null);
 			}		    
-		});	
+		});
+		
 	 $("#closeLink").click(function() {
 			$("#buttonShowScaleInfo").fadeIn();			
-	});
-	 
-	 $(".showScaleOpacity").click(function(event) {
+     });
+     
+     $(".showScaleOpacity").click(function(event) {
 		 event.preventDefault();
 		 divScaleOpacity = $(event.target).next();		 
 		 divScaleOpacity.toggle("slow", function() {
@@ -155,54 +168,33 @@ $(document).ready(function() {
 				 $(event.target).attr("src", "images/plus.gif");
 			 }
 		 });		 
-	 });
-	 
+	 });	 
 	 $("#opacityThreats").slider({
-		 range: "min",
-		 value: 80,
-		 min: 1,
-		 max: 100,
-		 slide: function( event, ui ) {
-		 	event.stopPropagation();
-				$( "#opacityLayer" ).val(ui.value+"%" );
-				//alert(typeof map.overlayMapTypes.getAt(0));
-	 	}
-	 });
-	 $("#opacityBioclim").slider({
-		 range: "min",
-		 value: 80,
-		 min: 1,
-		 max: 100,
-		 slide: function( event, ui ) {
-				$( "#opacityLayer" ).val(ui.value+"%" );
-	 	}
-	 });
-	 $("#opacitySpecie").slider({
-		 range: "min",
-		 value: 80,
-		 min: 1,
-		 max: 100,
-		 slide: function( event, ui ) {
-				$( "#opacityLayer" ).val(ui.value+"%" );
-	 	}
-	 });
-	 
-	 $(".showScaleOpacity").live("click", function(event) {
-		 
-	 });
-	 
-});
-   
-     //$(function() {
-    	 
- 		/*$( "#slider-range-min" ).slider({
- 			range: "min",
- 			value: 50,
- 			min: 1,
- 			max: 100,
- 			slide: function( event, ui ) {
- 				$( "#opacityLayer" ).val(ui.value+"%" );
- 			}
- 		});*/
- 		//$( "#opacityLayer" ).val($( "#slider-range-min" ).slider( "value" )+ "%"  );
- 	//});
+    		 range: "min",
+    		 value: 80,
+    		 min: 1,
+    		 max: 100,
+    		 slide: function( event, ui ) {
+    		 	event.stopPropagation();
+  				$( "#opacityLayer" ).val(ui.value+"%" );  				
+    	 	}
+    	 });
+	$("#opacityBioclim").slider({
+    		 range: "min",
+    		 value: 80,
+    		 min: 1,
+    		 max: 100,
+    		 slide: function( event, ui ) {
+  				$( "#opacityLayer" ).val(ui.value+"%" );
+    	 	}
+    	 });
+ 	$("#opacitySpecie").slider({
+    		 range: "min",
+    		 value: 80,
+    		 min: 1,
+    		 max: 100,
+    		 slide: function( event, ui ) {
+  				$( "#opacityLayer" ).val(ui.value+"%" );
+    	 	}
+    	 });
+}); 
