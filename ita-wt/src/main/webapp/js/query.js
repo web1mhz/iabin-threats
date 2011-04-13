@@ -29,7 +29,13 @@ $(document).ready(function() {
             }                    
         });
 		 
-		 $("#div").draggable({handle: "#moveIcon"});
+		$("#div").draggable({handle: "#moveIcon"});		
+		$(".submenuContent").resizable({
+				alsoResize: ".submenuContent .submenuLayout",
+				maxWidth: 180,
+				minWidth: 180,
+				minHeight: 100
+		});
         
 		$("#threat-menu").click(function(event) {
 			event.preventDefault();						
@@ -90,7 +96,9 @@ $(document).ready(function() {
 			event.preventDefault();
 			$("#buttonShowScaleInfo").css("display", "none");	
 			$("#showScale").css("display", "none");			
-			($(".Threats").attr("checked", false));	    
+			$(".Threats").attr("checked", false);
+			$(event.target).parents("#both").find(".divScaleOpacity").remove();					
+			$(event.target).parents("#both").find(".showScaleOpacity").css("display", "none");
 		    map.overlayMapTypes.setAt(0,null);
 		});		
 		$("#clearbioclim-menu").click(function(event) {
@@ -141,9 +149,9 @@ $(document).ready(function() {
 			$("#buttonShowScaleInfo").css("display", "none");	
 			$("#showScale").css("display", "none");	
 			($(".richness").attr("checked", false));
-			($(".Summaries").attr("checked", false));
-			$(".showScaleOpacity").css("display", "none");
-			$(".divScaleOpacity").css("display", "none");			
+			($(".Summaries").attr("checked", false));			
+			$(event.target).parent().find(".divScaleOpacity").remove();					
+			$(event.target).parent().find(".showScaleOpacity").css("display", "none");			
 			for(i=4;i<=15;i++){
 				if(map.overlayMapTypes.getAt(i) != null) {
 					map.overlayMapTypes.setAt(i,null);

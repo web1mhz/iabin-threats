@@ -209,6 +209,12 @@ hr.submenuDivision {
 	background: #CBEEBC /* color barra progreso derecha */
 }
 
+/* RESIZABLE ICON */
+.ui-icon {
+	bottom: -9px;
+	right: -7px;
+}
+
 /* SEARCH SPECIES POPUP */
 
 #treeStyle ul.general {
@@ -392,7 +398,7 @@ hr.submenuDivision {
 .submenuLayout {
 	display: block;
 	height: 120px;
-	overflow: auto;
+	overflow: auto;	
 	position: relative;
 	top: 10px;
 }

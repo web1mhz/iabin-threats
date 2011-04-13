@@ -12,7 +12,7 @@ function getOverlayMapOptions(layerName, opacityValue, layerId, paN, typeName){
         "summaries": path + "/" + layerName + "/pa/paQ" + paN,
         "species": path + "species/" + layerId + "/" + layerName,
         "bioclim": path + layerName + "/p" + (layerId + 1),
-        "threats": path + layerName + "/" + layerName + layerId,
+        "threats": path + layerName + "/" + layerName + layerId
     }
     var overlay = {
         getTileUrl: function(point, zoom){
@@ -29,6 +29,7 @@ function getOverlayMapOptions(layerName, opacityValue, layerId, paN, typeName){
     return overlay;
 }
 
+
 $(document).ready(function(){
     var w = 170;
     var h = 30;
@@ -38,45 +39,67 @@ $(document).ready(function(){
     xHeight('scale', h)
     xWidth('closeScale', w)
     
+	function showHideScaleOpacity($context, layerName, overlayMapOptions, scaleSrc, layerMapPosition) {		 
+		 if ($context.attr('checked')) {
+			 var imageMore = $("#" + $context.attr("id") + " + .showScaleOpacity");
+			 var layerId = parseInt($context.attr("id").split("-")[1]);
+		 	 if (imageMore != undefined) {
+		 		imageMore.attr("src", "images/minus.gif");
+		 		imageMore.show();
+		 		var scaleOpacity = $("#divScaleOpacityTemp").clone(true);
+		 		scaleOpacity.attr("id", $context.attr("id") + "-ScOp"); //ScOp --> Scale Opacity				
+				scaleOpacity.children("img").attr("src", scaleSrc);
+				scaleOpacity.children("#opacityDivTemp").attr("id", "opacityDiv").slider({
+						range: "min",
+						value: 50,
+						min: 0,
+						max: 100,
+						slide: function(event, ui){
+							event.stopPropagation();
+							$("#opacityLayer").val(ui.value + "%");
+							overlayMapOptions.setOpacity(ui.value / 100.0);
+							map.overlayMapTypes.setAt(layerMapPosition, new google.maps.ImageMapType(overlayMapOptions));
+						}
+				});
+				$context.parent().append(scaleOpacity);
+				scaleOpacity.toggle("fast");
+			}
+		}
+		else {
+	    	$("#" + $context.attr("id") + " + .showScaleOpacity").hide();
+	        $("#" + $context.attr("id") + "-ScOp").slideUp("fast", function(){
+	        	$(this).remove();
+			});
+			if (imageMore != undefined) {
+	        	imageMore.hide();
+	        }
+		}
+	}
     
     $(".Threats").click(function(event){
         var $target = $(event.target);
         var layerName = $target.attr("id").split("-")[0];
-        var layerId = $target.attr("id").split("-")[1];
+        var layerId = $target.attr("id").split("-")[1];		
         var overlayMapsOptions = getOverlayMapOptions(layerName, 0.5, layerId, null, "threats");
-        
-        if ($target.attr('checked')) {
-            var overlayMap = new google.maps.ImageMapType(overlayMapsOptions);
-            map.overlayMapTypes.setAt(0, overlayMap);
-        }
-        else {
-            map.overlayMapTypes.setAt(0, null);
-        }
-        
-        xInnerHtml('scale', '<img src="' + path + layerName + '/' + layerName + layerId + '/' + layerName + layerId + 'scaleImage.png"' + 'width="' + w + '" height="' + h + '" border="0">')
-        xShow('showScale');
-        $("#showScale").css("display", "block");
-        $("#buttonShowScaleInfo").css("display", "none");
+		var scaleImageSource = path + layerName + "/" + layerName + layerId + "/" + layerName + layerId + "scaleImage.png";
+        var overlayMap = new google.maps.ImageMapType(overlayMapsOptions);
+        map.overlayMapTypes.setAt(0, overlayMap);        
+		$("#navigation [name='radio']").each(function() {
+			showHideScaleOpacity($(this), layerName, overlayMapsOptions, scaleImageSource, 0);
+		});       
     });
     
     $(".Bioclim").click(function(event){
         var $target = $(event.target);
         var layerName = $target.attr("id").split("-")[0];
         var layerId = parseInt($target.attr("id").split("-")[1]);
-        var overlayMapsOptions = getOverlayMapOptions(layerName, 0.5, layerId, null, "bioclim");
-        
-        if ($target.attr('checked')) {
-            var overlayMap = new google.maps.ImageMapType(overlayMapsOptions);
-            map.overlayMapTypes.setAt(0, overlayMap);
-        }
-        else {
-            map.overlayMapTypes.setAt(0, null);
-        }
-        
-        xInnerHtml('scale', '<img src="' + path + layerName + '/p' + (layerId + 1) + '/p' + (layerId + 1) + 'scaleImage.png"' + 'width="' + w + '" height="' + h + '" border="0">')
-        xShow('showScale');
-        $("#showScale").css("display", "block");
-        $("#buttonShowScaleInfo").css("display", "none");
+        var overlayMapsOptions = getOverlayMapOptions(layerName, 0.5, layerId, null, "bioclim"); 
+		var scaleImageSource = path + layerName + '/p' + (layerId + 1) + '/p' + (layerId + 1) + "scaleImage.png";       
+        var overlayMap = new google.maps.ImageMapType(overlayMapsOptions);
+        map.overlayMapTypes.setAt(0, overlayMap);
+        $("#navigation [name='radio']").each(function() {
+			showHideScaleOpacity($(this), layerName, overlayMapsOptions, scaleImageSource, 0);
+		});
     });
     
     
@@ -144,12 +167,16 @@ $(document).ready(function(){
         var layerId = $target.attr("key");
         var layerSpecieId = parseInt($target.attr("id"));
         var overlayMapOptions = getOverlayMapOptions(layerName, 0.5, layerId, null, "species");
+		var layerMapPosition = (layerSpecieId + 1);
+		var scaleImageSource = path + "5000009scaleTestImage.png";
+		
+		showHideScaleOpacity($target, layerName, overlayMapOptions, scaleImageSource, layerMapPosition);
         if ($target.attr('checked')) {
             var overlayMap = new google.maps.ImageMapType(overlayMapOptions);
             map.overlayMapTypes.setAt((layerSpecieId + 1), overlayMap);
         }
         else {
-            map.overlayMapTypes.setAt((layerSpecieId + 1), null);
+            map.overlayMapTypes.setAt(layerMapPosition, null);
             $("#showScale").css("display", "none");
             $("#buttonShowScaleInfo").css("display", "none");
         }
@@ -166,54 +193,30 @@ $(document).ready(function(){
                 $("#showScale").css("display", "block");
                 $("#buttonShowScaleInfo").css("display", "none");
             }
-    });
+    });	
+	
     
     $(".richness").click(function(event){
         var $target = $(event.target);
         var layerName = $target.attr("name");
-        var layerRichnessId = parseInt($target.attr("id").split("-")[1]);
+        var layerId = parseInt($target.attr("id").split("-")[1]);
         var overlayMapOptions = getOverlayMapOptions(layerName, 0.5, null, null, "richness");
-        var imageMore = $("#" + $target.attr("id") + " + .showScaleOpacity");
+		var scaleImageSource =  path + "summaries/" + layerName + '/' + layerName + "scaleImage.png";
+		var layerMapPosition = layerId + 4;
+		showHideScaleOpacity($target, layerName, overlayMapOptions, scaleImageSource, layerMapPosition);
         if ($target.attr('checked')) {
             var overlayMap = new google.maps.ImageMapType(overlayMapOptions);
-            map.overlayMapTypes.setAt(layerRichnessId + 4, overlayMap);
-            if (imageMore != undefined) {
-                imageMore.attr("src", "images/minus.gif");
-                imageMore.show();
-                var scaleOpacity = $("#divScaleOpacityTemp").clone(true);
-                scaleOpacity.attr("id", $target.attr("id") + "-ScOp"); //ScOp --> Scale Opacity				
-                scaleOpacity.children("img").attr("src", path + "summaries/" + layerName + '/' + layerName + "scaleImage.png");
-                scaleOpacity.children("#opacityDivTemp").attr("id", "opacityDiv").slider({
-                    range: "min",
-                    value: 50,
-                    min: 1,
-                    max: 100,
-                    slide: function(event, ui){
-                        event.stopPropagation();
-                        $("#opacityLayer").val(ui.value + "%");
-                        overlayMapOptions.setOpacity(ui.value / 100.0);
-                        map.overlayMapTypes.setAt(layerRichnessId + 4, new google.maps.ImageMapType(overlayMapOptions));
-                    }
-                });
-                $target.parent().append(scaleOpacity);
-                scaleOpacity.toggle("slow");
-            }
+            map.overlayMapTypes.setAt(layerMapPosition, overlayMap);           
         }
         else {
-            map.overlayMapTypes.setAt((layerRichnessId + 4), null);
+            map.overlayMapTypes.setAt(layerMapPosition, null);
             $("#buttonShowScaleInfo").css("display", "none");
-            $("#showScale").css("display", "none");
-            $("#" + $target.attr("id") + " + .showScaleOpacity").hide();
-            $("#" + $target.attr("id") + "-ScOp").slideUp("slow", function(){
-                $(this).remove();
-            });
-            if (imageMore != undefined) {
-                imageMore.hide();
-            }
+            $("#showScale").css("display", "none");           
         }
     });
     
     
+
     $(".Summaries").click(function(event){
         var $target = $(event.target);
         var layerName = $target.attr("name");
