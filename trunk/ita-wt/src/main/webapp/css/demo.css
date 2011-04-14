@@ -446,66 +446,6 @@ l	ine-height: 1px;
 	height:720px;
 	bottom:70px;
 	}
-#showScale{
-	z-index:3;
-	padding:2 2 2 2px;
-	position:absolute;
-	left:30px;
-	top:650px;
-	display:none;
-	border: 1px solid #666666;
-}
-#closeScale{
-	background-color:#0A0A0A;
-	font-family:arial,verdana;
-	font-size:8pt;
-	line-height:15px;
-	text-align:right;
-	height: 20px;
-	padding-right:2px;
-	}
-#closeLink{
-	color:#ffffff;
-	}
-#buttonShowScaleInfo{
-	z-index:3;
-	padding:2 2 2 2px;
-	position:absolute;
-	left:65px;
-	top:695px;
-	display:none;
-	color:#ffffff;
-}
-
-
-a.scaleButton {	
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6cbf5f), color-stop(1, #548c26) );
-	background:-moz-linear-gradient( center top, #6cbf5f 5%, #548c26 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6cbf5f', endColorstr='#548c26');
-	background-color:#6cbf5f;
-	-moz-border-radius:16px;
-	-webkit-border-radius:16px;
-	border-radius:16px;
-	border:0px solid;
-	display:inline-block;
-	color:#ffffff;
-	font-family:arial;
-	font-size:11px;
-	font-weight:bold;
-	padding:4px 7px;
-	text-decoration:none;
-	}
-	a.scaleButton:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #548c26), color-stop(1, #6cbf5f) );
-	background:-moz-linear-gradient( center top, #548c26 5%, #6cbf5f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#548c26', endColorstr='#6cbf5f');
-	background-color:#548c26;
-	behavior: url(templates/PIE.htc);
-	}
-a.scaleButton:active {
-	position:relative;
-	top:1px;
-	}
 #imageWait{
 	position:relative;
 	top:300px;
@@ -569,8 +509,7 @@ a.scaleButton:active {
 	border-bottom-color: #A4C4D0;
 	text-align:left;
 	width: 52px;
-	}
-	
+	}	
 	.table .row th {
 	border-left-width: 1px;
 	border-top-width: 1px;

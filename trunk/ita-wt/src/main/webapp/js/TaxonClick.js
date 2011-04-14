@@ -30,9 +30,7 @@ $(document).ready(function() {
 				 $(this).attr("checked", false);
 				 map.overlayMapTypes.setAt(3,null);
 			 }
-		 });				
-		$("#showScale").css("display", "none");		
-        $("#buttonShowScaleInfo").css("display", "none");
+		 });		
 		$("#showSpeciesInfo a").attr("id", $target.attr("id"));
 		$('input.specieData').attr("key", $target.attr("id"));
 		$('input.specieDistribution').attr("key", $target.attr("id"));
