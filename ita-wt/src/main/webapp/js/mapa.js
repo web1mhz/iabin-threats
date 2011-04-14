@@ -30,15 +30,7 @@ function getOverlayMapOptions(layerName, opacityValue, layerId, paN, typeName){
 }
 
 
-$(document).ready(function(){
-    var w = 170;
-    var h = 30;
-    xWidth('showScale', w + 6)
-    xHeight('showScale', h + 6 + 20)
-    xWidth('scale', w)
-    xHeight('scale', h)
-    xWidth('closeScale', w)
-    
+$(document).ready(function(){    
 	function showHideScaleOpacity($context, layerName, overlayMapOptions, scaleSrc, layerMapPosition) {		 
 		 if ($context.attr('checked')) {
 			 var imageMore = $("#" + $context.attr("id") + " + .showScaleOpacity");
@@ -168,31 +160,16 @@ $(document).ready(function(){
         var layerSpecieId = parseInt($target.attr("id"));
         var overlayMapOptions = getOverlayMapOptions(layerName, 0.5, layerId, null, "species");
 		var layerMapPosition = (layerSpecieId + 1);
-		var scaleImageSource = path + "5000009scaleTestImage.png";
+		var scaleImageSource = path + "5000009scaleImage.png";
 		
 		showHideScaleOpacity($target, layerName, overlayMapOptions, scaleImageSource, layerMapPosition);
         if ($target.attr('checked')) {
             var overlayMap = new google.maps.ImageMapType(overlayMapOptions);
-            map.overlayMapTypes.setAt((layerSpecieId + 1), overlayMap);
+            map.overlayMapTypes.setAt((layerSpecieId + 1), overlayMap);         
         }
         else {
-            map.overlayMapTypes.setAt(layerMapPosition, null);
-            $("#showScale").css("display", "none");
-            $("#buttonShowScaleInfo").css("display", "none");
+            map.overlayMapTypes.setAt(layerMapPosition, null);           
         }
-        if ($target.attr("id") == 0) {
-            xInnerHtml('scale', '<img src="' + path + '5000009' + 'scaleTestImage.png"' + 'width="' + w + '" height="' + h + '" border="0">')
-            xShow('showScale');
-            $("#showScale").css("display", "block");
-            $("#buttonShowScaleInfo").css("display", "none");
-        }
-        else 
-            if ($target.attr("id") == 1 || $target.attr("id") == 2) {
-                xInnerHtml('scale', '<img src="' + path + '5000009' + layerName + 'scaleTestImage.png"' + 'width="' + w + '" height="' + h + '" border="0">')
-                xShow('showScale');
-                $("#showScale").css("display", "block");
-                $("#buttonShowScaleInfo").css("display", "none");
-            }
     });	
 	
     
@@ -209,9 +186,7 @@ $(document).ready(function(){
             map.overlayMapTypes.setAt(layerMapPosition, overlayMap);           
         }
         else {
-            map.overlayMapTypes.setAt(layerMapPosition, null);
-            $("#buttonShowScaleInfo").css("display", "none");
-            $("#showScale").css("display", "none");           
+            map.overlayMapTypes.setAt(layerMapPosition, null);              
         }
     });
     
@@ -271,17 +246,6 @@ $(document).ready(function(){
     
 }); //END JQUERY
 // ------------------------------------ JavaScript -------------------------------------
-
-function cerrar_ampliacion(){
-    xHide('showScale');
-    
-}
-
-function abrir_ampliacion(){
-    xShow('showScale');
-    
-}
-
 function initialize(){
     var myOptions = {
         navigationControl: true,
@@ -324,3 +288,4 @@ function initialize(){
         map.overlayMapTypes.push(null);
     }
 }
+

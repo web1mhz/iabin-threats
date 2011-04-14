@@ -85,17 +85,9 @@ $(document).ready(function() {
 				   $("#Species").slideUp("slow");
 				   $("#Bioclim").slideUp("slow");
 				   $("#Threats").slideUp("slow");}
-		});
-		
-		$("#buttonShowScaleInfo").click(function(event){
-			event.preventDefault();
-			abrir_ampliacion();
-			$("#buttonShowScaleInfo").css("display", "none");
 		});		
 		$("#clearthreat-menu").click(function(event) {
 			event.preventDefault();
-			$("#buttonShowScaleInfo").css("display", "none");	
-			$("#showScale").css("display", "none");			
 			$(".Threats").attr("checked", false);
 			$(event.target).parents("#both").find(".divScaleOpacity").remove();					
 			$(event.target).parents("#both").find(".showScaleOpacity").css("display", "none");
@@ -103,8 +95,6 @@ $(document).ready(function() {
 		});		
 		$("#clearbioclim-menu").click(function(event) {
 			event.preventDefault();
-			$("#buttonShowScaleInfo").css("display", "none");	
-			$("#showScale").css("display", "none");			
 			($(".Bioclim").attr("checked", false));	    
 		    map.overlayMapTypes.setAt(0,null);
 		});
@@ -139,15 +129,10 @@ $(document).ready(function() {
 			$("#infoSpecieOptions").css("display", "none");			
 			$("#specieButtons #showSpeciesInfo").css("display", "none");
 			$("#specieButtons [id^='clear']").css("display", "none");
-			$("#opacitySpecie").css("display", "none");
-			$("#showScale").css("display", "none");
-	        $("#buttonShowScaleInfo").css("display", "none");
-			
+			$("#opacitySpecie").css("display", "none");			
 		});		
 		$("#clearsummaries-menu").click(function(event) {
-			event.preventDefault();
-			$("#buttonShowScaleInfo").css("display", "none");	
-			$("#showScale").css("display", "none");	
+			event.preventDefault();			
 			($(".richness").attr("checked", false));
 			($(".Summaries").attr("checked", false));			
 			$(event.target).parent().find(".divScaleOpacity").remove();					
@@ -160,11 +145,7 @@ $(document).ready(function() {
 			for(i = 0 ; i < paLayers.length; i++) {				
 				paLayers[i].setMap(null);
 			}		    
-		});
-		
-	 $("#closeLink").click(function() {
-			$("#buttonShowScaleInfo").fadeIn();			
-     });	     
+		});	  
      $(".showScaleOpacity").click(function(event) {
 		 event.preventDefault();
 		 divScaleOpacity = $(event.target).next();		 
