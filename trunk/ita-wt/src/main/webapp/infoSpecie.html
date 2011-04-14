@@ -14,10 +14,11 @@ $(document).ready(function() {
 		dataType: "json",
 		data: "id="+$.url.param('id'),
 		beforeSend: function(data) {
-		$("#imageWait").html("<img id='loaderGift-big' src='images/ajax-loader-big.gif' />");
+		$("#imageWait").empty().html("<img id='loaderGift-big' src='images/ajax-loader-big.gif' />");
 		$("#infoSpecie").hide();				
 		},
 		success: function(info) {
+			$("#imageWait").html("<img id='loaderGift-big' src='images/ajax-loader-big.gif' />");
 			$("#specieName").text(info.specieName);
 			$("#genusName").text(info.genusName);
 			$("#familyName").text(info.familyName);
@@ -52,6 +53,43 @@ $(document).ready(function() {
 			
 		}
 	}); // END ajax
+	$.ajax({
+		url: "infoSpecieEcosystem.do",
+		dataType: "json",
+		data: "id="+$.url.param('id'),
+		beforeSend: function(data) {						
+		},
+		success: function(data) {			
+			var temp = "";						
+			for(i=0;i<data.specieEcosystem.length;i++){
+			//$("#specieEcosystem").text(i+". "+data.specieEcosystem[i]);	
+			temp +=(i+1)+". "+data.specieEcosystem[i]+"<br>";
+			}
+			$("#specieEcosystem").html(temp);	
+			
+		},
+		complete: function(data, code) {
+			if(code == "success") {			
+			}
+		},
+		error: function(data, error, objectError) {
+			
+		}
+	}); // END ajax
+	var cont=0
+	$("#infoEcosystem").click(function(event) {
+		event.preventDefault();
+		if(cont==0){ 
+		$("#specieEcosystem").fadeIn();	
+		$(event.target).attr("src", "images/minus.gif");
+		cont=1;
+		}else{
+			$("#specieEcosystem").fadeOut();
+			$(event.target).attr("src", "images/plus.gif");	
+			cont=0;
+		}		 
+	});		 
+	 	 
 });
 
 </script>
@@ -161,6 +199,12 @@ $(document).ready(function() {
 <TR class="row" title="Proportion of the distributional range of the species that is covered by protected areas of any kind.">
   <TH><div><span>Percentage of potential distribution that is protected (%)</span></div></TH>
   <TD id="percentAreaProtected"><span></span></TD> 
+</TR>
+<TR class="row"> 
+  <TH colspan="4"><div align="center"><span>Ecosystem</span>&nbsp;&nbsp;<img id="infoEcosystem" src="images/plus.gif" style=""></div></TH>
+</TR>
+<TR class="row"> 
+  <TH colspan="4" id="specieEcosystem"></TH>
 </TR>
 </TABLE>
 </div>	
