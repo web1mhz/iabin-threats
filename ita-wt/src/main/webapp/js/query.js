@@ -164,8 +164,7 @@ $(document).ready(function() {
 		
 	 $("#closeLink").click(function() {
 			$("#buttonShowScaleInfo").fadeIn();			
-     });
-     
+     });	     
      $(".showScaleOpacity").click(function(event) {
 		 event.preventDefault();
 		 divScaleOpacity = $(event.target).next();		 
