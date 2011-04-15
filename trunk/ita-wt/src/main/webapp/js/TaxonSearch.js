@@ -4,8 +4,7 @@ $(document).ready(function() {
 	$("#search", $searchSpecie).autocomplete({
 		source: "taxonSearch.do",
 		minLength: 2,
-		select: function( event, ui ) {
-			//alert(ui.item ?	"Selected: " + ui.item.value + " aka " + ui.item.id : "Nothing selected, input was " + this.value);
+		select: function( event, ui ) {			
 		}
 	});
 	$("#searchButton", $searchSpecie).click(function(event) {

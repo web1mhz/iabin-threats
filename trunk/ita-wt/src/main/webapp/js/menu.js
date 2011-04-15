@@ -21,8 +21,7 @@ function menu(){
             var items = categories[i].getElementsByTagName("item");
             var j;
             document.write("<div class='submenuButtons'>");
-            document.write("<a href='' class=utilityButtons id=clear" + categories[i].attributes.getNamedItem("id").nodeValue + "> Clear </a>");
-            document.write("<div class='opacityThreats' class='opacityBar'></div>");
+            document.write("<a href='' class=utilityButtons id=clear" + categories[i].attributes.getNamedItem("id").nodeValue + "> Clear </a>");           
             document.write("</div>");
             document.write("<hr class='submenuDivision'>");
             document.write("<div class=submenuLayout>");
@@ -50,8 +49,7 @@ function menu(){
             var items = categories[i].getElementsByTagName("item");
             var j;
             document.write("<div class='submenuButtons'>");
-            document.write("<a href='' class=utilityButtons id=clear" + categories[i].attributes.getNamedItem("id").nodeValue + "> Clear </a>");
-            document.write("<div id='opacityBioclim' class='opacityBar'></div>");
+            document.write("<a href='' class=utilityButtons id=clear" + categories[i].attributes.getNamedItem("id").nodeValue + "> Clear </a>");           
             document.write("</div>");
             document.write("<hr class='submenuDivision'>");
             document.write("<div class=submenuLayout>");
@@ -70,7 +68,7 @@ function menu(){
                 j +
                 " />");
                 document.write(items[j].childNodes[0].nodeValue);
-                document.write(" <img class='showScaleOpacity' src='images/plus.gif' />");
+                document.write(" <img class='showScaleOpacity' src='images/plus.gif' style='display: none;'/>");
                 document.write("</li>");
             }
             document.write("</div>");

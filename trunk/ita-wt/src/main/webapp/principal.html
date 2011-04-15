@@ -44,18 +44,7 @@
 			<div id="menu">			
 				<script type="text/javascript">menu();</script>
 	  			<div id=backgroundPopup></div>
-			</div>
-	    	<div align="center" id="opacity">
-				<p>&nbsp;</p>				
-				<INPUT TYPE="text" NAME="opac" id="opac" VALUE="80" maxlength="3"  size="3" style="margin-top:2px; visible= false" onkeypress="return checkSubmit(event)">%				
-			</div>
-   			<div class="sliderOpacity">
-				<p>
-					<label for="opacityLayer"><h5>Opacity value:</h5></label>
-					<input type="text" id="opacityLayer" VALUE="50" style="border:0; color:#f6931f; font-weight:bold;" />
-				</p>
-					<div id="slider-range-min" ></div>
-			</div>
+			</div>   			
 		</div>
 		<div id="map"></div>		
 		<div id=popupContact>
@@ -76,7 +65,8 @@
 <img id="loaderGift" src="images/ajax-loader.gif" style="display:none;" />
 <script type="text/javascript">infoPopupSpecies();</script>
 <div id="divScaleOpacityTemp" class="divScaleOpacity" style="display: none;">
-	<img src="lalalalalala" class="scaleImage" />
-	<div id="opacityDivTemp" class="opacityBar"></div>
+<img src="" class="scaleImage" />
+<label id=labelOpacity>Opacity:</label><div id="opacityDivTemp" class="opacityBar" ></div>
+<label id="1" class=opacityPercentage>50%</label>
 </div>
 </html>

@@ -41,6 +41,8 @@ $(document).ready(function(){
 		 		var scaleOpacity = $("#divScaleOpacityTemp").clone(true);
 		 		scaleOpacity.attr("id", $context.attr("id") + "-ScOp"); //ScOp --> Scale Opacity				
 				scaleOpacity.children("img").attr("src", scaleSrc);
+				var labelOpacity = scaleOpacity.children(".opacityPercentage");
+				labelOpacity.attr("id",$context.attr("id") + "-Percentage");				
 				scaleOpacity.children("#opacityDivTemp").attr("id", "opacityDiv").slider({
 						range: "min",
 						value: 50,
@@ -48,12 +50,13 @@ $(document).ready(function(){
 						max: 100,
 						slide: function(event, ui){
 							event.stopPropagation();
-							$("#opacityLayer").val(ui.value + "%");
+							labelOpacity.text(ui.value + "%");
 							overlayMapOptions.setOpacity(ui.value / 100.0);
 							map.overlayMapTypes.setAt(layerMapPosition, new google.maps.ImageMapType(overlayMapOptions));
 						}
 				});
 				$context.parent().append(scaleOpacity);
+				
 				scaleOpacity.toggle("fast");
 			}
 		}
@@ -77,7 +80,7 @@ $(document).ready(function(){
         var overlayMap = new google.maps.ImageMapType(overlayMapsOptions);       
         map.overlayMapTypes.setAt(0, overlayMap);		 
 		$("#navigation [name='radio']").each(function() {
-			showHideScaleOpacity($(this), layerName, overlayMapsOptions, scaleImageSource, 0);
+			showHideScaleOpacity($(this), layerName, overlayMapsOptions, scaleImageSource, 0);			
 		});       
     });
     
@@ -237,7 +240,7 @@ $(document).ready(function(){
     
     $("#showSpeciesInfo a").click(function(event){
         event.preventDefault();
-        var options = "height=450,width=700,scrollTo,resizable=1,scrollbars=1,toolbar=0,statusbar=0";
+        var options = "height=600,width=700,scrollTo,resizable=1,scrollbars=1,toolbar=0,statusbar=0";
         var $target = $(event.target);
         var link = "infoSpecie.html?id=" + $target.attr("id");
         newWindow = window.open(link, 'Popup', options);

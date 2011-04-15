@@ -62,8 +62,9 @@ $(document).ready(function() {
 		success: function(data) {			
 			var temp = "";						
 			for(i=0;i<data.specieEcosystem.length;i++){
-			//$("#specieEcosystem").text(i+". "+data.specieEcosystem[i]);	
-			temp +=(i+1)+". "+data.specieEcosystem[i]+"<br>";
+				if(data.specieEcosystem[i]!=null && data.specieEcosystem[i]!="N/A"){
+					temp +=(i+1)+". "+data.specieEcosystem[i]+"<br>";
+				}
 			}
 			$("#specieEcosystem").html(temp);	
 			
