@@ -95,7 +95,9 @@ $(document).ready(function() {
 		});		
 		$("#clearbioclim-menu").click(function(event) {
 			event.preventDefault();
-			($(".Bioclim").attr("checked", false));	    
+			($(".Bioclim").attr("checked", false));
+			$(event.target).parents("#both").find(".divScaleOpacity").remove();					
+			$(event.target).parents("#both").find(".showScaleOpacity").css("display", "none");
 		    map.overlayMapTypes.setAt(0,null);
 		});
 		$("#cleartaxon-menu").click(function(event) {			
@@ -117,19 +119,25 @@ $(document).ready(function() {
 			 $(".specieDistribution").each(function () {
 				 if($(this).attr("checked")==true && $(this).attr("id")=="0"){
 					 $(this).attr("checked", false);
-					 map.overlayMapTypes.setAt(1,null);					 
+					 map.overlayMapTypes.setAt(1,null);	
+					 $(event.target).parents("#both").find(".divScaleOpacity").remove();					
+					 $(event.target).parents("#both").find(".showScaleOpacity").css("display", "none");
 				 }else if($(this).attr("checked")==true && $(this).attr("id")=="1"){					 
 					 $(this).attr("checked", false);
-					 map.overlayMapTypes.setAt(2,null);					 
+					 map.overlayMapTypes.setAt(2,null);
+					 $(event.target).parents("#both").find(".divScaleOpacity").remove();					
+					 $(event.target).parents("#both").find(".showScaleOpacity").css("display", "none");
 				 }else if($(this).attr("checked")==true && $(this).attr("id")=="2"){					 
 					 $(this).attr("checked", false);
-					 map.overlayMapTypes.setAt(3,null);
+					 map.overlayMapTypes.setAt(3,null);	
+					 $(event.target).parents("#both").find(".divScaleOpacity").remove();					
+					 $(event.target).parents("#both").find(".showScaleOpacity").css("display", "none");
 				 }
 			 });			
 			$("#infoSpecieOptions").css("display", "none");			
 			$("#specieButtons #showSpeciesInfo").css("display", "none");
 			$("#specieButtons [id^='clear']").css("display", "none");
-			$("#opacitySpecie").css("display", "none");			
+			$("#opacitySpecie").css("display", "none");		
 		});		
 		$("#clearsummaries-menu").click(function(event) {
 			event.preventDefault();			

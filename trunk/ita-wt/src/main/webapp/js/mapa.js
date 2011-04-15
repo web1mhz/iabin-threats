@@ -74,7 +74,7 @@ $(document).ready(function(){
         var layerId = $target.attr("id").split("-")[1];		
         var overlayMapsOptions = getOverlayMapOptions(layerName, 0.5, layerId, null, "threats");
 		var scaleImageSource = path + layerName + "/" + layerName + layerId + "/" + layerName + layerId + "scaleImage.png";
-        var overlayMap = new google.maps.ImageMapType(overlayMapsOptions);
+        var overlayMap = new google.maps.ImageMapType(overlayMapsOptions);       
         map.overlayMapTypes.setAt(0, overlayMap);        
 		$("#navigation [name='radio']").each(function() {
 			showHideScaleOpacity($(this), layerName, overlayMapsOptions, scaleImageSource, 0);
