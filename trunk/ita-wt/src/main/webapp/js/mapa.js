@@ -35,7 +35,7 @@ $(document).ready(function(){
 		 if ($context.attr('checked')) {
 			 var imageMore = $("#" + $context.attr("id") + " + .showScaleOpacity");
 			 var layerId = parseInt($context.attr("id").split("-")[1]);
-		 	 if (imageMore != undefined) {
+		 	 if (imageMore != undefined && $context.parent().children(".divScaleOpacity").attr("id") == undefined) {
 		 		imageMore.attr("src", "images/minus.gif");
 		 		imageMore.show();
 		 		var scaleOpacity = $("#divScaleOpacityTemp").clone(true);
@@ -75,7 +75,7 @@ $(document).ready(function(){
         var overlayMapsOptions = getOverlayMapOptions(layerName, 0.5, layerId, null, "threats");
 		var scaleImageSource = path + layerName + "/" + layerName + layerId + "/" + layerName + layerId + "scaleImage.png";
         var overlayMap = new google.maps.ImageMapType(overlayMapsOptions);       
-        map.overlayMapTypes.setAt(0, overlayMap);        
+        map.overlayMapTypes.setAt(0, overlayMap);		 
 		$("#navigation [name='radio']").each(function() {
 			showHideScaleOpacity($(this), layerName, overlayMapsOptions, scaleImageSource, 0);
 		});       
