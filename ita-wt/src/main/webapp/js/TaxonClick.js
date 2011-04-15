@@ -17,20 +17,25 @@ $(document).ready(function() {
 				 poligonLayer.setMap(null);
 			 }		
 			 
-		 });
-		
+		 });		
 		 $(".specieDistribution").each(function () {
 			 if($(this).attr("checked")==true && $(this).attr("id")=="0"){
 				 $(this).attr("checked", false);
-				 map.overlayMapTypes.setAt(1,null);					 
+				 map.overlayMapTypes.setAt(1,null);				
+				 $(this).parents("#both").find(".divScaleOpacity").remove();					
+				 $(this).parents("#both").find(".showScaleOpacity").css("display", "none");				 
 			 }else if($(this).attr("checked")==true && $(this).attr("id")=="1"){					 
 				 $(this).attr("checked", false);
-				 map.overlayMapTypes.setAt(2,null);					 
+				 map.overlayMapTypes.setAt(2,null);
+				 $(this).parents("#both").find(".divScaleOpacity").remove();					
+				 $(this).parents("#both").find(".showScaleOpacity").css("display", "none");
 			 }else if($(this).attr("checked")==true && $(this).attr("id")=="2"){					 
 				 $(this).attr("checked", false);
 				 map.overlayMapTypes.setAt(3,null);
+				 $(this).parents("#both").find(".divScaleOpacity").remove();					
+				 $(this).parents("#both").find(".showScaleOpacity").css("display", "none");
 			 }
-		 });		
+		 });
 		$("#showSpeciesInfo a").attr("id", $target.attr("id"));
 		$('input.specieData').attr("key", $target.attr("id"));
 		$('input.specieDistribution').attr("key", $target.attr("id"));
