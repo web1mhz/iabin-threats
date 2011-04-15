@@ -25,9 +25,9 @@ public class Info {
 	}
 	public static String getPath() {
 		if(System.getProperty("os.name").toLowerCase().contains("windows")) {
-			return "\\\\172.22.33.88\\geodata\\Threat-Assement\\species\\";
+			return "\\\\172.22.33.85\\geodata\\Threat-Assement\\species\\";
 		} else {
-			return "/mnt/HD724-geodata2/Threat-Assement/species/";
+			return "/mnt/HD724-geodata/Threat-Assement/species/";
 		}
 	}
 	
