@@ -1,5 +1,5 @@
-#labels sdm,R
-#sidebar TableOfContents
+#labels 
+#sidebar UserManualNavigationTool
 
 Manual de Usuario de la Herramienta de Navegacion Proyecto ITA.
 
