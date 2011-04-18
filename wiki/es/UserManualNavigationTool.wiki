@@ -60,6 +60,27 @@ Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el ma
 
 
 La opción Species contiene inicialmente un botón,http://iabin-threats.googlecode.com/svn/wiki/resources/search-button.png para la búsqueda de la especie que se quiere visualizar. Al dar click sobre este botón se abre un popup en el cual se encuentran las siguientes opciones:
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/menuspecies.png
+
+1.	Buscador de especies, en el cual se ingresa el nombre o parte del nombre de la especie que se quiere buscar.
+
+2.	Menú tipo árbol inicial de especies.
+
+3.	Cierra el popup y regresa al mapa y menú principal.
+
+A continuación se muestras los dos tipos de búsqueda que se pueden realizar sobre el popup menú de especies:
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/menu-species-tree.png
+
+Se puede realizar  la búsqueda de una especie utilizando el árbol de especies cada vez que se seleccione un opción se desplegará la informacion que contenga, hasta llegar a la especie que se necesite visualizar, una vez se haga click sobre ella se cerrará el popup y se mostrará un menú como el siguiente:
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/dataspecie.png
+
+1.	Botón search, abre nuevamente el popup para realizar la búsqueda de una nueva especie.
+2.	Botón show  info,  abre una nueva ventana donde se muestra la informacion de la especie, detalles de modelado, estado de amenaza, estado de conservación y los ecosistemas donde se encuentra.
+
+
 = Introducción =
 
 = Detalles =
