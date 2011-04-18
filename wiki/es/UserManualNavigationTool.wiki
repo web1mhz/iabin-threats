@@ -9,6 +9,8 @@ Manual de Usuario de la Herramienta de Navegacion Proyecto ITA.
 <wiki:toc />
 http://iabin-threats.googlecode.com/svn/wiki/resources/inicio.png
 
+== Página Inicial ==
+
 La página inicial está compuesta por:
 
 1.	Menú principal, ubicado  en la parte superior izquierda,http://iabin-threats.googlecode.com/svn/wiki/resources/hide.png  este menú tiene un botón hide para ocultar el menú y tener más espacio de visualización, al presionarlo se oculta el menú  y queda un botón con el nombre show el cual volverá mostrar el menú  nuevamente , http://iabin-threats.googlecode.com/svn/wiki/resources/show.png también dando click  sostenido sobre la imagen http://iabin-threats.googlecode.com/svn/wiki/resources/move.png  se puede ubicar el menú en el lugar que se desee dentro del mapa.
@@ -22,6 +24,7 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/menu.png
 
 3.	Control zoom, ubicado en la parte inferior derecha del mapa, este control permite modificar el zoom del mapa de dos formas haciendo click sobre él o con el scroll del mouse, se muestra desde el zoom 0 hasta el zoom 7.
 
+== Menú Threats ==
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/threats-menu.png
 
@@ -39,6 +42,7 @@ Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el ma
 
 4.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%. 
 
+== Menú Bioclim ==
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/menu-bioclim.png
 
@@ -58,6 +62,7 @@ Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el ma
 
 4.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%.
 
+== Menú Species ==
 
 La opción Species contiene inicialmente un botón,http://iabin-threats.googlecode.com/svn/wiki/resources/search-button.png para la búsqueda de la especie que se quiere visualizar. Al dar click sobre este botón se abre un popup en el cual se encuentran las siguientes opciones:
 
@@ -73,9 +78,13 @@ A continuación se muestras los dos tipos de búsqueda que se pueden realizar so
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/menu-species-tree.png
 
+== Menú especies utilizando arbol de búsqueda ==
+
 Se puede realizar  la búsqueda de una especie utilizando el árbol de especies cada vez que se seleccione un opción se desplegará la informacion que contenga, hasta llegar a la especie que se necesite visualizar, una vez se haga click sobre ella se cerrará el popup y se mostrará un menú como el siguiente:
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/dataspecie.png
+
+== Visualización de datos de la especie ==
 
 1.	Botón search, abre nuevamente el popup para realizar la búsqueda de una nueva especie.
 
@@ -107,6 +116,7 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/specieInfo.png
 También se puede realizar la búsqueda de una especie utilizando el buscador, en este se  ingresa el nombre completo y se da click en search.
 Cuando no se está seguro del nombre exacto de la especie se puede escribir parte del nombre de la especie y ayudarse con la opción de autocompletar que tiene el buscador, seleccionar la especie que se desee y dar click en el botón search.
 
+== Menú especies utilizando buscador de especies ==
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspecie.png
 
@@ -114,6 +124,7 @@ Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una 
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspeciebutton.png
 
+== Menú Summaries ==
 
 La opción de Summaries  contiene la visualización de datos de Áreas protegidas y riqueza de especies.
 
