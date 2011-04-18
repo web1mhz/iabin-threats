@@ -12,9 +12,12 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/inicio.png
 La página inicial está compuesta por:
 
 1.	Menú principal, ubicado  en la parte superior izquierda,http://iabin-threats.googlecode.com/svn/wiki/resources/hide.png  este menú tiene un botón hide para ocultar el menú y tener más espacio de visualización, al presionarlo se oculta el menú  y queda un botón con el nombre show el cual volverá mostrar el menú  nuevamente , http://iabin-threats.googlecode.com/svn/wiki/resources/show.png también dando click  sostenido sobre la imagen http://iabin-threats.googlecode.com/svn/wiki/resources/move.png  se puede ubicar el menú en el lugar que se desee dentro del mapa.
-	El menú está dividido en las siguientes secciones:
+El menú está dividido en las siguientes secciones:
 		
-	Threats, Bioclim, Species y Summaries.
+Threats, Bioclim, Species y Summaries.
+http://iabin-threats.googlecode.com/svn/wiki/resources/menu.png
+
+
 
 = Introducción =
 
