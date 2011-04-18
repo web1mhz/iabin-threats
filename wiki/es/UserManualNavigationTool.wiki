@@ -77,15 +77,15 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/menuspecies.png
 
 A continuación se muestras los dos tipos de búsqueda que se pueden realizar sobre el popup menú de especies:
 
-http://iabin-threats.googlecode.com/svn/wiki/resources/menu-species-tree.png
-
 == Menú especies utilizando arbol de búsqueda ==
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/menu-species-tree.png
 
 Se puede realizar  la búsqueda de una especie utilizando el árbol de especies cada vez que se seleccione un opción se desplegará la informacion que contenga, hasta llegar a la especie que se necesite visualizar, una vez se haga click sobre ella se cerrará el popup y se mostrará un menú como el siguiente:
 
-http://iabin-threats.googlecode.com/svn/wiki/resources/dataspecie.png
-
 == Visualización de datos de la especie ==
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/dataspecie.png
 
 1.	Botón search, abre nuevamente el popup para realizar la búsqueda de una nueva especie.
 
