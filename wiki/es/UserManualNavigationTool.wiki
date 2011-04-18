@@ -82,6 +82,7 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/dataspecie.png
 2.	Botón show  info,  abre una nueva ventana donde se muestra la informacion de la especie, detalles de modelado, estado de amenaza, estado de conservación y los ecosistemas donde se encuentra.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/specieInfo.png
+
 1.	Control para mostrar y ocultar la informacion de los ecosistemas.
 
 3.  Botón Clear, limpia las opciones del menú Species y el mapa.
