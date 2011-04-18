@@ -78,25 +78,68 @@ Se puede realizar  la búsqueda de una especie utilizando el árbol de especies 
 http://iabin-threats.googlecode.com/svn/wiki/resources/dataspecie.png
 
 1.	Botón search, abre nuevamente el popup para realizar la búsqueda de una nueva especie.
+
 2.	Botón show  info,  abre una nueva ventana donde se muestra la informacion de la especie, detalles de modelado, estado de amenaza, estado de conservación y los ecosistemas donde se encuentra.
 
+http://iabin-threats.googlecode.com/svn/wiki/resources/specieinfo.png
+1.	Control para mostrar y ocultar la informacion de los ecosistemas.
 
-= Introducción =
+3.  Botón Clear, limpia las opciones del menú Species y el mapa.
 
-= Detalles =
-== Programa ==
-Todo el trabajo se realizó con:
-  * 
-  * 
-  * 
-  * 
-== Preparación y organización de los datos  ==
-  * * 
-  * *
-  * *
+4.  Opción que muestra las ocurrencias (puntos kml) de la especie  seleccionada sobre el mapa.
 
-== Procesamiento ==
+5.  Opción que muestra el convex hull (polígono kml) de la especie seleccionada sobre el mapa.
+
+6. Opción que muestra el convex hull buffer (polígono kml) de la especie seleccionada sobre el mapa.
+
+7. Opción que muestra una capa png  sobre el mapa de la distribución de la especie limitada por el convex hull.
+
+8. Control para mostrar y ocultar la imagen de escala y el control de opacidad.
+
+9.   Imagen de escala.
+
+10.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%.
+
+11. Opción que muestra una capa png  sobre el mapa de la distribución de la especie.
+
+12. Opción que muestra una capa png  sobre el mapa del umbral de distribución de la especie.
+También se puede realizar la búsqueda de una especie utilizando el buscador, en este se  ingresa el nombre completo y se da click en search.
+Cuando no se está seguro del nombre exacto de la especie se puede escribir parte del nombre de la especie y ayudarse con la opción de autocompletar que tiene el buscador, seleccionar la especie que se desee y dar click en el botón search.
 
 
+http://iabin-threats.googlecode.com/svn/wiki/resources/searchspecie.png
+
+Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver.
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/searchspeciebutton.png
+
+
+La opción de Summaries  contiene la visualización de datos de Áreas protegidas y riqueza de especies.
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/summaries.png
+
+1.	Botón clear, limpia las opciones del menú Summaries y el mapa.
+
+2.	Opción para la visualización de áreas protegidas.
+
+3.	Opciones para la visualización de capas png de riqueza de especies, se muestran las siguientes capas :
+
+Plant species richness, Mammal species richness, Reptile species richness, Amphibian species richness, Insect species richness, Bird species richness, Total species richnness.
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/pasummaries.png
+
+1.  Botón clear, limpia el checkbox de áreas protegidas  y el mapa.
+
+2.	Cuando se selecciona la opción de Protected Areas, se muestra una capa png sobre el mapa con las diferentes áreas protegidas e iconos de informacion que se muestran a partir del zoom 5 para una mejor visualización. Si se quiere saber la informacion de un área protegida específica se debe dar click sobre el icono y se desplegará una burbuja con información sobre esta.
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/richness.png
+
+Cuando se selecciona una opción de riqueza de especies, se muestra sobre el mapa la capa png de riqueza seleccionada con una opacidad inicial de 50% y se tienen los siguientes elementos:
+
+1.	Control para mostrar y ocultar la imagen de escala y la barra de opacidad.
+
+2.	Imagen de escala de la capa de riqueza seleccionada.
+
+3.	Control de opacidad de la capa de riqueza seleccionada, va de 0% a 100%.
 
 
