@@ -18,6 +18,22 @@ Threats, Bioclim, Species y Summaries.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/menu.png
 
+2.	Control de tipo de mapa, ubicado en la parte superior derecha del mapa, este control permite cambiar el tipo de mapa, tiene cuatro opciones: mapa, relieve, satélite con etiquetas y satélite sin etiquetas.
+
+3.	Control zoom, ubicado en la parte inferior derecha del mapa, este control permite modificar el zoom del mapa de dos formas haciendo click sobre él o con el scroll del mouse, se muestra desde el zoom 0 hasta el zoom 7.
+
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/threats-menu.png
+
+La opción Threats contiene:
+1.	Botón clear, para limpiar las opciones del menú threats y limpiar el mapa.
+2.   8 radio buttons que corresponden a 8 amenazas: 
+Population accessiblity, Conversion to agriculture, Fires, Grazing pressure,    Infrastructure, Oil/Gas, Recent conversion y Aggregate threat.
+Se puede seleccionar una capa a la vez para ser visualizada.	 
+Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el mapa con una opacidad inicial del 50%. Y en la parte derecha de la opción seleccionada aparecerá    este control para ocultar y mostrar la imagen de escala y el control de opacidad.
+
+3.   Imagen de escala, tiene un rango de 0 a 3.
+4.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%. 
 
 
 = Introducción =
