@@ -59,7 +59,7 @@ Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el ma
 4.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%.
 
 
-La opción Species contiene inicialmente un botón  http://iabin-threats.googlecode.com/svn/wiki/resources/search-button.png  , para la búsqueda de la especie que se quiere visualizar. Al dar click sobre este botón se abre un popup en el cual se encuentran las siguientes opciones:
+La opción Species contiene inicialmente un botón,http://iabin-threats.googlecode.com/svn/wiki/resources/search-button.png para la búsqueda de la especie que se quiere visualizar. Al dar click sobre este botón se abre un popup en el cual se encuentran las siguientes opciones:
 = Introducción =
 
 = Detalles =
