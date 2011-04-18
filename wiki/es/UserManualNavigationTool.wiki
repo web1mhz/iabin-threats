@@ -7,9 +7,10 @@ Manual de Usuario de la Herramienta de Navegacion Proyecto ITA.
 [http://code.google.com/p/iabin-threats/wiki/SpeciesDistributionModelling?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 <wiki:toc />
+== Página Inicial ==
+
 http://iabin-threats.googlecode.com/svn/wiki/resources/inicio.png
 
-== Página Inicial ==
 
 La página inicial está compuesta por:
 
