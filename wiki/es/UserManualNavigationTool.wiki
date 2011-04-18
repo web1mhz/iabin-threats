@@ -36,8 +36,26 @@ Se puede seleccionar una capa a la vez para ser visualizada.
 Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el mapa con una opacidad inicial del 50%. Y en la parte derecha de la opción seleccionada aparecerá http://iabin-threats.googlecode.com/svn/wiki/resources/threatoption.png   este control para ocultar y mostrar la imagen de escala y el control de opacidad.
 
 3.  Imagen de escala, tiene un rango de 0 a 3.
+
 4.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%. 
 
+
+http://iabin-threats.googlecode.com/svn/wiki/resources/menu-bioclim.png
+
+La opción Bioclim contiene:
+
+1.	Botón clear, para limpiar las opciones del menú threats y limpiar el mapa.
+
+ 2.  19 radio buttons que corresponden a 19 variables bioclimáticas:
+ 
+P1 Annual mean temperature (ºC), P2 Mean diurnal temperature range (ºC), P3 Isothermality N/A, P4 Temperature seasonality (standard deviation) (ºC), P5 Maximum temperature of warmest month (ºC), P6 Minimum temperature of coldest month (ºC), P7   Temperature annual range ºC, P8   Mean temperature of wettest quarter ºC, P9   Mean temperature of driest quarter ºC, P10 Mean temperature of warmest quarter ºC, P11 Mean temperature of coldest quarter ºC, P12 Annual precipitation mm, P13 Precipitation of wettest month mm, P14 Precipitation of driest month mm, P15 Precipitation seasonality (coefficient of variation) %, P16 Precipitation of wettest quarter mm, P17 Precipitation of driest quarter mm, P18 Precipitation of warmest quarter mm, P19 Precipitation of coldest quarter mm .
+
+Se puede seleccionar una capa a la vez para ser visualizada.
+Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el mapa con una opacidad inicial del 50%. Y en la parte derecha de la opción seleccionada aparecerá http://iabin-threats.googlecode.com/svn/wiki/resources/bioclimoption.png   este control para ocultar y mostrar la imagen de escala y el control de opacidad.
+           
+3.   Imagen de escala.
+
+4.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%.
 
 = Introducción =
 
