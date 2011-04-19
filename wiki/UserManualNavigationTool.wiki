@@ -1,5 +1,5 @@
 #labels 
-#sidebar TableOfContens
+#sidebar TableOfContents
 
 Manual de Usuario de la Herramienta de Navegacion Proyecto ITA.
 
