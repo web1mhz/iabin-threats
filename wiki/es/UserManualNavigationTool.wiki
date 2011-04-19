@@ -35,7 +35,7 @@ La opción Threats contiene:
 
 2.   8 radio buttons que corresponden a 8 amenazas: 
 
-Population accessiblity, Conversion to agriculture, Fires, Grazing pressure,    Infrastructure, Oil/Gas, Recent conversion y Aggregate threat.
+Population accessiblity, Conversion to agriculture, Fires, Grazing pressure, Infrastructure, Oil/Gas, Recent conversion y Aggregate threat.
 Se puede seleccionar una capa a la vez para ser visualizada.	 
 Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el mapa con una opacidad inicial del 50%. Y en la parte derecha de la opción seleccionada aparecerá http://iabin-threats.googlecode.com/svn/wiki/resources/threatoption.png   este control para ocultar y mostrar la imagen de escala y el control de opacidad.
 
@@ -121,7 +121,7 @@ Cuando no se está seguro del nombre exacto de la especie se puede escribir part
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspecie.png
 
-Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver [<a href="#Visualización_de_datos_de_la_especie">Visualización de datos de la especie</a>].
+Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspeciebutton.png
 
