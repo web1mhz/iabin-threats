@@ -93,7 +93,7 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/dataspecie.png
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/specieInfo.png
 
-1.	Control para mostrar y ocultar la informacion de los ecosistemas.
+(1)	Control para mostrar y ocultar la informacion de los ecosistemas.
 
 3.  Botón Clear, limpia las opciones del menú Species y el mapa.
 
