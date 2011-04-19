@@ -21,5 +21,6 @@
    * [API]
  * Navigation Tool
    * [DescriptionNavTool Descripción]
+   * [UserManualNavigationTool User Manual]
    
    
