@@ -3,8 +3,8 @@
 
 Manual de Usuario de la Herramienta de Navegacion Proyecto ITA.
 
-[http://code.google.com/p/iabin-threats/wiki/SpeciesDistributionModelling?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
-[http://code.google.com/p/iabin-threats/wiki/SpeciesDistributionModelling?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+[http://code.google.com/p/iabin-threats/wiki/UserManualNavigationTool?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/UserManualNavigationTool?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 <wiki:toc />
 == Página Inicial ==

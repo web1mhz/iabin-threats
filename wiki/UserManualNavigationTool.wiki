@@ -3,8 +3,8 @@
 
 Manual de Usuario de la Herramienta de Navegacion Proyecto ITA.
 
-[http://code.google.com/p/iabin-threats/wiki/SpeciesDistributionModelling?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
-[http://code.google.com/p/iabin-threats/wiki/SpeciesDistributionModelling?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+[http://code.google.com/p/iabin-threats/wiki/UserManualNavigationTool?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/UserManualNavigationTool?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 <wiki:toc />
 == Página Inicial ==
@@ -121,7 +121,7 @@ Cuando no se está seguro del nombre exacto de la especie se puede escribir part
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspecie.png
 
-Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver
+Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspeciebutton.png
 
