@@ -1,5 +1,5 @@
 #labels 
-#sidebar TableOfContents
+#sidebar TableOfContens
 
 Manual de Usuario de la Herramienta de Navegacion Proyecto ITA.
 
@@ -121,7 +121,7 @@ Cuando no se está seguro del nombre exacto de la especie se puede escribir part
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspecie.png
 
-Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver.
+Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver [<a href="#Visualización_de_datos_de_la_especie">Visualización de datos de la especie</a>].
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspeciebutton.png
 
