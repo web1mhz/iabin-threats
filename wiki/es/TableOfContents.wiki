@@ -20,7 +20,5 @@
    * [RunningProcedureMaxent Algoritmo de Maxent]
    * [API]
  * Herramienta de Navegación
-   * [DescriptionNavTool Descripción]
-   * [DataConversion Conversión de Datos]
-   * [WEB]
+   * [DescriptionNavTool Descripción]      
    * [UserManualNavigationTool Manual de Usuario]

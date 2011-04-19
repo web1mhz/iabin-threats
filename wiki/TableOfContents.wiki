@@ -20,7 +20,6 @@
    * [RunningProcedureMaxent Maxent Script]
    * [API]
  * Navigation Tool
-   * [DataConversion Data Conversion]
-   * [WEB]
+   * [DescriptionNavTool Descripción] 
    * [UserManualNavigationTool Manual de Usuario]
    
