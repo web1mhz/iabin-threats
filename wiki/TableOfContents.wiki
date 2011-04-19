@@ -20,6 +20,6 @@
    * [RunningProcedureMaxent Maxent Script]
    * [API]
  * Navigation Tool
-   * [DescriptionNavTool Descripción] 
-   * [UserManualNavigationTool User Manual]
+   * [DescriptionNavTool Descripción]
+   
    
