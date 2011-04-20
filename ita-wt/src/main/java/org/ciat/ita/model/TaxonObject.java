@@ -1,6 +1,5 @@
 package org.ciat.ita.model;
 
-import java.text.DecimalFormat;
 
 public class TaxonObject implements Comparable<TaxonObject> {
 	private String id;
