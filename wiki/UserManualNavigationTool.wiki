@@ -1,158 +1,157 @@
 #labels 
 #sidebar TableOfContents
 
-Manual de Usuario de la Herramienta de Navegacion Proyecto ITA.
+User Manual Tool ITA Navigation Project
 
 [http://code.google.com/p/iabin-threats/wiki/UserManualNavigationTool?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
 [http://code.google.com/p/iabin-threats/wiki/UserManualNavigationTool?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 <wiki:toc />
-== Página Inicial ==
+== Home ==
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/inicio.png
 
 
-La página inicial está compuesta por:
+The home page consists of:
 
-1.	Menú principal, ubicado  en la parte superior izquierda,http://iabin-threats.googlecode.com/svn/wiki/resources/hide.png  este menú tiene un botón hide para ocultar el menú y tener más espacio de visualización, al presionarlo se oculta el menú  y queda un botón con el nombre show el cual volverá mostrar el menú  nuevamente , http://iabin-threats.googlecode.com/svn/wiki/resources/show.png también dando click  sostenido sobre la imagen http://iabin-threats.googlecode.com/svn/wiki/resources/move.png  se puede ubicar el menú en el lugar que se desee dentro del mapa.
-El menú está dividido en las siguientes secciones:
+1.	Main Menu located in the upper left, http://iabin-threats.googlecode.com/svn/wiki/resources/hide.png  this menu has a hide button to hide the menu and have more display space, when pressed hide the menu is a button which will show name show menu again, http://iabin-threats.googlecode.com/svn/wiki/resources/show.png also sustained by clicking on the image http://iabin-threats.googlecode.com/svn/wiki/resources/move.png  menu can be placed in the desired location on the map.
+The menu is divided into the following sections:
 
-Threats, Bioclim, Species y Summaries.
+Threats, Bioclim, Species and Summaries.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/menu.png
 
-2.	Control de tipo de mapa, ubicado en la parte superior derecha del mapa, este control permite cambiar el tipo de mapa, tiene cuatro opciones: mapa, relieve, satélite con etiquetas y satélite sin etiquetas.
+2.	Map type control located on the top right of the map, this control lets you change the map type, has four options: map, terrain, satellite and satellite cloud without labels.
 
-3.	Control zoom, ubicado en la parte inferior derecha del mapa, este control permite modificar el zoom del mapa de dos formas haciendo click sobre él o con el scroll del mouse, se muestra desde el zoom 0 hasta el zoom 7.
+3.	Zoom control, located on the bottom right of the map, this control lets you change the zoom the map in two ways by clicking on it or the mouse scroll is displayed from the zoom zoom 0 to 7.
 
-== Menú Threats ==
+== Threats Menu  ==
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/threats-menu.png
 
-La opción Threats contiene:
+Threats option contains:
 
-1.	Botón clear, para limpiar las opciones del menú threats y limpiar el mapa.
+1.	Clear button to clear the menu options Threats and clean the map.
 
-2.   8 radio buttons que corresponden a 8 amenazas: 
+2.  8 radio buttons that correspond to 8 threats: 
 
-Population accessiblity, Conversion to agriculture, Fires, Grazing pressure,    Infrastructure, Oil/Gas, Recent conversion y Aggregate threat.
-Se puede seleccionar una capa a la vez para ser visualizada.	 
-Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el mapa con una opacidad inicial del 50%. Y en la parte derecha de la opción seleccionada aparecerá http://iabin-threats.googlecode.com/svn/wiki/resources/threatoption.png   este control para ocultar y mostrar la imagen de escala y el control de opacidad.
+Population accessiblity, Conversion to agriculture, Fires, Grazing pressure,Infrastructure, Oil/Gas, Recent conversion and Aggregate threat.
+You can select one layer at a time to be displayed.	 
+Once you select the layer you want to view, display the map layer with an initial 50% opacity. And on the right side of the selected option will appear  http://iabin-threats.googlecode.com/svn/wiki/resources/threatoption.png   this control to hide and show the image of scale and opacity control.
 
-3.  Imagen de escala, tiene un rango de 0 a 3.
+3.  Image scale ranges from 0 to 3.
 
-4.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%. 
+4.  Opacity bar where you can change the opacity of the selected layer from 0% to 100%. 
 
-== Menú Bioclim ==
+== Bioclim Menu  ==
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/menu-bioclim.png
 
-La opción Bioclim contiene:
+Bioclim option contains:
 
-1.	Botón clear, para limpiar las opciones del menú threats y limpiar el mapa.
+1.	Clear button to clear the menu options Threats and clean the map.
 
-2.  19 radio buttons que corresponden a 19 variables bioclimáticas:
+2.  19 radio buttons corresponding to 19 bioclimatic variables:
  
 P1 Annual mean temperature (ºC), P2 Mean diurnal temperature range (ºC), P3 Isothermality N/A, P4 Temperature seasonality (standard deviation) (ºC), P5 Maximum temperature of warmest month (ºC), P6 Minimum temperature of coldest month (ºC), P7   Temperature annual range ºC, P8   Mean temperature of wettest quarter ºC, P9   Mean temperature of driest quarter ºC, P10 Mean temperature of warmest quarter ºC, P11 Mean temperature of coldest quarter ºC, P12 Annual precipitation mm, P13 Precipitation of wettest month mm, P14 Precipitation of driest month mm, P15 Precipitation seasonality (coefficient of variation) %, P16 Precipitation of wettest quarter mm, P17 Precipitation of driest quarter mm, P18 Precipitation of warmest quarter mm, P19 Precipitation of coldest quarter mm .
 
-Se puede seleccionar una capa a la vez para ser visualizada.
-Una vez seleccionada la capa que se quiere visualizar, aparecerá la capa  el mapa con una opacidad inicial del 50%. Y en la parte derecha de la opción seleccionada aparecerá http://iabin-threats.googlecode.com/svn/wiki/resources/bioclimoption.png   este control para ocultar y mostrar la imagen de escala y el control de opacidad.
+You can select one layer at a time to be displayed.
+Once you select the layer you want to view, display the map layer with an initial 50% opacity. And on the right side of the selected option will appear  http://iabin-threats.googlecode.com/svn/wiki/resources/bioclimoption.png   this control to hide and show the image of scale and opacity control.
 
            
-3.  Imagen de escala.
+3.  Scale image.
 
-4.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%.
+4.  Opacity bar where you can change the opacity of the selected layer from 0% to 100%.
 
-== Menú Species ==
+== Species Menu ==
 
-La opción Species contiene inicialmente un botón,http://iabin-threats.googlecode.com/svn/wiki/resources/search-button.png para la búsqueda de la especie que se quiere visualizar. Al dar click sobre este botón se abre un popup en el cual se encuentran las siguientes opciones:
+Species Option initially contains a button for search http://iabin-threats.googlecode.com/svn/wiki/resources/search-button.png of the species you wish to view. When clicking on this button opens a popup which are the following:
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/menuspecies.png
 
-1.	Buscador de especies, en el cual se ingresa el nombre o parte del nombre de la especie que se quiere buscar.
+1.	Search for species, which enter the name or part of the name of the species you want to search.
 
-2.	Menú tipo árbol inicial de especies.
+2.	Menu type initial tree species.
 
-3.	Cierra el popup y regresa al mapa y menú principal.
+3.	Close the popup and return to the map and main menu.
 
-A continuación se muestras los dos tipos de búsqueda que se pueden realizar sobre el popup menú de especies:
+Below are the two types of searches you can perform on the popup menu of species:
 
-== Menú especies utilizando arbol de búsqueda ==
+== Menu search tree species using ==
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/menu-species-tree.png
 
-Se puede realizar  la búsqueda de una especie utilizando el árbol de especies cada vez que se seleccione un opción se desplegará la informacion que contenga, hasta llegar a la especie que se necesite visualizar, una vez se haga click sobre ella se cerrará el popup y se mostrará un menú como el siguiente:
+You can make the search for a species using the species tree each time you select an option will display the information it contains, to reach the kind that needs to view, click once on it will close the popup and A menu like the following:
 
-== Visualización de datos de la especie ==
+== Data visualization of the species ==
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/dataspecie.png
 
-1.	Botón search, abre nuevamente el popup para realizar la búsqueda de una nueva especie.
+1.	Search button, open the popup again to search for a new species.
 
-2.	Botón show  info,  abre una nueva ventana donde se muestra la informacion de la especie, detalles de modelado, estado de amenaza, estado de conservación y los ecosistemas donde se encuentra.
+2.	Show info button opens a new window showing the information of the species, details of modeling, threat status, condition and ecosystems where it is.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/specieInfo.png
 
-(1)	Control para mostrar y ocultar la informacion de los ecosistemas.
+(1)	control to show and hide information ecosystems.
 
-3.  Botón Clear, limpia las opciones del menú Species y el mapa.
+3.  Clear button, clean Species menu options and map.
 
-4.  Opción que muestra las ocurrencias (puntos kml) de la especie  seleccionada sobre el mapa.
+4.  Option that displays the occurrences (kml points) of the selected species on the map.
 
-5.  Opción que muestra el convex hull (polígono kml) de la especie seleccionada sobre el mapa.
+5.  Option that shows the convex hull (polygon kml) of selected species on the map.
 
-6. Opción que muestra el convex hull buffer (polígono kml) de la especie seleccionada sobre el mapa.
+6.  Option that shows the convex hull buffer (polygon kml) of selected species on the map.
 
-7. Opción que muestra una capa png  sobre el mapa de la distribución de la especie limitada por el convex hull.
+7.  Option that displays a png layer on the map of the distribution of the species limited by the convex hull.
 
-8. Control para mostrar y ocultar la imagen de escala y el control de opacidad.
+8.  Control to display and hide the image of scale and opacity control.
 
-9.   Imagen de escala.
+9.  Scale image.
 
-10.  Barra de opacidad con la que se puede modificar la   opacidad de la capa seleccionada desde  0% hasta un 100%.
+10. Opacity bar where you can change the opacity of the selected layer from 0% to 100%.
 
-11. Opción que muestra una capa png  sobre el mapa de la distribución de la especie.
+11. Option that displays a png layer on the map of the distribution of the species.
 
-12. Opción que muestra una capa png  sobre el mapa del umbral de distribución de la especie.
-También se puede realizar la búsqueda de una especie utilizando el buscador, en este se  ingresa el nombre completo y se da click en search.
-Cuando no se está seguro del nombre exacto de la especie se puede escribir parte del nombre de la especie y ayudarse con la opción de autocompletar que tiene el buscador, seleccionar la especie que se desee y dar click en el botón search.
+12. Option that displays a png layer on the threshold map for the species.
+Also you can search for a species using the form, this will enter the full name and click on search.
 
-== Menú especies utilizando buscador de especies ==
+== Menu Finder species using species ==
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspecie.png
 
-Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver.
+Depending on what you type into the search, the query can yield a specific species or may lead to a tree where there may be family, genus and species where we can select the one you want to view and click in the species ending popup menu species and return to the main menu with different options to see.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspeciebutton.png
 
-== Menú Summaries ==
+== Summaries Menu ==
 
-La opción de Summaries  contiene la visualización de datos de Áreas protegidas y riqueza de especies.
+Summaries option contains data visualization protected areas and species richness.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/summaries.png
 
-1.	Botón clear, limpia las opciones del menú Summaries y el mapa.
+1.	Button clear, clean Summaries menu options and map.
 
-2.	Opción para la visualización de áreas protegidas.
+2.	Option for display of protected areas.
 
-3.	Opciones para la visualización de capas png de riqueza de especies, se muestran las siguientes capas :
+3.	Display options for png layer of species richness, show the following layers:
 
 Plant species richness, Mammal species richness, Reptile species richness, Amphibian species richness, Insect species richness, Bird species richness, Total species richnness.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/pasummaries.png
 
-1.  Botón clear, limpia el checkbox de áreas protegidas  y el mapa.
+1.  Clear button, clear the checkbox of protected areas and the map.
 
-2.	Cuando se selecciona la opción de Protected Areas, se muestra una capa png sobre el mapa con las diferentes áreas protegidas e iconos de informacion que se muestran a partir del zoom 5 para una mejor visualización. Si se quiere saber la informacion de un área protegida específica se debe dar click sobre el icono y se desplegará una burbuja con información sobre esta.
+2.	When you select the option of Protected Areas, shows a png layer on the map with different areas of information protected and icons are displayed from 5 zoom for better viewing. If you want to know the information of a specific protected area should be to click on the icon and you'll see a bubble with information about it.
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/richness.png
 
-Cuando se selecciona una opción de riqueza de especies, se muestra sobre el mapa la capa png de riqueza seleccionada con una opacidad inicial de 50% y se tienen los siguientes elementos:
+When you select a choice of species richness, is shown on the map of wealth png layer selected with a starting opacity of 50% and have the following elements:
 
-1.	Control para mostrar y ocultar la imagen de escala y la barra de opacidad.
+1.	Control to display and hide the image of the bar scale and opacity.
 
-2.	Imagen de escala de la capa de riqueza seleccionada.
+2.	Scale image layer selected wealth.
 
-3.	Control de opacidad de la capa de riqueza seleccionada, va de 0% a 100%.
+3.	Control layer opacity selected wealth, ranging from 0% to 100%.
 
 
