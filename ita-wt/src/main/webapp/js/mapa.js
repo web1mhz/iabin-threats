@@ -9,7 +9,7 @@ var paLayers = [];
 function getOverlayMapOptions(layerName, opacityValue, layerId, paN, typeName){
     var paths = {
         "richness": path + "summaries/" + layerName,
-        "summaries": path + "/" + layerName + "/pa/paQ" + paN,
+        "summaries": path + "/" + layerName + "/paQ" + paN,
         "species": path + "species/" + layerId + "/" + layerName,
         "bioclim": path + layerName + "/p" + (layerId + 1),
         "threats": path + layerName + "/" + layerName + layerId
@@ -201,7 +201,7 @@ $(document).ready(function(){
         var layerSummariesId = parseInt($target.attr("id").split("-")[1]);        
         if ($target.attr('checked') == true) {
             for (i = 4; i > 0; i--) {
-                paLayers[4 - i] = new google.maps.KmlLayer(path + "summaries/pa/total-info" + i + ".kml?date=" + (new Date()).getTime(), {
+                paLayers[4 - i] = new google.maps.KmlLayer(path + "summaries/paQ" + i + "/"+"total-info.kml?date=" + (new Date()).getTime(), {
                     preserveViewport: true
                 });
             }
