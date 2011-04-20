@@ -86,7 +86,7 @@ public class TaxonSearchServlet extends HttpServlet {
 
 	private ArrayList<String> makeQuery(String term) throws SQLException {
 		ArrayList<String> canonicals = new ArrayList<String>();
-		conx = DataBaseManager.openConnection(Info.getUser(), Info.getPass(), Info.getIp(), Info.getPort(), Info.getDatabase());
+		conx = DataBaseManager.openConnection(Info.getInstance().getUser(), Info.getInstance().getPass(), Info.getInstance().getIp(), Info.getInstance().getPort(), Info.getInstance().getDatabase());
 
 		rs = DataBaseManager.makeQuery("select tn.canonical from IABIN_taxon_name tn where tn.canonical like '%" + term + "%' group by tn.canonical limit 20", conx);
 
@@ -102,7 +102,7 @@ public class TaxonSearchServlet extends HttpServlet {
 
 	private ArrayList<TaxonObject> canonicalSearch(String canonical) throws SQLException {
 		ArrayList<TaxonObject> canonicals = new ArrayList<TaxonObject>();
-		conx = DataBaseManager.openConnection(Info.getUser(), Info.getPass(), Info.getIp(), Info.getPort(), Info.getDatabase());
+		conx = DataBaseManager.openConnection(Info.getInstance().getUser(), Info.getInstance().getPass(), Info.getInstance().getIp(), Info.getInstance().getPort(), Info.getInstance().getDatabase());
 
 		rs = DataBaseManager.makeQuery("select tn.id, tn.canonical, tn.rank  from IABIN_taxon_name tn where tn.canonical like '%" + canonical + "%' and rank>4000 order by tn.rank ASC", conx);
 

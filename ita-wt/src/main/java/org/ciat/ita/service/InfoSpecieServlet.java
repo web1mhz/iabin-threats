@@ -33,7 +33,7 @@ public class InfoSpecieServlet extends HttpServlet {
 		DecimalFormat formatter = new DecimalFormat("####.####");
 		String id = req.getParameter("id");
 		if (id != null) {
-			File file = new File(Info.getPath() + id + File.separator + id + "-info.txt");
+			File file = new File(Info.getInstance().getPath() + id + File.separator + id + "-info.txt");
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line;
 			String data[];

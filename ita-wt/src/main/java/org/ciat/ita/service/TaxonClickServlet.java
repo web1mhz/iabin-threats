@@ -83,7 +83,7 @@ public class TaxonClickServlet extends HttpServlet {
 
 	public Set<TaxonObject> makeQuery(String id, int rank) throws SQLException {
 		TreeSet<TaxonObject> taxons = new TreeSet<TaxonObject>();
-		conx = DataBaseManager.openConnection(Info.getUser(), Info.getPass(), Info.getIp(), Info.getPort(), Info.getDatabase());
+		conx = DataBaseManager.openConnection(Info.getInstance().getUser(), Info.getInstance().getPass(), Info.getInstance().getIp(), Info.getInstance().getPort(), Info.getInstance().getDatabase());
 		if (rank == 1000) {
 			// buscar family 5000
 			rs = DataBaseManager.makeQuery("select tc.id, tn.canonical, tc.rank " + "from IABIN_taxon_name tn , IABIN_taxon_concept tc, IABIN_taxon_name tnk , IABIN_taxon_concept tck "
