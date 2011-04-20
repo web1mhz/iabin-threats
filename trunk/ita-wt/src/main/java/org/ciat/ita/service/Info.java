@@ -1,37 +1,69 @@
 package org.ciat.ita.service;
 
-public class Info {
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 
-	private static String user = "guest";
-	private static String pass = "cajanus";
-	private static String ip = "gisbif.ciat.cgiar.org";
-	private static String port = "3306";
-	private static String database = "gbif_sept2010";	
-	
-	public static String getUser() {
+public class Info {
+	private static final Properties prop = new Properties();
+
+	private static Info instance;
+
+	private final String user;
+	private final String pass;
+	private final String ip;
+	private final String port;
+	private final String database;
+	private final String path;
+
+	public static Info getInstance() {
+		if (instance == null)
+			instance = new Info();
+
+		return instance;
+	}
+
+	private Info() {
+		try {
+			prop.load(new FileInputStream("ita-wt.properties"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		user = prop.getProperty("user");
+		pass = prop.getProperty("pass");
+		ip = prop.getProperty("ip");
+		port = prop.getProperty("port");
+		database = prop.getProperty("database");
+		path = prop.getProperty("path");
+
+
+	}
+
+	public String getUser() {
 		return user;
-	} 
-	public static String getPass() {
+	}
+
+	public String getPass() {
 		return pass;
 	}
-	public static String getIp() {
+
+	public String getIp() {
 		return ip;
 	}
-	public static String getPort() {
+
+	public String getPort() {
 		return port;
 	}
-	public static String getDatabase() {
+
+	public String getDatabase() {
 		return database;
 	}
-	public static String getPath() {
-		if(System.getProperty("os.name").toLowerCase().contains("windows")) {
-			return "\\\\172.22.33.85\\geodata\\Threat-Assement\\species\\";
-		} else {
-			return "/mnt/HD724-geodata/Threat-Assement/species/";
-		}
+
+	public String getPath() {
+		return path;
 	}
-	
-	
-	
-	
 }

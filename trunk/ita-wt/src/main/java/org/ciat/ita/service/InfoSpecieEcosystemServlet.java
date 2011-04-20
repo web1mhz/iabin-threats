@@ -32,9 +32,9 @@ public class InfoSpecieEcosystemServlet extends HttpServlet {
 			throws ServletException, IOException {		
 		String id = req.getParameter("id");
 		if (id != null) {
-			File file = new File(Info.getPath()+"ecosystems"+ File.separator+ id +".txt");
+			File file = new File(Info.getInstance().getPath()+"ecosystems"+ File.separator+ id +".txt");
 			BufferedReader reader = new BufferedReader(new FileReader(file));
-			File fileEcosystem = new File(Info.getPath()+"ecosystems"+File.separator+"legend.csv");
+			File fileEcosystem = new File(Info.getInstance().getPath()+"ecosystems"+File.separator+"legend.csv");
 			BufferedReader readerEcosystem = new BufferedReader(new FileReader(fileEcosystem));
 			String line;
 			String data[] = null;
