@@ -1,4 +1,4 @@
-#summary How to configure ITA data filtering tool
+#summary How to install ITA Web Tool
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/WTInstallation?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
@@ -13,7 +13,6 @@ This is a technical document and is intended to people who has relation with the
 
 == Technical Requirements ==
 
-	* To this point, the project must be imported, edited and packaged. (see How [http://code.google.com/p/iabin-threats/wiki/HowToBuildITAWT How To Build ITA] section)
 	* 100GB of HD space available
 	* Apache Tomcat 6.0, available for free at [http://tomcat.apache.org/ http://tomcat.apache.org/] 
 	* MySQL database server 5.0
