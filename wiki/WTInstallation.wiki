@@ -22,7 +22,7 @@ This is a technical document and is intended to people who has relation with the
 
 The Web Tools use the taxonomic information stored on MySQL Server. An access to this information from the web tool must be granted. If you don't have this information and you want to import it, you may want to create a new database a import the dump which: [ftp://ftp.ciat.cgiar.org/DAPA/ITA/www/public_downloads/ita-wt.sql ita-wt.sql]
 
-		 {{{mysql -u User - p  datbase < ita-wt.sql }}}
+		 {{{mysql -u User -p  database < ita-wt.sql }}}
 		 
 	
 	==== 1.1 Creating your own database ==== 
@@ -53,7 +53,7 @@ To update the source you may run:
 	 
 	Once you have the sources, you may package the project using:
 
-	 {{{ svn package}}}
+	 {{{ mvn package}}}
 	 
 This will generate a file with the compiled project ready to install in a web server. You can found the file in the folder ita-wt/target/ with the name ita-wt.war
 
