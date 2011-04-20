@@ -75,7 +75,7 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/menuspecies.png
 
 3.	Cierra el popup y regresa al mapa y menú principal.
 
-A continuación se muestras los dos tipos de búsqueda que se pueden realizar sobre el popup menú de especies:
+A continuación se muestran los dos tipos de búsqueda que se pueden realizar sobre el popup menú de especies:
 
 == Menú especies utilizando arbol de búsqueda ==
 
@@ -121,7 +121,7 @@ Cuando no se está seguro del nombre exacto de la especie se puede escribir part
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspecie.png
 
-Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver.
+Dependiendo de  lo que se escriba en el buscador, la consulta puede arrojar una especie especifica o puede arrojar un árbol donde puede haber familia, genero y especies donde podemos seleccionar la que se quiere visualizar y al dar click en la especie se cerrará el menú popup de las especies y regresará al menú principal, con las diferentes opciones que se quieran ver. [ver sección Visualización de datos de la especie ]
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspeciebutton.png
 
