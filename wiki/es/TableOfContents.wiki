@@ -2,9 +2,7 @@
 #labels Not-Finished,Featured
 
  * Información General
-   * [Description Descripción]
-   * [Especificaciones Generales]
-   * [Preguntas Frecuentes]
+   * [Description Descripción]   
  * Filtro de Datos
    * [HowToBuildITA Cómo construir el proyecto ITA]
    * [Configuration Configuración] 
@@ -13,12 +11,10 @@
  * Re-Georreferenciación
    * [HowToBuildITABG Cómo construir el proyecto ITA-BG]
    * [Configurationbg Configuración]
-   * [RunningProcedureBG Procedimiento de Ejecución] 
-   * [API]
+   * [RunningProcedureBG Procedimiento de Ejecución]    
  * Modelo de Distribución
    * [SpeciesDistributionModelling Descripción]
-   * [RunningProcedureMaxent Algoritmo de Maxent]
-   * [API]
+   * [RunningProcedureMaxent Algoritmo de Maxent]   
  * Herramienta de Navegación
    * [DescriptionNavTool Descripción]     
    * [WTInstallation Instalación de la Herramienta Web] 

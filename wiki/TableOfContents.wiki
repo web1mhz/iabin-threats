@@ -2,9 +2,7 @@
 #labels Not-Finished,Featured
 
  * General Information
-   * [Description]
-   * [General specifications (Not Yet)]
-   * [FAQ]
+   * [Description]   
  * Data Filtering
    * [HowToBuildITA How to build the project]
    * [Configuration]
@@ -13,12 +11,10 @@
  * Re-Geo-referencing
    * [HowToBuildITABG How to build the project ITA-BG]
    * [Configurationbg configuration]
-   * [RunningProcedureBG Running Procedure]
-   * [API]
+   * [RunningProcedureBG Running Procedure]   
  * Distribution Modeling
    * [SpeciesDistributionModelling Description]
-   * [RunningProcedureMaxent Maxent Script]
-   * [API]
+   * [RunningProcedureMaxent Maxent Script]  
  * Navigation Tool
    * [DescriptionNavTool Descripción]
    * [WTInstallation Web Tool Installation]
