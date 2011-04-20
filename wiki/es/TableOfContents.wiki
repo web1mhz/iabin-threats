@@ -20,5 +20,6 @@
    * [RunningProcedureMaxent Algoritmo de Maxent]
    * [API]
  * Herramienta de Navegación
-   * [DescriptionNavTool Descripción]      
+   * [DescriptionNavTool Descripción]     
+   * [WTInstallation Instalación de la Herramienta Web] 
    * [UserManualNavigationTool Manual de Usuario]
