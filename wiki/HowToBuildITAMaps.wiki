@@ -2,8 +2,8 @@
 #labels 
 #sidebar TableOfContents
 
-[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA-Maps?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
-[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA-Maps?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITAMaps?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITAMaps?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 <wiki:toc />
 
