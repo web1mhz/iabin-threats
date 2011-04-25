@@ -16,7 +16,7 @@
    * [SpeciesDistributionModelling Descripción]
    * [RunningProcedureMaxent Algoritmo de Maxent]
  * Ita-Maps
-   * [HowToBuildITA Construcción y funcionamiento de Ita-maps]
+   * [HowToBuildITA-Maps Construcción y funcionamiento de Ita-maps]
      
  * Herramienta de Navegación
    * [DescriptionNavTool Descripción]     
