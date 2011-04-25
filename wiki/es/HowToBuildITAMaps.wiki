@@ -9,7 +9,7 @@
 
 == Introducción ==
 
-Este documento está destinado a personas con conocimientos técnicos en la ejecución de comandos java. 
+Este documento está destinado a personas con conocimientos técnicos en la ejecución del proyecto. 
 
 El objetivo de este documento es ilustrar cómo construir el proyecto desde el código fuente de este repositorio.
 
@@ -55,16 +55,16 @@ Entonces puede encontrar el .jar en el directorio /target , llamado _ita-maps_ c
  
 La compilación de este paso no es necesaria ya que el empaquetamiento incluye el proceso de compilación para crear el jar.
 
-== 6. configuracion del archivo properties ==
+== 5. Configuración del archivo properties ==
 
 El archivo properties contiene las rutas de origen y destino de los archivos que va a utilizar la herramienta web _ita-wt_
 a continuación se presenta un ejemplo de como configurar este archivo.
 
 {{{
 ########################
-# menu language // Lenguaje que se va a usar en el menu principal de las herramientas de conversión.
+# menu language // Lenguaje que se va a usar en el menu principal de la herramienta de generación de datos de entrada.
 ########################
-language=spanish
+language=español
 
 #######################
 # PATH 	// path.source ruta de origen donde se encuentran los archivos que se va a convertir a png o kml.
@@ -84,7 +84,7 @@ summaries.path=summaries/
 summaries.kmloutputpath=protectedArea/
 
 #######################
-# FACTORS  tiene dos valores cuando es 0.1 divide por 10 los valores del raster y cuando es 1 no realiza ningún cambio.
+# FACTORS  //tiene dos valores cuando es 0.1 divide por 10 los valores del raster y cuando es 1 no realiza ningún cambio.
 #######################
 bioclim.factor=0.1
 threats.factor=0.1
@@ -355,7 +355,7 @@ speciesColor.scale=continuous
 
 cuando se termina de configurar este archivo se guarda con la extensión _.properties_
  
-== 5. Usando el proyecto ==
+== 6. Usando el proyecto ==
  
 Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con comandos _java_ por ejemplo:
 
@@ -367,7 +367,19 @@ Sino se tiene el archivo properties la herramienta creará uno por defecto que p
 
 Una vez ejecutado el proyecto tendremos un menu como el siguiente:
 
-http://iabin-threats.googlecode.com/svn/wiki/resources/menupropertiesespanol.png
+{{{
+bienvenido 
+ seleccione la opcion que desee
+1. crear el archivo properties
+2. convierte archivo .shp a kml, protected areas
+3. convierte archivo .csv a kml; puntos y polígonos - ocurrencias y chull, chull-buff
+4. convierte archivo .asc a png, variables bioclimaticas
+5. convierte archivo .asc a png, distribución de especies
+6. realiza todos los procesos anteriores
+para mas info consulta en la wiki del proyecto http://code.google.com/p/iabin-threats/wiki/HowToBuildITAMaps
+empieza a las : 2011/04/25 13:56:15
+por favor seleccione una opción :
+}}}
 
 1) Crea un archivo properties en caso de que no exista.
 
@@ -380,13 +392,43 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/menupropertiesespanol.png
 5) Convierte los archivos .asc de las especies a imagenes png que contienen: distribución de las especies limitada por el convex hull, distribución de las especies y el umbral de la distribución de especies , los archivos generados se guardan en la ruta especificada en el archivo properties.
    Cuando se ejecuta esta opción aparece lo siguiente:
    
-   http://iabin-threats.googlecode.com/svn/wiki/resources/menuita-maps.png
+{{{
+bienvenido 
+ seleccione la opcion que desee
+1. crear el archivo properties
+2. convierte archivo .shp a kml, protected areas
+3. convierte archivo .csv a kml; puntos y polígonos - ocurrencias y chull, chull-buff
+4. convierte archivo .asc a png, variables bioclimaticas
+5. convierte archivo .asc a png, distribución de especies
+6. realiza todos los procesos anteriores
+para mas info consulta en la wiki del proyecto http://code.google.com/p/iabin-threats/wiki/HowToBuildITAMaps
+empieza a las : 2011/04/25 13:56:15
+por favor seleccione una opción :5
+usted escogió la opción :5
+Desea correr el algoritmo para todas las especies? s/n5
+s
+}}}
    
    si escribe  _s_ la herramienta buscará todas las carpetas dentro de la carpeta species y realizará la conversión de todos los archivos que encuentre.
    
    si escribe  _n_ aparecerá lo siguiente:
    
-   http://iabin-threats.googlecode.com/svn/wiki/resources/menuitamaps.png
+{{{
+1. crear el archivo properties
+2. convierte archivo .shp a kml, protected areas
+3. convierte archivo .csv a kml; puntos y polígonos - ocurrencias y chull, chull-buff
+4. convierte archivo .asc a png, variables bioclimaticas
+5. convierte archivo .asc a png, distribución de especies
+6. realiza todos los procesos anteriores
+para mas info consulta en la wiki del proyecto http://code.google.com/p/iabin-threats/wiki/HowToBuildITAMaps
+empieza a las : 2011/04/25 13:57:54
+por favor seleccione una opción :5
+usted escogió la opción :5
+Desea correr el algoritmo para todas las especies? s/n5
+n
+Por favor, indique el código de especie mínimo y máximo, formato: 78465-98750543
+5000000-5000010
+}}}
    
    Aquí se debe especificar el rango que se quiere procesar.
    

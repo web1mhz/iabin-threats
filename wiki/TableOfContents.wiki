@@ -14,12 +14,11 @@
    * [RunningProcedureBG Running Procedure]   
  * Distribution Modeling
    * [SpeciesDistributionModelling Description]
-   * [RunningProcedureMaxent Maxent Script]  
- * Ita-Maps
-   * [HowToBuildITAMaps Construcción y funcionamiento de Ita-maps]  
+   * [RunningProcedureMaxent Maxent Script]   
  * Navigation Tool
-   * [DescriptionNavTool Descripción]
+   * [DescriptionNavTool Description]
    * [WTInstallation Web Tool Installation]
+   * [HowToBuildITAMaps How to generate data inputs]
    * [UserManualNavigationTool User Manual]
    
    
