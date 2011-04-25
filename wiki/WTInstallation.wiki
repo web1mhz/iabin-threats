@@ -79,7 +79,7 @@ Once the installation is required settings for file paths and connection data of
 ########################
 
 user=guest
-pass=Cajanus
+pass=cajanus
 ip=gisbif.ciat.cgiar.org
 port=3306
 database=gbif_sept2010
