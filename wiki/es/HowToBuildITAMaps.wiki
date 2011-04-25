@@ -1,4 +1,4 @@
-#summary Cómo contruir la herramienta de filtrado de datos ita-maps
+#summary Cómo generar los datos de entrada.
 #labels 
 #sidebar TableOfContents
 
