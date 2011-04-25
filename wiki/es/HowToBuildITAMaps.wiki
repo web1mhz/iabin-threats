@@ -63,294 +63,528 @@ El archivo properties contiene las rutas de origen y destino de los archivos que
 a continuación se presenta un ejemplo de como configurar este archivo.
 
 ########################
+
 # menu language // Lenguaje que se va a usar en el menu principal de las herramientas de conversión.
+
 ########################
+
 language=english
 
 #######################
+
 # PATH 	// path.source ruta de origen donde se encuentran los archivos que se va a convertir a png o kml.
+
 #       // path.target ruta de destino donde se guardan los archivos generados por la herramienta.
+
 #		// Estas carpetas deben ser creadas previamente a la ejecución de la aplicación.
+
 #		// La carpeta bioclim contiene los archivos de las variables bioclimaticas.
+
 #		// La carpeta threats contiene los archivos de las variables de amenazas.
+
 #		// La carpeta species contiene los archivos con la información de todas las especies
-#		// La carpeta summaries contienen los archivos de áreas protegidas y riqueza de especies. 
+
+#		// La carpeta summaries contienen los archivos de áreas protegidas y riqueza de especies.
+ 
 #######################
 path.source=c:/data/
+
 path.target=c:/iabinmaps/
+
 bioclim.path=bioclim/
+
 threats.path=threats/
+
 species.path=species/
+
 summaries.path=summaries/
+
 summaries.kmloutputpath=protectedArea/
 
 #######################
+
 # FACTORS
+
 #######################
+
 bioclim.factor=0.1
+
 threats.factor=0.1
+
 species.factor=1
+
 summaries.factor=1
 
 #######################
+
 # RASTERS   // Contiene todos los nombres de los archivos .asc que van a ser convertidos a imagenes png , entre estos están:
+
 #			// Variables bioclimáticas p1 a p19.
+
 #			// Variables de amenazas threats0 a threats7.
+
 #			// Riqueza de especies reptiles;plants;insects;birds;amphibians;mammals;all;
+
 #			// Areas protegidas paQ1;paQ2;paQ3;paQ4.
+
 #######################
+
 rasters=p1;p2;p3;p4;p5;p6;p7;p8;p9;p10;p11;p12;p13;p14;p15;p16;p17;p18;p19;threats0;threats1;threats2;threats3;threats4;threats5;threats6;threats7;reptiles;plants;insects;birds;amphibians;mammals;all;paQ1;paQ2;paQ3;paQ4
 
 reptiles.group=summaries
+
 reptiles.filename=reptiles.asc
+
 plants.group=summaries
+
 plants.filename=plants.asc
+
 insects.group=summaries
+
 insects.filename=insects.asc
+
 birds.group=summaries
+
 birds.filename=birds.asc
+
 amphibians.group=summaries
+
 amphibians.filename=amphibians.asc
+
 all.group=summaries
+
 all.filename=all.asc
+
 mammals.group=summaries
+
 mammals.filename=mammals.asc
+
 threats0.group=threats
+
 threats0.filename=threats0.asc
+
 threats1.group=threats
+
 threats1.filename=threats1.asc
+
 threats2.group=threats
+
 threats2.filename=threats2.asc
+
 threats3.group=threats
+
 threats3.filename=threats3.asc
+
 threats4.group=threats
+
 threats4.filename=threats4.asc
+
 threats5.group=threats
+
 threats5.filename=threats5.asc
+
 threats6.group=threats
+
 threats6.filename=threats6.asc
+
 threats7.group=threats
+
 threats7.filename=threats7.asc
+
 p1.group=bioclim
+
 p1.filename=p1.asc
+
 p2.group=bioclim
+
 p2.filename=p2.asc
+
 p3.group=bioclim
+
 p3.filename=p3.asc
+
 p4.group=bioclim
+
 p4.filename=p4.asc
+
 p5.group=bioclim
+
 p5.filename=p5.asc
+
 p6.group=bioclim
+
 p6.filename=p6.asc
+
 p7.group=bioclim
+
 p7.filename=p7.asc
+
 p8.group=bioclim
+
 p8.filename=p8.asc
+
 p9.group=bioclim
+
 p9.filename=p9.asc
+
 p10.group=bioclim
+
 p10.filename=p10.asc
+
 p11.group=bioclim
+
 p11.filename=p11.asc
+
 p12.group=bioclim
+
 p12.filename=p12.asc
+
 p13.group=bioclim
+
 p13.filename=p13.asc
+
 p14.group=bioclim
+
 p14.filename=p14.asc
+
 p15.group=bioclim
+
 p15.filename=p15.asc
+
 p16.group=bioclim
+
 p16.filename=p16.asc
+
 p17.group=bioclim
+
 p17.filename=p17.asc
+
 p18.group=bioclim
+
 p18.filename=p18.asc
+
 p19.group=bioclim
+
 p19.filename=p19.asc
+
 paQ1.group=summaries
+
 paQ1.filename=paQ1.asc
+
 paQ2.group=summaries
+
 paQ2.filename=paQ2.asc
+
 paQ3.group=summaries
+
 paQ3.filename=paQ3.asc
+
 paQ4.group=summaries
+
 paQ4.filename=paQ4.asc
 
 #######################
-# SPECIES  	// Aqui se especifica true o false si se va a recorrer la carpeta species que contiene todas las especies que resultaron de la modelacion,  
+
+# SPECIES  	// Aqui se especifica true o false si se va a recorrer la carpeta species que contiene todas las especies que resultaron de la modelacion,
+  
 #			// para obtener las imagenes png de distribucion de especies
+
 #######################
+
 speciesDistribution=true
+
 speciesDistribution.group=species
 
 #######################
+
 # SHAPEFILES  // Aqui se especifica los archivos .shp de las areas protegidas de los cuales obtenemos como resultados archivos kml que contienen la información de las áreas protegidas
+
 #######################
+
 shapes= paQ1;paQ2;paQ3;paQ4
+
 paQ1.group=summaries
+
 paQ1.shapefile=paQ1.shp
+
 paQ2.group=summaries
+
 paQ2.shapefile=paQ2.shp
+
 paQ3.group=summaries
+
 paQ3.shapefile=paQ3.shp
+
 paQ4.group=summaries
+
 paQ4.shapefile=paQ4.shp
 
 #######################
+
 # PROTECTED AREA // Contiene las columnas y nombres de columnas de los archivos .shp de las áreas protegidas que se van a mostrar en la burbuja de información del archivo kml de áreas protegidas.
+
 #######################
+
 paQ1.server.url=http://gisweb.ciat.cgiar.org/iabin-threats/ita/summaries/pa
+
 paQ1.shape.column.indexes=3;5;6;21
+
 paQ1.shape.column.names=NAME;COUNTRY;STATE;UNCAT
+
 paQ1.kml.main=mainKML.kml
 
 paQ2.server.url=http://gisweb.ciat.cgiar.org/iabin-threats/ita/summaries/pa
+
 paQ2.shape.column.indexes=3;5;6;21
+
 paQ2.shape.column.names=NAME;COUNTRY;STATE;UNCAT
+
 paQ2.kml.main=mainKML.kml
 
 paQ3.server.url=http://gisweb.ciat.cgiar.org/iabin-threats/ita/summaries/pa
+
 paQ3.shape.column.indexes=3;5;6;21
+
 paQ3.shape.column.names=NAME;COUNTRY;STATE;UNCAT
+
 paQ3.kml.main=mainKML.kml
 
 paQ4.server.url=http://gisweb.ciat.cgiar.org/iabin-threats/ita/summaries/pa
+
 paQ4.shape.column.indexes=3;5;6;21
+
 paQ4.shape.column.names=NAME;COUNTRY;STATE;UNCAT
+
 paQ4.kml.main=mainKML.kml
 
 #######################
+
 # ZOOM  // Aqui se especifica el zoom mínimo y zoom máximo que se va a usar en la generación de archivos png.
+
 #######################
+
 zoom.min=0
+
 zoom.max=7
 
 #######################
+
 # STYLE KML	// Aqui se especifica la ruta de los estilos que van a ser aplicados a los archivos kml (puntos o polígonos).
+
 #######################
 
 style.url=http://gisweb.ciat.cgiar.org/iabin-threats/ita/resources/styles/style.kml#styleblue
+
 style1.url=http://gisweb.ciat.cgiar.org/iabin-threats/ita/resources/styles/style.kml#stylegreen
 
 #######################
+
 # COLORS // Aqui se pueden especificar valores como:
+
 #		 // color.type se establece un nombre para el tipo dependiendo los archivos que se van a manejar.
+
 #		 // .value.max y .value.min estos atributos se usan si se quiere que la escala de la imagen tenga un rango fijo definido.
+
 #		 // .scale aqui se define el tipo de escala que se va a usar puede ser continua, discreta fija o discreta por quantiles
+
 #        // Ejemplos:
+
 #        // para valores continuos puede ser:
+
 #		 // threats0.color.type=threatscolor
+
 #
 #		 //	threatscolor.value.max=3
+
 #		 //	threatscolor.value.min=0
+
 #
+
 #		 //	threatscolor.color.min= 255;255;255
+
 #		 //	threatscolor.color.max= 255;0;0
+
 #		 //	threatscolor.scale=continuous
+
 #		
+
 #		 // Si no se usan los atributos value.max y value.min la herramienta utilizará los valores que contenga el archivo .asc
+
 #
+
 #        // para valores continuos puede ser:
+
 #		 // threats0.color.type=threatscolor
+
 #
+
 #		 //	threatscolor.value.max=3
+
 #		 //	threatscolor.value.min=0
+
 #
+
 #		 //	threatscolor.color.min= 255;255;255
+
 #		 //	threatscolor.color.max= 255;0;0
+
 #		 //	threatscolor.scale=continuous
+
 #
+
 #        // para valores discreto quantiles puede ser:
+
 #		 // reptiles.color.type=richness
+
 #
+
 #		 //	richness.color.min= 255;223;10
+
 #		 // richness.color.max= 255;0;0
+
 #		 // richness.scale=quantiles
+
 #		 // richness.scale.quantiles=5
+
 #
+
 #        // para valores discreto fijo puede ser:
+
 #		 // reptiles.color.type=richness
+
 #
+
 #		 //	richness.color.min= 255;223;10
+
 #		 // richness.color.max= 255;0;0
+
 #		 // richness.scale=fixed
+
 #		 // richness.scale.fixed=100
+
 #
+
 #######################
 
 threats0.color.type=threatscolor
+
 threats1.color.type=threatscolor
+
 threats2.color.type=threatscolor
+
 threats3.color.type=threatscolor
+
 threats4.color.type=threatscolor
+
 threats5.color.type=threatscolor
+
 threats6.color.type=threatscolor
+
 threats7.color.type=threatscolor
  
 p1.color.type=temperature
+
 p2.color.type=temperature
+
 p3.color.type=temperature
+
 p4.color.type=temperature
+
 p5.color.type=temperature
+
 p6.color.type=temperature
+
 p7.color.type=temperature
+
 p8.color.type=temperature
+
 p9.color.type=temperature
+
 p10.color.type=temperature
+
 p11.color.type=temperature
+
 p12.color.type=precipitation
+
 p13.color.type=precipitation
+
 p14.color.type=precipitation
+
 p15.color.type=precipitation
+
 p16.color.type=precipitation
+
 p17.color.type=precipitation
+
 p18.color.type=precipitation
+
 p19.color.type=precipitation
 
 paQ1.color.type=summaries
+
 paQ2.color.type=summaries
+
 paQ3.color.type=summaries
+
 paQ4.color.type=summaries
 
 reptiles.color.type=richness
+
 amphibians.color.type=richness
+
 birds.color.type=richness
+
 insects.color.type=richness
+
 mammals.color.type=richness
+
 plants.color.type=richness
+
 all.color.type=richness
 
 speciesDistribution.color.type=speciesColor
 
 threatscolor.value.max=3
+
 threatscolor.value.min=0
 
 threatscolor.color.min= 255;255;255
+
 threatscolor.color.max= 255;0;0
+
 threatscolor.scale=continuous
 
 
 temperature.color.min= 255;255;0
+
 temperature.color.max= 255;0;0
+
 temperature.scale=continuous
 
 precipitation.color.min= 0;0;255
+
 precipitation.color.max= 255;0;255
+
 precipitation.scale=continuous
 
 summaries.color.min= 150;120;180
+
 summaries.color.max= 150;120;180
+
 summaries.scale=continuous
 
 richness.color.min= 255;223;10
+
 richness.color.max= 255;0;0
+
 richness.scale=quantiles
+
 richness.scale.quantiles=5
 
 speciesColor.color.min=255;204;20
+
 speciesColor.color.max=255;8;0
+
 speciesColor.scale=continuous
 
 cuando se termina de configurar este archivo se guarda con la extensión _.properties_
@@ -366,6 +600,6 @@ Sino se tiene el archivo properties la herramienta creará uno por defecto que p
 
 Una vez ejecutado el proyecto tendremos un menu como el siguiente:
 
-http://iabin-threats.googlecode.com/svn/wiki/resources/menuproperties.png
+http://iabin-threats.googlecode.com/svn/wiki/resources/menupropertiesespanol.png
   
 
