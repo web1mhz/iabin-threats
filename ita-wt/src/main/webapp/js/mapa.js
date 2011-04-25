@@ -1,36 +1,79 @@
-var path = "http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/";
-var map;
-var zoomMap = 4;
-var poligonLayer;
-var convexLayer;
-var ocurrencesLayer;
-var paLayers = [];
+$(document).ready(function(){	
+	var path = getPath();
+	var zoomMap = 4;
+	var paLayers = [];	
+	initialize();
+	
+	function getPath() {	
+		return $.ajax({type:"GET",url:"info.do", async: false}).responseText;
+	}
+	
+	function initialize() {
+	    var myOptions = {
+	        navigationControl: true,
+	        navigationControlOptions: {
+	            style: google.maps.NavigationControlStyle.SMALL,
+	            position: google.maps.ControlPosition.RIGHT_CENTER
+	        }
+	    }
+	    map = new google.maps.Map(document.getElementById("map"), myOptions);
+	    map.setCenter(new google.maps.LatLng(-13.2, -59.6));
+	    map.setZoom(zoomMap);
+	    map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+	    google.maps.event.addListener(map, 'zoom_changed', function(){
+	        zoomChange();
+	    });    
+	    for (i = 0; i < 15; i++) {
+	        map.overlayMapTypes.push(null);
+	    }
+	}
 
-function getOverlayMapOptions(layerName, opacityValue, layerId, paN, typeName){
-    var paths = {
-        "richness": path + "summaries/" + layerName,
-        "summaries": path + "/" + layerName + "/paQ" + paN,
-        "species": path + "species/" + layerId + "/" + layerName,
-        "bioclim": path + layerName + "/p" + (layerId + 1),
-        "threats": path + layerName + "/" + layerName + layerId
-    }
-    var overlay = {
-        getTileUrl: function(point, zoom){
-            var X = point.x % (1 << zoom);
-            return paths[typeName] + "/" + zoom + "/x" + X + "_y" + point.y + ".png";
-        },
-        tileSize: new google.maps.Size(256, 256),
-        isPng: true,
-        opacity: opacityValue,
-        setOpacity: function(opacValue){
-            this.opacity = opacValue;
-        }
-    };
-    return overlay;
-}
-
-
-$(document).ready(function(){    
+	function zoomChange() {
+	    if (map.getZoom() > 7) {
+	        map.setZoom(7);
+	    }
+	    if (document.form1.Summaries.checked == true && map.getZoom() > 4) {
+	        paLayers[0].setMap(map);
+	        paLayers[1].setMap(map);
+	        paLayers[2].setMap(map);
+	    }
+	    else {
+	        paLayers[0].setMap(null);
+	        paLayers[1].setMap(null);
+	        paLayers[2].setMap(null);
+	    }
+	    if (document.form1.Summaries.checked == true && map.getZoom() > 5) {
+	        paLayers[3].setMap(map);
+	    }
+	    else {
+	        paLayers[3].setMap(null);
+	        
+	    }
+	}
+	
+	function getOverlayMapOptions(layerName, opacityValue, layerId, paN, typeName){
+	    var paths = {
+	        "richness": path + "summaries/" + layerName,
+	        "summaries": path + "/" + layerName + "/paQ" + paN,
+	        "species": path + "species/" + layerId + "/" + layerName,
+	        "bioclim": path + layerName + "/p" + (layerId + 1),
+	        "threats": path + layerName + "/" + layerName + layerId
+	    }
+	    var overlay = {
+	        getTileUrl: function(point, zoom){
+	            var X = point.x % (1 << zoom);
+	            return paths[typeName] + "/" + zoom + "/x" + X + "_y" + point.y + ".png";
+	        },
+	        tileSize: new google.maps.Size(256, 256),
+	        isPng: true,
+	        opacity: opacityValue,
+	        setOpacity: function(opacValue){
+	            this.opacity = opacValue;
+	        }
+	    };
+	    return overlay;
+	}
+	
 	function showHideScaleOpacity($context, layerName, overlayMapOptions, scaleSrc, layerMapPosition) {		 
 		 if ($context.attr('checked')) {
 			 var imageMore = $("#" + $context.attr("id") + " + .showScaleOpacity");
@@ -246,49 +289,4 @@ $(document).ready(function(){
         newWindow = window.open(link, 'Popup', options);
         return false;
     });
-    
 }); //END JQUERY
-// ------------------------------------ JavaScript -------------------------------------
-function initialize(){
-    var myOptions = {
-        navigationControl: true,
-        navigationControlOptions: {
-            style: google.maps.NavigationControlStyle.SMALL,
-            position: google.maps.ControlPosition.RIGHT_CENTER
-        }
-    }
-    map = new google.maps.Map(document.getElementById("map"), myOptions);
-    map.setCenter(new google.maps.LatLng(-13.2, -59.6));
-    map.setZoom(zoomMap);
-    map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
-    google.maps.event.addListener(map, 'zoom_changed', function(){
-        zoomChange();
-    });
-    
-    function zoomChange(){
-        if (map.getZoom() > 7) {
-            map.setZoom(7);
-        }
-        if (document.form1.Summaries.checked == true && map.getZoom() > 4) {
-            paLayers[0].setMap(map);
-            paLayers[1].setMap(map);
-            paLayers[2].setMap(map);
-        }
-        else {
-            paLayers[0].setMap(null);
-            paLayers[1].setMap(null);
-            paLayers[2].setMap(null);
-        }
-        if (document.form1.Summaries.checked == true && map.getZoom() > 5) {
-            paLayers[3].setMap(map);
-        }
-        else {
-            paLayers[3].setMap(null);
-            
-        }
-    }
-    for (i = 0; i < 15; i++) {
-        map.overlayMapTypes.push(null);
-    }
-}
-

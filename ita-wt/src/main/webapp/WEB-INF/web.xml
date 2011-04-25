@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <web-app>
+	
+	<!-- This servlet runs for searching a particular specie in the input text field. -->
+	<servlet>
+		<servlet-name>InfoProperties</servlet-name>
+		<servlet-class>org.ciat.ita.service.Info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InfoProperties</servlet-name>
+		<url-pattern>/info.do</url-pattern>
+	</servlet-mapping>
+
 	<!-- This servlet runs for searching species when user click in one of the list canonicals -->
 	<servlet>
 		<servlet-name>TaxonClick</servlet-name>

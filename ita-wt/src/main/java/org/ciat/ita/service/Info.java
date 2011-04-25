@@ -3,12 +3,18 @@ package org.ciat.ita.service;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Properties;
 
-public class Info {
-	private static final Properties prop = new Properties();
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-	private static Info instance;
+public class Info extends HttpServlet {
+	public static final Properties prop = new Properties();
+
+	public static Info instance;
 
 	private final String user;
 	private final String pass;
@@ -16,15 +22,29 @@ public class Info {
 	private final String port;
 	private final String database;
 	private final String path;
+	private final String publicPath;
 
 	public static Info getInstance() {
 		if (instance == null)
 			instance = new Info();
-
 		return instance;
 	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html");
+		PrintWriter writer = resp.getWriter();
+		writer.print(getInstance().getPublicPath());
+		writer.flush();
+		writer.close();
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
+	}
 
-	private Info() {
+	public Info() {
 		try {
 			prop.load(new FileInputStream("ita-wt.properties"));
 		} catch (FileNotFoundException e) {
@@ -39,6 +59,7 @@ public class Info {
 		port = prop.getProperty("port");
 		database = prop.getProperty("database");
 		path = prop.getProperty("path");
+		publicPath = prop.getProperty("public_path");
 
 
 	}
@@ -65,5 +86,9 @@ public class Info {
 
 	public String getPath() {
 		return path;
+	}
+	
+	public String getPublicPath() {
+		return publicPath;
 	}
 }
