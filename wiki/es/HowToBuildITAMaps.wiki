@@ -13,8 +13,6 @@ Este es un documento técnico y está destinado a personas con conocimientos té
 
 El objetivo de este documento es ilustrar cómo construir el proyecto desde el código fuente de este repositorio.
 
-Le invitamos a leer primero la [Descripcion] del proyecto.
-
 == Requerimientos Técnicos ==
 
  * Apache Subversion SVN Client. [http://subversion.apache.org/packages.html Descargar].
@@ -64,13 +62,9 @@ a continuación se presenta un ejemplo de como configurar este archivo.
 
 {{{
 ########################
-
 # menu language // Lenguaje que se va a usar en el menu principal de las herramientas de conversión.
-
 ########################
-
 language=english
-
 #######################
 
 # PATH 	// path.source ruta de origen donde se encuentran los archivos que se va a convertir a png o kml.
