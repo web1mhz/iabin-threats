@@ -17,7 +17,7 @@ El objetivo de este documento es ilustrar cómo construir el proyecto desde el c
 
  * Apache Subversion SVN Client. [http://subversion.apache.org/packages.html Descargar].
  * Apache Maven. [http://maven.apache.org/download.html Descargar]
- * Java JRE version 6 or más reciente. [http://www.java.com/ Descargar]
+ * Java JRE version 6 o más reciente. [http://www.java.com/ Descargar]
  
 == 1. Importando el código fuente ==
  
