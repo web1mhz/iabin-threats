@@ -623,7 +623,7 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/menupropertiesespanol.png
    
    si escribe  _n_ aparecerá lo siguiente:
    
-   http://iabin-threats.googlecode.com/svn/wiki/resources/menuita-maps.png
+   http://iabin-threats.googlecode.com/svn/wiki/resources/menuitamaps.png
    
    Aquí se debe especificar el rango que se quiere procesar.
    
