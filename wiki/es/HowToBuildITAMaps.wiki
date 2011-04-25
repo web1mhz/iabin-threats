@@ -377,7 +377,7 @@ http://iabin-threats.googlecode.com/svn/wiki/resources/menupropertiesespanol.png
 
 4) Convierte los archivos .asc de varibles bioclimáticas,amenazas,riqueza de especies y áreas protegidas a imágenes png y los guarda en la ruta especificada en el archivo properties.
 
-5) Convierte los archivos .asc de las especies a imagenes png que contienen: distribución de las especies limitada por el convex hull, distribución de las especies y el umbral de la distribución de especies.
+5) Convierte los archivos .asc de las especies a imagenes png que contienen: distribución de las especies limitada por el convex hull, distribución de las especies y el umbral de la distribución de especies , los archivos generados se guardan en la ruta especificada en el archivo properties.
    Cuando se ejecuta esta opción aparece lo siguiente:
    
    http://iabin-threats.googlecode.com/svn/wiki/resources/menuita-maps.png
