@@ -15,8 +15,7 @@
  * Distribution Modeling
    * [SpeciesDistributionModelling Description]
    * [RunningProcedureMaxent Maxent Script]   
- * Navigation Tool
-   * [DescriptionNavTool Description]
+ * Navigation Tool   
    * [WTInstallation Web Tool Installation]
    * [HowToBuildITAMaps How to generate data inputs]
    * [UserManualNavigationTool User Manual]

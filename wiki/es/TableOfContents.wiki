@@ -15,8 +15,7 @@
  * Modelo de Distribución
    * [SpeciesDistributionModelling Descripción]
    * [RunningProcedureMaxent Algoritmo de Maxent] 
- * Herramienta de Navegación
-   * [DescriptionNavTool Descripción]     
+ * Herramienta de Navegación       
    * [WTInstallation Instalación de la Herramienta Web] 
    * [HowToBuildITAMaps Cómo generar los datos de entrada]     
    * [UserManualNavigationTool Manual de Usuario]
