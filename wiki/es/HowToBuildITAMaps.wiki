@@ -9,7 +9,7 @@
 
 == Introducción ==
 
-Este es un documento técnico y está destinado a personas con conocimientos técnicos en la ejecución de comandos java y mysql
+Este documento está destinado a personas con conocimientos técnicos en la ejecución de comandos java. 
 
 El objetivo de este documento es ilustrar cómo construir el proyecto desde el código fuente de este repositorio.
 
@@ -84,7 +84,7 @@ summaries.path=summaries/
 summaries.kmloutputpath=protectedArea/
 
 #######################
-# FACTORS
+# FACTORS  tiene dos valores cuando es 0.1 divide por 10 los valores del raster y cuando es 1 no realiza ningún cambio.
 #######################
 bioclim.factor=0.1
 threats.factor=0.1
