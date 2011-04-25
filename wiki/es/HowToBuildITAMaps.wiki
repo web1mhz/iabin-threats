@@ -605,5 +605,30 @@ Sino se tiene el archivo properties la herramienta creará uno por defecto que p
 Una vez ejecutado el proyecto tendremos un menu como el siguiente:
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/menupropertiesespanol.png
-  
+
+1) Crea un archivo properties en caso de que no exista.
+
+2) Convierte archivos .shp a archivos kml con los puntos de información de las áreas protegidas y los guarda en la ruta especificada en el archivo properties.
+
+3) Convierte archivos .csv a archivos kml de puntos y polígonos (ocurrencias, chull y chull-buff) de todas las especies y los guarda en la ruta especificada en el archivo properties.  
+
+4) Convierte los archivos .asc de varibles bioclimáticas,amenazas,riqueza de especies y áreas protegidas a imágenes png y los guarda en la ruta especificada en el archivo properties.
+
+5) Convierte los archivos .asc de las especies a imagenes png que contienen: distribución de las especies limitada por el convex hull, distribución de las especies y el umbral de la distribución de especies.
+   Cuando se ejecuta esta opción aparece lo siguiente:
+   
+   http://iabin-threats.googlecode.com/svn/wiki/resources/menuita-maps.png
+   
+   si escribe  _s_ la herramienta buscará todas las carpetas dentro de la carpeta species y realizará la conversión de todos los archivos que encuentre.
+   
+   si escribe  _n_ aparecerá lo siguiente:
+   
+   http://iabin-threats.googlecode.com/svn/wiki/resources/menuita-maps.png
+   
+   Aquí se debe especificar el rango que se quiere procesar.
+   
+6) Ejecuta todas las opciones descritas anteriormente.
+   
+    
+   
 
