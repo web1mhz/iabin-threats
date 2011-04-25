@@ -595,6 +595,7 @@ cuando se termina de configurar este archivo se guarda con la extensión _.prope
 == 5. Usando el proyecto ==
  
 Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con comandos _java_ por ejemplo:
+
  
 java -cp ita-maps-1.0-SNAPSHOT.jar org.ciat.ita.maps.general.General /mnt/HD724-geodata/iabin2.properties
 
