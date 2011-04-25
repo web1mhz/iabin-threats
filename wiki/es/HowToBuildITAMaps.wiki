@@ -19,7 +19,7 @@ Le invitamos a leer primero la [Descripcion] del proyecto.
 
  * Apache Subversion SVN Client. [http://subversion.apache.org/packages.html Descargar].
  * Apache Maven. [http://maven.apache.org/download.html Descargar]
- * Java JRE version 6 or higher. [http://www.java.com/ Descargar]
+ * Java JRE version 6 or más reciente. [http://www.java.com/ Descargar]
  
 == 1. Importando el código fuente ==
  
@@ -44,8 +44,8 @@ Si desea compilar el proyecto para obtener los archivos binarios, ejecute el com
  
  {{{mvn compile}}}
  
-Esto crea el directorio  /target/classes donde estan las clases compiladadas
-y el directorio /target/rmi-classes donde estan las clases Stub para ejecutar el proyecto usando Remote Method Invocation [http://en.wikipedia.org/wiki/Java_remote_method_invocation Java RMI]
+Esto crea el directorio  /target/classes donde estan las clases compiladadas.
+
  
 == 4. Empaquetando el proyecto ==
  
@@ -53,7 +53,7 @@ Si desea implementar el archivo .jar del proyecto, ejecute el comando:
  
  {{{mvn package}}}
  
-Entonces puede encontrar el .jar en el directorio /target , llamado _ita-maps_ con la versión actual del proyecto _e.g. ita-0.1-SNAPSHOT.jar_
+Entonces puede encontrar el .jar en el directorio /target , llamado _ita-maps_ con la versión actual del proyecto _e.g. ita-maps-0.1-SNAPSHOT.jar_
  
 La compilación de este paso no es necesaria ya que el empaquetamiento incluye el proceso de compilación para crear el jar.
 
@@ -62,6 +62,7 @@ La compilación de este paso no es necesaria ya que el empaquetamiento incluye e
 El archivo properties contiene las rutas de origen y destino de los archivos que va a utilizar la herramienta web _ita-wt_
 a continuación se presenta un ejemplo de como configurar este archivo.
 
+{{{
 ########################
 
 # menu language // Lenguaje que se va a usar en el menu principal de las herramientas de conversión.
@@ -589,6 +590,7 @@ speciesColor.color.min=255;204;20
 speciesColor.color.max=255;8;0
 
 speciesColor.scale=continuous
+}}}
 
 cuando se termina de configurar este archivo se guarda con la extensión _.properties_
  
