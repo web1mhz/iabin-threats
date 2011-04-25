@@ -87,6 +87,7 @@ language=english
 #		// La carpeta summaries contienen los archivos de áreas protegidas y riqueza de especies.
  
 #######################
+
 path.source=c:/data/
 
 path.target=c:/iabinmaps/
@@ -129,7 +130,9 @@ summaries.factor=1
 
 #######################
 
-rasters=p1;p2;p3;p4;p5;p6;p7;p8;p9;p10;p11;p12;p13;p14;p15;p16;p17;p18;p19;threats0;threats1;threats2;threats3;threats4;threats5;threats6;threats7;reptiles;plants;insects;birds;amphibians;mammals;all;paQ1;paQ2;paQ3;paQ4
+rasters=p1;p2;p3;p4;p5;p6;p7;p8;p9;p10;p11;p12;p13;p14;p15;p16;p17;p18;p19;threats0;threats1;threats2;threats3;threats4;threats5;threats6;threats7;
+
+		reptiles;plants;insects;birds;amphibians;mammals;all;paQ1;paQ2;paQ3;paQ4
 
 reptiles.group=summaries
 
