@@ -71,6 +71,26 @@ To start Apache tomcat you may run $TOMCAT/bin/startup.bat or $TOMCAT/bin/startu
 
 ==== 3 Configure Project ====
 
-// TODO Configuration file
+Once the installation is required settings for file paths and connection data of the database file ita-wt.properties 
 
-	 
+{{{
+########################
+# DATABASE CONFIGURATION configuration data includes the database, password, ip, port connectivity and name of the database.
+########################
+
+user=guest
+pass=Cajanus
+ip=gisbif.ciat.cgiar.org
+port=3306
+database=gbif_sept2010
+
+#######################
+# PATH path to the files of text information of species and ecosystems, and png files path, kml used in the web tool.
+#######################
+
+# (txt files), only for servlets
+path=\\\\172.22.33.85\\geodata\\Threat-Assement\\species\\
+
+# client (pictures, kml files, etc ...)
+public_path = http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/
+}}}	 

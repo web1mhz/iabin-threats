@@ -59,7 +59,7 @@ Esto generará un archivo con el proyecto compilado listo para instalar en un se
 
 ==== Instalando el proyecto en un servidor web ====
 
-===== Instalado en Apache Tomcat ====
+===== Instalando en Apache Tomcat ====
 
 Una vez que haya instalado el Apache Tomcat, y asegurado de que este servidor de aplicaciones web, no se está ejecutando, puede copiar el archivo _war_ obtenido del proceso de construcción dentro del directorio $TOMCAT/webapps de su instalación de Apache Tomcat.
 
@@ -71,7 +71,32 @@ Para iniciar Apache Tomcat puede ejecutar $TOMCAT/bin/startup.bat o $TOMCAT/bin/
 
 ==== 3 Configurando el proyecto ====
 
-Una vez realizada la instalación se debe realizar la configuración de las rutas de los archivos y de los datos de conexión de la base de datos de la siguiente forma:
+Una vez realizada la instalación se debe realizar la configuración de las rutas de los archivos y de los datos de conexión de la base de datos del archivo ita-wt.properties
+
+{{{
+########################
+# CONFIGURATION DATABASE  datos de configuración de la base de datos incluye usuario,contraseña, ip, puerto de conexión y nombre de la base de datos.
+########################
+
+user=guest
+pass=cajanus
+ip=gisbif.ciat.cgiar.org
+port=3306
+database=gbif_sept2010
+
+#######################
+# PATH  ruta de los archivos de texto de información y ecosistemas de las especies, y ruta de los archivos png,kml que se usan en la herramienta web.
+#######################
+
+# (txt files), solo para los servlets
+path=\\\\172.22.33.85\\geodata\\Threat-Assement\\species\\
+
+# cliente (imagenes, archivos kml, etc...)
+public_path = http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/
+}}}
+
+
+
 
 
 
