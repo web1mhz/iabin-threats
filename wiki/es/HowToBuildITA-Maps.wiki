@@ -1,9 +1,9 @@
-#summary Cómo contruir la herramienta de generación de archivos ita-maps
-#labels  Fase-Implementación,No terminado
+#summary Cómo contruir la herramienta de filtrado de datos ita-maps
+#labels 
 #sidebar TableOfContents
 
-[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
-[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA-Maps?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
+[http://code.google.com/p/iabin-threats/wiki/HowToBuildITA-Maps?wl=es http://iabin-threats.googlecode.com/svn/wiki/resources/es.gif]
 
 <wiki:toc />
 
@@ -23,9 +23,9 @@ Le invitamos a leer primero la [Descripcion] del proyecto.
  
 == 1. Importando el código fuente ==
  
-Importar [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita ita project] de este repositorio.
+Importar [http://code.google.com/p/iabin-threats/source/browse/#svn/trunk/ita-maps ita-maps project] de este repositorio.
 
- {{{svn checkout https://iabin-threats.googlecode.com/svn/trunk/ita ita}}}
+ {{{svn checkout https://iabin-threats.googlecode.com/svn/trunk/ita-maps ita-maps}}}
  
 Para actualizar su copia, ejecute el comando: 
  {{{svn update}}}

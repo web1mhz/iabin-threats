@@ -14,7 +14,10 @@
    * [RunningProcedureBG Procedimiento de Ejecución]    
  * Modelo de Distribución
    * [SpeciesDistributionModelling Descripción]
-   * [RunningProcedureMaxent Algoritmo de Maxent]   
+   * [RunningProcedureMaxent Algoritmo de Maxent]
+ * Ita-Maps
+   * [HowToBuildITA Construcción y funcionamiento de Ita-maps]
+     
  * Herramienta de Navegación
    * [DescriptionNavTool Descripción]     
    * [WTInstallation Instalación de la Herramienta Web] 
