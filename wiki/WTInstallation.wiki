@@ -8,7 +8,7 @@
 
 == Introduction ==
 
-This is a technical document and is intended to people who has relation with the technical implementation of the project.
+This document is intended to people who has relation with the technical implementation of the project.
 
 
 == Technical Requirements ==
