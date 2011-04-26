@@ -1,18 +1,18 @@
 package org.ciat.ita.maps.shape2kml.kml;
 
 	import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-	import java.io.IOException;
-	import java.util.HashMap;
+import java.io.IOException;
+import java.util.HashMap;
 
 import org.geotools.feature.FeatureIterator;
-	import org.jdom.Document;
-	import org.jdom.Element;
-	import org.jdom.output.Format;
-	import org.jdom.output.XMLOutputter;
-	import org.opengis.feature.simple.SimpleFeature;
-	import com.vividsolutions.jts.geom.Geometry;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+import org.opengis.feature.simple.SimpleFeature;
+
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.MultiPolygon;
 
 	public class XmlPolygonCreator {
