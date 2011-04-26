@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 
 import org.ciat.ita.maps.tilecutter.raster.Raster;
 import org.ciat.ita.maps.tilecutter.tile.ImageManager;
-import org.ciat.ita.maps.tilecutter.tile.TileManager;
 import org.ciat.ita.maps.tilecutter.tile.colormanager.ColorManager;
 import org.ciat.ita.maps.tilecutter.tile.colormanager.ColorManagerFactory;
 import org.ciat.ita.maps.utils.PropertiesManager;

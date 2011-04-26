@@ -1,6 +1,12 @@
+########################
+# menu language
+# idioma que se quiere utilizar puede ser spanish o english
+########################
+language=english
 #######################
 # PATH  
-# Ruta de origen y destino de los archivos
+# path.source: Ruta de origen de los archivos
+# path.target: Ruta de destino de los archivos generados por la herramienta.
 #######################
 path.source=c:/data/
 path.target=c:/iabinmaps/
@@ -16,7 +22,7 @@ summaries.kmloutputpath=protectedArea/
 # RASTERS 
 # Nombre de los archivos raster que se van a convertir a PNG
 #######################
-rasters=P1;P2;P3
+rasters=p1;p2;p3;p4
 P1.group=bioclim
 P1.filename=P1.asc
 P2.group=bioclim
@@ -32,7 +38,7 @@ PA.shapefile=SurAmerica.shp
 
 #######################
 # ZOOM  
-# zoom minimo y zoom maximo que va a ser aplicado a los archivos raster de bioclima(bioclim), amenazas(threats) o riqueza(richness)
+# zoom minimo y zoom maximo que va a ser aplicado a los archivos raster de bioclima, amenazas, distribucion de especies,areas protegidas y riqueza de especies.
 #######################
 zoom.min=0
 zoom.max=1

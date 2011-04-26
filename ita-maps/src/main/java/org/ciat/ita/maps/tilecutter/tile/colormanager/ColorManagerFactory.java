@@ -1,7 +1,5 @@
 package org.ciat.ita.maps.tilecutter.tile.colormanager;
 
-import java.util.Locale;
-
 import org.ciat.ita.maps.tilecutter.raster.Raster;
 import org.ciat.ita.maps.utils.PropertiesManager;
 
@@ -29,7 +27,7 @@ public class ColorManagerFactory {
 
 		if (PropertiesManager.getInstance().existProperty(colorType + ".value.max"))
 			max = PropertiesManager.getInstance().getPropertiesAsFloat(
-					colorType + ".value.max")*10;
+					colorType + ".value.max");
 		else
 			max = raster.getMax();
 

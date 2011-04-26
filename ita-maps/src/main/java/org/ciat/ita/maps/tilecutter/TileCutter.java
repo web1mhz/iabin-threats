@@ -2,7 +2,6 @@ package org.ciat.ita.maps.tilecutter;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -13,7 +12,6 @@ import org.ciat.ita.maps.tilecutter.tile.TileManager;
 import org.ciat.ita.maps.tilecutter.tile.colormanager.ColorManager;
 import org.ciat.ita.maps.tilecutter.tile.colormanager.ColorManagerFactory;
 import org.ciat.ita.maps.utils.PropertiesManager;
-import org.geotools.data.collection.ListFeatureCollection;
 
 /**
  * Clase principal (Main)

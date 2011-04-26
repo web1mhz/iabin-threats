@@ -5,27 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Set;
 
-import org.geotools.feature.FeatureIterator;
-import org.opengis.feature.simple.SimpleFeature;
-
-import org.ciat.ita.maps.shape2kml.kml.KmlGroupCreator;
-import org.ciat.ita.maps.shape2kml.kml.KmlPolygonCreator;
-import org.ciat.ita.maps.shape2kml.shape.Shapefile;
-import org.ciat.ita.maps.tilecutter.TileCutter;
-import org.ciat.ita.maps.utils.PropertiesGenerator;
-import org.ciat.ita.maps.utils.PropertiesManager;
-
 import org.ciat.ita.maps.csv2kml.Csv2Kml;
 import org.ciat.ita.maps.csv2kml.Csv2Point;
 import org.ciat.ita.maps.csv2kml.Csv2Polygon;
 import org.ciat.ita.maps.csv2kml.CsvFile;
+import org.ciat.ita.maps.shape2kml.shape.Shapefile;
+import org.ciat.ita.maps.tilecutter.TileCutter;
+import org.ciat.ita.maps.utils.PropertiesGenerator;
+import org.ciat.ita.maps.utils.PropertiesManager;
+import org.geotools.feature.FeatureIterator;
+import org.opengis.feature.simple.SimpleFeature;
 
 import com.vividsolutions.jts.geom.Point;
 
@@ -85,7 +80,7 @@ public class General {
 		this.propertiesFile = propertiesFile;
 		PropertiesManager.register(propertiesFile);
 
-		String[] shapesID = PropertiesManager.getInstance().getPropertiesAsStringArray("shapes");
+		
 		String sourcePath = PropertiesManager.getInstance().getPropertiesAsString("path.source");
 		if(!sourcePath.endsWith(File.separator)) sourcePath=sourcePath+File.separator;
 		String targetPath = PropertiesManager.getInstance().getPropertiesAsString("path.target");
@@ -93,27 +88,9 @@ public class General {
 		String species = PropertiesManager.getInstance().getPropertiesAsString("species.path");
 		String language = PropertiesManager.getInstance().getPropertiesAsString("language");
 
-		for (String shapeID : shapesID) {
-			String group = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".group");
-			String pathGroup = PropertiesManager.getInstance().getPropertiesAsString(group + ".path");
-			String fileName = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".shapefile");
-			String urlServer = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".server.url");
-			String mainKml = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".kml.main");
-			int[] columnIndexes = PropertiesManager.getInstance().getPropertiesAsIntArray(shapeID + ".shape.column.indexes");
-			String[] columnName = PropertiesManager.getInstance().getPropertiesAsStringArray(shapeID + ".shape.column.names");
-
-			String sourceFile = sourcePath + pathGroup + fileName;
-			String targetFile = targetPath + pathGroup + shapeID;
-			System.out.println("targetfile: "+targetFile);
-			HashMap<Integer, String> atributos = new HashMap<Integer, String>();
-			for (int i = 0; i < columnIndexes.length; i++) {
-				atributos.put(columnIndexes[i], columnName[i]);
-			}
-
-			s2k.execute(sourceFile, targetFile, urlServer, mainKml, atributos,
-					sourcePath, targetPath, species, language);
-		}
-
+		
+			s2k.execute(sourcePath, targetPath, species, language);
+		
 	}
 
 	private String getDateTime() {
@@ -122,43 +99,36 @@ public class General {
 		return dateFormat.format(date);
 	}
 
-	private void execute(String sourceFile, String targetFile,
-			String urlServer, String mainKml,
-			HashMap<Integer, String> atributos, String sourcepath,
-			String targetpath, String species, String language)
-			throws NullPointerException {
+	private void execute(String sourcePath,
+			String targetPath, String species, String language)
+			throws NullPointerException {		
 
-
-		int count = 5;
-
-		KmlPolygonCreator kml = new KmlPolygonCreator(targetFile, atributos);
-
-		if (language.equals("espanol") || language.equals("espaï¿½ol")) {
+		if (language.equals("espanol") || language.equals("español")) {
 			System.out.println("bienvenido \n seleccione la opcion que desee");
 			System.out.println("1. crear el archivo properties");
 			System.out.println("2. convierte archivo .shp a kml, protected areas");
-			System.out.println("3. convierte archivo .csv a kml; puntos y polï¿½gonos - ocurrencias y chull, chull-buff");
+			System.out.println("3. convierte archivo .csv a kml; puntos y polígonos - ocurrencias y chull, chull-buff");
 			System.out.println("4. convierte archivo .asc a png, variables bioclimaticas");
-			System.out.println("5. convierte archivo .asc a png, distribuciï¿½n de especies");
+			System.out.println("5. convierte archivo .asc a png, distribución de especies");
 			System.out.println("6. realiza todos los procesos anteriores");
-			System.out.println("para mas info consulta en la wiki del proyecto http://code.google.com/p/iabin-threats/wiki/DataConversion");
+			System.out.println("para mas info consulta en la wiki del proyecto http://code.google.com/p/iabin-threats/wiki/HowToBuildITAMaps");
 		}
 		if (language.equals("english")) {
-			System.out.println("welcome \n select the option");
+			System.out.println("welcome \n select the option: ");
 			System.out.println("1. create default properties file");
 			System.out.println("2. convert file .shp to kml, protected areas");
 			System.out.println("3. convert file .csv to kml; points and polygons - ocurrences and chull, chull-buff");
 			System.out.println("4. convert file .asc to png, variables bioclimaticas");
 			System.out.println("5. convert file .asc to png, species distribution");
 			System.out.println("6. performs all the previous tasks");
-			System.out.println("for more info visit the project's wiki page at http://code.google.com/p/iabin-threats/wiki/DataConversion");
+			System.out.println("for more info visit the project's wiki page at http://code.google.com/p/iabin-threats/wiki/HowToBuildITAMaps");
 		}
 		String option;
 		String horaEmpieza = this.getDateTime();
 		if (language.equals("english"))	System.out.println("started at : " + horaEmpieza);
-		if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("empieza a las : " + horaEmpieza);
+		if (language.equals("espanol") || language.equals("español"))System.out.println("empieza a las : " + horaEmpieza);
 		if (language.equals("english"))	System.out.print("please select an option :");
-		if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.print("por favor seleccione una opciï¿½n :");
+		if (language.equals("espanol") || language.equals("español"))System.out.print("por favor seleccione una opción :");
 
 		Scanner in = new Scanner(System.in);
 		option = in.nextLine();
@@ -168,12 +138,12 @@ public class General {
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("usted escogiï¿½ la opciï¿½n :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 
 			// *****************************************************************************
 			// esta secciï¿½n crea el archivo properties con la configuraciï¿½n por
 			// defecto
-			PropertiesGenerator propGen = new PropertiesGenerator(targetpath+ "default-iabin.properties");
+			PropertiesGenerator propGen = new PropertiesGenerator(targetPath+ "default-iabin.properties");
 			try {
 				propGen.write();
 			} catch (IOException e1) {
@@ -187,43 +157,35 @@ public class General {
 		if (opt == 2 || opt == 6)
 		{		
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("usted escogiï¿½ la opciï¿½n :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
+			
+			String[] shapesID = PropertiesManager.getInstance().getPropertiesAsStringArray("shapes");
+			
+			for (String shapeID : shapesID) {
+				System.out.println(shapeID);
+				String group = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".group");
+				String pathGroup = PropertiesManager.getInstance().getPropertiesAsString(group + ".path");
+				String fileName = PropertiesManager.getInstance().getPropertiesAsString(shapeID + ".shapefile");
+				int[] columnIndexes = PropertiesManager.getInstance().getPropertiesAsIntArray(shapeID + ".shape.column.indexes");
+				String[] columnName = PropertiesManager.getInstance().getPropertiesAsStringArray(shapeID + ".shape.column.names");
 
+				String sourceFile = sourcePath + pathGroup + fileName;
+				String targetFile = targetPath + pathGroup + shapeID;			
+				HashMap<Integer, String> atributos = new HashMap<Integer, String>();
+				for (int i = 0; i < columnIndexes.length; i++) {
+					atributos.put(columnIndexes[i], columnName[i]);
+				}				
 			File file = new File(sourceFile);//loads the shape file to read
 			System.out.println("folder of shape file: "+sourceFile);
 			System.out.println("file: "+file);
-			shp = new Shapefile(file);
-			
+			shp = new Shapefile(file);			
 			SimpleFeature sf = null;
-			KmlGroupCreator grupo = new KmlGroupCreator(urlServer);
-
-			FeatureIterator<SimpleFeature> fi = shp.getFeatures();
-
-	/*		while (fi.hasNext()) {// && count-- > 0) {
-				sf = fi.next();
-				try {
-					kml.createKML(sf);
-					grupo.addElement(sf.getAttribute(1) + ".kml");
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-
-				System.out.print(sf.getAttribute(4) + " ");
-				System.out.println(sf.getAttribute(5));
-			}
-			try {
-				grupo.writeKml(targetFile, mainKml);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-*/
-			
+			FeatureIterator<SimpleFeature> fi = shp.getFeatures();			
 			final Kml kml2 = new Kml();
 			Folder folder = kml2.createAndSetFolder();	
 			
-			String ruta = targetFile+File.separator+ "total-info.kml";
-			System.out.println("ruta: "+ruta);
-			
+			String ruta = targetFile+ File.separator+"total-info.kml";
+			System.out.println("ruta: "+ruta);			
 			
 			
 			while (fi.hasNext() ) {// && count-- > 0) {
@@ -267,6 +229,7 @@ public class General {
 				e.printStackTrace();
 			}//se guarda kml en archivo
 		
+			}
 			
 		}// fin case 2
 		// **********************************************************************************************************
@@ -278,7 +241,7 @@ public class General {
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("usted escogiï¿½ la opciï¿½n :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 
 			// String
 			// estilo="http://wikipedia.agilityhoster.com/estilo.kml#estilo";//se
@@ -289,7 +252,7 @@ public class General {
 			// String nombreArchivo= "default"; //nombre de archivo
 			// File folder = new File("c:/data/species/");//folder que contiene
 			// los archivos a leer "d:/csv/"
-			File folder = new File(sourcepath + species);
+			File folder = new File(sourcePath + species);
 			// *************************************************************************************
 
 			File[] listOfFiles = folder.listFiles();
@@ -320,7 +283,7 @@ public class General {
 
 					Csv2Point point = new Csv2Point(lista);
 					try {
-						point.createKML(targetpath + species + s.getName()+ File.separator, s.getName(), estilo); // cambiar a
+						point.createKML(targetPath + species + s.getName()+ File.separator, s.getName(), estilo); // cambiar a
 						// properties
 						// file
 					} catch (FileNotFoundException e) {
@@ -331,9 +294,9 @@ public class General {
 					try {
 						//pol.createKML(targetpath + species + s.getName()+ File.separator, s.getName(), style1); // cambiar a properties file
 						//System.out.println("estilo :"+ estilo);
-						pol.createKMLchull(targetpath+species+s.getName()+File.separator,s.getName(), estilo);  //crea kml chull
+						pol.createKMLchull(targetPath+species+s.getName()+File.separator,s.getName(), estilo);  //crea kml chull
 						//System.out.println("estilo1 :"+ estilo1);
-						pol.createKMLchullbuff(targetpath+species+s.getName()+File.separator,s.getName(), estilo1);  //crea kml chull buff
+						pol.createKMLchullbuff(targetPath+species+s.getName()+File.separator,s.getName(), estilo1);  //crea kml chull buff
 						
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
@@ -353,7 +316,7 @@ public class General {
 
 		{
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("usted escogiï¿½ la opciï¿½n :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 
 			try {
 				TileCutter.execute(propertiesFile);
@@ -371,17 +334,17 @@ public class General {
 		{
 			
 			if (language.equals("english"))	System.out.println("you selected option :" + option);
-			if (language.equals("espanol") || language.equals("espaÃ±ol"))System.out.println("usted escogiÃ³ la opciÃ³n :" + option);
+			if (language.equals("espanol") || language.equals("español"))System.out.println("usted escogió la opción :" + option);
 			
 			if(opt == 5) {
 			
 				if (language.equals("english"))	System.out.println("Do you want to run the script for all species? y/n :");
-				if (language.equals("espanol") || language.equals("espaÃ±ol"))System.out.println("Desea correr el algoritmo para todas las especies? s/n" + option);
+				if (language.equals("espanol") || language.equals("español"))System.out.println("Desea correr el algoritmo para todas las especies? s/n" + option);
 				option = in.nextLine();
 
 				if(option.equalsIgnoreCase("n")) {
 						if (language.equals("english"))	System.out.println("Please write the minimum and maximum species directory separated by (-), format: 78465-98750543:");
-						if (language.equals("espanol") || language.equals("espaÃ±ol"))System.out.println("Por favor, indique el cÃ³digo de espÃ©cie mÃ­nimo y mÃ¡ximo, formato: 78465-98750543");
+						if (language.equals("espanol") || language.equals("español"))System.out.println("Por favor, indique el código de especie mínimo y máximo, formato: 78465-98750543");
 						option = in.nextLine();					
 						String[] minMax = option.split("-");
 						if(minMax.length == 2) {
@@ -396,7 +359,7 @@ public class General {
 							}
 						} else {
 							if (language.equals("english"))	System.out.println("Invalid format!");
-							if (language.equals("espanol") || language.equals("espaÃ±ol"))System.out.println("Formato incorrecto!");
+							if (language.equals("espanol") || language.equals("español"))System.out.println("Formato incorrecto!");
 						}
 				} else {
 					try {
@@ -424,7 +387,7 @@ public class General {
 		}//fin case 5
 
 		String horaTermina = this.getDateTime();
-		if (language.equals("espanol") || language.equals("espaï¿½ol"))System.out.println("empezï¿½ a las : " + horaEmpieza + "\r\n"+ " finalizï¿½ a las : " + horaTermina);
+		if (language.equals("espanol") || language.equals("español"))System.out.println("empezó a las : " + horaEmpieza + "\r\n"+ " finalizó a las : " + horaTermina);
 		if (language.equals("english"))System.out.println("started at : " + horaEmpieza + "\r\n"+ " ended at : " + horaTermina);
 
 	}// fin switch
