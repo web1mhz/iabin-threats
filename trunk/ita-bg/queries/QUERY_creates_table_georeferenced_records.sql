@@ -7,7 +7,8 @@ where o.id=r.id
 and (( o.latitude is null
 		or o.longitude is null
         or o.geospatial_issue!=0
-) or (o.id in (select bad.id from temp_bad_records bad)));
+) or (o.id in (select bad.id from temp_bad_records bad))
+or (o.id in (select good.id from temp_good_records good where good.outlier>16)));
 
 ALTER TABLE georeferenced_records add blatitude float default NULL;
 ALTER TABLE georeferenced_records add blongitude float default NULL;
