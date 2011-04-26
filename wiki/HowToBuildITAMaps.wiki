@@ -358,7 +358,7 @@ when you finish configuring this file is saved with the extension _.properties_
  
 After packaging the project, you can use the services it provides. And after [Configuring] it you can run it with _java_ commands for example:
 
-java -cp ita-maps-1.0-SNAPSHOT.jar org.ciat.ita.maps.general.General  /mnt/HD724-geodata/iabin.properties
+{{{ java -cp ita-maps-1.0-SNAPSHOT.jar org.ciat.ita.maps.general.General  /mnt/HD724-geodata/iabin.properties }}}
 
 This command contains the main class General and the path of the configuration properties of the tool that described above.
 But it has the properties file the tool will create a default which can then be edited and configured.

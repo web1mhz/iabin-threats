@@ -29,13 +29,13 @@ The Web Tools use the taxonomic information stored on MySQL Server. An access to
 	
 	Additionally, you may create the database structure with your own information using a CSV file with the follwing header:
 	 
-	 Family ID, Family Name, Genus ID, Genus Name, Specie ID, Specie Name, Specie Type ID,  Specie Type Name
+	Family ID, Family Name, Genus ID, Genus Name, Specie ID, Specie Name, Specie Type ID,  Specie Type Name
 
-Where _Specie Type Name_ refers to {Plant, Mammal, Reptile, Amphibian, Bird, Insect} and _Specie Type ID_ for a unique identification per each _Specie Type Name_
+	Where _Specie Type Name_ refers to {Plant, Mammal, Reptile, Amphibian, Bird, Insect} and _Specie Type ID_ for a unique identification per each _Specie Type Name_
 
-First of all you must create a database and create the tables structure with sql: [ftp://ftp.ciat.cgiar.org/DAPA/ITA/www/public_downloads/ita-wt_stub.sql ita-wt_stub.sql]
+	First of all you must create a database and create the tables structure with sql: [ftp://ftp.ciat.cgiar.org/DAPA/ITA/www/public_downloads/ita-wt_stub.sql ita-wt_stub.sql]
 
-Once you have configurated the ita project ( see [http://code.google.com/p/iabin-threats/wiki/Configuration Configuration]) and the CSV species file, you can run the following command with the file as parameter.
+	Once you have configurated the ita project ( see [http://code.google.com/p/iabin-threats/wiki/Configuration Configuration]) and the CSV species file, you can run the following command with the file as parameter.
 
  {{{java -cp ita.jar org.ciat.ita.server.database.TaxonomyTableCreator species_file.csv}}}
  
@@ -59,7 +59,7 @@ This will generate a file with the compiled project ready to install in a web se
 
 ==== Installing project in a web server ====
 
-===== Installing in Apache Tomcat ====
+==== Installing in Apache Tomcat ====
 
 Once you have installed your Apache Tomcat, and making sure that this web application server is not currently running, you may copy the war file got from the building process into the $TOMCAT/webapps directory of your Apache Tomcat installation.
 

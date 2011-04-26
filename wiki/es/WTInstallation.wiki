@@ -29,13 +29,13 @@ Las herramientas Web utilizan la información taxonómica almacenados en el serv
 	
 	Además, puede crear la estructura de base de datos con su propia información mediante un archivo CSV con el siguiente encabezado:
 	 
-	 Family ID, Family Name, Genus ID, Genus Name, Specie ID, Specie Name, Specie Type ID,  Specie Type Name
+	Family ID, Family Name, Genus ID, Genus Name, Specie ID, Specie Name, Specie Type ID,  Specie Type Name
 
-Donde _Specie Type Name_ hace referencia a {Plantas, Mamiferos, Reptiles, Anfibios, aves, insectos} y un único _Specie Type ID_ por cada _Specie Type Name_
+	Donde _Specie Type Name_ hace referencia a {Plantas, Mamiferos, Reptiles, Anfibios, aves, insectos} y un único _Specie Type ID_ por cada _Specie Type Name_
 
-En primer lugar debe crear una base de datos y crear la estructura de las tablas con sql: [ftp://ftp.ciat.cgiar.org/DAPA/ITA/www/public_downloads/ita-wt_stub.sql ita-wt_stub.sql]
+	En primer lugar debe crear una base de datos y crear la estructura de las tablas con sql: [ftp://ftp.ciat.cgiar.org/DAPA/ITA/www/public_downloads/ita-wt_stub.sql ita-wt_stub.sql]
 
-Una vez que haya configurado el proyecto ita ( ver [http://code.google.com/p/iabin-threats/wiki/Configuration Configuration]) y el archivo CSV especies, puede ejecutar el siguiente comando con el archivo como parámetro.
+	Una vez que haya configurado el proyecto ita ( ver [http://code.google.com/p/iabin-threats/wiki/Configuration Configuration]) y el archivo CSV especies, puede ejecutar el siguiente comando con el archivo como parámetro.
 
  {{{java -cp ita.jar org.ciat.ita.server.database.TaxonomyTableCreator species_file.csv}}}
  
@@ -59,7 +59,7 @@ Esto generará un archivo con el proyecto compilado listo para instalar en un se
 
 ==== Instalando el proyecto en un servidor web ====
 
-===== Instalando en Apache Tomcat ====
+==== Instalando en Apache Tomcat ====
 
 Una vez que haya instalado el Apache Tomcat, y asegurado de que este servidor de aplicaciones web, no se está ejecutando, puede copiar el archivo _war_ obtenido del proceso de construcción dentro del directorio $TOMCAT/webapps de su instalación de Apache Tomcat.
 
