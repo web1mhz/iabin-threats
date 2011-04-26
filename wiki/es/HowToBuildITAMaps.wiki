@@ -434,6 +434,8 @@ Por favor, indique el código de especie mínimo y máximo, formato: 78465-98750
    
 6) Ejecuta todas las opciones descritas anteriormente.
    
-    
-   
+Si desea generar solo imágenes de escala de los archivos raster(.asc) relacionados en el archivo properties puede ejecutar el comando:
+
+{{{ java -cp ita-maps-1.0-SNAPSHOT.jar org.ciat.ita.maps.general.ScaleGenerator  /mnt/HD724-geodata/iabin.properties}}}     
+   																						
 

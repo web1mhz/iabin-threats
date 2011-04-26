@@ -434,3 +434,6 @@ Please write the minimum and maximum species directory separated by (-), format:
    
 6) Run all the above options.
 
+To generate only scale images raster files (. asc) listed in the properties file you can run the command:
+
+{{{ java -cp ita-maps-1.0-SNAPSHOT.jar org.ciat.ita.maps.general.ScaleGenerator  /mnt/HD724-geodata/iabin.properties}}}
