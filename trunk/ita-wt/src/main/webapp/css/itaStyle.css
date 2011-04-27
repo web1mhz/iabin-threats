@@ -11,10 +11,10 @@ ul {
 	float: left;	
 	}
 #imageCiat{
-	width:150px;
+	width:200px;	
 	position:relative;
 	left:350px;
-	top:20px;	
+	top:10px;	
 	}
 #descriptionProject{
 	width:300px;
@@ -440,7 +440,7 @@ l	ine-height: 1px;
 	}
 
 #th{
-	height:85px;
+	height:10px;
 	position:top;
 	border-color:#FFFFFF;
 	background-color:#FFFFFF;
@@ -462,7 +462,7 @@ l	ine-height: 1px;
 	left:5px;
 	right:5px;
 	width:99%;
-	height:720px;
+	height:500px;
 	bottom:70px;
 	}
 #imageWait{
