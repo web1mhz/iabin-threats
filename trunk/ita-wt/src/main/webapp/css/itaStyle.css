@@ -35,19 +35,25 @@ ul {
 }
 #moveIcon {
 	position:absolute;
-	right:119px;
-	bottom:45px;
+	right: 117px;
+	bottom: 41px;
 	border: 0px;
 }
 #show{
 	width:145px;
 	height:45px;
 	border: 0px;
+	left: 15px;
+	top: 4px;
+	position: relative;
 }
 #hide{
 	width:145px;
 	height:45px;
 	border: 0px;
+	left: 15px;
+	top: 4px;
+	position: relative;
 }
 #principal{
 	height:500px;
@@ -193,6 +199,10 @@ hr.submenuDivision {
     color:black;	
 }
 
+#labelmenu {	
+	left:75px;
+	font-weight: bold;
+}
 #labelOpacity {
 	font-size:9px;
 	position:relative;
