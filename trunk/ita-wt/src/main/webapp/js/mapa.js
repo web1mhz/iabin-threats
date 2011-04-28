@@ -1,5 +1,6 @@
 $(document).ready(function(){	
 	var path = getPath();
+	var map;
 	var zoomMap = 4;
 	var paLayers = [];	
 	initialize();
