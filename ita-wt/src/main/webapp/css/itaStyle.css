@@ -13,6 +13,16 @@ ul {
 	background-repeat: no-repeat;
 	background-position: center;
 }
+
+#validationBrowser{
+	display: none;
+	text-align: center;
+	color:red;	
+	}
+#validationBrowser a{
+	text-decoration: underline;
+	color:red;
+	}
 #imageIabin {	
 	position: relative;	
 	display: inline-block;
