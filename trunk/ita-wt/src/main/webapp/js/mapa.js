@@ -2,7 +2,11 @@ $(document).ready(function(){
 	var path = getPath();
 	var map;
 	var zoomMap = 4;
-	var paLayers = [];	
+	var paLayers = [];
+	if ($.browser.msie && $.browser.version < 8) {
+		$("#validationBrowser").css("display", "block");	
+	}
+	
 	initialize();
 	
 	function getPath() {	
