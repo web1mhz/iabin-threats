@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="ita" size="1090,2116" id="org.ciat.ita" metadata="uml2-1.0" initialized="true" scrolledX="197" scrolledY="-5" tag="10" key="32303037303533312D3130206974612D7774">
+  <children xsi:type="editmodel:PackageEditModel" name="org.ciat.ita.model" location="15,-15" size="439,2096" id="org.ciat.ita.model">
+    <children xsi:type="editmodel:ClassEditModel" name="DataBaseManager" location="6,31" size="158,157" id="org.ciat.ita.model/DataBaseManager" runTimeClassModel="makeQuery(Ljava.lang.String;Ljava.sql.Connection;),makeChange(Ljava.lang.String;Ljava.sql.Connection;),closeConnection(Ljava.sql.Connection;),correctStringToQuery(Ljava.lang.String;),openConnection(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),registerDriver()">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="135,108">
+        <children xsi:type="editmodel:MethodEditModel" name="closeConnection" location="20,100" id="org.ciat.ita.model/DataBaseManager#closeConnection(Ljava.sql.Connection;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="correctStringToQuery" id="org.ciat.ita.model/DataBaseManager#correctStringToQuery(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="makeChange" id="org.ciat.ita.model/DataBaseManager#makeChange(Ljava.lang.String;Ljava.sql.Connection;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="makeQuery" id="org.ciat.ita.model/DataBaseManager#makeQuery(Ljava.lang.String;Ljava.sql.Connection;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="openConnection" id="org.ciat.ita.model/DataBaseManager#openConnection(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="registerDriver" id="org.ciat.ita.model/DataBaseManager#registerDriver()"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="InfoSpecieEcosystemModel" location="189,51" size="215,85" id="org.ciat.ita.model/InfoSpecieEcosystemModel" runTimeClassModel="addEcosystem(Ljava.lang.String;),getEcosystems()">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="104,36">
+        <children xsi:type="editmodel:MethodEditModel" name="addEcosystem" id="org.ciat.ita.model/InfoSpecieEcosystemModel#addEcosystem(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getEcosystems" id="org.ciat.ita.model/InfoSpecieEcosystemModel#getEcosystems()"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="InfoSpecieModel" location="234,190" size="187,1885" id="org.ciat.ita.model/InfoSpecieModel" runTimeClassModel="getOccProbSdOut(),getGrazingMean(),aggregateMean,occProbSd,setNumberPoints(I),firesSd,getNumberPoints(),setFamilyName(Ljava.lang.String;),setGrazingSd(Ljava.lang.String;),getOilGasSd(),getLostMeanProbability(),setGrazingMean(Ljava.lang.String;),prevalence,infrastrMean,setConvAgMean(Ljava.lang.String;),setSpecieName(Ljava.lang.String;),setOccProbMean(Ljava.lang.String;),getSdAuc(),setSdAuc(Ljava.lang.String;),getAccessPopSd(),setAvgAucTest(Ljava.lang.String;),setSpeciesID(Ljava.lang.String;),setLostMeanProbability(Ljava.lang.String;),getClassName(),setFiresMean(Ljava.lang.String;),familyName,setRecConvMean(Ljava.lang.String;),setInfrastrMean(Ljava.lang.String;),getAccessPopMean(),oilGasMean,convAgMean,getInfrastrSd(),setOilGasMean(Ljava.lang.String;),occProbSdOut,getRecConvMean(),setPercentLost(Ljava.lang.String;),getSpecieName(),getOccProbMean(),getSpeciesID(),getAggregateMean(),accessPopSd,speciesID,recConvMean,getPercentAreaProtected(),getInfrastrMean(),getPercentLost(),getGenusName(),setGenusName(Ljava.lang.String;),getRecConvSd(),getNotLostMeanProbability(),lostMeanProbability,setPrevalence(Ljava.lang.String;),getPrevalence(),notLostMeanProbability,getOilGasMean(),avgAucTrain,grazingMean,occProbMeanOut,setAggregateMean(Ljava.lang.String;),numberPoints,setAccessPopMean(Ljava.lang.String;),getAvgAucTest(),getAggregateSd(),setClassName(Ljava.lang.String;),setAggregateSd(Ljava.lang.String;),getConvAgSd(),setOilGasSd(Ljava.lang.String;),getAvgAucTrain(),percentLost,getFiresSd(),infrastrSd,occProbMean,setPercentAreaProtected(Ljava.lang.String;),recConvSd,getConvAgMean(),getOccProbSd(),setOccProbSd(Ljava.lang.String;),setOccProbSdOut(Ljava.lang.String;),setInfrastrSd(Ljava.lang.String;),avgAucTest,setFiresSd(Ljava.lang.String;),setRecConvSd(Ljava.lang.String;),grazingSd,specieName,accessPopMean,setOccProbMeanOut(Ljava.lang.String;),setConvAgSd(Ljava.lang.String;),className,percentAreaProtected,firesMean,setNotLostMeanProbability(Ljava.lang.String;),getFamilyName(),aggregateSd,getOccProbMeanOut(),setAvgAucTrain(Ljava.lang.String;),sdAuc,getGrazingSd(),genusName,getFiresMean(),setAccessPopSd(Ljava.lang.String;),convAgSd,oilGasSd">
+      <children xsi:type="editmodel:CompartmentEditModel" size="164,612">
+        <children xsi:type="editmodel:AttributeEditModel" name="accessPopMean" id="org.ciat.ita.model/InfoSpecieModel#accessPopMean"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="accessPopSd" id="org.ciat.ita.model/InfoSpecieModel#accessPopSd"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="aggregateMean" id="org.ciat.ita.model/InfoSpecieModel#aggregateMean"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="aggregateSd" id="org.ciat.ita.model/InfoSpecieModel#aggregateSd"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="avgAucTest" id="org.ciat.ita.model/InfoSpecieModel#avgAucTest"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="avgAucTrain" id="org.ciat.ita.model/InfoSpecieModel#avgAucTrain"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="className" id="org.ciat.ita.model/InfoSpecieModel#className"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="convAgMean" id="org.ciat.ita.model/InfoSpecieModel#convAgMean"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="convAgSd" id="org.ciat.ita.model/InfoSpecieModel#convAgSd"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="familyName" id="org.ciat.ita.model/InfoSpecieModel#familyName"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="firesMean" id="org.ciat.ita.model/InfoSpecieModel#firesMean"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="firesSd" id="org.ciat.ita.model/InfoSpecieModel#firesSd"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="genusName" id="org.ciat.ita.model/InfoSpecieModel#genusName"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="grazingMean" id="org.ciat.ita.model/InfoSpecieModel#grazingMean"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="grazingSd" id="org.ciat.ita.model/InfoSpecieModel#grazingSd"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="infrastrMean" id="org.ciat.ita.model/InfoSpecieModel#infrastrMean"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="infrastrSd" id="org.ciat.ita.model/InfoSpecieModel#infrastrSd"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="lostMeanProbability" id="org.ciat.ita.model/InfoSpecieModel#lostMeanProbability"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="notLostMeanProbability" id="org.ciat.ita.model/InfoSpecieModel#notLostMeanProbability"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="numberPoints" id="org.ciat.ita.model/InfoSpecieModel#numberPoints"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="occProbMean" id="org.ciat.ita.model/InfoSpecieModel#occProbMean"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="occProbMeanOut" id="org.ciat.ita.model/InfoSpecieModel#occProbMeanOut"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="occProbSd" id="org.ciat.ita.model/InfoSpecieModel#occProbSd"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="occProbSdOut" id="org.ciat.ita.model/InfoSpecieModel#occProbSdOut"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="oilGasMean" id="org.ciat.ita.model/InfoSpecieModel#oilGasMean"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="oilGasSd" id="org.ciat.ita.model/InfoSpecieModel#oilGasSd"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="percentAreaProtected" id="org.ciat.ita.model/InfoSpecieModel#percentAreaProtected"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="percentLost" id="org.ciat.ita.model/InfoSpecieModel#percentLost"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="prevalence" id="org.ciat.ita.model/InfoSpecieModel#prevalence"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="recConvMean" id="org.ciat.ita.model/InfoSpecieModel#recConvMean"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="recConvSd" id="org.ciat.ita.model/InfoSpecieModel#recConvSd"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="sdAuc" id="org.ciat.ita.model/InfoSpecieModel#sdAuc"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="specieName" id="org.ciat.ita.model/InfoSpecieModel#specieName"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="speciesID" id="org.ciat.ita.model/InfoSpecieModel#speciesID"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="157,1224">
+        <children xsi:type="editmodel:MethodEditModel" name="getAccessPopMean" id="org.ciat.ita.model/InfoSpecieModel#getAccessPopMean()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getAccessPopSd" id="org.ciat.ita.model/InfoSpecieModel#getAccessPopSd()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getAggregateMean" id="org.ciat.ita.model/InfoSpecieModel#getAggregateMean()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getAggregateSd" id="org.ciat.ita.model/InfoSpecieModel#getAggregateSd()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getAvgAucTest" id="org.ciat.ita.model/InfoSpecieModel#getAvgAucTest()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getAvgAucTrain" id="org.ciat.ita.model/InfoSpecieModel#getAvgAucTrain()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getClassName" id="org.ciat.ita.model/InfoSpecieModel#getClassName()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getConvAgMean" id="org.ciat.ita.model/InfoSpecieModel#getConvAgMean()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getConvAgSd" id="org.ciat.ita.model/InfoSpecieModel#getConvAgSd()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getFamilyName" id="org.ciat.ita.model/InfoSpecieModel#getFamilyName()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getFiresMean" id="org.ciat.ita.model/InfoSpecieModel#getFiresMean()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getFiresSd" id="org.ciat.ita.model/InfoSpecieModel#getFiresSd()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getGenusName" id="org.ciat.ita.model/InfoSpecieModel#getGenusName()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getGrazingMean" id="org.ciat.ita.model/InfoSpecieModel#getGrazingMean()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getGrazingSd" id="org.ciat.ita.model/InfoSpecieModel#getGrazingSd()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getInfrastrMean" id="org.ciat.ita.model/InfoSpecieModel#getInfrastrMean()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getInfrastrSd" id="org.ciat.ita.model/InfoSpecieModel#getInfrastrSd()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getLostMeanProbability" id="org.ciat.ita.model/InfoSpecieModel#getLostMeanProbability()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getNotLostMeanProbability" id="org.ciat.ita.model/InfoSpecieModel#getNotLostMeanProbability()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getNumberPoints" id="org.ciat.ita.model/InfoSpecieModel#getNumberPoints()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getOccProbMean" id="org.ciat.ita.model/InfoSpecieModel#getOccProbMean()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getOccProbMeanOut" id="org.ciat.ita.model/InfoSpecieModel#getOccProbMeanOut()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getOccProbSd" id="org.ciat.ita.model/InfoSpecieModel#getOccProbSd()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getOccProbSdOut" id="org.ciat.ita.model/InfoSpecieModel#getOccProbSdOut()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getOilGasMean" id="org.ciat.ita.model/InfoSpecieModel#getOilGasMean()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getOilGasSd" id="org.ciat.ita.model/InfoSpecieModel#getOilGasSd()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getPercentAreaProtected" id="org.ciat.ita.model/InfoSpecieModel#getPercentAreaProtected()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getPercentLost" id="org.ciat.ita.model/InfoSpecieModel#getPercentLost()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getPrevalence" id="org.ciat.ita.model/InfoSpecieModel#getPrevalence()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getRecConvMean" id="org.ciat.ita.model/InfoSpecieModel#getRecConvMean()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getRecConvSd" id="org.ciat.ita.model/InfoSpecieModel#getRecConvSd()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getSdAuc" id="org.ciat.ita.model/InfoSpecieModel#getSdAuc()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getSpecieName" id="org.ciat.ita.model/InfoSpecieModel#getSpecieName()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getSpeciesID" id="org.ciat.ita.model/InfoSpecieModel#getSpeciesID()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setAccessPopMean" id="org.ciat.ita.model/InfoSpecieModel#setAccessPopMean(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setAccessPopSd" id="org.ciat.ita.model/InfoSpecieModel#setAccessPopSd(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setAggregateMean" id="org.ciat.ita.model/InfoSpecieModel#setAggregateMean(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setAggregateSd" id="org.ciat.ita.model/InfoSpecieModel#setAggregateSd(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setAvgAucTest" id="org.ciat.ita.model/InfoSpecieModel#setAvgAucTest(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setAvgAucTrain" id="org.ciat.ita.model/InfoSpecieModel#setAvgAucTrain(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setClassName" id="org.ciat.ita.model/InfoSpecieModel#setClassName(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setConvAgMean" id="org.ciat.ita.model/InfoSpecieModel#setConvAgMean(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setConvAgSd" id="org.ciat.ita.model/InfoSpecieModel#setConvAgSd(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setFamilyName" id="org.ciat.ita.model/InfoSpecieModel#setFamilyName(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setFiresMean" id="org.ciat.ita.model/InfoSpecieModel#setFiresMean(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setFiresSd" id="org.ciat.ita.model/InfoSpecieModel#setFiresSd(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setGenusName" id="org.ciat.ita.model/InfoSpecieModel#setGenusName(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setGrazingMean" id="org.ciat.ita.model/InfoSpecieModel#setGrazingMean(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setGrazingSd" id="org.ciat.ita.model/InfoSpecieModel#setGrazingSd(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setInfrastrMean" id="org.ciat.ita.model/InfoSpecieModel#setInfrastrMean(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setInfrastrSd" id="org.ciat.ita.model/InfoSpecieModel#setInfrastrSd(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setLostMeanProbability" id="org.ciat.ita.model/InfoSpecieModel#setLostMeanProbability(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setNotLostMeanProbability" id="org.ciat.ita.model/InfoSpecieModel#setNotLostMeanProbability(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setNumberPoints" id="org.ciat.ita.model/InfoSpecieModel#setNumberPoints(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setOccProbMean" id="org.ciat.ita.model/InfoSpecieModel#setOccProbMean(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setOccProbMeanOut" id="org.ciat.ita.model/InfoSpecieModel#setOccProbMeanOut(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setOccProbSd" id="org.ciat.ita.model/InfoSpecieModel#setOccProbSd(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setOccProbSdOut" id="org.ciat.ita.model/InfoSpecieModel#setOccProbSdOut(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setOilGasMean" id="org.ciat.ita.model/InfoSpecieModel#setOilGasMean(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setOilGasSd" id="org.ciat.ita.model/InfoSpecieModel#setOilGasSd(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setPercentAreaProtected" id="org.ciat.ita.model/InfoSpecieModel#setPercentAreaProtected(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setPercentLost" id="org.ciat.ita.model/InfoSpecieModel#setPercentLost(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setPrevalence" id="org.ciat.ita.model/InfoSpecieModel#setPrevalence(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setRecConvMean" id="org.ciat.ita.model/InfoSpecieModel#setRecConvMean(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setRecConvSd" id="org.ciat.ita.model/InfoSpecieModel#setRecConvSd(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setSdAuc" id="org.ciat.ita.model/InfoSpecieModel#setSdAuc(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setSpecieName" id="org.ciat.ita.model/InfoSpecieModel#setSpecieName(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setSpeciesID" id="org.ciat.ita.model/InfoSpecieModel#setSpeciesID(Ljava.lang.String;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="TaxonObject" location="20,209" size="123,319" id="org.ciat.ita.model/TaxonObject" runTimeClassModel="compareTo(Lorg.ciat.ita.model.TaxonObject;),TaxonObject(Ljava.lang.String;Ljava.lang.String;I),TaxonObject(),toString(),setId(Ljava.lang.String;),id,getId(),setCanonical(Ljava.lang.String;),rankID,setRankID(I),hashCode(),equals(Ljava.lang.Object;),canonical,getRankID(),getCanonical()">
+      <children xsi:type="editmodel:CompartmentEditModel" size="99,54">
+        <children xsi:type="editmodel:AttributeEditModel" name="canonical" id="org.ciat.ita.model/TaxonObject#canonical"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="id" id="org.ciat.ita.model/TaxonObject#id"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="rankID" id="org.ciat.ita.model/TaxonObject#rankID"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="92,216">
+        <children xsi:type="editmodel:MethodEditModel" name="TaxonObject" id="org.ciat.ita.model/TaxonObject#TaxonObject()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="TaxonObject" id="org.ciat.ita.model/TaxonObject#TaxonObject(Ljava.lang.String;Ljava.lang.String;I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="compareTo" id="org.ciat.ita.model/TaxonObject#compareTo(Lorg.ciat.ita.model.TaxonObject;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="equals" id="org.ciat.ita.model/TaxonObject#equals(Ljava.lang.Object;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getCanonical" id="org.ciat.ita.model/TaxonObject#getCanonical()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getId" id="org.ciat.ita.model/TaxonObject#getId()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getRankID" id="org.ciat.ita.model/TaxonObject#getRankID()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="hashCode" id="org.ciat.ita.model/TaxonObject#hashCode()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setCanonical" id="org.ciat.ita.model/TaxonObject#setCanonical(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setId" id="org.ciat.ita.model/TaxonObject#setId(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setRankID" id="org.ciat.ita.model/TaxonObject#setRankID(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="toString" id="org.ciat.ita.model/TaxonObject#toString()"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" name="org.ciat.ita.service" location="615,0" size="457,542" id="org.ciat.ita.service">
+    <children xsi:type="editmodel:ClassEditModel" name="Info" location="20,126" size="125,373" id="org.ciat.ita.service/Info" runTimeClassModel="port,getInstance(),getPass(),getPath(),publicPath,getUser(),prop,getIp(),getDatabase(),database,ip,pass,getPublicPath(),path,Info(),getPort(),instance,user">
+      <children xsi:type="editmodel:CompartmentEditModel" size="102,162">
+        <children xsi:type="editmodel:AttributeEditModel" name="database" id="org.ciat.ita.service/Info#database"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="instance" id="org.ciat.ita.service/Info#instance"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="ip" id="org.ciat.ita.service/Info#ip"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="pass" id="org.ciat.ita.service/Info#pass"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="path" id="org.ciat.ita.service/Info#path"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="port" id="org.ciat.ita.service/Info#port"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="prop" id="org.ciat.ita.service/Info#prop"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="publicPath" id="org.ciat.ita.service/Info#publicPath"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="user" id="org.ciat.ita.service/Info#user"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="94,162">
+        <children xsi:type="editmodel:MethodEditModel" name="Info" id="org.ciat.ita.service/Info#Info()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getDatabase" id="org.ciat.ita.service/Info#getDatabase()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getInstance" id="org.ciat.ita.service/Info#getInstance()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getIp" id="org.ciat.ita.service/Info#getIp()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getPass" id="org.ciat.ita.service/Info#getPass()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getPath" id="org.ciat.ita.service/Info#getPath()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getPort" id="org.ciat.ita.service/Info#getPort()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getPublicPath" id="org.ciat.ita.service/Info#getPublicPath()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getUser" location="3,311" id="org.ciat.ita.service/Info#getUser()"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="InfoSpecieEcosystemServlet" location="203,36" size="221,85" id="org.ciat.ita.service/InfoSpecieEcosystemServlet" runTimeClassModel="destroy(),init()">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="67,36">
+        <children xsi:type="editmodel:MethodEditModel" name="destroy" id="org.ciat.ita.service/InfoSpecieEcosystemServlet#destroy()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="init" id="org.ciat.ita.service/InfoSpecieEcosystemServlet#init()"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="InfoSpecieServlet" location="223,133" size="155,85" id="org.ciat.ita.service/InfoSpecieServlet" runTimeClassModel="destroy(),init()">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="67,36">
+        <children xsi:type="editmodel:MethodEditModel" name="destroy" id="org.ciat.ita.service/InfoSpecieServlet#destroy()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="init" id="org.ciat.ita.service/InfoSpecieServlet#init()"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="TaxonClickServlet" location="213,324" size="158,103" id="org.ciat.ita.service/TaxonClickServlet" runTimeClassModel="makeQuery(Ljava.lang.String;I),destroy(),init()">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="85,54">
+        <children xsi:type="editmodel:MethodEditModel" name="destroy" id="org.ciat.ita.service/TaxonClickServlet#destroy()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="init" id="org.ciat.ita.service/TaxonClickServlet#init()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="makeQuery" id="org.ciat.ita.service/TaxonClickServlet#makeQuery(Ljava.lang.String;I)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="TaxonSearchServlet" location="206,236" size="172,67" id="org.ciat.ita.service/TaxonSearchServlet" runTimeClassModel="init()">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="43,18">
+        <children xsi:type="editmodel:MethodEditModel" name="init" id="org.ciat.ita.service/TaxonSearchServlet#init()"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" interactive="false" level="-1" showScope="InPackage" properties="wireOptions=1;Product=eUML2"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
