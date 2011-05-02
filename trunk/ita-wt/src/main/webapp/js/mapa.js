@@ -1,12 +1,11 @@
+var paLayers = [];	
 $(document).ready(function(){	
 	var path = getPath();
-	var map;
 	var zoomMap = 4;
-	var paLayers = [];
-	if ($.browser.msie && $.browser.version < 9) {
-		$("#validationBrowser").css("display", "block");	
-	}
 	
+	if ($.browser.msie && $.browser.version < 8) {
+		$("#validationBrowser").css("display", "block");
+	}
 	initialize();
 	
 	function getPath() {	
@@ -37,7 +36,7 @@ $(document).ready(function(){
 	    if (map.getZoom() > 7) {
 	        map.setZoom(7);
 	    }
-	    if (document.form1.Summaries.checked == true && map.getZoom() > 4) {
+	    if (document.formPrincipal.Summaries.checked == true && map.getZoom() > 4) {
 	        paLayers[0].setMap(map);
 	        paLayers[1].setMap(map);
 	        paLayers[2].setMap(map);
@@ -47,7 +46,7 @@ $(document).ready(function(){
 	        paLayers[1].setMap(null);
 	        paLayers[2].setMap(null);
 	    }
-	    if (document.form1.Summaries.checked == true && map.getZoom() > 5) {
+	    if (document.formPrincipal.Summaries.checked == true && map.getZoom() > 5) {
 	        paLayers[3].setMap(map);
 	    }
 	    else {
