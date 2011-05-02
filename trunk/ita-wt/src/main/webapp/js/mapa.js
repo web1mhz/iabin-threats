@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var map;
 	var zoomMap = 4;
 	var paLayers = [];
-	if ($.browser.msie && $.browser.version < 8) {
+	if ($.browser.msie && $.browser.version < 9) {
 		$("#validationBrowser").css("display", "block");	
 	}
 	
@@ -211,9 +211,13 @@ $(document).ready(function(){
         var layerSpecieId = parseInt($target.attr("id"));
         var overlayMapOptions = getOverlayMapOptions(layerName, 0.5, layerId, null, "species");
 		var layerMapPosition = (layerSpecieId + 1);
-		var scaleImageSource = path + "5000009scaleImage.png";
-		
-		showHideScaleOpacity($target, layerName, overlayMapOptions, scaleImageSource, layerMapPosition);
+		var distributionScaleImageSource = path + "species/" + "speciesDistributionScaleImage.png";
+		var thresholdScaleImageSource = path + "species/" + "thresholdScaleImage.png";
+		if(layerSpecieId==2){
+			showHideScaleOpacity($target, layerName, overlayMapOptions, thresholdScaleImageSource, layerMapPosition);
+		}else{
+			showHideScaleOpacity($target, layerName, overlayMapOptions, distributionScaleImageSource, layerMapPosition);
+		}		
         if ($target.attr('checked')) {
             var overlayMap = new google.maps.ImageMapType(overlayMapOptions);
             map.overlayMapTypes.setAt((layerSpecieId + 1), overlayMap);         
