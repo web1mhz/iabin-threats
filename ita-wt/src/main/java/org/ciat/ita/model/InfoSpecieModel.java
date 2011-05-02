@@ -3,14 +3,39 @@ package org.ciat.ita.model;
 public class InfoSpecieModel {
 
 	int numberPoints;
-	String speciesID, specieName, genusName, familyName, className,
-			avgAucTrain, avgAucTest, sdAuc, prevalence, percentLost,
-			lostMeanProbability, notLostMeanProbability, aggregateMean,
-			aggregateSd, accessPopMean, accessPopSd, convAgMean, convAgSd,
-			firesMean, firesSd, grazingMean, grazingSd, infrastrMean,
-			infrastrSd, oilGasMean, oilGasSd, recConvMean, recConvSd,
-			occProbMean, occProbSd, occProbMeanOut, occProbSdOut,
-			percentAreaProtected;
+	String speciesID;
+	String specieName;
+	String genusName;
+	String familyName;
+	String className;
+	String avgAucTrain;
+	String avgAucTest;
+	String sdAuc;
+	String prevalence;
+	String percentLost;
+	String lostMeanProbability;
+	String notLostMeanProbability;
+	String aggregateMean;
+	String aggregateSd;
+	String accessPopMean;
+	String accessPopSd;
+	String convAgMean;
+	String convAgSd;
+	String firesMean;
+	String firesSd;
+	String grazingMean;
+	String grazingSd;
+	String infrastrMean;
+	String infrastrSd;
+	String oilGasMean;
+	String oilGasSd;
+	String recConvMean;
+	String recConvSd;
+	String occProbMean;
+	String occProbSd;
+	String occProbMeanOut;
+	String occProbSdOut;
+	String percentAreaProtected;
 
 	public String getSpeciesID() {
 		return speciesID;

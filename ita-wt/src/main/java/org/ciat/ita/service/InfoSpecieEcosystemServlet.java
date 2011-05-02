@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.ciat.ita.model.InfoSpecieEcosystemModel;
 
 import com.google.gson.Gson;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class InfoSpecieEcosystemServlet extends HttpServlet {
 	
@@ -68,6 +70,31 @@ public class InfoSpecieEcosystemServlet extends HttpServlet {
 	public void destroy() {
 		// TODO Auto-generated method stub
 		super.destroy();
+	}
+
+	/** 
+	 * @uml.property name="infoSpecieEcosystemModel"
+	 * @uml.associationEnd inverse="infoSpecieEcosystemServlet:org.ciat.ita.model.InfoSpecieEcosystemModel"
+	 * @uml.association name="ecosystem"
+	 */
+	private InfoSpecieEcosystemModel infoSpecieEcosystemModel;
+
+	/** 
+	 * Getter of the property <tt>infoSpecieEcosystemModel</tt>
+	 * @return  Returns the infoSpecieEcosystemModel.
+	 * @uml.property  name="infoSpecieEcosystemModel"
+	 */
+	public InfoSpecieEcosystemModel getInfoSpecieEcosystemModel() {
+		return infoSpecieEcosystemModel;
+	}
+
+	/** 
+	 * Setter of the property <tt>infoSpecieEcosystemModel</tt>
+	 * @param infoSpecieEcosystemModel  The infoSpecieEcosystemModel to set.
+	 * @uml.property  name="infoSpecieEcosystemModel"
+	 */
+	public void setInfoSpecieEcosystemModel(InfoSpecieEcosystemModel infoSpecieEcosystemModel) {
+		this.infoSpecieEcosystemModel = infoSpecieEcosystemModel;
 	}
 
 }
