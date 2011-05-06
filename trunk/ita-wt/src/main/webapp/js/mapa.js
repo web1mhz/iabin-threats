@@ -37,21 +37,28 @@ $(document).ready(function(){
 	        map.setZoom(7);
 	    }
 	    if (document.formPrincipal.Summaries.checked == true && map.getZoom() > 4) {
-	        paLayers[0].setMap(map);
-	        paLayers[1].setMap(map);
-	        paLayers[2].setMap(map);
+	    	if(paLayers[0] != null)
+	    		paLayers[0].setMap(map);	    	
+	    	if(paLayers[1] != null)
+	    		paLayers[1].setMap(map);	    	
+	    	if(paLayers[2] != null)
+	    		paLayers[2].setMap(map);
 	    }
 	    else {
-	        paLayers[0].setMap(null);
-	        paLayers[1].setMap(null);
-	        paLayers[2].setMap(null);
+	    	if(paLayers[0] != null)
+	    		paLayers[0].setMap(null);	    	
+	    	if(paLayers[1] != null)
+	    		paLayers[1].setMap(null);	    	
+	    	if(paLayers[2] != null)
+	    		paLayers[2].setMap(null);	        
 	    }
 	    if (document.formPrincipal.Summaries.checked == true && map.getZoom() > 5) {
-	        paLayers[3].setMap(map);
+	    	if(paLayers[3] != null)
+	    		paLayers[3].setMap(map);	        
 	    }
 	    else {
-	        paLayers[3].setMap(null);
-	        
+	    	if(paLayers[3] != null)
+	    		paLayers[3].setMap(null);        
 	    }
 	}
 	
