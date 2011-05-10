@@ -88,7 +88,7 @@ public class TaxonSearchServlet extends HttpServlet {
 		ArrayList<String> canonicals = new ArrayList<String>();
 		conx = DataBaseManager.openConnection(Info.getInstance().getUser(), Info.getInstance().getPass(), Info.getInstance().getIp(), Info.getInstance().getPort(), Info.getInstance().getDatabase());
 
-		rs = DataBaseManager.makeQuery("select tn.canonical from IABIN_taxon_name tn where tn.canonical like '%" + term + "%' group by tn.canonical limit 20", conx);
+		rs = DataBaseManager.makeQuery("select tn.canonical from taxon_name tn where tn.canonical like '%" + term + "%' group by tn.canonical limit 20", conx);
 
 		while (!rs.isClosed() && rs.next()) {
 			canonicals.add(rs.getString(1));
@@ -104,7 +104,7 @@ public class TaxonSearchServlet extends HttpServlet {
 		ArrayList<TaxonObject> canonicals = new ArrayList<TaxonObject>();
 		conx = DataBaseManager.openConnection(Info.getInstance().getUser(), Info.getInstance().getPass(), Info.getInstance().getIp(), Info.getInstance().getPort(), Info.getInstance().getDatabase());
 
-		rs = DataBaseManager.makeQuery("select tn.id, tn.canonical, tn.rank  from IABIN_taxon_name tn where tn.canonical like '%" + canonical + "%' and rank>4000 order by tn.rank ASC", conx);
+		rs = DataBaseManager.makeQuery("select tn.id, tn.canonical, tn.rank  from taxon_name tn where tn.canonical like '%" + canonical + "%' and rank>4000 order by tn.rank ASC", conx);
 
 		while (!rs.isClosed() && rs.next()) {
 			canonicals.add(new TaxonObject(rs.getInt("id") + "", rs.getString("canonical"), rs.getInt("rank")));
