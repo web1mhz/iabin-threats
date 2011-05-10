@@ -1,6 +1,8 @@
 var paLayers = [];	
+var map;
 $(document).ready(function(){	
 	var path = getPath();
+	//var map;
 	var zoomMap = 4;
 	
 	if ($.browser.msie && $.browser.version < 8) {
@@ -12,7 +14,7 @@ $(document).ready(function(){
 		return $.ajax({type:"GET",url:"info.do", async: false}).responseText;
 	}
 	
-	function initialize() {
+	function initialize() {	
 	    var myOptions = {
 	        navigationControl: true,
 	        navigationControlOptions: {
@@ -27,7 +29,7 @@ $(document).ready(function(){
 	    google.maps.event.addListener(map, 'zoom_changed', function(){
 	        zoomChange();
 	    });    
-	    for (i = 0; i < 15; i++) {
+	    for (i = 0; i < 16; i++) {
 	        map.overlayMapTypes.push(null);
 	    }
 	}
@@ -36,7 +38,7 @@ $(document).ready(function(){
 	    if (map.getZoom() > 7) {
 	        map.setZoom(7);
 	    }
-	    if (document.formPrincipal.Summaries.checked == true && map.getZoom() > 4) {
+ if (document.formPrincipal.Summaries.checked == true && map.getZoom() > 4) {
 	    	if(paLayers[0] != null)
 	    		paLayers[0].setMap(map);	    	
 	    	if(paLayers[1] != null)
