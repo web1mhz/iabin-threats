@@ -88,9 +88,6 @@ database=gbif_sept2010
 # PATH path to the files of text information of species and ecosystems, and png files path, kml used in the web tool.
 #######################
 
-# (txt files), only for servlets
-path=\\\\172.22.33.85\\geodata\\Threat-Assement\\species\\
-
 # client (pictures, kml files, etc ...)
 public_path = http://gisweb.ciat.cgiar.org/iabin-threats/ITA/generated-files/
 }}}	 
