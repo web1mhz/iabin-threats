@@ -111,8 +111,13 @@ ul {
 	width:200px;	
 }
 #specieEcosystem{
-	display: none;	
+	display: none;`	
 	}
+
+#specieEcosystem:HOVER{
+	background-color: #BCD56C;	
+	}
+	
 #navigation a.head {
 	font-weight: bold;
 	padding: 0 15px 0 0;
@@ -522,21 +527,15 @@ l	ine-height: 1px;
 
 .table {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size:10px;
-	text-align: right;
-	width: 600px;
-	border:0px;
+	font-size:11px;	
+	width: 600px;	
 	border-bottom:1px;
 	}
 
 .table th {
 	font-size: 11px;		
 	font-family: Trebuchet MS, Arial;
-	width: 52px;
-	}
-
-.table th:HOVER{	
-	color: #666;
+	width: 300px;
 	}
 
 .table tr:HOVER{
@@ -572,7 +571,7 @@ l	ine-height: 1px;
 	border-right-color: #A4C4D0;
 	border-bottom-color: #A4C4D0;
 	text-align:left;	
-	width: 52px;
+	width: 300px;
 	}	
 	.table .row th {
 	border-left-width: 1px;
@@ -588,7 +587,7 @@ l	ine-height: 1px;
 	border-right-color: #A4C4D0;
 	border-bottom-color: #A4C4D0;
 	text-align:left;
-	width: 52px;
+	width: 300px;
 	}
 
 #sliderOpacity-frame > div.sliderOpacity { padding: 10px !important; margin-top:5px};

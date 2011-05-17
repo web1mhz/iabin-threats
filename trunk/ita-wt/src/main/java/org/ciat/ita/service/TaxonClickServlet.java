@@ -40,7 +40,6 @@ public class TaxonClickServlet extends HttpServlet {
 		 * ello y reiniciar la conexión en caso de que lo requiera.
 		 */
 	}
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
