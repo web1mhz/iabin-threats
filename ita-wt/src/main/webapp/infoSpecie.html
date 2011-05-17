@@ -17,30 +17,30 @@ $(document).ready(function() {
 		$("#imageWait").empty().html("<img id='loaderGift-big' src='images/ajax-loader-big.gif' />");
 		$("#infoSpecie").hide();				
 		},
-		success: function(info) {
+		success: function(infoSpecie) {			
 			$("#imageWait").html("<img id='loaderGift-big' src='images/ajax-loader-big.gif' />");
-			$("#specieName").text(info.specieName);
-			$("#genusName").text(info.genusName);
-			$("#familyName").text(info.familyName);
-			$("#className").text(info.className);
-			$("#numberPoints").text(info.numberPoints);
-			$("#avgAucTrain").text(info.avgAucTrain);
-			$("#avgAucTest").text(info.avgAucTest+" ± "+info.sdAuc);
-			$("#prevalence").text(info.prevalence);
-			$("#percentLost").text(info.percentLost);
-			$("#lostMeanProbability").text(info.lostMeanProbability);
-			$("#notLostMeanProbability").text(info.notLostMeanProbability);
-			$("#aggregateMean").text(info.aggregateMean+" ± "+info.aggregateSd);
-			$("#accessPopMean").text(info.accessPopMean+" ± "+info.accessPopSd);
-			$("#convAgMean").text(info.convAgMean+" ± "+info.convAgSd);
-			$("#firesMean").text(info.firesMean+" ± "+info.firesSd);
-			$("#grazingMean").text(info.grazingMean+" ± "+info.grazingSd);
-			$("#infrastrMean").text(info.infrastrMean+" ± "+info.infrastrSd);
-			$("#oilGasMean").text(info.oilGasMean+" ± "+info.oilGasSd);
-			$("#recConvMean").text(info.recConvMean+" ± "+info.recConvSd);
-			$("#occProbMean").text(info.occProbMean+" ± "+info.occProbSd);
-			$("#occProbMeanOut").text(info.occProbMeanOut+" ± "+info.occProbSdOut);
-			$("#percentAreaProtected").text(info.percentAreaProtected);
+			$("#specieName").text(infoSpecie.specieName);
+			$("#genusName").text(infoSpecie.genusName);
+			$("#familyName").text(infoSpecie.familyName);
+			$("#className").text(infoSpecie.className);
+			$("#numberPoints").text(infoSpecie.numberPoints);
+			$("#avgAucTrain").text(infoSpecie.avgAucTrain);
+			$("#avgAucTest").text(infoSpecie.avgAucTest+" ± "+infoSpecie.sdAuc);
+			$("#prevalence").text(infoSpecie.prevalence);
+			$("#percentLost").text(infoSpecie.percentLost);
+			$("#lostMeanProbability").text(infoSpecie.lostMeanProbability);
+			$("#notLostMeanProbability").text(infoSpecie.notLostMeanProbability);
+			$("#aggregateMean").text(infoSpecie.aggregateMean+" ± "+infoSpecie.aggregateSd);
+			$("#accessPopMean").text(infoSpecie.accessPopMean+" ± "+infoSpecie.accessPopSd);
+			$("#convAgMean").text(infoSpecie.convAgMean+" ± "+infoSpecie.convAgSd);
+			$("#firesMean").text(infoSpecie.firesMean+" ± "+infoSpecie.firesSd);
+			$("#grazingMean").text(infoSpecie.grazingMean+" ± "+infoSpecie.grazingSd);
+			$("#infrastrMean").text(infoSpecie.infrastrMean+" ± "+infoSpecie.infrastrSd);
+			$("#oilGasMean").text(infoSpecie.oilGasMean+" ± "+infoSpecie.oilGasSd);
+			$("#recConvMean").text(infoSpecie.recConvMean+" ± "+infoSpecie.recConvSd);
+			$("#occProbMean").text(infoSpecie.occProbMean+" ± "+infoSpecie.occProbSd);
+			$("#occProbMeanOut").text(infoSpecie.occProbMeanOut+" ± "+infoSpecie.occProbSdOut);
+			$("#percentAreaProtected").text(infoSpecie.percentAreaProtected);
 			$("#infoSpecie").fadeIn();
 		},
 		complete: function(data, code) {
@@ -55,15 +55,17 @@ $(document).ready(function() {
 	}); // END ajax
 	$.ajax({
 		url: "infoSpecieEcosystem.do",
-		dataType: "json",
 		data: "id="+$.url.param('id'),
+		dataType: "json",
+		contentType:"application/json; charset=utf-8",
 		beforeSend: function(data) {						
 		},
-		success: function(data) {			
+		success: function(data) {	
+					
 			var temp = "";						
 			for(i=0;i<data.specieEcosystem.length;i++){
 				if(data.specieEcosystem[i]!=null && data.specieEcosystem[i]!="N/A"){
-					temp +=(i+1)+". "+data.specieEcosystem[i]+"<br>";
+					temp +=(i+1)+". "+data.specieEcosystem[i]+"<br>";					
 				}
 			}
 			$("#specieEcosystem").html(temp);	
@@ -72,7 +74,7 @@ $(document).ready(function() {
 		complete: function(data, code) {
 			if(code == "success") {			
 			}
-		},
+		},		 
 		error: function(data, error, objectError) {
 			
 		}

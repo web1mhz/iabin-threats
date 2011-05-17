@@ -42,7 +42,7 @@ public class DataBaseManager {
 			String ip, String port, String databaseName) {
 		try {
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://"
-					+ ip + ":" + port + "/" + databaseName, user, password);
+					+ ip + ":" + port + "/" + databaseName, user, password);			
 			return conexion;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -83,14 +83,10 @@ public class DataBaseManager {
 		try {
 			if (updateQuery.toLowerCase().startsWith("update")
 					|| updateQuery.toLowerCase().startsWith("insert")) {
-
-				// stmMakeChange = conexion.prepareStatement(updateQuery);
-				// int v = stmMakeChange.executeUpdate();
+				
 				stmMakeChange = conexion.createStatement();
 				int v = stmMakeChange.executeUpdate(updateQuery);
-				stmMakeChange.close();
-				// stmMakeChange.close();
-				// stmMakeChange = null;
+				stmMakeChange.close();				
 				return v;
 			}
 		} catch (Exception e) {
@@ -113,12 +109,9 @@ public class DataBaseManager {
 	 * @return ResulSet object that correspond to the query result. Or null if
 	 *         there was an error.
 	 */
-	public static ResultSet makeQuery(String query, Connection conexion) {
-		// PreparedStatement stmMakeQuery;
+	public static ResultSet makeQuery(String query, Connection conexion) {		
 		try {
-			if (query.toLowerCase().startsWith("select")) {
-				// stmMakeQuery = conexion.prepareStatement(query);
-				// return stmMakeQuery.executeQuery();
+			if (query.toLowerCase().startsWith("select")) {				
 				return conexion.createStatement().executeQuery(query);
 			}
 		} catch (SQLException e) {

@@ -1,9 +1,9 @@
 package org.ciat.ita.model;
 
-public class InfoSpecieModel {
+public class InfoSpecieModel implements Comparable<InfoSpecieModel> {
 
-	int numberPoints;
-	String speciesID;
+	String id;
+	String numberPoints;
 	String specieName;
 	String genusName;
 	String familyName;
@@ -37,12 +37,62 @@ public class InfoSpecieModel {
 	String occProbSdOut;
 	String percentAreaProtected;
 
-	public String getSpeciesID() {
-		return speciesID;
+	public InfoSpecieModel(String id, String numberPoints, String specieName, String genusName,
+			String familyName, String className, String avgAucTrain, String avgAucTest, String sdAuc,
+			String prevalence, String percentLost, String lostMeanProbability, String notLostMeanProbability,
+			String aggregateMean, String aggregateSd, String accessPopMean, String accessPopSd,
+			String convAgMean, String convAgSd, String firesMean, String firesSd, String grazingMean,
+			String grazingSd, String infrastrMean, String infrastrSd, String oilGasMean, String oilGasSd,
+			String recConvMean, String recConvSd, String occProbMean, String occProbSd,
+			String occProbMeanOut, String occProbSdOut, String percentAreaProtected) {
+		super();
+		this.id=id;
+		this.specieName=specieName;
+		this.accessPopMean=accessPopMean;
+		this.accessPopSd=accessPopSd;
+		this.aggregateMean=aggregateMean;
+		this.aggregateSd=aggregateSd;
+		this.avgAucTest=avgAucTest;
+		this.avgAucTrain=avgAucTrain;
+		this.className=className;
+		this.convAgMean=convAgMean;
+		this.convAgSd=convAgSd;
+		this.familyName=familyName;
+		this.firesMean=firesMean;
+		this.firesSd=firesSd;
+		this.genusName=genusName;
+		this.grazingMean=grazingMean;
+		this.grazingSd=grazingSd;
+		this.infrastrMean=infrastrMean;
+		this.infrastrSd=infrastrSd;
+		this.lostMeanProbability=lostMeanProbability;
+		this.notLostMeanProbability=notLostMeanProbability;
+		this.numberPoints=numberPoints;
+		this.occProbMean=occProbMean;
+		this.occProbMeanOut=occProbMeanOut;
+		this.occProbSd=occProbSd;
+		this.occProbSdOut=occProbSdOut;
+		this.oilGasMean=oilGasMean;
+		this.oilGasSd=oilGasSd;
+		this.percentAreaProtected=percentAreaProtected;
+		this.percentLost=percentLost;
+		this.prevalence=prevalence;
+		this.recConvMean=recConvMean;
+		this.recConvSd=recConvSd;
+		this.sdAuc=sdAuc;
+
 	}
 
-	public void setSpeciesID(String speciesID) {
-		this.speciesID = speciesID;
+	public InfoSpecieModel() {
+		super();
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getSpecieName() {
@@ -77,11 +127,11 @@ public class InfoSpecieModel {
 		this.className = className;
 	}
 
-	public int getNumberPoints() {
+	public String getNumberPoints() {
 		return numberPoints;
 	}
 
-	public void setNumberPoints(int numberPoints) {
+	public void setNumberPoints(String numberPoints) {
 		this.numberPoints = numberPoints;
 	}
 
@@ -308,5 +358,25 @@ public class InfoSpecieModel {
 	public void setLostMeanProbability(String lostMeanProbability) {
 		this.lostMeanProbability = lostMeanProbability;
 	}
+	
+	public boolean equals(Object obj) {
+		if(obj instanceof InfoSpecieModel) {
+			InfoSpecieModel to = (InfoSpecieModel) obj;
+			return to.id.equals(this.getId());
+		}
+		return false;
+	}
+	@Override
+	public int hashCode() {		
+		return id.hashCode();
+	}
+
+	@Override
+	public int compareTo(InfoSpecieModel o) {
+		// TODO Auto-generated method stub
+		return (this.getAccessPopMean()+this.getAccessPopSd()+this.getAggregateMean()+this.getAggregateSd()+this.getAvgAucTest()+this.getAvgAucTrain()+this.getClassName()+this.getConvAgMean()+this.getConvAgSd()+this.getFamilyName()+this.getFiresMean()+this.getFiresSd()+this.getGenusName()+this.getGrazingMean()+this.getGrazingSd()+this.getId()+this.getInfrastrMean()+this.getInfrastrSd()+this.getLostMeanProbability()+this.getNotLostMeanProbability()+this.getNumberPoints()+this.getOccProbMean()+this.getOccProbMeanOut()+this.getOccProbSd()+this.getOccProbSdOut()+this.getOilGasMean()+this.getOilGasSd()+this.getPercentAreaProtected()+this.getPercentLost()+this.getPrevalence()+this.getRecConvMean()+this.getRecConvSd()+this.getSdAuc()+this.getSpecieName()+this.getClass()).compareTo(o.getAccessPopMean()+o.getAccessPopSd()+o.getAggregateMean()+o.getAggregateSd()+o.getAvgAucTest()+o.getAvgAucTrain()+o.getClassName()+o.getConvAgMean()+o.getConvAgSd()+o.getFamilyName()+o.getFiresMean()+o.getFiresSd()+o.getGenusName()+o.getGrazingMean()+o.getGrazingSd()+o.getId()+o.getInfrastrMean()+o.getInfrastrSd()+o.getLostMeanProbability()+o.getNotLostMeanProbability()+o.getNumberPoints()+o.getOccProbMean()+o.getOccProbMeanOut()+o.getOccProbSd()+o.getOccProbSdOut()+o.getOilGasMean()+o.getOilGasSd()+o.getPercentAreaProtected()+o.getPercentLost()+o.getPrevalence()+o.getRecConvMean()+o.getRecConvSd()+o.getSdAuc()+o.getSpecieName()+o.getClass());
+	}
+		
+	
 
 }
