@@ -7,7 +7,7 @@
    * [HowToBuildITA How to build the project]
    * [Configuration]
    * [RunningProcedure Running Procedure]
-   * [API  [http://iabin-threats.googlecode.com/files/ita-0.1Beta-SNAPSHOT-api.zip Download]]
+   * [API  http://iabin-threats.googlecode.com/files/ita-0.1Beta-SNAPSHOT-api.zip]
  * Re-Geo-referencing
    * [HowToBuildITABG How to build the project ITA-BG]
    * [Configurationbg configuration]
