@@ -120,7 +120,7 @@ Also you can search for a species using the form, this will enter the full name 
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspecie.png
 
-Depending on what you type into the search, the query can yield a specific species or may lead to a tree where there may be family, genus and species where we can select the one you want to view and click in the species ending popup menu species and return to the main menu with different display options. See [http://code.google.com/p/iabin-threats/wiki/UserManualNavigationTool?wl=es#Visualización_de_datos_de_la_especie Visualización de datos de la especie]
+Depending on what you type into the search, the query can yield a specific species or may lead to a tree where there may be family, genus and species where we can select the one you want to view and click in the species ending popup menu species and return to the main menu with different display options. See [http://code.google.com/p/iabin-threats/wiki/UserManualNavigationTool?wl=en#Data_visualization_of_the_species Data visualization of the species]
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/searchspeciebutton.png
 
