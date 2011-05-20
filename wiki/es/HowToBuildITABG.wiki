@@ -1,5 +1,5 @@
 #summary Cómo contruir la herramienta de Re-georreferenciación ITA-BG
-#labels Fase-Implementación,No terminado
+#labels Versión Beta
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/HowToBuildITABG?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
@@ -62,7 +62,7 @@ La compilación de este paso no es necesaria ya que el empaquetamiento incluye e
  
 Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con comandos _java_.
  
-Puede ver la pagina del [API] para saber como usar las clases del proyecto o ejecutar directamente cualquiera de las clases ejecutables.
+Puede ejecutar directamente cualquiera de las clases ejecutables.
 
 
 === 5.1 Ejecución local ===

@@ -1,9 +1,0 @@
-#summary One-sentence summary of this page.
-#sidebar TableOfContents
-#labels Not-Finished
-
-||[DataConversion English]|||[DataConversion Español]||
-
-= Introducción =
-
-Estas herramientas ofrecen la posibilidad de.....

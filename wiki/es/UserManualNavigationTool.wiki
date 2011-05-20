@@ -1,4 +1,5 @@
-#labels 
+#summary Manual de usuario
+#labels  Versión Beta 
 #sidebar TableOfContents
 
 Manual de Usuario de la Herramienta de Navegacion Proyecto ITA.

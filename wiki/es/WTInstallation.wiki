@@ -1,4 +1,5 @@
 #summary Cómo instalar la herramienta web ITA
+#labels  Versión Beta
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/WTInstallation?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]

@@ -1,5 +1,5 @@
 #summary Qué es la herramienta de filtrado de datos ITA
-#labels Fase-Implementación
+#labels Versión Beta
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/Description?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
@@ -7,50 +7,49 @@
 
 == Introducción ==
 
-La *Red Inter-Americana de Información de Biodiversidad (IABIN)* tiene la solicitud de proveer una infraestructura de red de información, también como datos primarios de biodiversidad en un número de tópicos para mejorar la toma de decisiones, particularmente en temas de interfaz de desarrollo humano y la conservación de la biodiversidad. Durante finales del año 2010,IABIN ha aprobado fondos para proyectos destinados a: (a) desarrollo de IABIN; y (b) Proveer los instrumentos necesarios para extraer conocimiento  de la información contenida en la red mencionada para apoyar la toma de decisiones de sonido concerniente a la conservación y el uso sostenible de la biodiversidad.
+La *Red Inter-Americana de Información de Biodiversidad (IABIN)* se encarga de proveer una infraestructura de red de información, asi como también datos primarios de biodiversidad en un número de tópicos para mejorar la toma de decisiones, particularmente en temas de interfaz de desarrollo humano y la conservación de la biodiversidad. Durante finales del año 2010,IABIN ha aprobado fondos para proyectos destinados a: (a) desarrollo de IABIN; y (b) Proveer los instrumentos necesarios para extraer conocimiento  de la información contenida en la red mencionada para apoyar la toma de decisiones concerniente a la conservación y el uso sostenible de la biodiversidad.
 
-Bajo ese marco, IABIN ha financiado el Programa de Decisión y Análisis de Políticas (DAPA) en el Centro Internacional de Agricultura Tropical (CIAT) en un proyecto titulado *"Mejorar datos primarios y usarlos para evaluación de amenazas y planeación de conservación in situ en Suramerica"*. Más específicamente, tenemos la intención de evaluar y mejorar la calidad geográfica de los datos primarios proporcionados por las distintas Redes Temáticas de IABIN (TNs) usando un enfoque rigurosamente cientifico y en su mayor parte automatizado. Los datos serán usados en una variedad de ejercicios de modelización estadística ,con el objetivo de extraer conclusiones prácticas sobre el estado de conservación de la Biodiversidad, y finalmente, se proveerá una interfaz web para creadores de políticas para navegar a través de todos nuestros resultados. Más concretamente, el proyecto va a entregar:
+Bajo ese marco, IABIN ha financiado el Programa de Decisión y Análisis de Políticas (DAPA) en el Centro Internacional de Agricultura Tropical (CIAT) en un proyecto titulado *"Mejorar datos primarios y usarlos para evaluación de amenazas y planeación de conservación in situ en Suramerica"*. Específicamente, tenemos el objetivo de evaluar y mejorar la calidad geográfica de los datos primarios proporcionados por las distintas Redes Temáticas de IABIN (TNs) usando un enfoque rigurosamente cientifico y en su mayor parte automatizado. Los datos serán usados en una variedad de ejercicios de modelización estadística ,con el objetivo de extraer conclusiones prácticas sobre el estado de conservación de la Biodiversidad, y finalmente, se proveerá una interfaz web para que los personas encargadas de crear politicas puedan navegar a través de todos nuestros resultados. Concretamente, el proyecto va a entregar:
 
  # Scripts automáticos de Verificación de registros
  # Scripts automáticos de georreferenciación
- # Resultados en ambas, la verificación de registros y la georreferenciación de las redes temáticas con bases de datos disponibles para tales propósitos, a saber:
+ # Resultados tanto de la verificación de registros y la georreferenciación de las redes temáticas (TNs) con bases de datos disponibles para tales propósitos, que son:
   # Red temática de Especies y Especímenes (SSTN)
   # Red temática de Especies Invasivas(I3N)
   # Red Temática de Polinizadores (PTN)
- # Scripts de entrenamiento de modelos de distribución de especies
+ # Scripts de entrenamiento de modelos de distribución de especies.
  # Una evaluación del nivel de las amenazas antropogénicas y estado de conservación de varias especies (para los que la distribución geográfica se puede modelar)
  # Una herramienta de navegación basada en Google-maps para todos los resuldados de modelación (de [5])
 
 
 == Justificación ==
 
-Los recientes desarrollos en las aplicaciones de los Sistemas Geográficos de Información (GIS) y el modelado de nicho ecológico (ENM) han añadido valor a los datos, y permiten que los investigadores provean análisis altamente relevantes a la política para dirigir las intervenciones de conservación. A través de las técnicas más recientes de ENM, las distribuciones potenciales de especies se pueden analizar usando grupos muy limitados o polarizados, que contengan datos primarios para determinar los puntos clave en la biodiversidad actual (Phillips et al. 2006; Elith et al. 2006; Hijmans and Graham 2006),y amenzazas similares de actividades antropogenicas  (Jarvis et al. 2009) y cambio de clima (IPCC 2007) para definir las prioridades de conservacion in situ y ex situ actuales y futuras (Walker et al. 2009; Bass et al. 2010).
+Los recientes desarrollos en las aplicaciones de los Sistemas Geográficos de Información (GIS) y el modelado de nicho ecológico (ENM) han dado un valor agregado a los datos, y permiten que los investigadores proporcionar análisis de gran relevancia política a las intervenciones directas de conservación. A través de las técnicas más recientes de ENM, las distribuciones potenciales de especies se pueden analizar usando grupos muy limitados o polarizados, que contengan datos primarios para determinar los puntos clave en la biodiversidad actual (Phillips et al. 2006; Elith et al. 2006; Hijmans and Graham 2006),y amenzazas similares de actividades antropogenicas  (Jarvis et al. 2009) y cambio de clima (IPCC 2007) para definir las prioridades de conservacion in situ y ex situ actuales y futuras (Walker et al. 2009; Bass et al. 2010).
 
 Sin embargo, uno de los temas mas relevantes con respecto a los análisis y las últimas conclusiones derivadas del uso de los datos de biodiversidad primaria es la confianza en su calidad. La Mala calidad de los datos de biodiversidad podría conducir a conclusiones erróneas y tendenciosas, así como causar ineficiencia y / o la inversión incorrecta de los recursos disponibles y la formulación de políticas inadecuadas. La comprobación de la calidad de los datos de biodiversidad, así como el uso adecuado es una cuestión clave a fin de ayudar a la toma de decisiones, e igualmente importante es aumentar el impacto de estos datos en la formulación de políticas y procesos de adopción de la sociedad. Haciendo uso de un conjuntos de datos espaciales disponibles en línea gratuitamente, más algunos programas esto es ahora posible no sólo a gran escala, sino también de una manera muy automatizada. En las secciones siguientes se da una breve descripción de cada uno de los resultados de este proyecto.
 
-Reconocemos la importancia de la relación entre la biodiversidad y la socio-economía, y la dependencia de los seres humanos sobre la biodiversidad y servicios de alta calidad de los ecosistemas. Por lo tanto, consideramos que es fundamental evaluar el nivel en el que la biodiversidad está amenazada y conservada en todo el mundo, y en particular (dado el enfoque de IABIN) en América Latina, donde hay una presencia importante de "puntos" de biodiversidad (por ejemplo, Bosque Atlántico Brasileño, Yasuní de Ecuador Parque Nacional, el Escudo de Guayana, la selva amazónica, entre otros) hacen que las estrategias de conservación sean importantes hacia el futuro a corto y largo plazo. Metodologías fuertes para evaluar los impactos de las actividades antropogénicas y se desarrollará al menos 1 publicación revisada la cual se emitirá usando los resultados del modelamiento y verificación de las coordenadas. Para más información, póngase en contacto con Andy Jarvis, líder del Programa Decisión y Análisis de Políticas en el CIAT (a.jarvis @ cgiar.org).
+Reconocemos la importancia de la relación entre la biodiversidad y la socio-economía, y la dependencia de los seres humanos sobre la biodiversidad y servicios de alta calidad de los ecosistemas. Por lo tanto, consideramos que es fundamental evaluar el nivel en el que la biodiversidad está amenazada y conservada en todo el mundo, y en particular (dado el enfoque de IABIN) en América Latina, donde hay una presencia importante de "puntos" de biodiversidad (por ejemplo, Bosque Atlántico Brasileño, Parque Nacional Yasuní de Ecuador, el Escudo de Guayana, la selva amazónica, entre otros) hacen que las estrategias de conservación sean importantes hacia el futuro a corto y largo plazo. Se desarrollarán fuertes metodologías  para evaluar los impactos de las actividades antropogénicas y  se realizará al menos 1 publicación revisada la cual se emitirá usando los resultados del modelamiento y verificación de las coordenadas. Para más información, póngase en contacto con Andy Jarvis, líder del Programa Decisión y Análisis de Políticas en el CIAT (a.jarvis @ cgiar.org).
 
 
 == Fase 1: Desarrollo de herramientas automatizadas, evaluación y mejora de datos primarios de biodiversidad de IABIN TNs ==
 
-Uno de los temas mas relevantes con respecto a los análisis y las últimas conclusiones derivadas del uso de los datos de biodiversidad primaria es la confianza en su calidad. Hemos construido algoritmos automatizados (Figura 1) desarrollados en el lenguaje de programación Java que permiten un exhaustivo proceso de verificación de coordenadas (detección de error) y proceso de georreferenciación (corrección de error). A través de este proceso intentamos desarrollar una plataforma automatizada para las redes temáticas de IABIN para evaluar sus propios datos cada vez que más datos se incorporen en cualquiera de sus bases de datos. 
+Uno de los temas mas relevantes con respecto a los análisis y las últimas conclusiones derivadas del uso de los datos de biodiversidad primaria es la confianza en su calidad. Hemos construido algoritmos automatizados (Figura 1) desarrollados en lenguaje de programación Java que permiten un exhaustivo proceso de verificación de coordenadas (detección de errores) y proceso de georreferenciación (corrección de errores). A través de este proceso intentamos desarrollar una plataforma automatizada para las redes temáticas de IABIN para evaluar sus propios datos cada vez que más datos se incorporen en cualquiera de sus bases de datos. 
 
 http://iabin-threats.googlecode.com/svn/wiki/resources/diagram-quality-improvement.png
 
 Figura 1 Evaluación y mejora de las bases de datos de las redes temáticas de IABIN  utilizando algoritmos automatizados.
 
-Pero, ¿cómo hacer que los datos sean lo suficientemente confiable? Hemos implementado algoritmos que:
+Pero, ¿cómo hacer que los datos sean lo suficientemente confiables? Hemos implementado un algoritmo que:
 
  * Verifique las coordenadas en los diferentes niveles
- * Si los registros son los que dicen que son?
- * Si los registros están dentro de las áreas de la tierra (para las especies vegetales terrestres, solamente)
- * Si todos los registros están en el nicho ecológico del taxón?
- * Registros en el mar : no se puede verificar
- * Corregir las referencias incorrectas
+  * Si los registros son los que dicen que son?
+  * Si los registros están dentro de las áreas de la tierra (para las especies vegetales terrestres, solamente)
+  * Si todos los registros están en el nicho ecológico del taxón? 
+ * Corrige las referencias incorrectas
  * Agregue referencias a los que no tienen
  * Comparar con los conservadores y la retroalimentación de la base de datos
 
-Documentación adecuada sobre cómo construir, cofigurar y ejecutar las herramientas se proporciona también con el fin de mejorar la gestión de la transferencia de conocimientos entre y dentro de las redes temáticas, y entre las redes temáticas y desarrolladores de proyectos (ver la tabla de contenido en la parte izquierda de esta página). Este proyecto ha sido creado en googlecode  con el objetivo de almacenar y proporcionar acceso a todo el código fuente y la documentación, y también proporciona una plataforma en donde los errores y los problemas pueden ser planteados como temas y discutidos con los desarrolladores.
+Se proporciona Documentación adecuada sobre cómo construir, cofigurar y ejecutar las herramientas con el fin de mejorar la gestión de la transferencia de conocimientos entre y dentro de las redes temáticas, y entre las redes temáticas y desarrolladores de proyectos (ver la tabla de contenido en la parte izquierda de esta página). Este proyecto ha sido creado en googlecode  con el objetivo de almacenar y proporcionar acceso a todo el código fuente y la documentación, y también proporciona una plataforma en donde los errores y los problemas puedan ser planteados como temas y discutidos con los desarrolladores.
 
 
 === Fase 1a: Verificación de coordenadas ===
@@ -74,7 +73,7 @@ Para verificar a nivel continental, usamos una máscara de áreas de tierra de a
 
 === Fase 1b: Corrección de coordenadas ===
 
-Incluso cuando una coordenada proceso de verificación se lleva a cabo, eso no implica directamente que se haga la mejor apuesta  de los datos disponibles. Un proceso de mejora de la calidad sigue siendo necesario para poder utilizar los mejores datos futuros nuevos análisis. Geográficamente hablando, esto significa que la recuperación de las coordenadas cuando están o no disponibles o erróneas. Usando BioGeomancer (Guralnick &  Hill, 2009, Guralnick et al., 2006, Hill et al., 2009), se puede recuperar las coordenadas de un lugar determinado por medio de la información recogida en la base de datos (e.g. pais, estado, condado, nombre de localidad). Aunque la información de ubicación no está disponible en todos los casos en los que también se carece de las coordenadas, está disponible en un número de casos y se puede recuperar con un alto grado de confianza (Hill et al., 2009)
+Incluso cuando una coordenada proceso de verificación se lleva a cabo, eso no implica directamente que se haga la mejor apuesta  de los datos disponibles. Un proceso de mejora de la calidad sigue siendo necesario para poder utilizar los mejores datos en futuros nuevos análisis. Geográficamente hablando, esto significa la recuperación de las coordenadas cuando están o no disponibles o erróneas. Usando BioGeomancer (Guralnick &  Hill, 2009, Guralnick et al., 2006, Hill et al., 2009), se puede recuperar las coordenadas de un lugar determinado por medio de la información recogida en la base de datos (e.g. pais, estado, condado, nombre de localidad). Aunque la información de ubicación no está disponible en todos los casos en los que también se carece de las coordenadas, está disponible en un número de casos y se puede recuperar con un alto grado de confianza (Hill et al., 2009)
 
 En este caso particular, hemos desarrollado un software que utiliza todos los registros marcados como no confiables (de los datos de filtrado automático y de verificación), que es capaz de:
 

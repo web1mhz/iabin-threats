@@ -1,5 +1,5 @@
 #summary Cómo contruir la herramienta de generación de archivos ita-maps
-#labels  Fase-Implementación,No terminado
+#labels  Versión Beta
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/HowToBuildITA?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
@@ -9,7 +9,7 @@
 
 == Introducción ==
 
-Este es un documento técnico y está destinado a personas con conocimientos técnicos en la ejecución de comandos java y mysql
+Este documento está destinado a personas con conocimientos técnicos en la ejecución de comandos java y mysql
 
 El objetivo de este documento es ilustrar cómo construir el proyecto desde el código fuente de este repositorio.
 
@@ -61,5 +61,5 @@ La compilación de este paso no es necesaria ya que el empaquetamiento incluye e
  
 Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con comandos _java_.
  
-Puede ver la pagina del [API] para saber como usar las clases del proyecto o ejecutar directamente cualquiera de las clases ejecutables.
+Puede ver la pagina del [http://iabin-threats.googlecode.com/files/ita-0.1Beta-SNAPSHOT-api.zip API] para saber como usar las clases del proyecto o ejecutar directamente cualquiera de las clases ejecutables.
 for more details please read [http://code.google.com/p/iabin-threats/wiki/RunningProcedure RunningProcedure]

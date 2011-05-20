@@ -1,5 +1,5 @@
 #summary Cómo generar los datos de entrada.
-#labels 
+#labels  Versión Beta 
 #sidebar TableOfContents
 
 [http://code.google.com/p/iabin-threats/wiki/HowToBuildITAMaps?wl=en http://iabin-threats.googlecode.com/svn/wiki/resources/gb.gif]
