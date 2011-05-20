@@ -5,14 +5,43 @@ import java.lang.Math;
 
 public class Mercator implements Projection {
 
-	private int zoom, worldX, worldY;
+	/**
+	 * @uml.property  name="zoom"
+	 */
+	private int zoom;
+	/**
+	 * @uml.property  name="worldX"
+	 */
+	private int worldX;
+	/**
+	 * @uml.property  name="worldY"
+	 */
+	private int worldY;
+	/**
+	 * @uml.property  name="tiles"
+	 */
 	private double tiles;
+	/**
+	 * @uml.property  name="circumference"
+	 */
 	private double circumference;
+	/**
+	 * @uml.property  name="radius"
+	 */
 	private double radius;
 	
+	/**
+	 * @uml.property  name="falseEasting"
+	 */
 	private double falseEasting;
+	/**
+	 * @uml.property  name="falseNorthing"
+	 */
 	private double falseNorthing;
 	
+	/**
+	 * @uml.property  name="tILE_SIZE"
+	 */
 	private int TILE_SIZE;
 	
 	/**

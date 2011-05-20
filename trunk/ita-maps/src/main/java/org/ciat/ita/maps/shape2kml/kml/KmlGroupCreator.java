@@ -8,30 +8,40 @@ import de.micromata.opengis.kml.v_2_2_0.NetworkLink;
 
 public class KmlGroupCreator {
 
+	/**
+	 * @uml.property  name="kml"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private final Kml kml;
+	/**
+	 * @uml.property  name="folder"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private final Folder folder;
-	private static int counter=0;
+	private static int counter = 0;
+	/**
+	 * @uml.property  name="url"
+	 */
 	String url;
-	
-	public KmlGroupCreator(String url){
-		kml= new Kml();
-		folder=kml.createAndSetFolder();
-		this.url=url;
-		
+
+	public KmlGroupCreator(String url) {
+		kml = new Kml();
+		folder = kml.createAndSetFolder();
+		this.url = url;
+
 	}
-	
-	public void addElement(String nombre){
-		NetworkLink nLink=folder.createAndAddNetworkLink();
-		nLink.createAndSetLink().withHref(url+nombre);
+
+	public void addElement(String nombre) {
+		NetworkLink nLink = folder.createAndAddNetworkLink();
+		nLink.createAndSetLink().withHref(url + nombre);
 		counter++;
-		System.out.print("files generated : "+counter+" " );
+		System.out.print("files generated : " + counter + " ");
 	}
-	
-	public void writeKml(String targetFile,String nombreGrupo) throws FileNotFoundException{
-		//kml.marshal();
+
+	public void writeKml(String targetFile, String nombreGrupo) throws FileNotFoundException {
+		
 		System.out.println("main kml generated");
-		kml.marshal(new File(targetFile+File.separator+nombreGrupo));
+		kml.marshal(new File(targetFile + File.separator + nombreGrupo));
 	}
-	
-	
+
 }

@@ -11,6 +11,9 @@ import org.ciat.ita.maps.tilecutter.raster.Raster;
 
 public abstract class DiscreteColorManager extends ColorManager {
 
+	/**
+	 * @uml.property  name="umbrales" multiplicity="(0 -1)" dimension="1"
+	 */
 	private float[] umbrales;
 
 	public void setThresholds(float[] thresholds) {
@@ -41,8 +44,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 	public int getRGB(float value) {
 
 		if (value == getNoData())
-			return 0x00000000; // Los bit de la transparencia deben ser 0
-		// (transparente)
+			return 0x00000000; // Los bit de la transparencia deben ser 0 (transparente)
 
 		float min = 0;
 		float max = umbrales.length - 1;
@@ -73,8 +75,7 @@ public abstract class DiscreteColorManager extends ColorManager {
 			rgb = rgb | (val << ((2 - i) * 8));
 		}
 
-		return rgb | 0xff000000; // Los bit de la transparencia deben ser 1
-		// (opaco)
+		return rgb | 0xff000000; // Los bit de la transparencia deben ser 1 (opaco)
 
 	}
 
@@ -119,12 +120,6 @@ public abstract class DiscreteColorManager extends ColorManager {
 		graphics.fillRect(0, 0, width, height);
 
 
-		//graphics.setColor(Color.BLACK);
-		//graphics.drawString(descripcion, 5, (line - recHeight) / 2 + recHeight);
-
-		
-		
-		
 		String toWrite;
 		int tWidth;
 		float valorMinimo = this.getMin();
@@ -133,16 +128,14 @@ public abstract class DiscreteColorManager extends ColorManager {
 			Color color = new Color(getRGB(umbrales[i]
 					- (float) Math.pow(10, -8)));
 			graphics.setColor(color);
-			toWrite = formater.format(Math.floor(valorMinimo*fact)/fact);/* + " " + 
-				formater.format(Math.floor(umbrales[i]*fact)/fact)+ " ]";*/
+			toWrite = formater.format(Math.floor(valorMinimo*fact)/fact);
 			tWidth= fm.stringWidth(toWrite);
 			graphics.fillRect(margin/2+i*colorRecWidth+i*boxMargin, 0, colorRecWidth,recHeight);
 			graphics.setColor(Color.BLACK);
 			graphics.drawRect(margin/2+i*colorRecWidth+i*boxMargin, 0, colorRecWidth,recHeight);
 			graphics.drawString(toWrite,
 					margin/2+(i)*colorRecWidth+i*boxMargin-tWidth/2, 
-					recHeight*2-2);
-			//cont += line;
+					recHeight*2-2);			
 			valorMinimo =  umbrales[i];
 		}
 		

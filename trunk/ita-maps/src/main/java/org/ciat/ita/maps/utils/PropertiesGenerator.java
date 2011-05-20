@@ -7,6 +7,9 @@ import java.io.IOException;
 
 public class PropertiesGenerator {
 	
+	/**
+	 * @uml.property  name="fileName"
+	 */
 	private  String fileName;
 	
 	public PropertiesGenerator(String file){
