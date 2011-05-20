@@ -13,7 +13,7 @@ This is a technical document and is intended to people who has relation with the
 
 The purpose of this document is to illustrate how to build the project from the source code of this repository.
 
-We invite you to read first the [Description] of the project.
+We invite you to read first the [Description Description] of the project.
 
 == Technical Requirements ==
 
