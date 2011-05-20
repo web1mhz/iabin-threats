@@ -71,9 +71,9 @@ como el comando _svn_ no importa estos archivos, el proyecto ITA puede generarlo
 Para generar los archivos basicos de configuración, ejecute los siguientes comandos:
 
      java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.client.ClientConfig
-
+     
      java -jar ita-0.1-SNAPSHOT.jar org.ciat.ita.server.ServerConfig
-
+     
 Ambos XML deberían haberse creado.
 
 -----------------------------------------------------

@@ -62,4 +62,4 @@ La compilación de este paso no es necesaria ya que el empaquetamiento incluye e
 Después de empaquetado el proyecto puede usar los servicios prestados por el proyecto. Y después de [Configurar] el proyecto puede ejecutarlo con comandos _java_.
  
 Puede ver la pagina del [http://iabin-threats.googlecode.com/files/ita-0.1Beta-SNAPSHOT-api.zip API] para saber como usar las clases del proyecto o ejecutar directamente cualquiera de las clases ejecutables.
-for more details please read [http://code.google.com/p/iabin-threats/wiki/RunningProcedure RunningProcedure]
+Para más detalles lea [http://code.google.com/p/iabin-threats/wiki/RunningProcedure RunningProcedure]

@@ -115,7 +115,7 @@ example:
 
 ===5 Getting EMM file===
 
-If you don't have the EMM All in One file (BioAIO.emm) required for the Geospatial Evaluation step, you may download from //TODO download URI
+If you don't have the EMM All in One file (BioAIO.emm) required for the Geospatial Evaluation step, you may download from [http://gisweb.ciat.cgiar.org/ITA/public_downloads/BioAIO.zip here]
 
 Or you can create it using the original ASCII files of the bioclimatic variables specified in the XML Client configuration and the EnvironmentMaskManger script.
 

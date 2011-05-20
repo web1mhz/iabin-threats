@@ -115,9 +115,9 @@ Ejemplo:
 
 ===5 Obteniendo el archivo EMM ===
 
-Si no tiene el archivo Emm todo en uno (bioAIO.emm) requerido para el paso de evaluación geoespacial, lo puede descargar de:  //TODO download URI
+Si no tiene el archivo Emm todo en uno (bioAIO.emm) requerido para el paso de evaluación geoespacial, lo puede descargar de: [http://gisweb.ciat.cgiar.org/ITA/public_downloads/BioAIO.zip Aqui]
 
-O puede crearlo usando el archivo ASCII original de las variables bioclimáticas especificadas en el XML de configuración cliente y el script EnvironmentMaskManager.
+O puede crearlo usando el archivo ASCII original de las variables bioclimáticas especificadas en el XML de configuración cliente y el script EnvironmentMaskManager
 
 ====Procedimiento Técnico====
 *Parametros:*
@@ -201,9 +201,9 @@ ejemplo:
   
 ===7 Evaluación ambiental ===
 ====Descripción====
+
 Dentro de cada especie calcular el valor máximo y el valor mínimo de cada variable ambiental para determinar si el registro es un caso atípico para esa variable.
- 
- 
+  
 *Entradas:* _temp_good_records_ tabla que contiene los registros geoespaciales confiables y los datos ambientales correspondientes
 
 *Salidas:* _temp_good_records_  tabla con el numero valores atípicos para todas las variables
