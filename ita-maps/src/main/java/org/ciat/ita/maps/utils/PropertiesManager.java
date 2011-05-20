@@ -6,6 +6,10 @@ import java.util.Properties;
 
 public class PropertiesManager {
 	
+	/**
+	 * @uml.property  name="properties"
+	 * @uml.associationEnd  multiplicity="(0 -1)" ordering="true" elementType="java.lang.Object" qualifier="name:java.lang.String java.lang.Object"
+	 */
 	private Properties properties;
 	
 	private static PropertiesManager instance;

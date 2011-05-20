@@ -5,7 +5,26 @@ import org.ciat.ita.maps.tilecutter.raster.Header;
 public class WGS84 implements Projection {
 	
 	
-	private double xll, yll, cellSizeX,cellSizeY;
+	/**
+	 * @uml.property  name="xll"
+	 */
+	private double xll;
+	/**
+	 * @uml.property  name="yll"
+	 */
+	private double yll;
+	/**
+	 * @uml.property  name="cellSizeX"
+	 */
+	private double cellSizeX;
+	/**
+	 * @uml.property  name="cellSizeY"
+	 */
+	private double cellSizeY;
+	/**
+	 * @uml.property  name="header"
+	 * @uml.associationEnd  
+	 */
 	private Header header;
 	
 	
@@ -26,7 +45,8 @@ public class WGS84 implements Projection {
 
 	/**
 	 * Recibe un header y sus valores se usan en la clase WGS84
-	 * @param header
+	 * @param  header
+	 * @uml.property  name="header"
 	 */
 	public void setHeader(Header header) {
 		this.header = header;
