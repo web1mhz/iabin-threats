@@ -4,7 +4,7 @@
 	<groupId>org.ciat.ita</groupId>
 	<artifactId>ita-wt</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>ita-wt Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
