@@ -1,5 +1,6 @@
 package org.ciat.ita.service;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -46,10 +47,13 @@ public class Info extends HttpServlet {
 
 	public Info() {
 		try {
+			System.out.println("Loading configuration file..."+new File("ita-wt.properties").getAbsolutePath());
 			prop.load(new FileInputStream("ita-wt.properties"));
 		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
